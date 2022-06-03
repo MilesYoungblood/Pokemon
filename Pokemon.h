@@ -7,28 +7,22 @@
 
 #include "Moves.h"
 
+#include <iostream>
 #include <string>
 #include <vector>
-
-using namespace std;
 
 const int NUM_MOVES = 4;
 
 class Pokemon {
-private:
-    int hp;
-    int attack;
-    int spAttack;
-    int defense;
-    int spDefense;
-    int speed;
-    int accuracy;
+protected:
+    int hp, attack, spAttack, defense, spDefense, speed, accuracy;
+    int maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
 
-    string name;
-    vector<Moves> moveSet;
+    std::string name, status;
+    std::vector<Moves> moveSet;
 public:
     Pokemon();
-    Pokemon(const string& nameToSet, int hpToSet);
+    Pokemon(const std::string& nameToSet, int hpToSet);
 
     void SetHP(int val);
     void SetAttack(int val);
@@ -46,11 +40,23 @@ public:
     int GetSpeed() const;
     int GetAccuracy() const;
 
-    void SetName(const string& newName);
-    string GetName() const;
+    int GetMaxHP() const;
+    int GetBaseAttack() const;
+    int GetBaseSpAttack() const;
+    int GetBaseDefense() const;
+    int GetBaseSpDefense() const;
+    int GetBaseSpeed() const;
+
+    void SetBaseStats(int attack, int spAttack, int defense, int spDefense, int speed);
+
+    void SetName(const std::string& newName);
+    std::string GetName() const;
+
+    void SetStatus(const std::string& newStatus);
+    std::string GetStatus();
 
     void SetMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4);
-    vector<Moves> GetMoves() const;
+    Moves& GetMove(int move);
 };
 
 #endif //POKEMON_BATTLE_POKEMON_H

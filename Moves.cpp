@@ -4,8 +4,6 @@
 
 #include "Moves.h"
 
-using namespace std;
-
 Moves::Moves() {
     pp = 0;
     damage = 0;
@@ -13,11 +11,18 @@ Moves::Moves() {
     name = "No name";
 }
 
-Moves::Moves(const string& nameToSet, const string& typeToSet, int ppToSet, int damageToSet) {
+Moves::Moves(const std::string& nameToSet, const std::string& typeToSet, int ppToSet, int damageToSet) {
     pp = ppToSet;
     damage = damageToSet;
     type = typeToSet;
     name = nameToSet;
+}
+
+Moves::Moves(const Moves& moveToCopy) {
+    pp = moveToCopy.pp;
+    damage = moveToCopy.damage;
+    type = moveToCopy.type;
+    name = moveToCopy.name;
 }
 
 void Moves::SetPP(int val) { pp = val; }
@@ -26,8 +31,8 @@ int Moves::GetPP() const { return pp; }
 void Moves::SetDamage(int val) { damage = val; }
 int Moves::GetDamage() const { return damage; }
 
-__attribute__((unused)) void Moves::SetType(string& val) { type = val; }
-__attribute__((unused)) string Moves::GetType() const { return type; }
+__attribute__((unused)) void Moves::SetType(std::string& val) { type = val; }
+__attribute__((unused)) std::string Moves::GetType() const { return type; }
 
-void Moves::SetName(const string &newName) { name = newName; }
-string Moves::GetName() const { return name; }
+void Moves::SetName(const std::string &newName) { name = newName; }
+std::string Moves::GetName() const { return name; }

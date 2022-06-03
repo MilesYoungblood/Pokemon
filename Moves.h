@@ -7,16 +7,14 @@
 
 #include <string>
 
-using namespace std;
-
 class Moves {
-private:
-    int pp;
-    int damage;
-    string type, name;
+protected:
+    int pp, damage;
+    std::string type, name;
 public:
     Moves();
-    Moves(const string& nameToSet, const string& typeToSet, int ppToSet, int damageToSet);
+    Moves(const std::string& nameToSet, const std::string& typeToSet, int ppToSet, int damageToSet);
+    Moves(const Moves& moveToCopy);
 
     void SetPP(int val);
     int GetPP() const;
@@ -24,10 +22,10 @@ public:
     void SetDamage(int val);
     int GetDamage() const;
 
-    __attribute__((unused)) void SetType(string& type);
-    __attribute__((unused)) string GetType() const;
+    __attribute__((unused)) void SetType(std::string& type);
+    __attribute__((unused)) std::string GetType() const;
 
-    void SetName(const string& newName);
+    void SetName(const std::string& newName);
     std::string GetName() const;
 };
 
