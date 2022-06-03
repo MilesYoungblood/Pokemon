@@ -86,11 +86,104 @@ int main() {
                 skip = true;
             }
         }
+<<<<<<< Updated upstream
         // TODO: ADD BAG
         else if (userChoice == 'b') {
             cout << "bag function not yet implemented" << endl << endl;
             sleep(2);
             skip = true;
+=======
+
+        else if (userChoice == 'b' && isalpha(userChoice)) { // enters the bag
+            DisplayBag();
+            std::cin >> userItem;
+
+            while (userItem < 0 || userItem > 4) { // bounds checking
+                InvalidOptionMessage();
+                std::cin >> userItem;
+            }
+
+
+            if (userItem == 1) { // user chose HP/PP items
+                DisplayRestoreItems(userRestoreItems);
+                std::cin >> userItem;
+
+                if (userItem >= 1 && userItem <= userRestoreItems.size()) {
+                    DisplayPokemonHeal(userParty);
+                    std::cin >> pokemon;
+
+                    if (pokemon <= 6 && pokemon >= 1) {
+                        if (userParty.at(pokemon - 1).GetMaxHP() == userParty.at(pokemon - 1).GetHP()) {
+                            std::cout << userParty.at(pokemon - 1).GetName() << "'s HP is full!" << std::endl;
+                            sleep(2);
+                            skip = true;
+                        }
+                        else {
+                            if (userRestoreItems.at(userItem - 1).GetQuantity() > 0) {
+                                Heal(userParty.at(pokemon - 1), userRestoreItems.at(userItem - 1).GetAmount());
+                                HealMessage(userParty.at(pokemon - 1), userRestoreItems.at(userItem - 1).GetAmount());
+                                Items::UseItem(userRestoreItems.at(userItem - 1));
+                            }
+                            else {
+                                RestoreItems::ItemErrorMessage(userRestoreItems, userItem);
+                                skip = true;
+                            }
+                        }
+                    }
+
+                    else if (pokemon == 0) {
+                        skip = true;
+                    }
+                }
+
+                else if (userItem == 0) {
+                    skip = true;
+                }
+            }
+
+            else if (userItem == 2) {
+                DisplayStatusItems(userStatusItems);
+                std::cin >> userItem;
+
+                if (userItem >= 1 && userItem <= userStatusItems.size()) {
+                    DisplayPokemonHeal(userParty);
+                    std::cin >> pokemon;
+
+                    if (pokemon <= 6 && pokemon >= 1) {
+                        if (userParty.at(pokemon - 1).GetStatus() == "No status") {
+                            std::cout << userParty.at(pokemon - 1).GetName() << " has no status condition" << std::endl;
+                            sleep(2);
+                        }
+                        else {
+                            if (userStatusItems.at(userItem - 1).GetQuantity() > 0) {
+                                //TODO: Add heal virtual heal function
+                                //Heal(userStatusItems.at(userItem - 1), userParty.at(pokemon - 1));
+                            }
+                            else {
+                                StatusItems::ItemErrorMessage(userStatusItems, userItem);
+                                skip = true;
+                            }
+                        }
+                    }
+
+                    else if (pokemon == 0) {
+                        skip = true;
+                    }
+                }
+
+                else if (userItem == 0) {
+                    skip = true;
+                }
+            }
+
+            else if (userItem == 3) {
+
+            }
+
+            else if (userItem == 0) {
+                skip = true;
+            }
+>>>>>>> Stashed changes
         }
 
         else if (userChoice == 'r') {
