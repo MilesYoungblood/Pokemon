@@ -8,8 +8,8 @@
 #include <string>
 
 class Moves {
-protected:
-    int pp, damage;
+private:
+    int pp, power;
     std::string type, name;
 public:
     Moves();
@@ -19,13 +19,12 @@ public:
     void SetPP(int val);
     int GetPP() const;
 
-    void SetDamage(int val);
-    int GetDamage() const;
+    __attribute__((unused)) void SetPower(int val);
+    int GetPower() const;
 
     __attribute__((unused)) void SetType(std::string& type);
     __attribute__((unused)) std::string GetType() const;
 
-    void SetName(const std::string& newName);
     std::string GetName() const;
 };
 

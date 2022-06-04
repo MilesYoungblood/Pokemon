@@ -10,8 +10,8 @@
 #include "Items.h"
 
 #include <iostream>
-#include <unistd.h>
 #include <vector>
+#include <unistd.h>
 
 void InvalidOptionMessage() {
     std::cout << "Invalid option. Please try again." << std::endl;
@@ -40,15 +40,15 @@ void IntroMessage(const std::vector<Pokemon>& userParty, const std::vector<Pokem
 
 void DisplayChoices(const std::vector<Pokemon>& party) {
     std::cout << "What will " << party.at(0).GetName() << " do?" << std::endl
-         << "   Fight:   f" << std::endl
-         << "   Bag:     b" << std::endl
-         << "   Run:     r" << std::endl
-         << "   Pokemon: p" << std::endl;
+              << "   Fight:   (f)" << std::endl
+              << "   Bag:     (b)" << std::endl
+              << "   Run:     (r)" << std::endl
+              << "   Pokemon: (p)" << std::endl;
 }
 
 void GetChoice(char& choice) {
     std::cin >> choice;
-    while (choice != 'f' && choice != 'b' && choice != 'r' && choice != 's') {
+    while (choice != 'f' && choice != 'b' && choice != 'r' && choice != 'p') {
         InvalidOptionMessage();
         std::cin >> choice;
     }
@@ -58,16 +58,16 @@ void DisplayMoves(Pokemon& pokemon) {
     std::cout << "Choose a move: (Press 0 to go back)" << std::endl;
     for (int i = 0; i < NUM_MOVES; ++i) {
         std::cout << "   " << pokemon.GetMove(i).GetName() << std::string(15 - pokemon.GetMove(i).GetName().length(), ' ')
-             << " (PP: " << pokemon.GetMove(i).GetPP() << ") = " << i + 1 << std::endl;
+                  << " (PP: " << pokemon.GetMove(i).GetPP() << ") = " << i + 1 << std::endl;
     }
 }
 
 void DisplayBag() {
     std::cout << "Choose an option: (Press 0 to go back)" << std::endl
-         << "   HP/PP Restore  (1)" << std::endl
-         << "   Status Restore (2)" << std::endl
-         << "   Poke Balls     (3)" << std::endl
-         << "   Battle Items   (4)" << std::endl;
+              << "   HP/PP Restore  (1)" << std::endl
+              << "   Status Restore (2)" << std::endl
+              << "   Poke Balls     (3)" << std::endl
+              << "   Battle Items   (4)" << std::endl;
 }
 
 void DisplayRestoreItems(const std::vector<RestoreItems>& restoreItems) {
@@ -98,6 +98,7 @@ void DisplayPokemon(const std::vector<Pokemon>& party, const std::vector<Pokemon
         std::cout << party.at(i).GetName() << std::string(15 - party.at(i).GetName().length(), ' ') << "(" << i << ")" << std::endl;
     }
     if (!faintedParty.empty()) {
+        std::cout << "Fainted Pokemon:" << std::endl;
         for (const auto & i : faintedParty) {
             std::cout << "   " << i.GetName() << std::string(15 - i.GetName().length(), ' ') << std::endl;
         }
@@ -117,14 +118,14 @@ void DisplayHP(const std::vector<Pokemon>& party, const std::vector<Pokemon>& op
 }
 
 void Attack(Pokemon& pokemonToAttack, Pokemon& attackingPokemon, int move) {
-    pokemonToAttack.SetHP(pokemonToAttack.GetHP() - attackingPokemon.GetMove(move).GetDamage());
+    pokemonToAttack.SetHP(pokemonToAttack.GetHP() - attackingPokemon.GetMove(move).GetPower());
     attackingPokemon.GetMove(move).SetPP(attackingPokemon.GetMove(move).GetPP() - 1);
 }
 
 void AttackMessage(std::vector<Pokemon>& party, int move) {
     std::cout << party.at(0).GetName() << " used " << party.at(0).GetMove(move).GetName() << "! ";
     sleep(1);
-    std::cout << party.at(0).GetMove(move).GetName() << " did " << party.at(0).GetMove(move).GetDamage() << " damage!" << std::endl;
+    std::cout << party.at(0).GetMove(move).GetName() << " did " << party.at(0).GetMove(move).GetPower() << " damage!" << std::endl;
     sleep(2);
 }
 
@@ -133,9 +134,9 @@ void AttackErrorMessage() {
     sleep(2);
 }
 
-void Faint(std::vector<Pokemon>& partyVector, std::vector<Pokemon>& faintedPokemon) {
-    partyVector.erase(partyVector.begin());
-    faintedPokemon.push_back(partyVector.at(0));
+void Faint(std::vector<Pokemon>& partyVector, std::vector<Pokemon>& faintedPokemon, int pokemonToFaint) {
+    faintedPokemon.push_back(partyVector.at(pokemonToFaint));
+    partyVector.erase(partyVector.begin() + pokemonToFaint);
 }
 
 void FaintMessage(std::vector<Pokemon> partyVector) {
@@ -170,15 +171,25 @@ void Switch(std::vector<Pokemon>& pokemonParty, int pokemonToSwitch) {
     pokemonParty.at(pokemonToSwitch) = copyParty;
 }
 
-void SwitchMessage(const std::vector<Pokemon>& party) {
-    std::cout << party.at(0).GetName() << " return!" << std::endl;
+void SwitchMessage(const std::vector<Pokemon>& party, int pokemonSwitched) {
+    std::cout << party.at(pokemonSwitched).GetName() << " return!";
     sleep(2);
     std::cout << "Go " << party.at(0).GetName() << "!" << std::endl;
     sleep(2);
 }
 
 void SwitchErrorMessage() {
-    std::cout << "That Pokemon's HP is 0. Choose another Pokemon" << std::endl;
+    std::cout << "Cannot switch with only one Pokemon left in party" << std::endl;
+    sleep(2);
+}
+
+void HPEmptyMessage() {
+    std::cout << "That Pokemon's HP is 0!" << std::endl;
+    sleep(2);
+}
+
+void HPFullMessage(const std::vector<Pokemon>& party, int pokemon) {
+    std::cout << party.at(pokemon - 1).GetName() << "'s HP is full!" << std::endl;
     sleep(2);
 }
 

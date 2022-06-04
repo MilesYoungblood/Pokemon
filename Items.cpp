@@ -111,3 +111,17 @@ void FreezeItems::Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure) {
         pokemonToCure.SetStatus("No status");
     }
 }
+
+PoisonItems::PoisonItems() : StatusItems() {}
+PoisonItems::PoisonItems(int quantity, const std::string &name) : StatusItems(quantity, name) {}
+
+void PoisonItems::Heal(StatusItems &itemToUse, Pokemon &pokemonToCure) {
+    if (pokemonToCure.GetStatus() == "poisoned") {
+        pokemonToCure.SetStatus("No status");
+    }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+PokeBalls::PokeBalls() : Items() {}
+PokeBalls::PokeBalls(int quantity, const std::string &name) : Items(quantity, name) {}

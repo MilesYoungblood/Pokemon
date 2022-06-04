@@ -6,21 +6,21 @@
 
 Moves::Moves() {
     pp = 0;
-    damage = 0;
+    power = 0;
     type = "No type";
     name = "No name";
 }
 
 Moves::Moves(const std::string& nameToSet, const std::string& typeToSet, int ppToSet, int damageToSet) {
     pp = ppToSet;
-    damage = damageToSet;
+    power = damageToSet;
     type = typeToSet;
     name = nameToSet;
 }
 
 Moves::Moves(const Moves& moveToCopy) {
     pp = moveToCopy.pp;
-    damage = moveToCopy.damage;
+    power = moveToCopy.power;
     type = moveToCopy.type;
     name = moveToCopy.name;
 }
@@ -28,11 +28,10 @@ Moves::Moves(const Moves& moveToCopy) {
 void Moves::SetPP(int val) { pp = val; }
 int Moves::GetPP() const { return pp; }
 
-void Moves::SetDamage(int val) { damage = val; }
-int Moves::GetDamage() const { return damage; }
+__attribute__((unused)) void Moves::SetPower(int val) { power = val; }
+int Moves::GetPower() const { return power; }
 
 __attribute__((unused)) void Moves::SetType(std::string& val) { type = val; }
 __attribute__((unused)) std::string Moves::GetType() const { return type; }
 
-void Moves::SetName(const std::string &newName) { name = newName; }
 std::string Moves::GetName() const { return name; }

@@ -7,6 +7,8 @@
 
 #include "Pokemon.h"
 #include <unistd.h>
+#include <iostream>
+#include <vector>
 
 class Items {
 private:
@@ -69,21 +71,34 @@ class ParalysisItems : public StatusItems {
 public:
     ParalysisItems();
     ParalysisItems(int quantity, const std::string& name);
-    void Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure);
+    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
 };
 
 class BurnItems : public StatusItems {
 public:
     BurnItems();
     BurnItems(int quantity, const std::string& name);
-    void Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure);
+    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
 };
 
 class FreezeItems : public StatusItems {
 public:
     FreezeItems();
     FreezeItems(int quantity, const std::string& name);
-    void Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure);
+    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
+};
+
+class PoisonItems : public StatusItems {
+public:
+    PoisonItems();
+    PoisonItems(int quantity, const std::string& name);
+    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
+};
+
+class PokeBalls : public Items {
+public:
+    PokeBalls();
+    PokeBalls(int quantity, const std::string& name);
 };
 
 #endif //POKEMON_BATTLE_ITEMS_H

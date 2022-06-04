@@ -1,11 +1,7 @@
 #include "main.h"
-#include "Pokemon.h"
-#include "Moves.h"
-#include "Items.h"
-
 
 int main() {
-    Pokemon Greninja("Greninja", 300);\
+    Pokemon Greninja("Greninja", 100);\
     Greninja.SetBaseStats(95, 67, 103, 71, 122);
         Moves WaterShuriken("Water Shuriken", "water", 20, 15);
         Moves DarkPulse("Dark Pulse", "dark", 20, 50);
@@ -19,12 +15,24 @@ int main() {
         Moves SolarBeam("Solar Beam", "grass", 10, 70);
 
     Pokemon Pikachu("Pikachu", 300);
+        Moves Thunder("Thunder", "electric", 10, 70);
+        Moves QuickAttack("Quick Attack", "normal", 25, 40);
+        Moves IronTail("Iron Tail", "steel", 20, 50);
+        Moves VoltTackle("Volt Tackle", "electric", 5, 70);
 
+    Pokemon Lucario("Lucario", 300);
+        Moves AuraSphere("Aura Sphere", "fighting", 10, 60);
+        Moves FlashCannon("Flash Cannon", "steel", 15, 60);
+        const Moves& Dragon_Pulse(DragonPulse);
+        const Moves& Dark_Pulse(DarkPulse);
 
     Greninja.SetMoves(WaterShuriken, DarkPulse, IceBeam, Extrasensory);
+    Pikachu.SetMoves(Thunder, QuickAttack, IronTail, VoltTackle);
+    Lucario.SetMoves(AuraSphere, FlashCannon, Dragon_Pulse, Dark_Pulse);
+
     Charizard.SetMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
 
-    std::vector<Pokemon> userParty = {Greninja, Pikachu}, userFaintedParty;
+    std::vector<Pokemon> userParty = {Greninja, Pikachu, Lucario}, userFaintedParty;
     std::vector<Pokemon> opponentParty = {Charizard}, opponentFaintedParty;
 
     HPItems Potion(2, 20, "Potion");
@@ -33,9 +41,10 @@ int main() {
     ParalysisItems ParalyzeHeal(2, "Paralysis Heal");
     BurnItems BurnHeal(3, "Burn Heal");
     FreezeItems IceHeal(2, "Ice Heal");
+    PoisonItems Antidote(3, "Antidote");
 
     std::vector<RestoreItems> userRestoreItems = {Potion, Ether};
-    std::vector<StatusItems> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal};
+    std::vector<StatusItems> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal, Antidote};
 
     srand(time(nullptr));
 
@@ -45,7 +54,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER'S TURN
         bool skip = false, runSuccess = false;
         char userChoice;
-        int userMove, userItem, opponentMove = rand() % 4, pokemon;
+        int userMove, userItem, userSwitch, opponentMove = rand() % 4, pokemon;
         DisplayHP(userParty, opponentParty);
         DisplayChoices(userParty);
         GetChoice(userChoice);
@@ -60,7 +69,7 @@ int main() {
                     AttackMessage(userParty, userMove - 1);
 
                     if (opponentParty.at(0).GetHP() <= 0) {
-                        Faint(opponentParty, opponentFaintedParty);
+                        Faint(opponentParty, opponentFaintedParty, 0);
                         FaintMessage(opponentParty);
                         if (opponentParty.empty()) {
                             WinMessage();
@@ -105,8 +114,7 @@ int main() {
 
                     if (pokemon <= 6 && pokemon >= 1) {
                         if (userParty.at(pokemon - 1).GetMaxHP() == userParty.at(pokemon - 1).GetHP()) {
-                            std::cout << userParty.at(pokemon - 1).GetName() << "'s HP is full!" << std::endl;
-                            sleep(2);
+                            HPFullMessage(userParty, pokemon);
                             skip = true;
                         }
                         else {
@@ -184,24 +192,22 @@ int main() {
             }
         }
 
-        else if (userChoice == 'p' && isalpha(userChoice)) {
-            int userSwitch;
+        else if (userChoice == 'p') {
             if (userParty.size() == 1) {
-                std::cout << "Cannot switch with only one Pokemon in the userParty" << std::endl;
-                sleep(2);
+                SwitchErrorMessage();
                 skip = true;
             }
             else {
                 DisplayPokemon(userParty, userFaintedParty);
                 std::cin >> userSwitch;
 
-                if (userSwitch >= 1 && userSwitch <= 5 && userSwitch < userParty.size()) {
+                if (userSwitch >= 1 && userSwitch < userParty.size()) {
                     if (userParty.at(userSwitch).GetHP() > 0) {
                         Switch(userParty, userSwitch);
-                        SwitchMessage(userParty);
+                        SwitchMessage(userParty, userSwitch);
                     }
                     else {
-                        SwitchErrorMessage();
+                        HPEmptyMessage();
                         skip = true;
                     }
                 }
@@ -228,11 +234,39 @@ int main() {
                 AttackMessage(opponentParty, opponentMove);
 
                 if (userParty.at(0).GetHP() <= 0) {
-                    Faint(userParty, userFaintedParty);
                     FaintMessage(userParty);
                     if (userParty.empty()) {
                         LoseMessage();
                         break;
+                    }
+                    std::cout << std::endl << "Choose an option:" << std::endl;
+                    std::cout << "Fight (f)" << std::endl;
+                    std::cout << "Run   (r)" << std::endl;
+                    std::cin >> userChoice;
+
+                    while (userChoice != 'f' && userChoice != 'r') {
+                        std::cin >> userChoice;
+                    }
+
+                    if (userChoice == 'r') {
+                        Run(runSuccess);
+                        RunMessage(runSuccess);
+                        if (runSuccess) {
+                            break;
+                        }
+                    }
+
+                    if (userParty.size() > 1) { // forces switch after Pokémon is fainted
+                        DisplayPokemon(userParty, userFaintedParty);
+                        std::cin >> userSwitch;
+
+                        while (userSwitch < 1 || userSwitch > userParty.size() - 1) {
+                            InvalidOptionMessage();
+                            std::cin >> userSwitch;
+                        }
+
+                        Switch(userParty, userSwitch);
+                        Faint(userParty, userFaintedParty, userSwitch);
                     }
                 }
             }

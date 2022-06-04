@@ -7,19 +7,17 @@
 
 #include "Moves.h"
 
-#include <iostream>
 #include <string>
-#include <vector>
 
 const int NUM_MOVES = 4;
 
 class Pokemon {
-protected:
-    int hp, attack, spAttack, defense, spDefense, speed, accuracy;
-    int maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
+private:
+    int currentHp, attack, spAttack, defense, spDefense, speed, accuracy,
+        maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
 
     std::string name, status;
-    std::vector<Moves> moveSet;
+    Moves moveSet[NUM_MOVES];
 public:
     Pokemon();
     Pokemon(const std::string& nameToSet, int hpToSet);

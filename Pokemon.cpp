@@ -4,9 +4,9 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon() : moveSet(NUM_MOVES) {
+Pokemon::Pokemon() {
     maxHp = 300;
-    hp = 300;
+    currentHp = 300;
     attack = 6;
     spAttack = 6;
     defense = 6;
@@ -24,9 +24,9 @@ Pokemon::Pokemon() : moveSet(NUM_MOVES) {
     status = "No status";
 }
 
-Pokemon::Pokemon(const std::string& nameToSet, int hpToSet) : moveSet(NUM_MOVES) {
+Pokemon::Pokemon(const std::string& nameToSet, int hpToSet) {
     maxHp = hpToSet;
-    hp = hpToSet;
+    currentHp = hpToSet;
     attack = 1;
     spAttack = 1;
     defense = 1;
@@ -41,9 +41,10 @@ Pokemon::Pokemon(const std::string& nameToSet, int hpToSet) : moveSet(NUM_MOVES)
     baseSpeed = 100;
 
     name = nameToSet;
+    status = "No status";
 }
 
-void Pokemon::SetHP(int val) { hp = val; }
+void Pokemon::SetHP(int val) { currentHp = val; }
 void Pokemon::SetAttack(int val) { attack = val; }
 void Pokemon::SetSpAttack(int val) { spAttack = val; }
 void Pokemon::SetDefense(int val) { defense = val; }
@@ -52,7 +53,7 @@ void Pokemon::SetSpeed(int val) { speed = val; }
 void Pokemon::SetAccuracy(int val) { accuracy = val; }
 
 int Pokemon::GetMaxHP() const { return maxHp; }
-int Pokemon::GetHP() const { return hp; }
+int Pokemon::GetHP() const { return currentHp; }
 int Pokemon::GetAttack() const { return attack; }
 int Pokemon::GetSpAttack() const { return spAttack; }
 int Pokemon::GetDefense() const { return defense; }
@@ -85,10 +86,10 @@ std::string Pokemon::GetStatus() {
 }
 
 void Pokemon::SetMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4) {
-    moveSet.at(0) = move1;
-    moveSet.at(1) = move2;
-    moveSet.at(2) = move3;
-    moveSet.at(3) = move4;
+    moveSet[0] = move1;
+    moveSet[1] = move2;
+    moveSet[2] = move3;
+    moveSet[3] = move4;
 }
 
-Moves& Pokemon::GetMove(int move) { return moveSet.at(move); }
+Moves& Pokemon::GetMove(int move) { return moveSet[move]; }

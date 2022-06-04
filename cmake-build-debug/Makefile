@@ -128,6 +128,30 @@ PokemonBattle/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/build
 .PHONY : PokemonBattle/fast
 
+Items.obj: Items.cpp.obj
+.PHONY : Items.obj
+
+# target to build an object file
+Items.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Items.cpp.obj
+.PHONY : Items.cpp.obj
+
+Items.i: Items.cpp.i
+.PHONY : Items.i
+
+# target to preprocess a source file
+Items.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Items.cpp.i
+.PHONY : Items.cpp.i
+
+Items.s: Items.cpp.s
+.PHONY : Items.s
+
+# target to generate assembly for a file
+Items.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Items.cpp.s
+.PHONY : Items.cpp.s
+
 Moves.obj: Moves.cpp.obj
 .PHONY : Moves.obj
 
@@ -209,6 +233,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... PokemonBattle
+	@echo ... Items.obj
+	@echo ... Items.i
+	@echo ... Items.s
 	@echo ... Moves.obj
 	@echo ... Moves.i
 	@echo ... Moves.s
