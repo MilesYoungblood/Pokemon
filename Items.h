@@ -6,9 +6,6 @@
 #define POKEMON_BATTLE_ITEMS_H
 
 #include "Pokemon.h"
-#include <unistd.h>
-#include <iostream>
-#include <vector>
 
 class Items {
 private:
@@ -19,10 +16,9 @@ public:
     Items(const Items& copy);
     Items(int quantity, const std::string& name);
 
-    void SetQuantity(int quantityToSet);
+    void SetQuantity(int newQuantity);
     int GetQuantity() const;
 
-    void SetName(const std::string& nameToSet);
     std::string GetName() const;
 
     static void UseItem(Items& itemToUse);
@@ -31,74 +27,34 @@ public:
 class RestoreItems : public Items {
 private:
     int amount;
+    std::string rType;
 public:
     RestoreItems();
-    RestoreItems(int quantity, int restoreAmount, const std::string& nameToSet);
+    RestoreItems(int quantity, int amount, const std::string& name, const std::string& rType);
 
     int GetAmount() const;
-
-    static void ItemErrorMessage(const std::vector<RestoreItems>& items, int item);
-
-    //virtual void Restore();
-};
-
-class HPItems : public RestoreItems {
-public:
-    HPItems();
-    HPItems(int quantity, int amount, const std::string& name);
-    //static void Restore(Pokemon& pokemon, int restoreAmount);
-};
-
-class PPItems : public RestoreItems {
-public:
-    PPItems();
-    PPItems(int quantity, int amount, const std::string& name);
-    //static void Restore(Pokemon& pokemon, int restoreAmount, int moveToRestore);
+    std::string GetRType() const;
 };
 
 class StatusItems : public Items {
+private:
+    std::string rType;
 public:
     StatusItems();
     StatusItems(const StatusItems& copy);
-    StatusItems(int quantity, const std::string& name);
+    StatusItems(int quantity, const std::string& name, const std::string& rType);
 
-    //virtual void Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure) = 0;
-
-    static void ItemErrorMessage(const std::vector<StatusItems>& items, int item);
-};
-
-class ParalysisItems : public StatusItems {
-public:
-    ParalysisItems();
-    ParalysisItems(int quantity, const std::string& name);
-    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
-};
-
-class BurnItems : public StatusItems {
-public:
-    BurnItems();
-    BurnItems(int quantity, const std::string& name);
-    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
-};
-
-class FreezeItems : public StatusItems {
-public:
-    FreezeItems();
-    FreezeItems(int quantity, const std::string& name);
-    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
-};
-
-class PoisonItems : public StatusItems {
-public:
-    PoisonItems();
-    PoisonItems(int quantity, const std::string& name);
-    static void Heal(StatusItems& itemToUse, Pokemon& pokemonToCure);
+    std::string GetRType() const;
 };
 
 class PokeBalls : public Items {
+private:
+    double catchRate;
 public:
     PokeBalls();
-    PokeBalls(int quantity, const std::string& name);
+    PokeBalls(int quantity, double catchRate, const std::string& name);
+
+    double GetCatchRate() const;
 };
 
 #endif //POKEMON_BATTLE_ITEMS_H

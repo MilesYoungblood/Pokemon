@@ -14,21 +14,18 @@ Items::Items(const Items& copy) {
     this->name = copy.name;
 }
 
-Items::Items(int quantityToSet, const std::string& nameToSet) {
-    quantity = quantityToSet;
-    name = nameToSet;
+Items::Items(int quantity, const std::string& name) {
+    this->quantity = quantity;
+    this->name = name;
 }
 
-void Items::SetQuantity(int quantityToSet) {
-    quantity = quantityToSet;
+void Items::SetQuantity(int newQuantity) {
+    quantity = newQuantity;
 }
 int Items::GetQuantity() const {
     return quantity;
 }
 
-void Items::SetName(const std::string &nameToSet) {
-    name = nameToSet;
-}
 std::string Items::GetName() const {
     return name;
 }
@@ -41,87 +38,44 @@ void Items::UseItem(Items& itemToUse) {
 
 RestoreItems::RestoreItems() : Items() {
     amount = 0;
+    rType = "No restore type";
 }
-RestoreItems::RestoreItems(int quantityToSet, int restoreAmount, const std::string& nameToSet) : Items(quantityToSet, nameToSet){
-    amount = restoreAmount;
+RestoreItems::RestoreItems(int quantity, int amount, const std::string& name, const std::string& rType) : Items(quantity, name){
+    this->amount = amount;
+    this->rType = rType;
 }
-
-void RestoreItems::ItemErrorMessage(const std::vector<RestoreItems>& items, int item) {
-    std::cout << "You don't have any " << items.at(item - 1).GetName() << "s." << std::endl;
-    sleep(2);
-}
-
-//void RestoreItems::Restore() {}
 
 int RestoreItems::GetAmount() const {
     return amount;
 }
 
-//void RestoreItems::Restore() {}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-HPItems::HPItems() : RestoreItems() {}
-HPItems::HPItems(int quantity, int amount, const std::string& name) : RestoreItems(quantity, amount, name){}
-
-/*void HPItems::Restore(Pokemon& pokemon, int restoreAmount) {
-    pokemon.SetHP(pokemon.GetHP() + restoreAmount);
+std::string RestoreItems::GetRType() const {
+    return rType;
 }
-*/
-PPItems::PPItems() : RestoreItems() {}
-PPItems::PPItems(int quantity, int amount, const std::string& name) : RestoreItems(quantity, amount, name){}
-
-/*void PPItems::Restore(Pokemon &pokemon, int restoreAmount, int moveToRestore) {
-    pokemon.GetMoves().at(moveToRestore - 1).SetPP(pokemon.GetMoves().at(moveToRestore - 1).GetPP() + restoreAmount);
-}*/
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-StatusItems::StatusItems() : Items() {}
+StatusItems::StatusItems() : Items() {
+    rType = "No restore type";
+}
 StatusItems::StatusItems(const StatusItems &copy) = default;
-StatusItems::StatusItems(int quantity, const std::string& name) : Items(quantity, name) {}
-
-void StatusItems::ItemErrorMessage(const std::vector<StatusItems> &items, int item) {
-    std::cout << "You don't have any " << items.at(item - 1).GetName() << "'s." << std::endl;
+StatusItems::StatusItems(int quantity, const std::string& name, const std::string& rType) : Items(quantity, name) {
+    this->rType = rType;
 }
 
-ParalysisItems::ParalysisItems() : StatusItems() {}
-ParalysisItems::ParalysisItems(int quantity, const std::string& name) : StatusItems(quantity, name) {}
-
-void ParalysisItems::Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure) {
-    if (pokemonToCure.GetStatus() == "paralyzed") {
-        pokemonToCure.SetStatus("No status");
-    }
-}
-
-BurnItems::BurnItems() : StatusItems() {}
-BurnItems::BurnItems(int quantity, const std::string& name) : StatusItems(quantity, name) {}
-
-void BurnItems::Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure) {
-    if (pokemonToCure.GetStatus() == "burn") {
-        pokemonToCure.SetStatus("No status");
-    }
-}
-
-FreezeItems::FreezeItems() : StatusItems() {}
-FreezeItems::FreezeItems(int quantity, const std::string& name) : StatusItems(quantity, name) {}
-
-void FreezeItems::Heal(StatusItems& ItemToUse, Pokemon& pokemonToCure) {
-    if (pokemonToCure.GetStatus() == "frozen") {
-        pokemonToCure.SetStatus("No status");
-    }
-}
-
-PoisonItems::PoisonItems() : StatusItems() {}
-PoisonItems::PoisonItems(int quantity, const std::string &name) : StatusItems(quantity, name) {}
-
-void PoisonItems::Heal(StatusItems &itemToUse, Pokemon &pokemonToCure) {
-    if (pokemonToCure.GetStatus() == "poisoned") {
-        pokemonToCure.SetStatus("No status");
-    }
+std::string StatusItems::GetRType() const {
+    return rType;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-PokeBalls::PokeBalls() : Items() {}
-PokeBalls::PokeBalls(int quantity, const std::string &name) : Items(quantity, name) {}
+PokeBalls::PokeBalls() : Items() {
+    catchRate = 0.00;
+}
+PokeBalls::PokeBalls(int quantity, double catchRate, const std::string &name) : Items(quantity, name) {
+    this->catchRate = catchRate;
+}
+
+double PokeBalls::GetCatchRate() const {
+    return catchRate;
+}

@@ -9,20 +9,21 @@
 
 class Moves {
 private:
-    int pp, power;
+    int pp, maxPp, power;
     std::string type, name;
 public:
     Moves();
-    Moves(const std::string& nameToSet, const std::string& typeToSet, int ppToSet, int damageToSet);
+    Moves(const std::string& name, const std::string& type, int pp, int power);
     Moves(const Moves& moveToCopy);
 
-    void SetPP(int val);
+    void SetPP(int newPp);
     int GetPP() const;
 
-    __attribute__((unused)) void SetPower(int val);
+    int GetMaxPP() const;
+
     int GetPower() const;
 
-    __attribute__((unused)) void SetType(std::string& type);
+    __attribute__((unused)) void SetType(std::string& newType);
     __attribute__((unused)) std::string GetType() const;
 
     std::string GetName() const;

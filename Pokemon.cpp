@@ -21,12 +21,14 @@ Pokemon::Pokemon() {
     baseSpeed = 100;
 
     name = "No name";
+    types[0] = "No type";
+    types[1] = "No type";
     status = "No status";
 }
 
-Pokemon::Pokemon(const std::string& nameToSet, int hpToSet) {
-    maxHp = hpToSet;
-    currentHp = hpToSet;
+Pokemon::Pokemon(const std::string& name, const std::string& type, int hp) {
+    maxHp = hp;
+    currentHp = hp;
     attack = 1;
     spAttack = 1;
     defense = 1;
@@ -40,7 +42,31 @@ Pokemon::Pokemon(const std::string& nameToSet, int hpToSet) {
     baseSpDefense = 100;
     baseSpeed = 100;
 
-    name = nameToSet;
+    this->name = name;
+    types[0] = type;
+    types[1] = "No type";
+    status = "No status";
+}
+
+Pokemon::Pokemon(const std::string& name, const std::string& type1, const std::string& type2, int hp) {
+    maxHp = hp;
+    currentHp = hp;
+    attack = 1;
+    spAttack = 1;
+    defense = 1;
+    spDefense = 1;
+    speed = 1;
+    accuracy = 1;
+
+    baseAttack = 100;
+    baseSpAttack = 100;
+    baseDefense = 100;
+    baseSpDefense = 100;
+    baseSpeed = 100;
+
+    this->name = name;
+    types[0] = type1;
+    types[1] = type2;
     status = "No status";
 }
 
@@ -77,6 +103,13 @@ int Pokemon::GetBaseSpeed() const { return baseSpeed; }
 
 void Pokemon::SetName(const std::string& newName) { name = newName; }
 std::string Pokemon::GetName() const { return name; }
+
+std::string Pokemon::GetType() const {
+    return types[0];
+}
+std::string Pokemon::GetType(int type) const {
+    return types[type];
+}
 
 void Pokemon::SetStatus(const std::string &newStatus) {
     status = newStatus;
