@@ -19,52 +19,57 @@ Items::Items(int quantity, const std::string& name) {
     this->name = name;
 }
 
-void Items::SetQuantity(int newQuantity) {
+void Items::setQuantity(int newQuantity) {
     quantity = newQuantity;
 }
-int Items::GetQuantity() const {
+int Items::getQuantity() const {
     return quantity;
 }
 
-std::string Items::GetName() const {
+std::string Items::getName() const {
     return name;
 }
 
-void Items::UseItem(Items& itemToUse) {
-    itemToUse.SetQuantity(itemToUse.GetQuantity() - 1);
+void Items::useItem(Items& itemToUse) {
+    itemToUse.setQuantity(itemToUse.getQuantity() - 1);
+}
+
+void Items::useItemMessage() {
+    std::cout << "You used " << this->name << "! ";
+    sleep(1);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RestoreItems::RestoreItems() : Items() {
     amount = 0;
-    rType = "No restore type";
+    restoreType = "No restore type";
 }
-RestoreItems::RestoreItems(int quantity, int amount, const std::string& name, const std::string& rType) : Items(quantity, name){
+RestoreItems::RestoreItems(int quantity, int amount, const std::string& name, const std::string& restoreType) : Items(quantity, name){
     this->amount = amount;
-    this->rType = rType;
+    this->restoreType = restoreType;
 }
 
-int RestoreItems::GetAmount() const {
+int RestoreItems::getAmount() const {
     return amount;
 }
 
-std::string RestoreItems::GetRType() const {
-    return rType;
+std::string RestoreItems::getRestoreType() const {
+    return restoreType;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 StatusItems::StatusItems() : Items() {
-    rType = "No restore type";
+    restoreType = "No restore type";
 }
 StatusItems::StatusItems(const StatusItems &copy) = default;
-StatusItems::StatusItems(int quantity, const std::string& name, const std::string& rType) : Items(quantity, name) {
-    this->rType = rType;
+StatusItems::StatusItems(int quantity, const std::string& name, const std::string& restoreType) : Items(quantity, name) {
+    this->restoreType = restoreType;
 }
 
-std::string StatusItems::GetRType() const {
-    return rType;
+std::string StatusItems::getRestoreType() const {
+    return restoreType;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -76,6 +81,24 @@ PokeBalls::PokeBalls(int quantity, double catchRate, const std::string &name) : 
     this->catchRate = catchRate;
 }
 
-double PokeBalls::GetCatchRate() const {
+double PokeBalls::getCatchRate() const {
     return catchRate;
+}
+
+void PokeBalls::useItemMessage() {
+    std::cout << "You threw a " << this->getName() << '!' << std::endl;
+    sleep(1);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+BattleItems::BattleItems() : Items() {
+    stat = "No stat";
+}
+BattleItems::BattleItems(int quantity, const std::string &name, const std::string &stat) : Items(quantity, name) {
+    this->stat = stat;
+}
+
+std::string BattleItems::getStat() const {
+    return stat;
 }

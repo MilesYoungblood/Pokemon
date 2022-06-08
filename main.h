@@ -8,246 +8,194 @@
 #include "Pokemon.h"
 #include "Moves.h"
 #include "Items.h"
+#include "AttackFunctions.h"
 
-#include <iostream>
-#include <vector>
-#include <random>
-#include <unistd.h>
+void introMessage(const std::vector<Pokemon>& userParty, const std::vector<Pokemon>& opponentParty) {
+    std::cout << "A wild " << opponentParty.at(0).getName() << " appeared! ";
+    sleep(2);
 
-#include <windows.h>
-
-void Restore(Pokemon& pokemonToRestore, int amountToRestore) { // HP variant
-    pokemonToRestore.SetHP(pokemonToRestore.GetHP() + amountToRestore);
-    if (pokemonToRestore.GetHP() > pokemonToRestore.GetMaxHP()) {
-        pokemonToRestore.SetHP(pokemonToRestore.GetMaxHP());
-    }
-}
-
-void Restore(Moves& moveToRestore, int amountToRestore) { // PP variant
-    moveToRestore.SetPP(moveToRestore.GetPP() + amountToRestore);
-    if (moveToRestore.GetPP() > moveToRestore.GetMaxPP()) {
-        moveToRestore.SetPP(moveToRestore.GetMaxPP());
-    }
-}
-
-void RestoreMessage(const Pokemon& pokemonRestored, int amountRestored) { // HP variant
-    std::cout << pokemonRestored.GetName() << " recovered " << amountRestored << " HP!" << std::endl;
+    std::cout << "Go " << userParty.at(0).getName() << "!\n\n";
     sleep(2);
 }
 
-void RestoreMessage(const Moves& moveRestored, int amountRestored) { // PP variant
-    std::cout << moveRestored.GetName() << " recovered " << amountRestored << " PP!" << std::endl;
-    sleep(2);
+void displayChoices(const std::vector<Pokemon>& party) {
+    std::cout << "What will " << party.at(0).getName() << " do?\n"
+              << "\tFight:   (f)\n"
+              << "\tBag:     (b)\n"
+              << "\tRun:     (r)\n"
+              << "\tPokemon: (p)\n";
 }
 
-void Cure(Pokemon& pokemonToCure, const StatusItems& itemToUse) {
-    if (itemToUse.GetRType() == "paralysis") {
-        if (pokemonToCure.GetStatus() == "paralyzed") {
-            pokemonToCure.SetStatus("No status");
-        }
-    }
-    else if (itemToUse.GetRType() == "burn") {
-        if (pokemonToCure.GetStatus() == "burned") {
-            pokemonToCure.SetStatus("No status");
-        }
-    }
-    else if (itemToUse.GetRType() == "freeze") {
-        if (pokemonToCure.GetStatus() == "frozen") {
-            pokemonToCure.SetStatus("No status");
-        }
-    }
-    else if (itemToUse.GetRType() == "poison") {
-        if (pokemonToCure.GetStatus() == "poisoned") {
-            pokemonToCure.SetStatus("No status");
-        }
-    }
-    else if (itemToUse.GetRType() == "sleep") {
-        if (pokemonToCure.GetStatus() == "asleep") {
-            pokemonToCure.SetStatus("No status");
-        }
-    }
-}
-
-void CureMessage(Pokemon pokemonCured, const std::string& status) {
-    if (pokemonCured.GetStatus() == "No status") {
-        std::cout << pokemonCured.GetName() << " recovered from " << status << '!' << std::endl;
-        sleep(1);
-    }
-    else {
-        std::cout << "But it failed!" << std::endl;
-        sleep(1);
-    }
-}
-
-void ItemErrorMessage(const std::string& item) {
-    std::cout << "You don't have any " << item << "'s." << std::endl;
-}
-
-void IntroMessage(const std::vector<Pokemon>& userParty, const std::vector<Pokemon>& opponentParty) {
-    std::cout << "A wild " << opponentParty.at(0).GetName() << " appeared! ";
-    sleep(2);
-
-    std::cout << "Go " << userParty.at(0).GetName() << "!" << std::endl << std::endl;
-    sleep(2);
-}
-
-void DisplayChoices(const std::vector<Pokemon>& party) {
-    std::cout << "What will " << party.at(0).GetName() << " do?" << std::endl
-              << "   Fight:   (f)" << std::endl
-              << "   Bag:     (b)" << std::endl
-              << "   Run:     (r)" << std::endl
-              << "   Pokemon: (p)" << std::endl;
-}
-
-void DisplayMoves(Pokemon& pokemon) {
-    std::cout << "Choose a move: (Press 0 to go back)" << std::endl;
-    for (int i = 0; i < NUM_MOVES; ++i) {
-        std::cout << "   " << pokemon.GetMove(i).GetName() << std::string(15 - pokemon.GetMove(i).GetName().length(), ' ')
-                  << " (PP: " << pokemon.GetMove(i).GetPP() << ") = " << i + 1 << std::endl;
-    }
-}
-
-void DisplayBag() {
-    std::cout << "Choose an option: (Press 0 to go back)" << std::endl
-              << "   HP/PP Restore  (1)" << std::endl
-              << "   Status Restore (2)" << std::endl
-              << "   Poke Balls     (3)" << std::endl
-              << "   Battle Items   (4)" << std::endl;
-}
-
-template <typename T>
-void DisplayItems(const std::vector<T>& items) {
-    std::cout << "Choose an item:" << std::endl;
-    for (int i = 0; i < items.size(); ++i) {
-        std::cout << "   " << items.at(i).GetName() << " x" << items.at(i).GetQuantity() << std::string(15 - items.at(i).GetName().length(), ' ')
-                  << " (" << i + 1 << ')' << std::endl;
-    }
-    std::cout << std::endl << "Go back (0)" << std::endl;
-}
-
-void DisplayPokemon(const std::vector<Pokemon>& party) {
-    std::cout << "Choose a Pokemon:" << std::endl;
-    for (int i = 1; i < party.size(); ++i) {
-        std::cout << "   " << party.at(i).GetName() << std::string(15 - party.at(i).GetName().length(), ' ') << "(" << i << ")" << std::endl;
-    }
-    std::cout << std::endl << "Go back (0)" << std::endl;
-}
-
-void DisplayPokemonHeal(const std::vector<Pokemon>& party) {
-    std::cout << "Choose a Pokemon to heal: (Press 0 to go back)" << std::endl;
+void displayPokemon(const std::vector<Pokemon>& party) {
+    std::cout << "Choose a Pokemon:\n";
     for (int i = 0; i < party.size(); ++i) {
-        std::cout << "   " << party.at(i).GetName() << std::string(15 - party.at(i).GetName().length(), ' ') << "(" << i + 1<< ")" << std::endl;
+        std::cout << '\t' << party.at(i).getName() << std::string(15 - party.at(i).getName().length(), ' ') << '(' << i + 1 << ")\n";
     }
+    std::cout << "\nGo back (0)\n";
 }
 
-void DisplayHP(const std::vector<Pokemon>& party, const std::vector<Pokemon>& opponentParty) {
-    std::cout << '+' << std::string (17, '-') << '+' << std::string(9, '-') << '+' << std::endl;
+void displayHP(const std::vector<Pokemon>& userParty, const std::vector<Pokemon>& opponentParty) {
+    std::cout << '+' << std::string (16, '-') << '+' << std::string(13, '-') << "+\n";
 
-    std::cout << "| " << party.at(0).GetName() << ':' << std::string(15 - party.at(0).GetName().length(), ' ')
-              << "| HP: " << party.at(0).GetHP() << " |" << std::endl;
+    std::cout << "| " << userParty.at(0).getName() << std::string(15 - userParty.at(0).getName().length(), ' ')
+              << "| HP: " << userParty.at(0).getHP() << std::string(3 - std::to_string(userParty.at(0).getHP()).length(), ' ')
+              << '/' << userParty.at(0).getMaxHp() << std::string(3 - std::to_string(userParty.at(0).getMaxHp()).length(), ' ')
+              << " |\n";
 
-    std::cout << '+' << std::string (17, '-') << '+' << std::string(9, '-') << '+' << std::endl;
+    std::cout << '+' << std::string (16, '-') << '+' << std::string(13, '-') << "+\n";
 
-    std::cout << "| " << opponentParty.at(0).GetName() << ':' << std::string(15 - opponentParty.at(0).GetName().length(), ' ')
-              << "| HP: " << opponentParty.at(0).GetHP() << " |" << std::endl;
+    std::cout << "| " << opponentParty.at(0).getName() << std::string(15 - opponentParty.at(0).getName().length(), ' ')
+              << "| HP: " << opponentParty.at(0).getHP() << std::string(3 - std::to_string(opponentParty.at(0).getHP()).length(), ' ')
+              << '/' << opponentParty.at(0).getMaxHp() << std::string(3 - std::to_string(userParty.at(0).getMaxHp()).length(), ' ')
+              <<  " |\n";
 
-    std::cout << '+' << std::string (17, '-') << '+' << std::string(9, '-') << '+' << std::endl << std::endl;
+    std::cout << '+' << std::string (16, '-') << '+' << std::string(13, '-') << "+\n\n";
 }
 
-void Attack(Pokemon& pokemonToAttack, Pokemon& attackingPokemon, int move) {
-    pokemonToAttack.SetHP(pokemonToAttack.GetHP() - attackingPokemon.GetMove(move).GetPower());
-    attackingPokemon.GetMove(move).SetPP(attackingPokemon.GetMove(move).GetPP() - 1);
-}
-
-void AttackMessage(std::vector<Pokemon>& party, int move) {
-    std::cout << party.at(0).GetName() << " used " << party.at(0).GetMove(move).GetName() << "! ";
-    sleep(1);
-    std::cout << party.at(0).GetMove(move).GetName() << " did " << party.at(0).GetMove(move).GetPower() << " damage!" << std::endl;
-    sleep(2);
-}
-
-void AttackErrorMessage() {
-    std::cout << "That move is out of PP. Please select another move." << std::endl;
-    sleep(2);
-}
-
-void Faint(Pokemon& pokemon, int& faintCounter) {
-    pokemon.SetHP(0);
+void faint(Pokemon& pokemon, int& faintCounter) {
+    pokemon.setHP(0);
     faintCounter++;
 }
 
-void FaintMessage(std::vector<Pokemon> partyVector) {
-    std::cout << partyVector.at(0).GetName() << " fainted!" << std::endl;
+void faintMessage(const Pokemon& pokemon) {
+    std::cout << pokemon.getName() << " fainted!\n";
     sleep(2);
 }
 
-void ForceSwitchPrompt() {
-    std::cout << std::endl << "Choose an option:" << std::endl;
-    std::cout << "   Fight (f)" << std::endl;
-    std::cout << "   Run   (r)" << std::endl;
+void forceSwitchPrompt() {
+    std::cout << "\nChoose an option:\n";
+    std::cout << "\tFight (f)\n";
+    std::cout << "\t run   (r)\n";
 }
 
-void Run(bool& runStatus) {
+void run(bool& runStatus) {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_real_distribution<double> dist(0.0, 2.0);
+    std::uniform_int_distribution<int> dist(0, 1);
 
-    if ((int)dist(mt) == 0) {
+    if (dist(mt) == 0) {
         runStatus = false;
     }
-    else if ((int)dist(mt) == 1) {
+    else if (dist(mt) == 1) {
         runStatus = true;
     }
 }
 
-void RunMessage(bool runStatus) {
+void runMessage(bool runStatus) {
     if (runStatus) {
-        std::cout << "Got away safely!" << std::endl;
+        std::cout << "Got away safely!\n";
     }
     else {
-        std::cout << "Couldn't get away!" << std::endl;
+        std::cout << "Couldn't get away!\n";
     }
     sleep(1);
 }
 
-void Switch(std::vector<Pokemon>& pokemonParty, int pokemonToSwitch) {
-    Pokemon copyParty = pokemonParty.at(0);
-    pokemonParty.at(0) = pokemonParty.at(pokemonToSwitch);
-    pokemonParty.at(pokemonToSwitch) = copyParty;
+void switchOut(std::vector<Pokemon>& party, int pokemonToSwitch) {
+    Pokemon copyParty = party.at(0);
+    party.at(0) = party.at(pokemonToSwitch);
+    party.at(pokemonToSwitch) = copyParty;
 }
 
-void SwitchMessage(const std::vector<Pokemon>& party, int pokemonSwitched) {
-    std::cout << party.at(pokemonSwitched).GetName() << " return!";
+void switchOutMessage(const std::vector<Pokemon>& party, int pokemonSwitched) {
+    std::cout << party.at(pokemonSwitched).getName() << " return! ";
     sleep(2);
-    std::cout << "Go " << party.at(0).GetName() << "!" << std::endl;
-    sleep(2);
-}
-
-void SwitchErrorMessage() {
-    std::cout << "Cannot switch with only one Pokemon left in party" << std::endl;
+    std::cout << "Go " << party.at(0).getName() << "!\n";
     sleep(2);
 }
 
-void HPEmptyMessage(const Pokemon& pokemon) {
-    std::cout << pokemon.GetName() << "'s HP is empty!" << std::endl;
+void switchOutErrorMessage() {
+    std::cout << "Cannot switch with only one Pokemon left in party!\n";
     sleep(2);
 }
 
-void HPFullMessage(const Pokemon& pokemon) {
-    std::cout << pokemon.GetName() << "'s HP is full!" << std::endl;
+void hpEmptyMessage(const Pokemon& pokemon) {
+    std::cout << pokemon.getName() << "'s HP is empty!\n";
     sleep(2);
 }
 
-void WinMessage() {
-    std::cout << "You won!" << std::endl;
+void hpFullMessage(const Pokemon& pokemon) {
+    std::cout << pokemon.getName() << "'s HP is full!\n";
     sleep(2);
 }
 
-void LoseMessage() {
-    std::cout << "You've run out of usable Pokemon!" << std::endl;
+void winMessage() {
+    std::cout << "You won!\n";
     sleep(2);
-    std::cout << "You blacked out!" << std::endl;
+}
+
+void loseMessage() {
+    std::cout << "You've run out of usable Pokemon! ";
     sleep(2);
+    std::cout << "You blacked out!\n";
+    sleep(2);
+}
+
+void userAttack(std::vector<Pokemon>& userParty, std::vector<Pokemon>& opponentParty, int userMove, int opponentMonsFainted, bool& gameOver) {
+    bool userMoveLanded = false;
+    int userDamage = userParty.at(0).getMove(userMove - 1).getDamage();
+    attack(opponentParty.at(0), userParty.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
+    attackMessage(userParty.at(0), opponentParty.at(0), userMove - 1, userDamage, userMoveLanded);
+
+    if (opponentParty.at(0).getHP() <= 0) { // if Pokémon's HP drops to zero...
+        faint(opponentParty.at(0), opponentMonsFainted);
+        faintMessage(opponentParty.at(0));
+        if (opponentMonsFainted == opponentParty.size()) {
+            winMessage();
+            gameOver = true;
+        }
+    }
+}
+
+void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int userMonsFainted, bool& gameOver) {
+    bool opponentMoveLanded = false;
+    int opponentDamage = opponentParty.at(0).getMove(opponentMove).getDamage();
+    attack(userParty.at(0), opponentParty.at(0).getMove(opponentMove - 1), opponentDamage, opponentMoveLanded);
+    attackMessage(opponentParty.at(0), userParty.at(0), opponentMove, opponentDamage, opponentMoveLanded);
+
+    if (userParty.at(0).getHP() <= 0) {
+        faint(userParty.at(0), userMonsFainted);
+        faintMessage(userParty.at(0));
+        if (userMonsFainted == userParty.size()) {
+            loseMessage();
+            gameOver = true;
+            return;
+        }
+        forceSwitchPrompt();
+
+        char userChoice;
+        int userSwitch;
+        bool runSuccess = false;
+
+        std::cin >> userChoice;
+
+        while (userChoice != 'f' and userChoice != 'r') {
+            std::cin >> userChoice;
+        }
+
+        if (userChoice == 'r') {
+            run(runSuccess);
+            runMessage(runSuccess);
+            if (runSuccess) {
+                gameOver = true;
+                return;
+            }
+        }
+
+        if (userMonsFainted < userParty.size() - 1) { // forces switch after Pokémon is fainted
+            displayPokemon(userParty);
+            std::cin >> userSwitch;
+
+            while ((userSwitch < 1 or userParty.size() - 1 < userSwitch) and userParty.at(userSwitch - 1).getHP() <= 0) {
+                if (userParty.at(userSwitch - 1).getHP() <= 0) {
+                    hpEmptyMessage(userParty.at(userSwitch - 1));
+                }
+                std::cin >> userSwitch;
+            }
+
+            switchOut(userParty, userSwitch);
+        }
+    }
 }
 
 #endif //POKEMON_BATTLE_MAIN_H

@@ -6,27 +6,35 @@
 #define POKEMON_BATTLE_MOVES_H
 
 #include <string>
+#include <random>
 
 class Moves {
-private:
-    int pp, maxPp, power;
-    std::string type, name;
+protected:
+    int pp, maxPp, power, accuracy;
+    std::string type, category, name;
 public:
     Moves();
-    Moves(const std::string& name, const std::string& type, int pp, int power);
+    Moves(const std::string& name, const std::string& type, const std::string& category, int pp, int power, int accuracy);
     Moves(const Moves& moveToCopy);
+    virtual ~Moves() = default;
 
-    void SetPP(int newPp);
-    int GetPP() const;
+    virtual int getDamage();
 
-    int GetMaxPP() const;
+    void setPP(int newPP);
+    int getPP() const;
 
-    int GetPower() const;
+    int getMaxPP() const;
 
-    __attribute__((unused)) void SetType(std::string& newType);
-    __attribute__((unused)) std::string GetType() const;
+    int getPower() const;
 
-    std::string GetName() const;
+    int getAccuracy() const;
+
+    __attribute__((unused)) void setType(std::string& newType);
+    __attribute__((unused)) std::string getType() const;
+
+    std::string getCategory() const;
+
+    std::string getName() const;
 };
 
 #endif //POKEMON_BATTLE_MOVES_H

@@ -8,15 +8,19 @@ Moves::Moves() {
     maxPp = 0;
     pp = 0;
     power = 0;
+    accuracy = 0;
     type = "No type";
+    category = "No category";
     name = "No name";
 }
 
-Moves::Moves(const std::string& name, const std::string& type, int pp, int power) {
+Moves::Moves(const std::string& name, const std::string& type, const std::string& category, int pp, int power, int accuracy) {
     maxPp = pp;
     this->pp = pp;
     this->power = power;
+    this->accuracy = accuracy;
     this->type = type;
+    this->category = category;
     this->name = name;
 }
 
@@ -24,18 +28,39 @@ Moves::Moves(const Moves& moveToCopy) {
     pp = moveToCopy.pp;
     maxPp = moveToCopy.maxPp;
     power = moveToCopy.power;
+    accuracy = moveToCopy.accuracy;
     type = moveToCopy.type;
+    category = moveToCopy.category;
     name = moveToCopy.name;
 }
 
-void Moves::SetPP(int newPP) { pp = newPP; }
-int Moves::GetPP() const { return pp; }
+int Moves::getDamage() {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(1, 100);
 
-int Moves::GetMaxPP() const { return maxPp; }
+    if (dist(mt) <= accuracy) {
+        return power;
+    }
+    else {
+        return -1;
+    }
+}
 
-int Moves::GetPower() const { return power; }
+void Moves::setPP(int newPP) { pp = newPP; }
+int Moves::getPP() const { return pp; }
 
-__attribute__((unused)) void Moves::SetType(std::string& newType) { type = newType; }
-__attribute__((unused)) std::string Moves::GetType() const { return type; }
+int Moves::getMaxPP() const { return maxPp; }
 
-std::string Moves::GetName() const { return name; }
+int Moves::getPower() const { return power; }
+
+int Moves::getAccuracy() const { return accuracy; }
+
+__attribute__((unused)) void Moves::setType(std::string& newType) { type = newType; }
+__attribute__((unused)) std::string Moves::getType() const { return type; }
+
+std::string Moves::getCategory() const {
+    return category;
+}
+
+std::string Moves::getName() const { return name; }

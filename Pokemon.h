@@ -15,50 +15,53 @@ class Pokemon {
 private:
     int currentHp, attack, spAttack, defense, spDefense, speed, accuracy,
         maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
+    int level;
 
     std::string name, types[NUM_TYPES], status;
     Moves moveSet[NUM_MOVES];
 public:
     Pokemon();
-    Pokemon(const std::string& name, const std::string& type, int hp);
-    Pokemon(const std::string& name, const std::string& type1, const std::string& type2, int hp);
+    Pokemon(const Pokemon& pokemonToCopy);
+    Pokemon(const std::string& name, const std::string& type, int level);
+    Pokemon(const std::string& name, const std::string& type1, const std::string& type2, int level);
 
-    void SetHP(int val);
-    void SetAttack(int val);
-    void SetSpAttack(int val);
-    void SetDefense(int val);
-    void SetSpDefense(int val);
-    void SetSpeed(int val);
-    void SetAccuracy(int val);
+    void setHP(int newHp);
+    void setAttack(int newAttack);
+    void setSpAttack(int newSpAttack);
+    void setDefense(int newDefense);
+    void setSpDefense(int newSpDefense);
+    void setSpeed(int newSpeed);
+    void setAccuracy(int newAccuracy);
 
-    int GetHP() const;
-    int GetAttack() const;
-    int GetSpAttack() const;
-    int GetDefense() const;
-    int GetSpDefense() const;
-    int GetSpeed() const;
-    int GetAccuracy() const;
+    int getHP() const;
+    int getAttack() const;
+    int getSpAttack() const;
+    int getDefense() const;
+    int getSpDefense() const;
+    int getSpeed() const;
+    int getAccuracy() const;
 
-    int GetMaxHP() const;
-    int GetBaseAttack() const;
-    int GetBaseSpAttack() const;
-    int GetBaseDefense() const;
-    int GetBaseSpDefense() const;
-    int GetBaseSpeed() const;
+    int getMaxHp() const;
+    int getBaseAttack() const;
+    int getBaseSpAttack() const;
+    int getBaseDefense() const;
+    int getBaseSpDefense() const;
+    int getBaseSpeed() const;
 
-    void SetBaseStats(int attack, int spAttack, int defense, int spDefense, int speed);
+    void setBaseStats(int hp, int attack, int spAttack, int defense, int spDefense, int speed);
 
-    void SetName(const std::string& newName);
-    std::string GetName() const;
+    std::string getName() const;
 
-    std::string GetType() const;
-    std::string GetType(int type) const;
+    std::string getType() const;
+    std::string getType(int type) const;
 
-    void SetStatus(const std::string& newStatus);
-    std::string GetStatus();
+    void setStatus(const std::string& newStatus);
+    std::string getStatus();
 
-    void SetMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4);
-    Moves& GetMove(int move);
+    void setMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4);
+    Moves& getMove(int move);
+
+    int getLevel() const;
 };
 
 #endif //POKEMON_BATTLE_POKEMON_H

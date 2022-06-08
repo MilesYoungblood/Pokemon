@@ -6,6 +6,8 @@
 #define POKEMON_BATTLE_ITEMS_H
 
 #include "Pokemon.h"
+#include <iostream>
+#include <unistd.h>
 
 class Items {
 private:
@@ -16,35 +18,36 @@ public:
     Items(const Items& copy);
     Items(int quantity, const std::string& name);
 
-    void SetQuantity(int newQuantity);
-    int GetQuantity() const;
+    void setQuantity(int newQuantity);
+    int getQuantity() const;
 
-    std::string GetName() const;
+    std::string getName() const;
 
-    static void UseItem(Items& itemToUse);
+    static void useItem(Items& itemToUse);
+    virtual void useItemMessage();
 };
 
 class RestoreItems : public Items {
 private:
     int amount;
-    std::string rType;
+    std::string restoreType;
 public:
     RestoreItems();
-    RestoreItems(int quantity, int amount, const std::string& name, const std::string& rType);
+    RestoreItems(int quantity, int amount, const std::string& name, const std::string& restoreType);
 
-    int GetAmount() const;
-    std::string GetRType() const;
+    int getAmount() const;
+    std::string getRestoreType() const;
 };
 
 class StatusItems : public Items {
 private:
-    std::string rType;
+    std::string restoreType;
 public:
     StatusItems();
     StatusItems(const StatusItems& copy);
-    StatusItems(int quantity, const std::string& name, const std::string& rType);
+    StatusItems(int quantity, const std::string& name, const std::string& restoreType);
 
-    std::string GetRType() const;
+    std::string getRestoreType() const;
 };
 
 class PokeBalls : public Items {
@@ -54,7 +57,19 @@ public:
     PokeBalls();
     PokeBalls(int quantity, double catchRate, const std::string& name);
 
-    double GetCatchRate() const;
+    double getCatchRate() const;
+
+    void useItemMessage() override;
+};
+
+class BattleItems : public Items {
+private:
+    std::string stat;
+public:
+    BattleItems();
+    BattleItems(int quantity, const std::string& name, const std::string& stat);
+
+    std::string getStat() const;
 };
 
 #endif //POKEMON_BATTLE_ITEMS_H
