@@ -66,16 +66,16 @@ int main() {
 
     int userMonsFainted = 0, opponentMonsFainted = 0;
 
-    introMessage(userParty, opponentParty);
+    introMessage(userParty.at(0).getName(), opponentParty.at(0).getName());
 
-    bool quit = false;
+    bool battleOver = false;
     while (true) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER SELECTIONS
-        bool skip = false, runSuccess = false;
+        bool skip = false, runAway = false;
         char userChoice;
-        int userMove, userItem, userSwitch, opponentMove = (int)dist(mt), pokemon;
+        int userMove, userItem, pokemon, opponentMove = dist(mt);
         displayHP(userParty, opponentParty);
-        displayChoices(userParty);
+        displayChoices(userParty.at(0));
         std::cin >> userChoice;
 
         while (userChoice != 'f' and userChoice != 'b' and userChoice != 'r' and userChoice != 'p') {
@@ -276,43 +276,70 @@ int main() {
         }
 
         else if (userChoice == 'r' and isalpha(userChoice)) { // trainer chose run
-            run(runSuccess);
-            runMessage(runSuccess);
-            if (runSuccess) {
+            run(runAway);
+            runMessage(runAway);
+            if (runAway) {
                 break;
             }
         }
 
         else if (userChoice == 'p') { // trainer chose Pokémon
-            //FIXME ADD OPTIONS FOR CHECK MOVES, SUMMARY, ETC.
-            if (userMonsFainted == userParty.size() - 1) { // trainer has only one healthy Pokémon
-                switchOutErrorMessage();
+            displayPokemon(userParty);
+            std::cin >> pokemon;
+
+            while (pokemon < 0 or userParty.size() < pokemon) { // bounds checking
+                std::cin >> pokemon;
+            }
+
+            if (pokemon == 0) {
                 skip = true;
             }
-            else {
-                displayPokemon(userParty);
-                std::cin >> userSwitch;
 
-                while (userSwitch < 0 or userParty.size() < userSwitch) { // bounds checking
-                    std::cin >> userSwitch;
+            if (!skip) {
+                pokemonPrompt();
+                std::cin >> userChoice;
+
+                while (userChoice != 'c' and userChoice != 's' and userChoice != '0') {
+                    std::cin >> userChoice;
                 }
 
-                if (1 < userSwitch and userSwitch <= userParty.size()) { // user chose in-bounds option
-                    if (userParty.at(userSwitch - 1).getHP() > 0) { // Pokémon chosen is not fainted
-                        switchOut(userParty, userSwitch - 1);
-                        switchOutMessage(userParty, userSwitch - 1);
+                if (userChoice == 'c') {
+                    displayMoves(userParty.at(pokemon - 1));
+                    std::cin >> userMove;
+
+                    while (userMove != 0) {
+                        // TODO ADD FUNCTIONALITY FOR CHECKING MOVE SUMMARY
+                        std::cin >> userMove;
                     }
-                    else { // Pokémon chosen is fainted
-                        hpEmptyMessage(userParty.at(userSwitch - 1));
+
+                    if (userMove == 0) {
                         skip = true;
                     }
                 }
-
-                else if (userSwitch == 0 or userSwitch == 1) {
-                    if (userSwitch == 1) {
-                        std::cout << userParty.at(0).getName() << " is already in battle!" << std::endl;
-                        sleep(2);
+                else if (userChoice == 's') {
+                    if (userMonsFainted == userParty.size() - 1) { // trainer has only one healthy Pokémon
+                        switchOutErrorMessage();
+                        skip = true;
                     }
+                    else {
+                        if (1 < pokemon and pokemon <= userParty.size()) { // user chose in-bounds option
+                            if (userParty.at(pokemon - 1).getHP() > 0) { // Pokémon chosen is not fainted
+                                switchOut(userParty, pokemon - 1);
+                                switchOutMessage(userParty, pokemon - 1);
+                            } else { // Pokémon chosen is fainted
+                                hpEmptyMessage(userParty.at(pokemon - 1));
+                                skip = true;
+                            }
+                        }
+                        else if (pokemon == 1) {
+                            std::cout << userParty.at(0).getName() << " is already in battle!" << std::endl;
+                            sleep(2);
+
+                            skip = true;
+                        }
+                    }
+                }
+                else if (userChoice == '0') {
                     skip = true;
                 }
             }
@@ -327,22 +354,22 @@ int main() {
         if (!skip) {
             if (userChoice == 'f') { // if trainer chose to attack this turn...
                 if (userParty.at(0).getBaseSpeed() > opponentParty.at(0).getBaseSpeed()) { // trainer is faster than opponent...
-                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, quit);
-                    if (quit) {
+                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                    if (battleOver) {
                         break;
                     }
-                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, quit);
-                    if (quit) {
+                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                    if (battleOver) {
                         break;
                     }
                 }
                 else if (userParty.at(0).getBaseSpeed() < opponentParty.at(0).getBaseSpeed()) { // if opponent is faster than trainer...
-                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, quit);
-                    if (quit) {
+                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                    if (battleOver) {
                         break;
                     }
-                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, quit);
-                    if (quit) {
+                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                    if (battleOver) {
                         break;
                     }
                 }
@@ -350,30 +377,30 @@ int main() {
                     std::uniform_int_distribution<int> coinFlip(1, 2);
                     int flip = coinFlip(mt);
                     if (flip == 1) {
-                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, quit);
-                        if (quit) {
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                        if (battleOver) {
                             break;
                         }
-                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, quit);
-                        if (quit) {
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                        if (battleOver) {
                             break;
                         }
                     }
                     else if (flip == 2) {
-                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, quit);
-                        if (quit) {
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                        if (battleOver) {
                             break;
                         }
-                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, quit);
-                        if (quit) {
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                        if (battleOver) {
                             break;
                         }
                     }
                 }
             }
             else { // trainer chose not to attack this turn
-                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, quit);
-                if (quit) {
+                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                if (battleOver) {
                     break;
                 }
             }

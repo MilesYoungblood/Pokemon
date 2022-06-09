@@ -13,7 +13,7 @@ void displayMoves(Pokemon& pokemon) {
                   << '/' << pokemon.getMove(i).getMaxPP() << std::string(2 - std::to_string(pokemon.getMove(i).getMaxPP()).length(), ' ')
                   << ") -> " << i + 1 << '\n';
     }
-    std::cout << "\nGo back (0)\n";
+    std::cout << "\nCancel (0)\n";
 }
 
 int getPhysicalAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, const Moves& move) {

@@ -10,20 +10,20 @@
 #include "Items.h"
 #include "AttackFunctions.h"
 
-void introMessage(const std::vector<Pokemon>& userParty, const std::vector<Pokemon>& opponentParty) {
-    std::cout << "A wild " << opponentParty.at(0).getName() << " appeared! ";
+void introMessage(const std::string & userPokemon, const std::string & opposingPokemon) {
+    std::cout << "A wild " << opposingPokemon << " appeared! ";
     sleep(2);
 
-    std::cout << "Go " << userParty.at(0).getName() << "!\n\n";
+    std::cout << "Go " << userPokemon << "!\n\n";
     sleep(2);
 }
 
-void displayChoices(const std::vector<Pokemon>& party) {
-    std::cout << "What will " << party.at(0).getName() << " do?\n"
-              << "\tFight:   (f)\n"
-              << "\tBag:     (b)\n"
-              << "\tRun:     (r)\n"
-              << "\tPokemon: (p)\n";
+void displayChoices(const Pokemon& pokemon) {
+    std::cout << "What will " << pokemon.getName() << " do?\n"
+              << "\tFight   (f)\n"
+              << "\tBag     (b)\n"
+              << "\tRun     (r)\n"
+              << "\tPokemon (p)\n";
 }
 
 void displayPokemon(const std::vector<Pokemon>& party) {
@@ -31,7 +31,7 @@ void displayPokemon(const std::vector<Pokemon>& party) {
     for (int i = 0; i < party.size(); ++i) {
         std::cout << '\t' << party.at(i).getName() << std::string(15 - party.at(i).getName().length(), ' ') << '(' << i + 1 << ")\n";
     }
-    std::cout << "\nGo back (0)\n";
+    std::cout << "\nCancel (0)\n";
 }
 
 void displayHP(const std::vector<Pokemon>& userParty, const std::vector<Pokemon>& opponentParty) {
@@ -65,7 +65,7 @@ void faintMessage(const Pokemon& pokemon) {
 void forceSwitchPrompt() {
     std::cout << "\nChoose an option:\n";
     std::cout << "\tFight (f)\n";
-    std::cout << "\t run   (r)\n";
+    std::cout << "\tRun   (r)\n";
 }
 
 void run(bool& runStatus) {
@@ -89,6 +89,13 @@ void runMessage(bool runStatus) {
         std::cout << "Couldn't get away!\n";
     }
     sleep(1);
+}
+
+void pokemonPrompt() {
+    std::cout << "Choose an option:\n";
+    std::cout << "\tCheck Moves (c)\n";
+    std::cout << "\tSwitch      (s)\n";
+    std::cout << "\nCancel (0)\n";
 }
 
 void switchOut(std::vector<Pokemon>& party, int pokemonToSwitch) {
@@ -131,16 +138,16 @@ void loseMessage() {
     sleep(2);
 }
 
-void userAttack(std::vector<Pokemon>& userParty, std::vector<Pokemon>& opponentParty, int userMove, int opponentMonsFainted, bool& gameOver) {
+void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int opponentMonsFainted, bool& gameOver) {
     bool userMoveLanded = false;
-    int userDamage = userParty.at(0).getMove(userMove - 1).getDamage();
-    attack(opponentParty.at(0), userParty.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
-    attackMessage(userParty.at(0), opponentParty.at(0), userMove - 1, userDamage, userMoveLanded);
+    int userDamage = attackingPokemon.at(0).getMove(userMove - 1).getDamage();
+    attack(defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
+    attackMessage(attackingPokemon.at(0), defendingPokemon.at(0), userMove - 1, userDamage, userMoveLanded);
 
-    if (opponentParty.at(0).getHP() <= 0) { // if Pokémon's HP drops to zero...
-        faint(opponentParty.at(0), opponentMonsFainted);
-        faintMessage(opponentParty.at(0));
-        if (opponentMonsFainted == opponentParty.size()) {
+    if (defendingPokemon.at(0).getHP() <= 0) { // if Pokémon's HP drops to zero...
+        faint(defendingPokemon.at(0), opponentMonsFainted);
+        faintMessage(defendingPokemon.at(0));
+        if (opponentMonsFainted == defendingPokemon.size()) {
             winMessage();
             gameOver = true;
         }
@@ -186,7 +193,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
             displayPokemon(userParty);
             std::cin >> userSwitch;
 
-            while ((userSwitch < 1 or userParty.size() - 1 < userSwitch) and userParty.at(userSwitch - 1).getHP() <= 0) {
+            while ((userSwitch <= 1 or userParty.size() < userSwitch) or userParty.at(userSwitch - 1).getHP() <= 0) {
                 if (userParty.at(userSwitch - 1).getHP() <= 0) {
                     hpEmptyMessage(userParty.at(userSwitch - 1));
                 }
@@ -194,6 +201,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
             }
 
             switchOut(userParty, userSwitch);
+            std::cout << "Go " << userParty.at(0).getName() << "!\n";
         }
     }
 }

@@ -10,9 +10,8 @@
 #include <iostream>
 #include <unistd.h>
 
-class WaterShuriken : public Moves {
-public:
-    WaterShuriken() : Moves("Water Shuriken", "water", "special", 20, 15, 100) {};
+struct WaterShuriken : public Moves {
+    WaterShuriken() : Moves("Water Shuriken", "water", "special", 20, 15, 100) {}
     int numHits = 0, trueHits = 0, trueDamage = 0;
 
     int getDamage() override {
@@ -33,7 +32,7 @@ public:
         return power * trueHits;
     }
 
-    void attackMessage(Pokemon& attackingPokemon, Pokemon& defendingPokemon) {
+    __attribute__((unused)) void attackMessage(Pokemon& attackingPokemon, Pokemon& defendingPokemon) {
         std::cout << attackingPokemon.getName() << " used " << name << "! ";
         sleep(1);
 
@@ -43,6 +42,18 @@ public:
         std::cout << name << " did " << trueDamage << " damage!" << std::endl;
         sleep(2);
     }
+};
+
+struct DarkPulse : public Moves {
+    DarkPulse() : Moves("Dark Pulse", "dark", "special", 15, 80, 100) {}
+};
+
+struct IceBeam : public Moves {
+    IceBeam() : Moves("Ice Beam", "ice", "special", 10, 90, 100) {}
+};
+
+struct Extrasensory : public Moves {
+    Extrasensory() : Moves("Extrasensory", "psychic", "special", 15, 90, 100) {}
 };
 
 #endif //POKEMON_BATTLE_MOVE_LIST_H

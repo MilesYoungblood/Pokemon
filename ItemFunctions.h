@@ -11,7 +11,7 @@ void displayBag() {
     std::cout << "\tStatus restore (2)\n";
     std::cout << "\tPoke Balls     (3)\n";
     std::cout << "\tBattle Items   (4)\n";
-    std::cout << "\nGo back (0)\n";
+    std::cout << "\nCancel (0)\n";
 }
 
 template <typename T>
@@ -22,7 +22,7 @@ void displayItems(const std::vector<T>& items) {
                 i).getName().length(), ' ')
                   << " (" << i + 1 << ")\n";
     }
-    std::cout << "\nGo back (0)\n";
+    std::cout << "\nCancel (0)\n";
 }
 
 void restore(Pokemon& pokemonToRestore, int amountToRestore) { // HP variant
