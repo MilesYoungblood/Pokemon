@@ -7,8 +7,6 @@
 
 #include "Moves.h"
 
-#include <string>
-
 const int NUM_MOVES = 4, NUM_TYPES = 2;
 
 class Pokemon {

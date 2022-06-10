@@ -68,14 +68,14 @@ int main() {
 
     introMessage(userParty.at(0).getName(), opponentParty.at(0).getName());
 
-    bool battleOver = false;
+    bool battleOver = false, runAway = false;
     while (true) {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER SELECTIONS
-        bool skip = false, runAway = false;
+        bool skip = false;
         char userChoice;
         int userMove, userItem, pokemon, opponentMove = dist(mt);
-        displayHP(userParty, opponentParty);
-        displayChoices(userParty.at(0));
+        displayHP(userParty.at(0), opponentParty.at(0));
+        displayChoices(userParty.at(0).getName());
         std::cin >> userChoice;
 
         while (userChoice != 'f' and userChoice != 'b' and userChoice != 'r' and userChoice != 'p') {
@@ -158,7 +158,7 @@ int main() {
                             }
                         }
                         else { // Pokémon's HP is already full
-                            hpFullMessage(userParty.at(pokemon - 1));
+                            hpFullMessage(userParty.at(pokemon - 1).getName());
                             skip = true;
                         }
                     }
@@ -211,7 +211,7 @@ int main() {
                             }
                         }
                         else { // Pokémon is fainted
-                            hpEmptyMessage(userParty.at(pokemon - 1));
+                            hpEmptyMessage(userParty.at(pokemon - 1).getName());
                             skip = true;
                         }
                     }
@@ -327,7 +327,7 @@ int main() {
                                 switchOut(userParty, pokemon - 1);
                                 switchOutMessage(userParty, pokemon - 1);
                             } else { // Pokémon chosen is fainted
-                                hpEmptyMessage(userParty.at(pokemon - 1));
+                                hpEmptyMessage(userParty.at(pokemon - 1).getName());
                                 skip = true;
                             }
                         }
@@ -347,7 +347,7 @@ int main() {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// OPPONENT SELECTIONS
         if (!skip) {
             while (opponentParty.at(0).getMove(opponentMove).getPP() <= 0) { // re-selects opponent move if it's out of PP
-                opponentMove = (int)dist(mt);
+                opponentMove = dist(mt);
             }
         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// BATTLE PHASE
@@ -374,9 +374,9 @@ int main() {
                     }
                 }
                 else { // trainer and opponent rival in speed
-                    std::uniform_int_distribution<int> coinFlip(1, 2);
+                    std::uniform_int_distribution<int> coinFlip(0, 1);
                     int flip = coinFlip(mt);
-                    if (flip == 1) {
+                    if (flip == 0) {
                         userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
                         if (battleOver) {
                             break;
@@ -386,7 +386,7 @@ int main() {
                             break;
                         }
                     }
-                    else if (flip == 2) {
+                    else if (flip == 1) {
                         opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
                         if (battleOver) {
                             break;

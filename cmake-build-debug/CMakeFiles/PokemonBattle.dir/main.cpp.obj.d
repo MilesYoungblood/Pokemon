@@ -158,5 +158,8 @@ CMakeFiles/PokemonBattle.dir/main.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/getopt.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\AttackFunctions.h \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\TypeChart.h \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\PhysicalTypes.h \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\SpecialTypes.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\ItemFunctions.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\MoveList.h

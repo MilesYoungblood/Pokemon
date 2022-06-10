@@ -5,6 +5,8 @@
 #ifndef POKEMON_BATTLE_ATTACK_FUNCTIONS_H
 #define POKEMON_BATTLE_ATTACK_FUNCTIONS_H
 
+#include "TypeChart.h"
+
 void displayMoves(Pokemon& pokemon) {
     std::cout << "Choose a move:\n";
     for (int i = 0; i < NUM_MOVES; ++i) {
@@ -16,15 +18,15 @@ void displayMoves(Pokemon& pokemon) {
     std::cout << "\nCancel (0)\n";
 }
 
-int getPhysicalAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, const Moves& move) {
+int getPhysicalAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, Moves move) {
     int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
-    int finalCalc = levelCalc * attackingPokemon.getBaseAttack() * move.getPower() / defendingPokemon.getBaseDefense();
+    int finalCalc = levelCalc * attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
     return finalCalc;
 }
 
-int getSpecialAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, const Moves& move) {
+int getSpecialAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, Moves move) {
     int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
-    int finalCalc = levelCalc * attackingPokemon.getSpAttack() * move.getPower() / defendingPokemon.getSpDefense();
+    int finalCalc = levelCalc * attackingPokemon.getSpAttack() * move.getDamage() / defendingPokemon.getSpDefense();
     return finalCalc;
 }
 
@@ -50,8 +52,8 @@ int calculateDamage(const Pokemon& attackingPokemon, const Pokemon& defendingPok
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
     }
     finalDamage = (initialDamage / 50) + 2;
-    finalDamage = (int)(finalDamage * stabCheck(attackingPokemon, move));
-    finalDamage = finalDamage * dist(mt) / 100;
+    finalDamage = (int)(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon));
+    //finalDamage *= dist(mt) / 100;
 
     return finalDamage;
 }
@@ -68,7 +70,17 @@ void attackMessage(Pokemon& attackingPokemon, const Pokemon& defendingPokemon, i
     std::cout << attackingPokemon.getName() << " used " << attackingPokemon.getMove(move).getName() << "! ";
     sleep(1);
     if (landed) {
-        std::cout << attackingPokemon.getMove(move).getName() << " did " << damage << " damage!\n";
+        std::cout << attackingPokemon.getMove(move).getName() << " did " << damage << " damage! ";
+        sleep(1);
+        if (getTypeEffective(attackingPokemon.getMove(move), defendingPokemon) >= 2.0) {
+            std::cout << "It's super effective!\n";
+        }
+        else if (getTypeEffective(attackingPokemon.getMove(move), defendingPokemon) <= 0.5) {
+            std::cout << "It's not very effective...\n";
+        }
+        else {
+            std::cout << '\n';
+        }
     }
     else {
         std::cout << defendingPokemon.getName() << " avoided the attack!\n";
