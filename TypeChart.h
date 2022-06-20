@@ -2,8 +2,7 @@
 // Created by Miles Youngblood on 6/10/2022.
 //
 
-#ifndef POKEMON_BATTLE_TYPE_CHART_H
-#define POKEMON_BATTLE_TYPE_CHART_H
+#pragma once
 
 #include "PhysicalTypes.h"
 #include "SpecialTypes.h"
@@ -68,5 +67,3 @@ double getTypeEffective(const Moves& move, const Pokemon& pokemon) {
 
     return multiplier;
 }
-
-#endif //POKEMON_BATTLE_TYPE_CHART_H

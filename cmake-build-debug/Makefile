@@ -200,6 +200,30 @@ Pokemon.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Pokemon.cpp.s
 .PHONY : Pokemon.cpp.s
 
+Trainer.obj: Trainer.cpp.obj
+.PHONY : Trainer.obj
+
+# target to build an object file
+Trainer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj
+.PHONY : Trainer.cpp.obj
+
+Trainer.i: Trainer.cpp.i
+.PHONY : Trainer.i
+
+# target to preprocess a source file
+Trainer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Trainer.cpp.i
+.PHONY : Trainer.cpp.i
+
+Trainer.s: Trainer.cpp.s
+.PHONY : Trainer.s
+
+# target to generate assembly for a file
+Trainer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/Trainer.cpp.s
+.PHONY : Trainer.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -242,6 +266,9 @@ help:
 	@echo ... Pokemon.obj
 	@echo ... Pokemon.i
 	@echo ... Pokemon.s
+	@echo ... Trainer.obj
+	@echo ... Trainer.i
+	@echo ... Trainer.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

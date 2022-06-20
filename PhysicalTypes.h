@@ -2,8 +2,7 @@
 // Created by Miles Youngblood on 6/10/2022.
 //
 
-#ifndef POKEMON_BATTLE_PHYSICAL_TYPES_H
-#define POKEMON_BATTLE_PHYSICAL_TYPES_H
+#pragma once
 
 #include "Pokemon.h"
 
@@ -111,6 +110,28 @@ double checkPoison(const Pokemon& pokemon) {
             return 0.5;
         }
     }
+    else if (pokemon.getType(1) == "grass" or pokemon.getType(1) == "fairy") {
+        if (pokemon.getType() == "grass" or pokemon.getType() == "fairy") {
+            return 4.0;
+        }
+        else if (pokemon.getType() == "poison" or pokemon.getType() == "ground" or pokemon.getType() == "rock" or pokemon.getType() == "ghost") {
+            return 1.0;
+        }
+        else {
+            return 2.0;
+        }
+    }
+    else if (pokemon.getType(1) == "poison" or pokemon.getType(1) == "ground" or pokemon.getType(1) == "rock" or pokemon.getType(1) == "ghost") {
+        if (pokemon.getType() == "poison" or pokemon.getType() == "ground" or pokemon.getType() == "rock" or pokemon.getType() == "ghost") {
+            return 0.25;
+        }
+        else if (pokemon.getType() == "grass" or pokemon.getType() == "fairy") {
+            return 1.0;
+        }
+        else {
+            return 0.5;
+        }
+    }
     else {
         return 1.0;
     }
@@ -136,6 +157,28 @@ double checkGround(const Pokemon& pokemon) {
             return 0.25;
         }
         else if (pokemon.getType(1) == "fire" or pokemon.getType(1) == "electric" or pokemon.getType(1) == "poison" or pokemon.getType(1) == "rock" or pokemon.getType(1) == "steel") {
+            return 1.0;
+        }
+        else {
+            return 0.5;
+        }
+    }
+    else if (pokemon.getType(1) == "fire" or pokemon.getType(1) == "electric" or pokemon.getType(1) == "poison" or pokemon.getType(1) == "rock" or pokemon.getType(1) == "steel") {
+        if (pokemon.getType() == "fire" or pokemon.getType() == "electric" or pokemon.getType() == "poison" or pokemon.getType() == "rock" or pokemon.getType() == "steel") {
+            return 4.0;
+        }
+        else if (pokemon.getType() == "grass" or pokemon.getType() == "bug") {
+            return 1.0;
+        }
+        else {
+            return 2.0;
+        }
+    }
+    else if (pokemon.getType(1) == "grass" or pokemon.getType(1) == "bug") {
+        if (pokemon.getType() == "grass" or pokemon.getType() == "bug") {
+            return 0.25;
+        }
+        else if (pokemon.getType() == "fire" or pokemon.getType() == "electric" or pokemon.getType() == "poison" or pokemon.getType() == "rock" or pokemon.getType() == "steel") {
             return 1.0;
         }
         else {
@@ -170,6 +213,28 @@ double checkFlying(const Pokemon& pokemon) {
             return 0.5;
         }
     }
+    else if (pokemon.getType(1) == "grass" or pokemon.getType(1) == "fighting" or pokemon.getType(1) == "bug") {
+        if (pokemon.getType() == "grass" or pokemon.getType() == "fighting" or pokemon.getType() == "bug") {
+            return 4.0;
+        }
+        else if (pokemon.getType() == "electric" or pokemon.getType() == "rock" or pokemon.getType() == "steel") {
+            return 1.0;
+        }
+        else {
+            return 2.0;
+        }
+    }
+    else if (pokemon.getType(1) == "electric" or pokemon.getType(1) == "rock" or pokemon.getType(1) == "steel") {
+        if (pokemon.getType() == "electric" or pokemon.getType() == "rock" or pokemon.getType() == "steel") {
+            return 0.25;
+        }
+        else if (pokemon.getType() == "grass" or pokemon.getType() == "fighting" or pokemon.getType() == "bug") {
+            return 1.0;
+        }
+        else {
+            return 0.5;
+        }
+    }
     else {
         return 1.0;
     }
@@ -198,6 +263,34 @@ double checkBug(const Pokemon& pokemon) {
             return 0.25;
         }
         else if (pokemon.getType(1) == "grass" or pokemon.getType(1) == "psychic" or pokemon.getType(1) == "dark") {
+            return 1.0;
+        }
+        else {
+            return 0.5;
+        }
+    }
+    else if (pokemon.getType(1) == "grass" or pokemon.getType(1) == "psychic" or pokemon.getType(1) == "dark") {
+        if (pokemon.getType() == "grass" or pokemon.getType() == "psychic" or pokemon.getType() == "dark") {
+            return 4.0;
+        }
+        else if (pokemon.getType() == "fire" or pokemon.getType() == "fighting" or pokemon.getType() == "poison" or
+                 pokemon.getType() == "flying" or pokemon.getType() == "ghost" or pokemon.getType() == "steel" or
+                 pokemon.getType() == "fairy") {
+            return 1.0;
+        }
+        else {
+            return 2.0;
+        }
+    }
+    else if (pokemon.getType(1) == "fire" or pokemon.getType(1) == "fighting" or pokemon.getType(1) == "poison" or
+             pokemon.getType(1) == "flying" or pokemon.getType(1) == "ghost" or pokemon.getType(1) == "steel" or
+             pokemon.getType(1) == "fairy") {
+        if (pokemon.getType() == "fire" or pokemon.getType() == "fighting" or pokemon.getType() == "poison" or
+            pokemon.getType() == "flying" or pokemon.getType() == "ghost" or pokemon.getType() == "steel" or
+            pokemon.getType() == "fairy") {
+            return 0.25;
+        }
+        else if (pokemon.getType() == "grass" or pokemon.getType() == "psychic" or pokemon.getType() == "dark") {
             return 1.0;
         }
         else {
@@ -355,5 +448,3 @@ double checkSteel(const Pokemon& pokemon) {
         return 1.0;
     }
 }
-
-#endif //POKEMON_BATTLE_PHYSICAL_TYPES_H

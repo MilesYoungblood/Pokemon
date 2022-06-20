@@ -115,6 +115,12 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/SpecialTypes.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Trainer.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Trainer.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/TypeChart.h">
 			<Option target="PokemonBattle"/>
 		</Unit>

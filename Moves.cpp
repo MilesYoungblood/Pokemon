@@ -47,20 +47,36 @@ int Moves::getDamage() {
     }
 }
 
-void Moves::setPP(int newPP) { pp = newPP; }
-int Moves::getPP() const { return pp; }
+void Moves::setPP(int newPP) {
+    pp = newPP;
+}
+int Moves::getPP() const {
+    return pp;
+}
 
-int Moves::getMaxPP() const { return maxPp; }
+int Moves::getMaxPP() const {
+    return maxPp;
+}
 
-int Moves::getPower() const { return power; }
+int Moves::getPower() const {
+    return power;
+}
 
-int Moves::getAccuracy() const { return accuracy; }
+int Moves::getAccuracy() const {
+    return accuracy;
+}
 
-__attribute__((unused)) void Moves::setType(std::string& newType) { type = newType; }
-__attribute__((unused)) std::string Moves::getType() const { return type; }
+__attribute__((unused)) void Moves::setType(std::string& newType) {
+    type = newType;
+}
+__attribute__((unused)) std::string Moves::getType() const {
+    return type;
+}
 
 std::string Moves::getCategory() const {
     return category;
 }
 
-std::string Moves::getName() const { return name; }
+std::string Moves::getName() const {
+    return name;
+}

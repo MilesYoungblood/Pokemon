@@ -2,8 +2,7 @@
 // Created by Miles Youngblood on 6/7/2022.
 //
 
-#ifndef POKEMON_BATTLE_MOVE_LIST_H
-#define POKEMON_BATTLE_MOVE_LIST_H
+#pragma once
 
 #include "Moves.h"
 #include <random>
@@ -55,5 +54,3 @@ struct IceBeam : public Moves {
 struct Extrasensory : public Moves {
     Extrasensory() : Moves("Extrasensory", "psychic", "special", 15, 90, 100) {}
 };
-
-#endif //POKEMON_BATTLE_MOVE_LIST_H

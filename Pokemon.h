@@ -2,8 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
-#ifndef POKEMON_BATTLE_POKEMON_H
-#define POKEMON_BATTLE_POKEMON_H
+#pragma once
 
 #include "Moves.h"
 
@@ -61,5 +60,3 @@ public:
 
     int getLevel() const;
 };
-
-#endif //POKEMON_BATTLE_POKEMON_H

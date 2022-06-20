@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/Moves.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/Pokemon.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/Pokemon.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/main.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/main.cpp.obj.d"
   "PokemonBattle.exe"

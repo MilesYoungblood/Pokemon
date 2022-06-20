@@ -1,6 +1,6 @@
-CMakeFiles/PokemonBattle.dir/main.cpp.obj: \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\main.cpp \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\main.h \
+CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj: \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Trainer.cpp \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Trainer.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Pokemon.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Moves.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/string \
@@ -156,11 +156,4 @@ CMakeFiles/PokemonBattle.dir/main.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/io.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/string.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/string_s.h \
- C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/getopt.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\AttackFunctions.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\TypeChart.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\PhysicalTypes.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\SpecialTypes.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\ItemFunctions.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\MoveList.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Trainer.h
+ C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/getopt.h

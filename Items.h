@@ -2,10 +2,8 @@
 // Created by miles on 5/25/2022.
 //
 
-#ifndef POKEMON_BATTLE_ITEMS_H
-#define POKEMON_BATTLE_ITEMS_H
+#pragma once
 
-#include "Pokemon.h"
 #include <iostream>
 #include <unistd.h>
 
@@ -23,7 +21,7 @@ public:
 
     std::string getName() const;
 
-    static void useItem(Items& itemToUse);
+    //static void useItem(Items& itemToUse);
     virtual void useItemMessage();
 };
 
@@ -71,5 +69,3 @@ public:
 
     std::string getStat() const;
 };
-
-#endif //POKEMON_BATTLE_ITEMS_H

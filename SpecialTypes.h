@@ -2,8 +2,7 @@
 // Created by Miles Youngblood on 6/10/2022.
 //
 
-#ifndef POKEMON_BATTLE_SPECIAL_TYPES_H
-#define POKEMON_BATTLE_SPECIAL_TYPES_H
+#pragma once
 
 #include "Pokemon.h"
 
@@ -459,5 +458,3 @@ double checkFairy(const Pokemon& pokemon) {
         return 1.0;
     }
 }
-
-#endif //POKEMON_BATTLE_SPECIAL_TYPES_H

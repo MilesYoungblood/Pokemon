@@ -30,9 +30,9 @@ std::string Items::getName() const {
     return name;
 }
 
-void Items::useItem(Items& itemToUse) {
-    itemToUse.setQuantity(itemToUse.getQuantity() - 1);
-}
+//void Items::useItem(Items& itemToUse) {
+  //  itemToUse.setQuantity(itemToUse.getQuantity() - 1);
+//}
 
 void Items::useItemMessage() {
     std::cout << "You used " << this->name << "! ";

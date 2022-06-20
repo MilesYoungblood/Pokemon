@@ -2,8 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
-#ifndef POKEMON_BATTLE_MOVES_H
-#define POKEMON_BATTLE_MOVES_H
+#pragma once
 
 #include <string>
 #include <random>
@@ -30,11 +29,9 @@ public:
     int getAccuracy() const;
 
     __attribute__((unused)) void setType(std::string& newType);
-    __attribute__((unused)) std::string getType() const;
+    std::string getType() const;
 
     std::string getCategory() const;
 
     std::string getName() const;
 };
-
-#endif //POKEMON_BATTLE_MOVES_H
