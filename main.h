@@ -4,31 +4,24 @@
 
 #pragma once
 
-#include "Pokemon.h"
-#include "Items.h"
+#include <iostream>
+#include <unistd.h>
+#include "Trainer.h"
 #include "AttackFunctions.h"
-
-int generateInteger(int lower, int upper) {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(lower, upper);
-
-    return dist(mt);
-}
 
 void wildPokemonMessage(const std::string& pokemon) {
     std::cout << "A wild " << pokemon << " appeared! ";
-    sleep(2);
+    sleep(1);
 }
 
 void sendOutMessage(const std::string& pokemon) {
     std::cout << "Go " << pokemon << "!\n";
-    sleep(2);
+    sleep(1);
 }
 
 void returnMessage(const std::string& pokemon) {
     std::cout << pokemon << ", return! ";
-    sleep(2);
+    sleep(1);
 }
 
 void introMessage(const std::string& userPokemon, const std::string& opposingPokemon) {
@@ -36,20 +29,26 @@ void introMessage(const std::string& userPokemon, const std::string& opposingPok
     sendOutMessage(userPokemon);
 }
 
-void getChar(char& userChar) {
+char getChar() {
+    char userChar;
     std::cin >> userChar;
 
     while (userChar != 'f' and userChar != 'b' and userChar != 'r' and userChar != 'p') {
         std::cin >> userChar;
     }
+
+    return userChar;
 }
 
-void getInt(int& userInt, int lower, int upper) {
+int getInt(int lower, int upper) {
+    int userInt;
     std::cin >> userInt;
 
     while (userInt < lower or upper < userInt) {
         std::cin >> userInt;
     }
+
+    return userInt;
 }
 
 void displayChoices(const std::string& pokemon) {
@@ -110,15 +109,8 @@ void forceSwitchPrompt() {
     std::cout.flush();
 }
 
-void run(bool& runStatus) {
-    int run = generateInteger(0, 1);
-
-    if (run == 0) {
-        runStatus = false;
-    }
-    else if (run == 1) {
-        runStatus = true;
-    }
+bool run() {
+    return generateInteger(0, 1) == 1;
 }
 
 void runMessage(bool runStatus) {
@@ -140,9 +132,9 @@ void pokemonPrompt() {
 }
 
 void switchOut(std::vector<Pokemon>& party, int pokemonToSwitch) {
-    Pokemon copyParty = party.at(0);
+    Pokemon copy = party.at(0);
     party.at(0) = party.at(pokemonToSwitch);
-    party.at(pokemonToSwitch) = copyParty;
+    party.at(pokemonToSwitch) = copy;
 }
 
 void switchOutMessage(const std::vector<Pokemon>& party, int pokemonSwitched) {
@@ -177,11 +169,58 @@ void loseMessage() {
     sleep(2);
 }
 
-void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int opponentMonsFainted, bool& gameOver) {
-    bool userMoveLanded = false, crit = false;
+bool preStatus(const std::string& status) {
+    if (status == "paralysis") {
+        return generateInteger(1, 4) == 1;
+    }
+    else {
+        return status == "freeze" or status == "sleep";
+    }
+}
+
+bool postStatus(const std::string& status) {
+    return status == "burn" or status == "poison";
+}
+
+void inflictedMessage(const Pokemon& pokemon) {
+    if (pokemon.getStatus() == "burn") {
+        std::cout << pokemon.getName() << " took " << static_cast<int>(pokemon.getMaxHp() * .0625) << " damage from it's burn!\n";
+    }
+    else if (pokemon.getStatus() == "paralysis") {
+        std::cout << pokemon.getName() << " is paralyzed! It can't move!\n";
+    }
+    else if (pokemon.getStatus() == "freeze") {
+        std::cout << pokemon.getName() << " is frozen solid!\n";
+    }
+    else if (pokemon.getStatus() == "poison"){
+        std::cout << pokemon.getName() << " took " << static_cast<int>(pokemon.getMaxHp() * .0625) << "damage from poison!\n";
+    }
+    else if (pokemon.getStatus() == "sleep") {
+        std::cout << pokemon.getName() << " is fast asleep.\n";
+    }
+    sleep(1);
+}
+
+void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int& opponentMonsFainted, bool& gameOver) {
+    bool userMoveLanded = false;
+    bool crit = false;
+    bool inflicted = preStatus(attackingPokemon.at(0).getStatus());
     int userDamage = calculateDamage(attackingPokemon.at(0), defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), crit);
-    attack(defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
-    attackMessage(attackingPokemon.at(0), defendingPokemon.at(0), userMove - 1, userDamage, userMoveLanded, crit);
+
+    //FIXME rework configuration for status conditions
+    if (!inflicted) { // if Pokémon isn't inflicted with a pre-move status condition...
+        attack(defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
+        attackMessage(attackingPokemon.at(0), defendingPokemon.at(0), userMove - 1, userDamage, userMoveLanded, crit);
+    }
+    else {
+        inflictedMessage(attackingPokemon.at(0));
+    }
+
+    inflicted = postStatus(attackingPokemon.at(0).getStatus());
+    if (inflicted) { // if Pokémon is inflicted with a post-move status condition
+        takeDamage(attackingPokemon.at(0), static_cast<int>(attackingPokemon.at(0).getMaxHp() * .0625));
+        status::takeDamageMessage(attackingPokemon.at(0));
+    }
 
     if (defendingPokemon.at(0).getHP() <= 0) { // if Pokémon's HP drops to zero...
         faint(defendingPokemon.at(0), opponentMonsFainted);
@@ -193,8 +232,9 @@ void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& de
     }
 }
 
-void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int userMonsFainted, bool& gameOver) {
-    bool opponentMoveLanded = false, crit = false;
+void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int& userMonsFainted, bool& gameOver) {
+    bool opponentMoveLanded = false;
+    bool crit = false;
     int opponentDamage = calculateDamage(opponentParty.at(0), userParty.at(0), opponentParty.at(0).getMove(opponentMove), crit);
     attack(userParty.at(0), opponentParty.at(0).getMove(opponentMove - 1), opponentDamage, opponentMoveLanded);
     attackMessage(opponentParty.at(0), userParty.at(0), opponentMove, opponentDamage, opponentMoveLanded, crit);
@@ -210,8 +250,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         forceSwitchPrompt();
 
         char userChoice;
-        int userSwitch;
-        bool runSuccess = false;
+        int pokemon;
 
         std::cin >> userChoice;
 
@@ -220,7 +259,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         }
 
         if (userChoice == 'r') {
-            run(runSuccess);
+            bool runSuccess = run();
             runMessage(runSuccess);
             if (runSuccess) {
                 gameOver = true;
@@ -229,16 +268,16 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         }
 
         displayPokemon(userParty);
-        std::cin >> userSwitch;
+        std::cin >> pokemon;
 
-        while ((userSwitch <= 1 or userParty.size() < userSwitch) or userParty.at(userSwitch - 1).getHP() <= 0) {
-            if (userParty.at(userSwitch - 1).getHP() <= 0) {
-                hpEmptyMessage(userParty.at(userSwitch - 1).getName());
+        while ((pokemon <= 1 or userParty.size() < pokemon) or userParty.at(pokemon - 1).getHP() <= 0) {
+            if (userParty.at(pokemon - 1).getHP() <= 0) {
+                hpEmptyMessage(userParty.at(pokemon - 1).getName());
             }
-            std::cin >> userSwitch;
+            std::cin >> pokemon;
         }
 
-        switchOut(userParty, userSwitch);
+        switchOut(userParty, pokemon);
         sendOutMessage(userParty.at(0).getName());
     }
 }

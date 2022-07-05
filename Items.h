@@ -4,8 +4,7 @@
 
 #pragma once
 
-#include <iostream>
-#include <unistd.h>
+#include <string>
 
 class Items {
 private:
@@ -20,9 +19,6 @@ public:
     int getQuantity() const;
 
     std::string getName() const;
-
-    //static void useItem(Items& itemToUse);
-    virtual void useItemMessage();
 };
 
 class RestoreItems : public Items {
@@ -56,8 +52,6 @@ public:
     PokeBalls(int quantity, double catchRate, const std::string& name);
 
     double getCatchRate() const;
-
-    void useItemMessage() override;
 };
 
 class BattleItems : public Items {

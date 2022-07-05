@@ -85,6 +85,9 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/AttackFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/GeneralFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/ItemFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>

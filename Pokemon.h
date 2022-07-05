@@ -6,15 +6,18 @@
 
 #include "Moves.h"
 
-const int NUM_MOVES = 4, NUM_TYPES = 2;
+const int NUM_MOVES = 4;
+const int NUM_TYPES = 2;
 
 class Pokemon {
 private:
-    int currentHp, attack, spAttack, defense, spDefense, speed, accuracy,
-        maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
+    int currentHp, attack, spAttack, defense, spDefense, speed, accuracy;
+    int maxHp, baseAttack, baseSpAttack, baseDefense, baseSpDefense, baseSpeed;
     int level;
 
-    std::string name, types[NUM_TYPES], status;
+    std::string name;
+    std::string types[NUM_TYPES];
+    std::string status;
     Moves moveSet[NUM_MOVES];
 public:
     Pokemon();
@@ -53,7 +56,7 @@ public:
     std::string getType(int type) const;
 
     void setStatus(const std::string& newStatus);
-    std::string getStatus();
+    std::string getStatus() const;
 
     void setMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4);
     Moves& getMove(int move);

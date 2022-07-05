@@ -63,7 +63,7 @@ void cure(Pokemon& pokemonToCure, const StatusItems& itemToUse) {
     }
 }
 
-void cureMessage(Pokemon pokemonCured, const std::string& status) {
+void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     if (pokemonCured.getStatus() == "No status") {
         std::cout << pokemonCured.getName() << " recovered from " << status << "!\n";
         sleep(1);
@@ -73,12 +73,14 @@ void cureMessage(Pokemon pokemonCured, const std::string& status) {
     }
 }
 
-__attribute__((unused)) void catchPokemon() {
+/*
+void catchPokemon() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> first(75, 100);
 
 }
+ */
 
 void boostStat(const BattleItems& itemToUse, Pokemon& pokemonToBoost, int amountToBoost, bool& limitReached) {
     if (itemToUse.getStat() == "attack") {
@@ -148,7 +150,18 @@ void useItem(T& itemToUse) {
 }
 
 void useItemMessage(const std::string& itemUsed) {
-    std::cout << "You used " << itemUsed << "! ";
+    if (itemUsed.substr(itemUsed.size() - 4) != "Ball") {
+        std::cout << "You used a";
+
+        if (isVowel(itemUsed.at(0))) {
+            std::cout << 'n';
+        }
+
+        std::cout << ' ' << itemUsed << "! ";
+    }
+    else {
+        std::cout << "You threw a " << itemUsed << "! ";
+    }
     sleep(1);
 }
 

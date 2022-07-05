@@ -7,63 +7,62 @@
 #include "PhysicalTypes.h"
 #include "SpecialTypes.h"
 
-double getTypeEffective(const Moves& move, const Pokemon& pokemon) {
-    double multiplier = 1.0;
-
+float getTypeEffective(const Moves& move, const Pokemon& pokemon) {
     if (move.getType() == "normal") {
-        multiplier = checkNormal(pokemon);
+        return checkNormal(pokemon);
     }
     else if (move.getType() == "fire") {
-        multiplier = checkFire(pokemon);
+        return checkFire(pokemon);
     }
     else if (move.getType() == "water") {
-        multiplier = checkWater(pokemon);
+        return checkWater(pokemon);
     }
     else if (move.getType() == "electric") {
-        multiplier = checkElectric(pokemon);
+        return checkElectric(pokemon);
     }
     else if (move.getType() == "grass") {
-        multiplier = checkGrass(pokemon);
+        return checkGrass(pokemon);
     }
     else if (move.getType() == "ice") {
-        multiplier = checkIce(pokemon);
+        return checkIce(pokemon);
     }
     else if (move.getType() == "fighting") {
-        multiplier = checkFighting(pokemon);
+        return checkFighting(pokemon);
     }
     else if (move.getType() == "poison") {
-        multiplier = checkPoison(pokemon);
+        return checkPoison(pokemon);
     }
     else if (move.getType() == "ground") {
-        multiplier = checkGround(pokemon);
+        return checkGround(pokemon);
     }
     else if (move.getType() == "flying") {
-        multiplier = checkFlying(pokemon);
+        return checkFlying(pokemon);
     }
     else if (move.getType() == "psychic") {
-        multiplier = checkPsychic(pokemon);
+        return checkPsychic(pokemon);
     }
     else if (move.getType() == "bug") {
-        multiplier = checkBug(pokemon);
+        return checkBug(pokemon);
     }
     else if (move.getType() == "rock") {
-        multiplier = checkRock(pokemon);
+        return checkRock(pokemon);
     }
     else if (move.getType() == "ghost") {
-        multiplier = checkGhost(pokemon);
+        return checkGhost(pokemon);
     }
     else if (move.getType() == "dragon") {
-        multiplier = checkDragon(pokemon);
+        return checkDragon(pokemon);
     }
     else if (move.getType() == "dark") {
-        multiplier = checkDark(pokemon);
+        return checkDark(pokemon);
     }
     else if (move.getType() == "steel") {
-        multiplier = checkSteel(pokemon);
+        return checkSteel(pokemon);
     }
     else if (move.getType() == "fairy") {
-        multiplier = checkFairy(pokemon);
+        return checkFairy(pokemon);
     }
-
-    return multiplier;
+    else {
+        return 1.0f;
+    }
 }

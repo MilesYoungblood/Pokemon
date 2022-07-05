@@ -5,6 +5,7 @@
 #pragma once
 
 #include "TypeChart.h"
+#include "GeneralFunctions.h"
 
 void displayMoves(Pokemon& pokemon) {
     std::cout << "Choose a move:\n";
@@ -37,52 +38,47 @@ int getPhysicalAttack(const Pokemon& attackingPokemon, const Pokemon& defendingP
 
 int getSpecialAttack(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, Moves move) {
     int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
-    int finalCalc = levelCalc * attackingPokemon.getSpAttack() * move.getDamage() / defendingPokemon.getSpDefense();
+    int finalCalc = levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
     return finalCalc;
 }
 
 int criticalHit(bool& crit) {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(1, 16);
-
-    int critical = dist(mt);
-    if (critical == 1) {
+    if (generateInteger(1, 16) == 1) {
         crit = true;
-        return 2.0;
+        return 2;
     }
     else {
         crit = false;
-        return 1.0;
+        return 1;
     }
 }
 
-double stabCheck(const Pokemon& pokemon, const Moves& move) {
+float stabCheck(const Pokemon& pokemon, const Moves& move) {
     if (pokemon.getType() == move.getType() or pokemon.getType(1) == move.getType()) {
-        return 1.5;
+        return 1.5f;
     }
     else {
-        return 1.0;
+        return 1.0f;
     }
 }
 
 int calculateDamage(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, const Moves& move, bool& crit) {
-    int initialDamage = 0, finalDamage;
+    int initialDamage = 0;
     if (move.getCategory() == "physical") {
         initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
     }
     else if (move.getCategory() == "special") {
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
     }
-    finalDamage = (initialDamage / 50) + 2;
-    finalDamage = static_cast<int>((finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
-            criticalHit(crit)));
+    int finalDamage = (initialDamage / 50) + 2;
+    finalDamage = static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
+                  static_cast<float>(criticalHit(crit)));
 
     return finalDamage;
 }
 
 void attack(Pokemon& defendingPokemon, Moves& move, int damage, bool& landed) {
-    if (damage >= 0) {
+    if (damage >= 0) { // damage will be negative if the attack misses
         defendingPokemon.setHP(defendingPokemon.getHP() - damage);
         landed = true;
     }
@@ -95,19 +91,24 @@ void attackMessage(Pokemon& attackingPokemon, const Pokemon& defendingPokemon, i
     if (landed) {
         if (getTypeEffective(attackingPokemon.getMove(move), defendingPokemon) == 0.0) {
             std::cout << "It doesn't affect " << defendingPokemon.getName() << "...\n";
+            sleep(1);
         }
         else if (getTypeEffective(attackingPokemon.getMove(move), defendingPokemon) >= 2.0) {
             std::cout << attackingPokemon.getMove(move).getName() << " did " << damage << " damage! ";
             std::cout << "It's super effective!\n";
+            sleep(1);
             if (criticalHit) {
                 std::cout << "A critical hit! ";
+                sleep(1);
             }
         }
         else if (getTypeEffective(attackingPokemon.getMove(move), defendingPokemon) <= 0.5) {
             std::cout << attackingPokemon.getMove(move).getName() << " did " << damage << " damage! ";
             std::cout << "It's not very effective...\n";
+            sleep(1);
             if (criticalHit) {
                 std::cout << "A critical hit! ";
+                sleep(1);
             }
         }
         else {
@@ -116,12 +117,28 @@ void attackMessage(Pokemon& attackingPokemon, const Pokemon& defendingPokemon, i
     }
     else {
         std::cout << defendingPokemon.getName() << " avoided the attack!\n";
+        sleep(1);
     }
     std::cout.flush();
-    sleep(2);
 }
 
 void attackErrorMessage() {
     std::cout << "That move is out of PP. Please select another move.\n";
     sleep(2);
+}
+
+void takeDamage(Pokemon& pokemon, int damage) {
+    pokemon.setHP(pokemon.getHP() - damage);
+}
+
+namespace status {
+    void takeDamageMessage(const Pokemon& pokemon) {
+        if (pokemon.getStatus() == "burn") {
+            std::cout << pokemon.getName() << " took damage from it's burn!\n";
+        }
+        else if (pokemon.getStatus() == "poison") {
+            std::cout << pokemon.getName() << " took damage from it's poisoning!\n";
+        }
+        sleep(1);
+    }
 }

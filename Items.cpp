@@ -30,15 +30,6 @@ std::string Items::getName() const {
     return name;
 }
 
-//void Items::useItem(Items& itemToUse) {
-  //  itemToUse.setQuantity(itemToUse.getQuantity() - 1);
-//}
-
-void Items::useItemMessage() {
-    std::cout << "You used " << this->name << "! ";
-    sleep(1);
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 RestoreItems::RestoreItems() : Items() {
@@ -83,11 +74,6 @@ PokeBalls::PokeBalls(int quantity, double catchRate, const std::string &name) : 
 
 double PokeBalls::getCatchRate() const {
     return catchRate;
-}
-
-void PokeBalls::useItemMessage() {
-    std::cout << "You threw a " << this->getName() << '!' << std::endl;
-    sleep(1);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -133,7 +133,9 @@ int Pokemon::getBaseDefense() const { return baseDefense; }
 int Pokemon::getBaseSpDefense() const { return baseSpDefense; }
 int Pokemon::getBaseSpeed() const { return baseSpeed; }
 
-std::string Pokemon::getName() const { return name; }
+std::string Pokemon::getName() const {
+    return name;
+}
 
 std::string Pokemon::getType() const {
     return types[0];
@@ -145,7 +147,7 @@ std::string Pokemon::getType(int type) const {
 void Pokemon::setStatus(const std::string &newStatus) {
     status = newStatus;
 }
-std::string Pokemon::getStatus() {
+std::string Pokemon::getStatus() const {
     return status;
 }
 

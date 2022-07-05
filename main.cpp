@@ -1,7 +1,6 @@
 #include "main.h"
 #include "ItemFunctions.h"
 #include "MoveList.h"
-#include "Trainer.h"
 
 int main() {
     Pokemon Greninja("Greninja", "water", "dark", 50);
@@ -68,175 +67,158 @@ int main() {
     BattleItems XSpeed(5, "X-Speed", "speed");
 
     std::vector<RestoreItems> userRestoreItems = {Potion, Ether};
-    std::vector<StatusItems> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal, Antidote};
+    std::vector<StatusItems> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal, Antidote, Awakening};
     std::vector<PokeBalls> userPokeBalls = {PokeBall, GreatBall, UltraBall};
     std::vector<BattleItems> userBattleItems = {XAttack, XSpeed};
 
-    int userMonsFainted = 0, opponentMonsFainted = 0;
+    int userMonsFainted = 0;
+    int opponentMonsFainted = 0;
+    int turn = 1;
+    bool battleOver = false;
 
     introMessage(userParty.at(0).getName(), opponentParty.at(0).getName());
 
-    bool battleOver = false, runAway = false;
-    while (true) {
+    while (true) { // enters the battle
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER SELECTIONS
-        char userChoice;
         int userMove, userItem, pokemon;
+        std::cout << "\nTurn " << turn;
         displayHP(userParty.at(0), opponentParty.at(0));
         displayChoices(userParty.at(0).getName());
-        getChar(userChoice);
+        char userChoice = getChar();
 
         if (userChoice == 'f') { // trainer chose fight
             displayMoves(userParty.at(0));
-            getInt(userMove, 0, NUM_MOVES);
+            userMove = getInt(0, NUM_MOVES);
 
-            if (1 <= userMove and userMove <= NUM_MOVES) { // trainer chose in-bounds option
-                if (userParty.at(0).getMove(userMove - 1).getPP() <= 0) { // if move chosen is out of PP...
-                    attackErrorMessage();
-                    continue;
-                }
+            if (userMove == 0) {
+                continue;
             }
-
-            else if (userMove == 0) {
+            else if (userParty.at(0).getMove(userMove - 1).getPP() <= 0) { // if move chosen is out of PP...
+                attackErrorMessage();
                 continue;
             }
         }
 
         else if (userChoice == 'b') { // trainer chose bag
             displayBag();
-            getInt(userItem, 0, 4);
+            userItem = getInt(0, 4);
 
             if (userItem == 1) { // trainer chose HP/PP items
                 displayItems(userRestoreItems);
-                getInt(userItem, 0, static_cast<int>(userRestoreItems.size()));
+                userItem = getInt(0, static_cast<int>(userRestoreItems.size()));
 
-                if (1 <= userItem and userItem <= userRestoreItems.size()) { // if trainer chooses in-bounds option...
-                    if (userRestoreItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
-                        displayPokemon(userParty);
-                        getInt(pokemon, 0, static_cast<int>(userParty.size()));
+                if (userItem == 0) {
+                    continue;
+                }
+                else if (userRestoreItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                    displayPokemon(userParty);
+                    pokemon = getInt(0, static_cast<int>(userParty.size()));
 
-                        if (1 <= pokemon and pokemon <= userParty.size()) { // if trainer chooses in bounds option...
-                            if (userParty.at(pokemon - 1).getHP() < userParty.at(pokemon - 1).getMaxHp() and
-                                userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon selected doesn't have full HP...
-                                if (userRestoreItems.at(userItem - 1).getRestoreType() == "HP") { // if item selected restores HP
-                                    HP::restore(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                    HP::restoreMessage(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                    useItem(userRestoreItems.at(userItem - 1));
-                                }
-                                else if (userRestoreItems.at(userItem - 1).getRestoreType() == "PP") { // if item selected restores PP
-                                    displayMoves(userParty.at(pokemon - 1));
-                                    getInt(userMove, 0, NUM_MOVES);
+                    if (pokemon == 0) {
+                        continue;
+                    }
+                    else if (userParty.at(pokemon - 1).getHP() < userParty.at(pokemon - 1).getMaxHp() and
+                        userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon selected doesn't have full HP, but isn't fainted...
+                        if (userRestoreItems.at(userItem - 1).getRestoreType() == "HP") { // if item selected restores HP...
+                            HP::restore(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
+                            HP::restoreMessage(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
+                            useItem(userRestoreItems.at(userItem - 1));
+                        }
+                        else if (userRestoreItems.at(userItem - 1).getRestoreType() == "PP") { // if item selected restores PP...
+                            displayMoves(userParty.at(pokemon - 1));
+                            userMove = getInt(0, NUM_MOVES);
 
-                                    if (1 <= userMove and userMove <= NUM_MOVES) {
-                                        PP::restore(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                        PP::restoreMessage(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                        useItem(userRestoreItems.at(userItem - 1));
-                                    }
-                                    else if (userMove == 0) {
-                                        continue;
-                                    }
-                                }
-                            }
-                            else { // Pokémon's HP is already full
-                                hpFullMessage(userParty.at(pokemon - 1).getName());
+                            if (userMove == 0) {
                                 continue;
                             }
-                        }
-                        else if (pokemon == 0) {
-                            continue;
+                            else {
+                                PP::restore(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
+                                PP::restoreMessage(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
+                                useItem(userRestoreItems.at(userItem - 1));
+                            }
                         }
                     }
-                    else { // trainer is out of selected item
-                        itemErrorMessage(userRestoreItems.at(userItem - 1).getName());
+                    else { // Pokémon's HP is already full
+                        hpFullMessage(userParty.at(pokemon - 1).getName());
                         continue;
                     }
                 }
-                else if (userItem == 0) {
+                else { // trainer is out of selected item
+                    itemErrorMessage(userRestoreItems.at(userItem - 1).getName());
                     continue;
                 }
             }
 
             else if (userItem == 2) { // trainer chose status items
                 displayItems(userStatusItems);
-                getInt(userItem, 0, static_cast<int>(userStatusItems.size()));
+                userItem = getInt(0, static_cast<int>(userStatusItems.size()));
 
-                if (userItem >= 1 and userItem <= userStatusItems.size()) { // if trainer chose in-bounds option...
-                    if (userStatusItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
-                        displayPokemon(userParty);
-                        getInt(pokemon, 0, static_cast<int>(userParty.size()));
+                if (userItem == 0) {
+                    continue;
+                }
+                else if (userStatusItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                    displayPokemon(userParty);
+                    pokemon = getInt(0, static_cast<int>(userParty.size()));
 
-                        if (1 <= pokemon and pokemon <= userParty.size()) { // if trainer chose in-bounds option...
-                            if (userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon is not fainted...
-                                if (userParty.at(pokemon - 1).getStatus() != "No status") { // if Pokémon has status condition...
-                                    cure(userParty.at(pokemon - 1), userStatusItems.at(userItem - 1));
-                                    cureMessage(userParty.at(pokemon - 1),
-                                                userStatusItems.at(userItem - 1).getRestoreType());
-                                    useItem(userStatusItems.at(userItem - 1));
-                                }
-                                else { // Pokémon did not have a status condition
-                                    useItem(userStatusItems.at(userItem - 1));
-                                    noEffectMessage(userStatusItems.at(userItem - 1).getName(), userParty.at(pokemon - 1).getName());
-                                }
-                            }
-                            else { // Pokémon is fainted
-                                hpEmptyMessage(userParty.at(pokemon - 1).getName());
-                                continue;
-                            }
+                    if (pokemon == 0) {
+                        continue;
+                    }
+                    else if (userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon is not fainted...
+                        if (userParty.at(pokemon - 1).getStatus() != "No status") { // if Pokémon has status condition...
+                            cure(userParty.at(pokemon - 1), userStatusItems.at(userItem - 1));
+                            cureMessage(userParty.at(pokemon - 1),userStatusItems.at(userItem - 1).getRestoreType());
+                            useItem(userStatusItems.at(userItem - 1));
                         }
-                        else if (pokemon == 0) {
-                            continue;
+                        else { // Pokémon did not have a status condition
+                            useItem(userStatusItems.at(userItem - 1));
+                            noEffectMessage(userStatusItems.at(userItem - 1).getName(), userParty.at(pokemon - 1).getName());
                         }
                     }
-                    else { // trainer is out of selected item
-                        itemErrorMessage(userStatusItems.at(userItem - 1).getName());
+                    else { // Pokémon is fainted
+                        hpEmptyMessage(userParty.at(pokemon - 1).getName());
                         continue;
                     }
                 }
-
-                else if (userItem == 0) {
+                else { // trainer is out of selected item
+                    itemErrorMessage(userStatusItems.at(userItem - 1).getName());
                     continue;
                 }
             }
 
             else if (userItem == 3) { // trainer chose Poké Balls
                 displayItems(userPokeBalls);
-                getInt(userItem, 0, static_cast<int>(userPokeBalls.size()));
+                userItem = getInt(0, static_cast<int>(userPokeBalls.size()));
 
-                if (1 <= userItem and userItem <= userPokeBalls.size()) { // if trainer chose in-bounds option...
-                    if (userPokeBalls.at(userItem - 1).getQuantity() > 0) { // if trainer has at least one of item selected...
-                        //TODO ADD POKÉ BALL FUNCTIONALITY
-                        useItem(userPokeBalls.at(userItem - 1));
-                        userPokeBalls.at(userItem - 1).useItemMessage();
-                    }
-                    else { // trainer is out of selected item
-                        itemErrorMessage(userPokeBalls.at(userItem - 1).getName());
-                        continue;
-                    }
+                if (userItem == 0) {
+                    continue;
                 }
-
-                else if (userItem == 0) {
+                else if (userPokeBalls.at(userItem - 1).getQuantity() > 0) { // if trainer has at least one of item selected...
+                    //TODO ADD POKÉ BALL FUNCTIONALITY
+                    useItem(userPokeBalls.at(userItem - 1));
+                    useItemMessage(userPokeBalls.at(userItem - 1).getName());
+                }
+                else { // trainer is out of selected item
+                    itemErrorMessage(userPokeBalls.at(userItem - 1).getName());
                     continue;
                 }
             }
 
             else if (userItem == 4) { // trainer chose battle items
                 displayItems(userBattleItems);
-                getInt(userItem, 0, static_cast<int>(userBattleItems.size()));
+                userItem = getInt(0, static_cast<int>(userBattleItems.size()));
 
-                if (1 <= userItem and userItem <= userBattleItems.size()) { // if trainer chose in-bounds option...
-                    if (userBattleItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
-                        bool limitReached = false;
-                        useItem(userBattleItems.at(userItem - 1));
-                        useItemMessage(userBattleItems.at(userItem - 1).getName());
-                        boostStat(userBattleItems.at(userItem - 1), userParty.at(0), 1, limitReached);
-                        boostMessage(userParty.at(0), userBattleItems.at(userItem - 1).getStat(), 1, limitReached);
-                    }
-                    else {
-                        itemErrorMessage(userBattleItems.at(userItem - 2).getName());
-                        continue;
-                    }
+                if (userItem == 0) {
+                    continue;
                 }
-
-                else if (userItem == 0) {
+                else if (userBattleItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                    bool limitReached = false;
+                    useItem(userBattleItems.at(userItem - 1));
+                    useItemMessage(userBattleItems.at(userItem - 1).getName());
+                    boostStat(userBattleItems.at(userItem - 1), userParty.at(0), 1, limitReached);
+                    boostMessage(userParty.at(0), userBattleItems.at(userItem - 1).getStat(), 1, limitReached);
+                }
+                else {
+                    itemErrorMessage(userBattleItems.at(userItem - 2).getName());
                     continue;
                 }
             }
@@ -247,7 +229,7 @@ int main() {
         }
 
         else if (userChoice == 'r') { // trainer chose run
-            run(runAway);
+            bool runAway = run();
             runMessage(runAway);
             if (runAway) {
                 break;
@@ -256,7 +238,7 @@ int main() {
 
         else if (userChoice == 'p') { // trainer chose Pokémon
             displayPokemon(userParty);
-            getInt(pokemon, 0, static_cast<int>(userParty.size()));
+            pokemon = getInt(0, static_cast<int>(userParty.size()));
 
             if (pokemon == 0) {
                 continue;
@@ -271,18 +253,16 @@ int main() {
 
             if (userChoice == 'c') {
                 displayMoves(userParty.at(pokemon - 1));
-                getInt(userMove, 0, NUM_MOVES);
+                userMove = getInt(0, NUM_MOVES);
 
-                if (1 <= userMove and userMove <= NUM_MOVES) {
-                    displayMoveSummary(userParty.at(pokemon - 1).getMove(userMove - 1));
-                    getInt(userMove, 0, 0);
-
+                if (userMove == 0) {
                     continue;
                 }
 
-                else if (userMove == 0) {
-                    continue;
-                }
+                displayMoveSummary(userParty.at(pokemon - 1).getMove(userMove - 1));
+                userMove = getInt(0, 0);
+
+                continue;
             }
             else if (userChoice == 's') {
                 if (userMonsFainted == userParty.size() - 1) { // trainer has only one healthy Pokémon
@@ -294,7 +274,8 @@ int main() {
                         if (userParty.at(pokemon - 1).getHP() > 0) { // Pokémon chosen is not fainted
                             switchOut(userParty, pokemon - 1);
                             switchOutMessage(userParty, pokemon - 1);
-                        } else { // Pokémon chosen is fainted
+                        }
+                        else { // Pokémon chosen is fainted
                             hpEmptyMessage(userParty.at(pokemon - 1).getName());
                             continue;
                         }
@@ -339,8 +320,7 @@ int main() {
                 }
             }
             else { // trainer and opponent rival in speed
-                int flip = generateInteger(0, 1);
-                if (flip == 0) {
+                if (generateInteger(0, 1) == 0) {
                     userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
                     if (battleOver) {
                         break;
@@ -350,7 +330,7 @@ int main() {
                         break;
                     }
                 }
-                else if (flip == 1) {
+                else {
                     opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
                     if (battleOver) {
                         break;
@@ -368,6 +348,7 @@ int main() {
                 break;
             }
         }
+        ++turn;
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// END OF BATTLE
     return 0;
