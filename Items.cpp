@@ -68,11 +68,11 @@ std::string StatusItems::getRestoreType() const {
 PokeBalls::PokeBalls() : Items() {
     catchRate = 0.00;
 }
-PokeBalls::PokeBalls(int quantity, double catchRate, const std::string &name) : Items(quantity, name) {
+PokeBalls::PokeBalls(int quantity, float catchRate, const std::string &name) : Items(quantity, name) {
     this->catchRate = catchRate;
 }
 
-double PokeBalls::getCatchRate() const {
+float PokeBalls::getCatchRate() const {
     return catchRate;
 }
 

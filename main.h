@@ -8,6 +8,7 @@
 #include <unistd.h>
 #include "Trainer.h"
 #include "AttackFunctions.h"
+#include "ItemFunctions.h"
 
 void wildPokemonMessage(const std::string& pokemon) {
     std::cout << "A wild " << pokemon << " appeared! ";
@@ -29,28 +30,6 @@ void introMessage(const std::string& userPokemon, const std::string& opposingPok
     sendOutMessage(userPokemon);
 }
 
-char getChar() {
-    char userChar;
-    std::cin >> userChar;
-
-    while (userChar != 'f' and userChar != 'b' and userChar != 'r' and userChar != 'p') {
-        std::cin >> userChar;
-    }
-
-    return userChar;
-}
-
-int getInt(int lower, int upper) {
-    int userInt;
-    std::cin >> userInt;
-
-    while (userInt < lower or upper < userInt) {
-        std::cin >> userInt;
-    }
-
-    return userInt;
-}
-
 void displayChoices(const std::string& pokemon) {
     std::cout << "What will " << pokemon << " do?\n";
     std::cout << "\tFight   (f)\n";
@@ -58,6 +37,14 @@ void displayChoices(const std::string& pokemon) {
     std::cout << "\tRun     (r)\n";
     std::cout << "\tPokemon (p)\n";
     std::cout.flush();
+
+    /*
+     * std::cout << "+-------------+-------------+\n";
+       std::cout << "| Fight   (f) | Bag     (b) |\n";
+       std::cout << "+-------------+-------------+\n";
+       std::cout << "| Run     (r) | Pokemon (p) |\n";
+       std::cout << "+-------------+-------------+\n";
+     */
 }
 
 void displayPokemon(const std::vector<Pokemon>& party) {
@@ -207,7 +194,7 @@ void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& de
     bool inflicted = preStatus(attackingPokemon.at(0).getStatus());
     int userDamage = calculateDamage(attackingPokemon.at(0), defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), crit);
 
-    //FIXME rework configuration for status conditions
+    // TODO rework configuration for status conditions
     if (!inflicted) { // if Pokémon isn't inflicted with a pre-move status condition...
         attack(defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
         attackMessage(attackingPokemon.at(0), defendingPokemon.at(0), userMove - 1, userDamage, userMoveLanded, crit);

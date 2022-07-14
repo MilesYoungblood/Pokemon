@@ -7,12 +7,12 @@
 #include "Pokemon.h"
 #include "Items.h"
 
-const int MAX_POKEMON = 6;
+enum {MAX_POKEMON = 6};
 
 class Trainer {
 private:
-    Pokemon party[MAX_POKEMON];
-    Items items[100];
+    std::array<Pokemon, MAX_POKEMON> party;
+    std::array<Items, 100> items;
 public:
     Trainer();
 
@@ -24,4 +24,5 @@ public:
     void setParty(const Pokemon&, const Pokemon&, const Pokemon&, const Pokemon&, const Pokemon&, const Pokemon&);
 
     Pokemon& getPokemon(int);
+    Items& getItem(int);
 };

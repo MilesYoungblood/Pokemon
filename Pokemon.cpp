@@ -138,10 +138,10 @@ std::string Pokemon::getName() const {
 }
 
 std::string Pokemon::getType() const {
-    return types[0];
+    return types.at(0);
 }
 std::string Pokemon::getType(int type) const {
-    return types[type];
+    return types.at(type);
 }
 
 void Pokemon::setStatus(const std::string &newStatus) {
@@ -152,14 +152,14 @@ std::string Pokemon::getStatus() const {
 }
 
 void Pokemon::setMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4) {
-    moveSet[0] = move1;
-    moveSet[1] = move2;
-    moveSet[2] = move3;
-    moveSet[3] = move4;
+    moveSet.at(0) = move1;
+    moveSet.at(1) = move2;
+    moveSet.at(2) = move3;
+    moveSet.at(3) = move4;
 }
 
 Moves& Pokemon::getMove(int move) {
-    return moveSet[move];
+    return moveSet.at(move);
 }
 
 int Pokemon::getLevel() const {

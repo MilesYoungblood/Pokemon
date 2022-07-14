@@ -11,7 +11,9 @@
 
 struct WaterShuriken : public Moves {
     WaterShuriken() : Moves("Water Shuriken", "water", "special", 20, 15, 100) {}
-    int numHits = 0, trueHits = 0, trueDamage = 0;
+    int numHits = 0; // number of possible hits (from 2 to 5)
+    int trueHits = 0; // number of hits landed (from 2 to 5)
+    int trueDamage = 0;
 
     int getDamage() override {
         std::random_device rd;

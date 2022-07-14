@@ -46,12 +46,12 @@ public:
 
 class PokeBalls : public Items {
 private:
-    double catchRate;
+    float catchRate;
 public:
     PokeBalls();
-    PokeBalls(int quantity, double catchRate, const std::string& name);
+    PokeBalls(int quantity, float catchRate, const std::string& name);
 
-    double getCatchRate() const;
+    float getCatchRate() const;
 };
 
 class BattleItems : public Items {

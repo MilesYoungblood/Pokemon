@@ -4,10 +4,10 @@
 
 #pragma once
 
+#include <array>
 #include "Moves.h"
 
-const int NUM_MOVES = 4;
-const int NUM_TYPES = 2;
+enum {NUM_MOVES = 4, NUM_TYPES = 2};
 
 class Pokemon {
 private:
@@ -16,9 +16,9 @@ private:
     int level;
 
     std::string name;
-    std::string types[NUM_TYPES];
     std::string status;
-    Moves moveSet[NUM_MOVES];
+    std::array<std::string, NUM_TYPES> types;
+    std::array<Moves, NUM_MOVES> moveSet;
 public:
     Pokemon();
     Pokemon(const Pokemon& pokemonToCopy);

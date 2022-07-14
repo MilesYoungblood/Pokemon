@@ -1,6 +1,10 @@
 #include "main.h"
-#include "ItemFunctions.h"
 #include "MoveList.h"
+/*
+ * enum { PC_ROWS = 5, PC_COLS = 6, NUM_BOXES = 12};
+ * Pokemon PC[NUM_BOXES][PC_ROWS][PC_COLS];
+ * std::array<std::array<std::array<Pokemon, PC_ROWS>, PC_COLS>, NUM_BOXES> PC;
+ */
 
 int main() {
     Pokemon Greninja("Greninja", "water", "dark", 50);
@@ -41,8 +45,12 @@ int main() {
     std::vector<Pokemon> userParty = {Greninja, Pikachu, Lucario};
     std::vector<Pokemon> opponentParty = {Charizard};
 
-    Trainer Miles;
-    Miles.setParty(Greninja, Pikachu, Lucario);
+    Trainer Trainer_1;
+    Trainer_1.setParty(Greninja, Charizard, Hydreigon);
+
+    Trainer_1.getPokemon(0).setMoves(WS, DarkPulse, IceBeam, Extrasensory);
+    Trainer_1.getPokemon(1).setMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
+    Trainer_1.getPokemon(2).setMoves(Da_Pulse, Dr_Pulse, FThrower, FocusBlast);
 
     userParty.at(0).setMoves(WS, DarkPulse, IceBeam, Extrasensory);
     userParty.at(1).setMoves(Thunder, QuickAttack, IronTail, VoltTackle);
@@ -59,9 +67,9 @@ int main() {
     StatusItems Antidote(3, "Antidote", "poison");
     StatusItems Awakening(4, "Awakening", "sleep");
 
-    PokeBalls PokeBall(5, 1.0, "Poke Ball");
-    PokeBalls GreatBall(5, 2.0, "Great Ball");
-    PokeBalls UltraBall(5, 3.0, "Ultra Ball");
+    PokeBalls PokeBall(5, 1.0f, "Poke Ball");
+    PokeBalls GreatBall(5, 1.5f, "Great Ball");
+    PokeBalls UltraBall(5, 2.0f, "Ultra Ball");
 
     BattleItems XAttack(10, "X-Attack", "attack");
     BattleItems XSpeed(5, "X-Speed", "speed");
@@ -117,12 +125,12 @@ int main() {
                     if (pokemon == 0) {
                         continue;
                     }
-                    else if (userParty.at(pokemon - 1).getHP() < userParty.at(pokemon - 1).getMaxHp() and
-                        userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon selected doesn't have full HP, but isn't fainted...
+                    else if (0 < userParty.at(pokemon - 1).getHP() and userParty.at(pokemon - 1).getHP() < userParty.at(pokemon - 1).getMaxHp()) { // if Pokémon selected doesn't have full HP, but isn't fainted...
                         if (userRestoreItems.at(userItem - 1).getRestoreType() == "HP") { // if item selected restores HP...
+                            useItem(userRestoreItems.at(userItem - 1));
+                            useItemMessage(userRestoreItems.at(userItem - 1).getName());
                             HP::restore(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
                             HP::restoreMessage(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
-                            useItem(userRestoreItems.at(userItem - 1));
                         }
                         else if (userRestoreItems.at(userItem - 1).getRestoreType() == "PP") { // if item selected restores PP...
                             displayMoves(userParty.at(pokemon - 1));
@@ -132,9 +140,10 @@ int main() {
                                 continue;
                             }
                             else {
+                                useItem(userRestoreItems.at(userItem - 1));
+                                useItemMessage(userRestoreItems.at(userItem - 1).getName());
                                 PP::restore(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
                                 PP::restoreMessage(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                useItem(userRestoreItems.at(userItem - 1));
                             }
                         }
                     }
@@ -165,9 +174,10 @@ int main() {
                     }
                     else if (userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon is not fainted...
                         if (userParty.at(pokemon - 1).getStatus() != "No status") { // if Pokémon has status condition...
+                            useItem(userStatusItems.at(userItem - 1));
+                            useItemMessage(userStatusItems.at(userItem - 1).getName());
                             cure(userParty.at(pokemon - 1), userStatusItems.at(userItem - 1));
                             cureMessage(userParty.at(pokemon - 1),userStatusItems.at(userItem - 1).getRestoreType());
-                            useItem(userStatusItems.at(userItem - 1));
                         }
                         else { // Pokémon did not have a status condition
                             useItem(userStatusItems.at(userItem - 1));
@@ -193,9 +203,14 @@ int main() {
                     continue;
                 }
                 else if (userPokeBalls.at(userItem - 1).getQuantity() > 0) { // if trainer has at least one of item selected...
-                    //TODO ADD POKÉ BALL FUNCTIONALITY
+                    bool one, two, three;
                     useItem(userPokeBalls.at(userItem - 1));
                     useItemMessage(userPokeBalls.at(userItem - 1).getName());
+                    bool caught = catchPokemon(one, two, three);
+                    catchPokemonMessage(opponentParty.at(0).getName(), one, two, three);
+                    if (caught) {
+                        break;
+                    }
                 }
                 else { // trainer is out of selected item
                     itemErrorMessage(userPokeBalls.at(userItem - 1).getName());
@@ -218,7 +233,7 @@ int main() {
                     boostMessage(userParty.at(0), userBattleItems.at(userItem - 1).getStat(), 1, limitReached);
                 }
                 else {
-                    itemErrorMessage(userBattleItems.at(userItem - 2).getName());
+                    itemErrorMessage(userBattleItems.at(userItem - 1).getName());
                     continue;
                 }
             }
@@ -283,7 +298,6 @@ int main() {
                     else if (pokemon == 1) { // trainer chose Pokémon currently in battle
                         std::cout << userParty.at(0).getName() << " is already in battle!" << std::endl;
                         sleep(2);
-
                         continue;
                     }
                 }

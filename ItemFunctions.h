@@ -58,7 +58,7 @@ namespace PP {
 }
 
 void cure(Pokemon& pokemonToCure, const StatusItems& itemToUse) {
-    if (itemToUse.getRestoreType() == pokemonToCure.getStatus()) {
+    if (pokemonToCure.getStatus() == itemToUse.getRestoreType()) {
         pokemonToCure.setStatus("No status");
     }
 }
@@ -73,14 +73,44 @@ void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     }
 }
 
-/*
-void catchPokemon() {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> first(75, 100);
+bool catchPokemon(bool& firstShake, bool& secondShake, bool& thirdShake) {
+    // FIXME catch function does not take into account levels or catch rates
+    firstShake = generateInteger(1, 100) < 75;
+    secondShake = generateInteger(1, 100) < 65;
+    thirdShake = generateInteger(1, 100) < 55;
 
+    return firstShake and secondShake and thirdShake;
 }
- */
+
+void catchPokemonMessage(const std::string& pokemon, bool first, bool second, bool third) {
+    std::cout << "1...";
+    sleep(1);
+    if (first) {
+        std::cout << "2...";
+        sleep(1);
+        if (second) {
+            std::cout << "3...";
+            sleep(1);
+            if (third) {
+                std::cout << "Gotcha! " << pokemon << " was caught!\n";
+                sleep(1);
+            }
+            else {
+                std::cout << "Almost had it!\n";
+                sleep(1);
+            }
+        }
+        else {
+            std::cout << "No! " << pokemon << " escaped from the Poke Ball!\n";
+            sleep(1);
+        }
+    }
+    else {
+        std::cout << "Not even close!\n";
+        sleep(1);
+    }
+    std::cout.flush();
+}
 
 void boostStat(const BattleItems& itemToUse, Pokemon& pokemonToBoost, int amountToBoost, bool& limitReached) {
     if (itemToUse.getStat() == "attack") {
