@@ -50,9 +50,9 @@ void displayChoices(const std::string& pokemon) {
 void displayPokemon(const std::vector<Pokemon>& party) {
     std::cout << "Choose a Pokemon:\n";
     for (int i = 0; i < party.size(); ++i) {
-        std::cout << '\t' << party.at(i).getName() << std::string(15 - party.at(i).getName().length(), ' ')
-                  << "(HP: " << party.at(i).getHP() << std::string(3 - std::to_string(party.at(i).getHP()).length(), ' ')
-                  << '/' << party.at(i).getMaxHp() << std::string(3 - std::to_string(party.at(i).getMaxHp()).length(), ' ')
+        std::cout << '\t' << party[i].getName() << std::string(15 - party[i].getName().length(), ' ')
+                  << "(HP: " << party[i].getHP() << std::string(3 - std::to_string(party[i].getHP()).length(), ' ')
+                  << '/' << party[i].getMaxHp() << std::string(3 - std::to_string(party[i].getMaxHp()).length(), ' ')
                   << ") -> " << i + 1 << '\n';
     }
     std::cout << "\nCancel (0)\n";
@@ -60,7 +60,7 @@ void displayPokemon(const std::vector<Pokemon>& party) {
 }
 
 void displayHP(const Pokemon& userPokemon, const Pokemon& opposingPokemon) {
-    std::cout << "\n";
+    std::cout << '\n';
     std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n"; // top layer
 
     std::cout << "| " << userPokemon.getName() << std::string(15 - userPokemon.getName().length(), ' ')
@@ -119,14 +119,14 @@ void pokemonPrompt() {
 }
 
 void switchOut(std::vector<Pokemon>& party, int pokemonToSwitch) {
-    Pokemon copy = party.at(0);
-    party.at(0) = party.at(pokemonToSwitch);
-    party.at(pokemonToSwitch) = copy;
+    Pokemon copy = party[0];
+    party[0] = party[pokemonToSwitch];
+    party[pokemonToSwitch] = copy;
 }
 
 void switchOutMessage(const std::vector<Pokemon>& party, int pokemonSwitched) {
-    returnMessage(party.at(pokemonSwitched).getName());
-    sendOutMessage(party.at(0).getName());
+    returnMessage(party[pokemonSwitched].getName());
+    sendOutMessage(party[0].getName());
 }
 
 void switchOutErrorMessage() {
@@ -191,27 +191,14 @@ void inflictedMessage(const Pokemon& pokemon) {
 void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int& opponentMonsFainted, bool& gameOver) {
     bool userMoveLanded = false;
     bool crit = false;
-    bool inflicted = preStatus(attackingPokemon.at(0).getStatus());
-    int userDamage = calculateDamage(attackingPokemon.at(0), defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), crit);
+    int userDamage = calculateDamage(attackingPokemon[0], defendingPokemon[0], attackingPokemon[0].getMove(userMove - 1), crit);
 
-    // TODO rework configuration for status conditions
-    if (!inflicted) { // if Pokémon isn't inflicted with a pre-move status condition...
-        attack(defendingPokemon.at(0), attackingPokemon.at(0).getMove(userMove - 1), userDamage, userMoveLanded);
-        attackMessage(attackingPokemon.at(0), defendingPokemon.at(0), userMove - 1, userDamage, userMoveLanded, crit);
-    }
-    else {
-        inflictedMessage(attackingPokemon.at(0));
-    }
+    attack(defendingPokemon[0], attackingPokemon[0].getMove(userMove - 1), userDamage, userMoveLanded);
+    attackMessage(attackingPokemon[0], defendingPokemon[0], userMove - 1, userDamage, userMoveLanded, crit);
 
-    inflicted = postStatus(attackingPokemon.at(0).getStatus());
-    if (inflicted) { // if Pokémon is inflicted with a post-move status condition
-        takeDamage(attackingPokemon.at(0), static_cast<int>(attackingPokemon.at(0).getMaxHp() * .0625));
-        status::takeDamageMessage(attackingPokemon.at(0));
-    }
-
-    if (defendingPokemon.at(0).getHP() <= 0) { // if Pokémon's HP drops to zero...
-        faint(defendingPokemon.at(0), opponentMonsFainted);
-        faintMessage(defendingPokemon.at(0));
+    if (defendingPokemon[0].getHP() <= 0) { // if Pokémon's HP drops to zero...
+        faint(defendingPokemon[0], opponentMonsFainted);
+        faintMessage(defendingPokemon[0]);
         if (opponentMonsFainted == defendingPokemon.size()) {
             winMessage();
             gameOver = true;
@@ -222,13 +209,14 @@ void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& de
 void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int& userMonsFainted, bool& gameOver) {
     bool opponentMoveLanded = false;
     bool crit = false;
-    int opponentDamage = calculateDamage(opponentParty.at(0), userParty.at(0), opponentParty.at(0).getMove(opponentMove), crit);
-    attack(userParty.at(0), opponentParty.at(0).getMove(opponentMove - 1), opponentDamage, opponentMoveLanded);
-    attackMessage(opponentParty.at(0), userParty.at(0), opponentMove, opponentDamage, opponentMoveLanded, crit);
+    int opponentDamage = calculateDamage(opponentParty[0], userParty[0], opponentParty[0].getMove(opponentMove), crit);
 
-    if (userParty.at(0).getHP() <= 0) {
-        faint(userParty.at(0), userMonsFainted);
-        faintMessage(userParty.at(0));
+    attack(userParty[0], opponentParty[0].getMove(opponentMove - 1), opponentDamage, opponentMoveLanded);
+    attackMessage(opponentParty[0], userParty[0], opponentMove, opponentDamage, opponentMoveLanded, crit);
+
+    if (userParty[0].getHP() <= 0) {
+        faint(userParty[0], userMonsFainted);
+        faintMessage(userParty[0]);
         if (userMonsFainted == userParty.size()) {
             loseMessage();
             gameOver = true;
@@ -257,14 +245,14 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         displayPokemon(userParty);
         std::cin >> pokemon;
 
-        while ((pokemon <= 1 or userParty.size() < pokemon) or userParty.at(pokemon - 1).getHP() <= 0) {
-            if (userParty.at(pokemon - 1).getHP() <= 0) {
-                hpEmptyMessage(userParty.at(pokemon - 1).getName());
+        while ((pokemon <= 1 or userParty.size() < pokemon) or userParty[pokemon - 1].getHP() <= 0) {
+            if (userParty[pokemon - 1].getHP() <= 0) {
+                hpEmptyMessage(userParty[pokemon - 1].getName());
             }
             std::cin >> pokemon;
         }
 
         switchOut(userParty, pokemon);
-        sendOutMessage(userParty.at(0).getName());
+        sendOutMessage(userParty[0].getName());
     }
 }

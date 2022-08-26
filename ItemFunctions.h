@@ -23,7 +23,7 @@ template <typename T>
 void displayItems(const std::vector<T>& items) {
     std::cout << "Choose an item:\n";
     for (int i = 0; i < items.size(); ++i) {
-        std::cout << '\t' << items.at(i).getName() << std::string(15 - items.at(i).getName().length(), ' ') << " x" << items.at(i).getQuantity() << " (" << i + 1 << ")\n";
+        std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x" << items[i].getQuantity() << " (" << i + 1 << ")\n";
     }
     std::cout << "\nCancel (0)\n";
     std::cout.flush();
@@ -73,13 +73,13 @@ void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     }
 }
 
-bool catchPokemon(bool& firstShake, bool& secondShake, bool& thirdShake) {
+bool catchPokemon(bool& first, bool& second, bool& third) {
     // FIXME catch function does not take into account levels or catch rates
-    firstShake = generateInteger(1, 100) < 75;
-    secondShake = generateInteger(1, 100) < 65;
-    thirdShake = generateInteger(1, 100) < 55;
+    first = generateInteger(1, 100) < 75;
+    second = generateInteger(1, 100) < 65;
+    third = generateInteger(1, 100) < 55;
 
-    return firstShake and secondShake and thirdShake;
+    return first and second and third;
 }
 
 void catchPokemonMessage(const std::string& pokemon, bool first, bool second, bool third) {
@@ -183,7 +183,7 @@ void useItemMessage(const std::string& itemUsed) {
     if (itemUsed.substr(itemUsed.size() - 4) != "Ball") {
         std::cout << "You used a";
 
-        if (isVowel(itemUsed.at(0))) {
+        if (isVowel(itemUsed[0])) {
             std::cout << 'n';
         }
 

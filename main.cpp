@@ -52,11 +52,11 @@ int main() {
     Trainer_1.getPokemon(1).setMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
     Trainer_1.getPokemon(2).setMoves(Da_Pulse, Dr_Pulse, FThrower, FocusBlast);
 
-    userParty.at(0).setMoves(WS, DarkPulse, IceBeam, Extrasensory);
-    userParty.at(1).setMoves(Thunder, QuickAttack, IronTail, VoltTackle);
-    userParty.at(2).setMoves(AuraSphere, FlashCannon, Dragon_Pulse, Dark_Pulse);
+    userParty[0].setMoves(WS, DarkPulse, IceBeam, Extrasensory);
+    userParty[1].setMoves(Thunder, QuickAttack, IronTail, VoltTackle);
+    userParty[2].setMoves(AuraSphere, FlashCannon, Dragon_Pulse, Dark_Pulse);
 
-    opponentParty.at(0).setMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
+    opponentParty[0].setMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
 
     RestoreItems Potion(2, 20, "Potion", "HP");
     RestoreItems Ether(2, 5, "Ether", "PP");
@@ -84,24 +84,24 @@ int main() {
     int turn = 1;
     bool battleOver = false;
 
-    introMessage(userParty.at(0).getName(), opponentParty.at(0).getName());
+    introMessage(userParty[0].getName(), opponentParty[0].getName());
 
     while (true) { // enters the battle
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER SELECTIONS
         int userMove, userItem, pokemon;
         std::cout << "\nTurn " << turn;
-        displayHP(userParty.at(0), opponentParty.at(0));
-        displayChoices(userParty.at(0).getName());
+        displayHP(userParty[0], opponentParty[0]);
+        displayChoices(userParty[0].getName());
         char userChoice = getChar();
 
         if (userChoice == 'f') { // trainer chose fight
-            displayMoves(userParty.at(0));
+            displayMoves(userParty[0]);
             userMove = getInt(0, NUM_MOVES);
 
             if (userMove == 0) {
                 continue;
             }
-            else if (userParty.at(0).getMove(userMove - 1).getPP() <= 0) { // if move chosen is out of PP...
+            else if (userParty[0].getMove(userMove - 1).getPP() <= 0) { // if move chosen is out of PP...
                 attackErrorMessage();
                 continue;
             }
@@ -118,42 +118,42 @@ int main() {
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userRestoreItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                else if (userRestoreItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
                     displayPokemon(userParty);
                     pokemon = getInt(0, static_cast<int>(userParty.size()));
 
                     if (pokemon == 0) {
                         continue;
                     }
-                    else if (0 < userParty.at(pokemon - 1).getHP() and userParty.at(pokemon - 1).getHP() < userParty.at(pokemon - 1).getMaxHp()) { // if Pokémon selected doesn't have full HP, but isn't fainted...
-                        if (userRestoreItems.at(userItem - 1).getRestoreType() == "HP") { // if item selected restores HP...
-                            useItem(userRestoreItems.at(userItem - 1));
-                            useItemMessage(userRestoreItems.at(userItem - 1).getName());
-                            HP::restore(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
-                            HP::restoreMessage(userParty.at(pokemon - 1),userRestoreItems.at(userItem - 1).getAmount());
+                    else if (0 < userParty[pokemon - 1].getHP() and userParty[pokemon - 1].getHP() < userParty[pokemon - 1].getMaxHp()) { // if Pokémon selected doesn't have full HP, but isn't fainted...
+                        if (userRestoreItems[userItem - 1].getRestoreType() == "HP") { // if item selected restores HP...
+                            useItem(userRestoreItems[userItem - 1]);
+                            useItemMessage(userRestoreItems[userItem - 1].getName());
+                            HP::restore(userParty[pokemon - 1],userRestoreItems[userItem - 1].getAmount());
+                            HP::restoreMessage(userParty[pokemon - 1],userRestoreItems[userItem - 1].getAmount());
                         }
-                        else if (userRestoreItems.at(userItem - 1).getRestoreType() == "PP") { // if item selected restores PP...
-                            displayMoves(userParty.at(pokemon - 1));
+                        else if (userRestoreItems[userItem - 1].getRestoreType() == "PP") { // if item selected restores PP...
+                            displayMoves(userParty[pokemon - 1]);
                             userMove = getInt(0, NUM_MOVES);
 
                             if (userMove == 0) {
                                 continue;
                             }
                             else {
-                                useItem(userRestoreItems.at(userItem - 1));
-                                useItemMessage(userRestoreItems.at(userItem - 1).getName());
-                                PP::restore(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
-                                PP::restoreMessage(userParty.at(pokemon - 1).getMove(userMove - 1),userRestoreItems.at(userItem - 1).getAmount());
+                                useItem(userRestoreItems[userItem - 1]);
+                                useItemMessage(userRestoreItems[userItem - 1].getName());
+                                PP::restore(userParty[pokemon - 1].getMove(userMove - 1),userRestoreItems[userItem - 1].getAmount());
+                                PP::restoreMessage(userParty[pokemon - 1].getMove(userMove - 1),userRestoreItems[userItem - 1].getAmount());
                             }
                         }
                     }
                     else { // Pokémon's HP is already full
-                        hpFullMessage(userParty.at(pokemon - 1).getName());
+                        hpFullMessage(userParty[pokemon - 1].getName());
                         continue;
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userRestoreItems.at(userItem - 1).getName());
+                    itemErrorMessage(userRestoreItems[userItem - 1].getName());
                     continue;
                 }
             }
@@ -165,32 +165,32 @@ int main() {
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userStatusItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                else if (userStatusItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
                     displayPokemon(userParty);
                     pokemon = getInt(0, static_cast<int>(userParty.size()));
 
                     if (pokemon == 0) {
                         continue;
                     }
-                    else if (userParty.at(pokemon - 1).getHP() > 0) { // if Pokémon is not fainted...
-                        if (userParty.at(pokemon - 1).getStatus() != "No status") { // if Pokémon has status condition...
-                            useItem(userStatusItems.at(userItem - 1));
-                            useItemMessage(userStatusItems.at(userItem - 1).getName());
-                            cure(userParty.at(pokemon - 1), userStatusItems.at(userItem - 1));
-                            cureMessage(userParty.at(pokemon - 1),userStatusItems.at(userItem - 1).getRestoreType());
+                    else if (userParty[pokemon - 1].getHP() > 0) { // if Pokémon is not fainted...
+                        if (userParty[pokemon - 1].getStatus() != "No status") { // if Pokémon has status condition...
+                            useItem(userStatusItems[userItem - 1]);
+                            useItemMessage(userStatusItems[userItem - 1].getName());
+                            cure(userParty[pokemon - 1], userStatusItems[userItem - 1]);
+                            cureMessage(userParty[pokemon - 1],userStatusItems[userItem - 1].getRestoreType());
                         }
                         else { // Pokémon did not have a status condition
-                            useItem(userStatusItems.at(userItem - 1));
-                            noEffectMessage(userStatusItems.at(userItem - 1).getName(), userParty.at(pokemon - 1).getName());
+                            useItem(userStatusItems[userItem - 1]);
+                            noEffectMessage(userStatusItems[userItem - 1].getName(), userParty[pokemon - 1].getName());
                         }
                     }
                     else { // Pokémon is fainted
-                        hpEmptyMessage(userParty.at(pokemon - 1).getName());
+                        hpEmptyMessage(userParty[pokemon - 1].getName());
                         continue;
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userStatusItems.at(userItem - 1).getName());
+                    itemErrorMessage(userStatusItems[userItem - 1].getName());
                     continue;
                 }
             }
@@ -202,18 +202,18 @@ int main() {
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userPokeBalls.at(userItem - 1).getQuantity() > 0) { // if trainer has at least one of item selected...
+                else if (userPokeBalls[userItem - 1].getQuantity() > 0) { // if trainer has at least one of item selected...
                     bool one, two, three;
-                    useItem(userPokeBalls.at(userItem - 1));
-                    useItemMessage(userPokeBalls.at(userItem - 1).getName());
+                    useItem(userPokeBalls[userItem - 1]);
+                    useItemMessage(userPokeBalls[userItem - 1].getName());
                     bool caught = catchPokemon(one, two, three);
-                    catchPokemonMessage(opponentParty.at(0).getName(), one, two, three);
+                    catchPokemonMessage(opponentParty[0].getName(), one, two, three);
                     if (caught) {
                         break;
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userPokeBalls.at(userItem - 1).getName());
+                    itemErrorMessage(userPokeBalls[userItem - 1].getName());
                     continue;
                 }
             }
@@ -225,15 +225,15 @@ int main() {
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userBattleItems.at(userItem - 1).getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                else if (userBattleItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
                     bool limitReached = false;
-                    useItem(userBattleItems.at(userItem - 1));
-                    useItemMessage(userBattleItems.at(userItem - 1).getName());
-                    boostStat(userBattleItems.at(userItem - 1), userParty.at(0), 1, limitReached);
-                    boostMessage(userParty.at(0), userBattleItems.at(userItem - 1).getStat(), 1, limitReached);
+                    useItem(userBattleItems[userItem - 1]);
+                    useItemMessage(userBattleItems[userItem - 1].getName());
+                    boostStat(userBattleItems[userItem - 1], userParty[0], 1, limitReached);
+                    boostMessage(userParty[0], userBattleItems[userItem - 1].getStat(), 1, limitReached);
                 }
                 else {
-                    itemErrorMessage(userBattleItems.at(userItem - 1).getName());
+                    itemErrorMessage(userBattleItems[userItem - 1].getName());
                     continue;
                 }
             }
@@ -267,14 +267,14 @@ int main() {
             }
 
             if (userChoice == 'c') {
-                displayMoves(userParty.at(pokemon - 1));
+                displayMoves(userParty[pokemon - 1]);
                 userMove = getInt(0, NUM_MOVES);
 
                 if (userMove == 0) {
                     continue;
                 }
 
-                displayMoveSummary(userParty.at(pokemon - 1).getMove(userMove - 1));
+                displayMoveSummary(userParty[pokemon - 1].getMove(userMove - 1));
                 userMove = getInt(0, 0);
 
                 continue;
@@ -286,17 +286,17 @@ int main() {
                 }
                 else {
                     if (1 < pokemon and pokemon <= userParty.size()) { // user chose in-bounds option
-                        if (userParty.at(pokemon - 1).getHP() > 0) { // Pokémon chosen is not fainted
+                        if (userParty[pokemon - 1].getHP() > 0) { // Pokémon chosen is not fainted
                             switchOut(userParty, pokemon - 1);
                             switchOutMessage(userParty, pokemon - 1);
                         }
                         else { // Pokémon chosen is fainted
-                            hpEmptyMessage(userParty.at(pokemon - 1).getName());
+                            hpEmptyMessage(userParty[pokemon - 1].getName());
                             continue;
                         }
                     }
                     else if (pokemon == 1) { // trainer chose Pokémon currently in battle
-                        std::cout << userParty.at(0).getName() << " is already in battle!" << std::endl;
+                        std::cout << userParty[0].getName() << " is already in battle!" << std::endl;
                         sleep(2);
                         continue;
                     }
@@ -308,58 +308,136 @@ int main() {
         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// BATTLE PHASE
         int opponentMove = generateInteger(0, 3);
-        while (opponentParty.at(0).getMove(opponentMove).getPP() <= 0) { // re-selects opponent move if it's out of PP
+        while (opponentParty[0].getMove(opponentMove).getPP() <= 0) { // re-selects opponent move if it's out of PP
             opponentMove = generateInteger(0, 3);
         }
 
         if (userChoice == 'f') { // if trainer chose to attack this turn...
-            if (userParty.at(0).getBaseSpeed() > opponentParty.at(0).getBaseSpeed()) { // trainer is faster than opponent...
-                userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                if (battleOver) {
-                    break;
-                }
-                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                if (battleOver) {
-                    break;
-                }
-            }
-            else if (userParty.at(0).getBaseSpeed() < opponentParty.at(0).getBaseSpeed()) { // if opponent is faster than trainer...
-                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                if (battleOver) {
-                    break;
-                }
-                userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                if (battleOver) {
-                    break;
-                }
-            }
-            else { // trainer and opponent rival in speed
-                if (generateInteger(0, 1) == 0) {
+            if (userParty[0].getBaseSpeed() > opponentParty[0].getBaseSpeed()) { // trainer is faster than opponent...
+                if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
                     userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
                     if (battleOver) {
                         break;
                     }
+                }
+                else {
+                    inflictedMessage(userParty[0]);
+                }
+                if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
                     opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
                     if (battleOver) {
                         break;
                     }
                 }
                 else {
+                    inflictedMessage(opponentParty[0]);
+                }
+                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(userParty[0]);
+                }
+                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(userParty[0]);
+                }
+            }
+            else if (userParty[0].getBaseSpeed() < opponentParty[0].getBaseSpeed()) { // if opponent is faster than trainer...
+                if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
                     opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
                     if (battleOver) {
                         break;
                     }
+                }
+                else {
+                    inflictedMessage(opponentParty[0]);
+                }
+                if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
                     userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
                     if (battleOver) {
                         break;
                     }
                 }
+                else {
+                    inflictedMessage(userParty[0]);
+                }
+                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(userParty[0]);
+                }
+                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(userParty[0]);
+                }
+            }
+            else { // trainer and opponent rival in speed
+                if (generateInteger(0, 1) == 0) {
+                    if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                        if (battleOver) {
+                            break;
+                        }
+                    }
+                    else {
+                        inflictedMessage(userParty[0]);
+                    }
+                    if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                        if (battleOver) {
+                            break;
+                        }
+                    }
+                    else {
+                        inflictedMessage(opponentParty[0]);
+                    }
+                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(userParty[0]);
+                    }
+                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(userParty[0]);
+                    }
+                }
+                else {
+                    if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                        if (battleOver) {
+                            break;
+                        }
+                    }
+                    else {
+                        inflictedMessage(opponentParty[0]);
+                    }
+                    if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
+                        if (battleOver) {
+                            break;
+                        }
+                    }
+                    else {
+                        inflictedMessage(userParty[0]);
+                    }
+                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(userParty[0]);
+                    }
+                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(userParty[0]);
+                    }
+                }
             }
         }
         else { // trainer chose not to attack this turn
-            opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-            if (battleOver) {
-                break;
+            if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
+                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
+                if (battleOver) {
+                    break;
+                }
+            }
+            if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
+                takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                status::takeDamageMessage(userParty[0]);
             }
         }
         ++turn;

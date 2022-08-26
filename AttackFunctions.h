@@ -63,7 +63,7 @@ float stabCheck(const Pokemon& pokemon, const Moves& move) {
 }
 
 int calculateDamage(const Pokemon& attackingPokemon, const Pokemon& defendingPokemon, const Moves& move, bool& crit) {
-    int initialDamage = 0;
+    int initialDamage{};
     if (move.getCategory() == "physical") {
         initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
     }
