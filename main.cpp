@@ -1,10 +1,5 @@
 #include "main.h"
 #include "MoveList.h"
-/*
- * enum { PC_ROWS = 5, PC_COLS = 6, NUM_BOXES = 12};
- * Pokemon PC[NUM_BOXES][PC_ROWS][PC_COLS];
- * std::array<std::array<std::array<Pokemon, PC_ROWS>, PC_COLS>, NUM_BOXES> PC;
- */
 
 int main() {
     Pokemon Greninja("Greninja", "water", "dark", 50);
@@ -46,7 +41,7 @@ int main() {
     std::vector<Pokemon> opponentParty = {Charizard};
 
     Trainer Trainer_1;
-    Trainer_1.setParty(Greninja, Charizard, Hydreigon);
+    Trainer_1.setParty({Greninja, Charizard, Hydreigon});
 
     Trainer_1.getPokemon(0).setMoves(WS, DarkPulse, IceBeam, Extrasensory);
     Trainer_1.getPokemon(1).setMoves(Flamethrower, AirSlash, DragonPulse, SolarBeam);
@@ -82,7 +77,6 @@ int main() {
     int userMonsFainted = 0;
     int opponentMonsFainted = 0;
     int turn = 1;
-    bool battleOver = false;
 
     introMessage(userParty[0].getName(), opponentParty[0].getName());
 
@@ -203,11 +197,11 @@ int main() {
                     continue;
                 }
                 else if (userPokeBalls[userItem - 1].getQuantity() > 0) { // if trainer has at least one of item selected...
-                    bool one, two, three;
+                    bool shakes[4];
                     useItem(userPokeBalls[userItem - 1]);
                     useItemMessage(userPokeBalls[userItem - 1].getName());
-                    bool caught = catchPokemon(one, two, three);
-                    catchPokemonMessage(opponentParty[0].getName(), one, two, three);
+                    bool caught = catchPokemon(shakes);
+                    catchPokemonMessage(opponentParty[0].getName(), shakes);
                     if (caught) {
                         break;
                     }
@@ -312,132 +306,142 @@ int main() {
             opponentMove = generateInteger(0, 3);
         }
 
-        if (userChoice == 'f') { // if trainer chose to attack this turn...
-            if (userParty[0].getBaseSpeed() > opponentParty[0].getBaseSpeed()) { // trainer is faster than opponent...
-                if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
-                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                    if (battleOver) {
-                        break;
-                    }
+        // if trainer chose to attack this turn...
+        if (userChoice == 'f') {
+            // trainer is faster than opponent...
+            if (userParty[0].getBaseSpeed() > opponentParty[0].getBaseSpeed()) {
+                // if the trainer is not inflicted with a pre-move status condition...
+                if (not preStatus(userParty[0].getStatus())) {
+                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted);
                 }
                 else {
                     inflictedMessage(userParty[0]);
                 }
-                if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
-                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                    if (battleOver) {
-                        break;
-                    }
+                if (not preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
+                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted);
                 }
                 else {
                     inflictedMessage(opponentParty[0]);
                 }
-                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625), userMonsFainted);
                     status::takeDamageMessage(userParty[0]);
+                    if (userMonsFainted == userParty.size()) {
+                        break;
+                    }
                 }
-                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625), opponentMonsFainted);
                     status::takeDamageMessage(userParty[0]);
+                    if (userMonsFainted == opponentParty.size()) {
+                        break;
+                    }
                 }
             }
             else if (userParty[0].getBaseSpeed() < opponentParty[0].getBaseSpeed()) { // if opponent is faster than trainer...
-                if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
-                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                    if (battleOver) {
-                        break;
-                    }
+                if (not preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
+                    opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted);
                 }
                 else {
                     inflictedMessage(opponentParty[0]);
                 }
-                if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
-                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                    if (battleOver) {
-                        break;
-                    }
+                if (not preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with a pre-move status condition...
+                    userAttack(userParty, opponentParty, userMove, opponentMonsFainted);
                 }
                 else {
                     inflictedMessage(userParty[0]);
                 }
-                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625), opponentMonsFainted);
                     status::takeDamageMessage(userParty[0]);
+                    if (opponentMonsFainted == opponentParty.size()) {
+                        break;
+                    }
                 }
-                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625), userMonsFainted);
                     status::takeDamageMessage(userParty[0]);
+                    if (userMonsFainted == userParty.size()) {
+                        break;
+                    }
                 }
             }
-            else { // trainer and opponent rival in speed
+            else { // trainer and opponent rival in speed, choose randomly
                 if (generateInteger(0, 1) == 0) {
-                    if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
-                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                        if (battleOver) {
-                            break;
-                        }
+                    if (not preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with a pre-move status condition...
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted);
                     }
                     else {
                         inflictedMessage(userParty[0]);
                     }
-                    if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
-                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                        if (battleOver) {
-                            break;
-                        }
+                    if (not preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted);
                     }
                     else {
                         inflictedMessage(opponentParty[0]);
                     }
-                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625), userMonsFainted);
                         status::takeDamageMessage(userParty[0]);
+                        if (userMonsFainted == userParty.size()) {
+                            break;
+                        }
                     }
-                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625), opponentMonsFainted);
                         status::takeDamageMessage(userParty[0]);
+                        if (opponentMonsFainted == opponentParty.size()) {
+                            break;
+                        }
                     }
                 }
                 else {
-                    if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
-                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                        if (battleOver) {
-                            break;
-                        }
+                    if (not preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
+                        opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted);
                     }
                     else {
                         inflictedMessage(opponentParty[0]);
                     }
-                    if (!preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with paralysis, freeze, or sleep...
-                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted, battleOver);
-                        if (battleOver) {
-                            break;
-                        }
+                    if (not preStatus(userParty[0].getStatus())) { // if the trainer is not inflicted with a pre-move status condition...
+                        userAttack(userParty, opponentParty, userMove, opponentMonsFainted);
                     }
                     else {
                         inflictedMessage(userParty[0]);
                     }
-                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+                    if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625), opponentMonsFainted);
                         status::takeDamageMessage(userParty[0]);
+                        if (opponentMonsFainted == opponentParty.size()) {
+                            break;
+                        }
                     }
-                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625));
+                    if (postStatus(userParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625), userMonsFainted);
                         status::takeDamageMessage(userParty[0]);
+                        if (userMonsFainted == userParty.size()) {
+                            break;
+                        }
                     }
                 }
             }
         }
         else { // trainer chose not to attack this turn
-            if (!preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with paralysis, freeze, or sleep...
-                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted, battleOver);
-                if (battleOver) {
+            if (not preStatus(opponentParty[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
+                opponentAttack(opponentParty, userParty, opponentMove, userMonsFainted);
+            }
+            if (postStatus(userParty[0].getStatus())) {
+                takeDamage(userParty[0], static_cast<int>(userParty[0].getMaxHp() * .0625), userMonsFainted);
+                status::takeDamageMessage(userParty[0]);
+                if (userMonsFainted == userParty.size()) {
                     break;
                 }
             }
-            if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition
-                takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625));
+            if (postStatus(opponentParty[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                takeDamage(opponentParty[0], static_cast<int>(opponentParty[0].getMaxHp() * .0625), opponentMonsFainted);
                 status::takeDamageMessage(userParty[0]);
+                if (opponentMonsFainted == opponentParty.size()) {
+                    break;
+                }
             }
         }
         ++turn;

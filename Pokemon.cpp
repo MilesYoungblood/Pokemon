@@ -165,3 +165,8 @@ Moves& Pokemon::getMove(int move) {
 int Pokemon::getLevel() const {
     return level;
 }
+
+std::ostream &operator<<(std::ostream &out, const Pokemon &pokemon) {
+    out << pokemon.getName();
+    return out;
+}

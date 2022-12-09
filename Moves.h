@@ -34,4 +34,6 @@ public:
     std::string getCategory() const;
 
     std::string getName() const;
+
+    friend std::ostream& operator<<(std::ostream &, const Moves &);
 };

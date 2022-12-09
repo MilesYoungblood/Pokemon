@@ -62,4 +62,6 @@ public:
     Moves& getMove(int move);
 
     int getLevel() const;
+
+    friend std::ostream& operator<<(std::ostream &, const Pokemon &);
 };

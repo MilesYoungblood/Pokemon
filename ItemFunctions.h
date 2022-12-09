@@ -38,7 +38,7 @@ namespace HP {
     }
 
     void restoreMessage(const Pokemon &pokemonRestored, int amountRestored) {
-        std::cout << pokemonRestored.getName() << " recovered " << amountRestored << " HP!\n";
+        std::cout << pokemonRestored << " recovered " << amountRestored << " HP!\n";
         sleep(2);
     }
 }
@@ -52,7 +52,7 @@ namespace PP {
     }
 
     void restoreMessage(const Moves &moveRestored, int amountRestored) {
-        std::cout << moveRestored.getName() << " recovered " << amountRestored << " PP!\n";
+        std::cout << moveRestored << " recovered " << amountRestored << " PP!\n";
         sleep(2);
     }
 }
@@ -65,7 +65,7 @@ void cure(Pokemon& pokemonToCure, const StatusItems& itemToUse) {
 
 void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     if (pokemonCured.getStatus() == "No status") {
-        std::cout << pokemonCured.getName() << " recovered from " << status << "!\n";
+        std::cout << pokemonCured << " recovered from " << status << "!\n";
         sleep(1);
     }
     else {
@@ -73,35 +73,42 @@ void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     }
 }
 
-bool catchPokemon(bool& first, bool& second, bool& third) {
-    // FIXME catch function does not take into account levels or catch rates
-    first = generateInteger(1, 100) < 75;
-    second = generateInteger(1, 100) < 65;
-    third = generateInteger(1, 100) < 55;
+bool catchPokemon(bool attempts[]) {
+    //FIXME catch function does not take into account levels or catch rates
+    attempts[0] = generateInteger(1, 100) < 80;
+    attempts[1] = generateInteger(1, 100) < 70;
+    attempts[2] = generateInteger(1, 100) < 60;
+    attempts[3] = generateInteger(1, 100) < 50;
 
-    return first and second and third;
+    return attempts[0] and attempts[1] and attempts[2] and attempts[3];
 }
 
-void catchPokemonMessage(const std::string& pokemon, bool first, bool second, bool third) {
-    std::cout << "1...";
-    sleep(1);
-    if (first) {
-        std::cout << "2...";
+void catchPokemonMessage(const std::string& pokemon, const bool attempts[]) {
+    if (attempts[0]) {
+        std::cout << "1...";
         sleep(1);
-        if (second) {
-            std::cout << "3...";
+        if (attempts[1]) {
+            std::cout << "2...";
             sleep(1);
-            if (third) {
-                std::cout << "Gotcha! " << pokemon << " was caught!\n";
+            if (attempts[2]) {
+                std::cout << "3...";
                 sleep(1);
+                if (attempts[3]) {
+                    std::cout << "Gotcha! " << pokemon << " was caught!\n";
+                    sleep(1);
+                }
+                else {
+                    std::cout << "Almost had it!\n";
+                    sleep(1);
+                }
             }
             else {
-                std::cout << "Almost had it!\n";
+                std::cout << "No! " << pokemon << " escaped from the Poke Ball!\n";
                 sleep(1);
             }
         }
         else {
-            std::cout << "No! " << pokemon << " escaped from the Poke Ball!\n";
+            std::cout << pokemon << " failed to be caught!\n";
             sleep(1);
         }
     }
@@ -159,7 +166,7 @@ void boostStat(const BattleItems& itemToUse, Pokemon& pokemonToBoost, int amount
 
 void boostMessage(const Pokemon& pokemon, const std::string& statBoosted, int amountBoosted, bool limit) {
     if (!limit) {
-        std::cout << pokemon.getName() << "'s " << statBoosted << " rose";
+        std::cout << pokemon << "'s " << statBoosted << " rose";
         if (amountBoosted == 2) {
             std::cout << " sharply";
         }
@@ -169,7 +176,7 @@ void boostMessage(const Pokemon& pokemon, const std::string& statBoosted, int am
         std::cout << '!' << std::endl;
     }
     else {
-        std::cout << pokemon.getName() << "'s " << statBoosted << " can't go any higher!" << std::endl;
+        std::cout << pokemon << "'s " << statBoosted << " can't go any higher!" << std::endl;
     }
     sleep(2);
 }

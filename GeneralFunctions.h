@@ -4,8 +4,9 @@
 
 #pragma once
 
-#include <windows.h>
+#include <algorithm>
 
+// returns true if character is a vowel
 bool isVowel(char character) {
     return (character == 'A' or character == 'a' or character == 'E' or character == 'e' or
            character == 'I' or character == 'i' or character == 'O' or character == 'o' or
@@ -13,27 +14,31 @@ bool isVowel(char character) {
 }
 
 char getChar() {
-    char userChar;
-    std::cin >> userChar;
+    std::string userChar;
+    getline(std::cin, userChar, '\n');
 
-    while (userChar != 'f' and userChar != 'b' and userChar != 'r' and userChar != 'p') {
-        std::cin >> userChar;
+    while (userChar != "f" and userChar != "b" and userChar != "r" and userChar != "p") {
+        getline(std::cin, userChar, '\n');
     }
 
-    return userChar;
+    return userChar[0];
 }
 
+// returns an integer from a range of a user's choice
 int getInt(int lower, int upper) {
-    int userInt;
-    std::cin >> userInt;
+    std::string userInt;
+    getline(std::cin, userInt, '\n');
 
-    while (userInt < lower or upper < userInt) {
-        std::cin >> userInt;
+    while (true) {
+        if (lower <= std::stoi(userInt) and std::stoi(userInt) <= upper) {
+            break;
+        }
     }
 
-    return userInt;
+    return std::stoi(userInt);
 }
 
+// returns a random integer from a range
 int generateInteger(int lower, int upper) {
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -42,6 +47,7 @@ int generateInteger(int lower, int upper) {
     return dist(mt);
 }
 
+/*
 void clearScreen() {
     char fill = ' ';
     COORD t1 = {0,0};
@@ -53,3 +59,4 @@ void clearScreen() {
     FillConsoleOutputAttribute(console, s.wAttributes, cells, t1, &written);
     SetConsoleCursorPosition(console, t1);
 }
+ */

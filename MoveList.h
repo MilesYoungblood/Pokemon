@@ -56,3 +56,47 @@ struct IceBeam : public Moves {
 struct Extrasensory : public Moves {
     Extrasensory() : Moves("Extrasensory", "psychic", "special", 15, 90, 100) {}
 };
+
+struct Flamethrower : public Moves {
+    Flamethrower() : Moves("Flamethrower", "fire", "special", 15, 90, 100) {}
+};
+
+struct AirSlash : public Moves {
+    AirSlash() : Moves("Air Slash", "flying", "special", 15, 75, 95) {}
+};
+
+struct DragonPulse : public Moves {
+    DragonPulse() : Moves("Dragon Pulse", "dragon", "special", 10, 85, 100) {}
+};
+
+struct SolarBeam : public Moves {
+    SolarBeam() : Moves("Solar Beam", "grass", "special", 10, 120, 100) {}
+};
+
+struct FocusBlast : public Moves {
+    FocusBlast() : Moves("Focus Blast", "fighting", "special", 5, 120, 70) {}
+};
+
+struct AuraSphere : public Moves {
+    AuraSphere() : Moves("Aura Sphere", "fighting", "special", 20, 80, 100) {}
+};
+
+struct FlashCannon : public Moves {
+    FlashCannon() : Moves("Flash Cannon", "steel", "special", 10, 80, 100) {}
+};
+
+struct Thunder : public Moves {
+    Thunder() : Moves("Thunder", "electric", "special", 10, 110, 70) {}
+};
+
+struct QuickAttack : public Moves {
+    QuickAttack() : Moves("Quick Attack", "normal", "physical", 30, 40, 100) {}
+};
+
+struct IronTail : public Moves {
+    IronTail() : Moves("Iron Tail", "steel", "physical", 15, 100, 75) {}
+};
+
+struct VoltTackle : public Moves {
+    VoltTackle() : Moves("Volt Tackle", "electric", "physical", 15, 120, 100) {}
+};

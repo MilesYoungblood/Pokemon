@@ -38,12 +38,8 @@ int Moves::getDamage() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(1, 100);
-    if (dist(mt) <= accuracy) {
-        return power;
-    }
-    else {
-        return -1;
-    }
+
+    return dist(mt) <= accuracy ? power : -1;
 }
 
 void Moves::setPP(int newPP) {
@@ -78,4 +74,9 @@ std::string Moves::getCategory() const {
 
 std::string Moves::getName() const {
     return name;
+}
+
+std::ostream& operator<<(std::ostream &out, const Moves &move) {
+    out << move.getName();
+    return out;
 }

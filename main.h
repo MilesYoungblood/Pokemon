@@ -101,12 +101,7 @@ bool run() {
 }
 
 void runMessage(bool runStatus) {
-    if (runStatus) {
-        std::cout << "Got away safely!\n";
-    }
-    else {
-        std::cout << "Couldn't get away!\n";
-    }
+    runStatus ? std::cout << "Got away safely!\n" : std::cout << "Couldn't get away!\n";
     sleep(1);
 }
 
@@ -157,12 +152,7 @@ void loseMessage() {
 }
 
 bool preStatus(const std::string& status) {
-    if (status == "paralysis") {
-        return generateInteger(1, 4) == 1;
-    }
-    else {
-        return status == "freeze" or status == "sleep";
-    }
+    return status == "paralysis" ? generateInteger(1, 4) == 1 : status == "freeze" or status == "sleep";
 }
 
 bool postStatus(const std::string& status) {
@@ -188,7 +178,7 @@ void inflictedMessage(const Pokemon& pokemon) {
     sleep(1);
 }
 
-void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int& opponentMonsFainted, bool& gameOver) {
+void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& defendingPokemon, int userMove, int& opponentMonsFainted) {
     bool userMoveLanded = false;
     bool crit = false;
     int userDamage = calculateDamage(attackingPokemon[0], defendingPokemon[0], attackingPokemon[0].getMove(userMove - 1), crit);
@@ -201,12 +191,12 @@ void userAttack(std::vector<Pokemon>& attackingPokemon, std::vector<Pokemon>& de
         faintMessage(defendingPokemon[0]);
         if (opponentMonsFainted == defendingPokemon.size()) {
             winMessage();
-            gameOver = true;
+            exit(0);
         }
     }
 }
 
-void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int& userMonsFainted, bool& gameOver) {
+void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& userParty, int opponentMove, int& userMonsFainted) {
     bool opponentMoveLanded = false;
     bool crit = false;
     int opponentDamage = calculateDamage(opponentParty[0], userParty[0], opponentParty[0].getMove(opponentMove), crit);
@@ -219,8 +209,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         faintMessage(userParty[0]);
         if (userMonsFainted == userParty.size()) {
             loseMessage();
-            gameOver = true;
-            return;
+            exit(0);
         }
         forceSwitchPrompt();
 
@@ -237,8 +226,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
             bool runSuccess = run();
             runMessage(runSuccess);
             if (runSuccess) {
-                gameOver = true;
-                return;
+                exit(0);
             }
         }
 
@@ -246,6 +234,7 @@ void opponentAttack(std::vector<Pokemon>& opponentParty, std::vector<Pokemon>& u
         std::cin >> pokemon;
 
         while ((pokemon <= 1 or userParty.size() < pokemon) or userParty[pokemon - 1].getHP() <= 0) {
+            // cannot heal a fainted Pokémon
             if (userParty[pokemon - 1].getHP() <= 0) {
                 hpEmptyMessage(userParty[pokemon - 1].getName());
             }
