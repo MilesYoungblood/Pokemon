@@ -123,59 +123,86 @@ PokemonBattle/fast:
 	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/build
 .PHONY : PokemonBattle/fast
 
-Items.o: Items.cpp.o
+Data.o: Data.cpp.o
 
-.PHONY : Items.o
-
-# target to build an object file
-Items.cpp.o:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Items.cpp.o
-.PHONY : Items.cpp.o
-
-Items.i: Items.cpp.i
-
-.PHONY : Items.i
-
-# target to preprocess a source file
-Items.cpp.i:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Items.cpp.i
-.PHONY : Items.cpp.i
-
-Items.s: Items.cpp.s
-
-.PHONY : Items.s
-
-# target to generate assembly for a file
-Items.cpp.s:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Items.cpp.s
-.PHONY : Items.cpp.s
-
-Moves.o: Moves.cpp.o
-
-.PHONY : Moves.o
+.PHONY : Data.o
 
 # target to build an object file
-Moves.cpp.o:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Moves.cpp.o
-.PHONY : Moves.cpp.o
+Data.cpp.o:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Data.cpp.o
+.PHONY : Data.cpp.o
 
-Moves.i: Moves.cpp.i
+Data.i: Data.cpp.i
 
-.PHONY : Moves.i
+.PHONY : Data.i
 
 # target to preprocess a source file
-Moves.cpp.i:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Moves.cpp.i
-.PHONY : Moves.cpp.i
+Data.cpp.i:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Data.cpp.i
+.PHONY : Data.cpp.i
 
-Moves.s: Moves.cpp.s
+Data.s: Data.cpp.s
 
-.PHONY : Moves.s
+.PHONY : Data.s
 
 # target to generate assembly for a file
-Moves.cpp.s:
-	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Moves.cpp.s
-.PHONY : Moves.cpp.s
+Data.cpp.s:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Data.cpp.s
+.PHONY : Data.cpp.s
+
+Item.o: Item.cpp.o
+
+.PHONY : Item.o
+
+# target to build an object file
+Item.cpp.o:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Item.cpp.o
+.PHONY : Item.cpp.o
+
+Item.i: Item.cpp.i
+
+.PHONY : Item.i
+
+# target to preprocess a source file
+Item.cpp.i:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Item.cpp.i
+.PHONY : Item.cpp.i
+
+Item.s: Item.cpp.s
+
+.PHONY : Item.s
+
+# target to generate assembly for a file
+Item.cpp.s:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Item.cpp.s
+.PHONY : Item.cpp.s
+
+Move.o: Move.cpp.o
+
+.PHONY : Move.o
+
+# target to build an object file
+Move.cpp.o:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Move.cpp.o
+.PHONY : Move.cpp.o
+
+Move.i: Move.cpp.i
+
+.PHONY : Move.i
+
+# target to preprocess a source file
+Move.cpp.i:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Move.cpp.i
+.PHONY : Move.cpp.i
+
+Move.s: Move.cpp.s
+
+.PHONY : Move.s
+
+# target to generate assembly for a file
+Move.cpp.s:
+	$(MAKE) -f CMakeFiles/PokemonBattle.dir/build.make CMakeFiles/PokemonBattle.dir/Move.cpp.s
+.PHONY : Move.cpp.s
 
 Pokemon.o: Pokemon.cpp.o
 
@@ -267,12 +294,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... PokemonBattle"
-	@echo "... Items.o"
-	@echo "... Items.i"
-	@echo "... Items.s"
-	@echo "... Moves.o"
-	@echo "... Moves.i"
-	@echo "... Moves.s"
+	@echo "... Data.o"
+	@echo "... Data.i"
+	@echo "... Data.s"
+	@echo "... Item.o"
+	@echo "... Item.i"
+	@echo "... Item.s"
+	@echo "... Move.o"
+	@echo "... Move.i"
+	@echo "... Move.s"
 	@echo "... Pokemon.o"
 	@echo "... Pokemon.i"
 	@echo "... Pokemon.s"

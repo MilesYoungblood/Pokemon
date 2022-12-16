@@ -4,38 +4,45 @@
 
 #pragma once
 
+#include <iostream>
+#include <vector>
+#include <random>
 #include <algorithm>
 
 // returns true if character is a vowel
-bool isVowel(char character) {
-    return (character == 'A' or character == 'a' or character == 'E' or character == 'e' or
-           character == 'I' or character == 'i' or character == 'O' or character == 'o' or
-           character == 'U' or character == 'u') and std::isalpha(character);
+bool isVowel(char ltr) {
+    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
 }
 
-char getChar() {
-    std::string userChar;
-    getline(std::cin, userChar, '\n');
+// return true if all of a string is a number
+bool isNumber(const std::string &str) {
+    return std::all_of(str.begin(), str.end(), [](char ltr){ return std::isdigit(ltr); });
+}
 
-    while (userChar != "f" and userChar != "b" and userChar != "r" and userChar != "p") {
+// returns a char of the users selections
+char getChar(const std::vector<std::string> &list) {
+    while (true) {
+        std::string userChar;
         getline(std::cin, userChar, '\n');
-    }
 
-    return userChar[0];
+        for (const std::string &ltr : list) {
+            if (userChar == ltr) {
+                return userChar[0];
+            }
+        }
+    }
 }
 
 // returns an integer from a range of a user's choice
 int getInt(int lower, int upper) {
-    std::string userInt;
-    getline(std::cin, userInt, '\n');
-
     while (true) {
-        if (lower <= std::stoi(userInt) and std::stoi(userInt) <= upper) {
-            break;
+        std::string userInt;
+        getline(std::cin, userInt, '\n');
+
+        if (isNumber(userInt) and lower <= std::stoi(userInt) and std::stoi(userInt) <= upper) {
+            return std::stoi(userInt);
         }
     }
-
-    return std::stoi(userInt);
 }
 
 // returns a random integer from a range
@@ -59,4 +66,4 @@ void clearScreen() {
     FillConsoleOutputAttribute(console, s.wAttributes, cells, t1, &written);
     SetConsoleCursorPosition(console, t1);
 }
- */
+*/

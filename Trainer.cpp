@@ -8,18 +8,42 @@ Trainer::Trainer() {
     faintCount = 0;
 }
 
-Pokemon& Trainer::getPokemon(int pokemon) {
-    return party[pokemon];
+Trainer::Trainer(const std::initializer_list<Pokemon> &list) {
+    faintCount = 0;
+    for (const auto &p : list) {
+        if (party.size() < MAX_POKEMON) {
+            party.push_back(p);
+        }
+        else {
+            break;
+        }
+    }
 }
 
-std::array<Pokemon, MAX_POKEMON> Trainer::getParty() {
-    return party;
+int Trainer::partySize() const {
+    return static_cast<int>(party.size());
 }
 
-Items& Trainer::getItem(int item) {
+Item& Trainer::getItem(int item) {
     return items[item];
 }
 
 int Trainer::numFainted() const {
     return faintCount;
+}
+
+void Trainer::incFaintCount() {
+    ++faintCount;
+}
+
+void Trainer::decFaintCount() {
+    --faintCount;
+}
+
+Pokemon& Trainer::operator[](int spot)  {
+    return party[spot];
+}
+
+const Pokemon& Trainer::operator[](int spot) const {
+    return party[spot];
 }

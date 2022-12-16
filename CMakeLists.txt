@@ -3,5 +3,5 @@ project(PokemonBattle)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(PokemonBattle main.cpp Pokemon.h Pokemon.cpp main.h Moves.h Moves.cpp Items.cpp Items.h AttackFunctions.h
-               ItemFunctions.h MoveList.h TypeChart.h PhysicalTypes.h SpecialTypes.h Trainer.cpp Trainer.h GeneralFunctions.h)
+add_executable(PokemonBattle main.cpp Pokemon.h Pokemon.cpp main.h Move.h Move.cpp Item.cpp Item.h AttackFunctions.h
+               ItemFunctions.h MoveList.h TypeChart.h PhysicalTypes.h SpecialTypes.h Trainer.cpp Trainer.h GeneralFunctions.h Data.cpp Data.h)

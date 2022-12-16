@@ -19,8 +19,8 @@ void displayBag() {
     std::cout.flush();
 }
 
-template <typename T>
-void displayItems(const std::vector<T>& items) {
+template <typename Item>
+void displayItems(const std::vector<Item> &items) {
     std::cout << "Choose an item:\n";
     for (int i = 0; i < items.size(); ++i) {
         std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x" << items[i].getQuantity() << " (" << i + 1 << ")\n";
@@ -44,14 +44,14 @@ namespace HP {
 }
 
 namespace PP {
-    void restore(Moves &moveToRestore, int amountToRestore) {
+    void restore(Move &moveToRestore, int amountToRestore) {
         moveToRestore.setPP(moveToRestore.getPP() + amountToRestore);
         if (moveToRestore.getPP() > moveToRestore.getMaxPP()) {
             moveToRestore.setPP(moveToRestore.getMaxPP());
         }
     }
 
-    void restoreMessage(const Moves &moveRestored, int amountRestored) {
+    void restoreMessage(const Move &moveRestored, int amountRestored) {
         std::cout << moveRestored << " recovered " << amountRestored << " PP!\n";
         sleep(2);
     }
@@ -83,7 +83,7 @@ bool catchPokemon(bool attempts[]) {
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];
 }
 
-void catchPokemonMessage(const std::string& pokemon, const bool attempts[]) {
+void catchPokemonMessage(const std::string &pokemon, const bool attempts[]) {
     if (attempts[0]) {
         std::cout << "1...";
         sleep(1);
@@ -119,53 +119,59 @@ void catchPokemonMessage(const std::string& pokemon, const bool attempts[]) {
     std::cout.flush();
 }
 
-void boostStat(const BattleItems& itemToUse, Pokemon& pokemonToBoost, int amountToBoost, bool& limitReached) {
+void boostStat(const BattleItems &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
     if (itemToUse.getStat() == "attack") {
-        pokemonToBoost.setAttack(pokemonToBoost.getAttack() + amountToBoost);
-        if (pokemonToBoost.getAttack() > 6) {
-            pokemonToBoost.setAttack(6);
+        if (pokemonToBoost.getAttack() < 6) {
+            pokemonToBoost.setAttack(pokemonToBoost.getAttack() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
     else if (itemToUse.getStat() == "spAttack") {
-        pokemonToBoost.setSpAttack(pokemonToBoost.getSpAttack() + amountToBoost);
-        if (pokemonToBoost.getSpAttack() > 6) {
-            pokemonToBoost.setSpAttack(6);
+        if (pokemonToBoost.getSpAttack() < 6) {
+            pokemonToBoost.setSpAttack(pokemonToBoost.getSpAttack() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
     else if (itemToUse.getStat() == "defense") {
-        pokemonToBoost.setDefense(pokemonToBoost.getDefense() + amountToBoost);
-        if (pokemonToBoost.getDefense() > 6) {
-            pokemonToBoost.setDefense(6);
+        if (pokemonToBoost.getDefense() < 6) {
+            pokemonToBoost.setDefense(pokemonToBoost.getDefense() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
     else if (itemToUse.getStat() == "spDefense") {
-        pokemonToBoost.setSpDefense(pokemonToBoost.getSpDefense() + amountToBoost);
-        if (pokemonToBoost.getSpDefense() > 6) {
-            pokemonToBoost.setSpDefense(6);
+        if (pokemonToBoost.getSpDefense() < 6) {
+            pokemonToBoost.setSpDefense(pokemonToBoost.getSpDefense() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
     else if (itemToUse.getStat() == "speed") {
-        pokemonToBoost.setSpeed(pokemonToBoost.getSpeed() + amountToBoost);
-        if (pokemonToBoost.getSpeed() > 6) {
-            pokemonToBoost.setSpeed(6);
+        if (pokemonToBoost.getSpeed() < 6) {
+            pokemonToBoost.setSpeed(pokemonToBoost.getSpeed() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
     else if (itemToUse.getStat() == "accuracy") {
-        pokemonToBoost.setAccuracy(pokemonToBoost.getAccuracy() + amountToBoost);
-        if (pokemonToBoost.getAccuracy() > 6) {
-            pokemonToBoost.setAccuracy(6);
+        if (pokemonToBoost.getAccuracy() < 6) {
+            pokemonToBoost.setAccuracy(pokemonToBoost.getAccuracy() + amountToBoost);
+        }
+        else {
             limitReached = true;
         }
     }
 }
 
-void boostMessage(const Pokemon& pokemon, const std::string& statBoosted, int amountBoosted, bool limit) {
-    if (!limit) {
+void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int amountBoosted, bool limit) {
+    if (not limit) {
         std::cout << pokemon << "'s " << statBoosted << " rose";
         if (amountBoosted == 2) {
             std::cout << " sharply";
@@ -181,13 +187,13 @@ void boostMessage(const Pokemon& pokemon, const std::string& statBoosted, int am
     sleep(2);
 }
 
-template <typename T>
-void useItem(T& itemToUse) {
+template <typename I>
+void useItem(I &itemToUse) {
     itemToUse.setQuantity(itemToUse.getQuantity() - 1);
 }
 
-void useItemMessage(const std::string& itemUsed) {
-    if (itemUsed.substr(itemUsed.size() - 4) != "Ball") {
+void useItemMessage(const std::string &itemUsed) {
+    if (itemUsed.substr(itemUsed.length() - 4) != "Ball") {
         std::cout << "You used a";
 
         if (isVowel(itemUsed[0])) {
@@ -197,17 +203,23 @@ void useItemMessage(const std::string& itemUsed) {
         std::cout << ' ' << itemUsed << "! ";
     }
     else {
-        std::cout << "You threw a " << itemUsed << "! ";
+        std::cout << "You threw a";
+
+        if (isVowel(itemUsed[0])) {
+            std::cout << 'n';
+        }
+
+        std::cout << ' ' << itemUsed << "! ";
     }
     sleep(1);
 }
 
-void itemErrorMessage(const std::string& item) {
+void itemErrorMessage(const std::string &item) {
     std::cout << "You don't have any " << item << "'s." << std::endl;
     sleep(1);
 }
 
-void noEffectMessage(const std::string& item, const std::string& pokemon) {
+void noEffectMessage(const std::string &item, const Pokemon &pokemon) {
     std::cout << item << " had no effect on " << pokemon << ".\n";
     sleep(1);
 }

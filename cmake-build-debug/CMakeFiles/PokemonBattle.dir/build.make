@@ -83,31 +83,31 @@ CMakeFiles/PokemonBattle.dir/Pokemon.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Pokemon.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Pokemon.cpp" -o CMakeFiles/PokemonBattle.dir/Pokemon.cpp.s
 
-CMakeFiles/PokemonBattle.dir/Moves.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
-CMakeFiles/PokemonBattle.dir/Moves.cpp.o: ../Moves.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PokemonBattle.dir/Moves.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PokemonBattle.dir/Moves.cpp.o -c "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Moves.cpp"
+CMakeFiles/PokemonBattle.dir/Move.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/Move.cpp.o: ../Move.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/PokemonBattle.dir/Move.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PokemonBattle.dir/Move.cpp.o -c "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.cpp"
 
-CMakeFiles/PokemonBattle.dir/Moves.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/Moves.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Moves.cpp" > CMakeFiles/PokemonBattle.dir/Moves.cpp.i
+CMakeFiles/PokemonBattle.dir/Move.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/Move.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.cpp" > CMakeFiles/PokemonBattle.dir/Move.cpp.i
 
-CMakeFiles/PokemonBattle.dir/Moves.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Moves.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Moves.cpp" -o CMakeFiles/PokemonBattle.dir/Moves.cpp.s
+CMakeFiles/PokemonBattle.dir/Move.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Move.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.cpp" -o CMakeFiles/PokemonBattle.dir/Move.cpp.s
 
-CMakeFiles/PokemonBattle.dir/Items.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
-CMakeFiles/PokemonBattle.dir/Items.cpp.o: ../Items.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PokemonBattle.dir/Items.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PokemonBattle.dir/Items.cpp.o -c "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Items.cpp"
+CMakeFiles/PokemonBattle.dir/Item.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/Item.cpp.o: ../Item.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/PokemonBattle.dir/Item.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PokemonBattle.dir/Item.cpp.o -c "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.cpp"
 
-CMakeFiles/PokemonBattle.dir/Items.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/Items.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Items.cpp" > CMakeFiles/PokemonBattle.dir/Items.cpp.i
+CMakeFiles/PokemonBattle.dir/Item.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/Item.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.cpp" > CMakeFiles/PokemonBattle.dir/Item.cpp.i
 
-CMakeFiles/PokemonBattle.dir/Items.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Items.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Items.cpp" -o CMakeFiles/PokemonBattle.dir/Items.cpp.s
+CMakeFiles/PokemonBattle.dir/Item.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Item.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.cpp" -o CMakeFiles/PokemonBattle.dir/Item.cpp.s
 
 CMakeFiles/PokemonBattle.dir/Trainer.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
 CMakeFiles/PokemonBattle.dir/Trainer.cpp.o: ../Trainer.cpp
@@ -122,25 +122,40 @@ CMakeFiles/PokemonBattle.dir/Trainer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Trainer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Trainer.cpp" -o CMakeFiles/PokemonBattle.dir/Trainer.cpp.s
 
+CMakeFiles/PokemonBattle.dir/Data.cpp.o: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/Data.cpp.o: ../Data.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/PokemonBattle.dir/Data.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/PokemonBattle.dir/Data.cpp.o -c "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.cpp"
+
+CMakeFiles/PokemonBattle.dir/Data.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/Data.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.cpp" > CMakeFiles/PokemonBattle.dir/Data.cpp.i
+
+CMakeFiles/PokemonBattle.dir/Data.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/Data.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.cpp" -o CMakeFiles/PokemonBattle.dir/Data.cpp.s
+
 # Object files for target PokemonBattle
 PokemonBattle_OBJECTS = \
 "CMakeFiles/PokemonBattle.dir/main.cpp.o" \
 "CMakeFiles/PokemonBattle.dir/Pokemon.cpp.o" \
-"CMakeFiles/PokemonBattle.dir/Moves.cpp.o" \
-"CMakeFiles/PokemonBattle.dir/Items.cpp.o" \
-"CMakeFiles/PokemonBattle.dir/Trainer.cpp.o"
+"CMakeFiles/PokemonBattle.dir/Move.cpp.o" \
+"CMakeFiles/PokemonBattle.dir/Item.cpp.o" \
+"CMakeFiles/PokemonBattle.dir/Trainer.cpp.o" \
+"CMakeFiles/PokemonBattle.dir/Data.cpp.o"
 
 # External object files for target PokemonBattle
 PokemonBattle_EXTERNAL_OBJECTS =
 
 PokemonBattle: CMakeFiles/PokemonBattle.dir/main.cpp.o
 PokemonBattle: CMakeFiles/PokemonBattle.dir/Pokemon.cpp.o
-PokemonBattle: CMakeFiles/PokemonBattle.dir/Moves.cpp.o
-PokemonBattle: CMakeFiles/PokemonBattle.dir/Items.cpp.o
+PokemonBattle: CMakeFiles/PokemonBattle.dir/Move.cpp.o
+PokemonBattle: CMakeFiles/PokemonBattle.dir/Item.cpp.o
 PokemonBattle: CMakeFiles/PokemonBattle.dir/Trainer.cpp.o
+PokemonBattle: CMakeFiles/PokemonBattle.dir/Data.cpp.o
 PokemonBattle: CMakeFiles/PokemonBattle.dir/build.make
 PokemonBattle: CMakeFiles/PokemonBattle.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable PokemonBattle"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable PokemonBattle"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/PokemonBattle.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

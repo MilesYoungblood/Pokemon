@@ -4,13 +4,14 @@
 
 #pragma once
 
-#include "Moves.h"
+#include "Move.h"
 #include <random>
 #include <iostream>
 #include <unistd.h>
 
-struct WaterShuriken : public Moves {
-    WaterShuriken() : Moves("Water Shuriken", "water", "special", 20, 15, 100) {}
+// FIXME fix overridden function
+struct WaterShuriken : public Move {
+    WaterShuriken() : Move("Water Shuriken", "water", "special", 20, 15, 100) {}
     int numHits = 0; // number of possible hits (from 2 to 5)
     int trueHits = 0; // number of hits landed (from 2 to 5)
     int trueDamage = 0;
@@ -45,58 +46,58 @@ struct WaterShuriken : public Moves {
     }
 };
 
-struct DarkPulse : public Moves {
-    DarkPulse() : Moves("Dark Pulse", "dark", "special", 15, 80, 100) {}
+struct DarkPulse : public Move {
+    DarkPulse() : Move("Dark Pulse", "dark", "special", 15, 80, 100) {}
 };
 
-struct IceBeam : public Moves {
-    IceBeam() : Moves("Ice Beam", "ice", "special", 10, 90, 100) {}
+struct IceBeam : public Move {
+    IceBeam() : Move("Ice Beam", "ice", "special", 10, 90, 100) {}
 };
 
-struct Extrasensory : public Moves {
-    Extrasensory() : Moves("Extrasensory", "psychic", "special", 15, 90, 100) {}
+struct Extrasensory : public Move {
+    Extrasensory() : Move("Extrasensory", "psychic", "special", 15, 90, 100) {}
 };
 
-struct Flamethrower : public Moves {
-    Flamethrower() : Moves("Flamethrower", "fire", "special", 15, 90, 100) {}
+struct Flamethrower : public Move {
+    Flamethrower() : Move("Flamethrower", "fire", "special", 15, 90, 100) {}
 };
 
-struct AirSlash : public Moves {
-    AirSlash() : Moves("Air Slash", "flying", "special", 15, 75, 95) {}
+struct AirSlash : public Move {
+    AirSlash() : Move("Air Slash", "flying", "special", 15, 75, 95) {}
 };
 
-struct DragonPulse : public Moves {
-    DragonPulse() : Moves("Dragon Pulse", "dragon", "special", 10, 85, 100) {}
+struct DragonPulse : public Move {
+    DragonPulse() : Move("Dragon Pulse", "dragon", "special", 10, 85, 100) {}
 };
 
-struct SolarBeam : public Moves {
-    SolarBeam() : Moves("Solar Beam", "grass", "special", 10, 120, 100) {}
+struct SolarBeam : public Move {
+    SolarBeam() : Move("Solar Beam", "grass", "special", 10, 120, 100) {}
 };
 
-struct FocusBlast : public Moves {
-    FocusBlast() : Moves("Focus Blast", "fighting", "special", 5, 120, 70) {}
+struct FocusBlast : public Move {
+    FocusBlast() : Move("Focus Blast", "fighting", "special", 5, 120, 70) {}
 };
 
-struct AuraSphere : public Moves {
-    AuraSphere() : Moves("Aura Sphere", "fighting", "special", 20, 80, 100) {}
+struct AuraSphere : public Move {
+    AuraSphere() : Move("Aura Sphere", "fighting", "special", 20, 80, 100) {}
 };
 
-struct FlashCannon : public Moves {
-    FlashCannon() : Moves("Flash Cannon", "steel", "special", 10, 80, 100) {}
+struct FlashCannon : public Move {
+    FlashCannon() : Move("Flash Cannon", "steel", "special", 10, 80, 100) {}
 };
 
-struct Thunder : public Moves {
-    Thunder() : Moves("Thunder", "electric", "special", 10, 110, 70) {}
+struct Thunder : public Move {
+    Thunder() : Move("Thunder", "electric", "special", 10, 110, 70) {}
 };
 
-struct QuickAttack : public Moves {
-    QuickAttack() : Moves("Quick Attack", "normal", "physical", 30, 40, 100) {}
+struct QuickAttack : public Move {
+    QuickAttack() : Move("Quick Attack", "normal", "physical", 30, 40, 100) {}
 };
 
-struct IronTail : public Moves {
-    IronTail() : Moves("Iron Tail", "steel", "physical", 15, 100, 75) {}
+struct IronTail : public Move {
+    IronTail() : Move("Iron Tail", "steel", "physical", 15, 100, 75) {}
 };
 
-struct VoltTackle : public Moves {
-    VoltTackle() : Moves("Volt Tackle", "electric", "physical", 15, 120, 100) {}
+struct VoltTackle : public Move {
+    VoltTackle() : Move("Volt Tackle", "electric", "physical", 15, 120, 100) {}
 };

@@ -100,6 +100,10 @@ Pokemon::Pokemon(const std::string& name, const std::string& type1, const std::s
     this->level = level;
 }
 
+int Pokemon::numMoves() const {
+    return static_cast<int>(moveSet.size());
+}
+
 void Pokemon::setHP(int newHp) { currentHp = newHp; }
 void Pokemon::setAttack(int newAttack) { attack = newAttack; }
 void Pokemon::setSpAttack(int newSpAttack) { spAttack = newSpAttack; }
@@ -151,22 +155,35 @@ std::string Pokemon::getStatus() const {
     return status;
 }
 
-void Pokemon::setMoves(const Moves& move1, const Moves& move2, const Moves& move3, const Moves& move4) {
-    moveSet[0] = move1;
-    moveSet[1] = move2;
-    moveSet[2] = move3;
-    moveSet[3] = move4;
-}
-
-Moves& Pokemon::getMove(int move) {
-    return moveSet[move];
+void Pokemon::setMoves(const std::initializer_list<Move> &list) {
+    moveSet.clear();
+    for (const auto &m : list) {
+        if (moveSet.size() < MAX_NUM_MOVES) {
+            moveSet.push_back(m);
+        }
+        else {
+            return;
+        }
+    }
 }
 
 int Pokemon::getLevel() const {
     return level;
 }
 
-std::ostream &operator<<(std::ostream &out, const Pokemon &pokemon) {
+void Pokemon::faint() {
+    currentHp = 0;
+}
+
+Move& Pokemon::operator[](int spot) {
+    return moveSet[spot];
+}
+
+const Move& Pokemon::operator[](int spot) const {
+    return moveSet[spot];
+}
+
+std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
     out << pokemon.getName();
     return out;
 }

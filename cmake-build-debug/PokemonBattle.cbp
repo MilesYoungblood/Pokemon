@@ -85,25 +85,31 @@
 		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/AttackFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/GeneralFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/ItemFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Items.cpp">
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Items.h">
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/MoveList.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Moves.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Moves.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/PhysicalTypes.h">
