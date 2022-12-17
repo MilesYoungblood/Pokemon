@@ -1,0 +1,17 @@
+# ninja log v5
+39	1319	6929306044361695	CMakeFiles/PokemonBattle.dir/Item.cpp.obj	c474a16fbc98c89c
+34	1724	6929306048236117	CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj	49873be15a086818
+25	1732	6929306048186120	CMakeFiles/PokemonBattle.dir/Pokemon.cpp.obj	5e16c800e9cb9f3f
+1724	2484	6929306056039051	CMakeFiles/PokemonBattle.dir/Move.cpp.obj	1281d0e207cabd83
+1339	2600	6929306057226841	CMakeFiles/PokemonBattle.dir/Data.cpp.obj	2e38d1919f87769d
+0	2677	6929306057978433	CMakeFiles/PokemonBattle.dir/main.cpp.obj	6216b955e8ede4c
+2677	3571	6929306066891372	PokemonBattle.exe	7e54d50c58faa437
+17	1129	6929332107188835	CMakeFiles/PokemonBattle.dir/Item.cpp.obj	c474a16fbc98c89c
+22	1236	6929332108283772	CMakeFiles/PokemonBattle.dir/Move.cpp.obj	1281d0e207cabd83
+11	1304	6929332108962186	CMakeFiles/PokemonBattle.dir/Pokemon.cpp.obj	5e16c800e9cb9f3f
+1130	2073	6929332116640348	CMakeFiles/PokemonBattle.dir/Trainer.cpp.obj	49873be15a086818
+4	2539	6929332119963932	CMakeFiles/PokemonBattle.dir/main.cpp.obj	6216b955e8ede4c
+1236	2737	6929332123367082	CMakeFiles/PokemonBattle.dir/Data.cpp.obj	2e38d1919f87769d
+2737	3095	6929332126627875	PokemonBattle.exe	7e54d50c58faa437
+3	1780	6929339941909168	CMakeFiles/PokemonBattle.dir/main.cpp.obj	6216b955e8ede4c
+1781	2078	6929339944907579	PokemonBattle.exe	7e54d50c58faa437

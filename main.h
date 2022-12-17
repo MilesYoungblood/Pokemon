@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <iostream>
 #include <unistd.h>
 #include "Trainer.h"
 #include "AttackFunctions.h"
@@ -37,14 +36,6 @@ void displayChoices(const Pokemon &pokemon) {
     std::cout << "\tRun     (r)\n";
     std::cout << "\tPokemon (p)\n";
     std::cout.flush();
-
-    /*
-     * std::cout << "+-------------+-------------+\n";
-       std::cout << "| Fight   (f) | Bag     (b) |\n";
-       std::cout << "+-------------+-------------+\n";
-       std::cout << "| Run     (r) | Pokemon (p) |\n";
-       std::cout << "+-------------+-------------+\n";
-     */
 }
 
 void displayPokemon(const Trainer &t) {
@@ -180,43 +171,11 @@ void inflictedMessage(const Pokemon& pokemon) {
     sleep(1);
 }
 
-void userAttack(Trainer &user, Trainer &opponent, int userMove) {
-    bool crit = false;
-    int userDamage = calculateDamage(user[0], opponent[0], user[0][userMove - 1], crit);
-
-    attack(opponent[0], user[0][userMove - 1], userDamage);
-    attackMessage(user[0], opponent[0], userMove - 1, userDamage, crit);
-
-    if (opponent[0].getHP() <= 0) { // if Pokémon's HP drops to zero...
-        opponent[0].faint();
-        opponent.incFaintCount();
-        faintMessage(opponent[0]);
-        if (opponent.numFainted() == opponent.partySize()) {
-            winMessage();
-            exit(0);
-        }
-    }
-}
-
-void opponentAttack(Trainer &opponent, Trainer &user, int opponentMove) {
-    bool crit = false;
-    int opponentDamage = calculateDamage(opponent[0], user[0], opponent[0][opponentMove], crit);
-
-    attack(user[0], opponent[0][opponentMove - 1], opponentDamage);
-    attackMessage(opponent[0], user[0], opponentMove, opponentDamage, crit);
-
-    if (user[0].getHP() <= 0) {
-        user[0].faint();
-        user.incFaintCount();
-        faintMessage(user[0]);
-        if (user.numFainted() == user.partySize()) {
-            loseMessage();
-            exit(0);
-        }
+struct battlePhase {
+private:
+    static void userSwitchOut(Trainer &trainer) {
         forceSwitchPrompt();
-
         char userChoice = getChar({"f", "r"});
-        int pokemon;
 
         if (userChoice == 'r') {
             bool runSuccess = run();
@@ -226,135 +185,279 @@ void opponentAttack(Trainer &opponent, Trainer &user, int opponentMove) {
             }
         }
 
-        displayPokemon(user);
-        std::cin >> pokemon;
+        int pokemon;
+        while (true) {
+            displayPokemon(trainer);
+            pokemon = getInt(2, trainer.partySize());
 
-        while ((pokemon <= 1 or user.partySize() < pokemon) or user[pokemon - 1].getHP() <= 0) {
-            // cannot heal a fainted Pokémon
-            if (user[pokemon - 1].getHP() <= 0) {
-                hpEmptyMessage(user[pokemon - 1]);
-            }
-            std::cin >> pokemon;
-        }
-
-        switchOut(user, pokemon);
-        sendOutMessage(user[0]);
-    }
-}
-
-void battlePhase(Trainer &user, Trainer &opponent, int userMove, int opponentMove, char userChoice) {
-    // if trainer chose to attack this turn...
-    if (userChoice == 'f') {
-        // trainer is faster than opponent...
-        if (user[0].getBaseSpeed() > opponent[0].getBaseSpeed()) {
-            not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
-            not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
-
-            if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
-                status::takeDamageMessage(user[0]);
-                if (user.numFainted() == user.partySize()) {
-                    loseMessage();
-                    exit(0);
-                }
-            }
-            if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
-                status::takeDamageMessage(user[0]);
-                if (opponent.numFainted() == opponent.partySize()) {
-                    winMessage();
-                    exit(0);
-                }
-            }
-        }
-        // if opponent is faster than trainer...
-        else if (user[0].getBaseSpeed() < opponent[0].getBaseSpeed()) {
-            not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
-            not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
-
-            if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
-                status::takeDamageMessage(user[0]);
-                if (opponent.numFainted() == opponent.partySize()) {
-                    winMessage();
-                    exit(0);
-                }
-            }
-            if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
-                status::takeDamageMessage(user[0]);
-                if (user.numFainted() == user.partySize()) {
-                    loseMessage();
-                    exit(0);
-                }
-            }
-        }
-        // trainer and opponent rival in speed, choose randomly
-        else {
-            if (generateInteger(0, 1) == 0) {
-                not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
-                not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
-
-                if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                    takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
-                    status::takeDamageMessage(user[0]);
-                    if (user.numFainted() == user.partySize()) {
-                        loseMessage();
-                        exit(0);
-                    }
-                }
-                if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                    takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
-                    status::takeDamageMessage(user[0]);
-                    if (opponent.numFainted() == opponent.partySize()) {
-                        winMessage();
-                        exit(0);
-                    }
-                }
+            if (trainer[pokemon - 1].getHP() <= 0) {
+                hpEmptyMessage(trainer[pokemon - 1]);
             }
             else {
-                not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
-                not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
+                break;
+            }
+        }
 
-                if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                    takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
-                    status::takeDamageMessage(user[0]);
-                    if (opponent.numFainted() == opponent.partySize()) {
-                        winMessage();
-                        exit(0);
-                    }
-                }
-                if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-                    takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
-                    status::takeDamageMessage(user[0]);
-                    if (user.numFainted() == user.partySize()) {
-                        loseMessage();
-                        exit(0);
-                    }
-                }
-            }
-        }
+        switchOut(trainer, pokemon - 1);
+        sendOutMessage(trainer[0]);
     }
-    // trainer chose not to attack this turn
-    else {
-        if (not preStatus(opponent[0].getStatus())) { // if the opponent is not inflicted with a pre-move status condition...
-            opponentAttack(opponent, user, opponentMove);
+
+    static void opponentSwitchOut(Trainer &trainer) {
+        int toSwitch = generateInteger(0, trainer.partySize() - 1);
+        while (trainer[toSwitch].getHP() <= 0) {
+            toSwitch = generateInteger(0, trainer.partySize() - 1);
         }
-        if (postStatus(user[0].getStatus())) {
-            takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
-            status::takeDamageMessage(user[0]);
-            if (user.numFainted() == user.partySize()) {
-                loseMessage();
-                exit(0);
-            }
-        }
-        if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
-            takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
-            status::takeDamageMessage(user[0]);
+        switchOut(trainer, toSwitch);
+        sendOutMessage(trainer[0]);
+    }
+
+    static void userAttack(Trainer &user, Trainer &opponent, int userMove, bool &switched) {
+        bool crit = false;
+        int userDamage = calculateDamage(user[0], opponent[0], user[0][userMove - 1], crit);
+
+        attack(opponent[0], user[0][userMove - 1], userDamage);
+        attackMessage(user[0], opponent[0], userMove - 1, userDamage, crit);
+
+        if (opponent[0].getHP() <= 0) { // if Pokémon's HP drops to zero...
+            opponent[0].faint();
+            opponent.incFaintCount();
+            faintMessage(opponent[0]);
             if (opponent.numFainted() == opponent.partySize()) {
                 winMessage();
                 exit(0);
             }
+            else {
+                opponentSwitchOut(opponent);
+                switched = true;
+            }
         }
     }
-}
+
+    static void userAttack(Trainer &user, Trainer &opponent, int userMove) {
+        bool crit = false;
+        int userDamage = calculateDamage(user[0], opponent[0], user[0][userMove - 1], crit);
+
+        attack(opponent[0], user[0][userMove - 1], userDamage);
+        attackMessage(user[0], opponent[0], userMove - 1, userDamage, crit);
+
+        if (opponent[0].getHP() <= 0) { // if Pokémon's HP drops to zero...
+            opponent[0].faint();
+            opponent.incFaintCount();
+            faintMessage(opponent[0]);
+            if (opponent.numFainted() == opponent.partySize()) {
+                winMessage();
+                exit(0);
+            }
+            else {
+                opponentSwitchOut(opponent);
+            }
+        }
+    }
+
+    static void opponentAttack(Trainer &opponent, Trainer &user, int opponentMove, bool &switched) {
+        bool crit = false;
+        int opponentDamage = calculateDamage(opponent[0], user[0], opponent[0][opponentMove], crit);
+
+        attack(user[0], opponent[0][opponentMove - 1], opponentDamage);
+        attackMessage(opponent[0], user[0], opponentMove, opponentDamage, crit);
+
+        // if Pokémon's HP drops to zero...
+        if (user[0].getHP() <= 0) {
+            user[0].faint();
+            user.incFaintCount();
+            faintMessage(user[0]);
+            if (user.numFainted() == user.partySize()) {
+                loseMessage();
+                exit(0);
+            }
+            else {
+                userSwitchOut(user);
+                switched = true;
+            }
+        }
+    }
+
+    static void opponentAttack(Trainer &opponent, Trainer &user, int opponentMove) {
+        bool crit = false;
+        int opponentDamage = calculateDamage(opponent[0], user[0], opponent[0][opponentMove], crit);
+
+        attack(user[0], opponent[0][opponentMove - 1], opponentDamage);
+        attackMessage(opponent[0], user[0], opponentMove, opponentDamage, crit);
+
+        if (user[0].getHP() <= 0) {
+            user[0].faint();
+            user.incFaintCount();
+            faintMessage(user[0]);
+            if (user.numFainted() == user.partySize()) {
+                loseMessage();
+                exit(0);
+            }
+            else {
+                userSwitchOut(user);
+            }
+        }
+    }
+
+public:
+    static void fight(Trainer &user, Trainer &opponent, int userMove, int opponentMove, char userChoice) {
+        // if trainer chose to attack this turn...
+        if (userChoice == 'f') {
+            // trainer is faster than opponent...
+            if (user[0].getBaseSpeed() > opponent[0].getBaseSpeed()) {
+                bool skip = false;
+                not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove, skip) : inflictedMessage(user[0]);
+
+                if (not skip) {
+                    not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
+                }
+
+                if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(user[0]);
+                    if (user.numFainted() == user.partySize()) {
+                        loseMessage();
+                        exit(0);
+                    }
+                    else {
+                        userSwitchOut(user);
+                    }
+                }
+                if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(user[0]);
+                    if (opponent.numFainted() == opponent.partySize()) {
+                        winMessage();
+                        exit(0);
+                    }
+                    else {
+                        opponentSwitchOut(opponent);
+                    }
+                }
+            }
+            // if opponent is faster than trainer...
+            else if (user[0].getBaseSpeed() < opponent[0].getBaseSpeed()) {
+                bool skip = false;
+                not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove, skip) : inflictedMessage(opponent[0]);
+
+                if (not skip) {
+                    not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
+                }
+
+                if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(user[0]);
+                    if (opponent.numFainted() == opponent.partySize()) {
+                        winMessage();
+                        exit(0);
+                    }
+                    else {
+                        opponentSwitchOut(opponent);
+                    }
+                }
+                if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                    takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
+                    status::takeDamageMessage(user[0]);
+                    if (user.numFainted() == user.partySize()) {
+                        loseMessage();
+                        exit(0);
+                    }
+                    else {
+                        userSwitchOut(user);
+                    }
+                }
+            }
+            // trainer and opponent rival in speed; choose randomly
+            else {
+                if (generateInteger(0, 1) == 0) {
+                    bool skip = false;
+                    not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove, skip) : inflictedMessage(user[0]);
+
+                    if (not skip) {
+                        not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
+                    }
+
+                    if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(user[0]);
+                        if (user.numFainted() == user.partySize()) {
+                            loseMessage();
+                            exit(0);
+                        }
+                        else {
+                            userSwitchOut(user);
+                        }
+                    }
+                    if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(user[0]);
+                        if (opponent.numFainted() == opponent.partySize()) {
+                            winMessage();
+                            exit(0);
+                        }
+                        else {
+                            opponentSwitchOut(opponent);
+                        }
+                    }
+                }
+                else {
+                    bool skip = false;
+                    not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove, skip) : inflictedMessage(opponent[0]);
+
+                    if (not skip) {
+                        not preStatus(user[0].getStatus()) ? userAttack(user, opponent, userMove) : inflictedMessage(user[0]);
+                    }
+
+                    if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(user[0]);
+                        if (opponent.numFainted() == opponent.partySize()) {
+                            winMessage();
+                            exit(0);
+                        }
+                        else {
+                            opponentSwitchOut(opponent);
+                        }
+                    }
+                    if (postStatus(user[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                        takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
+                        status::takeDamageMessage(user[0]);
+                        if (user.numFainted() == user.partySize()) {
+                            loseMessage();
+                            exit(0);
+                        }
+                        else {
+                            userSwitchOut(user);
+                        }
+                    }
+                }
+            }
+        }
+        // trainer chose not to attack this turn
+        else {
+            not preStatus(opponent[0].getStatus()) ? opponentAttack(opponent, user, opponentMove) : inflictedMessage(opponent[0]);
+
+            if (postStatus(user[0].getStatus())) {
+                takeDamage(user, static_cast<int>(user[0].getMaxHp() * .0625));
+                status::takeDamageMessage(user[0]);
+                if (user.numFainted() == user.partySize()) {
+                    loseMessage();
+                    exit(0);
+                }
+                else {
+                    userSwitchOut(user);
+                }
+            }
+            if (postStatus(opponent[0].getStatus())) { // if Pokémon is inflicted with a post-move status condition...
+                takeDamage(opponent, static_cast<int>(opponent[0].getMaxHp() * .0625));
+                status::takeDamageMessage(user[0]);
+                if (opponent.numFainted() == opponent.partySize()) {
+                    winMessage();
+                    exit(0);
+                }
+                else {
+                    opponentSwitchOut(opponent);
+                }
+            }
+        }
+    }
+};

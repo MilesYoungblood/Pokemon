@@ -35,9 +35,9 @@ private:
 
 public:
     Pokemon();
-    Pokemon(const Pokemon &);
-    Pokemon(const std::string &, const std::string &, int);
-    Pokemon(const std::string &, const std::string &, const std::string &, int);
+    Pokemon(const Pokemon &pokemonToCopy);
+    Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
 
     int numMoves() const;
 
@@ -64,8 +64,6 @@ public:
     int getBaseSpDefense() const;
     int getBaseSpeed() const;
 
-    void setBaseStats(int, int, int, int, int, int);
-
     std::string getName() const;
 
     std::string getType() const;
@@ -74,7 +72,7 @@ public:
     void setStatus(const std::string &);
     std::string getStatus() const;
 
-    void setMoves(const std::initializer_list<Move> &);
+    void setMoves(const std::initializer_list<Move> &moves);
 
     int getLevel() const;
 

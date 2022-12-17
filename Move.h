@@ -4,18 +4,24 @@
 
 #pragma once
 
-#include <string>
+#include <iostream>
 #include <random>
 
 class Move {
 protected:
-    int pp, maxPp, power, accuracy;
-    std::string type, category, name;
+    int pp;
+    int maxPp;
+    int power;
+    int accuracy;
+
+    std::string type;
+    std::string category;
+    std::string name;
 
 public:
     Move();
-    Move(const std::string &, const std::string &, const std::string &, int, int, int);
-    Move(const Move &);
+    Move(const std::string& name, const std::string& type, const std::string& category, int pp, int power, int accuracy);
+    Move(const Move &moveToCopy);
 
     virtual int getDamage();
     int getDamage() const;
@@ -35,5 +41,5 @@ public:
 
     std::string getName() const;
 
-    friend std::ostream& operator<<(std::ostream &, const Move &);
+    friend std::ostream& operator<<(std::ostream &out, const Move &rhs);
 };

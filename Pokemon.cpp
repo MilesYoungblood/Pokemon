@@ -52,9 +52,9 @@ Pokemon::Pokemon(const Pokemon &pokemonToCopy) {
     level = pokemonToCopy.level;
 }
 
-Pokemon::Pokemon(const std::string& name, const std::string& type, int level) {
-    maxHp = 300;
-    currentHp = 300;
+Pokemon::Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+    maxHp = hp;
+    currentHp = hp;
     attack = 1;
     spAttack = 1;
     defense = 1;
@@ -62,11 +62,11 @@ Pokemon::Pokemon(const std::string& name, const std::string& type, int level) {
     speed = 1;
     accuracy = 1;
 
-    baseAttack = 100;
-    baseSpAttack = 100;
-    baseDefense = 100;
-    baseSpDefense = 100;
-    baseSpeed = 100;
+    baseAttack = bAttack;
+    baseSpAttack = bSpAttack;
+    baseDefense = bDefense;
+    baseSpDefense = bSpDefense;
+    baseSpeed = bSpeed;
 
     this->name = name;
     types[0] = type;
@@ -76,9 +76,9 @@ Pokemon::Pokemon(const std::string& name, const std::string& type, int level) {
     this->level = level;
 }
 
-Pokemon::Pokemon(const std::string& name, const std::string& type1, const std::string& type2, int level) {
-    maxHp = 300;
-    currentHp = 300;
+Pokemon::Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+    maxHp = hp;
+    currentHp = hp;
     attack = 1;
     spAttack = 1;
     defense = 1;
@@ -86,11 +86,11 @@ Pokemon::Pokemon(const std::string& name, const std::string& type1, const std::s
     speed = 1;
     accuracy = 1;
 
-    baseAttack = 100;
-    baseSpAttack = 100;
-    baseDefense = 100;
-    baseSpDefense = 100;
-    baseSpeed = 100;
+    baseAttack = bAttack;
+    baseSpAttack = bSpAttack;
+    baseDefense = bDefense;
+    baseSpDefense = bSpDefense;
+    baseSpeed = bSpeed;
 
     this->name = name;
     types[0] = type1;
@@ -121,16 +121,6 @@ int Pokemon::getSpDefense() const { return spDefense; }
 int Pokemon::getSpeed() const { return speed; }
 int Pokemon::getAccuracy() const { return accuracy; }
 
-void Pokemon::setBaseStats(int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
-    currentHp = hp;
-    maxHp = hp;
-    baseAttack = bAttack;
-    baseSpAttack = bSpAttack;
-    baseDefense = bDefense;
-    baseSpDefense = bSpDefense;
-    baseSpeed = bSpeed;
-}
-
 int Pokemon::getBaseAttack() const { return baseAttack; }
 int Pokemon::getBaseSpAttack() const { return baseSpAttack; }
 int Pokemon::getBaseDefense() const { return baseDefense; }
@@ -155,11 +145,11 @@ std::string Pokemon::getStatus() const {
     return status;
 }
 
-void Pokemon::setMoves(const std::initializer_list<Move> &list) {
+void Pokemon::setMoves(const std::initializer_list<Move> &moves) {
     moveSet.clear();
-    for (const auto &m : list) {
+    for (const auto &move : moves) {
         if (moveSet.size() < MAX_NUM_MOVES) {
-            moveSet.push_back(m);
+            moveSet.push_back(move);
         }
         else {
             return;

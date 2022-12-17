@@ -5,7 +5,6 @@
 #pragma once
 
 #include "Trainer.h"
-#include <variant>
 
 extern Pokemon Greninja;
 extern Pokemon Charizard;

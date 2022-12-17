@@ -13,16 +13,16 @@ private:
 
 public:
     Item();
-    Item(const Item &);
-    Item(int, const std::string &);
+    Item(const Item &copy);
+    Item(int quantity, const std::string &name);
     virtual ~Item() = default;
 
-    void setQuantity(int);
+    void setQuantity(int newQuantity);
     int getQuantity() const;
 
     std::string getName() const;
 
-    friend std::ostream& operator<<(std::ostream &, const Item &);
+    friend std::ostream& operator<<(std::ostream &out, const Item &rhs);
 };
 
 class RestoreItems : public Item {
@@ -32,7 +32,7 @@ private:
 
 public:
     RestoreItems();
-    RestoreItems(int, int, const std::string &, const std::string &);
+    RestoreItems(int quantity, int amount, const std::string &name, const std::string &restoreType);
 
     int getAmount() const;
     std::string getRestoreType() const;
@@ -44,8 +44,8 @@ private:
 
 public:
     StatusItems();
-    StatusItems(const StatusItems &);
-    StatusItems(int, const std::string &, const std::string &);
+    StatusItems(const StatusItems &copy);
+    StatusItems(int quantity, const std::string &name, const std::string &restoreType);
 
     std::string getRestoreType() const;
 };
@@ -56,7 +56,7 @@ private:
 
 public:
     PokeBalls();
-    PokeBalls(int, float, const std::string &);
+    PokeBalls(int quantity, float catchRate, const std::string &name);
 
     float getCatchRate() const;
 };
@@ -67,7 +67,7 @@ private:
 
 public:
     BattleItems();
-    BattleItems(int, const std::string &, const std::string &);
+    BattleItems(int quantity, const std::string &name, const std::string &stat);
 
     std::string getStat() const;
 };

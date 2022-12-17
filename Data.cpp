@@ -6,11 +6,11 @@
 
 /// Pokemon
 
-Pokemon Greninja("Greninja", "water", "dark", 50);
-Pokemon Charizard("Charizard", "fire", "flying", 50);
-Pokemon Hydreigon("Hydreigon", "dark", "dragon", 50);
-Pokemon Pikachu("Pikachu", "electric", 50);
-Pokemon Lucario("Lucario", "fighting", "steel", 50);
+Pokemon Greninja("Greninja", "water", "dark", 50, 300, 95, 67, 103, 71, 122);
+Pokemon Charizard("Charizard", "fire", "flying", 50, 300, 84, 78, 109, 85, 100);
+Pokemon Hydreigon("Hydreigon", "dark", "dragon", 50, 300, 105, 90, 125, 90, 98);
+Pokemon Pikachu("Pikachu", "electric", 50, 300, 55, 40, 50, 50, 90);
+Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70, 90);
 
 /// Moves
 

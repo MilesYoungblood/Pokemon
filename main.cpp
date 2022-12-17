@@ -2,12 +2,6 @@
 #include "Data.h"
 
 int main() {
-    Greninja.setBaseStats(300, 95, 67, 103, 71, 122);
-    Charizard.setBaseStats(300, 84, 78, 109, 85, 100);
-    Hydreigon.setBaseStats(300, 105, 90, 125, 90, 98);
-    Pikachu.setBaseStats(300, 55, 40, 50, 50, 90);
-    Lucario.setBaseStats(300, 110, 70, 115, 70, 90);
-
     Trainer_1[0].setMoves({WShuriken, DarkPulse, IceBeam, Extrasensory});
     Trainer_1[1].setMoves({Flamethrower, AirSlash, DragonPulse, SolarBeam});
     Trainer_1[2].setMoves({DarkPulse, DragonPulse, Flamethrower, FocusBlast});
@@ -86,7 +80,7 @@ int main() {
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userRestoreItems[userItem - 1].getName());
+                    itemErrorMessage(userRestoreItems[userItem - 1]);
                     continue;
                 }
             }
@@ -114,7 +108,7 @@ int main() {
                         }
                         else { // Pokémon did not have a status condition
                             useItem(userStatusItems[userItem - 1]);
-                            noEffectMessage(userStatusItems[userItem - 1].getName(), Trainer_1[pokemon - 1]);
+                            noEffectMessage(userStatusItems[userItem - 1], Trainer_1[pokemon - 1]);
                         }
                     }
                     else { // Pokémon is fainted
@@ -123,7 +117,7 @@ int main() {
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userStatusItems[userItem - 1].getName());
+                    itemErrorMessage(userStatusItems[userItem - 1]);
                     continue;
                 }
             }
@@ -146,7 +140,7 @@ int main() {
                     }
                 }
                 else { // trainer is out of selected item
-                    itemErrorMessage(userPokeBalls[userItem - 1].getName());
+                    itemErrorMessage(userPokeBalls[userItem - 1]);
                     continue;
                 }
             }
@@ -166,7 +160,7 @@ int main() {
                     boostMessage(Trainer_1[0], userBattleItems[userItem - 1].getStat(), 1, limitReached);
                 }
                 else {
-                    itemErrorMessage(userBattleItems[userItem - 1].getName());
+                    itemErrorMessage(userBattleItems[userItem - 1]);
                     continue;
                 }
             }
@@ -239,7 +233,7 @@ int main() {
         while (Trainer_2[0][opponentMove].getPP() <= 0) { // re-selects opponent move if it's out of PP
             opponentMove = generateInteger(0, 3);
         }
-        battlePhase(Trainer_1, Trainer_2, userMove, opponentMove, userChoice);
+        battlePhase::fight(Trainer_1, Trainer_2, userMove, opponentMove, userChoice);
 
         ++turn;
     }

@@ -57,9 +57,9 @@ namespace PP {
     }
 }
 
-void cure(Pokemon& pokemonToCure, const StatusItems& itemToUse) {
-    if (pokemonToCure.getStatus() == itemToUse.getRestoreType()) {
-        pokemonToCure.setStatus("No status");
+void cure(Pokemon& pokemon, const StatusItems& item) {
+    if (pokemon.getStatus() == item.getRestoreType()) {
+        pokemon.setStatus("No status");
     }
 }
 
@@ -214,12 +214,14 @@ void useItemMessage(const std::string &itemUsed) {
     sleep(1);
 }
 
-void itemErrorMessage(const std::string &item) {
+template <typename I>
+void itemErrorMessage(const I &item) {
     std::cout << "You don't have any " << item << "'s." << std::endl;
     sleep(1);
 }
 
-void noEffectMessage(const std::string &item, const Pokemon &pokemon) {
+template <typename I>
+void noEffectMessage(const I &item, const Pokemon &pokemon) {
     std::cout << item << " had no effect on " << pokemon << ".\n";
     sleep(1);
 }

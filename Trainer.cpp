@@ -8,9 +8,9 @@ Trainer::Trainer() {
     faintCount = 0;
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon> &list) {
+Trainer::Trainer(const std::initializer_list<Pokemon> &pokemon) {
     faintCount = 0;
-    for (const auto &p : list) {
+    for (const auto &p : pokemon) {
         if (party.size() < MAX_POKEMON) {
             party.push_back(p);
         }

@@ -20,12 +20,12 @@ bool isNumber(const std::string &str) {
 }
 
 // returns a char of the users selections
-char getChar(const std::vector<std::string> &list) {
+char getChar(const std::vector<std::string> &options) {
     while (true) {
         std::string userChar;
         getline(std::cin, userChar, '\n');
 
-        for (const std::string &ltr : list) {
+        for (const std::string &ltr : options) {
             if (userChar == ltr) {
                 return userChar[0];
             }
