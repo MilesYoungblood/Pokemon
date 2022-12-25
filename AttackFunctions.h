@@ -73,7 +73,7 @@ int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPok
 
 void attack(Pokemon &defendingPokemon, Move &move, int damage) {
     // damage will be negative if the attack misses
-    if (damage >= 0) {
+    if (damage > 0) {
         defendingPokemon.setHP(defendingPokemon.getHP() - damage);
     }
     move.setPP(move.getPP() - 1);
@@ -83,7 +83,7 @@ void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPoke
     std::cout << attackingPokemon << " used " << attackingPokemon[move] << "! ";
     sleep(1);
     // damage will be negative if the attack misses
-    if (damage >= 0) {
+    if (damage > 0) {
         if (getTypeEffective(attackingPokemon[move], defendingPokemon) == 0.0) {
             std::cout << "It doesn't affect " << defendingPokemon << "...\n";
             sleep(1);

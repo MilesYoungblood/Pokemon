@@ -28,10 +28,6 @@ Item& Trainer::getItem(int item) {
     return items[item];
 }
 
-int Trainer::numFainted() const {
-    return faintCount;
-}
-
 void Trainer::incFaintCount() {
     ++faintCount;
 }
@@ -46,4 +42,8 @@ Pokemon& Trainer::operator[](int spot)  {
 
 const Pokemon& Trainer::operator[](int spot) const {
     return party[spot];
+}
+
+bool Trainer::canFight() {
+    return faintCount < party.size();
 }

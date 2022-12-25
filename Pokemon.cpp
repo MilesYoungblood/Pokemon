@@ -165,6 +165,18 @@ void Pokemon::faint() {
     currentHp = 0;
 }
 
+bool Pokemon::isFainted() const {
+    return currentHp <= 0;
+}
+
+bool Pokemon::isFullHP() const {
+    return currentHp == maxHp;
+}
+
+bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
+    return this->baseSpeed > pokemon.baseSpeed;
+}
+
 Move& Pokemon::operator[](int spot) {
     return moveSet[spot];
 }

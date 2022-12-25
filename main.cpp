@@ -52,14 +52,17 @@ int main() {
                     if (pokemon == 0) {
                         continue;
                     }
-                    else if (0 < Trainer_1[pokemon - 1].getHP() and Trainer_1[pokemon - 1].getHP() < Trainer_1[pokemon - 1].getMaxHp()) { // if Pokémon selected doesn't have full HP, but isn't fainted...
-                        if (userRestoreItems[userItem - 1].getRestoreType() == "HP") { // if item selected restores HP...
+                    // if Pokémon selected doesn't have full HP, but also isn't fainted...
+                    else if (0 < Trainer_1[pokemon - 1].getHP() and Trainer_1[pokemon - 1].getHP() < Trainer_1[pokemon - 1].getMaxHp()) {
+                        // if item selected restores HP...
+                        if (userRestoreItems[userItem - 1].getRestoreType() == "HP") {
                             useItem(userRestoreItems[userItem - 1]);
                             useItemMessage(userRestoreItems[userItem - 1].getName());
                             HP::restore(Trainer_1[pokemon - 1], userRestoreItems[userItem - 1].getAmount());
                             HP::restoreMessage(Trainer_1[pokemon - 1], userRestoreItems[userItem - 1].getAmount());
                         }
-                        else if (userRestoreItems[userItem - 1].getRestoreType() == "PP") { // if item selected restores PP...
+                        // if item selected restores PP...
+                        else if (userRestoreItems[userItem - 1].getRestoreType() == "PP") {
                             displayMoves(Trainer_1[pokemon - 1]);
                             userMove = getInt(0, Trainer_1[0].numMoves());
 
@@ -134,7 +137,7 @@ int main() {
                     useItem(userPokeBalls[userItem - 1]);
                     useItemMessage(userPokeBalls[userItem - 1].getName());
                     bool caught = catchPokemon(shakes);
-                    catchPokemonMessage(Trainer_2[0].getName(), shakes);
+                    catchPokemonMessage(Trainer_2[0], shakes);
                     if (caught) {
                         break;
                     }
@@ -203,23 +206,17 @@ int main() {
                 continue;
             }
             else if (userChoice == 's') {
-                if (Trainer_1.numFainted() == Trainer_1.partySize() - 1) { // trainer has only one healthy Pokémon
-                    switchOutErrorMessage();
+                if (pokemon == 1) { // trainer chose Pokémon currently in battle
+                    inBattleMessage(Trainer_1[0]);
                     continue;
                 }
                 else {
-                    if (1 < pokemon and pokemon <= Trainer_1.partySize()) { // user chose in-bounds option
-                        if (Trainer_1[pokemon - 1].getHP() > 0) { // Pokémon chosen is not fainted
-                            switchOut(Trainer_1, pokemon - 1);
-                            switchOutMessage(Trainer_1, pokemon - 1);
-                        }
-                        else { // Pokémon chosen is fainted
-                            hpEmptyMessage(Trainer_1[pokemon - 1]);
-                            continue;
-                        }
+                    if (not Trainer_1[pokemon - 1].isFainted()) { // Pokémon chosen is not fainted
+                        switchOut(Trainer_1, pokemon - 1);
+                        switchOutMessage(Trainer_1, pokemon - 1);
                     }
-                    else if (pokemon == 1) { // trainer chose Pokémon currently in battle
-                        inBattleMessage(Trainer_1[0]);
+                    else { // Pokémon chosen is fainted
+                        hpEmptyMessage(Trainer_1[pokemon - 1]);
                         continue;
                     }
                 }

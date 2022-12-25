@@ -23,11 +23,11 @@ public:
     int partySize() const;
     Item& getItem(int item);
 
-    int numFainted() const;
-
     void incFaintCount();
     void decFaintCount();
 
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
+
+    bool canFight();
 };

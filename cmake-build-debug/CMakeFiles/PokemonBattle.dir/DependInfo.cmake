@@ -1,0 +1,25 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "CXX"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_CXX
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Data.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/Data.cpp.o"
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Item.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/Item.cpp.o"
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Move.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/Move.cpp.o"
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Pokemon.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/Pokemon.cpp.o"
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/Trainer.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/Trainer.cpp.o"
+  "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/main.cpp" "/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/main.cpp.o"
+  )
+set(CMAKE_CXX_COMPILER_ID "GNU")
+
+# The include file search paths:
+set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

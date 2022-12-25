@@ -83,7 +83,7 @@ bool catchPokemon(bool attempts[]) {
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];
 }
 
-void catchPokemonMessage(const std::string &pokemon, const bool attempts[]) {
+void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     if (attempts[0]) {
         std::cout << "1...";
         sleep(1);

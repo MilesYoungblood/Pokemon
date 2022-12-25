@@ -67,9 +67,9 @@ public:
     std::string getName() const;
 
     std::string getType() const;
-    std::string getType(int) const;
+    std::string getType(int type) const;
 
-    void setStatus(const std::string &);
+    void setStatus(const std::string &newStatus);
     std::string getStatus() const;
 
     void setMoves(const std::initializer_list<Move> &moves);
@@ -77,9 +77,12 @@ public:
     int getLevel() const;
 
     void faint();
+    bool isFainted() const;
+    bool isFullHP() const;
+    bool isFasterThan(const Pokemon &pokemon) const;
 
     Move& operator[](int);
     const Move& operator[](int) const;
 
-    friend std::ostream& operator<<(std::ostream &, const Pokemon &);
+    friend std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon);
 };
