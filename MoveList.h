@@ -4,10 +4,11 @@
 
 #pragma once
 
-#include "Move.h"
 #include <random>
 #include <iostream>
 #include <unistd.h>
+
+#include "Pokemon.h"
 
 // FIXME fix overridden function
 struct WaterShuriken : public Move {

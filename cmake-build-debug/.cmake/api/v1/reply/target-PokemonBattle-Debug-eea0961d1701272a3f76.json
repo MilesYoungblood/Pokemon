@@ -2,7 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "PokemonBattle"
+			"path" : "PokemonBattle.exe"
+		},
+		{
+			"path" : "PokemonBattle.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -35,13 +38,21 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-g  "
+					"fragment" : "-g -fdiagnostics-color=always"
 				},
 				{
 					"fragment" : "-std=gnu++14"
 				}
 			],
 			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "14"
+			},
 			"sourceIndexes" : 
 			[
 				0,
@@ -63,14 +74,18 @@
 				"role" : "flags"
 			},
 			{
-				"fragment" : "-rdynamic",
+				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
+				"role" : "libraries"
 			}
 		],
 		"language" : "CXX"
 	},
 	"name" : "PokemonBattle",
-	"nameOnDisk" : "PokemonBattle",
+	"nameOnDisk" : "PokemonBattle.exe",
 	"paths" : 
 	{
 		"build" : ".",

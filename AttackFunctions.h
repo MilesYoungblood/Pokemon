@@ -67,6 +67,7 @@ int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPok
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
     }
     int finalDamage = (initialDamage / 50) + 2;
+    std::cout << "Final Damage: " << finalDamage << std::endl;
     return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
                             criticalHit(crit));
 }
@@ -90,6 +91,7 @@ void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPoke
         }
         else if (getTypeEffective(attackingPokemon[move], defendingPokemon) >= 2.0) {
             std::cout << attackingPokemon[move] << " did " << damage << " damage! ";
+            sleep(1);
             std::cout << "It's super effective!\n";
             sleep(1);
             if (criticalHit) {
@@ -99,6 +101,7 @@ void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPoke
         }
         else if (getTypeEffective(attackingPokemon[move], defendingPokemon) <= 0.5) {
             std::cout << attackingPokemon[move] << " did " << damage << " damage! ";
+            sleep(1);
             std::cout << "It's not very effective...\n";
             sleep(1);
             if (criticalHit) {
@@ -107,7 +110,8 @@ void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPoke
             }
         }
         else {
-            std::cout << '\n';
+            std::cout << attackingPokemon[move] << " did " << damage << " damage!\n";
+            sleep(1);
         }
     }
     else {

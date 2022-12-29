@@ -9,6 +9,23 @@
 #include <random>
 #include <algorithm>
 
+#include <windows.h>
+
+int function() {
+    HANDLE handle = GetStdHandle(STD_INPUT_HANDLE);
+    DWORD events;
+    INPUT_RECORD buffer;
+    PeekConsoleInput(handle, &buffer, 1, &events);
+
+    if (events > 0) {
+        ReadConsoleInput(handle, &buffer, 1, &events);
+        return buffer.Event.KeyEvent.wVirtualKeyCode;
+    }
+    else {
+        return 0;
+    }
+}
+
 // returns true if character is a vowel
 bool isVowel(char ltr) {
     return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';

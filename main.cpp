@@ -15,37 +15,41 @@ int main() {
 
     while (true) { // enters the battle
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// USER SELECTIONS
-        int userMove;
+        int userMove{};
         std::cout << "\nTurn " << turn;
         displayHP(Trainer_1[0], Trainer_2[0]);
         displayChoices(Trainer_1[0]);
         char userChoice = getChar({"f", "b", "r", "p"});
 
-        if (userChoice == 'f') { // trainer chose fight
+        // trainer chose fight
+        if (userChoice == 'f') {
             displayMoves(Trainer_1[0]);
             userMove = getInt(0, Trainer_1[0].numMoves());
 
             if (userMove == 0) {
                 continue;
             }
-            else if (Trainer_1[0][userMove - 1].getPP() <= 0) { // if move chosen is out of PP...
+            // if move chosen is out of PP...
+            else if (Trainer_1[0][userMove - 1].getPP() <= 0) {
                 attackErrorMessage();
                 continue;
             }
         }
-
-        else if (userChoice == 'b') { // trainer chose bag
+        // trainer chose bag
+        else if (userChoice == 'b') {
             displayBag();
             int userItem = getInt(0, 4);
 
-            if (userItem == 1) { // trainer chose HP/PP items
+            // trainer chose HP/PP items
+            if (userItem == 1) {
                 displayItems(userRestoreItems);
                 userItem = getInt(0, static_cast<int>(userRestoreItems.size()));
 
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userRestoreItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                // if trainer has at least 1 of the item selected...
+                else if (userRestoreItems[userItem - 1].getQuantity() > 0) {
                     displayPokemon(Trainer_1);
                     int pokemon = getInt(0, Trainer_1.partySize());
 
@@ -53,7 +57,7 @@ int main() {
                         continue;
                     }
                     // if Pokémon selected doesn't have full HP, but also isn't fainted...
-                    else if (0 < Trainer_1[pokemon - 1].getHP() and Trainer_1[pokemon - 1].getHP() < Trainer_1[pokemon - 1].getMaxHp()) {
+                    else if (not Trainer_1[pokemon - 1].isFainted() and not Trainer_1[pokemon - 1].isFullHP()) {
                         // if item selected restores HP...
                         if (userRestoreItems[userItem - 1].getRestoreType() == "HP") {
                             useItem(userRestoreItems[userItem - 1]);
@@ -77,62 +81,76 @@ int main() {
                             }
                         }
                     }
-                    else { // Pokémon's HP is already full
-                        hpFullMessage(Trainer_1[pokemon - 1].getName());
+                    // Pokémon's HP is already full
+                    else if (Trainer_1[pokemon - 1].isFullHP()) {
+                        hpFullMessage(Trainer_1[pokemon - 1]);
+                        continue;
+                    }
+                    // Pokémon is fainted
+                    else if (Trainer_1[pokemon - 1].isFainted()) {
+                        hpEmptyMessage(Trainer_1[pokemon - 1]);
                         continue;
                     }
                 }
-                else { // trainer is out of selected item
+                // trainer is out of selected item
+                else {
                     itemErrorMessage(userRestoreItems[userItem - 1]);
                     continue;
                 }
             }
-
-            else if (userItem == 2) { // trainer chose status items
+            // trainer chose status items
+            else if (userItem == 2) {
                 displayItems(userStatusItems);
                 userItem = getInt(0, static_cast<int>(userStatusItems.size()));
 
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userStatusItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                // if trainer has at least 1 of the item selected...
+                else if (userStatusItems[userItem - 1].getQuantity() > 0) {
                     displayPokemon(Trainer_1);
                     int pokemon = getInt(0, Trainer_1.partySize());
 
                     if (pokemon == 0) {
                         continue;
                     }
-                    else if (Trainer_1[pokemon - 1].getHP() > 0) { // if Pokémon is not fainted...
-                        if (Trainer_1[pokemon - 1].getStatus() != "No status") { // if Pokémon has status condition...
+                    // if Pokémon is not fainted...
+                    else if (Trainer_1[pokemon - 1].getHP() > 0) {
+                        // if Pokémon has status condition...
+                        if (Trainer_1[pokemon - 1].getStatus() != "No status") {
                             useItem(userStatusItems[userItem - 1]);
                             useItemMessage(userStatusItems[userItem - 1].getName());
                             cure(Trainer_1[pokemon - 1], userStatusItems[userItem - 1]);
                             cureMessage(Trainer_1[pokemon - 1], userStatusItems[userItem - 1].getRestoreType());
                         }
-                        else { // Pokémon did not have a status condition
+                        // Pokémon did not have a status condition
+                        else {
                             useItem(userStatusItems[userItem - 1]);
                             noEffectMessage(userStatusItems[userItem - 1], Trainer_1[pokemon - 1]);
                         }
                     }
-                    else { // Pokémon is fainted
+                    // Pokémon is fainted
+                    else {
                         hpEmptyMessage(Trainer_1[pokemon - 1]);
                         continue;
                     }
                 }
-                else { // trainer is out of selected item
+                // trainer is out of selected item
+                else {
                     itemErrorMessage(userStatusItems[userItem - 1]);
                     continue;
                 }
             }
-
-            else if (userItem == 3) { // trainer chose Poké Balls
+            // trainer chose Poké Balls
+            else if (userItem == 3) {
                 displayItems(userPokeBalls);
                 userItem = getInt(0, static_cast<int>(userPokeBalls.size()));
 
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userPokeBalls[userItem - 1].getQuantity() > 0) { // if trainer has at least one of item selected...
+                // if trainer has at least one of item selected...
+                else if (userPokeBalls[userItem - 1].getQuantity() > 0) {
                     bool shakes[4];
                     useItem(userPokeBalls[userItem - 1]);
                     useItemMessage(userPokeBalls[userItem - 1].getName());
@@ -142,26 +160,30 @@ int main() {
                         break;
                     }
                 }
-                else { // trainer is out of selected item
+                // trainer is out of selected item
+                else {
                     itemErrorMessage(userPokeBalls[userItem - 1]);
                     continue;
                 }
             }
 
-            else if (userItem == 4) { // trainer chose battle items
+            // trainer chose battle items
+            else if (userItem == 4) {
                 displayItems(userBattleItems);
                 userItem = getInt(0, static_cast<int>(userBattleItems.size()));
 
                 if (userItem == 0) {
                     continue;
                 }
-                else if (userBattleItems[userItem - 1].getQuantity() > 0) { // if trainer has at least 1 of the item selected...
+                // if trainer has at least 1 of the item selected...
+                else if (userBattleItems[userItem - 1].getQuantity() > 0) {
                     bool limitReached = false;
                     useItem(userBattleItems[userItem - 1]);
                     useItemMessage(userBattleItems[userItem - 1].getName());
                     boostStat(userBattleItems[userItem - 1], Trainer_1[0], 1, limitReached);
                     boostMessage(Trainer_1[0], userBattleItems[userItem - 1].getStat(), 1, limitReached);
                 }
+                // trainer is out of selected item
                 else {
                     itemErrorMessage(userBattleItems[userItem - 1]);
                     continue;
@@ -201,7 +223,7 @@ int main() {
                 }
 
                 displayMoveSummary(Trainer_1[pokemon - 1][userMove - 1]);
-                userMove = getInt(0, 0);
+                __attribute__((unused)) int temp = getInt(0, 0);
 
                 continue;
             }
@@ -226,12 +248,7 @@ int main() {
             }
         }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// BATTLE PHASE
-        int opponentMove = generateInteger(0, 3);
-        while (Trainer_2[0][opponentMove].getPP() <= 0) { // re-selects opponent move if it's out of PP
-            opponentMove = generateInteger(0, 3);
-        }
-        battlePhase::fight(Trainer_1, Trainer_2, userMove, opponentMove, userChoice);
-
+        battlePhase::fight(Trainer_1, Trainer_2, userMove);
         ++turn;
     }
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// END OF BATTLE
