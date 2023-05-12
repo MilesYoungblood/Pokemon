@@ -81,6 +81,10 @@ std::string Move::getName() const {
     return name;
 }
 
+bool Move::canUse() const {
+    return pp > 0;
+}
+
 std::ostream& operator<<(std::ostream &out, const Move &move) {
     out << move.getName();
     return out;

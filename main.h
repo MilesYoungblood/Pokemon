@@ -82,6 +82,10 @@ void forceSwitchPrompt() {
     std::cout.flush();
 }
 
+bool run(const Pokemon &trainer_1, const Pokemon &trainer_2) {
+    return ((trainer_1.getBaseSpeed() * 32) / ((trainer_2.getBaseSpeed() / 4) % 256)) + 30 ;
+}
+
 bool run() {
     return generateInteger(0, 1) == 1;
 }
@@ -111,17 +115,17 @@ void switchOutMessage(const Trainer &t, int pokemonSwitched) {
 }
 
 void inBattleMessage(const Pokemon &pokemon) {
-    std::cout << pokemon << " is already in battle!" << std::endl;
+    std::cerr << pokemon << " is already in battle!" << std::endl;
     sleep(2);
 }
 
 void hpEmptyMessage(const Pokemon &pokemon) {
-    std::cout << pokemon << "'s HP is empty!\n";
+    std::cerr << pokemon << "'s HP is empty!\n";
     sleep(2);
 }
 
 void hpFullMessage(const Pokemon &pokemon) {
-    std::cout << pokemon << "'s HP is full!\n";
+    std::cerr << pokemon << "'s HP is full!\n";
     sleep(2);
 }
 
@@ -324,7 +328,7 @@ public:
     static void fight(Trainer &user, Trainer &opponent, int userMove) {
         int opponentMove = generateInteger(0, 3);
         // re-selects opponent move if it's out of PP
-        while (opponent[0][opponentMove].getPP() <= 0) {
+        while (not opponent[0][opponentMove].canUse()) {
             opponentMove = generateInteger(0, 3);
         }
 

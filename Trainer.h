@@ -9,7 +9,8 @@
 
 class Trainer {
 private:
-    enum {MAX_POKEMON = 6, MAX_ITEMS = 100};
+    const static int MAX_POKEMON = 6;
+    const static int MAX_ITEMS = 100;
     int faintCount;
 
     std::string name;

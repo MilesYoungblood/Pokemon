@@ -10,7 +10,8 @@
 
 class Pokemon {
 private:
-    enum {MAX_NUM_MOVES = 4, MAX_NUM_TYPES = 2};
+    const static int MAX_NUM_MOVES = 4;
+    const static int MAX_NUM_TYPES = 2;
 
     int maxHp;
     int currentHp;

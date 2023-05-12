@@ -10,7 +10,7 @@
 void displayMoves(const Pokemon &pokemon) {
     std::cout << "Choose a move:\n";
     for (int i = 0; i < pokemon.numMoves(); ++i) {
-        std::cout << '\t' << pokemon[i].getName() << std::string(15 - pokemon[i].getName().length(), ' ')
+        std::cout << '\t' << pokemon[i] << std::string(15 - pokemon[i].getName().length(), ' ')
                   << " (PP: " << pokemon[i].getPP() << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
                   << '/' << pokemon[i].getMaxPP() << std::string(2 - std::to_string(pokemon[i].getMaxPP()).length(), ' ')
                   << ") -> " << i + 1 << '\n';
@@ -67,7 +67,8 @@ int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPok
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
     }
     int finalDamage = (initialDamage / 50) + 2;
-    std::cout << "Final Damage: " << finalDamage << std::endl;
+    //FIXME recalculate damage
+    //std::cout << "Final Damage: " << finalDamage << std::endl;
     return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
                             criticalHit(crit));
 }
@@ -122,7 +123,7 @@ void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPoke
 }
 
 void attackErrorMessage() {
-    std::cout << "That move is out of PP. Please select another move.\n";
+    std::cerr << "That move is out of PP. Please select another move.\n";
     sleep(2);
 }
 

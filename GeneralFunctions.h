@@ -8,23 +8,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
-
-#include <windows.h>
-
-int function() {
-    HANDLE handle = GetStdHandle(STD_INPUT_HANDLE);
-    DWORD events;
-    INPUT_RECORD buffer;
-    PeekConsoleInput(handle, &buffer, 1, &events);
-
-    if (events > 0) {
-        ReadConsoleInput(handle, &buffer, 1, &events);
-        return buffer.Event.KeyEvent.wVirtualKeyCode;
-    }
-    else {
-        return 0;
-    }
-}
+#include <cstdint>
 
 // returns true if character is a vowel
 bool isVowel(char ltr) {
@@ -54,7 +38,7 @@ char getChar(const std::vector<std::string> &options) {
 int getInt(int lower, int upper) {
     while (true) {
         std::string userInt;
-        getline(std::cin, userInt, '\n');
+        std::getline(std::cin, userInt, '\n');
 
         if (isNumber(userInt) and lower <= std::stoi(userInt) and std::stoi(userInt) <= upper) {
             return std::stoi(userInt);
@@ -62,11 +46,22 @@ int getInt(int lower, int upper) {
     }
 }
 
+uint8_t getByte(uint8_t lower, uint8_t upper) {
+    while (true) {
+        std::string userByte;
+        std::getline(std::cin, userByte, '\n');
+
+        if (isNumber(userByte) and lower < static_cast<uint8_t>(userByte[0]) and static_cast<uint8_t>(userByte[0])) {
+            return static_cast<uint8_t>(userByte[0]);
+        }
+    }
+}
+
 // returns a random integer from a range
-int generateInteger(int lower, int upper) {
+int generateInteger(int from, int to) {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(lower, upper);
+    std::uniform_int_distribution<int> dist(from, to);
 
     return dist(mt);
 }
