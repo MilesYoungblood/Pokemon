@@ -7,6 +7,10 @@
 				{
 					"build" : ".",
 					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.22"
+					},
 					"projectIndex" : 0,
 					"source" : ".",
 					"targetIndexes" : 
@@ -45,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug",
-		"source" : "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle"
+		"build" : "C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug",
+		"source" : "C:/Users/Miles/Documents/GitHub/PokemonBattle"
 	},
 	"version" : 
 	{

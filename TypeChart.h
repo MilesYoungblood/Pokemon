@@ -8,61 +8,60 @@
 #include "SpecialTypes.h"
 
 float getTypeEffective(const Move& move, const Pokemon& pokemon) {
-    if (move.getType() == "normal") {
+    if (move.getType() == "normal")
         return checkNormal(pokemon);
-    }
-    else if (move.getType() == "fire") {
+
+    else if (move.getType() == "fire")
         return checkFire(pokemon);
-    }
-    else if (move.getType() == "water") {
+
+    else if (move.getType() == "water")
         return checkWater(pokemon);
-    }
-    else if (move.getType() == "electric") {
+
+    else if (move.getType() == "electric")
         return checkElectric(pokemon);
-    }
-    else if (move.getType() == "grass") {
+
+    else if (move.getType() == "grass")
         return checkGrass(pokemon);
-    }
-    else if (move.getType() == "ice") {
+
+    else if (move.getType() == "ice")
         return checkIce(pokemon);
-    }
-    else if (move.getType() == "fighting") {
+
+    else if (move.getType() == "fighting")
         return checkFighting(pokemon);
-    }
-    else if (move.getType() == "poison") {
+
+    else if (move.getType() == "poison")
         return checkPoison(pokemon);
-    }
-    else if (move.getType() == "ground") {
+
+    else if (move.getType() == "ground")
         return checkGround(pokemon);
-    }
-    else if (move.getType() == "flying") {
+
+    else if (move.getType() == "flying")
         return checkFlying(pokemon);
-    }
-    else if (move.getType() == "psychic") {
+
+    else if (move.getType() == "psychic")
         return checkPsychic(pokemon);
-    }
-    else if (move.getType() == "bug") {
+
+    else if (move.getType() == "bug")
         return checkBug(pokemon);
-    }
-    else if (move.getType() == "rock") {
+
+    else if (move.getType() == "rock")
         return checkRock(pokemon);
-    }
-    else if (move.getType() == "ghost") {
+
+    else if (move.getType() == "ghost")
         return checkGhost(pokemon);
-    }
-    else if (move.getType() == "dragon") {
+
+    else if (move.getType() == "dragon")
         return checkDragon(pokemon);
-    }
-    else if (move.getType() == "dark") {
+
+    else if (move.getType() == "dark")
         return checkDark(pokemon);
-    }
-    else if (move.getType() == "steel") {
+
+    else if (move.getType() == "steel")
         return checkSteel(pokemon);
-    }
-    else if (move.getType() == "fairy") {
+
+    else if (move.getType() == "fairy")
         return checkFairy(pokemon);
-    }
-    else {
+
+    else
         return 1.0f;
-    }
 }

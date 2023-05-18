@@ -27,12 +27,14 @@ private:
     int baseDefense;
     int baseSpDefense;
     int baseSpeed;
-    int level;
+    unsigned int level;
 
     std::string name;
     std::string status;
     std::array<std::string, MAX_NUM_TYPES> types;
-    std::vector<Move> moveSet;
+    std::array<Move, MAX_NUM_MOVES> moveSet;
+    
+    int moveCounter;
 
 public:
     Pokemon();

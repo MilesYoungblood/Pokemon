@@ -12,9 +12,10 @@ private:
     const static int MAX_POKEMON = 6;
     const static int MAX_ITEMS = 100;
     int faintCount;
+    int numPokemon;
 
     std::string name;
-    std::vector<Pokemon> party;
+    std::array<Pokemon, MAX_POKEMON> party;
     std::array<Item, MAX_ITEMS> items;
 
 public:
@@ -30,5 +31,5 @@ public:
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
-    bool canFight();
+    bool canFight() const;
 };

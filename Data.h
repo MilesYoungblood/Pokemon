@@ -48,3 +48,5 @@ extern std::vector<RestoreItems> userRestoreItems;
 extern std::vector<StatusItems> userStatusItems;
 extern std::vector<PokeBalls> userPokeBalls;
 extern std::vector<BattleItems> userBattleItems;
+
+extern size_t turn;

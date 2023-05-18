@@ -57,3 +57,5 @@ std::vector<RestoreItems> userRestoreItems = {Potion, Ether};
 std::vector<StatusItems> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal, Antidote, Awakening};
 std::vector<PokeBalls> userPokeBalls = {PokeBall, GreatBall, UltraBall};
 std::vector<BattleItems> userBattleItems = {XAttack, XSpeed};
+
+size_t turn = 1;

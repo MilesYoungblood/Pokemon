@@ -5,185 +5,166 @@
 #include "Pokemon.h"
 
 Pokemon::Pokemon() {
-    maxHp = 300;
-    currentHp = 300;
-    attack = 1;
-    spAttack = 1;
-    defense = 1;
-    spDefense = 1;
-    speed = 1;
-    accuracy = 1;
+    this->maxHp = 300;
+    this->currentHp = 300;
+    this->attack = 1;
+    this->spAttack = 1;
+    this->defense = 1;
+    this->spDefense = 1;
+    this->speed = 1;
+    this->accuracy = 1;
 
-    baseAttack = 100;
-    baseSpAttack = 100;
-    baseDefense = 100;
-    baseSpDefense = 100;
-    baseSpeed = 100;
+    this->baseAttack = 100;
+    this->baseSpAttack = 100;
+    this->baseDefense = 100;
+    this->baseSpDefense = 100;
+    this->baseSpeed = 100;
 
-    name = "No name";
-    types[0] = "No type";
-    types[1] = "No type";
-    status = "No status";
+    this->name = "No name";
+    this->types[0] = "No type";
+    this->types[1] = "No type";
+    this->status = "No status";
 
-    level = 1;
+    this->level = 1;
+    this->moveCounter = 0;
 }
 
 Pokemon::Pokemon(const Pokemon &pokemonToCopy) {
-    maxHp = pokemonToCopy.maxHp;
-    currentHp = pokemonToCopy.currentHp;
-    attack = pokemonToCopy.attack;
-    spAttack = pokemonToCopy.spAttack;
-    defense = pokemonToCopy.defense;
-    spDefense = pokemonToCopy.spDefense;
-    speed = pokemonToCopy.speed;
-    accuracy = pokemonToCopy.accuracy;
+    this->maxHp = pokemonToCopy.maxHp;
+    this->currentHp = pokemonToCopy.currentHp;
+    this->attack = pokemonToCopy.attack;
+    this->spAttack = pokemonToCopy.spAttack;
+    this->defense = pokemonToCopy.defense;
+    this->spDefense = pokemonToCopy.spDefense;
+    this->speed = pokemonToCopy.speed;
+    this->accuracy = pokemonToCopy.accuracy;
 
-    baseAttack = pokemonToCopy.baseAttack;
-    baseSpAttack = pokemonToCopy.baseSpAttack;
-    baseDefense = pokemonToCopy.baseDefense;
-    baseSpDefense = pokemonToCopy.baseSpDefense;
-    baseSpeed = pokemonToCopy.baseSpeed;
+    this->baseAttack = pokemonToCopy.baseAttack;
+    this->baseSpAttack = pokemonToCopy.baseSpAttack;
+    this->baseDefense = pokemonToCopy.baseDefense;
+    this->baseSpDefense = pokemonToCopy.baseSpDefense;
+    this->baseSpeed = pokemonToCopy.baseSpeed;
 
-    name = pokemonToCopy.name;
-    types[0] = pokemonToCopy.types[0];
-    types[1] = pokemonToCopy.types[1];
-    status = pokemonToCopy.status;
+    this->name = pokemonToCopy.name;
+    this->types[0] = pokemonToCopy.types[0];
+    this->types[1] = pokemonToCopy.types[1];
+    this->status = pokemonToCopy.status;
 
-    level = pokemonToCopy.level;
+    this->level = pokemonToCopy.level;
+    this->moveCounter = 0;
 }
 
 Pokemon::Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
-    maxHp = hp;
-    currentHp = hp;
-    attack = 1;
-    spAttack = 1;
-    defense = 1;
-    spDefense = 1;
-    speed = 1;
-    accuracy = 1;
+    this->maxHp = hp;
+    this->currentHp = hp;
+    this->attack = 1;
+    this->spAttack = 1;
+    this->defense = 1;
+    this->spDefense = 1;
+    this->speed = 1;
+    this->accuracy = 1;
 
-    baseAttack = bAttack;
-    baseSpAttack = bSpAttack;
-    baseDefense = bDefense;
-    baseSpDefense = bSpDefense;
-    baseSpeed = bSpeed;
+    this->baseAttack = bAttack;
+    this->baseSpAttack = bSpAttack;
+    this->baseDefense = bDefense;
+    this->baseSpDefense = bSpDefense;
+    this->baseSpeed = bSpeed;
 
     this->name = name;
-    types[0] = type;
-    types[1] = "No type";
-    status = "No status";
+    this->types[0] = type;
+    this->types[1] = "No type";
+    this->status = "No status";
 
     this->level = level;
+    this->moveCounter = 0;
 }
 
 Pokemon::Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
-    maxHp = hp;
-    currentHp = hp;
-    attack = 1;
-    spAttack = 1;
-    defense = 1;
-    spDefense = 1;
-    speed = 1;
-    accuracy = 1;
+    this->maxHp = hp;
+    this->currentHp = hp;
+    this->attack = 1;
+    this->spAttack = 1;
+    this->defense = 1;
+    this->spDefense = 1;
+    this->speed = 1;
+    this->accuracy = 1;
 
-    baseAttack = bAttack;
-    baseSpAttack = bSpAttack;
-    baseDefense = bDefense;
-    baseSpDefense = bSpDefense;
-    baseSpeed = bSpeed;
+    this->baseAttack = bAttack;
+    this->baseSpAttack = bSpAttack;
+    this->baseDefense = bDefense;
+    this->baseSpDefense = bSpDefense;
+    this->baseSpeed = bSpeed;
 
     this->name = name;
-    types[0] = type1;
-    types[1] = type2;
-    status = "No status";
+    this->types[0] = type1;
+    this->types[1] = type2;
+    this->status = "No status";
 
     this->level = level;
+    this->moveCounter = 0;
 }
 
-int Pokemon::numMoves() const {
-    return static_cast<int>(moveSet.size());
-}
+int Pokemon::numMoves() const { return this->moveCounter; }
 
-void Pokemon::setHP(int newHp) { currentHp = newHp; }
-void Pokemon::setAttack(int newAttack) { attack = newAttack; }
-void Pokemon::setSpAttack(int newSpAttack) { spAttack = newSpAttack; }
-void Pokemon::setDefense(int newDefense) { defense = newDefense; }
-void Pokemon::setSpDefense(int newSpDefense) { spDefense = newSpDefense; }
-void Pokemon::setSpeed(int newSpeed) { speed = newSpeed; }
-void Pokemon::setAccuracy(int newAccuracy) { accuracy = newAccuracy; }
+void Pokemon::setHP(int newHp) { this->currentHp = newHp; }
+void Pokemon::setAttack(int newAttack) { this->attack = newAttack; }
+void Pokemon::setSpAttack(int newSpAttack) { this->spAttack = newSpAttack; }
+void Pokemon::setDefense(int newDefense) { this->defense = newDefense; }
+void Pokemon::setSpDefense(int newSpDefense) { this->spDefense = newSpDefense; }
+void Pokemon::setSpeed(int newSpeed) { this->speed = newSpeed; }
+void Pokemon::setAccuracy(int newAccuracy) { this->accuracy = newAccuracy; }
 
-int Pokemon::getMaxHp() const { return maxHp; }
-int Pokemon::getHP() const { return currentHp; }
-int Pokemon::getAttack() const { return attack; }
-int Pokemon::getSpAttack() const { return spAttack; }
-int Pokemon::getDefense() const { return defense; }
-int Pokemon::getSpDefense() const { return spDefense; }
-int Pokemon::getSpeed() const { return speed; }
-int Pokemon::getAccuracy() const { return accuracy; }
+int Pokemon::getMaxHp() const { return this->maxHp; }
+int Pokemon::getHP() const { return this->currentHp; }
+int Pokemon::getAttack() const { return this->attack; }
+int Pokemon::getSpAttack() const { return this->spAttack; }
+int Pokemon::getDefense() const { return this->defense; }
+int Pokemon::getSpDefense() const { return this->spDefense; }
+int Pokemon::getSpeed() const { return this->speed; }
+int Pokemon::getAccuracy() const { return this->accuracy; }
 
-int Pokemon::getBaseAttack() const { return baseAttack; }
-int Pokemon::getBaseSpAttack() const { return baseSpAttack; }
-int Pokemon::getBaseDefense() const { return baseDefense; }
-int Pokemon::getBaseSpDefense() const { return baseSpDefense; }
-int Pokemon::getBaseSpeed() const { return baseSpeed; }
+int Pokemon::getBaseAttack() const { return this->baseAttack; }
+int Pokemon::getBaseSpAttack() const { return this->baseSpAttack; }
+int Pokemon::getBaseDefense() const { return this->baseDefense; }
+int Pokemon::getBaseSpDefense() const { return this->baseSpDefense; }
+int Pokemon::getBaseSpeed() const { return this->baseSpeed; }
 
-std::string Pokemon::getName() const {
-    return name;
-}
+std::string Pokemon::getName() const { return this->name; }
 
-std::string Pokemon::getType() const {
-    return types[0];
-}
-std::string Pokemon::getType(int type) const {
-    return types[type];
-}
+std::string Pokemon::getType() const { return this->types[0]; }
+std::string Pokemon::getType(int type) const { return this->types[type]; }
 
-void Pokemon::setStatus(const std::string &newStatus) {
-    status = newStatus;
-}
-std::string Pokemon::getStatus() const {
-    return status;
-}
+void Pokemon::setStatus(const std::string &newStatus) { this->status = newStatus; }
+std::string Pokemon::getStatus() const { return this->status; }
 
 void Pokemon::setMoves(const std::initializer_list<Move> &moves) {
-    moveSet.clear();
-    for (const auto &move : moves) {
-        if (moveSet.size() < MAX_NUM_MOVES) {
-            moveSet.push_back(move);
-        }
+    // clear the current move list
+    for (Move &move : this->moveSet)
+        move = {};
+
+    this->moveCounter = 0;
+    for (const Move &move : moves) {
+        if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
+            break;
+
         else {
-            return;
+            this->moveSet[this->moveCounter] = move;
+            ++this->moveCounter;
         }
     }
 }
 
-int Pokemon::getLevel() const {
-    return level;
-}
+int Pokemon::getLevel() const { return this->level; }
 
-void Pokemon::faint() {
-    currentHp = 0;
-}
+void Pokemon::faint() { this->currentHp = 0; }
 
-bool Pokemon::isFainted() const {
-    return currentHp <= 0;
-}
+bool Pokemon::isFainted() const { return this->currentHp <= 0; }
+bool Pokemon::isFullHP() const { return this->currentHp == this->maxHp; }
 
-bool Pokemon::isFullHP() const {
-    return currentHp == maxHp;
-}
+bool Pokemon::isFasterThan(const Pokemon &pokemon) const { return this->baseSpeed > pokemon.baseSpeed; }
 
-bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
-    return this->baseSpeed > pokemon.baseSpeed;
-}
-
-Move& Pokemon::operator[](int spot) {
-    return moveSet[spot];
-}
-
-const Move& Pokemon::operator[](int spot) const {
-    return moveSet[spot];
-}
+Move& Pokemon::operator[](int spot) { return this->moveSet[spot]; }
+const Move& Pokemon::operator[](int spot) const { return this->moveSet[spot]; }
 
 std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
     out << pokemon.getName();

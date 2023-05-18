@@ -8,7 +8,7 @@
 #include "GeneralFunctions.h"
 
 void displayMoves(const Pokemon &pokemon) {
-    std::cout << "Choose a move:\n";
+    printMessage("Choose a move:\n");
     for (int i = 0; i < pokemon.numMoves(); ++i) {
         std::cout << '\t' << pokemon[i] << std::string(15 - pokemon[i].getName().length(), ' ')
                   << " (PP: " << pokemon[i].getPP() << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
@@ -82,48 +82,48 @@ void attack(Pokemon &defendingPokemon, Move &move, int damage) {
 }
 
 void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int move, int damage, bool criticalHit) {
-    std::cout << attackingPokemon << " used " << attackingPokemon[move] << "! ";
+    printMessage(attackingPokemon.getName() + " used " + attackingPokemon[move].getName() + "! ");
     sleep(1);
     // damage will be negative if the attack misses
     if (damage > 0) {
         if (getTypeEffective(attackingPokemon[move], defendingPokemon) == 0.0) {
-            std::cout << "It doesn't affect " << defendingPokemon << "...\n";
+            printMessage("It doesn't affect " + defendingPokemon.getName() + "...\n");
             sleep(1);
         }
         else if (getTypeEffective(attackingPokemon[move], defendingPokemon) >= 2.0) {
-            std::cout << attackingPokemon[move] << " did " << damage << " damage! ";
+            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage! ");
             sleep(1);
-            std::cout << "It's super effective!\n";
+            printMessage("It's super effective!\n");
             sleep(1);
             if (criticalHit) {
-                std::cout << "A critical hit! ";
+                printMessage("A critical hit! ");
                 sleep(1);
             }
         }
         else if (getTypeEffective(attackingPokemon[move], defendingPokemon) <= 0.5) {
-            std::cout << attackingPokemon[move] << " did " << damage << " damage! ";
+            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage! ");
             sleep(1);
-            std::cout << "It's not very effective...\n";
+            printMessage("It's not very effective...\n");
             sleep(1);
             if (criticalHit) {
-                std::cout << "A critical hit! ";
+                printMessage("A critical hit! ");
                 sleep(1);
             }
         }
         else {
-            std::cout << attackingPokemon[move] << " did " << damage << " damage!\n";
+            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage!\n");
             sleep(1);
         }
     }
     else {
-        std::cout << defendingPokemon << " avoided the attack!\n";
+        printMessage(defendingPokemon.getName() + " avoided the attack!\n");
         sleep(1);
     }
     std::cout.flush();
 }
 
 void attackErrorMessage() {
-    std::cerr << "That move is out of PP. Please select another move.\n";
+    printMessage("That move is out of PP. Please select another move.\n");
     sleep(2);
 }
 
@@ -137,12 +137,12 @@ void takeDamage(Trainer t, int damage) {
 
 namespace status {
     void takeDamageMessage(const Pokemon& pokemon) {
-        if (pokemon.getStatus() == "burn") {
-            std::cout << pokemon << " took damage from it's burn!\n";
-        }
-        else if (pokemon.getStatus() == "poison") {
-            std::cout << pokemon << " took damage from it's poisoning!\n";
-        }
+        if (pokemon.getStatus() == "burn")
+            printMessage(pokemon.getName() + "took damage from it's burn!\n");
+
+        else if (pokemon.getStatus() == "poison")
+            printMessage(pokemon.getName() + " took damage from it's poisoning!\n");
+
         sleep(1);
     }
 }
