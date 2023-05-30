@@ -3,5 +3,32 @@ project(PokemonBattle)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(PokemonBattle main.cpp Pokemon.h Pokemon.cpp main.h Move.h Move.cpp Item.cpp Item.h AttackFunctions.h
-               ItemFunctions.h MoveList.h TypeChart.h PhysicalTypes.h SpecialTypes.h Trainer.cpp Trainer.h GeneralFunctions.h Data.cpp Data.h)
+add_executable(PokemonBattle
+        src/main.cpp
+        src/Classes/Pokemon/Pokemon.h
+        src/Classes/Pokemon/Pokemon.cpp
+        src/Functions/GeneralFunctions.h
+        src/Classes/Move/Move.h
+        src/Classes/Move/Move.cpp
+        src/Classes/Item/Item.cpp
+        src/Classes/Item/Item.h
+        src/Functions/AttackFunctions.h
+        src/Functions/ItemFunctions.h
+        src/Data/MoveList.h
+        src/Functions/TypeCalculations/TypeChart.h
+        src/Functions/TypeCalculations/PhysicalTypes.h
+        src/Functions/TypeCalculations/SpecialTypes.h
+        src/Classes/Trainer/Trainer.cpp
+        src/Classes/Trainer/Trainer.h
+        src/main.h
+        src/Data/Data.cpp
+        src/Data/Data.h
+        src/Classes/Item/RestoreItem.cpp
+        src/Classes/Item/RestoreItem.h
+        src/Classes/Item/StatusItem.cpp
+        src/Classes/Item/StatusItem.h
+        src/Classes/Item/Pokeball.h
+        src/Classes/Item/Pokeball.cpp
+        src/Classes/Item/BattleItem.cpp
+        src/Classes/Item/BattleItem.h
+        src/Functions/CoreFunctions.h)
