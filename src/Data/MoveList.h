@@ -8,7 +8,7 @@
 #include <iostream>
 #include <unistd.h>
 
-#include "../../Classes/Pokemon/Pokemon.h"
+#include "../Classes/Pokemon/Pokemon.h"
 
 // FIXME fix overridden function
 struct WaterShuriken : public Move {

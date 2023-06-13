@@ -61,6 +61,7 @@ void displayEmptyHPBar(size_t t) {
 }
 
 void displayHPBar(const Pokemon &userPokemon, const Pokemon &opposingPokemon, size_t t) {
+    system("cls");
     std::cout << "Turn " << t << '\n';
     std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n"; // top layer
 

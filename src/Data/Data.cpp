@@ -6,7 +6,7 @@
 
 /// Moves
 
-const Move WShuriken("Water Shuriken", "water", "special", 20, 15, 100);
+const WaterShuriken WShuriken;
 const Move DarkPulse("Dark Pulse", "dark", "special", 15, 80, 100);
 const Move IceBeam("Ice Beam", "ice", "special", 10, 90, 100);
 const Move Extrasensory("Extrasensory", "psychic", "special", 15, 90, 100);

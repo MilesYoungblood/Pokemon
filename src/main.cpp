@@ -1,19 +1,27 @@
 #include "Functions/CoreFunctions.h"
 
-int main() {
-    Trainer_1[0].setMoves({WShuriken, DarkPulse, IceBeam, Extrasensory});
-    Trainer_1[1].setMoves({Flamethrower, AirSlash, DragonPulse, SolarBeam});
-    Trainer_1[2].setMoves({DarkPulse, DragonPulse, Flamethrower, FocusBlast});
+struct Vec3 {
+    double x, y, z;
+};
 
-    Trainer_2[0].setMoves({Thunder, QuickAttack, IronTail, VoltTackle});
-    Trainer_2[1].setMoves({AuraSphere, FlashCannon, DragonPulse, DarkPulse});
+struct Point : public Vec3 {
+    int control;
+    Vec3 copy_as_vec3() { return Vec3 {x, y, z}; }
+};
+
+int main() {
+    Trainer_1[0].setMoves({ WShuriken, DarkPulse, IceBeam, Extrasensory });
+    Trainer_1[1].setMoves({ Flamethrower, AirSlash, DragonPulse, SolarBeam });
+    Trainer_1[2].setMoves({ DarkPulse, DragonPulse, Flamethrower, FocusBlast });
+
+    Trainer_2[0].setMoves({ Thunder, QuickAttack, IronTail, VoltTackle });
+    Trainer_2[1].setMoves({ AuraSphere, FlashCannon, DragonPulse, DarkPulse });
 
     displayEmptyHPBar(turn);
 
     introMessage(Trainer_1[0], Trainer_2[0]);
 
     while (true) { // enters the battle
-        system("cls");
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
         displayChoices(Trainer_1[0]);
 
@@ -34,10 +42,7 @@ int main() {
                 selectionPhase::choosePokemon(cancel);
         }
  
-        if (not cancel) {
-            system("cls");
-            displayHPBar(Trainer_1[0], Trainer_2[0], turn);
+        if (not cancel)
             battlePhase::fight(Trainer_1, Trainer_2, userMove, turn);
-        }
     }
 }

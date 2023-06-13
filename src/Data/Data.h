@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../Classes/Trainer/Trainer.h"
+#include "MoveList.h"
 
 extern Pokemon Greninja;
 extern Pokemon Charizard;
@@ -12,7 +13,7 @@ extern Pokemon Hydreigon;
 extern Pokemon Pikachu;
 extern Pokemon Lucario;
 
-const extern Move WShuriken;
+const extern WaterShuriken WShuriken;
 const extern Move DarkPulse;
 const extern Move IceBeam;
 const extern Move Extrasensory;

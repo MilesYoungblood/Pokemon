@@ -217,8 +217,8 @@ private:
             isUser ? SwitchOut(trainer, true) : SwitchOut(trainer, false);
     }
 
-    // This function commences attacking of each Pokemon and takes into account who is faster.
-    // If a Pokemon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
+    // This function commences attacking of each Pokémon and takes into account who is faster.
+    // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
     static void PreStatus(Trainer &user, Trainer &opponent, int userMove, int opponentMove, bool isUserFaster) {
         bool skip = false;
         if (isUserFaster) {
@@ -235,7 +235,7 @@ private:
         }
     }
 
-    // If a Pokemon is inflicted with a post-move status condition (burn, poison), it will take damage based on max HP.
+    // If a Pokémon is inflicted with a post-move status condition (burn, poison), it will take damage based on max HP.
     static void PostStatus(Trainer &user, Trainer &opponent, bool isUserFaster) {
         if (isUserFaster) {
             // if Pokémon is inflicted with a post-move status condition...
@@ -259,6 +259,7 @@ private:
 
 public:
     static void fight(Trainer &user, Trainer &opponent, int userMove, size_t &turn) {
+        displayHPBar(user[0], opponent[0], turn);
         int opponentMove = generateInteger(0, opponent[0].numMoves() - 1);
         // re-selects opponent move if it's out of PP
         while (not opponent[0][opponentMove].canUse())
