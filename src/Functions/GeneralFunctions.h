@@ -50,7 +50,7 @@ void displayPokemon(const Trainer &t) {
     std::cout.flush();
 }
 
-void displayEmptyHPBar(size_t t) {
+void displayHPBar(size_t t) {
     std::cout << "Turn " << t << '\n';
     for (int i = 0; i < 2; ++i) {
         std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n";

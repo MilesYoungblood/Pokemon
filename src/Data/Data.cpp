@@ -6,29 +6,29 @@
 
 /// Moves
 
-const WaterShuriken WShuriken;
-const Move DarkPulse("Dark Pulse", "dark", "special", 15, 80, 100);
-const Move IceBeam("Ice Beam", "ice", "special", 10, 90, 100);
-const Move Extrasensory("Extrasensory", "psychic", "special", 15, 90, 100);
-const Move Flamethrower("Flamethrower", "fire", "special", 15, 90, 100);
-const Move AirSlash("Air Slash", "flying", "special", 15, 75, 95);
-const Move DragonPulse("Dragon Pulse", "dragon", "special", 10, 85, 100);
-const Move SolarBeam("Solar Beam", "grass", "special", 10, 120, 100);
-const Move FocusBlast("Focus Blast", "fighting", "special", 5, 120, 70);
-const Move Thunder("Thunder", "electric", "special", 10, 110, 70);
-const Move QuickAttack("Quick Attack", "normal", "physical", 30, 40, 100);
-const Move IronTail("Iron Tail", "steel", "physical", 15, 100, 75);
-const Move VoltTackle("Volt Tackle", "electric", "physical", 15, 120, 100);
-const Move AuraSphere("Aura Sphere", "fighting", "special", 20, 80, 100);
-const Move FlashCannon("Flash Cannon", "steel", "special", 10, 80, 100);
+WaterShuriken WShuriken;
+Move DarkPulse("Dark Pulse", "dark", "special", 15, 80, 100);
+Move IceBeam("Ice Beam", "ice", "special", 10, 90, 100);
+Move Extrasensory("Extrasensory", "psychic", "special", 15, 90, 100);
+Move Flamethrower("Flamethrower", "fire", "special", 15, 90, 100);
+Move AirSlash("Air Slash", "flying", "special", 15, 75, 95);
+Move DragonPulse("Dragon Pulse", "dragon", "special", 10, 85, 100);
+Move SolarBeam("Solar Beam", "grass", "special", 10, 120, 100);
+Move FocusBlast("Focus Blast", "fighting", "special", 5, 120, 70);
+Move Thunder("Thunder", "electric", "special", 10, 110, 70);
+Move QuickAttack("Quick Attack", "normal", "physical", 30, 40, 100);
+Move IronTail("Iron Tail", "steel", "physical", 15, 100, 75);
+Move VoltTackle("Volt Tackle", "electric", "physical", 15, 120, 100);
+Move AuraSphere("Aura Sphere", "fighting", "special", 20, 80, 100);
+Move FlashCannon("Flash Cannon", "steel", "special", 10, 80, 100);
 
 /// Pokemon
 
-Pokemon Greninja("Greninja", "water", "dark", 50, 300, 95, 67, 103, 71, 122, {WShuriken, DarkPulse, IceBeam, Extrasensory});
-Pokemon Charizard("Charizard", "fire", "flying", 50, 300, 84, 78, 109, 85, 100, {Flamethrower, AirSlash, DragonPulse, SolarBeam});
-Pokemon Hydreigon("Hydreigon", "dark", "dragon", 50, 300, 105, 90, 125, 90, 98, {DarkPulse, DragonPulse, Flamethrower, FocusBlast});
-Pokemon Pikachu("Pikachu", "electric", 50, 300, 55, 40, 50, 50, 90, {Thunder, QuickAttack, IronTail, VoltTackle});
-Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70, 90, {AuraSphere, FlashCannon, DragonPulse, DarkPulse});
+Pokemon Greninja("Greninja", "water", "dark", 50, 300, 95, 67, 103, 71, 122);
+Pokemon Charizard("Charizard", "fire", "flying", 50, 300, 84, 78, 109, 85, 100);
+Pokemon Hydreigon("Hydreigon", "dark", "dragon", 50, 300, 105, 90, 125, 90, 98);
+Pokemon Pikachu("Pikachu", "electric", 50, 300, 55, 40, 50, 50, 90);
+Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70, 90);
 
 /// Trainers
 

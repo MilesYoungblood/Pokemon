@@ -32,15 +32,15 @@ private:
     std::string name;
     std::string status;
     std::array<std::string, MAX_NUM_TYPES> types;
-    std::array<Move, MAX_NUM_MOVES> moveSet;
+    std::array<Move*, MAX_NUM_MOVES> moveSet;
     
     int moveCounter;
 
 public:
     Pokemon();
     Pokemon(const Pokemon &pokemonToCopy);
-    Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move> &move_set);
-    Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move> &move_set);
+    Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     Pokemon& operator=(const Pokemon& pokemonToCopy);
 
     int numMoves() const;
@@ -75,7 +75,7 @@ public:
     void setStatus(const std::string &newStatus);
     std::string getStatus() const;
 
-    void setMoves(const std::initializer_list<Move> &moves);
+    void setMoves(const std::initializer_list<Move*> &moves);
 
     int getLevel() const;
 

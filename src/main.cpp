@@ -1,23 +1,14 @@
 #include "Functions/CoreFunctions.h"
 
-struct Vec3 {
-    double x, y, z;
-};
-
-struct Point : public Vec3 {
-    int control;
-    Vec3 copy_as_vec3() { return Vec3 {x, y, z}; }
-};
-
 int main() {
-    Trainer_1[0].setMoves({ WShuriken, DarkPulse, IceBeam, Extrasensory });
-    Trainer_1[1].setMoves({ Flamethrower, AirSlash, DragonPulse, SolarBeam });
-    Trainer_1[2].setMoves({ DarkPulse, DragonPulse, Flamethrower, FocusBlast });
+    Trainer_1[0].setMoves({ &WShuriken, &DarkPulse, &IceBeam, &Extrasensory });
+    Trainer_1[1].setMoves({ &Flamethrower, &AirSlash, &DragonPulse, &SolarBeam });
+    Trainer_1[2].setMoves({ &DarkPulse, &DragonPulse, &Flamethrower, &FocusBlast });
 
-    Trainer_2[0].setMoves({ Thunder, QuickAttack, IronTail, VoltTackle });
-    Trainer_2[1].setMoves({ AuraSphere, FlashCannon, DragonPulse, DarkPulse });
+    Trainer_2[0].setMoves({ &Thunder, &QuickAttack, &IronTail, &VoltTackle });
+    Trainer_2[1].setMoves({ &AuraSphere, &FlashCannon, &DragonPulse, &DarkPulse });
 
-    displayEmptyHPBar(turn);
+    displayHPBar(turn);
 
     introMessage(Trainer_1[0], Trainer_2[0]);
 

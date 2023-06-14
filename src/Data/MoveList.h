@@ -24,7 +24,6 @@ struct WaterShuriken : public Move {
         std::uniform_int_distribution<int> hit(1, 100);
 
         numHits = dist(mt);
-        std::cout << numHits << std::endl;
 
         for (int i = 0; i < numHits; ++i) { // determines hits and misses
             if (hit(mt) <= accuracy) {
