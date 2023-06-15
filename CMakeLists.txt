@@ -31,4 +31,4 @@ add_executable(PokemonBattle
         src/Classes/Item/Pokeball.cpp
         src/Classes/Item/BattleItem.cpp
         src/Classes/Item/BattleItem.h
-        src/Functions/CoreFunctions.h)
+        src/Functions/CoreFunctions.h src/Data/MoveList/WaterShuriken.h src/Data/MoveList/VoltTackle.h src/Data/MoveList/IceBeam.h src/Data/MoveList/Flamethrower.h src/Data/MoveList/AuraSphere.h src/Data/MoveList/FlashCannon.h src/Data/MoveList/Thunder.h src/Data/MoveList/FocusBlast.h src/Data/MoveList/IronTail.h)

@@ -6,21 +6,21 @@
 
 /// Moves
 
-WaterShuriken WShuriken;
+WaterShuriken waterShuriken;
 Move DarkPulse("Dark Pulse", "dark", "special", 15, 80, 100);
-Move IceBeam("Ice Beam", "ice", "special", 10, 90, 100);
+IceBeam iceBeam;
 Move Extrasensory("Extrasensory", "psychic", "special", 15, 90, 100);
-Move Flamethrower("Flamethrower", "fire", "special", 15, 90, 100);
+Flamethrower flamethrower;
 Move AirSlash("Air Slash", "flying", "special", 15, 75, 95);
 Move DragonPulse("Dragon Pulse", "dragon", "special", 10, 85, 100);
 Move SolarBeam("Solar Beam", "grass", "special", 10, 120, 100);
-Move FocusBlast("Focus Blast", "fighting", "special", 5, 120, 70);
-Move Thunder("Thunder", "electric", "special", 10, 110, 70);
+FocusBlast focusBlast;
+Thunder thunder;
 Move QuickAttack("Quick Attack", "normal", "physical", 30, 40, 100);
-Move IronTail("Iron Tail", "steel", "physical", 15, 100, 75);
-Move VoltTackle("Volt Tackle", "electric", "physical", 15, 120, 100);
-Move AuraSphere("Aura Sphere", "fighting", "special", 20, 80, 100);
-Move FlashCannon("Flash Cannon", "steel", "special", 10, 80, 100);
+IronTail ironTail;
+VoltTackle voltTackle;
+AuraSphere auraSphere;
+FlashCannon flashCannon;
 
 /// Pokemon
 
@@ -32,8 +32,8 @@ Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70, 90);
 
 /// Trainers
 
-Trainer Trainer_1({Greninja, Charizard, Hydreigon});
-Trainer Trainer_2({Pikachu, Lucario});
+Trainer Trainer_1({ Greninja, Charizard, Hydreigon });
+Trainer Trainer_2({ Pikachu, Lucario });
 
 /// Items
 
@@ -53,9 +53,9 @@ const PokeBall UltraBall(5, 2.0f, "Ultra Ball");
 const BattleItem XAttack(10, "X-Attack", "attack");
 const BattleItem XSpeed(5, "X-Speed", "speed");
 
-std::vector<RestoreItem> userRestoreItems = {Potion, Ether};
-std::vector<StatusItem> userStatusItems = {ParalyzeHeal, BurnHeal, IceHeal, Antidote, Awakening};
-std::vector<PokeBall> userPokeBalls = {pokeBall, GreatBall, UltraBall};
-std::vector<BattleItem> userBattleItems = {XAttack, XSpeed};
+std::vector<RestoreItem> userRestoreItems = { Potion, Ether };
+std::vector<StatusItem> userStatusItems = { ParalyzeHeal, BurnHeal, IceHeal, Antidote, Awakening };
+std::vector<PokeBall> userPokeBalls = { pokeBall, GreatBall, UltraBall };
+std::vector<BattleItem> userBattleItems = { XAttack, XSpeed };
 
 size_t turn = 1;

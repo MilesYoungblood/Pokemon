@@ -197,3 +197,54 @@ std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
     out << pokemon.getName();
     return out;
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) {
+    // damage will be negative if the attack misses
+    if (damage > 0)
+        defendingPokemon.setHP(defendingPokemon.getHP() - damage);
+
+    --this->pp;
+}
+
+void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff) {
+    printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
+    sleep(1);
+    // damage will be negative if the attack misses
+    if (damage > 0) {
+        if (typeEff == 0.0f) {
+            printMessage("It doesn't affect " + defendingPokemon.getName() + "...\n");
+            sleep(1);
+        }
+        else if (typeEff >= 2.0f) {
+            printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
+            sleep(1);
+            printMessage("It's super effective!\n");
+            sleep(1);
+            if (criticalHit) {
+                printMessage("A critical hit! ");
+                sleep(1);
+            }
+        }
+        else if (typeEff <= 0.5f) {
+            printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
+            sleep(1);
+            printMessage("It's not very effective...\n");
+            sleep(1);
+            if (criticalHit) {
+                printMessage("A critical hit! ");
+                sleep(1);
+            }
+        }
+        else {
+            printMessage(this->name + " did " + std::to_string(damage) + " damage!\n");
+            sleep(1);
+        }
+    }
+    else {
+        printMessage(defendingPokemon.getName() + " avoided the attack!\n");
+        sleep(1);
+    }
+    std::cout.flush();
+}

@@ -1,12 +1,12 @@
 #include "Functions/CoreFunctions.h"
 
 int main() {
-    Trainer_1[0].setMoves({ &WShuriken, &DarkPulse, &IceBeam, &Extrasensory });
-    Trainer_1[1].setMoves({ &Flamethrower, &AirSlash, &DragonPulse, &SolarBeam });
-    Trainer_1[2].setMoves({ &DarkPulse, &DragonPulse, &Flamethrower, &FocusBlast });
+    Trainer_1[0].setMoves({&waterShuriken, &DarkPulse, &iceBeam, &Extrasensory });
+    Trainer_1[1].setMoves({&flamethrower, &AirSlash, &DragonPulse, &SolarBeam });
+    Trainer_1[2].setMoves({&DarkPulse, &DragonPulse, &flamethrower, &focusBlast });
 
-    Trainer_2[0].setMoves({ &Thunder, &QuickAttack, &IronTail, &VoltTackle });
-    Trainer_2[1].setMoves({ &AuraSphere, &FlashCannon, &DragonPulse, &DarkPulse });
+    Trainer_2[0].setMoves({ &thunder, &QuickAttack, &ironTail, &voltTackle });
+    Trainer_2[1].setMoves({&auraSphere, &flashCannon, &DragonPulse, &DarkPulse });
 
     displayHPBar(turn);
 

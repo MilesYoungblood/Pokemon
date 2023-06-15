@@ -72,55 +72,6 @@ int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPok
                             criticalHit(crit));
 }
 
-void attack(Pokemon &defendingPokemon, Move &move, int damage) {
-    // damage will be negative if the attack misses
-    if (damage > 0)
-        defendingPokemon.setHP(defendingPokemon.getHP() - damage);
-
-    move.setPP(move.getPP() - 1);
-}
-
-void attackMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int move, int damage, bool criticalHit) {
-    printMessage(attackingPokemon.getName() + " used " + attackingPokemon[move].getName() + "! ");
-    sleep(1);
-    // damage will be negative if the attack misses
-    if (damage > 0) {
-        if (getTypeEffective(attackingPokemon[move], defendingPokemon) == 0.0) {
-            printMessage("It doesn't affect " + defendingPokemon.getName() + "...\n");
-            sleep(1);
-        }
-        else if (getTypeEffective(attackingPokemon[move], defendingPokemon) >= 2.0) {
-            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage! ");
-            sleep(1);
-            printMessage("It's super effective!\n");
-            sleep(1);
-            if (criticalHit) {
-                printMessage("A critical hit! ");
-                sleep(1);
-            }
-        }
-        else if (getTypeEffective(attackingPokemon[move], defendingPokemon) <= 0.5) {
-            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage! ");
-            sleep(1);
-            printMessage("It's not very effective...\n");
-            sleep(1);
-            if (criticalHit) {
-                printMessage("A critical hit! ");
-                sleep(1);
-            }
-        }
-        else {
-            printMessage(attackingPokemon[move].getName() + " did " + std::to_string(damage) + " damage!\n");
-            sleep(1);
-        }
-    }
-    else {
-        printMessage(defendingPokemon.getName() + " avoided the attack!\n");
-        sleep(1);
-    }
-    std::cout.flush();
-}
-
 void attackErrorMessage() {
     printMessage("That move is out of PP. Please select another move.\n");
     sleep(2);
@@ -137,10 +88,10 @@ void takeDamage(Trainer t, int damage) {
 namespace status {
     void takeDamageMessage(const Pokemon& pokemon) {
         if (pokemon.getStatus() == "burn")
-            printMessage(pokemon.getName() + "took damage from it's burn!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's burn!\n");
 
         else if (pokemon.getStatus() == "poison")
-            printMessage(pokemon.getName() + " took damage from it's poisoning!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's poisoning!\n");
 
         sleep(1);
     }
@@ -183,12 +134,12 @@ private:
         sendOutMessage(trainer[0]);
     }
 
-    static void Attack(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking) {
+    static void Action(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking) {
         bool crit = false;
         int damage = calculateDamage(attacker[0], defender[0], attacker[0][move], crit);
 
-        attack(defender[0], attacker[0][move], damage);
-        attackMessage(attacker[0], defender[0], move, damage, crit);
+        attacker[0][move].action(attacker[0], defender[0], damage);
+        attacker[0][move].actionMessage(attacker[0], defender[0], damage, crit, getTypeEffective(attacker[0][move], defender[0]));
 
         if (defender[0].isFainted()) {
             defender[0].faint();
@@ -213,7 +164,7 @@ private:
             isUser ? loseMessage() : winMessage();
             exit(0);
         }
-        else
+        if (trainer[0].isFainted())
             isUser ? SwitchOut(trainer, true) : SwitchOut(trainer, false);
     }
 
@@ -222,16 +173,16 @@ private:
     static void PreStatus(Trainer &user, Trainer &opponent, int userMove, int opponentMove, bool isUserFaster) {
         bool skip = false;
         if (isUserFaster) {
-            not preStatus(user[0].getStatus()) ? Attack(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
+            not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
 
             if (not skip)
-                not preStatus(opponent[0].getStatus()) ? Attack(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+                not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
         }
         else {
-            not preStatus(opponent[0].getStatus()) ? Attack(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
 
             if (not skip)
-                not preStatus(user[0].getStatus()) ? Attack(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
+                not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
         }
     }
 
@@ -292,7 +243,7 @@ public:
         }
         // trainer chose not to attack this turn
         else {
-            not preStatus(opponent[0].getStatus()) ? Attack(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
 
             // if trainer is faster than opponent...
             if (user[0].isFasterThan(opponent[0]))
