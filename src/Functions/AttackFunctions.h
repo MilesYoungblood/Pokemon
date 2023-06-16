@@ -30,12 +30,12 @@ void displayMoveSummary(const Move &move) {
     std::cout.flush();
 }
 
-int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move) {
+int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
     int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
     return levelCalc * attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
 }
 
-int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move) {
+int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
     int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
     return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
 }
@@ -58,14 +58,14 @@ float stabCheck(const Pokemon &pokemon, const Move &move) {
     return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5f : 1.0f;
 }
 
-int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
+int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
     int initialDamage{};
-    if (move.getCategory() == "physical") {
+    if (move.getCategory() == "physical")
         initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
-    }
-    else if (move.getCategory() == "special") {
+
+    else if (move.getCategory() == "special")
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
-    }
+
     int finalDamage = (initialDamage / 50) + 2;
     //FIXME recalculate damage
     return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
@@ -87,11 +87,12 @@ void takeDamage(Trainer t, int damage) {
 
 namespace status {
     void takeDamageMessage(const Pokemon& pokemon) {
+        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's ");
         if (pokemon.getStatus() == "burn")
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's burn!\n");
+            printMessage( "burn!\n");
 
         else if (pokemon.getStatus() == "poison")
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's poisoning!\n");
+            printMessage("poisoning!\n");
 
         sleep(1);
     }

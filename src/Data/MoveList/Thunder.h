@@ -36,11 +36,11 @@ struct Thunder : public Move {
                 sleep(1);
 
                 if (typeEff >= 2.0f) {
-                    Move::printMessage("It's super effective!");
+                    Move::printMessage("It's super effective! ");
                     sleep(1);
                 }
                 else if (typeEff <= 0.5f) {
-                    Move::printMessage("It's not very effective...");
+                    Move::printMessage("It's not very effective... ");
                     sleep(1);
                 }
 

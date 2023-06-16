@@ -48,20 +48,8 @@ Move& Move::operator=(const Move& rhs) {
     return *this;
 }
 
-int Move::getDamage() const {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(1, 100);
-
-    return dist(mt) <= this->accuracy ? this->power : -1;
-}
-
 int Move::getDamage() {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(1, 100);
-
-    return dist(mt) <= this->accuracy ? this->power : -1;
+    return generateInteger(1, 100) <= this->accuracy ? this->power : -1;
 }
 
 void Move::setPP(int newPP) {

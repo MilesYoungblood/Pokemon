@@ -65,8 +65,7 @@ public:
     Move(const Move &moveToCopy);
     Move& operator=(const Move& rhs);
 
-    __attribute__((unused)) virtual int getDamage();
-    int getDamage() const;
+    virtual int getDamage();
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage);
     virtual void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff);
