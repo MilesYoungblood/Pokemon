@@ -404,6 +404,7 @@ CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/conio_s.h \
  C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Functions/ItemFunctions.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/AuraSphere.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Flamethrower.h \

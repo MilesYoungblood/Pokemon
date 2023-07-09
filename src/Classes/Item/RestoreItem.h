@@ -13,7 +13,7 @@ private:
 
 public:
     RestoreItem();
-    RestoreItem(int quantity, int amount, const std::string &name, const std::string &restoreType);
+    RestoreItem(int quantity, int amount, const char * name, const char * restoreType);
 
     int getAmount() const;
     std::string getRestoreType() const;

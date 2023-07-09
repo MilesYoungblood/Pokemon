@@ -61,7 +61,7 @@ protected:
 
 public:
     Move();
-    Move(const std::string& name, const std::string& type, const std::string& category, int pp, int power, int accuracy);
+    Move(const char * name, const char * type, const char * category, int pp, int power, int accuracy);
     Move(const Move &moveToCopy);
     Move& operator=(const Move& rhs);
 

@@ -14,7 +14,7 @@ Item::Item(const Item& copy) {
     this->name = copy.name;
 }
 
-Item::Item(int quantity, const std::string& name) {
+Item::Item(int quantity, const char * name) {
     this->quantity = quantity;
     this->name = name;
 }

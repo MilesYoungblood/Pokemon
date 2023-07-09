@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj"

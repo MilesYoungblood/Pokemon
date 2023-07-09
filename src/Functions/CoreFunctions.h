@@ -98,7 +98,7 @@ namespace selectionPhase {
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                    itemErrorMessage(userRestoreItems[userItem - 1]);
+                    itemErrorMessage(&userRestoreItems[userItem - 1]);
                     skip = true;
                     return;
                 }
@@ -137,7 +137,7 @@ namespace selectionPhase {
                         else {
                             displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                             useItem(userStatusItems[userItem - 1]);
-                            noEffectMessage(userStatusItems[userItem - 1], Trainer_1[pokemon - 1]);
+                            noEffectMessage(&userStatusItems[userItem - 1], Trainer_1[pokemon - 1]);
                         }
                     }
                     // Pokémon is fainted
@@ -151,7 +151,7 @@ namespace selectionPhase {
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                    itemErrorMessage(userStatusItems[userItem - 1]);
+                    itemErrorMessage(&userStatusItems[userItem - 1]);
                     skip = true;
                     return;
                 }
@@ -168,10 +168,11 @@ namespace selectionPhase {
                 }
                 // if trainer has at least one of item selected...
                 else if (userPokeBalls[userItem - 1].getQuantity() > 0) {
-                    bool shakes[4];
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     useItem(userPokeBalls[userItem - 1]);
                     useItemMessage(userPokeBalls[userItem - 1].getName());
+
+                    bool shakes[4];
                     bool caught = catchPokemon(shakes);
                     catchPokemonMessage(Trainer_2[0], shakes);
                     if (caught)
@@ -180,7 +181,7 @@ namespace selectionPhase {
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                    itemErrorMessage(userPokeBalls[userItem - 1]);
+                    itemErrorMessage(&userPokeBalls[userItem - 1]);
                     skip = true;
                     return;
                 }
@@ -198,16 +199,17 @@ namespace selectionPhase {
                 // if trainer has at least 1 of the item selected...
                 else if (userBattleItems[userItem - 1].getQuantity() > 0) {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                    bool limitReached = false;
                     useItem(userBattleItems[userItem - 1]);
                     useItemMessage(userBattleItems[userItem - 1].getName());
+
+                    bool limitReached = false;
                     boostStat(userBattleItems[userItem - 1], Trainer_1[0], 1, limitReached);
                     boostMessage(Trainer_1[0], userBattleItems[userItem - 1].getStat(), 1, limitReached);
                 }
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                    itemErrorMessage(userBattleItems[userItem - 1]);
+                    itemErrorMessage(&userBattleItems[userItem - 1]);
                     skip = true;
                     return;
                 }

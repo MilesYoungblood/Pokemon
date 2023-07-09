@@ -14,7 +14,7 @@ private:
 public:
     Item();
     Item(const Item &copy);
-    Item(int quantity, const std::string &name);
+    Item(int quantity, const char * name);
     virtual ~Item() = default;
 
     void setQuantity(int newQuantity);

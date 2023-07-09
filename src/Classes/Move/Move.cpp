@@ -14,7 +14,7 @@ Move::Move() {
     this->name = "No name";
 }
 
-Move::Move(const std::string& name, const std::string& type, const std::string& category, int pp, int power, int accuracy) {
+Move::Move(const char * name, const char * type, const char * category, int pp, int power, int accuracy) {
     this->maxPp = pp;
     this->pp = pp;
     this->power = power;

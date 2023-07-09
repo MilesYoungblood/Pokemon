@@ -54,7 +54,7 @@ Pokemon::Pokemon(const Pokemon &pokemonToCopy) {
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+Pokemon::Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -80,7 +80,7 @@ Pokemon::Pokemon(const std::string &name, const std::string &type, int level, in
     this->moveSet = {};
 }
 
-Pokemon::Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+Pokemon::Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -164,7 +164,7 @@ std::string Pokemon::getName() const { return this->name; }
 
 std::string Pokemon::getType(bool type_1) const { return type_1 ? this->types[0] : this->types[1]; }
 
-void Pokemon::setStatus(const std::string &newStatus) { this->status = newStatus; }
+void Pokemon::setStatus(const char * newStatus) { this->status = newStatus; }
 std::string Pokemon::getStatus() const { return this->status; }
 
 void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {

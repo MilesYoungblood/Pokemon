@@ -100,7 +100,7 @@ namespace status {
 
 struct battlePhase {
 private:
-    static void SwitchOut(Trainer &trainer, bool isUser) {
+    static void SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying) {
         int toSwitch;
 
         if (isUser) {
@@ -110,7 +110,7 @@ private:
                 bool runSuccess = run();
                 runMessage(runSuccess);
                 if (runSuccess)
-                    exit(0);
+                    keepPlaying = false;
             }
 
             while (true) {
@@ -135,7 +135,7 @@ private:
         sendOutMessage(trainer[0]);
     }
 
-    static void Action(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking) {
+    static void Action(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying) {
         bool crit = false;
         int damage = calculateDamage(attacker[0], defender[0], attacker[0][move], crit);
 
@@ -147,70 +147,72 @@ private:
             defender.incFaintCount();
             faintMessage(defender[0]);
             if (not defender.canFight()) {
+                //TODO add defeat()
                 isUserAttacking ? winMessage() : loseMessage();
-                exit(0);
+                keepPlaying = false;
             }
             else {
-                isUserAttacking ? SwitchOut(defender, false) : SwitchOut(defender, true);
+                isUserAttacking ? SwitchOut(defender, false, keepPlaying) : SwitchOut(defender, true, keepPlaying);
                 switched = true;
             }
         }
     }
 
-    static void PostStatus(Trainer &trainer, bool isUser) {
+    static void PostStatus(Trainer &trainer, bool isUser, bool &keepPlaying) {
         takeDamage(trainer, static_cast<int>(trainer[0].getMaxHp() * .0625));
         status::takeDamageMessage(trainer[0]);
 
         if (not trainer.canFight()) {
+            //TODO add defeat()
             isUser ? loseMessage() : winMessage();
-            exit(0);
+            keepPlaying = false;
         }
         if (trainer[0].isFainted())
-            isUser ? SwitchOut(trainer, true) : SwitchOut(trainer, false);
+            isUser ? SwitchOut(trainer, true, keepPlaying) : SwitchOut(trainer, false, keepPlaying);
     }
 
     // This function commences attacking of each Pokémon and takes into account who is faster.
     // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
-    static void PreStatus(Trainer &user, Trainer &opponent, int userMove, int opponentMove, bool isUserFaster) {
+    static void PreStatus(Trainer &user, Trainer &opponent, int userMove, int opponentMove, bool isUserFaster, bool &keepPlaying) {
         bool skip = false;
         if (isUserFaster) {
-            not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
+            not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true, keepPlaying) : inflictedMessage(user[0]);
 
-            if (not skip)
-                not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+            if (not skip and keepPlaying)
+                not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false, keepPlaying) : inflictedMessage(opponent[0]);
         }
         else {
-            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false, keepPlaying) : inflictedMessage(opponent[0]);
 
-            if (not skip)
-                not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true) : inflictedMessage(user[0]);
+            if (not skip and keepPlaying)
+                not preStatus(user[0].getStatus()) ? Action(user, opponent, userMove, skip, true, keepPlaying) : inflictedMessage(user[0]);
         }
     }
 
     // If a Pokémon is inflicted with a post-move status condition (burn, poison), it will take damage based on max HP.
-    static void PostStatus(Trainer &user, Trainer &opponent, bool isUserFaster) {
+    static void PostStatus(Trainer &user, Trainer &opponent, bool isUserFaster, bool &keepPlaying) {
         if (isUserFaster) {
             // if Pokémon is inflicted with a post-move status condition...
             if (postStatus(user[0].getStatus()))
-                PostStatus(user, true);
+                PostStatus(user, true, keepPlaying);
 
             // if Pokémon is inflicted with a post-move status condition...
             if (postStatus(opponent[0].getStatus()))
-                PostStatus(opponent, false);
+                PostStatus(opponent, false, keepPlaying);
         }
         else {
             // if Pokémon is inflicted with a post-move status condition...
             if (postStatus(opponent[0].getStatus()))
-                PostStatus(opponent, false);
+                PostStatus(opponent, false, keepPlaying);
 
             // if Pokémon is inflicted with a post-move status condition...
             if (postStatus(user[0].getStatus()))
-                PostStatus(user, true);
+                PostStatus(user, true, keepPlaying);
         }
     }
 
 public:
-    static void fight(Trainer &user, Trainer &opponent, int userMove, size_t &turn) {
+    static void fight(Trainer &user, Trainer &opponent, int userMove, size_t &turn, bool &keepPlaying) {
         displayHPBar(user[0], opponent[0], turn);
         int opponentMove = generateInteger(0, opponent[0].numMoves() - 1);
         // re-selects opponent move if it's out of PP
@@ -222,41 +224,41 @@ public:
         if (userMove != 0) {
             // if trainer is faster than opponent...
             if (user[0].isFasterThan(opponent[0])) {
-                PreStatus(user, opponent, userMove - 1, opponentMove, true);
-                PostStatus(user, opponent, true);
+                PreStatus(user, opponent, userMove - 1, opponentMove, true, keepPlaying);
+                PostStatus(user, opponent, true, keepPlaying);
             }
             // if opponent is faster than trainer...
             else if (opponent[0].isFasterThan(user[0])) {
-                PreStatus(user, opponent, userMove - 1, opponentMove, false);
-                PostStatus(user, opponent, false);
+                PreStatus(user, opponent, userMove - 1, opponentMove, false, keepPlaying);
+                PostStatus(user, opponent, false, keepPlaying);
             }
             // if trainer and opponent rival in speed; choose randomly
             else {
                 if (generateInteger(0, 1) == 0) {
-                    PreStatus(user, opponent, userMove - 1, opponentMove, true);
-                    PostStatus(user, opponent, true);
+                    PreStatus(user, opponent, userMove - 1, opponentMove, true, keepPlaying);
+                    PostStatus(user, opponent, true, keepPlaying);
                 }
                 else {
-                    PreStatus(user, opponent, userMove - 1, opponentMove, false);
-                    PostStatus(user, opponent, false);
+                    PreStatus(user, opponent, userMove - 1, opponentMove, false, keepPlaying);
+                    PostStatus(user, opponent, false, keepPlaying);
                 }
             }
         }
         // trainer chose not to attack this turn
         else {
-            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false) : inflictedMessage(opponent[0]);
+            not preStatus(opponent[0].getStatus()) ? Action(opponent, user, opponentMove, skip, false, keepPlaying) : inflictedMessage(opponent[0]);
 
             // if trainer is faster than opponent...
             if (user[0].isFasterThan(opponent[0]))
-                PostStatus(user, opponent, true);
+                PostStatus(user, opponent, true, keepPlaying);
 
             // if opponent is faster than trainer...
             else if (opponent[0].isFasterThan(user[0]))
-                PostStatus(user, opponent, false);
+                PostStatus(user, opponent, false, keepPlaying);
 
             // if trainer and opponent rival in speed; choose randomly
             else
-                generateInteger(0, 1) == 1 ? PostStatus(user, opponent, true) : PostStatus(user, opponent, false);
+                generateInteger(0, 1) == 1 ? PostStatus(user, opponent, true, keepPlaying) : PostStatus(user, opponent, false, keepPlaying);
         }
         ++turn;
     }

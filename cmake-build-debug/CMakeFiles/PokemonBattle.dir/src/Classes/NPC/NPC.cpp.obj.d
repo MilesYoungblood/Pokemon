@@ -1,6 +1,6 @@
-CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\Data.cpp \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\Data.h \
+CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj: \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\NPC\NPC.cpp \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\NPC\NPC.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h \
  C:/PROGRA~1/JETBRA~1/CLION2~1.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/vector \
@@ -388,15 +388,4 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\MoveList.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/AuraSphere.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Flamethrower.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FlashCannon.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FocusBlast.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IceBeam.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IronTail.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Thunder.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/VoltTackle.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/WaterShuriken.h
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h

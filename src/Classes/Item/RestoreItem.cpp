@@ -8,7 +8,7 @@ RestoreItem::RestoreItem() : Item() {
     this->amount = 0;
     this->restoreType = "No restore type";
 }
-RestoreItem::RestoreItem(int quantity, int amount, const std::string& name, const std::string& restoreType) : Item(quantity, name){
+RestoreItem::RestoreItem(int quantity, int amount, const char * name, const char * restoreType) : Item(quantity, name){
     this->amount = amount;
     this->restoreType = restoreType;
 }

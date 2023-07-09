@@ -5,6 +5,6 @@
 #include "BattleItem.h"
 
 BattleItem::BattleItem() : Item() { this->stat = "No stat"; }
-BattleItem::BattleItem(int quantity, const std::string &name, const std::string &stat) : Item(quantity, name) { this->stat = stat; }
+BattleItem::BattleItem(int quantity, const char * name, const char * stat) : Item(quantity, name) { this->stat = stat; }
 
 std::string BattleItem::getStat() const { return this->stat; }

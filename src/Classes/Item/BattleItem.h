@@ -12,7 +12,7 @@ private:
 
 public:
     BattleItem();
-    BattleItem(int quantity, const std::string &name, const std::string &stat);
+    BattleItem(int quantity, const char * name, const char * stat);
 
     std::string getStat() const;
 };

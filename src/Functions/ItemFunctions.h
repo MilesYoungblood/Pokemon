@@ -202,14 +202,12 @@ void useItemMessage(const std::string &itemUsed) {
     sleep(1);
 }
 
-template <typename I>
-void itemErrorMessage(const I &item) {
-    printMessage("You don't have any " + item.getName() + "'s.\n");
+void itemErrorMessage(const Item * item) {
+    printMessage("You don't have any " + item->getName() + "'s.\n");
     sleep(1);
 }
 
-template <typename I>
-void noEffectMessage(const I &item, const Pokemon &pokemon) {
-    printMessage(item.getName() + " had no effect on " + pokemon.getName() + ".\n");
+void noEffectMessage(const Item * item, const Pokemon &pokemon) {
+    printMessage(item->getName() + " had no effect on " + pokemon.getName() + ".\n");
     sleep(1);
 }

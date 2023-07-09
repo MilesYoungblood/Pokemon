@@ -13,7 +13,7 @@ private:
 public:
     StatusItem();
     StatusItem(const StatusItem &copy);
-    StatusItem(int quantity, const std::string &name, const std::string &restoreType);
+    StatusItem(int quantity, const char * name, const char * restoreType);
 
     std::string getRestoreType() const;
 };

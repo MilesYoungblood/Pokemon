@@ -39,8 +39,8 @@ private:
 public:
     Pokemon();
     Pokemon(const Pokemon &pokemonToCopy);
-    Pokemon(const std::string &name, const std::string &type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
-    Pokemon(const std::string &name, const std::string &type1, const std::string &type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     Pokemon& operator=(const Pokemon& pokemonToCopy);
 
     int numMoves() const;
@@ -72,7 +72,7 @@ public:
 
     std::string getType(bool type_1) const;
 
-    void setStatus(const std::string &newStatus);
+    void setStatus(const char * newStatus);
     std::string getStatus() const;
 
     void setMoves(const std::initializer_list<Move*> &moves);

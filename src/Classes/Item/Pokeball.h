@@ -12,7 +12,7 @@ private:
 
 public:
     PokeBall();
-    PokeBall(int quantity, float catchRate, const std::string &name);
+    PokeBall(int quantity, float catchRate, const char * name);
 
     float getCatchRate() const;
 };

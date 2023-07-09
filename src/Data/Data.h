@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../Classes/Trainer/Trainer.h"
+#include "../Classes/NPC/NPC.h"
 #include "MoveList.h"
 
 extern Pokemon Greninja;
@@ -30,7 +31,7 @@ extern AuraSphere auraSphere;
 extern FlashCannon flashCannon;
 
 extern Trainer Trainer_1;
-extern Trainer Trainer_2;
+extern NPC Trainer_2;
 
 const extern RestoreItem Potion;
 const extern RestoreItem Ether;

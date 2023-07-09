@@ -94,7 +94,7 @@ void forcedSwitchPrompt() {
 }
 
 __attribute__((unused)) bool run(const Pokemon &trainer_1, const Pokemon &trainer_2) {
-    return ((trainer_1.getBaseSpeed() * 32) / ((trainer_2.getBaseSpeed() / 4) % 256)) + 30 ;
+    return ((trainer_1.getBaseSpeed() * 32) / ((trainer_2.getBaseSpeed() / 4) % 256)) + 30;
 }
 
 bool run() {
@@ -103,6 +103,7 @@ bool run() {
 
 void runMessage(bool runStatus) {
     runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't get away!\n");
+    std::cin.ignore();
     sleep(1);
 }
 

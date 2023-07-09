@@ -9,7 +9,6 @@ struct WaterShuriken : public Move {
     int numHits = 0; // number of hits landed (from 2 to 5)
 
     int getDamage() override {
-        //FIXME calculate critical hits here instead of in calculateDamage()
         for (int i = 0; i < Move::generateInteger(2, 5); ++i) { // determines hits and misses
             if (Move::generateInteger(1, 100) <= this->accuracy) {
                 ++this->numHits;
