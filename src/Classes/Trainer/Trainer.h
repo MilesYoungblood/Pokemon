@@ -38,6 +38,9 @@ public:
     void incFaintCount();
     void decFaintCount();
 
+    virtual void defeat();
+
+    void interact();
     void move(int d);
     void changeDirection(int d);
 
@@ -55,4 +58,7 @@ public:
     bool isFacingEast() const;
     bool isFacingSouth() const;
     bool isFacingWest() const;
+
+    template<typename Object>
+    bool isNextToNPC(const Object &npc) const;
 };

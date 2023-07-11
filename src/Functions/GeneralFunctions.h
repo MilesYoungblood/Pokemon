@@ -10,7 +10,7 @@
 #include "ItemFunctions.h"
 
 void wildPokemonMessage(const Pokemon &pokemon) {
-    printMessage("A wild " + pokemon.getName() + " appeared! ");
+    printMessage("Your opponent sent out " + pokemon.getName() + "! ");
     sleep(1);
 }
 
@@ -103,7 +103,6 @@ bool run() {
 
 void runMessage(bool runStatus) {
     runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't get away!\n");
-    std::cin.ignore();
     sleep(1);
 }
 

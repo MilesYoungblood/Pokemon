@@ -15,7 +15,6 @@ public:
     Item();
     Item(const Item &copy);
     Item(int quantity, const char * name);
-    virtual ~Item() = default;
 
     void setQuantity(int newQuantity);
     int getQuantity() const;

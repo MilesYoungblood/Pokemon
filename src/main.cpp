@@ -1,25 +1,26 @@
 #include "Functions/CoreFunctions.h"
+#include "Classes/Map/Map.h"
 
 const int mapLengthX = 10;
 const int mapLengthY = 10;
 
 enum keys { ESC = 27, UP_ARROW __attribute__((unused)) = 72, LEFT_ARROW __attribute__((unused)) = 75, DOWN_ARROW __attribute__((unused)) = 80, RIGHT_ARROW __attribute__((unused)) = 77 };
 
-void engageBattle() {
+void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
     displayHPBar(turn);
 
-    introMessage(Trainer_1[0], Trainer_2[0]);
+    introMessage(player[0], (*npc)[0]);
 
     bool keepPlaying = true;
 
     while (keepPlaying) { // enters the battle
-        displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-        displayChoices(Trainer_1[0]);
+        displayHPBar(player[0], (*npc)[0], turn);
+        displayChoices(player[0]);
 
         int userMove = 0;       // passed into fight to determine move used
         bool cancel = false;    // passed into core four functions to know if to return to main screen
 
-        switch (getChar({'f', 'b', 'r', 'p'})) {
+        switch (getChar({ 'f', 'b', 'r', 'p' })) {
             case 'f':
                 selectionPhase::chooseMove(userMove, cancel);
                 break;
@@ -27,8 +28,8 @@ void engageBattle() {
                 selectionPhase::chooseItem(cancel);
                 break;
             case 'r':
-                if (selectionPhase::runAway()) {
-                    Trainer_2.defeat();
+                if (selectionPhase::runAway(isTrainer)) {
+                    npc->defeat();
                     return;
                 }
                 break;
@@ -37,93 +38,7 @@ void engageBattle() {
         }
 
         if (not cancel)
-            battlePhase::fight(Trainer_1, Trainer_2, userMove, turn, keepPlaying);
-    }
-}
-
-void printMap(bool m[][mapLengthY], const Trainer &trainer, const NPC &npc) {
-    system("cls");
-
-    std::cout << "Press ESC to quit\n";
-
-    // top border
-    std::cout << '+';
-    std::cout << std::string(mapLengthX, '-');
-    std::cout << "+\n";
-
-    for (int y = 0; y < mapLengthY; ++y) {
-        std::cout << '|';
-        for (int x = 0; x < mapLengthX; ++x) {
-            // if an obstruction is in this spot
-            if (m[x][y]) {
-                std::cout << 'X';
-            }
-            // if the player is currently at these coordinates
-            else if (x == trainer.getX() and y == trainer.getY()) {
-                std::cout << trainer.getModel();
-            }
-
-            else if (x == npc.getX() and y == npc.getY()) {
-                std::cout << npc.getModel();
-            }
-                // empty space
-            else {
-                std::cout << ' ';
-            }
-        }
-        std::cout << "|\n";
-    }
-
-    // bottom border
-    std::cout << '+';
-    std::cout << std::string(mapLengthX, '-');
-    std::cout << '+' << std::flush;
-}
-
-void check(bool map[][mapLengthY], Trainer &trainer, NPC &npc) {
-    if (npc.isInRange(trainer) and not npc.isDefeated()) {
-        if (npc.isFacingNorth()) {
-            while (npc.getY() != trainer.getY() + 1) {
-                npc.move(directions::NORTH);
-                Sleep(250);
-                printMap(map, trainer, npc);
-            }
-            trainer.changeDirection(directions::SOUTH);
-            printMap(map, trainer, npc);
-        }
-        else if (npc.isFacingEast()) {
-            while (npc.getX() != trainer.getX() - 1) {
-                npc.move(directions::EAST);
-                Sleep(250);
-                printMap(map, trainer, npc);
-            }
-            trainer.changeDirection(directions::WEST);
-            printMap(map, trainer, npc);
-        }
-        else if (npc.isFacingSouth()) {
-            while (npc.getY() != trainer.getY() - 1) {
-                npc.move(directions::SOUTH);
-                Sleep(250);
-                printMap(map, trainer, npc);
-            }
-            trainer.changeDirection(directions::NORTH);
-            printMap(map, trainer, npc);
-        }
-        else if (npc.isFacingWest()) {
-            while (npc.getX() != trainer.getX() + 1) {
-                npc.move(directions::WEST);
-                Sleep(250);
-                printMap(map, trainer, npc);
-            }
-            trainer.changeDirection(directions::EAST);
-            printMap(map, trainer, npc);
-        }
-
-        Sleep(2000);
-        system("cls");
-
-        engageBattle();
-        printMap(map, trainer, npc);
+            battlePhase::fight(player, *npc, userMove, turn, keepPlaying);
     }
 }
 
@@ -135,91 +50,73 @@ int main() {
     Trainer_2[0].setMoves({ &thunder, &QuickAttack, &ironTail, &voltTackle });
     Trainer_2[1].setMoves({ &auraSphere, &flashCannon, &DragonPulse, &DarkPulse });
 
-    //std::vector<Trainer*> trainers = { &Trainer_1, &Trainer_2 };
-    /*
-     * Our map is represented by boolean values.
-     * A true denotes that there is an obstruction,
-     * A false denotes a walkable pathway.
-     */
-    bool map[mapLengthX][mapLengthY];
+    Map Route_1(10, 10);
 
-    // map initialization
-    for (auto &i : map) {
-        for (bool &j : i) {
-            j = false;
-        }
-    }
-    /*
-    for (int i = 0; i < mapLengthY; ++i) {
-        for (int j = 0; j < mapLengthY; ++j) {
-            map[i][j] = false;
-            for (auto &trainer : trainers) {
-                if (trainer->getX() == i and trainer->getY() == j) {
-                    map[i][j] = true;
-                }
-            }
-        }
-    }
-    */
+    Route_1.setObstruction(1, 2);
+    Route_1.setObstruction(1, 3);
+    Route_1.setObstruction(5, 5);
+    Route_1.setObstruction(4, 5);
 
-    map[1][2] = true;
-    map[1][3] = true;
-    map[5][5] = true;
-    map[4][5] = true;
+    std::vector<NPC> npcArr = { Trainer_2 };
 
-    printMap(map, Trainer_1, Trainer_2);
+    Route_1.print(Trainer_1, npcArr);
 
     while (true) {
-        check(map, Trainer_1, Trainer_2);
+        bool battle = npcArr[0].check(Route_1, Trainer_1, npcArr);
+        if (battle) {
+            Sleep(2000);
+            system("cls");
+            engageBattle(Trainer_1, &npcArr[0], true);
+            Route_1.print(Trainer_1, npcArr);
+        }
 
         switch (static_cast<char>(getch())) {
-            //case keys::UP_ARROW:
             case 'w':
                 if (not Trainer_1.isFacingNorth()) {
                     Trainer_1.changeDirection(directions::NORTH);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
-                else if (Trainer_1.getY() - 1 >= 0 and not map[Trainer_1.getX()][Trainer_1.getY() - 1]) {
+                else if (Trainer_1.getY() - 1 >= 0 and not Route_1[Trainer_1.getX()][Trainer_1.getY() - 1]) {
                     Trainer_1.move(directions::NORTH);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
                 break;
 
-            //case keys::LEFT_ARROW:
             case 'a':
                 if (not Trainer_1.isFacingWest()) {
                     Trainer_1.changeDirection(directions::WEST);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
-                else if (Trainer_1.getX() - 1 >= 0 and not map[Trainer_1.getX() - 1][Trainer_1.getY()]) {
+                else if (Trainer_1.getX() - 1 >= 0 and not Route_1[Trainer_1.getX() - 1][Trainer_1.getY()]) {
                     Trainer_1.move(directions::WEST);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
                 break;
 
-            //case keys::DOWN_ARROW:
             case 's':
                 if (not Trainer_1.isFacingSouth()) {
                     Trainer_1.changeDirection(directions::SOUTH);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
-                else if (Trainer_1.getY() + 1 <= mapLengthY - 1 and not map[Trainer_1.getX()][Trainer_1.getY() + 1]) {
+                else if (Trainer_1.getY() + 1 <= mapLengthY - 1 and not Route_1[Trainer_1.getX()][Trainer_1.getY() + 1]) {
                     Trainer_1.move(directions::SOUTH);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
                 break;
 
-            //case keys::RIGHT_ARROW:
             case 'd':
                 if (not Trainer_1.isFacingEast()) {
                     Trainer_1.changeDirection(directions::EAST);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
-                else if (Trainer_1.getX() + 1 <= mapLengthX - 1 and not map[Trainer_1.getX() + 1][Trainer_1.getY()]) {
+                else if (Trainer_1.getX() + 1 <= mapLengthX - 1 and not Route_1[Trainer_1.getX() + 1][Trainer_1.getY()]) {
                     Trainer_1.move(directions::EAST);
-                    printMap(map, Trainer_1, Trainer_2);
+                    Route_1.print(Trainer_1, npcArr);
                 }
                 break;
+
+            case 'e':
+
 
             case keys::ESC:
                 system("cls");

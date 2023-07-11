@@ -248,6 +248,30 @@ src/Classes/Item/StatusItem.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.s
 .PHONY : src/Classes/Item/StatusItem.cpp.s
 
+src/Classes/Map/Map.obj: src/Classes/Map/Map.cpp.obj
+.PHONY : src/Classes/Map/Map.obj
+
+# target to build an object file
+src/Classes/Map/Map.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj
+.PHONY : src/Classes/Map/Map.cpp.obj
+
+src/Classes/Map/Map.i: src/Classes/Map/Map.cpp.i
+.PHONY : src/Classes/Map/Map.i
+
+# target to preprocess a source file
+src/Classes/Map/Map.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.i
+.PHONY : src/Classes/Map/Map.cpp.i
+
+src/Classes/Map/Map.s: src/Classes/Map/Map.cpp.s
+.PHONY : src/Classes/Map/Map.s
+
+# target to generate assembly for a file
+src/Classes/Map/Map.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.s
+.PHONY : src/Classes/Map/Map.cpp.s
+
 src/Classes/Move/Move.obj: src/Classes/Move/Move.cpp.obj
 .PHONY : src/Classes/Move/Move.obj
 
@@ -416,6 +440,9 @@ help:
 	@echo ... src/Classes/Item/StatusItem.obj
 	@echo ... src/Classes/Item/StatusItem.i
 	@echo ... src/Classes/Item/StatusItem.s
+	@echo ... src/Classes/Map/Map.obj
+	@echo ... src/Classes/Map/Map.i
+	@echo ... src/Classes/Map/Map.s
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s

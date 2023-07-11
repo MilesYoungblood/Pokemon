@@ -9,6 +9,7 @@
 
 namespace selectionPhase {
     void chooseMove(int &move, bool &skip) {
+    chooseMove:
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
         displayMoves(Trainer_1[0]);
         move = getInt(0, Trainer_1[0].numMoves());
@@ -20,12 +21,12 @@ namespace selectionPhase {
         // if move chosen is out of PP...
         else if (not Trainer_1[0][move - 1].canUse()) {
             attackErrorMessage();
-            skip = true;
-            return;
+            goto chooseMove;
         }
     }
 
     void chooseItem(bool &skip) {
+    chooseItemType:
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
         displayBag();
         int userItem = getInt(0, 4);
@@ -33,26 +34,38 @@ namespace selectionPhase {
         // trainer chose HP/PP items
         switch (userItem) {
             case 1:
+            chooseRestoreItem:
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayItems(userRestoreItems);
                 userItem = getInt(0, static_cast<int>(userRestoreItems.size()));
 
                 if (userItem == 0) {
-                    skip = true;
-                    return;
+                    goto chooseItemType;
                 }
                 // if trainer has at least 1 of the item selected...
                 else if (userRestoreItems[userItem - 1].getQuantity() > 0) {
+                chooseRestorePokemon:
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     displayPokemon(Trainer_1);
                     int pokemon = getInt(0, Trainer_1.partySize());
 
                     if (pokemon == 0) {
-                        skip = true;
-                        return;
+                        goto chooseRestoreItem;
+                    }
+                    // Pokémon's HP is already full
+                    else if (Trainer_1[pokemon - 1].isFullHP()) {
+                        displayHPBar(Trainer_1[0], Trainer_2[0], turn);
+                        hpFullMessage(Trainer_1[pokemon - 1]);
+                        goto chooseRestorePokemon;
+                    }
+                    // Pokémon is fainted
+                    else if (Trainer_1[pokemon - 1].isFainted()) {
+                        displayHPBar(Trainer_1[0], Trainer_2[0], turn);
+                        hpEmptyMessage(Trainer_1[pokemon - 1]);
+                        goto chooseRestorePokemon;
                     }
                     // if Pokémon selected doesn't have full HP, but also isn't fainted...
-                    else if (not Trainer_1[pokemon - 1].isFainted() and not Trainer_1[pokemon - 1].isFullHP()) {
+                    else {
                         // if item selected restores HP...
                         if (userRestoreItems[userItem - 1].getRestoreType() == "HP") {
                             displayHPBar(Trainer_1[0], Trainer_2[0], turn);
@@ -68,8 +81,7 @@ namespace selectionPhase {
                             int move = getInt(0, Trainer_1[0].numMoves());
 
                             if (move == 0) {
-                                skip = true;
-                                return;
+                                goto chooseRestorePokemon;
                             }
                             else {
                                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
@@ -80,48 +92,33 @@ namespace selectionPhase {
                             }
                         }
                     }
-                    // Pokémon's HP is already full
-                    else if (Trainer_1[pokemon - 1].isFullHP()) {
-                        displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                        hpFullMessage(Trainer_1[pokemon - 1]);
-                        skip = true;
-                        return;
-                    }
-                    // Pokémon is fainted
-                    else if (Trainer_1[pokemon - 1].isFainted()) {
-                        displayHPBar(Trainer_1[0], Trainer_2[0], turn);
-                        hpEmptyMessage(Trainer_1[pokemon - 1]);
-                        skip = true;
-                        return;
-                    }
                 }
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     itemErrorMessage(&userRestoreItems[userItem - 1]);
-                    skip = true;
-                    return;
+                    goto chooseRestoreItem;
                 }
                 break;
 
             case 2:
+            chooseStatusItem:
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayItems(userStatusItems);
                 userItem = getInt(0, static_cast<int>(userStatusItems.size()));
 
                 if (userItem == 0) {
-                    skip = true;
-                    return;
+                    goto chooseItemType;
                 }
                 // if trainer has at least 1 of the item selected...
                 else if (userStatusItems[userItem - 1].getQuantity() > 0) {
+                chooseStatusPokemon:
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     displayPokemon(Trainer_1);
                     int pokemon = getInt(0, Trainer_1.partySize());
 
                     if (pokemon == 0) {
-                        skip = true;
-                        return;
+                        goto chooseStatusItem;
                     }
                     // if Pokémon is not fainted...
                     else if (not Trainer_1[pokemon - 1].isFainted()) {
@@ -144,27 +141,25 @@ namespace selectionPhase {
                     else {
                         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                         hpEmptyMessage(Trainer_1[pokemon - 1]);
-                        skip = true;
-                        return;
+                        goto chooseStatusPokemon;
                     }
                 }
                 // trainer is out of selected item
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     itemErrorMessage(&userStatusItems[userItem - 1]);
-                    skip = true;
-                    return;
+                    goto chooseStatusItem;
                 }
                 break;
 
             case 3:
+            choosePokeball:
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayItems(userPokeBalls);
                 userItem = getInt(0, static_cast<int>(userPokeBalls.size()));
 
                 if (userItem == 0) {
-                    skip = true;
-                    return;
+                    goto chooseItemType;
                 }
                 // if trainer has at least one of item selected...
                 else if (userPokeBalls[userItem - 1].getQuantity() > 0) {
@@ -175,6 +170,7 @@ namespace selectionPhase {
                     bool shakes[4];
                     bool caught = catchPokemon(shakes);
                     catchPokemonMessage(Trainer_2[0], shakes);
+                    //FIXME return to map rather than exit 0
                     if (caught)
                         exit(0);
                 }
@@ -182,19 +178,18 @@ namespace selectionPhase {
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     itemErrorMessage(&userPokeBalls[userItem - 1]);
-                    skip = true;
-                    return;
+                    goto choosePokeball;
                 }
                 break;
 
             case 4:
+            chooseBattleItem:
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayItems(userBattleItems);
                 userItem = getInt(0, static_cast<int>(userBattleItems.size()));
 
                 if (userItem == 0) {
-                    skip = true;
-                    return;
+                    goto chooseItemType;
                 }
                 // if trainer has at least 1 of the item selected...
                 else if (userBattleItems[userItem - 1].getQuantity() > 0) {
@@ -210,8 +205,7 @@ namespace selectionPhase {
                 else {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     itemErrorMessage(&userBattleItems[userItem - 1]);
-                    skip = true;
-                    return;
+                    goto chooseBattleItem;
                 }
                 break;
 
@@ -221,16 +215,24 @@ namespace selectionPhase {
         }
     }
 
-    bool runAway() {
+    bool runAway(bool isTrainerBattle) {
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
 
-        bool runAway = generateInteger(0, 1) == 1;
-        runMessage(runAway);
+        if (isTrainerBattle) {
+            printMessage("You can't run from a trainer battle!");
+            sleep(1);
+            return false;
+        }
+        else {
+            bool runAway = generateInteger(0, 1) == 1;
+            runMessage(runAway);
 
-        return runAway;
+            return runAway;
+        }
     }
 
     void choosePokemon(bool &skip) {
+    choosePokemon:
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
         displayPokemon(Trainer_1);
         int pokemon = getInt(0, Trainer_1.partySize());
@@ -244,31 +246,29 @@ namespace selectionPhase {
         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
         pokemonPrompt();
 
-        switch (getChar({'c', 's', '0'})) {
+        switch (getChar({ 'c', 's', '0' })) {
             case 'c':
+            chooseMove:
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayMoves(Trainer_1[pokemon - 1]);
                 userMove = getInt(0, Trainer_1[0].numMoves());
 
                 if (userMove == 0) {
-                    skip = true;
-                    return;
+                    goto choosePokemon;
                 }
 
                 displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                 displayMoveSummary(Trainer_1[pokemon - 1][userMove - 1]);
                 getInt(0, 0);
 
-                skip = true;
-                return;
+                goto chooseMove;
 
             case 's':
                 // trainer chose Pokémon currently in battle
                 if (pokemon == 1) {
                     displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                     inBattleMessage(Trainer_1[0]);
-                    skip = true;
-                    return;
+                    goto choosePokemon;
                 }
                 else {
                     // Pokémon chosen is not fainted
@@ -281,15 +281,13 @@ namespace selectionPhase {
                     else {
                         displayHPBar(Trainer_1[0], Trainer_2[0], turn);
                         hpEmptyMessage(Trainer_1[pokemon - 1]);
-                        skip = true;
-                        return;
+                        goto choosePokemon;
                     }
                 }
                 break;
 
             default:
-                skip = true;
-                return;
+                goto choosePokemon;
         }
     }
 }

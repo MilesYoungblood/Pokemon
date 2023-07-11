@@ -49,6 +49,12 @@ void Trainer::decFaintCount() {
     --this->numFainted;
 }
 
+void Trainer::defeat() {}
+
+void Trainer::interact() {
+
+}
+
 void Trainer::move(int d) {
     switch (d) {
         case directions::NORTH:
@@ -133,4 +139,9 @@ bool Trainer::isFacingSouth() const {
 
 bool Trainer::isFacingWest() const {
     return this->direction == directions::WEST;
+}
+
+template<typename Object>
+bool Trainer::isNextToNPC(const Object &npc) const {
+    
 }
