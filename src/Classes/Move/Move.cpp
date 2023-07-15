@@ -88,6 +88,6 @@ bool Move::canUse() const {
 }
 
 std::ostream& operator<<(std::ostream &out, const Move &move) {
-    out << move.getName();
+    out << move.name;
     return out;
 }

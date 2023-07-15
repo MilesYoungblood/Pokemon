@@ -5,6 +5,8 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
+#include <conio.h>
 #include "../NPC/NPC.h"
 
 class Map {
@@ -20,7 +22,7 @@ private:
     void deleteMap();
 
 public:
-    Map(int x, int y);
+    Map(int xAxisLength, int yAxisLength);
     ~Map();
     Map& operator=(const Map &rhs);
 

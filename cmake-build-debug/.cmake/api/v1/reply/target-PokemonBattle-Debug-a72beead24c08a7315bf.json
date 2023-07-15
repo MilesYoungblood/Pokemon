@@ -149,7 +149,10 @@
 				35,
 				36,
 				38,
-				40
+				40,
+				41,
+				42,
+				43
 			]
 		}
 	],
@@ -370,6 +373,21 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Classes/Map/Map.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Data/ItemList/Potion.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Data/ItemList/Ether.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Data/ItemList.h",
 			"sourceGroupIndex" : 1
 		}
 	],

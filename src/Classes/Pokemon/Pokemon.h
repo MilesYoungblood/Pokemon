@@ -31,8 +31,8 @@ private:
 
     std::string name;
     std::string status;
-    std::array<std::string, MAX_NUM_TYPES> types;
-    std::array<Move*, MAX_NUM_MOVES> moveSet;
+    Move* moveSet[Pokemon::MAX_NUM_MOVES];
+    std::string types[Pokemon::MAX_NUM_TYPES];
     
     int moveCounter;
 
@@ -41,7 +41,9 @@ public:
     Pokemon(const Pokemon &pokemonToCopy);
     Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    //Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
     Pokemon& operator=(const Pokemon& pokemonToCopy);
+    ~Pokemon();
 
     int numMoves() const;
 

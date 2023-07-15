@@ -81,7 +81,7 @@ public:
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage);
     virtual void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff);
 
-    void setPP(int);
+    void setPP(int newPP);
     int getPP() const;
 
     int getMaxPP() const;

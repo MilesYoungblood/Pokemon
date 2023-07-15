@@ -4,7 +4,7 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon() {
+Pokemon::Pokemon() : moveSet{ nullptr, nullptr, nullptr, nullptr } {
     this->maxHp = 300;
     this->currentHp = 300;
     this->attack = 1;
@@ -29,7 +29,7 @@ Pokemon::Pokemon() {
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const Pokemon &pokemonToCopy) {
+Pokemon::Pokemon(const Pokemon &pokemonToCopy) : moveSet{ pokemonToCopy.moveSet[0], pokemonToCopy.moveSet[1], pokemonToCopy.moveSet[2], pokemonToCopy.moveSet[3] } {
     this->maxHp = pokemonToCopy.maxHp;
     this->currentHp = pokemonToCopy.currentHp;
     this->attack = pokemonToCopy.attack;
@@ -54,7 +54,7 @@ Pokemon::Pokemon(const Pokemon &pokemonToCopy) {
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+Pokemon::Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) : moveSet{ nullptr, nullptr, nullptr, nullptr } {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -77,10 +77,9 @@ Pokemon::Pokemon(const char * name, const char * type, int level, int hp, int bA
 
     this->level = level;
     this->moveCounter = 0;
-    this->moveSet = {};
 }
 
-Pokemon::Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) {
+Pokemon::Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) : moveSet{ nullptr, nullptr, nullptr, nullptr } {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -103,7 +102,6 @@ Pokemon::Pokemon(const char * name, const char * type1, const char * type2, int 
 
     this->level = level;
     this->moveCounter = 0;
-    this->moveSet = {};
 }
 
 Pokemon& Pokemon::operator=(const Pokemon &pokemonToCopy) {
@@ -130,9 +128,18 @@ Pokemon& Pokemon::operator=(const Pokemon &pokemonToCopy) {
 
         this->level = pokemonToCopy.level;
         this->moveCounter = pokemonToCopy.moveCounter;
-        this->moveSet = pokemonToCopy.moveSet;
+        //this->moveSet = pokemonToCopy.moveSet;
+        for (int i = 0; i < pokemonToCopy.numMoves(); ++i) {
+            this->moveSet[i] = pokemonToCopy.moveSet[i];
+        }
     }
     return *this;
+}
+
+Pokemon::~Pokemon() {
+    for (int i = 0; i < this->moveCounter; ++i) {
+        delete this->moveSet[i];
+    }
 }
 
 int Pokemon::numMoves() const { return this->moveCounter; }
@@ -169,7 +176,7 @@ std::string Pokemon::getStatus() const { return this->status; }
 
 void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
     this->moveCounter = 0;
-    for (auto move : moves) {
+    for (Move * move : moves) {
         if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
             break;
 

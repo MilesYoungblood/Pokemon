@@ -7,12 +7,41 @@
 #include "TypeCalculations/TypeChart.h"
 #include "GeneralFunctions.h"
 
+void displayMoves(const Pokemon &pokemon, int arrow, bool &print) {
+    if (print) {
+        printMessage("Choose a move:\n");
+    }
+    else {
+        std::cout << "Choose a move:\n";
+    }
+    for (int i = 0; i < pokemon.numMoves(); ++i) {
+        if (arrow == i) {
+            std::cout << "   ->   " << pokemon[i] << std::string(15 - pokemon[i].getName().length(), ' ')
+                      << " (PP: " << pokemon[i].getPP() << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
+                      << '/' << std::string(2 - std::to_string(pokemon[i].getMaxPP()).length(), ' ') << pokemon[i].getMaxPP()
+                      << ")\n";
+        }
+        else {
+            std::cout << '\t' << pokemon[i] << std::string(15 - pokemon[i].getName().length(), ' ')
+                      << " (PP: " << pokemon[i].getPP() << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
+                      << '/' << std::string(2 - std::to_string(pokemon[i].getMaxPP()).length(), ' ') << pokemon[i].getMaxPP()
+                      << ")\n";
+        }
+    }
+    arrow == pokemon.numMoves() ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
+    std::cout.flush();
+
+    print = false;
+}
+
 void displayMoves(const Pokemon &pokemon) {
     printMessage("Choose a move:\n");
     for (int i = 0; i < pokemon.numMoves(); ++i) {
         std::cout << '\t' << pokemon[i] << std::string(15 - pokemon[i].getName().length(), ' ')
-                  << " (PP: " << pokemon[i].getPP() << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
-                  << '/' << pokemon[i].getMaxPP() << std::string(2 - std::to_string(pokemon[i].getMaxPP()).length(), ' ')
+                  << " (PP: " << pokemon[i].getPP()
+                  << std::string(2 - std::to_string(pokemon[i].getPP()).length(), ' ')
+                  << '/' << pokemon[i].getMaxPP()
+                  << std::string(2 - std::to_string(pokemon[i].getMaxPP()).length(), ' ')
                   << ") -> " << i + 1 << '\n';
     }
     std::cout << "\nCancel (0)\n";
@@ -26,50 +55,8 @@ void displayMoveSummary(const Move &move) {
     std::cout << "\tPower:    " << move.getPower() << '\n';
     std::cout << "\tAccuracy: " << move.getAccuracy() << '\n';
     std::cout << "\tPP:       " << move.getPP() << '/' << move.getMaxPP() << '\n';
-    std::cout << "\nCancel (0)\n";
+    std::cout << "\n\tCancel (ENTER)\n";
     std::cout.flush();
-}
-
-int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
-    int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
-    return levelCalc * attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
-}
-
-int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
-    int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
-    return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
-}
-
-float criticalHit(bool &crit) {
-    // returns 2 in order to double the damage
-    if (generateInteger(1, 16) == 1) {
-        crit = true;
-        return 2.0f;
-    }
-    // returns 1 if no crit
-    else {
-        crit = false;
-        return 1.0f;
-    }
-}
-
-// returns 1.5 if move is a STAB move, and 1.0 otherwise
-float stabCheck(const Pokemon &pokemon, const Move &move) {
-    return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5f : 1.0f;
-}
-
-int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
-    int initialDamage{};
-    if (move.getCategory() == "physical")
-        initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
-
-    else if (move.getCategory() == "special")
-        initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
-
-    int finalDamage = (initialDamage / 50) + 2;
-    //FIXME recalculate damage
-    return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
-                            criticalHit(crit));
 }
 
 void attackErrorMessage() {
@@ -77,7 +64,7 @@ void attackErrorMessage() {
     sleep(2);
 }
 
-void takeDamage(Trainer t, int damage) {
+void takeDamage(Trainer &t, int damage) {
     t[0].setHP(t[0].getHP() - damage);
     if (t[0].isFainted()) {
         t[0].faint();
@@ -87,7 +74,7 @@ void takeDamage(Trainer t, int damage) {
 
 namespace status {
     void takeDamageMessage(const Pokemon& pokemon) {
-        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's ");
+        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's ");
         if (pokemon.getStatus() == "burn")
             printMessage( "burn!\n");
 
@@ -100,24 +87,70 @@ namespace status {
 
 struct battlePhase {
 private:
+    static int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
+        int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
+        return levelCalc * attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
+    }
+
+    static int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
+        int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
+        return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
+    }
+
+    static float criticalHit(bool &crit) {
+        // returns 2 in order to double the damage
+        if (generateInteger(1, 16) == 1) {
+            crit = true;
+            return 2.0f;
+        }
+            // returns 1 if no crit
+        else {
+            crit = false;
+            return 1.0f;
+        }
+    }
+
+    // returns 1.5 if move is a STAB move, and 1.0 otherwise
+    static float stabCheck(const Pokemon &pokemon, const Move &move) {
+        return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5f : 1.0f;
+    }
+
+    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
+        int initialDamage{};
+        if (move.getCategory() == "physical")
+            initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
+
+        else if (move.getCategory() == "special")
+            initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
+
+        int finalDamage = (initialDamage / 50) + 2;
+        //FIXME recalculate damage
+        return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
+                                criticalHit(crit));
+    }
+
     static void SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying) {
         int toSwitch;
 
         if (isUser) {
             forcedSwitchPrompt();
 
-            if (getChar({'f', 'r'}) == 'r') {
+            if (getChar({ 'f', 'r' }) == 'r') {
+                //FIXME consider trainer battle
                 bool runSuccess = run();
                 runMessage(runSuccess);
-                if (runSuccess)
+                if (runSuccess) {
                     keepPlaying = false;
+                    return;
+                }
             }
 
             while (true) {
                 displayPokemon(trainer);
-                toSwitch = getInt(2, trainer.partySize()) - 1;
+                toSwitch = getInt(2, trainer.partySize());
 
-                if (trainer[toSwitch].isFainted())
+                //FIXME might be a bug
+                if (trainer[toSwitch - 1].isFainted())
                     hpEmptyMessage(trainer[toSwitch - 1]);
 
                 else
@@ -126,9 +159,9 @@ private:
         }
 
         else {
-            toSwitch = generateInteger(0, trainer.partySize() - 1);
-            while (trainer[toSwitch].isFainted())
+            do {
                 toSwitch = generateInteger(0, trainer.partySize() - 1);
+            } while (trainer[toSwitch].isFainted());
         }
 
         switchOut(trainer, toSwitch);
@@ -159,7 +192,7 @@ private:
     }
 
     static void PostStatus(Trainer &trainer, bool isUser, bool &keepPlaying) {
-        takeDamage(trainer, static_cast<int>(trainer[0].getMaxHp() * .0625));
+        takeDamage(trainer, static_cast<int>(lround(trainer[0].getMaxHp() * .0625)));
         status::takeDamageMessage(trainer[0]);
 
         if (not trainer.canFight()) {
@@ -221,25 +254,25 @@ public:
 
         bool skip = false;
         // if trainer chose to attack this turn...
-        if (userMove != 0) {
+        if (userMove != user.partySize()) {
             // if trainer is faster than opponent...
             if (user[0].isFasterThan(opponent[0])) {
-                PreStatus(user, opponent, userMove - 1, opponentMove, true, keepPlaying);
+                PreStatus(user, opponent, userMove, opponentMove, true, keepPlaying);
                 PostStatus(user, opponent, true, keepPlaying);
             }
             // if opponent is faster than trainer...
             else if (opponent[0].isFasterThan(user[0])) {
-                PreStatus(user, opponent, userMove - 1, opponentMove, false, keepPlaying);
+                PreStatus(user, opponent, userMove, opponentMove, false, keepPlaying);
                 PostStatus(user, opponent, false, keepPlaying);
             }
             // if trainer and opponent rival in speed; choose randomly
             else {
                 if (generateInteger(0, 1) == 0) {
-                    PreStatus(user, opponent, userMove - 1, opponentMove, true, keepPlaying);
+                    PreStatus(user, opponent, userMove, opponentMove, true, keepPlaying);
                     PostStatus(user, opponent, true, keepPlaying);
                 }
                 else {
-                    PreStatus(user, opponent, userMove - 1, opponentMove, false, keepPlaying);
+                    PreStatus(user, opponent, userMove, opponentMove, false, keepPlaying);
                     PostStatus(user, opponent, false, keepPlaying);
                 }
             }

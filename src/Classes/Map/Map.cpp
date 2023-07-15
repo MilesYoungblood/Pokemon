@@ -5,25 +5,25 @@
 #include "Map.h"
 
 void Map::createMap(const Map * from) {
-    this->layout = new bool * [from->yAxisLength];
-    for (int y = 0; y < from->yAxisLength; ++y) {
-        this->layout[y] = new bool[from->xAxisLength];
+    this->layout = new bool * [from->xAxisLength];
+    for (int x = 0; x < from->xAxisLength; ++x) {
+        this->layout[x] = new bool[from->yAxisLength];
 
         // sets all values of the map to false initially
-        for (int x = 0; x < from->xAxisLength; ++x) {
-            this->layout[y][x] = false;
+        for (int y = 0; y < from->yAxisLength; ++y) {
+            this->layout[x][y] = false;
         }
     }
 }
 
 void Map::deleteMap() {
-    for (int i = 0; i < this->yAxisLength; ++i) {
-        delete [] this->layout[i];
+    for (int x = 0; x < this->xAxisLength; ++x) {
+        delete [] this->layout[x];
     }
     delete [] this->layout;
 }
 
-Map::Map(int x, int y) : xAxisLength(x), yAxisLength(y) {
+Map::Map(int xAxisLength, int yAxisLength) : xAxisLength(xAxisLength), yAxisLength(yAxisLength) {
     this->layout = nullptr;
     this->createMap(this);
 }
@@ -58,8 +58,10 @@ void Map::setObstruction(int x, int y) {
     this->layout[x][y] = true;
 }
 
+// 242 = green, 244 = red, 240 = black
 void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const {
     system("cls");
+    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
     std::cout << "Press ESC to quit\n";
 
@@ -78,14 +80,18 @@ void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const 
             }
             // if the player is currently at these coordinates
             else if (x == trainer.getX() and y == trainer.getY()) {
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
                 std::cout << trainer.getModel();
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                 continue;
             }
             bool skip = false;
             // if the npc is currently at these coordinates
             for (const auto &npc: npcArray) {
                 if (x == npc.getX() and y == npc.getY()) {
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                     std::cout << npc.getModel();
+                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                     skip = true;
                 }
             }
@@ -109,48 +115,35 @@ bool * Map::operator[](int index) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool NPC::check(const Map &map, Trainer &trainer, std::vector<NPC> &npcArray) {
-    if (this->isInRange(trainer) and not this->isDefeated()) {
+void NPC::moveToPlayer(const Map &map, const Trainer &trainer, const std::vector<NPC> &npcArray) {
+    if (this->hasVisionOf(&trainer) and not this->isDefeated()) {
         if (this->isFacingNorth()) {
-            while (this->y != trainer.getY() + 1) {
-                this->move(directions::NORTH);
+            while (not this->isNextTo(&trainer)) {
+                this->moveNorth();
                 Sleep(250);
                 map.print(trainer, npcArray);
             }
-            trainer.changeDirection(directions::SOUTH);
-            map.print(trainer, npcArray);
         }
         else if (this->isFacingEast()) {
-            while (this->x != trainer.getX() - 1) {
-                this->move(directions::EAST);
+            while (not this->isNextTo(&trainer)) {
+                this->moveEast();
                 Sleep(250);
                 map.print(trainer, npcArray);
             }
-            trainer.changeDirection(directions::WEST);
-            map.print(trainer, npcArray);
         }
         else if (this->isFacingSouth()) {
-            while (this->y != trainer.getY() - 1) {
-                this->move(directions::SOUTH);
+            while (not this->isNextTo(&trainer)) {
+                this->moveSouth();
                 Sleep(250);
                 map.print(trainer, npcArray);
             }
-            trainer.changeDirection(directions::NORTH);
-            map.print(trainer, npcArray);
         }
         else if (this->isFacingWest()) {
-            while (this->x != trainer.getX() + 1) {
-                this->move(directions::WEST);
+            while (not this->isNextTo(&trainer)) {
+                this->moveWest();
                 Sleep(250);
                 map.print(trainer, npcArray);
             }
-            trainer.changeDirection(directions::EAST);
-            map.print(trainer, npcArray);
         }
-
-        return true;
-    }
-    else {
-        return false;
     }
 }

@@ -11,9 +11,88 @@
 #include <conio.h>
 #include <windows.h>
 
+// toggles cursor
+void ShowConsoleCursor(bool showFlag) {
+    CONSOLE_CURSOR_INFO cursorInfo;
+
+    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+    cursorInfo.bVisible = showFlag; // set the cursor visibility
+    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
+}
+
+class SortClass {
+private:
+    template <typename Comparable>
+    static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
+        const size_t subArrayOne = mid - left + 1;
+        const size_t subArrayTwo = right - mid;
+
+        // Create temp arrays
+        Comparable leftArray[subArrayOne];
+        Comparable rightArray[subArrayTwo];
+
+        // Copy data to temp arrays leftArray[] and rightArray[]
+        for (int i = 0; i < subArrayOne; ++i)
+            leftArray[i] = array[left + i];
+        for (int i = 0; i < subArrayTwo; ++i)
+            rightArray[i] = array[mid + i + 1];
+
+        size_t indexOfSubArrayOne = 0;
+        size_t indexOfSubArrayTwo = 0;
+        size_t indexOfMergedArray = left;
+
+        // Merge the temp arrays back into array[left..right]
+        while (indexOfSubArrayOne < subArrayOne and indexOfSubArrayTwo < subArrayTwo) {
+            if (leftArray[indexOfSubArrayOne]<= rightArray[indexOfSubArrayTwo]) {
+                array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+                ++indexOfSubArrayOne;
+            }
+            else {
+                array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+                ++indexOfSubArrayTwo;
+            }
+            ++indexOfMergedArray;
+        }
+
+        // Copy the remaining elements of
+        // left[], if there are any
+        while (indexOfSubArrayOne < subArrayOne) {
+            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            ++indexOfSubArrayOne;
+            ++indexOfMergedArray;
+        }
+
+        // Copy the remaining elements of
+        // right[], if there are any
+        while (indexOfSubArrayTwo < subArrayTwo) {
+            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            ++indexOfSubArrayTwo;
+            ++indexOfMergedArray;
+        }
+    }
+
+    // begin is for left index and end is right index
+    // of the sub-array of arr to be sorted
+    template <typename Comparable>
+    static void mergeSort(std::vector<Comparable> &array, const size_t left, const size_t right) {
+        if (left < right) {
+            size_t mid = left + (right - left) / 2;
+            mergeSort(array, left, mid);
+            mergeSort(array, mid + 1, right);
+            merge(array, left, mid, right);
+        }
+    }
+
+public:
+    template<typename Comparable>
+    static void mergeSort(std::vector<Comparable> &array) {
+        mergeSort(array, 0, array.size());
+    }
+};
+
 // returns true if character is a vowel
 bool isVowel(char ltr) {
-    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
+    return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
 // returns a char of the users selections

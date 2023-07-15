@@ -24,7 +24,7 @@ struct VoltTackle : public Move {
     }
 
     void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff) override {
-        Move::printMessage(attackingPokemon.getName() + " used Thunder! ");
+        Move::printMessage(attackingPokemon.getName() + " used Volt Tackle! ");
         sleep(1);
         // damage will be negative if the attack misses
         if (damage > 0) {
@@ -33,7 +33,7 @@ struct VoltTackle : public Move {
                 sleep(1);
             }
             else {
-                Move::printMessage("Thunder did " + std::to_string(damage) + " damage! ");
+                Move::printMessage("Volt Tackle did " + std::to_string(damage) + " damage! ");
                 sleep(1);
 
                 if (typeEff >= 2.0f) {
@@ -46,7 +46,7 @@ struct VoltTackle : public Move {
                 }
 
                 if (criticalHit) {
-                    Move::printMessage("A critical hit!");
+                    Move::printMessage("A critical hit! ");
                     sleep(1);
                 }
 

@@ -7,34 +7,19 @@
 #include "../Classes/Trainer/Trainer.h"
 #include "../Classes/NPC/NPC.h"
 #include "MoveList.h"
+#include "ItemList.h"
 
-extern Pokemon Greninja;
-extern Pokemon Charizard;
-extern Pokemon Hydreigon;
-extern Pokemon Pikachu;
-extern Pokemon Lucario;
-
-extern WaterShuriken waterShuriken;
-extern Move DarkPulse;
-extern IceBeam iceBeam;
-extern Move Extrasensory;
-extern Flamethrower flamethrower;
-extern Move AirSlash;
-extern Move DragonPulse;
-extern Move SolarBeam;
-extern FocusBlast focusBlast;
-extern Thunder thunder;
-extern Move QuickAttack;
-extern IronTail ironTail;
-extern VoltTackle voltTackle;
-extern AuraSphere auraSphere;
-extern FlashCannon flashCannon;
+extern const Pokemon Greninja;
+extern const Pokemon Charizard;
+extern const Pokemon Hydreigon;
+extern const Pokemon Pikachu;
+extern const Pokemon Lucario;
 
 extern Trainer Trainer_1;
 extern NPC Trainer_2;
 
-const extern RestoreItem Potion;
-const extern RestoreItem Ether;
+const extern RestoreItem potion;
+const extern RestoreItem ether;
 const extern StatusItem ParalyzeHeal;
 const extern StatusItem BurnHeal;
 const extern StatusItem IceHeal;
@@ -50,5 +35,3 @@ extern std::vector<RestoreItem> userRestoreItems;
 extern std::vector<StatusItem> userStatusItems;
 extern std::vector<PokeBall> userPokeBalls;
 extern std::vector<BattleItem> userBattleItems;
-
-extern size_t turn;

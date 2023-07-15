@@ -29,13 +29,47 @@ void introMessage(const Pokemon &userPokemon, const Pokemon &opposingPokemon) {
     sendOutMessage(userPokemon);
 }
 
-void displayChoices(const Pokemon &pokemon) {
-    printMessage("What will " + pokemon.getName() + " do?\n");
-    std::cout << "\tFight   (f)\n";
-    std::cout << "\tBag     (b)\n";
-    std::cout << "\tRun     (r)\n";
-    std::cout << "\tPokemon (p)\n";
+void displayChoices(const Pokemon &pokemon, int arrow, bool &print) {
+    if (print) {
+        printMessage("What will " + pokemon.getName() + " do?\n");
+    }
+    else {
+        std::cout << "What will " << pokemon << " do?\n";
+    }
+    arrow == 0 ? std::cout << "   ->   Fight\n" : std::cout << "\tFight\n";
+    arrow == 1 ? std::cout << "   ->   Bag\n" : std::cout << "\tBag\n";
+    arrow == 2 ? std::cout << "   ->   Run\n" : std::cout << "\tRun\n";
+    arrow == 3 ? std::cout << "   ->   Pokemon\n" : std::cout << "\tPokemon\n";
     std::cout.flush();
+
+    print = false;
+}
+
+void displayPokemon(const Trainer &t, int arrow, bool &print) {
+    if (print) {
+        printMessage("Choose a Pokemon:\n");
+    }
+    else {
+        std::cout << "Choose a Pokemon:\n";
+    }
+    for (int i = 0; i < t.partySize(); ++i) {
+        if (arrow == i) {
+            std::cout << "   ->   " << t[i] << std::string(15 - t[i].getName().length(), ' ')
+                      << "(HP: " << t[i].getHP() << std::string(3 - std::to_string(t[i].getHP()).length(), ' ')
+                      << '/' << std::string(3 - std::to_string(t[i].getMaxHp()).length(), ' ') << t[i].getMaxHp()
+                      << ")\n";
+        }
+        else {
+            std::cout << '\t' << t[i] << std::string(15 - t[i].getName().length(), ' ')
+                      << "(HP: " << t[i].getHP() << std::string(3 - std::to_string(t[i].getHP()).length(), ' ')
+                      << '/' << std::string(3 - std::to_string(t[i].getMaxHp()).length(), ' ') << t[i].getMaxHp()
+                      << ")\n";
+        }
+    }
+    arrow == t.partySize() ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
+    std::cout.flush();
+
+    print = false;
 }
 
 void displayPokemon(const Trainer &t) {
@@ -106,12 +140,24 @@ void runMessage(bool runStatus) {
     sleep(1);
 }
 
-void pokemonPrompt() {
-    printMessage("Choose an option:\n");
-    std::cout << "\tCheck Moves (c)\n";
-    std::cout << "\tSwitch      (s)\n";
-    std::cout << "\nCancel (0)\n";
+void runErrorMessage() {
+    printMessage("You can't run away from a trainer battle!");
+    sleep(1);
+}
+
+void pokemonPrompt(int arrow, bool &print) {
+    if (print) {
+        printMessage("Choose an option:\n");
+    }
+    else {
+        std::cout << "Choose an option:\n";
+    }
+    arrow == 0 ? std::cout << "   ->   Check Moves\n" : std::cout << "\tCheck Moves\n";
+    arrow == 1 ? std::cout << "   ->   Switch\n" : std::cout << "\tSwitch\n";
+    arrow == 2 ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
     std::cout.flush();
+
+    print = false;
 }
 
 void switchOut(Trainer &t, int pokemonToSwitch) {
@@ -164,7 +210,7 @@ bool postStatus(const std::string& status) {
 
 void inflictedMessage(const Pokemon& pokemon) {
     if (pokemon.getStatus() == "burn")
-        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .065)) + " damage from it's burn!\n");
+        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .065))) + " damage from it's burn!\n");
 
     else if (pokemon.getStatus() == "paralysis")
         printMessage(pokemon.getName() + " is paralyzed! It can't move!\n");
@@ -173,7 +219,7 @@ void inflictedMessage(const Pokemon& pokemon) {
         printMessage(pokemon.getName() + " is frozen solid!\n");
 
     else if (pokemon.getStatus() == "poison")
-        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(pokemon.getMaxHp() * .0625)) + " damage from it's poisoning!\n");
+        printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's poisoning!\n");
 
     else if (pokemon.getStatus() == "sleep")
         printMessage(pokemon.getName() + " is fast asleep!\n");
@@ -181,7 +227,7 @@ void inflictedMessage(const Pokemon& pokemon) {
     sleep(1);
 }
 
-void updateHP(const Pokemon &userPokemon, const Pokemon &opposingPokemon, int damage, size_t turn, bool userAttacking) {
+__attribute__((unused)) void updateHP(const Pokemon &userPokemon, const Pokemon &opposingPokemon, int damage, size_t turn, bool userAttacking) {
     for (int i = 1; i <= damage; ++i) {
         system("cls");
         if (userAttacking) {

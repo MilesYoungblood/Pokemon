@@ -23,5 +23,43 @@ struct IceBeam : public Move {
         --this->pp;
     }
 
+    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage,bool criticalHit, float typeEff) override {
+        Move::printMessage(attackingPokemon.getName() + " used Ice Beam! ");
+        sleep(1);
+        // damage will be negative if the attack misses
+        if (damage > 0) {
+            Move::printMessage("Thunder did " + std::to_string(damage) + " damage! ");
+            sleep(1);
+
+            if (typeEff >= 2.0f) {
+                Move::printMessage("It's super effective! ");
+                sleep(1);
+            }
+            else if (typeEff <= 0.5f) {
+                Move::printMessage("It's not very effective... ");
+                sleep(1);
+            }
+
+            if (criticalHit) {
+                Move::printMessage("A critical hit! ");
+                sleep(1);
+            }
+
+            if (this->freezeState) {
+                Move::printMessage(defendingPokemon.getName() + " became frozen!");
+                sleep(1);
+            }
+        }
+        else {
+            Move::printMessage(defendingPokemon.getName() + " avoided the attack!");
+            sleep(1);
+        }
+
+        Move::printMessage('\n', 0);
+        std::cout.flush();
+
+        this->freezeState = false;
+    }
+
     //TODO add message
 };
