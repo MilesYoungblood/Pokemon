@@ -66,69 +66,95 @@ namespace selectionPhase {
     }
 
     void chooseItem(Trainer &trainer_1, Trainer * trainer_2, size_t t, bool &skip, bool isTrainerBattle, bool &keepPlaying) {
+        int userItem = 0;
+        bool print = true;
+
     chooseItemType:
         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-        displayBag();
-        int userItem = getInt(0, 4);
+        displayBag(userItem, print);
+
+        if (not chooseOption(userItem, 4))
+            goto chooseItemType;
 
         // trainer chose HP/PP items
         switch (userItem) {
-            case 1:
+            case 0:
+                print = true;
+
             chooseRestoreItem:
                 displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                displayItems(userRestoreItems);
-                userItem = getInt(0, static_cast<int>(userRestoreItems.size()));
+                displayItems(userRestoreItems, userItem, print);
 
-                if (userItem == 0) {
+                if (not chooseOption(userItem, static_cast<int>(userRestoreItems.size())))
+                    goto chooseRestoreItem;
+
+                if (userItem == static_cast<int>(userRestoreItems.size())) {
+                    userItem = 0;
+                    print = true;
                     goto chooseItemType;
                 }
+
                 // if trainer has at least 1 of the item selected...
-                else if (userRestoreItems[userItem - 1].getQuantity() > 0) {
+                else if (userRestoreItems[userItem].getQuantity() > 0) {
+                    int pokemon = 0;
+                    print = true;
+
                 chooseRestorePokemon:
                     displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                    displayPokemon(trainer_1);
-                    int pokemon = getInt(0, trainer_1.partySize());
+                    displayPokemon(trainer_1, pokemon, print);
 
-                    if (pokemon == 0) {
+                    if (not chooseOption(pokemon, trainer_1.partySize()))
+                        goto chooseRestorePokemon;
+
+                    if (pokemon == trainer_1.partySize()) {
+                        userItem = 0;
+                        print = true;
                         goto chooseRestoreItem;
                     }
                     // Pokémon's HP is already full
-                    else if (trainer_1[pokemon - 1].isFullHP()) {
+                    else if (trainer_1[pokemon].isFullHP()) {
                         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                        hpFullMessage(trainer_1[pokemon - 1]);
+                        hpFullMessage(trainer_1[pokemon]);
                         goto chooseRestorePokemon;
                     }
                     // Pokémon is fainted
-                    else if (trainer_1[pokemon - 1].isFainted()) {
+                    else if (trainer_1[pokemon].isFainted()) {
                         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                        hpEmptyMessage(trainer_1[pokemon - 1]);
+                        hpEmptyMessage(trainer_1[pokemon]);
                         goto chooseRestorePokemon;
                     }
                     // if Pokémon selected doesn't have full HP, but also isn't fainted...
                     else {
                         // if item selected restores HP...
-                        if (userRestoreItems[userItem - 1].getRestoreType() == "HP") {
+                        if (userRestoreItems[userItem].getRestoreType() == "HP") {
                             displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                            useItem(userRestoreItems[userItem - 1]);
-                            useItemMessage(userRestoreItems[userItem - 1].getName());
-                            HP::restore(trainer_1[pokemon - 1], userRestoreItems[userItem - 1].getAmount());
-                            HP::restoreMessage(trainer_1[pokemon - 1], userRestoreItems[userItem - 1].getAmount());
+                            useItem(userRestoreItems[userItem]);
+                            useItemMessage(userRestoreItems[userItem].getName());
+                            HP::restore(trainer_1[pokemon], userRestoreItems[userItem].getAmount());
+                            HP::restoreMessage(trainer_1[pokemon], userRestoreItems[userItem].getAmount());
                         }
                         // if item selected restores PP...
-                        else if (userRestoreItems[userItem - 1].getRestoreType() == "PP") {
-                            displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                            displayMoves(trainer_1[pokemon - 1]);
-                            int move = getInt(0, trainer_1[0].numMoves());
+                        else if (userRestoreItems[userItem].getRestoreType() == "PP") {
+                            int move = 0;
+                            print = true;
 
-                            if (move == 0) {
+                        choosePokemon:
+                            displayHPBar(trainer_1[0], (*trainer_2)[0], t);
+                            displayMoves(trainer_1[pokemon], move, print);
+                            //int move = getInt(0, trainer_1[0].numMoves());
+
+                            if (not chooseOption(move, trainer_1[0].numMoves()))
+                                goto choosePokemon;
+
+                            if (move == trainer_1[0].numMoves())
                                 goto chooseRestorePokemon;
-                            }
+
                             else {
                                 displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                                useItem(userRestoreItems[userItem - 1]);
-                                useItemMessage(userRestoreItems[userItem - 1].getName());
-                                PP::restore(trainer_1[pokemon - 1][move - 1], userRestoreItems[userItem - 1].getAmount());
-                                PP::restoreMessage(trainer_1[pokemon - 1][move - 1], userRestoreItems[userItem - 1].getAmount());
+                                useItem(userRestoreItems[userItem]);
+                                useItemMessage(userRestoreItems[userItem].getName());
+                                PP::restore(trainer_1[pokemon][move], userRestoreItems[userItem].getAmount());
+                                PP::restoreMessage(trainer_1[pokemon][move], userRestoreItems[userItem].getAmount());
                             }
                         }
                     }
@@ -136,12 +162,12 @@ namespace selectionPhase {
                 // trainer is out of selected item
                 else {
                     displayHPBar(trainer_1[0], (*trainer_2)[0], t);
-                    itemErrorMessage(&userRestoreItems[userItem - 1]);
+                    itemErrorMessage(&userRestoreItems[userItem]);
                     goto chooseRestoreItem;
                 }
                 break;
 
-            case 2:
+            case 1:
             chooseStatusItem:
                 displayHPBar(trainer_1[0], (*trainer_2)[0], t);
                 displayItems(userStatusItems);
@@ -192,7 +218,7 @@ namespace selectionPhase {
                 }
                 break;
 
-            case 3:
+            case 2:
             choosePokeball:
                 displayHPBar(trainer_1[0], (*trainer_2)[0], t);
                 displayItems(userPokeBalls);
@@ -230,7 +256,7 @@ namespace selectionPhase {
                 }
                 break;
 
-            case 4:
+            case 3:
             chooseBattleItem:
                 displayHPBar(trainer_1[0], (*trainer_2)[0], t);
                 displayItems(userBattleItems);
@@ -266,7 +292,7 @@ namespace selectionPhase {
     bool runAway(Trainer &trainer_1, Trainer * trainer_2, size_t t, bool &skip, bool canRun) {
         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
 
-        if (canRun) {
+        if (not canRun) {
             runErrorMessage();
             skip = true;
             return false;

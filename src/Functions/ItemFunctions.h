@@ -9,14 +9,45 @@ void failMessage() {
     sleep(1);
 }
 
-void displayBag() {
-    printMessage("Choose an option:\n");
-    std::cout << "\tHP/PP restore  (1)\n";
-    std::cout << "\tStatus restore (2)\n";
-    std::cout << "\tPoke Balls     (3)\n";
-    std::cout << "\tBattle Items   (4)\n";
-    std::cout << "\nCancel (0)\n";
+void displayBag(int arrow, bool &print) {
+    if (print) {
+        printMessage("Choose an option:\n");
+    }
+    else {
+        std::cout << "Choose an option:\n";
+    }
+    arrow == 0 ? std::cout << "   ->   HP/PP restore\n" : std::cout << "\tHP/PP restore\n";
+    arrow == 1 ? std::cout << "   ->   Status restore\n" : std::cout << "\tStatus restore\n";
+    arrow == 2 ? std::cout << "   ->   Poke Balls\n" : std::cout << "\tPoke Balls\n";
+    arrow == 3 ? std::cout << "   ->   Battle Items\n" : std::cout << "\tBattle Items\n";
+    arrow == 4 ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
     std::cout.flush();
+
+    print = false;
+}
+
+template <typename Item>
+void displayItems(const std::vector<Item> &items, int arrow, bool &print) {
+    if (print) {
+        printMessage("Choose an item:\n");
+    }
+    else {
+        std::cout << "Choose an item:\n";
+    }
+    for (int i = 0; i < items.size(); ++i)
+        if (arrow == i) {
+            std::cout << "   ->   " << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x"
+                      << items[i].getQuantity() << '\n';
+        }
+        else {
+            std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x"
+                      << items[i].getQuantity() << '\n';
+        }
+
+    arrow == items.size() ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
+    std::cout.flush();
+
+    print = false;
 }
 
 template <typename Item>

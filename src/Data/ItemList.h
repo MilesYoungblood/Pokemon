@@ -4,5 +4,6 @@
 
 #pragma once
 
-#include "./ItemList/Potion.h"
-#include "./ItemList/Ether.h"
+#include "ItemList/Potion.h"
+#include "ItemList/Ether.h"
+#include "ItemList/ParalyzeHeal.h"

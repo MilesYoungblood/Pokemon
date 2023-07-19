@@ -4,6 +4,10 @@
 
 #include "NPC.h"
 
+NPC::NPC() : Trainer() {
+    this->defeated = false;
+}
+
 NPC::NPC(const std::initializer_list<Pokemon> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
     this->range = range;
     this->defeated = false;

@@ -7,7 +7,6 @@
 #include <iostream>
 #include <random>
 #include <windows.h>
-#include <unistd.h>
 
 /*
 enum types {
@@ -79,7 +78,7 @@ public:
     virtual int getDamage();
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage);
-    virtual void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff);
+    virtual void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff);
 
     void setPP(int newPP);
     int getPP() const;

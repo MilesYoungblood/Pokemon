@@ -128,6 +128,10 @@ Pokemon& Pokemon::operator=(const Pokemon &pokemonToCopy) {
 
         this->level = pokemonToCopy.level;
         this->moveCounter = pokemonToCopy.moveCounter;
+
+        for (int i = 0; i < this->moveCounter; ++i) {
+            delete this->moveSet[i];
+        }
         //this->moveSet = pokemonToCopy.moveSet;
         for (int i = 0; i < pokemonToCopy.numMoves(); ++i) {
             this->moveSet[i] = pokemonToCopy.moveSet[i];
@@ -215,43 +219,43 @@ void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int dama
     --this->pp;
 }
 
-void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff) {
+void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) {
     printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
-    sleep(1);
+    Sleep(1000);
     // damage will be negative if the attack misses
     if (damage > 0) {
-        if (typeEff == 0.0f) {
+        if (typeEff == 0.0) {
             printMessage("It doesn't affect " + defendingPokemon.getName() + "...\n");
-            sleep(1);
+            Sleep(1000);
         }
-        else if (typeEff >= 2.0f) {
+        else if (typeEff >= 2.0) {
             printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
-            sleep(1);
+            Sleep(1000);
             printMessage("It's super effective!\n");
-            sleep(1);
+            Sleep(1000);
             if (criticalHit) {
                 printMessage("A critical hit! ");
-                sleep(1);
+                Sleep(1000);
             }
         }
-        else if (typeEff <= 0.5f) {
+        else if (typeEff <= 0.5) {
             printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
-            sleep(1);
+            Sleep(1000);
             printMessage("It's not very effective...\n");
-            sleep(1);
+            Sleep(1000);
             if (criticalHit) {
                 printMessage("A critical hit! ");
-                sleep(1);
+                Sleep(1000);
             }
         }
         else {
             printMessage(this->name + " did " + std::to_string(damage) + " damage!\n");
-            sleep(1);
+            Sleep(1000);
         }
     }
     else {
         printMessage(defendingPokemon.getName() + " avoided the attack!\n");
-        sleep(1);
+        Sleep(1000);
     }
     std::cout.flush();
 }

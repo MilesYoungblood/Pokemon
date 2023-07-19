@@ -13,6 +13,7 @@ private:
     bool defeated;  // has this trainer been defeated (necessary to know if you can walk in LOS again)
 
 public:
+    NPC();
     NPC(const std::initializer_list<Pokemon> &pokemon, int x, int y, int range);
 
     //bool isInRange(const Trainer &t);

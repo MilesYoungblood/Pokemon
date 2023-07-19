@@ -11,8 +11,8 @@
 
 class Map {
 private:
-    int xAxisLength;    // length of the x-axis of the map
-    int yAxisLength;    // length of the y-axis of the map
+    int width;          // width of the map
+    int height;         // height of the map
 
     bool ** layout;     // map is represented by a 2D bool array
                         // A true at a coordinate denotes an obstruction
@@ -22,13 +22,15 @@ private:
     void deleteMap();
 
 public:
-    Map(int xAxisLength, int yAxisLength);
+    Map(int width, int height);
+    Map(const Map &toCopy);
     ~Map();
     Map& operator=(const Map &rhs);
 
-    int getXBounds() const;
-    int getYBounds() const;
+    int getWidth() const;
+    int getHeight() const;
 
+    bool getTile(int x, int y) const;
     bool * operator[](int index);
 
     void setObstruction(int x, int y);

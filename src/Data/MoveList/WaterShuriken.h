@@ -18,32 +18,32 @@ struct WaterShuriken : public Move {
         return this->power * this->numHits;
     }
 
-    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff) override {
+    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
         Move::printMessage(attackingPokemon.getName() + " used Water Shuriken! ");
-        sleep(1);
+        Sleep(1000);
         // damage will be negative if the attack misses
         if (damage > 0) {
             Move::printMessage("Water Shuriken did " + std::to_string(damage) + " damage! ");
-            sleep(1);
-            if (typeEff >= 2.0f) {
+            Sleep(1000);
+            if (typeEff >= 2.0) {
                 Move::printMessage("It's super effective! ");
-                sleep(1);
+                Sleep(1000);
             }
-            else if (typeEff <= 0.5f) {
+            else if (typeEff <= 0.5) {
                 Move::printMessage("It's not very effective... ");
-                sleep(1);
+                Sleep(1000);
             }
 
             Move::printMessage("It hit " + std::to_string(this->numHits) + " times! ");
-            sleep(1);
+            Sleep(1000);
             if (criticalHit) {
                 Move::printMessage('x' + std::to_string(this->numHits) + " critical hits!");
-                sleep(1);
+                Sleep(1000);
             }
         }
         else {
             Move::printMessage(defendingPokemon.getName() + " avoided the attack!");
-            sleep(1);
+            Sleep(1000);
         }
 
         Move::printMessage('\n', 0);

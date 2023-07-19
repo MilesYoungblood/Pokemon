@@ -97,22 +97,22 @@ private:
         return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
     }
 
-    static float criticalHit(bool &crit) {
+    static double criticalHit(bool &crit) {
         // returns 2 in order to double the damage
         if (generateInteger(1, 16) == 1) {
             crit = true;
-            return 2.0f;
+            return 2.0;
         }
             // returns 1 if no crit
         else {
             crit = false;
-            return 1.0f;
+            return 1.0;
         }
     }
 
     // returns 1.5 if move is a STAB move, and 1.0 otherwise
-    static float stabCheck(const Pokemon &pokemon, const Move &move) {
-        return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5f : 1.0f;
+    static double stabCheck(const Pokemon &pokemon, const Move &move) {
+        return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
     }
 
     static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
@@ -125,11 +125,12 @@ private:
 
         int finalDamage = (initialDamage / 50) + 2;
         //FIXME recalculate damage
-        return static_cast<int>(static_cast<float>(finalDamage) * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
+        return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
                                 criticalHit(crit));
     }
 
     static void SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying) {
+        //TODO add HP bar
         int toSwitch;
 
         if (isUser) {
@@ -180,7 +181,7 @@ private:
             defender.incFaintCount();
             faintMessage(defender[0]);
             if (not defender.canFight()) {
-                //TODO add defeat()
+                defender.defeat();
                 isUserAttacking ? winMessage() : loseMessage();
                 keepPlaying = false;
             }
@@ -192,11 +193,11 @@ private:
     }
 
     static void PostStatus(Trainer &trainer, bool isUser, bool &keepPlaying) {
-        takeDamage(trainer, static_cast<int>(lround(trainer[0].getMaxHp() * .0625)));
+        takeDamage(trainer, static_cast<int>(lround(trainer[0].getMaxHp() * 0.0625)));
         status::takeDamageMessage(trainer[0]);
 
         if (not trainer.canFight()) {
-            //TODO add defeat()
+            trainer.defeat();
             isUser ? loseMessage() : winMessage();
             keepPlaying = false;
         }
@@ -254,7 +255,7 @@ public:
 
         bool skip = false;
         // if trainer chose to attack this turn...
-        if (userMove != user.partySize()) {
+        if (userMove != user[0].numMoves()) {
             // if trainer is faster than opponent...
             if (user[0].isFasterThan(opponent[0])) {
                 PreStatus(user, opponent, userMove, opponentMove, true, keepPlaying);

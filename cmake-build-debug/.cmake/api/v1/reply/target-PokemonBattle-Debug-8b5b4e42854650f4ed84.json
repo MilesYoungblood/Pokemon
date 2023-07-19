@@ -152,7 +152,8 @@
 				40,
 				41,
 				42,
-				43
+				43,
+				44
 			]
 		}
 	],
@@ -388,6 +389,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Data/ItemList.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Data/ItemList/ParalyzeHeal.h",
 			"sourceGroupIndex" : 1
 		}
 	],

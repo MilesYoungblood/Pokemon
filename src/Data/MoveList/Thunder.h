@@ -22,42 +22,42 @@ struct Thunder : public Move {
         --this->pp;
     }
 
-    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, float typeEff) override {
+    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
         Move::printMessage(attackingPokemon.getName() + " used Thunder! ");
-        sleep(1);
+        Sleep(1000);
         // damage will be negative if the attack misses
         if (damage > 0) {
-            if (typeEff == 0.0f) {
+            if (typeEff == 0.0) {
                 Move::printMessage("It doesn't affect " + defendingPokemon.getName() + "...");
-                sleep(1);
+                Sleep(1000);
             }
             else {
                 Move::printMessage("Thunder did " + std::to_string(damage) + " damage! ");
-                sleep(1);
+                Sleep(1000);
 
-                if (typeEff >= 2.0f) {
+                if (typeEff >= 2.0) {
                     Move::printMessage("It's super effective! ");
-                    sleep(1);
+                    Sleep(1000);
                 }
-                else if (typeEff <= 0.5f) {
+                else if (typeEff <= 0.5) {
                     Move::printMessage("It's not very effective... ");
-                    sleep(1);
+                    Sleep(1000);
                 }
 
                 if (criticalHit) {
                     Move::printMessage("A critical hit!");
-                    sleep(1);
+                    Sleep(1000);
                 }
 
                 if (this->paralysisState) {
                     Move::printMessage(defendingPokemon.getName() + " became paralyzed!");
-                    sleep(1);
+                    Sleep(1000);
                 }
             }
         }
         else {
             Move::printMessage(defendingPokemon.getName() + " avoided the attack!");
-            sleep(1);
+            Sleep(1000);
         }
 
         Move::printMessage('\n', 0);

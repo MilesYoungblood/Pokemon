@@ -5,27 +5,35 @@
 #include "Map.h"
 
 void Map::createMap(const Map * from) {
-    this->layout = new bool * [from->xAxisLength];
-    for (int x = 0; x < from->xAxisLength; ++x) {
-        this->layout[x] = new bool[from->yAxisLength];
+    this->layout = new bool * [from->width];
+    for (int x = 0; x < from->width; ++x) {
+        this->layout[x] = new bool[from->height];
 
         // sets all values of the map to false initially
-        for (int y = 0; y < from->yAxisLength; ++y) {
+        for (int y = 0; y < from->height; ++y) {
             this->layout[x][y] = false;
         }
     }
 }
 
 void Map::deleteMap() {
-    for (int x = 0; x < this->xAxisLength; ++x) {
+    for (int x = 0; x < this->width; ++x) {
         delete [] this->layout[x];
     }
     delete [] this->layout;
 }
 
-Map::Map(int xAxisLength, int yAxisLength) : xAxisLength(xAxisLength), yAxisLength(yAxisLength) {
+Map::Map(int width, int height) : width(width), height(height) {
     this->layout = nullptr;
     this->createMap(this);
+}
+
+Map::Map(const Map &toCopy) {
+    this->width = toCopy.width;
+    this->height = toCopy.height;
+
+    this->layout = nullptr;
+    this->createMap(&toCopy);
 }
 
 Map::~Map() {
@@ -34,8 +42,8 @@ Map::~Map() {
 
 Map& Map::operator=(const Map &rhs) {
     if (this != &rhs) {
-        this->xAxisLength = rhs.xAxisLength;
-        this->yAxisLength = rhs.yAxisLength;
+        this->width = rhs.width;
+        this->height = rhs.height;
 
         // safe delete the map just in case of reassignment
         this->deleteMap();
@@ -46,12 +54,22 @@ Map& Map::operator=(const Map &rhs) {
     return *this;
 }
 
-int Map::getXBounds() const {
-    return this->xAxisLength;
+int Map::getWidth() const {
+    return this->width;
 }
 
-int Map::getYBounds() const {
-    return this->yAxisLength;
+int Map::getHeight() const {
+    return this->height;
+}
+
+bool Map::getTile(int x, int y) const {
+    // out of bounds
+    if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y)) {
+        return true;
+    }
+    else {
+        return this->layout[x][y];
+    }
 }
 
 void Map::setObstruction(int x, int y) {
@@ -67,12 +85,12 @@ void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const 
 
     // top border
     std::cout << '+';
-    std::cout << std::string(this->xAxisLength, '-');
+    std::cout << std::string(this->width, '-');
     std::cout << "+\n";
 
-    for (int y = 0; y < this->yAxisLength; ++y) {
+    for (int y = 0; y < this->height; ++y) {
         std::cout << '|';
-        for (int x = 0; x < this->xAxisLength; ++x) {
+        for (int x = 0; x < this->width; ++x) {
             // if an obstruction is in this spot
             if (this->layout[x][y]) {
                 std::cout << 'X';
@@ -105,7 +123,7 @@ void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const 
 
     // bottom border
     std::cout << '+';
-    std::cout << std::string(this->xAxisLength, '-');
+    std::cout << std::string(this->width, '-');
     std::cout << '+' << std::flush;
 }
 
@@ -115,6 +133,7 @@ bool * Map::operator[](int index) {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// moves the NPC to the player
 void NPC::moveToPlayer(const Map &map, const Trainer &trainer, const std::vector<NPC> &npcArray) {
     if (this->hasVisionOf(&trainer) and not this->isDefeated()) {
         if (this->isFacingNorth()) {

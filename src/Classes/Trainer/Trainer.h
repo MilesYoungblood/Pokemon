@@ -34,7 +34,6 @@ protected:
     char model;                         // visual representation of which way the trainer is facing
 
     Pokemon party[Trainer::MAX_POKEMON];
-    //Item items[Trainer::MAX_ITEMS];
     Item* items[Trainer::MAX_ITEM_TYPES][Trainer::MAX_ITEMS];
 
 public:

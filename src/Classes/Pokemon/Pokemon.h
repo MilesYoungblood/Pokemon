@@ -42,8 +42,8 @@ public:
     Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     //Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
-    Pokemon& operator=(const Pokemon& pokemonToCopy);
     ~Pokemon();
+    Pokemon& operator=(const Pokemon& pokemonToCopy);
 
     int numMoves() const;
 

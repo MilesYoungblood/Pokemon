@@ -7,7 +7,7 @@
 #include "PhysicalTypes.h"
 #include "SpecialTypes.h"
 
-float getTypeEffective(const Move& move, const Pokemon& pokemon) {
+double getTypeEffective(const Move& move, const Pokemon& pokemon) {
     if (move.getType() == "normal")
         return checkNormal(pokemon);
 
@@ -63,5 +63,5 @@ float getTypeEffective(const Move& move, const Pokemon& pokemon) {
         return checkFairy(pokemon);
 
     else
-        return 1.0f;
+        return 1.0;
 }

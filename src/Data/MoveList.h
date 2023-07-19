@@ -6,7 +6,6 @@
 
 #include <random>
 #include <iostream>
-#include <unistd.h>
 #include <windows.h>
 
 #include "../Classes/Pokemon/Pokemon.h"
@@ -47,5 +46,5 @@ struct SolarBeam : public Move {
 
 //TODO priority
 struct QuickAttack : public Move {
-    QuickAttack() : Move("Quick Action", "normal", "physical", 30, 40, 100) {}
+    QuickAttack() : Move("Quick Attack", "normal", "physical", 30, 40, 100) {}
 };

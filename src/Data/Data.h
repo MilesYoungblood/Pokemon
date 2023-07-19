@@ -20,7 +20,7 @@ extern NPC Trainer_2;
 
 const extern RestoreItem potion;
 const extern RestoreItem ether;
-const extern StatusItem ParalyzeHeal;
+const extern StatusItem paralyzeHeal;
 const extern StatusItem BurnHeal;
 const extern StatusItem IceHeal;
 const extern StatusItem Antidote;

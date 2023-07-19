@@ -11,6 +11,15 @@
 #include <conio.h>
 #include <windows.h>
 
+enum keys {
+    ESC = 27,
+    UP_ARROW __attribute__((unused)) = 72,
+    LEFT_ARROW __attribute__((unused)) = 75,
+    DOWN_ARROW __attribute__((unused)) = 80,
+    RIGHT_ARROW __attribute__((unused)) = 77,
+    ENTER = 13
+};
+
 // toggles cursor
 void ShowConsoleCursor(bool showFlag) {
     CONSOLE_CURSOR_INFO cursorInfo;
