@@ -1,85 +1,34 @@
 #include "Functions/CoreFunctions.h"
-#include "Classes/Map/Map.h"
-
-void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
-    size_t turn = 1;
-
-    displayHPBar(turn);
-    introMessage(player[0], (*npc)[0]);
-
-    bool keepPlaying = true;
-
-    while (keepPlaying) { // enters the battle
-        int option = 0;
-        bool print = true;
-
-        reprint:
-        displayHPBar(player[0], (*npc)[0], turn);
-        displayChoices(player[0], option, print);
-
-        //FIXME change 4 back to 3; only using 4 for testing purposes
-        if (not chooseOption(option, 4))
-            goto reprint;
-
-        if (option == 4)
-            return;
-
-        int userMove = player[0].numMoves();    // passed into fight to determine move used
-        bool cancel = false;                    // passed into core four functions to know if to return to main screen
-
-        chooseOption:
-        switch (option) {
-            case 0:
-                userMove = selectionPhase::chooseMove(player, npc, turn, cancel);
-                break;
-            case 1:
-                selectionPhase::chooseItem(player, npc, turn, cancel, isTrainer, keepPlaying);
-                break;
-            case 2:
-                if (selectionPhase::runAway(player, npc, turn, cancel, not isTrainer)) {
-                    npc->defeat();
-                    return;
-                }
-                break;
-            case 3:
-                selectionPhase::choosePokemon(player, npc, turn, cancel);
-                break;
-            default:
-                goto chooseOption;
-        }
-
-        if (not cancel)
-            battlePhase::fight(player, *npc, userMove, turn, keepPlaying);
-    }
-}
 
 bool isTrainerHere(const std::vector<NPC> &npcArray, int x, int y) {
     return std::any_of(npcArray.begin(), npcArray.end(), [&x, &y](const NPC &npc){ return npc.getX() == x and npc.getY() == y; });
 }
 
+#include "Classes/Map/Map.h"
 #include <thread>
 
 bool canMove = true;
+bool keepTurning = true;
 
 void turn(Map &m, Trainer &t, std::vector<NPC> &npc, int index) {
-    while (true) {
+    while (keepTurning) {
         if (generateInteger(1, 2) == 1) {
             npc[index].face(&npc[index]);
             m.print(t, npc);
 
-            if (npc[0].hasVisionOf(&Trainer_1) and not npc[0].isDefeated()) {
+            if (npc[index].hasVisionOf(&Trainer_1) and not npc[index].isDefeated()) {
+                keepTurning = false;
                 canMove = false;
 
-                npc[0].moveToPlayer(m, Trainer_1, npc);
-                Trainer_1.face(&npc[0]);
+                npc[index].moveToPlayer(m, Trainer_1, npc);
+                Trainer_1.face(&npc[index]);
                 m.print(Trainer_1, npc);
 
                 Sleep(2000);
                 system("cls");
-                engageBattle(Trainer_1, &npc[0], false);
+                engageBattle(Trainer_1, &npc[index], false);
                 m.print(Trainer_1, npc);
                 canMove = true;
-                return;
             }
         }
         else {
@@ -191,6 +140,19 @@ int main() {
                     if (Trainer_1.hasVisionOf(&npc) and not npc.hasVisionOf(&Trainer_1)) {
                         npc.face(&Trainer_1);
                         Route_1.print(Trainer_1, npcArr);
+
+                        if (npc.hasVisionOf(&Trainer_1) and not npc.isDefeated()) {
+                            keepTurning = false;
+
+                            npc.moveToPlayer(Route_1, Trainer_1, npcArr);
+                            Trainer_1.face(&npc);
+                            Route_1.print(Trainer_1, npcArr);
+
+                            Sleep(2000);
+                            system("cls");
+                            engageBattle(Trainer_1, &npc, false);
+                            Route_1.print(Trainer_1, npcArr);
+                        }
                         break;
                     }
                 }

@@ -390,3 +390,55 @@ namespace selectionPhase {
         }
     }
 }
+
+void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
+    size_t turn = 1;
+
+    displayHPBar(turn);
+    introMessage(player[0], (*npc)[0]);
+
+    bool keepPlaying = true;
+
+    while (keepPlaying) { // enters the battle
+        int option = 0;
+        bool print = true;
+
+        reprint:
+        displayHPBar(player[0], (*npc)[0], turn);
+        displayChoices(player[0], option, print);
+
+        //FIXME change 4 back to 3; only using 4 for testing purposes
+        if (not chooseOption(option, 4))
+            goto reprint;
+
+        if (option == 4)
+            return;
+
+        int userMove = player[0].numMoves();    // passed into fight to determine move used
+        bool cancel = false;                    // passed into core four functions to know if to return to main screen
+
+        chooseOption:
+        switch (option) {
+            case 0:
+                userMove = selectionPhase::chooseMove(player, npc, turn, cancel);
+                break;
+            case 1:
+                selectionPhase::chooseItem(player, npc, turn, cancel, isTrainer, keepPlaying);
+                break;
+            case 2:
+                if (selectionPhase::runAway(player, npc, turn, cancel, not isTrainer)) {
+                    npc->defeat();
+                    return;
+                }
+                break;
+            case 3:
+                selectionPhase::choosePokemon(player, npc, turn, cancel);
+                break;
+            default:
+                goto chooseOption;
+        }
+
+        if (not cancel)
+            battlePhase::fight(player, *npc, userMove, turn, keepPlaying);
+    }
+}
