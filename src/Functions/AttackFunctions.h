@@ -97,6 +97,15 @@ private:
         return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
     }
 
+    static std::pair<double, bool> criticalHit() {
+        if (generateInteger(1, 16) == 1) {
+            return std::make_pair(2.0, true);
+        }
+        else {
+            return std::make_pair(1.0, false);
+        }
+    }
+
     static double criticalHit(bool &crit) {
         // returns 2 in order to double the damage
         if (generateInteger(1, 16) == 1) {
@@ -116,7 +125,7 @@ private:
     }
 
     static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
-        int initialDamage{};
+        int initialDamage = 0;
         if (move.getCategory() == "physical")
             initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
 
@@ -124,9 +133,11 @@ private:
             initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
 
         int finalDamage = (initialDamage / 50) + 2;
+        std::pair<double, bool> c = criticalHit();
+        crit = c.second;
+
         //FIXME recalculate damage
-        return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) *
-                                criticalHit(crit));
+        return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) * c.first);
     }
 
     static void SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying) {
@@ -182,6 +193,7 @@ private:
             faintMessage(defender[0]);
             if (not defender.canFight()) {
                 defender.defeat();
+                //TODO add HP bar
                 isUserAttacking ? winMessage() : loseMessage();
                 keepPlaying = false;
             }

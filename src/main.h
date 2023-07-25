@@ -124,6 +124,14 @@ int getInt(int lower, int upper) {
     }
 }
 
+bool coinFlip() {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::uniform_int_distribution<int> dist(0, 1);
+
+    return dist(mt) == 1;
+}
+
 // returns a random integer from a range
 int generateInteger(int from, int to) {
     std::random_device rd;

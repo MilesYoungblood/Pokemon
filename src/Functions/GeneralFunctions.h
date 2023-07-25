@@ -85,6 +85,7 @@ void displayPokemon(const Trainer &t) {
 }
 
 void displayHPBar(size_t t) {
+    system("cls");
     std::cout << "Turn " << t << '\n';
     for (int i = 0; i < 2; ++i) {
         std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n";

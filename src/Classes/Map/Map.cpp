@@ -4,14 +4,20 @@
 
 #include "Map.h"
 
-void Map::createMap(const Map * from) {
+void Map::createMap(const Map * from, bool copy) {
     this->layout = new bool * [from->width];
     for (int x = 0; x < from->width; ++x) {
         this->layout[x] = new bool[from->height];
 
-        // sets all values of the map to false initially
-        for (int y = 0; y < from->height; ++y) {
-            this->layout[x][y] = false;
+        if (copy) {
+            for (int y = 0; y < from->height; ++y) {
+                this->layout[x][y] = from->layout[x][y];
+            }
+        }
+        else {
+            for (int y = 0; y < from->height; ++y) {
+                this->layout[x][y] = false;
+            }
         }
     }
 }
@@ -23,17 +29,30 @@ void Map::deleteMap() {
     delete [] this->layout;
 }
 
-Map::Map(int width, int height) : width(width), height(height) {
+bool Map::isNPCHere(int x, int y) const {
+    return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC &npc){ return npc.getX() == x and npc.getY() == y; });
+}
+
+Map::Map(int width, int height) {
+    this->width = width;
+    this->height = height;
+
     this->layout = nullptr;
-    this->createMap(this);
+    this->createMap(this, false);
+}
+
+Map::Map(int width, int height, const std::vector<NPC> &npcArray) : Map(width, height) {
+    this->npcArray = npcArray;
 }
 
 Map::Map(const Map &toCopy) {
     this->width = toCopy.width;
     this->height = toCopy.height;
 
+    this->npcArray = toCopy.npcArray;
+
     this->layout = nullptr;
-    this->createMap(&toCopy);
+    this->createMap(&toCopy, true);
 }
 
 Map::~Map() {
@@ -45,26 +64,20 @@ Map& Map::operator=(const Map &rhs) {
         this->width = rhs.width;
         this->height = rhs.height;
 
+        this->npcArray = rhs.npcArray;
+
         // safe delete the map just in case of reassignment
         this->deleteMap();
 
         // recreate the map
-        this->createMap(&rhs);
+        this->createMap(&rhs, true);
     }
     return *this;
 }
 
-int Map::getWidth() const {
-    return this->width;
-}
-
-int Map::getHeight() const {
-    return this->height;
-}
-
 bool Map::getTile(int x, int y) const {
-    // out of bounds
-    if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y)) {
+    // out of bounds or an NPC is already in this spot
+    if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isNPCHere(x, y)) {
         return true;
     }
     else {
@@ -72,12 +85,22 @@ bool Map::getTile(int x, int y) const {
     }
 }
 
+int Map::numNPCs() {
+    return static_cast<int>(this->npcArray.size());
+}
+
+NPC& Map::operator[](int index) {
+    return this->npcArray[index];
+}
+
 void Map::setObstruction(int x, int y) {
-    this->layout[x][y] = true;
+    if (not this->isNPCHere(x, y)) {
+        this->layout[x][y] = true;
+    }
 }
 
 // 242 = green, 244 = red, 240 = black
-void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const {
+void Map::print(const Trainer &trainer) const {
     system("cls");
     //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
 
@@ -105,7 +128,7 @@ void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const 
             }
             bool skip = false;
             // if the npc is currently at these coordinates
-            for (const auto &npc: npcArray) {
+            for (const auto &npc : this->npcArray) {
                 if (x == npc.getX() and y == npc.getY()) {
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                     std::cout << npc.getModel();
@@ -127,41 +150,37 @@ void Map::print(const Trainer &trainer, const std::vector<NPC> &npcArray) const 
     std::cout << '+' << std::flush;
 }
 
-bool * Map::operator[](int index) {
-    return this->layout[index];
-}
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // moves the NPC to the player
-void NPC::moveToPlayer(const Map &map, const Trainer &trainer, const std::vector<NPC> &npcArray) {
+void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
     if (this->hasVisionOf(&trainer) and not this->isDefeated()) {
         if (this->isFacingNorth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveNorth();
                 Sleep(250);
-                map.print(trainer, npcArray);
+                map.print(trainer);
             }
         }
         else if (this->isFacingEast()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveEast();
                 Sleep(250);
-                map.print(trainer, npcArray);
+                map.print(trainer);
             }
         }
         else if (this->isFacingSouth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveSouth();
                 Sleep(250);
-                map.print(trainer, npcArray);
+                map.print(trainer);
             }
         }
         else if (this->isFacingWest()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveWest();
                 Sleep(250);
-                map.print(trainer, npcArray);
+                map.print(trainer);
             }
         }
     }

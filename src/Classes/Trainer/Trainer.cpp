@@ -56,6 +56,33 @@ Trainer::~Trainer() {
     }
 }
 
+Trainer& Trainer::operator=(const Trainer &rhs) {
+    if (this != &rhs) {
+        this->numFainted = rhs.numFainted;
+        this->numPokemon = rhs.numPokemon;
+        this->x = rhs.x;
+        this->y = rhs.y;
+        this->range = rhs.range;
+        this->direction = rhs.direction;
+        this->model = rhs.model;
+        for (int i = 0; i < rhs.numPokemon; ++i) {
+            this->party[i] = rhs[i];
+        }
+
+        for (auto &item : this->items) {
+            for (auto &j : item) {
+                delete j;
+            }
+        }
+        for (int i = 0; i < Trainer::MAX_ITEM_TYPES; ++i) {
+            for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
+                this->items[i][j] = rhs.items[i][j];
+            }
+        }
+    }
+    return *this;
+}
+
 int Trainer::partySize() const {
     return this->numPokemon;
 }

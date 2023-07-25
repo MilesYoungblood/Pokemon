@@ -10,14 +10,16 @@ class Map;
 
 class NPC : public Trainer {
 private:
-    bool defeated;  // has this trainer been defeated (necessary to know if you can walk in LOS again)
+    bool defeated;  // has this trainer been defeated (necessary to know if you can walk in LoS again)
 
 public:
     NPC();
     NPC(const std::initializer_list<Pokemon> &pokemon, int x, int y, int range);
+    ~NPC();
+    NPC& operator=(const NPC &rhs);
 
     //bool isInRange(const Trainer &t);
     bool isDefeated() const;
     void defeat() override;
-    void moveToPlayer(const Map &map, const Trainer &trainer, const std::vector<NPC> &npcArray);
+    void moveToPlayer(const Map &map, const Trainer &trainer);
 };

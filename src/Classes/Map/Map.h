@@ -11,28 +11,30 @@
 
 class Map {
 private:
-    int width;          // width of the map
-    int height;         // height of the map
+    int width;                  // width of the map
+    int height;                 // height of the map
 
-    bool ** layout;     // map is represented by a 2D bool array
-                        // A true at a coordinate denotes an obstruction
-                        // A false at a coordinate denotes an open tile
+    bool ** layout;             // map is represented by a 2D bool array
+                                // A true at a coordinate denotes an obstruction
+                                // A false at a coordinate denotes an open tile
 
-    void createMap(const Map * from);
+    std::vector<NPC> npcArray;  // the set of trainers in this map
+
+    void createMap(const Map * from, bool copy);
     void deleteMap();
+    bool isNPCHere(int x, int y) const;
 
 public:
     Map(int width, int height);
+    Map(int width, int height, const std::vector<NPC> &npcArray);
     Map(const Map &toCopy);
     ~Map();
     Map& operator=(const Map &rhs);
 
-    int getWidth() const;
-    int getHeight() const;
-
     bool getTile(int x, int y) const;
-    bool * operator[](int index);
+    int numNPCs();
+    NPC& operator[](int index);
 
     void setObstruction(int x, int y);
-    void print(const Trainer &trainer, const std::vector<NPC> &npcArray) const;
+    void print(const Trainer &trainer) const;
 };

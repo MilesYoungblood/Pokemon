@@ -1,0 +1,254 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.cpp
+BattleItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h
+Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.cpp
+Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+iostream
+-
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.cpp
+Pokeball.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.h
+Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.cpp
+RestoreItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h
+Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.cpp
+StatusItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h
+Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp
+Map.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h
+vector
+-
+algorithm
+-
+conio.h
+-
+../NPC/NPC.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp
+Move.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h
+iostream
+-
+random
+-
+windows.h
+-
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.cpp
+NPC.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h
+../Trainer/Trainer.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.cpp
+Pokemon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+vector
+-
+array
+-
+../Move/Move.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.cpp
+Trainer.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h
+../Pokemon/Pokemon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+../Item/Item.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
+../Item/RestoreItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h
+../Item/StatusItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h
+../Item/Pokeball.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.h
+../Item/BattleItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.cpp
+Data.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h
+../Classes/Trainer/Trainer.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h
+../Classes/NPC/NPC.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h
+MoveList.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList.h
+ItemList.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList.h
+ItemList/Potion.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Potion.h
+ItemList/Ether.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Ether.h
+ItemList/ParalyzeHeal.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/ParalyzeHeal.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Ether.h
+../../Classes/Item/RestoreItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/ParalyzeHeal.h
+../../Classes/Item/StatusItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Potion.h
+../../Classes/Item/RestoreItem.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList.h
+random
+-
+iostream
+-
+windows.h
+-
+../Classes/Pokemon/Pokemon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+./MoveList/AuraSphere.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/AuraSphere.h
+./MoveList/Flamethrower.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Flamethrower.h
+./MoveList/FlashCannon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FlashCannon.h
+./MoveList/FocusBlast.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FocusBlast.h
+./MoveList/IceBeam.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IceBeam.h
+./MoveList/IronTail.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IronTail.h
+./MoveList/Thunder.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Thunder.h
+./MoveList/VoltTackle.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/VoltTackle.h
+./MoveList/WaterShuriken.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/WaterShuriken.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/AuraSphere.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Flamethrower.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FlashCannon.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FocusBlast.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IceBeam.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IronTail.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Thunder.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/VoltTackle.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/WaterShuriken.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/AttackFunctions.h
+TypeCalculations/TypeChart.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/TypeChart.h
+GeneralFunctions.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/CoreFunctions.h
+AttackFunctions.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/AttackFunctions.h
+../Data/Data.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h
+unistd.h
+-
+../Classes/Trainer/Trainer.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h
+../main.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.h
+ItemFunctions.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/PhysicalTypes.h
+../../Classes/Pokemon/Pokemon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/SpecialTypes.h
+../../Classes/Pokemon/Pokemon.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/TypeChart.h
+PhysicalTypes.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/PhysicalTypes.h
+SpecialTypes.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/SpecialTypes.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.cpp
+Functions/CoreFunctions.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/CoreFunctions.h
+Classes/Map/Map.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h
+thread
+-
+Data/Data.h
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h
+
+/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.h
+iostream
+-
+vector
+-
+random
+-
+algorithm
+-
+conio.h
+-
+windows.h
+-
+

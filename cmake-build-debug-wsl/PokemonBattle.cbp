@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="PokemonBattle"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PokemonBattle">
+				<Option output="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/PokemonBattle" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 PokemonBattle"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="PokemonBattle/fast">
+				<Option output="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/PokemonBattle" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 PokemonBattle/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/mnt/c/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug-wsl/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Data.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Ether.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/ParalyzeHeal.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/ItemList/Potion.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/AuraSphere.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Flamethrower.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FlashCannon.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/FocusBlast.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IceBeam.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/IronTail.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/Thunder.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/VoltTackle.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/WaterShuriken.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/AttackFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/CoreFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/PhysicalTypes.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/SpecialTypes.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/TypeCalculations/TypeChart.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="/mnt/c/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

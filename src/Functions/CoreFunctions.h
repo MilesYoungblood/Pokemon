@@ -242,7 +242,6 @@ namespace selectionPhase {
                     bool shakes[4];
                     bool caught = catchPokemon(shakes);
                     catchPokemonMessage((*trainer_2)[0], shakes);
-                    //FIXME return to map rather than exit 0
                     if (caught) {
                         keepPlaying = false;
                         return;
@@ -407,12 +406,14 @@ void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
         displayHPBar(player[0], (*npc)[0], turn);
         displayChoices(player[0], option, print);
 
-        //FIXME change 4 back to 3; only using 4 for testing purposes
+        // FIXME change 4 back to 3; only using 4 for testing purposes
         if (not chooseOption(option, 4))
             goto reprint;
 
-        if (option == 4)
+        if (option == 4) {
+            (*npc).defeat();
             return;
+        }
 
         int userMove = player[0].numMoves();    // passed into fight to determine move used
         bool cancel = false;                    // passed into core four functions to know if to return to main screen

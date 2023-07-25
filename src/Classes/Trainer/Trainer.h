@@ -41,6 +41,7 @@ public:
     Trainer(const Trainer &toCopy);
     Trainer(const std::initializer_list<Pokemon> &pokemon, int x, int y);
     ~Trainer();
+    Trainer& operator=(const Trainer &rhs);
 
     int partySize() const;
     Item& getItem(int type, int item);
