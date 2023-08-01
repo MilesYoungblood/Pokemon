@@ -102,8 +102,6 @@ void Map::setObstruction(int x, int y) {
 // 242 = green, 244 = red, 240 = black
 void Map::print(const Trainer &trainer) const {
     system("cls");
-    //SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 15);
-
     std::cout << "Press ESC to quit\n";
 
     // top border
@@ -111,6 +109,7 @@ void Map::print(const Trainer &trainer) const {
     std::cout << std::string(this->width, '-');
     std::cout << "+\n";
 
+    // inner layer
     for (int y = 0; y < this->height; ++y) {
         std::cout << '|';
         for (int x = 0; x < this->width; ++x) {
@@ -121,23 +120,31 @@ void Map::print(const Trainer &trainer) const {
             }
             // if the player is currently at these coordinates
             else if (x == trainer.getX() and y == trainer.getY()) {
+                // change color of text to green
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
                 std::cout << trainer.getModel();
+
+                // change color of text back to white
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                 continue;
             }
-            bool skip = false;
+            bool found = false;      // necessary because an NPC might not be found
+
             // if the npc is currently at these coordinates
             for (const auto &npc : this->npcArray) {
                 if (x == npc.getX() and y == npc.getY()) {
+                    // change color of text to red
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                     std::cout << npc.getModel();
+
+                    // change color of text back to white
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-                    skip = true;
+                    found = true;
+                    break;
                 }
             }
-            // empty space
-            if (not this->layout[x][y] and not skip) {
+            // empty space if all else is false
+            if (not this->layout[x][y] and not found) {
                 std::cout << ' ';
             }
         }

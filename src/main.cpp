@@ -17,6 +17,7 @@ void turn(Map &map, Trainer &t, int index) {
 
                 map[index].moveToPlayer(map, t);
                 t.face(&map[index]);
+
                 map.print(t);
 
                 Sleep(2000);
@@ -79,7 +80,7 @@ int main() {
                 Trainer_1.face(&Route_1[i]);
                 Route_1.print(Trainer_1);
 
-                Sleep(2000);
+                std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                 engageBattle(Trainer_1, &Route_1[i], false);
                 Route_1.print(Trainer_1);
             }
@@ -144,7 +145,7 @@ int main() {
                             Trainer_1.face(&Route_1[i]);
                             Route_1.print(Trainer_1);
 
-                            Sleep(2000);
+                            std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                             engageBattle(Trainer_1, &Route_1[i], false);
                             Route_1.print(Trainer_1);
                         }

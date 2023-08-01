@@ -28,6 +28,8 @@ protected:
     int power;
     int accuracy;
 
+    int t;
+
     std::string type;
     std::string category;
     std::string name;

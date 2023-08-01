@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <vector>
-#include <array>
 #include "../Move/Move.h"
 
 class Pokemon {
