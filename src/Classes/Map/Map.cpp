@@ -20,6 +20,22 @@ void Map::createMap(const Map * from, bool copy) {
             }
         }
     }
+
+    // set the top border
+    for (int x = 0; x < from->width; ++x) {
+        this->layout[x][0] = true;
+    }
+
+    // set the inner layer borders
+    for (int y = 1; y < from->height; ++y) {
+        this->layout[0][y] = true;
+        this->layout[this->width - 1][y] = true;
+    }
+
+    // set the bottom border
+    for (int x = 0; x < from->width; ++x) {
+        this->layout[x][this->height - 1] = true;
+    }
 }
 
 void Map::deleteMap() {
@@ -45,14 +61,26 @@ Map::Map(int width, int height, const std::vector<NPC> &npcArray) : Map(width, h
     this->npcArray = npcArray;
 }
 
+Map::Map(int width, int height, const std::vector<NPC> &npcArray, const std::vector<std::pair<std::pair<int, int>, int>> &exitPoints) : Map(width, height, npcArray){
+    this->exitPoints = exitPoints;
+    for (auto &exitPoint : this->exitPoints) {
+        this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+    }
+}
+
 Map::Map(const Map &toCopy) {
     this->width = toCopy.width;
     this->height = toCopy.height;
 
     this->npcArray = toCopy.npcArray;
+    this->exitPoints = toCopy.exitPoints;
 
     this->layout = nullptr;
     this->createMap(&toCopy, true);
+
+    for (auto &exitPoint : this->exitPoints) {
+        this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+    }
 }
 
 Map::~Map() {
@@ -61,16 +89,21 @@ Map::~Map() {
 
 Map& Map::operator=(const Map &rhs) {
     if (this != &rhs) {
+        // safe delete the map just in case of reassignment
+        this->deleteMap();
+
         this->width = rhs.width;
         this->height = rhs.height;
 
         this->npcArray = rhs.npcArray;
-
-        // safe delete the map just in case of reassignment
-        this->deleteMap();
+        this->exitPoints = rhs.exitPoints;
 
         // recreate the map
         this->createMap(&rhs, true);
+
+        for (auto &exitPoint : this->exitPoints) {
+            this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+        }
     }
     return *this;
 }
@@ -83,6 +116,18 @@ bool Map::getTile(int x, int y) const {
     else {
         return this->layout[x][y];
     }
+}
+
+int Map::isExitPointHere(int x, int y) const {
+    for (const auto &exitPoint : this->exitPoints) {
+        if (exitPoint.first.first == x and exitPoint.first.second == y) {
+            return exitPoint.second;
+        }
+    }
+    return -1;
+    //if (std::any_of(this->exitPoints.begin(), this->exitPoints.end(), [&x, &y](const std::pair<std::pair<int, int>, int> &exitPoint) -> bool { return exitPoint.first.first == x and exitPoint.first.second == y; })) {
+
+    //}
 }
 
 int Map::numNPCs() {
@@ -105,13 +150,13 @@ void Map::print(const Trainer &trainer) const {
     std::cout << "Press ESC to quit\n";
 
     // top border
-    std::cout << '+';
-    std::cout << std::string(this->width, '-');
-    std::cout << "+\n";
+    //std::cout << '+';
+    //std::cout << std::string(this->width, '-');
+    //std::cout << "+\n";
 
     // inner layer
     for (int y = 0; y < this->height; ++y) {
-        std::cout << '|';
+        //std::cout << '|';
         for (int x = 0; x < this->width; ++x) {
             // if an obstruction is in this spot
             if (this->layout[x][y]) {
@@ -120,11 +165,11 @@ void Map::print(const Trainer &trainer) const {
             }
             // if the player is currently at these coordinates
             else if (x == trainer.getX() and y == trainer.getY()) {
-                // change color of text to green
+                // change color of the text to green
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
                 std::cout << trainer.getModel();
 
-                // change color of text back to white
+                // change color of the text back to white
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                 continue;
             }
@@ -133,11 +178,11 @@ void Map::print(const Trainer &trainer) const {
             // if the npc is currently at these coordinates
             for (const auto &npc : this->npcArray) {
                 if (x == npc.getX() and y == npc.getY()) {
-                    // change color of text to red
+                    // change color of the text to red
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
                     std::cout << npc.getModel();
 
-                    // change color of text back to white
+                    // change color of the text back to white
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
                     found = true;
                     break;
@@ -148,13 +193,13 @@ void Map::print(const Trainer &trainer) const {
                 std::cout << ' ';
             }
         }
-        std::cout << "|\n";
+        std::cout << '\n';
     }
 
     // bottom border
-    std::cout << '+';
-    std::cout << std::string(this->width, '-');
-    std::cout << '+' << std::flush;
+    //std::cout << '+';
+    //std::cout << std::string(this->width, '-');
+    //std::cout << '+' << std::flush;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

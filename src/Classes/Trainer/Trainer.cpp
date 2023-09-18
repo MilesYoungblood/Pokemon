@@ -7,8 +7,8 @@
 Trainer::Trainer() : items() {
     this->numFainted = 0;
     this->numPokemon = 0;
-    this->x = 0;
-    this->y = 0;
+    this->x = 1;
+    this->y = 1;
     this->range = 1;
     this->direction = directions::SOUTH;
     this->model = 'S';
@@ -165,6 +165,11 @@ const Pokemon& Trainer::operator[](int spot) const {
     return this->party[spot];
 }
 
+void Trainer::setCoordinates(int xCoord, int yCoord) {
+    this->x = xCoord;
+    this->y = yCoord;
+}
+
 int Trainer::getX() const {
     return this->x;
 }
@@ -216,17 +221,17 @@ bool Trainer::hasVisionOf(const Trainer * t) const {
 }
 
 // makes this face the trainer
-void Trainer::face(const Trainer * t) {
-    if (t->isFacingNorth()) {
+void Trainer::face(const Trainer * trainer) {
+    if (trainer->isFacingNorth()) {
         this->faceSouth();
     }
-    else if (t->isFacingEast()) {
+    else if (trainer->isFacingEast()) {
         this->faceWest();
     }
-    else if (t->isFacingSouth()) {
+    else if (trainer->isFacingSouth()) {
         this->faceNorth();
     }
-    else if (t->isFacingWest()) {
+    else if (trainer->isFacingWest()) {
         this->faceEast();
     }
 }

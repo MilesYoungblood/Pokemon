@@ -66,6 +66,7 @@ public:
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
+    void setCoordinates(int xCoord, int yCoord);
     int getX() const;
     int getY() const;
 
@@ -79,7 +80,7 @@ public:
     bool isFacingWest() const;
 
     bool hasVisionOf(const Trainer * t) const;
-    void face(const Trainer * t);
+    void face(const Trainer * trainer);
 
     bool isNextTo(const Trainer * t) const;
 };

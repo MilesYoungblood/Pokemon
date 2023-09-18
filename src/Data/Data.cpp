@@ -14,7 +14,7 @@ const Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70,
 
 /// Trainers
 
-Trainer Trainer_1({ Greninja, Charizard, Hydreigon }, 0, 0);
+Trainer Trainer_1({ Greninja, Charizard, Hydreigon }, 1, 1);
 NPC Trainer_2({ Pikachu, Lucario }, 6, 6, 3);
 
 /// Items

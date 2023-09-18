@@ -64,7 +64,7 @@ private:
         }
 
         // Copy the remaining elements of
-        // left[], if there are any
+        // the left array if there are any
         while (indexOfSubArrayOne < subArrayOne) {
             array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
             ++indexOfSubArrayOne;
@@ -72,7 +72,7 @@ private:
         }
 
         // Copy the remaining elements of
-        // right[], if there are any
+        // right[] if there are any
         while (indexOfSubArrayTwo < subArrayTwo) {
             array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
             ++indexOfSubArrayTwo;
@@ -80,7 +80,7 @@ private:
         }
     }
 
-    // begin is for left index and end is right index
+    // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
     template <typename Comparable>
     static void mergeSort(std::vector<Comparable> &array, const size_t left, const size_t right) {
@@ -104,7 +104,7 @@ bool isVowel(char ltr) {
     return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
-// returns a char of the users selections
+// returns a char of the user's selections
 char getChar(const std::vector<char> &options) {
     while (true) {
         char c = static_cast<char>(getch());
@@ -115,9 +115,10 @@ char getChar(const std::vector<char> &options) {
     }
 }
 
-// returns an integer from a range of a user's choice
+// returns an integer if in range of the user's choice
 int getInt(int lower, int upper) {
     while (true) {
+        // subtracting by '0' gets the offset of the ASCII
         int i = getch() - '0';
         if (lower <= i and i <= upper)
             return i;

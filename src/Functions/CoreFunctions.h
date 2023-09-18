@@ -407,13 +407,15 @@ void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
         displayChoices(player[0], option, print);
 
         // FIXME change 4 back to 3; only using 4 for testing purposes
-        if (not chooseOption(option, 4))
+        if (not chooseOption(option, 3))
             goto reprint;
 
+        /*
         if (option == 4) {
             (*npc).defeat();
             return;
         }
+        */
 
         int userMove = player[0].numMoves();    // passed into fight to determine move used
         bool cancel = false;                    // passed into core four functions to know if to return to main screen
