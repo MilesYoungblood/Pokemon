@@ -43,6 +43,12 @@ public:
     ~Pokemon();
     Pokemon& operator=(const Pokemon& pokemonToCopy);
 
+    void clear() {
+        for (int i = 0; i < this->moveCounter; ++i) {
+            delete this->moveSet[i];
+        }
+    }
+
     int numMoves() const;
 
     void setHP(int);

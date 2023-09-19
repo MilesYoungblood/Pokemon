@@ -11,28 +11,30 @@
 
 class Map {
 private:
-    int width;                  // width of the map
-    int height;                 // height of the map
+    enum tiles { EMPTY = 0, GRASS = 1, EXIT = 2 };
 
-    bool ** layout;             // The map is represented by a 2D bool array
-                                // A true at a coordinate denotes an obstruction
-                                // A false at a coordinate denotes an open tile
+    int width;                              // width of the map
+    int height;                             // height of the map
 
-    std::vector<NPC> npcArray;  // the set of trainers in this map
+    std::vector<std::vector<bool>> layout;  // The map is represented by a 2D bool array
+                                            // A true at a coordinate denotes an obstruction
+                                            // A false at a coordinate denotes an open tile
 
-    void createMap(const Map * from, bool copy);
-    void deleteMap();
-    bool isNPCHere(int x, int y) const;
+    std::vector<NPC> npcArray;              // the set of trainers in this map
 
     std::vector<std::pair<std::pair<int, int>, int>> exitPoints;   // coordinates where the player can leave this map
-                                                                   // to enter another
+    // to enter another
+
+    void createMap(const Map * from, bool copy);
+    //void deleteMap();
+    bool isNPCHere(int x, int y) const;
 
 public:
     Map(int width, int height);
     Map(int width, int height, const std::vector<NPC> &npcArray);
     Map(int width, int height, const std::vector<NPC> &npcArray, const std::vector<std::pair<std::pair<int, int>, int>> &exitPoints);
     Map(const Map &toCopy);
-    ~Map();
+    //~Map();
     Map& operator=(const Map &rhs);
 
     bool getTile(int x, int y) const;

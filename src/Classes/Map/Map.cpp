@@ -5,9 +5,11 @@
 #include "Map.h"
 
 void Map::createMap(const Map * from, bool copy) {
-    this->layout = new bool * [from->width];
+    this->layout.resize(from->width);
+    //this->layout = new bool * [from->width];
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x] = new bool[from->height];
+        //this->layout[x] = new bool[from->height];
+        this->layout[x].resize(from->height);
 
         if (copy) {
             for (int y = 0; y < from->height; ++y) {
@@ -38,12 +40,14 @@ void Map::createMap(const Map * from, bool copy) {
     }
 }
 
+/*
 void Map::deleteMap() {
     for (int x = 0; x < this->width; ++x) {
         delete [] this->layout[x];
     }
     delete [] this->layout;
 }
+ */
 
 bool Map::isNPCHere(int x, int y) const {
     return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC &npc){ return npc.getX() == x and npc.getY() == y; });
@@ -53,7 +57,7 @@ Map::Map(int width, int height) {
     this->width = width;
     this->height = height;
 
-    this->layout = nullptr;
+    //this->layout = nullptr;
     this->createMap(this, false);
 }
 
@@ -75,7 +79,7 @@ Map::Map(const Map &toCopy) {
     this->npcArray = toCopy.npcArray;
     this->exitPoints = toCopy.exitPoints;
 
-    this->layout = nullptr;
+    //this->layout = nullptr;
     this->createMap(&toCopy, true);
 
     for (auto &exitPoint : this->exitPoints) {
@@ -83,14 +87,14 @@ Map::Map(const Map &toCopy) {
     }
 }
 
-Map::~Map() {
-    this->deleteMap();
-}
+//Map::~Map() {
+    //this->deleteMap();
+//}
 
 Map& Map::operator=(const Map &rhs) {
     if (this != &rhs) {
         // safe delete the map just in case of reassignment
-        this->deleteMap();
+        //this->deleteMap();
 
         this->width = rhs.width;
         this->height = rhs.height;
@@ -125,9 +129,6 @@ int Map::isExitPointHere(int x, int y) const {
         }
     }
     return -1;
-    //if (std::any_of(this->exitPoints.begin(), this->exitPoints.end(), [&x, &y](const std::pair<std::pair<int, int>, int> &exitPoint) -> bool { return exitPoint.first.first == x and exitPoint.first.second == y; })) {
-
-    //}
 }
 
 int Map::numNPCs() {

@@ -19,6 +19,10 @@ NPC::~NPC() {
             delete item;
         }
     }
+
+    for (int i = 0; i < this->numPokemon; ++i) {
+        //this->party[i].clear();
+    }
 }
 
 NPC& NPC::operator=(const NPC &rhs) {

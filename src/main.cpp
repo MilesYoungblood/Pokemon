@@ -44,10 +44,6 @@ void turn(Map &map, Trainer &t, int index) {
 enum Maps { ROUTE_1 = 0, ROUTE_2 = 1 };
 
 int main() {
-
-    int * o = nullptr;
-    delete o;
-
     ShowConsoleCursor(false);
 
     Trainer_1[0].setMoves({ new WaterShuriken, new DarkPulse, new IceBeam, new Extrasensory });
@@ -59,8 +55,8 @@ int main() {
     Map Route_2(21, 20, {}, { std::make_pair(std::make_pair(1, 0), Maps::ROUTE_1) });
 
     Map Route_1(12, 10, { NPC({ Pikachu, Lucario }, 6, 6, 3) }, { std::make_pair(std::make_pair(5, 0), Maps::ROUTE_2) });
-    Route_1[0][0].setMoves({ new Thunder, new QuickAttack, new IronTail, new VoltTackle });
-    Route_1[0][1].setMoves({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse });
+    //Route_1[0][0].setMoves({ new Thunder, new QuickAttack, new IronTail, new VoltTackle });
+    //Route_1[0][1].setMoves({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse });
 
     Route_1.setObstruction(1, 2);
     Route_1.setObstruction(1, 3);
@@ -68,8 +64,8 @@ int main() {
     Route_1.setObstruction(4, 5);
     Route_1.setObstruction(3, 5);
 
-    Map currentMap(Route_2);
-    std::vector<Map*> maps = { &Route_1, &Route_2 };
+    Map currentMap(Route_1);
+    const std::vector<Map> maps = { Route_1, Route_2 };
 
     recreate:
 
@@ -116,10 +112,7 @@ int main() {
             }
             Trainer_1.setCoordinates(1, 1);
 
-            std::cout << maps[0] << '\n' << maps[1] << std::endl;
-
-            std::cin.ignore();
-            currentMap = *maps[mapIndex];
+            currentMap = maps[mapIndex];
             goto recreate;
         }
 
