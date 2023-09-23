@@ -29,7 +29,7 @@ Pokemon::Pokemon() : moveSet{ nullptr, nullptr, nullptr, nullptr } {
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const Pokemon &pokemonToCopy) : moveSet{ pokemonToCopy.moveSet[0], pokemonToCopy.moveSet[1], pokemonToCopy.moveSet[2], pokemonToCopy.moveSet[3] } {
+Pokemon::Pokemon(const Pokemon &pokemonToCopy) : moveSet{ new Move(*pokemonToCopy.moveSet[0]), new Move (*pokemonToCopy.moveSet[1]), new Move(*pokemonToCopy.moveSet[2]), new Move(*pokemonToCopy.moveSet[3]) } {
     this->maxHp = pokemonToCopy.maxHp;
     this->currentHp = pokemonToCopy.currentHp;
     this->attack = pokemonToCopy.attack;
@@ -132,9 +132,10 @@ Pokemon& Pokemon::operator=(const Pokemon &pokemonToCopy) {
         for (int i = 0; i < this->moveCounter; ++i) {
             delete this->moveSet[i];
         }
-        //this->moveSet = pokemonToCopy.moveSet;
+
         for (int i = 0; i < pokemonToCopy.numMoves(); ++i) {
-            this->moveSet[i] = pokemonToCopy.moveSet[i];
+            //this->moveSet[i] = pokemonToCopy.moveSet[i];
+            this->moveSet[i] = new Move(*pokemonToCopy.moveSet[i]);
         }
     }
     return *this;
@@ -142,6 +143,8 @@ Pokemon& Pokemon::operator=(const Pokemon &pokemonToCopy) {
 
 Pokemon::~Pokemon() {
     for (int i = 0; i < this->moveCounter; ++i) {
+        //std::cout << "Deleting " << this->name << "'s " << this->moveSet[i]->getName() << '!' << std::endl;
+        //std::cin.ignore();
         delete this->moveSet[i];
     }
 }
@@ -178,14 +181,15 @@ std::string Pokemon::getType(bool type_1) const { return type_1 ? this->types[0]
 void Pokemon::setStatus(const char * newStatus) { this->status = newStatus; }
 std::string Pokemon::getStatus() const { return this->status; }
 
-void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
+void Pokemon::setMoves(const std::vector<Move*> &moves) {
     this->moveCounter = 0;
     for (Move * move : moves) {
         if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
             break;
 
         else {
-            this->moveSet[this->moveCounter] = move;
+            this->moveSet[this->moveCounter] = new Move(*move);
+            delete move;
             ++this->moveCounter;
         }
     }

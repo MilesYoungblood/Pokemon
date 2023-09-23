@@ -81,7 +81,7 @@ public:
     void setStatus(const char * newStatus);
     std::string getStatus() const;
 
-    void setMoves(const std::initializer_list<Move*> &moves);
+    void setMoves(const std::vector<Move*> &moves);
 
     int getLevel() const;
 

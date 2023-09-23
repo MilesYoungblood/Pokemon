@@ -41,7 +41,7 @@ void turn(Map &map, Trainer &t, int index) {
 
 #include <conio.h>
 
-enum Maps { ROUTE_1 = 0, ROUTE_2 = 1 };
+enum MapIDs { ROUTE_1 = 0, ROUTE_2 = 1 };
 
 int main() {
     ShowConsoleCursor(false);
@@ -52,11 +52,11 @@ int main() {
 
     Trainer_1.setItems({{ new Potion(5), new Ether(5) }, { new ParalyzeHeal(2) }, {}, {}});
 
-    Map Route_2(21, 20, {}, { std::make_pair(std::make_pair(1, 0), Maps::ROUTE_1) });
+    Map Route_2(21, 20, {}, { std::make_pair(std::make_pair(1, 0), MapIDs::ROUTE_1) });
 
-    Map Route_1(12, 10, { NPC({ Pikachu, Lucario }, 6, 6, 3) }, { std::make_pair(std::make_pair(5, 0), Maps::ROUTE_2) });
-    //Route_1[0][0].setMoves({ new Thunder, new QuickAttack, new IronTail, new VoltTackle });
-    //Route_1[0][1].setMoves({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse });
+    Map Route_1(12, 10, { NPC({ Pikachu, Lucario }, 6, 6, 3) }, { std::make_pair(std::make_pair(5, 0), MapIDs::ROUTE_2) });
+    Route_1[0][0].setMoves({ new Thunder, new QuickAttack, new IronTail, new VoltTackle });
+    Route_1[0][1].setMoves({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse });
 
     Route_1.setObstruction(1, 2);
     Route_1.setObstruction(1, 3);
@@ -65,7 +65,13 @@ int main() {
     Route_1.setObstruction(3, 5);
 
     Map currentMap(Route_1);
-    const std::vector<Map> maps = { Route_1, Route_2 };
+    std::vector<Map> maps = { Route_1, Route_2 };
+
+    maps[0][0][0].setMoves({ new Thunder, new QuickAttack, new IronTail, new VoltTackle });
+    maps[0][0][1].setMoves({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse });
+
+    std::cout << maps[0][0][0][0].getName() << std::endl;
+    std::cin.ignore();
 
     recreate:
 
@@ -108,7 +114,7 @@ int main() {
 
             // detach all threads of the NPCs
             for (std::thread &thread : threads) {
-                thread.detach();
+                thread.join();
             }
             Trainer_1.setCoordinates(1, 1);
 
@@ -193,6 +199,7 @@ int main() {
                 break;
 
             case keys::ESC:
+                keepTurning = false;
                 // detach all threads of the NPCs
                 for (std::thread &thread : threads) {
                     thread.detach();
