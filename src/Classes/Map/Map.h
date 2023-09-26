@@ -11,34 +11,38 @@
 
 class Map {
 private:
-    enum tiles { EMPTY = 0, GRASS = 1, EXIT = 2 };
+    struct ExitPoint {
+        int x;          // x-coordinate of the exit spot
+        int y;          // y-coordinate of the exit spot
+        int newMap;     // map that this exit point leads to
+        int newX;       // the player's new x-coordinates
+        int newY;       // the player's new y-coordinates
+    };
 
     int width;                              // width of the map
     int height;                             // height of the map
 
-    std::vector<std::vector<bool>> layout;  // The map is represented by a 2D bool array
+    std::string name;
+
+    std::vector<std::vector<bool>> layout;  // The map is represented by a 2D bool vector
                                             // A true at a coordinate denotes an obstruction
                                             // A false at a coordinate denotes an open tile
 
     std::vector<NPC> npcArray;              // the set of trainers in this map
 
-    std::vector<std::pair<std::pair<int, int>, int>> exitPoints;   // coordinates where the player can leave this map
-    // to enter another
+    std::vector<ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
 
-    void createMap(const Map * from, bool copy);
-    //void deleteMap();
+    void setBorders(const Map * from);
     bool isNPCHere(int x, int y) const;
 
 public:
-    Map(int width, int height);
-    Map(int width, int height, const std::vector<NPC> &npcArray);
-    Map(int width, int height, const std::vector<NPC> &npcArray, const std::vector<std::pair<std::pair<int, int>, int>> &exitPoints);
+    Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints);
+    Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints);
     Map(const Map &toCopy);
-    //~Map();
     Map& operator=(const Map &rhs);
 
     bool getTile(int x, int y) const;
-    int isExitPointHere(int x, int y) const;
+    std::pair<std::pair<int, int>, int> isExitPointHere(int x, int y) const;
     int numNPCs();
     NPC& operator[](int index);
 

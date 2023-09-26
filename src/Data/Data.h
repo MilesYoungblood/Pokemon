@@ -6,17 +6,19 @@
 
 #include "../Classes/Trainer/Trainer.h"
 #include "../Classes/NPC/NPC.h"
+#include "../Classes/Map/Map.h"
 #include "MoveList.h"
 #include "ItemList.h"
 
-extern const Pokemon Greninja;
-extern const Pokemon Charizard;
-extern const Pokemon Hydreigon;
-extern const Pokemon Pikachu;
-extern const Pokemon Lucario;
+enum MapIDs { ROUTE_1 = 0, ROUTE_2 = 1, ROUTE_3 = 2 };
+
+extern Pokemon Greninja;
+extern Pokemon Charizard;
+extern Pokemon Hydreigon;
+extern Pokemon Pikachu;
+extern Pokemon Lucario;
 
 extern Trainer Trainer_1;
-extern NPC Trainer_2;
 
 const extern RestoreItem potion;
 const extern RestoreItem ether;
@@ -35,3 +37,7 @@ extern std::vector<RestoreItem> userRestoreItems;
 extern std::vector<StatusItem> userStatusItems;
 extern std::vector<PokeBall> userPokeBalls;
 extern std::vector<BattleItem> userBattleItems;
+
+extern Map Route_1;
+extern Map Route_2;
+extern Map Route_3;

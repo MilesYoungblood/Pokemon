@@ -4,9 +4,10 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer() : items() {
+Trainer::Trainer() : party(), items() {
     this->numFainted = 0;
     this->numPokemon = 0;
+
     this->x = 1;
     this->y = 1;
     this->range = 1;
@@ -14,20 +15,28 @@ Trainer::Trainer() : items() {
     this->model = 'S';
 }
 
-Trainer::Trainer(const Trainer &toCopy) : items() {
+Trainer::Trainer(const Trainer &toCopy) : party(), items() {
     this->numFainted = toCopy.numFainted;
     this->numPokemon = toCopy.numPokemon;
+
     this->x = toCopy.x;
     this->y = toCopy.y;
     this->range = toCopy.range;
     this->direction = toCopy.direction;
     this->model = toCopy.model;
+
     for (int i = 0; i < toCopy.numPokemon; ++i) {
-        this->party[i] = toCopy[i];
+        this->party[i] = toCopy.party[i];
+    }
+
+    for (int i = 0; i < Trainer::MAX_ITEM_TYPES; ++i) {
+        for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
+            this->items[i][j] = toCopy.items[i][j];
+        }
     }
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon> &pokemon, int x, int y) : items() {
+Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) : party(), items() {
     this->numFainted = 0;
     this->numPokemon= 0;
 
@@ -49,7 +58,7 @@ Trainer::Trainer(const std::initializer_list<Pokemon> &pokemon, int x, int y) : 
 }
 
 Trainer::~Trainer() {
-    for (auto &type : items) {
+    for (auto &type : this->items) {
         for (auto &item : type) {
             delete item;
         }
@@ -65,8 +74,12 @@ Trainer& Trainer::operator=(const Trainer &rhs) {
         this->range = rhs.range;
         this->direction = rhs.direction;
         this->model = rhs.model;
+
+        for (auto &pokemon : this->party) {
+            delete pokemon;
+        }
         for (int i = 0; i < rhs.numPokemon; ++i) {
-            this->party[i] = rhs[i];
+            this->party[i] = rhs.party[i];
         }
 
         for (auto &item : this->items) {
@@ -91,16 +104,16 @@ Item& Trainer::getItem(int type, int item) {
     return *this->items[type][item];
 }
 
-void Trainer::setItems(const std::vector<std::vector<Item *>> &v) {
-    for (int i = 0; i < v.size(); ++i) {
+void Trainer::setItems(const std::vector<std::vector<Item *>> &inventory) {
+    for (int i = 0; i < inventory.size(); ++i) {
         if (i == Trainer::MAX_ITEM_TYPES) {
             break;
         }
-        for (int j = 0; j < v[i].size(); ++j) {
+        for (int j = 0; j < inventory[i].size(); ++j) {
             if (j == Trainer::MAX_ITEMS) {
                 break;
             }
-            this->items[i][j] = v[i][j];
+            this->items[i][j] = inventory[i][j];
         }
     }
 }
@@ -155,14 +168,14 @@ Pokemon& Trainer::operator[](int spot)  {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
 
-    return this->party[spot];
+    return *this->party[spot];
 }
 
 const Pokemon& Trainer::operator[](int spot) const {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
 
-    return this->party[spot];
+    return *this->party[spot];
 }
 
 void Trainer::setCoordinates(int xCoord, int yCoord) {

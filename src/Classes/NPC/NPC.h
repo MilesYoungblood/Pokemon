@@ -14,7 +14,7 @@ private:
 
 public:
     NPC();
-    NPC(const std::initializer_list<Pokemon> &pokemon, int x, int y, int range);
+    NPC(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int range);
     ~NPC();
     NPC& operator=(const NPC &rhs);
 

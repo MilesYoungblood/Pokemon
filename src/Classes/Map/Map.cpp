@@ -4,25 +4,7 @@
 
 #include "Map.h"
 
-void Map::createMap(const Map * from, bool copy) {
-    this->layout.resize(from->width);
-    //this->layout = new bool * [from->width];
-    for (int x = 0; x < from->width; ++x) {
-        //this->layout[x] = new bool[from->height];
-        this->layout[x].resize(from->height);
-
-        if (copy) {
-            for (int y = 0; y < from->height; ++y) {
-                this->layout[x][y] = from->layout[x][y];
-            }
-        }
-        else {
-            for (int y = 0; y < from->height; ++y) {
-                this->layout[x][y] = false;
-            }
-        }
-    }
-
+void Map::setBorders(const Map * from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
         this->layout[x][0] = true;
@@ -40,36 +22,27 @@ void Map::createMap(const Map * from, bool copy) {
     }
 }
 
-/*
-void Map::deleteMap() {
-    for (int x = 0; x < this->width; ++x) {
-        delete [] this->layout[x];
-    }
-    delete [] this->layout;
-}
- */
-
 bool Map::isNPCHere(int x, int y) const {
     return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC &npc){ return npc.getX() == x and npc.getY() == y; });
 }
 
-Map::Map(int width, int height) {
+Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints) {
     this->width = width;
     this->height = height;
 
-    //this->layout = nullptr;
-    this->createMap(this, false);
-}
+    this->name = name;
 
-Map::Map(int width, int height, const std::vector<NPC> &npcArray) : Map(width, height) {
-    this->npcArray = npcArray;
-}
+    this->layout = std::vector<std::vector<bool>>(this->width, std::vector<bool>(this->height, false));
+    this->setBorders(this);
 
-Map::Map(int width, int height, const std::vector<NPC> &npcArray, const std::vector<std::pair<std::pair<int, int>, int>> &exitPoints) : Map(width, height, npcArray){
     this->exitPoints = exitPoints;
-    for (auto &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+    for (ExitPoint &exitPoint : this->exitPoints) {
+        this->layout[exitPoint.x][exitPoint.y] = false;
     }
+}
+
+Map::Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints){
+    this->npcArray = npcArray;
 }
 
 Map::Map(const Map &toCopy) {
@@ -79,34 +52,27 @@ Map::Map(const Map &toCopy) {
     this->npcArray = toCopy.npcArray;
     this->exitPoints = toCopy.exitPoints;
 
-    //this->layout = nullptr;
-    this->createMap(&toCopy, true);
+    this->layout = toCopy.layout;
+    this->setBorders(&toCopy);
 
-    for (auto &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+    for (ExitPoint &exitPoint : this->exitPoints) {
+        this->layout[exitPoint.x][exitPoint.y] = false;
     }
 }
 
-//Map::~Map() {
-    //this->deleteMap();
-//}
-
 Map& Map::operator=(const Map &rhs) {
     if (this != &rhs) {
-        // safe delete the map just in case of reassignment
-        //this->deleteMap();
-
         this->width = rhs.width;
         this->height = rhs.height;
 
         this->npcArray = rhs.npcArray;
         this->exitPoints = rhs.exitPoints;
 
-        // recreate the map
-        this->createMap(&rhs, true);
+        this->layout = rhs.layout;
+        this->setBorders(&rhs);
 
-        for (auto &exitPoint : this->exitPoints) {
-            this->layout[exitPoint.first.first][exitPoint.first.second] = false;
+        for (ExitPoint &exitPoint : this->exitPoints) {
+            this->layout[exitPoint.x][exitPoint.y] = false;
         }
     }
     return *this;
@@ -122,13 +88,13 @@ bool Map::getTile(int x, int y) const {
     }
 }
 
-int Map::isExitPointHere(int x, int y) const {
-    for (const auto &exitPoint : this->exitPoints) {
-        if (exitPoint.first.first == x and exitPoint.first.second == y) {
-            return exitPoint.second;
+std::pair<std::pair<int, int>, int> Map::isExitPointHere(int x, int y) const {
+    for (const ExitPoint &exitPoint : this->exitPoints) {
+        if (exitPoint.x == x and exitPoint.y == y) {
+            return std::make_pair(std::make_pair(exitPoint.newX, exitPoint.newY), exitPoint.newMap);
         }
     }
-    return -1;
+    return std::make_pair(std::make_pair(0, 0), -1);
 }
 
 int Map::numNPCs() {
@@ -150,14 +116,7 @@ void Map::print(const Trainer &trainer) const {
     system("cls");
     std::cout << "Press ESC to quit\n";
 
-    // top border
-    //std::cout << '+';
-    //std::cout << std::string(this->width, '-');
-    //std::cout << "+\n";
-
-    // inner layer
     for (int y = 0; y < this->height; ++y) {
-        //std::cout << '|';
         for (int x = 0; x < this->width; ++x) {
             // if an obstruction is in this spot
             if (this->layout[x][y]) {
@@ -177,7 +136,7 @@ void Map::print(const Trainer &trainer) const {
             bool found = false;      // necessary because an NPC might not be found
 
             // if the npc is currently at these coordinates
-            for (const auto &npc : this->npcArray) {
+            for (const NPC &npc : this->npcArray) {
                 if (x == npc.getX() and y == npc.getY()) {
                     // change color of the text to red
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
@@ -196,11 +155,7 @@ void Map::print(const Trainer &trainer) const {
         }
         std::cout << '\n';
     }
-
-    // bottom border
-    //std::cout << '+';
-    //std::cout << std::string(this->width, '-');
-    //std::cout << '+' << std::flush;
+    std::cout << this->name;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

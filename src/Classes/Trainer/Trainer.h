@@ -33,20 +33,20 @@ protected:
     int direction;                      // numerical representation of which way the trainer is facing
     char model;                         // visual representation of which way the trainer is facing
 
-    Pokemon party[Trainer::MAX_POKEMON];
+    Pokemon* party[Trainer::MAX_POKEMON];
     Item* items[Trainer::MAX_ITEM_TYPES][Trainer::MAX_ITEMS];
 
 public:
     Trainer();
     Trainer(const Trainer &toCopy);
-    Trainer(const std::initializer_list<Pokemon> &pokemon, int x, int y);
+    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
     ~Trainer();
     Trainer& operator=(const Trainer &rhs);
 
     int partySize() const;
     Item& getItem(int type, int item);
 
-    void setItems(const std::vector<std::vector<Item*>> &v);
+    void setItems(const std::vector<std::vector<Item*>> &inventory);
 
     void incFaintCount();
     void decFaintCount();

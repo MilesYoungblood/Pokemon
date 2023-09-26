@@ -8,20 +8,18 @@ NPC::NPC() : Trainer() {
     this->defeated = false;
 }
 
-NPC::NPC(const std::initializer_list<Pokemon> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
+NPC::NPC(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
     this->range = range;
     this->defeated = false;
 }
 
 NPC::~NPC() {
-    for (auto &type : items) {
+
+
+    for (auto &type : this->items) {
         for (auto &item : type) {
             delete item;
         }
-    }
-
-    for (int i = 0; i < this->numPokemon; ++i) {
-        //this->party[i].clear();
     }
 }
 
@@ -35,8 +33,12 @@ NPC& NPC::operator=(const NPC &rhs) {
         this->direction = rhs.direction;
         this->model = rhs.model;
         this->defeated = rhs.defeated;
+
+        for (int i = 0; i < this->numPokemon; ++i) {
+            delete this->party[i];
+        }
         for (int i = 0; i < rhs.numPokemon; ++i) {
-            this->party[i] = rhs[i];
+            this->party[i] = rhs.party[i];
         }
 
         for (auto &item : this->items) {
