@@ -6,7 +6,7 @@
 
 void failMessage() {
     printMessage("But it failed!\n");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void displayBag(int arrow, bool &print) {
@@ -69,7 +69,7 @@ namespace HP {
 
     void restoreMessage(const Pokemon &pokemonRestored, int amountRestored) {
         printMessage(pokemonRestored.getName() + " recovered " + std::to_string(amountRestored) + " HP!\n");
-        sleep(2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 }
 
@@ -82,7 +82,7 @@ namespace PP {
 
     void restoreMessage(const Move &moveRestored, int amountRestored) {
         printMessage(moveRestored.getName() + " recovered " + std::to_string(amountRestored) + " PP!\n");
-        sleep(2);
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 }
 
@@ -94,7 +94,7 @@ void cure(Pokemon& pokemon, const StatusItem& item) {
 void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     if (pokemonCured.getStatus() == "No status") {
         printMessage(pokemonCured.getName() + " recovered from " + status + "!\n");
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     else
         failMessage();
@@ -113,35 +113,35 @@ bool catchPokemon(bool attempts[]) {
 void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     if (attempts[0]) {
         printMessage("1...");
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (attempts[1]) {
             printMessage("2...");
-            sleep(1);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             if (attempts[2]) {
                 printMessage("3...");
-                sleep(1);
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 if (attempts[3]) {
                     printMessage("Gotcha! " + pokemon.getName() + " was caught!\n");
-                    sleep(1);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
                 else {
                     printMessage("Almost had it!\n");
-                    sleep(1);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
             }
             else {
                 printMessage("No! " + pokemon.getName() + " escaped!\n");
-                sleep(1);
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }
         else {
             printMessage(pokemon.getName() + " failed to be caught!\n");
-            sleep(1);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
     else {
         printMessage("Not even close!\n");
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     std::cout.flush();
 }
@@ -205,7 +205,7 @@ void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int am
     else
         printMessage(pokemon.getName() + "'s " + statBoosted + " can't go any higher!\n");
 
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 template <typename I>
@@ -230,15 +230,15 @@ void useItemMessage(const std::string &itemUsed) {
 
         printMessage(' ' + itemUsed + "! ");
     }
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void itemErrorMessage(const Item * item) {
     printMessage("You don't have any " + item->getName() + "'s.\n");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void noEffectMessage(const Item * item, const Pokemon &pokemon) {
     printMessage(item->getName() + " had no effect on " + pokemon.getName() + ".\n");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

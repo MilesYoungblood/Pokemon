@@ -29,7 +29,7 @@ void ShowConsoleCursor(bool showFlag) {
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
 }
 
-class SortClass {
+class __attribute__((unused)) SortClass {
 private:
     template <typename Comparable>
     static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
@@ -120,12 +120,13 @@ int getInt(int lower, int upper) {
     while (true) {
         // subtracting by '0' gets the offset of the ASCII
         int i = getch() - '0';
-        if (lower <= i and i <= upper)
+        if (lower <= i and i <= upper) {
             return i;
+        }
     }
 }
 
-bool coinFlip() {
+__attribute__((unused)) bool coinFlip() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 1);
@@ -146,12 +147,12 @@ int generateInteger(int from, int to) {
 void printMessage(const std::string &message) {
     for (char ltr : message) {
         std::cout << ltr;
-        Sleep(25);
+        std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }
 }
 
 // prints out a character then sleeps
 void printMessage(char message) {
     std::cout << message;
-    Sleep(25);
+    std::this_thread::sleep_for(std::chrono::milliseconds(25));
 }

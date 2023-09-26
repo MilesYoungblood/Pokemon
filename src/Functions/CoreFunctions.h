@@ -227,7 +227,7 @@ namespace selectionPhase {
                 if (userItem == 0) {
                     goto chooseItemType;
                 }
-                // if trainer has at least one of item selected...
+                // if a trainer has at least one of the items selected...
                 else if (userPokeBalls[userItem - 1].getQuantity() > 0) {
                     if (isTrainerBattle) {
                         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
@@ -410,15 +410,8 @@ void engageBattle(Trainer &player, Trainer * npc, bool isTrainer) {
         if (not chooseOption(option, 3))
             goto reprint;
 
-        /*
-        if (option == 4) {
-            (*npc).defeat();
-            return;
-        }
-        */
-
-        int userMove = player[0].numMoves();    // passed into fight to determine move used
-        bool cancel = false;                    // passed into core four functions to know if to return to main screen
+        int userMove = player[0].numMoves();    // passed into the fight to determine move used
+        bool cancel = false;                    // passed into core four functions to know if to return
 
         chooseOption:
         switch (option) {

@@ -1,6 +1,5 @@
 #include "Functions/CoreFunctions.h"
 #include "Classes/Map/Map.h"
-#include <thread>
 
 bool canMove = true;
 bool keepMoving = true;
@@ -38,7 +37,6 @@ void turn(Map &map, Trainer &t, int index) {
 }
 
 #include "Data/Data.h"
-#include <conio.h>
 
 int main() {
     ShowConsoleCursor(false);

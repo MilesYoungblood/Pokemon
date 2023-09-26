@@ -61,7 +61,7 @@ void displayMoveSummary(const Move &move) {
 
 void attackErrorMessage() {
     printMessage("That move is out of PP. Please select another move.\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void takeDamage(Trainer &t, int damage) {
@@ -81,7 +81,7 @@ namespace status {
         else if (pokemon.getStatus() == "poison")
             printMessage("poisoning!\n");
 
-        sleep(1);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
 
@@ -107,12 +107,12 @@ private:
     }
 
     static double criticalHit(bool &crit) {
-        // returns 2 in order to double the damage
+        // returns two in order to double the damage
         if (generateInteger(1, 16) == 1) {
             crit = true;
             return 2.0;
         }
-            // returns 1 if no crit
+        // returns 1 if no crit
         else {
             crit = false;
             return 1.0;

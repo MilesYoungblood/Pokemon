@@ -4,24 +4,24 @@
 
 #pragma once
 
-#include <unistd.h>
+#include <thread>
 #include "../Classes/Trainer/Trainer.h"
 #include "../main.h"
 #include "ItemFunctions.h"
 
 void wildPokemonMessage(const Pokemon &pokemon) {
     printMessage("Your opponent sent out " + pokemon.getName() + "! ");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void sendOutMessage(const Pokemon &pokemon) {
     printMessage("Go " + pokemon.getName() + "!\n");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void returnMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + ", return! ");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void introMessage(const Pokemon &userPokemon, const Pokemon &opposingPokemon) {
@@ -118,7 +118,7 @@ void displayHPBar(const Pokemon &userPokemon, const Pokemon &opposingPokemon, si
 
 void faintMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + " fainted!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void forcedSwitchPrompt() {
@@ -138,12 +138,12 @@ bool run() {
 
 void runMessage(bool runStatus) {
     runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't get away!\n");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void runErrorMessage() {
     printMessage("You can't run away from a trainer battle!");
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void pokemonPrompt(int arrow, bool &print) {
@@ -174,31 +174,31 @@ void switchOutMessage(const Trainer &t, int pokemonSwitched) {
 
 void inBattleMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + " is already in battle!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void hpEmptyMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + "'s HP is empty!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void hpFullMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + "'s HP is full!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void winMessage() {
     printMessage("Your opponent ran out of usable Pokemon! ");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     printMessage("You won!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 void loseMessage() {
     printMessage("You've run out of usable Pokemon! ");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     printMessage("You blacked out!\n");
-    sleep(2);
+    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 bool preStatus(const std::string& status) {
@@ -225,7 +225,7 @@ void inflictedMessage(const Pokemon& pokemon) {
     else if (pokemon.getStatus() == "sleep")
         printMessage(pokemon.getName() + " is fast asleep!\n");
 
-    sleep(1);
+    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 __attribute__((unused)) void updateHP(const Pokemon &userPokemon, const Pokemon &opposingPokemon, int damage, size_t turn, bool userAttacking) {
