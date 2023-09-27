@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <thread>
 #include "../Classes/Trainer/Trainer.h"
 #include "../main.h"
 #include "ItemFunctions.h"

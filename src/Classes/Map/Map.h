@@ -6,17 +6,20 @@
 
 #include <vector>
 #include <algorithm>
+#include <windows.h>
 #include <conio.h>
 #include "../NPC/NPC.h"
 
 class Map {
 private:
+    enum tiles { FREE = 0, OBSTRUCTION = 1, GRASS = 2 };
+
     struct ExitPoint {
-        int x;          // x-coordinate of the exit spot
-        int y;          // y-coordinate of the exit spot
-        int newMap;     // map that this exit point leads to
-        int newX;       // the player's new x-coordinates
-        int newY;       // the player's new y-coordinates
+        int x;                              // x-coordinate of the exit spot
+        int y;                              // y-coordinate of the exit spot
+        int newMap;                         // map that this exit point leads to
+        int newX;                           // the player's new x-coordinates
+        int newY;                           // the player's new y-coordinates
     };
 
     int width;                              // width of the map
@@ -24,9 +27,8 @@ private:
 
     std::string name;
 
-    std::vector<std::vector<bool>> layout;  // The map is represented by a 2D bool vector
-                                            // A true at a coordinate denotes an obstruction
-                                            // A false at a coordinate denotes an open tile
+    std::vector<std::vector<int>> layout;   // The map is represented by a 2D int vector
+                                            // values are represented by the tiles enum
 
     std::vector<NPC> npcArray;              // the set of trainers in this map
 
@@ -41,7 +43,7 @@ public:
     Map(const Map &toCopy);
     Map& operator=(const Map &rhs);
 
-    bool getTile(int x, int y) const;
+    bool isObstructionHere(int x, int y) const;
     std::pair<std::pair<int, int>, int> isExitPointHere(int x, int y) const;
     int numNPCs();
     NPC& operator[](int index);

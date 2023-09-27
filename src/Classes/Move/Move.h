@@ -6,7 +6,7 @@
 
 #include <iostream>
 #include <random>
-#include <windows.h>
+#include <thread>
 
 /*
 enum types {
@@ -45,7 +45,7 @@ protected:
     static void printMessage(const std::string &message) {
         for (char ltr : message) {
             std::cout << ltr;
-            Sleep(25);
+            std::this_thread::sleep_for(std::chrono::milliseconds(25));
         }
     }
 
@@ -53,20 +53,20 @@ protected:
     static void printMessage(const std::string &message, int interval) {
         for (char ltr : message) {
             std::cout << ltr;
-            Sleep(interval);
+            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
         }
     }
 
     // prints out a character then sleeps
     static void printMessage(char message) {
         std::cout << message;
-        Sleep(25);
+        std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }
 
     // prints out a character then sleeps
     static void printMessage(char message, int interval) {
         std::cout << message;
-        Sleep(interval);
+        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
     }
 
 public:

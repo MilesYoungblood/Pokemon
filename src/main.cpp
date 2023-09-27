@@ -123,7 +123,7 @@ int main() {
                     Trainer_1.faceNorth();
                     (*currentMap).print(Trainer_1);
                 }
-                else if (not (*currentMap).getTile(Trainer_1.getX(), Trainer_1.getY() - 1)) {
+                else if (not (*currentMap).isObstructionHere(Trainer_1.getX(), Trainer_1.getY() - 1)) {
                     Trainer_1.moveNorth();
                     (*currentMap).print(Trainer_1);
                 }
@@ -134,7 +134,7 @@ int main() {
                     Trainer_1.faceWest();
                     (*currentMap).print(Trainer_1);
                 }
-                else if (not (*currentMap).getTile(Trainer_1.getX() - 1, Trainer_1.getY())) {
+                else if (not (*currentMap).isObstructionHere(Trainer_1.getX() - 1, Trainer_1.getY())) {
                     Trainer_1.moveWest();
                     (*currentMap).print(Trainer_1);
                 }
@@ -145,7 +145,7 @@ int main() {
                     Trainer_1.faceSouth();
                     (*currentMap).print(Trainer_1);
                 }
-                else if (not (*currentMap).getTile(Trainer_1.getX(), Trainer_1.getY() + 1)) {
+                else if (not (*currentMap).isObstructionHere(Trainer_1.getX(), Trainer_1.getY() + 1)) {
                     Trainer_1.moveSouth();
                     (*currentMap).print(Trainer_1);
                 }
@@ -156,7 +156,7 @@ int main() {
                     Trainer_1.faceEast();
                     (*currentMap).print(Trainer_1);
                 }
-                else if (not (*currentMap).getTile(Trainer_1.getX() + 1, Trainer_1.getY())) {
+                else if (not (*currentMap).isObstructionHere(Trainer_1.getX() + 1, Trainer_1.getY())) {
                     Trainer_1.moveEast();
                     (*currentMap).print(Trainer_1);
                 }

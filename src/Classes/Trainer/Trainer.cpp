@@ -29,7 +29,7 @@ Trainer::Trainer(const Trainer &toCopy) : party(), items() {
         this->party[i] = toCopy.party[i];
     }
 
-    for (int i = 0; i < Trainer::MAX_ITEM_TYPES; ++i) {
+    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
             this->items[i][j] = toCopy.items[i][j];
         }
@@ -87,7 +87,7 @@ Trainer& Trainer::operator=(const Trainer &rhs) {
                 delete j;
             }
         }
-        for (int i = 0; i < Trainer::MAX_ITEM_TYPES; ++i) {
+        for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
             for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
                 this->items[i][j] = rhs.items[i][j];
             }
@@ -106,7 +106,7 @@ Item& Trainer::getItem(int type, int item) {
 
 void Trainer::setItems(const std::vector<std::vector<Item *>> &inventory) {
     for (int i = 0; i < inventory.size(); ++i) {
-        if (i == Trainer::MAX_ITEM_TYPES) {
+        if (i == Trainer::NUM_ITEM_TYPES) {
             break;
         }
         for (int j = 0; j < inventory[i].size(); ++j) {

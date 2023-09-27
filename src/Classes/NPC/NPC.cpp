@@ -46,7 +46,7 @@ NPC& NPC::operator=(const NPC &rhs) {
                 delete j;
             }
         }
-        for (int i = 0; i < Trainer::MAX_ITEM_TYPES; ++i) {
+        for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
             for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
                 this->items[i][j] = rhs.items[i][j];
             }

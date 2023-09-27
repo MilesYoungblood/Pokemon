@@ -7,18 +7,18 @@
 void Map::setBorders(const Map * from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][0] = true;
+        this->layout[x][0] = Map::tiles::OBSTRUCTION;
     }
 
     // set the inner layer borders
     for (int y = 1; y < from->height; ++y) {
         this->layout[0][y] = true;
-        this->layout[this->width - 1][y] = true;
+        this->layout[this->width - 1][y] = Map::tiles::OBSTRUCTION;
     }
 
     // set the bottom border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][this->height - 1] = true;
+        this->layout[x][this->height - 1] = Map::tiles::OBSTRUCTION;
     }
 }
 
@@ -32,16 +32,16 @@ Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> 
 
     this->name = name;
 
-    this->layout = std::vector<std::vector<bool>>(this->width, std::vector<bool>(this->height, false));
+    this->layout = std::vector<std::vector<int>>(this->width, std::vector<int>(this->height, Map::tiles::FREE));
     this->setBorders(this);
 
     this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y] = false;
+        this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
     }
 }
 
-Map::Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints){
+Map::Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
     this->npcArray = npcArray;
 }
 
@@ -50,13 +50,13 @@ Map::Map(const Map &toCopy) {
     this->height = toCopy.height;
 
     this->npcArray = toCopy.npcArray;
-    this->exitPoints = toCopy.exitPoints;
 
     this->layout = toCopy.layout;
     this->setBorders(&toCopy);
 
+    this->exitPoints = toCopy.exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y] = false;
+        this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
     }
 }
 
@@ -66,25 +66,25 @@ Map& Map::operator=(const Map &rhs) {
         this->height = rhs.height;
 
         this->npcArray = rhs.npcArray;
-        this->exitPoints = rhs.exitPoints;
 
         this->layout = rhs.layout;
         this->setBorders(&rhs);
 
+        this->exitPoints = rhs.exitPoints;
         for (ExitPoint &exitPoint : this->exitPoints) {
-            this->layout[exitPoint.x][exitPoint.y] = false;
+            this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
         }
     }
     return *this;
 }
 
-bool Map::getTile(int x, int y) const {
+bool Map::isObstructionHere(int x, int y) const {
     // out of bounds or an NPC is already in this spot
     if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isNPCHere(x, y)) {
         return true;
     }
     else {
-        return this->layout[x][y];
+        return this->layout[x][y] != Map::tiles::FREE;
     }
 }
 
@@ -166,28 +166,28 @@ void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
         if (this->isFacingNorth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveNorth();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingEast()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveEast();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingSouth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveSouth();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingWest()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveWest();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }

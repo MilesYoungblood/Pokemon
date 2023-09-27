@@ -20,21 +20,21 @@ enum directions {
 
 class Trainer {
 protected:
-    const static int MAX_POKEMON = 6;   // max number of Pokémon per party
-    const static int MAX_ITEMS = 100;   // max number of items per bag
-    const static int MAX_ITEM_TYPES = 4;
+    const static int MAX_POKEMON = 6;       // max number of Pokémon per party
+    const static int MAX_ITEMS = 50;        // max number of items per bag
+    const static int NUM_ITEM_TYPES = 4;    // number of types of items
 
-    int numFainted;                     // number of fainted Pokémon
-    int numPokemon;                     // current number of Pokémon in party
+    int numFainted;                         // number of fainted Pokémon
+    int numPokemon;                         // current number of Pokémon in party
 
-    int x;                              // x-coordinate on map
-    int y;                              // y-coordinate on map
-    int range;                          // line of sight
-    int direction;                      // numerical representation of which way the trainer is facing
-    char model;                         // visual representation of which way the trainer is facing
+    int x;                                  // x-coordinate on map
+    int y;                                  // y-coordinate on map
+    int range;                              // line of sight
+    int direction;                          // numerical representation of which way the trainer is facing
+    char model;                             // visual representation of which way the trainer is facing
 
     Pokemon* party[Trainer::MAX_POKEMON];
-    Item* items[Trainer::MAX_ITEM_TYPES][Trainer::MAX_ITEMS];
+    Item* items[Trainer::NUM_ITEM_TYPES][Trainer::MAX_ITEMS];
 
 public:
     Trainer();

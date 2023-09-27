@@ -18,7 +18,6 @@ public:
     ~NPC();
     NPC& operator=(const NPC &rhs);
 
-    //bool isInRange(const Trainer &t);
     bool isDefeated() const;
     void defeat() override;
     void moveToPlayer(const Map &map, const Trainer &trainer);
