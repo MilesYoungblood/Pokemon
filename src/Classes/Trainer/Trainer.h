@@ -66,7 +66,7 @@ public:
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
-    void setCoordinates(int xCoord, int yCoord);
+    void setCoordinates(int newX, int newY);
     int getX() const;
     int getY() const;
 

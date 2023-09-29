@@ -88,13 +88,13 @@ bool Map::isObstructionHere(int x, int y) const {
     }
 }
 
-std::pair<std::pair<int, int>, int> Map::isExitPointHere(int x, int y) const {
+std::array<int, 3> Map::isExitPointHere(int x, int y) const {
     for (const ExitPoint &exitPoint : this->exitPoints) {
         if (exitPoint.x == x and exitPoint.y == y) {
-            return std::make_pair(std::make_pair(exitPoint.newX, exitPoint.newY), exitPoint.newMap);
+            return { exitPoint.newX, exitPoint.newY, exitPoint.newMap };
         }
     }
-    return std::make_pair(std::make_pair(0, 0), -1);
+    return { 0, 0, -1 };
 }
 
 int Map::numNPCs() {

@@ -24,40 +24,40 @@ struct Thunder : public Move {
 
     void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
         Move::printMessage(attackingPokemon.getName() + " used Thunder! ");
-        Sleep(1000);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
         if (damage > 0) {
             if (typeEff == 0.0) {
                 Move::printMessage("It doesn't affect " + defendingPokemon.getName() + "...");
-                Sleep(1000);
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
             else {
                 Move::printMessage("Thunder did " + std::to_string(damage) + " damage! ");
-                Sleep(1000);
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
                 if (typeEff >= 2.0) {
                     Move::printMessage("It's super effective! ");
-                    Sleep(1000);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
                 else if (typeEff <= 0.5) {
                     Move::printMessage("It's not very effective... ");
-                    Sleep(1000);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
 
                 if (criticalHit) {
                     Move::printMessage("A critical hit!");
-                    Sleep(1000);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
 
                 if (this->paralysisState) {
                     Move::printMessage(defendingPokemon.getName() + " became paralyzed!");
-                    Sleep(1000);
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
             }
         }
         else {
             Move::printMessage(defendingPokemon.getName() + " avoided the attack!");
-            Sleep(1000);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
 
         Move::printMessage('\n', 0);

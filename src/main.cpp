@@ -73,13 +73,13 @@ int main() {
     while (true) {
         // only be able to input moves if not engaged in a battle
         if (not canMove) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
             continue;
         }
 
-        // checks if the player leaves this map
-        const std::pair<std::pair<int, int>, int> mapData = (*currentMap).isExitPointHere(Trainer_1.getX(), Trainer_1.getY());
-        if (mapData.second != -1) {
+        // the values of mapData are the new x, new y, and new map respectively
+        const std::array<int, 3> mapData = (*currentMap).isExitPointHere(Trainer_1.getX(), Trainer_1.getY());
+        if (mapData[2] != -1) {
             keepMoving = false;
 
             // detach all threads of the NPCs
@@ -88,9 +88,9 @@ int main() {
             }
 
             // set the player's new coordinates
-            Trainer_1.setCoordinates(mapData.first.first, mapData.first.second);
+            Trainer_1.setCoordinates(mapData[0], mapData[1]);
 
-            currentMap = maps[mapData.second];
+            currentMap = maps[mapData[2]];
             goto recreate;
         }
 
@@ -110,14 +110,14 @@ int main() {
         }
 
         retry:
-        const char decision = static_cast<char>(getch());
+        const char input = static_cast<char>(getch());
 
         // ultimately, pauses execution of the main thread if the trainer is spotted
         if (not canMove) {
             continue;
         }
 
-        switch (decision) {
+        switch (input) {
             case 'w':
                 if (not Trainer_1.isFacingNorth()) {
                     Trainer_1.faceNorth();
