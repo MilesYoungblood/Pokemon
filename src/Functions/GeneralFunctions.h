@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <thread>
 #include "../Classes/Trainer/Trainer.h"
 #include "../main.h"
 #include "ItemFunctions.h"
@@ -253,7 +252,7 @@ __attribute__((unused)) void updateHP(const Pokemon &userPokemon, const Pokemon 
 
             std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n\n"; // bottom layer
             std::cout.flush();
-            Sleep(25);
+            std::this_thread::sleep_for(std::chrono::milliseconds(25));
         }
         else {
             std::cout << "Turn " << turn << '\n';
@@ -277,7 +276,7 @@ __attribute__((unused)) void updateHP(const Pokemon &userPokemon, const Pokemon 
 
             std::cout << '+' << std::string(16, '-') << '+' << std::string(13, '-') << "+\n\n"; // bottom layer
             std::cout.flush();
-            Sleep(25);
+            std::this_thread::sleep_for(std::chrono::milliseconds(25));
         }
     }
 }

@@ -178,9 +178,9 @@ const Pokemon& Trainer::operator[](int spot) const {
     return *this->party[spot];
 }
 
-void Trainer::setCoordinates(int xCoord, int yCoord) {
-    this->x = xCoord;
-    this->y = yCoord;
+void Trainer::setCoordinates(int newX, int newY) {
+    this->x = newX;
+    this->y = newY;
 }
 
 int Trainer::getX() const {

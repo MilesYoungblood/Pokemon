@@ -232,7 +232,7 @@ namespace selectionPhase {
                     if (isTrainerBattle) {
                         displayHPBar(trainer_1[0], (*trainer_2)[0], t);
                         printMessage("You cannot catch another trainer's Pokemon!");
-                        Sleep(1000);
+                        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                         goto chooseItemType;
                     }
                     displayHPBar(trainer_1[0], (*trainer_2)[0], t);

@@ -88,13 +88,13 @@ bool Map::getTile(int x, int y) const {
     }
 }
 
-std::pair<std::pair<int, int>, int> Map::isExitPointHere(int x, int y) const {
+std::array<int, 3> Map::isExitPointHere(int x, int y) const {
     for (const ExitPoint &exitPoint : this->exitPoints) {
         if (exitPoint.x == x and exitPoint.y == y) {
-            return std::make_pair(std::make_pair(exitPoint.newX, exitPoint.newY), exitPoint.newMap);
+            return { exitPoint.newX, exitPoint.newY, exitPoint.newMap };
         }
     }
-    return std::make_pair(std::make_pair(0, 0), -1);
+    return { 0, 0, -1 };
 }
 
 int Map::numNPCs() {
@@ -166,28 +166,28 @@ void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
         if (this->isFacingNorth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveNorth();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingEast()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveEast();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingSouth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveSouth();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }
         else if (this->isFacingWest()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveWest();
-                Sleep(250);
+                std::this_thread::sleep_for(std::chrono::milliseconds(250));
                 map.print(trainer);
             }
         }

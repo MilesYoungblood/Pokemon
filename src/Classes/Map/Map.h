@@ -5,8 +5,10 @@
 #pragma once
 
 #include <vector>
+#include <array>
 #include <algorithm>
 #include <conio.h>
+#include <windows.h>
 #include "../NPC/NPC.h"
 
 class Map {
@@ -42,7 +44,8 @@ public:
     Map& operator=(const Map &rhs);
 
     bool getTile(int x, int y) const;
-    std::pair<std::pair<int, int>, int> isExitPointHere(int x, int y) const;
+    std::array<int, 3> isExitPointHere(int x, int y) const;
+
     int numNPCs();
     NPC& operator[](int index);
 
