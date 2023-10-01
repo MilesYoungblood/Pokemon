@@ -8,6 +8,7 @@
 #include <vector>
 #include <random>
 #include <algorithm>
+#include <thread>
 #include <conio.h>
 #include <windows.h>
 
@@ -21,7 +22,7 @@ enum keys {
 };
 
 // toggles cursor
-void ShowConsoleCursor(bool showFlag) {
+inline void ShowConsoleCursor(bool showFlag) {
     CONSOLE_CURSOR_INFO cursorInfo;
 
     GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
@@ -100,12 +101,12 @@ public:
 };
 
 // returns true if character is a vowel
-bool isVowel(char ltr) {
+inline bool isVowel(char ltr) {
     return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
 // returns a char of the user's selections
-char getChar(const std::vector<char> &options) {
+inline char getChar(const std::vector<char> &options) {
     while (true) {
         const char c = static_cast<char>(getch());
         for (const char ltr : options) {
@@ -116,7 +117,7 @@ char getChar(const std::vector<char> &options) {
 }
 
 // returns an integer if in range of the user's choice
-int getInt(int lower, int upper) {
+inline int getInt(int lower, int upper) {
     while (true) {
         // subtracting by '0' gets the offset of the ASCII
         const int i = getch() - '0';
@@ -126,7 +127,7 @@ int getInt(int lower, int upper) {
     }
 }
 
-__attribute__((unused)) bool coinFlip() {
+inline bool coinFlip() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 1);
@@ -135,7 +136,7 @@ __attribute__((unused)) bool coinFlip() {
 }
 
 // returns a random integer from a range
-int generateInteger(int from, int to) {
+inline int generateInteger(int from, int to) {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(from, to);
@@ -144,7 +145,7 @@ int generateInteger(int from, int to) {
 }
 
 // prints out a string and sleeps in between prints
-void printMessage(const std::string &message) {
+inline void printMessage(const std::string &message) {
     for (char ltr : message) {
         std::cout << ltr;
         std::this_thread::sleep_for(std::chrono::milliseconds(25));
@@ -152,7 +153,7 @@ void printMessage(const std::string &message) {
 }
 
 // prints out a character then sleeps
-void printMessage(char message) {
+inline void printMessage(char message) {
     std::cout << message;
     std::this_thread::sleep_for(std::chrono::milliseconds(25));
 }

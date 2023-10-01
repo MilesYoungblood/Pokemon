@@ -4,12 +4,44 @@
 
 #pragma once
 
-void failMessage() {
+// returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
+inline bool chooseOption(int &option, int upper) {
+    retry:
+    switch (static_cast<char>(getch())) {
+        case 'w':
+            if (option - 1 >= 0) {
+                --option;
+                return false;
+            }
+            else {
+                goto retry;
+            }
+
+        case 's':
+            if (option + 1 <= upper) {
+                ++option;
+                return false;
+            }
+            else {
+                goto retry;
+            }
+
+        case 13:
+            return true;
+
+        default:
+            goto retry;
+    }
+}
+
+#include "../Classes/Trainer/Trainer.h"
+
+inline void failMessage() {
     printMessage("But it failed!\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-void displayBag(int arrow, bool &print) {
+inline void displayBag(int arrow, bool &print) {
     if (print) {
         printMessage("Choose an option:\n");
     }
@@ -27,7 +59,7 @@ void displayBag(int arrow, bool &print) {
 }
 
 template <typename Item>
-void displayItems(const std::vector<Item> &items, int arrow, bool &print) {
+inline void displayItems(const std::vector<Item> &items, int arrow, bool &print) {
     if (print) {
         printMessage("Choose an item:\n");
     }
@@ -51,7 +83,7 @@ void displayItems(const std::vector<Item> &items, int arrow, bool &print) {
 }
 
 template <typename Item>
-void displayItems(const std::vector<Item> &items) {
+inline void displayItems(const std::vector<Item> &items) {
     printMessage("Choose an item:\n");
     for (int i = 0; i < items.size(); ++i)
         std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x" << items[i].getQuantity() << " (" << i + 1 << ")\n";
@@ -61,37 +93,37 @@ void displayItems(const std::vector<Item> &items) {
 }
 
 namespace HP {
-    void restore(Pokemon &pokemonToRestore, int amountToRestore) {
+    inline void restore(Pokemon &pokemonToRestore, int amountToRestore) {
         pokemonToRestore.setHP(pokemonToRestore.getHP() + amountToRestore);
         if (pokemonToRestore.getHP() > pokemonToRestore.getMaxHp())
             pokemonToRestore.setHP(pokemonToRestore.getMaxHp());
     }
 
-    void restoreMessage(const Pokemon &pokemonRestored, int amountRestored) {
+    inline void restoreMessage(const Pokemon &pokemonRestored, int amountRestored) {
         printMessage(pokemonRestored.getName() + " recovered " + std::to_string(amountRestored) + " HP!\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 }
 
 namespace PP {
-    void restore(Move &moveToRestore, int amountToRestore) {
+    inline void restore(Move &moveToRestore, int amountToRestore) {
         moveToRestore.setPP(moveToRestore.getPP() + amountToRestore);
         if (moveToRestore.getPP() > moveToRestore.getMaxPP())
             moveToRestore.setPP(moveToRestore.getMaxPP());
     }
 
-    void restoreMessage(const Move &moveRestored, int amountRestored) {
+    inline void restoreMessage(const Move &moveRestored, int amountRestored) {
         printMessage(moveRestored.getName() + " recovered " + std::to_string(amountRestored) + " PP!\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
     }
 }
 
-void cure(Pokemon& pokemon, const StatusItem& item) {
+inline void cure(Pokemon& pokemon, const StatusItem& item) {
     if (pokemon.getStatus() == item.getRestoreType())
         pokemon.setStatus("No status");
 }
 
-void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
+inline void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
     if (pokemonCured.getStatus() == "No status") {
         printMessage(pokemonCured.getName() + " recovered from " + status + "!\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -100,7 +132,7 @@ void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
         failMessage();
 }
 
-bool catchPokemon(bool attempts[]) {
+inline bool catchPokemon(bool attempts[]) {
     // FIXME catch function does not take into account levels or catch rates
     attempts[0] = generateInteger(1, 100) < 80;
     attempts[1] = generateInteger(1, 100) < 70;
@@ -110,7 +142,7 @@ bool catchPokemon(bool attempts[]) {
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];
 }
 
-void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
+inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     if (attempts[0]) {
         printMessage("1...");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -146,7 +178,7 @@ void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     std::cout.flush();
 }
 
-void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
+inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
     if (itemToUse.getStat() == "attack") {
         if (pokemonToBoost.getAttack() < 6)
             pokemonToBoost.setAttack(pokemonToBoost.getAttack() + amountToBoost);
@@ -191,7 +223,7 @@ void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountT
     }
 }
 
-void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int amountBoosted, bool limit) {
+inline void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int amountBoosted, bool limit) {
     if (not limit) {
         printMessage(pokemon.getName() + "'s " + statBoosted + " rose");
         if (amountBoosted == 2)
@@ -209,11 +241,11 @@ void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int am
 }
 
 template <typename I>
-void useItem(I &itemToUse) {
+inline void useItem(I &itemToUse) {
     itemToUse.setQuantity(itemToUse.getQuantity() - 1);
 }
 
-void useItemMessage(const std::string &itemUsed) {
+inline void useItemMessage(const std::string &itemUsed) {
     if (itemUsed.substr(itemUsed.length() - 4) != "Ball") {
         printMessage("You used a");
 
@@ -233,12 +265,12 @@ void useItemMessage(const std::string &itemUsed) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-void itemErrorMessage(const Item * item) {
+inline void itemErrorMessage(const Item * item) {
     printMessage("You don't have any " + item->getName() + "'s.\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-void noEffectMessage(const Item * item, const Pokemon &pokemon) {
+inline void noEffectMessage(const Item * item, const Pokemon &pokemon) {
     printMessage(item->getName() + " had no effect on " + pokemon.getName() + ".\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

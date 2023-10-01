@@ -21,6 +21,7 @@ protected:
 
     int numFainted;                         // number of fainted Pokémon
     int numPokemon;                         // current number of Pokémon in party
+    int numItems[Trainer::NUM_ITEM_TYPES];
 
     int x;                                  // x-coordinate on map
     int y;                                  // y-coordinate on map
@@ -33,15 +34,19 @@ protected:
 
 public:
     Trainer();
+    Trainer(const std::array<Pokemon*, Trainer::MAX_POKEMON> &pokemon, int x, int y);
     Trainer(const Trainer &toCopy);
-    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
     ~Trainer();
     Trainer& operator=(const Trainer &rhs);
 
     int partySize() const;
+    int getNumItems(int type);
+    int getNumRestoreItems() {
+        return this->numItems[0];
+    }
     Item& getItem(int type, int item);
 
-    void setItems(const std::vector<std::vector<Item*>> &inventory);
+    void setItems(const std::array<std::array<Item*, Trainer::MAX_ITEMS>, Trainer::NUM_ITEM_TYPES> &inventory);
 
     void incFaintCount();
     void decFaintCount();

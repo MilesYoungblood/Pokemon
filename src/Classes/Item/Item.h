@@ -21,5 +21,7 @@ public:
 
     std::string getName() const;
 
+    bool canUse() const;
+
     friend std::ostream& operator<<(std::ostream &out, const Item &rhs);
 };

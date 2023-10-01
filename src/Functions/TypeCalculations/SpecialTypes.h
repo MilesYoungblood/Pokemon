@@ -6,7 +6,7 @@
 
 #include "../../Classes/Pokemon/Pokemon.h"
 
-double checkFire(const Pokemon& pokemon) {
+inline double checkFire(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "grass" or pokemon.getType(true) == "ice" or pokemon.getType(true) == "bug" or pokemon.getType(true) == "steel") {
         if (pokemon.getType(false) == "grass" or pokemon.getType(false) == "ice" or pokemon.getType(false) == "bug" or pokemon.getType(false) == "steel")
             return 4.0;
@@ -56,7 +56,7 @@ double checkFire(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkWater(const Pokemon& pokemon) {
+inline double checkWater(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "fire" or pokemon.getType(true) == "ground" or pokemon.getType(true) == "rock") {
         if (pokemon.getType(false) == "fire" or pokemon.getType(false) == "ground" or pokemon.getType(false) == "rock")
             return 4.0;
@@ -106,7 +106,7 @@ double checkWater(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkElectric(const Pokemon& pokemon) {
+inline double checkElectric(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "ground" or pokemon.getType(false) == "ground")
         return 0.0;
 
@@ -161,7 +161,7 @@ double checkElectric(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkGrass(const Pokemon& pokemon) {
+inline double checkGrass(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "water" or pokemon.getType(true) == "ground" or pokemon.getType(true) == "rock") {
         if (pokemon.getType(false) == "water" or pokemon.getType(false) == "ground" or pokemon.getType(false) == "rock")
             return 4.0;
@@ -216,7 +216,7 @@ double checkGrass(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkIce(const Pokemon& pokemon) {
+inline double checkIce(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "grass" or pokemon.getType(true) == "ground" or pokemon.getType(true) == "flying" or pokemon.getType(true) == "dragon") {
         if (pokemon.getType(false) == "grass" or pokemon.getType(false) == "ground" or pokemon.getType(false) == "flying" or pokemon.getType(false) == "dragon") {
             return 4.0;
@@ -270,7 +270,7 @@ double checkIce(const Pokemon& pokemon) {
     }
 }
 
-double checkPsychic(const Pokemon& pokemon) {
+inline double checkPsychic(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "dark" or pokemon.getType(false) == "dark")
         return 0.0;
 
@@ -322,7 +322,7 @@ double checkPsychic(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkDragon(const Pokemon& pokemon) {
+inline double checkDragon(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "fairy" or pokemon.getType(false) == "fairy")
         return 0.0;
 
@@ -362,7 +362,7 @@ double checkDragon(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkDark(const Pokemon& pokemon) {
+inline double checkDark(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "psychic" or pokemon.getType(true) == "ghost") {
         if (pokemon.getType(false) == "psychic" or pokemon.getType(false) == "ghost")
             return 4.0;
@@ -411,7 +411,7 @@ double checkDark(const Pokemon& pokemon) {
         return 1.0;
 }
 
-double checkFairy(const Pokemon& pokemon) {
+inline double checkFairy(const Pokemon& pokemon) {
     if (pokemon.getType(true) == "fighting" or pokemon.getType(true) == "dragon" or pokemon.getType(true) == "dark") {
         if (pokemon.getType(false) == "fighting" or pokemon.getType(false) == "dragon" or pokemon.getType(false) == "dark")
             return 4.0;

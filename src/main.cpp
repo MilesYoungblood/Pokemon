@@ -1,5 +1,5 @@
-#include "Functions/CoreFunctions.h"
 #include "Classes/Map/Map.h"
+#include "Classes/Battle/Battle.h"
 
 #include <mutex>
 
@@ -20,7 +20,7 @@ void turn(Map &map, Trainer &t, int index) {
         map.print(t);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        engageBattle(t, &map[index], false);
+        Battle(&t, &map[index]);
         map.print(t);
 
         keepMoving = true;
@@ -70,7 +70,7 @@ void turn(Map &map, Trainer &t, int index) {
 int main() {
     ShowConsoleCursor(false);
 
-    Trainer_1.setItems({{ new Potion(5), new Ether(5) }, { new ParalyzeHeal(2) }, {}, {}});
+    //Trainer_1.setItems({{ new Potion(5), new Ether(5) }, { new ParalyzeHeal(2), new BurnHeal(3) }, {}, {}});
 
     Route_1.setObstruction(1, 2);
     Route_1.setObstruction(1, 3);
@@ -90,7 +90,7 @@ int main() {
         currentMap->print(Trainer_1);
 
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        engageBattle(Trainer_1, &(*currentMap)[index], false);
+        Battle(&Trainer_1, &(*currentMap)[index]);
         currentMap->print(Trainer_1);
 
         mutex.unlock();

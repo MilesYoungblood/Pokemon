@@ -22,7 +22,7 @@ const RestoreItem potion(2, 20, "Potion", "HP");
 const RestoreItem ether(2, 5, "Ether", "PP");
 
 const StatusItem paralyzeHeal(2, "Paralysis Heal", "paralysis");
-const StatusItem BurnHeal(3, "Burn Heal", "burn");
+const StatusItem burnHeal(3, "Burn Heal", "burn");
 const StatusItem IceHeal(2, "Ice Heal", "freeze");
 const StatusItem Antidote(3, "Antidote", "poison");
 const StatusItem Awakening(4, "Awakening", "sleep");
@@ -35,7 +35,7 @@ const BattleItem XAttack(10, "X-Attack", "attack");
 const BattleItem XSpeed(5, "X-Speed", "speed");
 
 std::vector<RestoreItem> userRestoreItems = { potion, ether };
-std::vector<StatusItem> userStatusItems = { paralyzeHeal, BurnHeal, IceHeal, Antidote, Awakening };
+std::vector<StatusItem> userStatusItems = { paralyzeHeal, burnHeal, IceHeal, Antidote, Awakening };
 std::vector<PokeBall> userPokeBalls = { pokeBall, GreatBall, UltraBall };
 std::vector<BattleItem> userBattleItems = { XAttack, XSpeed };
 

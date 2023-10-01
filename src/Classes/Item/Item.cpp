@@ -24,6 +24,10 @@ int Item::getQuantity() const { return this->quantity; }
 
 std::string Item::getName() const { return this->name; }
 
+bool Item::canUse() const {
+    return this->quantity > 0;
+}
+
 std::ostream& operator<<(std::ostream &out, const Item &rhs) {
     out << rhs.name;
     return out;

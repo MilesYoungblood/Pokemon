@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "../Classes/Trainer/Trainer.h"
-#include "../Classes/NPC/NPC.h"
 #include "../Classes/Map/Map.h"
 #include "MoveList.h"
 #include "ItemList.h"
@@ -29,7 +27,7 @@ extern Trainer Trainer_1;
 const extern RestoreItem potion;
 const extern RestoreItem ether;
 const extern StatusItem paralyzeHeal;
-const extern StatusItem BurnHeal;
+const extern StatusItem burnHeal;
 const extern StatusItem IceHeal;
 const extern StatusItem Antidote;
 const extern StatusItem Awakening;

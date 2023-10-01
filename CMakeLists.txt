@@ -7,12 +7,10 @@ add_executable(PokemonBattle
         src/main.cpp
         src/Classes/Pokemon/Pokemon.h
         src/Classes/Pokemon/Pokemon.cpp
-        src/Functions/GeneralFunctions.h
         src/Classes/Move/Move.h
         src/Classes/Move/Move.cpp
         src/Classes/Item/Item.cpp
         src/Classes/Item/Item.h
-        src/Functions/AttackFunctions.h
         src/Functions/ItemFunctions.h
         src/Data/MoveList.h
         src/Functions/TypeCalculations/TypeChart.h
@@ -31,7 +29,6 @@ add_executable(PokemonBattle
         src/Classes/Item/Pokeball.cpp
         src/Classes/Item/BattleItem.cpp
         src/Classes/Item/BattleItem.h
-        src/Functions/CoreFunctions.h
         src/Data/MoveList/WaterShuriken.h
         src/Data/MoveList/VoltTackle.h
         src/Data/MoveList/IceBeam.h
@@ -48,4 +45,6 @@ add_executable(PokemonBattle
         src/Data/ItemList/Potion.h
         src/Data/ItemList/Ether.h
         src/Data/ItemList.h
-        src/Data/ItemList/ParalyzeHeal.h)
+        src/Data/ItemList/ParalyzeHeal.h
+        src/Classes/Battle/Battle.h
+        src/Classes/Battle/Battle.cpp)
