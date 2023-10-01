@@ -13,9 +13,9 @@
 // each exit point is assigned an ID that denotes what spot it is in the array,
 // and consequently which map it will lead to
 enum MapIDs {
-    ROUTE_1 = 0,
-    ROUTE_2 = 1,
-    ROUTE_3 = 2
+    ROUTE_1,
+    ROUTE_2,
+    ROUTE_3
 };
 
 extern Pokemon Greninja;

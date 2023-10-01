@@ -14,7 +14,7 @@
 
 class Map {
 private:
-    enum tiles { FREE = 0, OBSTRUCTION = 1, GRASS = 2 };
+    enum tiles { FREE, OBSTRUCTION, GRASS __attribute__((unused)), WATER __attribute__((unused)) };
 
     struct ExitPoint {
         int x;                              // x-coordinate of the exit spot
@@ -27,7 +27,7 @@ private:
     int width;                              // width of the map
     int height;                             // height of the map
 
-    std::string name;
+    std::string name;                       // name of the map
 
     std::vector<std::vector<int>> layout;   // The map is represented by a 2D int vector
                                             // values are represented by the tiles enum

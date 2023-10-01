@@ -88,12 +88,12 @@ namespace status {
 struct battlePhase {
 private:
     static int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
-        int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
+        const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
         return levelCalc * attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
     }
 
     static int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move) {
-        int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
+        const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
         return levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
     }
 
@@ -103,19 +103,6 @@ private:
         }
         else {
             return std::make_pair(1.0, false);
-        }
-    }
-
-    static double criticalHit(bool &crit) {
-        // returns two in order to double the damage
-        if (generateInteger(1, 16) == 1) {
-            crit = true;
-            return 2.0;
-        }
-        // returns 1 if no crit
-        else {
-            crit = false;
-            return 1.0;
         }
     }
 
@@ -132,8 +119,8 @@ private:
         else if (move.getCategory() == "special")
             initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
 
-        int finalDamage = (initialDamage / 50) + 2;
-        std::pair<double, bool> c = criticalHit();
+        const int finalDamage = (initialDamage / 50) + 2;
+        const std::pair<double, bool> c = criticalHit();
         crit = c.second;
 
         //FIXME recalculate damage
@@ -182,7 +169,7 @@ private:
 
     static void Action(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying) {
         bool crit = false;
-        int damage = calculateDamage(attacker[0], defender[0], attacker[0][move], crit);
+        const int damage = calculateDamage(attacker[0], defender[0], attacker[0][move], crit);
 
         attacker[0][move].action(attacker[0], defender[0], damage);
         attacker[0][move].actionMessage(attacker[0], defender[0], damage, crit, getTypeEffective(attacker[0][move], defender[0]));

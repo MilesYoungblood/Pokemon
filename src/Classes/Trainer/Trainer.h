@@ -11,15 +11,10 @@
 #include "../Item/Pokeball.h"
 #include "../Item/BattleItem.h"
 
-enum directions {
-    NORTH = 1,
-    EAST = 2,
-    SOUTH = 3,
-    WEST = 4
-};
-
 class Trainer {
 protected:
+    enum directions { NORTH, EAST, SOUTH, WEST };
+
     const static int MAX_POKEMON = 6;       // max number of Pokémon per party
     const static int MAX_ITEMS = 50;        // max number of items per bag
     const static int NUM_ITEM_TYPES = 4;    // number of types of items

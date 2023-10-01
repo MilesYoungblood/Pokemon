@@ -47,4 +47,5 @@ add_executable(PokemonBattle
         src/Classes/Map/Map.h
         src/Data/ItemList/Potion.h
         src/Data/ItemList/Ether.h
-        src/Data/ItemList.h src/Data/ItemList/ParalyzeHeal.h)
+        src/Data/ItemList.h
+        src/Data/ItemList/ParalyzeHeal.h)

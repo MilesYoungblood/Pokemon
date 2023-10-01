@@ -11,7 +11,7 @@ Trainer::Trainer() : party(), items() {
     this->x = 1;
     this->y = 1;
     this->range = 1;
-    this->direction = directions::SOUTH;
+    this->direction = Trainer::directions::SOUTH;
     this->model = 'S';
 }
 
@@ -43,7 +43,7 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) :
     this->x = x;
     this->y = y;
     this->range = 1;
-    this->direction = 3;
+    this->direction = Trainer::directions::SOUTH;
     this->model = 'S';
 
     for (const auto &p : pokemon) {
@@ -145,22 +145,22 @@ void Trainer::moveWest() {
 }
 
 void Trainer::faceNorth() {
-    this->direction = directions::NORTH;
+    this->direction = Trainer::directions::NORTH;
     this->model = 'N';
 }
 
 void Trainer::faceEast() {
-    this->direction = directions::EAST;
+    this->direction = Trainer::directions::EAST;
     this->model = 'E';
 }
 
 void Trainer::faceSouth() {
-    this->direction = directions::SOUTH;
+    this->direction = Trainer::directions::SOUTH;
     this->model = 'S';
 }
 
 void Trainer::faceWest() {
-    this->direction = directions::WEST;
+    this->direction = Trainer::directions::WEST;
     this->model = 'W';
 }
 
@@ -200,19 +200,19 @@ bool Trainer::canFight() const {
 }
 
 bool Trainer::isFacingNorth() const {
-    return this->direction == directions::NORTH;
+    return this->direction == Trainer::directions::NORTH;
 }
 
 bool Trainer::isFacingEast() const {
-    return this->direction == directions::EAST;
+    return this->direction == Trainer::directions::EAST;
 }
 
 bool Trainer::isFacingSouth() const {
-    return this->direction == directions::SOUTH;
+    return this->direction == Trainer::directions::SOUTH;
 }
 
 bool Trainer::isFacingWest() const {
-    return this->direction == directions::WEST;
+    return this->direction == Trainer::directions::WEST;
 }
 
 bool Trainer::hasVisionOf(const Trainer * t) const {

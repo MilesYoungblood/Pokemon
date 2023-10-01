@@ -85,7 +85,7 @@ private:
     template <typename Comparable>
     static void mergeSort(std::vector<Comparable> &array, const size_t left, const size_t right) {
         if (left < right) {
-            size_t mid = left + (right - left) / 2;
+            const size_t mid = left + (right - left) / 2;
             mergeSort(array, left, mid);
             mergeSort(array, mid + 1, right);
             merge(array, left, mid, right);
@@ -107,7 +107,7 @@ bool isVowel(char ltr) {
 // returns a char of the user's selections
 char getChar(const std::vector<char> &options) {
     while (true) {
-        char c = static_cast<char>(getch());
+        const char c = static_cast<char>(getch());
         for (const char ltr : options) {
             if (c == ltr)
                 return c;
@@ -119,7 +119,7 @@ char getChar(const std::vector<char> &options) {
 int getInt(int lower, int upper) {
     while (true) {
         // subtracting by '0' gets the offset of the ASCII
-        int i = getch() - '0';
+        const int i = getch() - '0';
         if (lower <= i and i <= upper) {
             return i;
         }

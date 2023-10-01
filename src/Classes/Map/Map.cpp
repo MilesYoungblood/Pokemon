@@ -12,7 +12,7 @@ void Map::setBorders(const Map * from) {
 
     // set the inner layer borders
     for (int y = 1; y < from->height; ++y) {
-        this->layout[0][y] = true;
+        this->layout[0][y] = Map::tiles::OBSTRUCTION;
         this->layout[this->width - 1][y] = Map::tiles::OBSTRUCTION;
     }
 
@@ -107,14 +107,14 @@ NPC& Map::operator[](int index) {
 
 void Map::setObstruction(int x, int y) {
     if (not this->isNPCHere(x, y)) {
-        this->layout[x][y] = true;
+        this->layout[x][y] = Map::tiles::OBSTRUCTION;
     }
 }
 
 // 242 = green, 244 = red, 240 = black
 void Map::print(const Trainer &trainer) const {
     system("cls");
-    std::cout << "Press ESC to quit\n";
+    //std::cout << "Press ESC to quit\n";
 
     for (int y = 0; y < this->height; ++y) {
         for (int x = 0; x < this->width; ++x) {

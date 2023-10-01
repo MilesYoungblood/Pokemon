@@ -14,8 +14,6 @@ NPC::NPC(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int range
 }
 
 NPC::~NPC() {
-
-
     for (auto &type : this->items) {
         for (auto &item : type) {
             delete item;
