@@ -14,9 +14,9 @@ struct Flamethrower : public Move {
         if (damage > 0) {
             defendingPokemon.setHP(defendingPokemon.getHP() - damage);
 
-            this->burnState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() != "burn";
+            this->burnState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
             if (this->burnState)
-                defendingPokemon.setStatus("burn");
+                defendingPokemon.setStatus(Status::BURN);
         }
 
         --this->pp;

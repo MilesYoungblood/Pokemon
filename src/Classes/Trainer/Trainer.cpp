@@ -4,46 +4,27 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer() : party(), items(), numItems() {
-    this->numFainted = 0;
-    this->numPokemon = 0;
-
-    this->x = 1;
-    this->y = 1;
-    this->range = 1;
-    this->direction = Trainer::directions::SOUTH;
-    this->model = 'S';
-}
-
-Trainer::Trainer(const std::array<Pokemon*, Trainer::MAX_POKEMON> &pokemon, int x, int y) : party(), items(), numItems() {
+Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Entity(x, y), party(), items(), numItems() {
     this->numFainted = 0;
     this->numPokemon= 0;
 
-    this->x = x;
-    this->y = y;
-    this->range = 1;
-    this->direction = Trainer::directions::SOUTH;
-    this->model = 'S';
-
     for (const auto &p : pokemon) {
+        if (this->numPokemon == Trainer::MAX_POKEMON) {
+            break;
+        }
+
         this->party[this->numPokemon] = p;
         ++this->numPokemon;
     }
 }
 
-Trainer::Trainer(const Trainer &toCopy) : party(), items(), numItems() {
+Trainer::Trainer(const Trainer &toCopy) : Entity(toCopy), party(), items(), numItems() {
     this->numFainted = toCopy.numFainted;
     this->numPokemon = toCopy.numPokemon;
 
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         this->numItems[i] = toCopy.numItems[i];
     }
-
-    this->x = toCopy.x;
-    this->y = toCopy.y;
-    this->range = toCopy.range;
-    this->direction = toCopy.direction;
-    this->model = toCopy.model;
 
     for (int i = 0; i < toCopy.numPokemon; ++i) {
         this->party[i] = toCopy.party[i];
@@ -112,11 +93,52 @@ Item& Trainer::getItem(int type, int item) {
     return *this->items[type][item];
 }
 
-void Trainer::setItems(const std::array<std::array<Item*, Trainer::MAX_ITEMS>, Trainer::NUM_ITEM_TYPES> &inventory) {
+__attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
             this->items[i][j] = inventory[i][j];
+            ++this->numItems[i];
         }
+    }
+}
+void Trainer::setRestoreItems(const std::vector<Item *> &inventory) {
+    for (int i = 0; i < inventory.size(); ++i) {
+        if (this->numItems[0] == Trainer::MAX_ITEMS) {
+            break;
+        }
+
+        this->items[0][i] = inventory[i];
+        ++this->numItems[0];
+    }
+}
+void Trainer::setStatusItems(const std::vector<Item *> &inventory) {
+    for (int i = 0; i < inventory.size(); ++i) {
+        if (this->numItems[1] == Trainer::MAX_ITEMS) {
+            break;
+        }
+
+        this->items[1][i] = inventory[i];
+        ++this->numItems[1];
+    }
+}
+void Trainer::setPokeBalls(const std::vector<Item *> &inventory) {
+    for (int i = 0; i < inventory.size(); ++i) {
+        if (this->numItems[2] == Trainer::MAX_ITEMS) {
+            break;
+        }
+
+        this->items[2][i] = inventory[i];
+        ++this->numItems[2];
+    }
+}
+void Trainer::setBattleItems(const std::vector<Item *> &inventory) {
+    for (int i = 0; i < inventory.size(); ++i) {
+        if (this->numItems[3] == Trainer::MAX_ITEMS) {
+            break;
+        }
+
+        this->items[3][i] = inventory[i];
+        ++this->numItems[3];
     }
 }
 
@@ -128,43 +150,13 @@ void Trainer::decFaintCount() {
     --this->numFainted;
 }
 
+void Trainer::swapPokemon(int first, int second) {
+    Pokemon * copy = this->party[first];
+    this->party[first] = this->party[second];
+    this->party[second] = copy;
+}
+
 void Trainer::defeat() {}
-
-void Trainer::moveNorth() {
-    --this->y;
-}
-
-void Trainer::moveEast() {
-    ++this->x;
-}
-
-void Trainer::moveSouth() {
-    ++this->y;
-}
-
-void Trainer::moveWest() {
-    --this->x;
-}
-
-void Trainer::faceNorth() {
-    this->direction = Trainer::directions::NORTH;
-    this->model = 'N';
-}
-
-void Trainer::faceEast() {
-    this->direction = Trainer::directions::EAST;
-    this->model = 'E';
-}
-
-void Trainer::faceSouth() {
-    this->direction = Trainer::directions::SOUTH;
-    this->model = 'S';
-}
-
-void Trainer::faceWest() {
-    this->direction = Trainer::directions::WEST;
-    this->model = 'W';
-}
 
 Pokemon& Trainer::operator[](int spot)  {
     if (5 < spot or spot < 0)
@@ -180,92 +172,6 @@ const Pokemon& Trainer::operator[](int spot) const {
     return *this->party[spot];
 }
 
-void Trainer::setCoordinates(int newX, int newY) {
-    this->x = newX;
-    this->y = newY;
-}
-
-int Trainer::getX() const {
-    return this->x;
-}
-
-int Trainer::getY() const {
-    return this->y;
-}
-
-char Trainer::getModel() const {
-    return this->model;
-}
-
 bool Trainer::canFight() const {
     return this->numFainted < this->numPokemon;
-}
-
-bool Trainer::isFacingNorth() const {
-    return this->direction == Trainer::directions::NORTH;
-}
-
-bool Trainer::isFacingEast() const {
-    return this->direction == Trainer::directions::EAST;
-}
-
-bool Trainer::isFacingSouth() const {
-    return this->direction == Trainer::directions::SOUTH;
-}
-
-bool Trainer::isFacingWest() const {
-    return this->direction == Trainer::directions::WEST;
-}
-
-bool Trainer::hasVisionOf(const Trainer * t) const {
-    if (this->isFacingNorth()) {
-        return t->getX() == this->x and t->getY() < this->y and t->getY() >= this->y - this->range;
-    }
-    else if (this->isFacingEast()) {
-        return t->getY() == this->y and t->getX() > this->x and t->getX() <= this->x + this->range;
-    }
-    else if (this->isFacingSouth()) {
-        return t->getX() == this->x and t->getY() > this->y and t->getY() <= this->y + this->range;
-    }
-    else if (this->isFacingWest()) {
-        return t->getY() == this->y and t->getX() < this->x and t->getX() >= this->x -  this->range;
-    }
-    else {
-        return false;
-    }
-}
-
-// makes this face the trainer
-void Trainer::face(const Trainer * trainer) {
-    if (trainer->isFacingNorth()) {
-        this->faceSouth();
-    }
-    else if (trainer->isFacingEast()) {
-        this->faceWest();
-    }
-    else if (trainer->isFacingSouth()) {
-        this->faceNorth();
-    }
-    else if (trainer->isFacingWest()) {
-        this->faceEast();
-    }
-}
-
-// returns true if this is right next to another trainer, not necessarily facing
-bool Trainer::isNextTo(const Trainer * trainer) const {
-    if (this->isFacingNorth()) {
-        return this->y == trainer->y + 1 and this->x == trainer->x;
-    }
-    else if (this->isFacingEast()) {
-        return this->x == trainer->x - 1 and this->y == trainer->y;
-    }
-    else if (this->isFacingSouth()) {
-        return this->y == trainer->y - 1 and this->x == trainer->x;
-    }
-    else if (this->isFacingWest()) {
-        return this->x == trainer->x + 1 and this->y == trainer->y;
-    }
-    else {
-        return false;
-    }
 }

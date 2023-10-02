@@ -13,12 +13,12 @@ private:
     bool defeated;  // has this trainer been defeated (necessary to know if you can walk in LoS again)
 
 public:
-    NPC();
-    NPC(const std::array<Pokemon*, NPC::MAX_POKEMON> &pokemon, int x, int y, int range);
+    NPC(const std::vector<Pokemon*> &pokemon, int x, int y, int range);\
+    NPC(const NPC &toCopy);
     ~NPC();
     NPC& operator=(const NPC &rhs);
 
-    bool isDefeated() const;
+    bool canFight() const override;
     void defeat() override;
     void moveToPlayer(const Map &map, const Trainer &trainer);
 };

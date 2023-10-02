@@ -34,7 +34,7 @@ void turn(Map &map, Trainer &t, int index) {
                 map[index].face(&map[index]);
                 map.print(t);
 
-                if (map[index].hasVisionOf(&t) and not map[index].isDefeated()) {
+                if (map[index].hasVisionOf(&t) and not map[index].canFight()) {
                     engage();
                     return;
                 }
@@ -51,7 +51,7 @@ void turn(Map &map, Trainer &t, int index) {
                 }
                 map.print(t);
 
-                if (map[index].hasVisionOf(&t) and not map[index].isDefeated()) {
+                if (map[index].hasVisionOf(&t) and not map[index].canFight()) {
                     engage();
                     return;
                 }
@@ -68,9 +68,13 @@ void turn(Map &map, Trainer &t, int index) {
 #include "Data/Data.h"
 
 int main() {
+    SetConsoleTitleA("Pokemon Game");
     ShowConsoleCursor(false);
 
-    //Trainer_1.setItems({{ new Potion(5), new Ether(5) }, { new ParalyzeHeal(2), new BurnHeal(3) }, {}, {}});
+    Trainer_1.setRestoreItems({ new Potion(5), new Ether(5) });
+    Trainer_1.setStatusItems({ new ParalyzeHeal(5), new BurnHeal(5), new IceHeal(5), new Antidote(5), new Awakening(5) });
+    Trainer_1.setPokeBalls({ new PokeBall(5), new GreatBall(5), new UltraBall(5) });
+    Trainer_1.setBattleItems({ new XAttack(5), new XSpeed(5) });
 
     Route_1.setObstruction(1, 2);
     Route_1.setObstruction(1, 3);
@@ -117,7 +121,7 @@ updateMap:
 
         // checks if the player is in line of sight of any NPC
         for (int i = 0; i < numNPCs; ++i) {
-            if ((*currentMap)[i].hasVisionOf(&Trainer_1) and not (*currentMap)[i].isDefeated()) {
+            if ((*currentMap)[i].hasVisionOf(&Trainer_1) and not(*currentMap)[i].canFight()) {
                 engage(i);
             }
         }
@@ -182,7 +186,7 @@ retry:
                         (*currentMap)[i].face(&Trainer_1);
                         currentMap->print(Trainer_1);
 
-                        if (not (*currentMap)[i].isDefeated()) {
+                        if (not(*currentMap)[i].canFight()) {
                             engage(i);
                         }
                         break;

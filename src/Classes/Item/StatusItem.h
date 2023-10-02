@@ -8,12 +8,12 @@
 
 class StatusItem : public Item {
 private:
-    std::string restoreType;
+    Status status;
 
 public:
     StatusItem();
     StatusItem(const StatusItem &copy);
-    StatusItem(int quantity, const char * name, const char * restoreType);
+    StatusItem(int quantity, const char * name, Status status);
 
-    std::string getRestoreType() const;
+    Status getStatus() const override;
 };

@@ -8,8 +8,6 @@
 #include <array>
 #include <algorithm>
 #include <windows.h>
-#include <conio.h>
-#include <windows.h>
 #include "../NPC/NPC.h"
 
 class Map {
@@ -42,8 +40,7 @@ private:
 public:
     Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints);
     Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints);
-    Map(const Map &toCopy);
-    Map& operator=(const Map &rhs);
+    Map(const Map &toCopy) = delete;
 
     bool isObstructionHere(int x, int y) const;
     std::array<int, 3> isExitPointHere(int x, int y) const;

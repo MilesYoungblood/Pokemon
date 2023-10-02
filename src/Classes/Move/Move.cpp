@@ -83,7 +83,7 @@ std::string Move::getName() const {
     return this->name;
 }
 
-bool Move::canUse() const {
+Move::operator bool() const {
     return this->pp > 0;
 }
 

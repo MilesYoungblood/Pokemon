@@ -8,19 +8,19 @@
 #include <random>
 #include <thread>
 
-enum Type {
-    NORMAL, FIRE, WATER, ELECTRIC, GRASS,
-    ICE, FIGHTING, POISON, GROUND, FLYING,
-    PSYCHIC, BUG, ROCK, GHOST, DRAGON,
-    DARK, STEEL, FAIRY
-};
-
 enum categories { PHYSICAL, SPECIAL, STATUS };
 
 class Pokemon;
 
 class Move {
 protected:
+    enum Type {
+        NORMAL, FIRE, WATER, ELECTRIC, GRASS,
+        ICE, FIGHTING, POISON, GROUND, FLYING,
+        PSYCHIC, BUG, ROCK, GHOST, DRAGON,
+        DARK, STEEL, FAIRY
+    };
+
     int pp;
     int maxPp;
     int power;
@@ -93,7 +93,7 @@ public:
 
     std::string getName() const;
 
-    bool canUse() const;
+    explicit operator bool() const;
 
     friend std::ostream& operator<<(std::ostream &out, const Move &rhs);
 };

@@ -4,13 +4,13 @@
 
 #include "NPC.h"
 
-NPC::NPC() : Trainer() {
+NPC::NPC(const std::vector<Pokemon*> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
+    this->range = range;
     this->defeated = false;
 }
 
-NPC::NPC(const std::array<Pokemon*, NPC::MAX_POKEMON> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
-    this->range = range;
-    this->defeated = false;
+NPC::NPC(const NPC &toCopy) : Trainer(toCopy) {
+    this->defeated = toCopy.defeated;
 }
 
 NPC::~NPC() {
@@ -53,7 +53,7 @@ NPC& NPC::operator=(const NPC &rhs) {
     return *this;
 }
 
-bool NPC::isDefeated() const {
+bool NPC::canFight() const {
     return this->defeated;
 }
 

@@ -15,9 +15,9 @@ struct IceBeam : public Move {
             defendingPokemon.setHP(defendingPokemon.getHP() - damage);
 
 
-            this->freezeState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() != "freeze";
+            this->freezeState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
             if (this->freezeState)
-                defendingPokemon.setStatus("freeze");
+                defendingPokemon.setStatus(Status::FREEZE);
         }
 
         --this->pp;

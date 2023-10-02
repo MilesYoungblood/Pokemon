@@ -5,7 +5,6 @@
 #pragma once
 
 #include "../../Classes/Trainer/Trainer.h"
-#include "../../Data/Data.h"
 #include "../../main.h"
 #include "../../Functions/ItemFunctions.h"
 #include "../../Functions/TypeCalculations/TypeChart.h"
@@ -41,7 +40,6 @@ private:
 
     static void pokemonPrompt(int arrow, bool &print);
 
-    static void switchOut(Trainer &t, int pokemonToSwitch);
     static void switchOutMessage(const Trainer &t, int pokemonSwitched);
 
     static void inBattleMessage();
@@ -52,31 +50,8 @@ private:
     static void winMessage();
     static void loseMessage();
 
-    static void displayItems(int t, int arrow, bool &print) {
-        if (print) {
-            printMessage("Choose an item:\n");
-        }
-        else {
-            std::cout << "Choose an item:\n";
-        }
-        for (int i = 0; i < Battle::user->getNumItems(t); ++i)
-            if (arrow == i) {
-                std::cout << "   ->   " << Battle::user->getItem(t, i).getName() << std::string(15 - Battle::user->getItem(t, i).getName().length(), ' ') << " x"
-                          << Battle::user->getItem(t, i).getQuantity() << '\n';
-            }
-            else {
-                std::cout << '\t' << Battle::user->getItem(t, i).getName() << std::string(15 - Battle::user->getItem(t, i).getName().length(), ' ') << " x"
-                          << Battle::user->getItem(t, i).getQuantity() << '\n';
-            }
-
-        arrow == Battle::user->getNumItems(t) ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
-        std::cout.flush();
-
-        print = false;
-    }
-
-    static bool preStatus(const std::string& status);
-    static bool postStatus(const std::string& status);
+    static bool preStatus(Status status);
+    static bool postStatus(Status status);
 
     static void inflictedMessage(const Pokemon& pokemon);
 
@@ -111,9 +86,8 @@ private:
     static void choosePokemon(bool &skip);
 
     static void fight(int userMove, bool &keepPlaying);
+    static void engageBattle(bool isTrainer);
 
 public:
     Battle(Trainer * trainer_1, Trainer * trainer_2);
-
-    static void engageBattle(bool isTrainer);
 };

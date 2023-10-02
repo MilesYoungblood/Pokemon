@@ -17,9 +17,9 @@ struct VoltTackle : public Move {
 
             //FIXME faint pokemon if necessary
 
-            this->paralysisState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() != "paralysis";
+            this->paralysisState = Move::generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
             if (this->paralysisState)
-                defendingPokemon.setStatus("paralysis");
+                defendingPokemon.setStatus(Status::PARALYSIS);
         }
 
         --this->pp;

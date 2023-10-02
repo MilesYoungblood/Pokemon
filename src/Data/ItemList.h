@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "ItemList/Potion.h"
-#include "ItemList/Ether.h"
-#include "ItemList/ParalyzeHeal.h"
-#include "ItemList/BurnHeal.h"
+#include "ItemList/RestoreItems.h"
+#include "ItemList/StatusItems.h"
+#include "ItemList/PokeBalls.h"
+#include "ItemList/BattleItems.h"

@@ -16,29 +16,6 @@ Pokemon Lucario("Lucario", "fighting", "steel", 50, 300, 110, 70, 115, 70, 90, {
 
 Trainer Trainer_1({ &Greninja, &Charizard, &Hydreigon }, 1, 1);
 
-/// Items
-
-const RestoreItem potion(2, 20, "Potion", "HP");
-const RestoreItem ether(2, 5, "Ether", "PP");
-
-const StatusItem paralyzeHeal(2, "Paralysis Heal", "paralysis");
-const StatusItem burnHeal(3, "Burn Heal", "burn");
-const StatusItem IceHeal(2, "Ice Heal", "freeze");
-const StatusItem Antidote(3, "Antidote", "poison");
-const StatusItem Awakening(4, "Awakening", "sleep");
-
-const PokeBall pokeBall(5, 1.0f, "Poke Ball");
-const PokeBall GreatBall(5, 1.5f, "Great Ball");
-const PokeBall UltraBall(5, 2.0f, "Ultra Ball");
-
-const BattleItem XAttack(10, "X-Attack", "attack");
-const BattleItem XSpeed(5, "X-Speed", "speed");
-
-std::vector<RestoreItem> userRestoreItems = { potion, ether };
-std::vector<StatusItem> userStatusItems = { paralyzeHeal, burnHeal, IceHeal, Antidote, Awakening };
-std::vector<PokeBall> userPokeBalls = { pokeBall, GreatBall, UltraBall };
-std::vector<BattleItem> userBattleItems = { XAttack, XSpeed };
-
 /// Maps
 
 Map Route_1("Route 1", 12, 10, { NPC({ &Pikachu, &Lucario }, 6, 6, 3) }, { { 5, 0, MapIDs::ROUTE_2, 10, 18 } });

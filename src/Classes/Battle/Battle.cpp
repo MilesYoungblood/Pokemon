@@ -6,7 +6,7 @@
 
 Trainer * Battle::user = nullptr;
 Trainer * Battle::opponent = nullptr;
-size_t Battle::turn = 1;
+size_t Battle::turn = 1ull;
 
 void Battle::wildPokemonMessage(const Pokemon &pokemon) {
     printMessage("Your opponent sent out " + pokemon.getName() + "! ");
@@ -162,12 +162,6 @@ void Battle::pokemonPrompt(int arrow, bool &print) {
     print = false;
 }
 
-void Battle::switchOut(Trainer &t, int pokemonToSwitch) {
-    Pokemon copy = t[0];
-    t[0] = t[pokemonToSwitch];
-    t[pokemonToSwitch] = copy;
-}
-
 void Battle::switchOutMessage(const Trainer &t, int pokemonSwitched) {
     Battle::returnMessage(t[pokemonSwitched]);
     Battle::sendOutMessage(t[0]);
@@ -202,28 +196,28 @@ void Battle::loseMessage() {
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
-bool Battle::preStatus(const std::string &status) {
-    return status == "paralysis" ? generateInteger(1, 4) == 1 : status == "freeze" or status == "sleep";
+bool Battle::preStatus(Status status) {
+    return status == Status::PARALYSIS ? generateInteger(1, 4) == 1 : status == Status::FREEZE or status == Status::SLEEP;
 }
 
-bool Battle::postStatus(const std::string &status) {
-    return status == "burn" or status == "poison";
+bool Battle::postStatus(Status status) {
+    return status == Status::BURN or status == Status::POISON;
 }
 
 void Battle::inflictedMessage(const Pokemon &pokemon) {
-    if (pokemon.getStatus() == "burn")
+    if (pokemon.getStatus() == Status::BURN)
         printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .065))) + " damage from it's burn!\n");
 
-    else if (pokemon.getStatus() == "paralysis")
+    else if (pokemon.getStatus() == Status::PARALYSIS)
         printMessage(pokemon.getName() + " is paralyzed! It can't move!\n");
 
-    else if (pokemon.getStatus() == "freeze")
+    else if (pokemon.getStatus() == Status::FREEZE)
         printMessage(pokemon.getName() + " is frozen solid!\n");
 
-    else if (pokemon.getStatus() == "poison")
+    else if (pokemon.getStatus() == Status::POISON)
         printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's poisoning!\n");
 
-    else if (pokemon.getStatus() == "sleep")
+    else if (pokemon.getStatus() == Status::SLEEP)
         printMessage(pokemon.getName() + " is fast asleep!\n");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -282,10 +276,10 @@ void Battle::takeDamage(Trainer &t, int damage) {
 
 void Battle::takeDamageMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's ");
-    if (pokemon.getStatus() == "burn")
+    if (pokemon.getStatus() == Status::BURN)
         printMessage( "burn!\n");
 
-    else if (pokemon.getStatus() == "poison")
+    else if (pokemon.getStatus() == Status::POISON)
         printMessage("poisoning!\n");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -367,7 +361,7 @@ void Battle::SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying) {
         } while (trainer[toSwitch].isFainted());
     }
 
-    switchOut(trainer, toSwitch);
+    trainer.swapPokemon(0, toSwitch);
     sendOutMessage(trainer[0]);
 }
 
@@ -466,7 +460,7 @@ int Battle::chooseMove(bool &skip) {
         return 0;
     }
         // if move chosen is out of PP...
-    else if (not (*Battle::user)[0][move].canUse()) {
+    else if (not (*Battle::user)[0][move]) {
         attackErrorMessage();
         goto chooseMove;
     }
@@ -476,36 +470,38 @@ int Battle::chooseMove(bool &skip) {
 }
 
 void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
+    int itemType = 0;
     int userItem = 0;
     bool print = true;
 
     chooseItemType:
     displayHPBar(true);
-    displayBag(userItem, print);
+    displayBag(itemType, print);
 
-    if (not chooseOption(userItem, 4))
+    if (not chooseOption(itemType, 4))
         goto chooseItemType;
 
     // trainer chose HP/PP items
-    switch (userItem) {
+    switch (itemType) {
         case 0:
             print = true;
 
         chooseRestoreItem:
             displayHPBar(true);
-            displayItems(userItem, userItem, print);
+            displayItems(Battle::user, itemType, userItem, print);
 
-            if (not chooseOption(userItem, static_cast<int>(userRestoreItems.size())))
+            if (not chooseOption(userItem, Battle::user->getNumItems(itemType)))
                 goto chooseRestoreItem;
 
-            if (userItem == static_cast<int>(userRestoreItems.size())) {
+            if (userItem == Battle::user->getNumItems(itemType)) {
+                itemType = 0;
                 userItem = 0;
                 print = true;
                 goto chooseItemType;
             }
 
-                // if trainer has at least 1 of the item selected...
-            else if (userRestoreItems[userItem].getQuantity() > 0) {
+            // if trainer has at least 1 of the item selected...
+            else if (Battle::user->getItem(itemType, userItem)) {
                 int pokemon = 0;
                 print = true;
 
@@ -517,34 +513,35 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
                     goto chooseRestorePokemon;
 
                 if (pokemon == Battle::user->partySize()) {
+                    itemType = 0;
                     userItem = 0;
                     print = true;
                     goto chooseRestoreItem;
                 }
-                    // Pokémon's HP is already full
+                // Pokémon's HP is already full
                 else if ((*Battle::user)[pokemon].isFullHP()) {
                     displayHPBar(true);
                     hpFullMessage((*Battle::user)[pokemon]);
                     goto chooseRestorePokemon;
                 }
-                    // Pokémon is fainted
+                // Pokémon is fainted
                 else if ((*Battle::user)[pokemon].isFainted()) {
                     displayHPBar(true);
                     hpEmptyMessage((*Battle::user)[pokemon]);
                     goto chooseRestorePokemon;
                 }
-                    // if Pokémon selected doesn't have full HP, but also isn't fainted...
+                // if Pokémon selected doesn't have full HP, but also isn't fainted...
                 else {
                     // if item selected restores HP...
-                    if (userRestoreItems[userItem].getRestoreType() == "HP") {
+                    if (Battle::user->getItem(itemType, userItem).getRestoreType() == RestoreType::HP) {
                         displayHPBar(true);
-                        useItem(userRestoreItems[userItem]);
-                        useItemMessage(userRestoreItems[userItem].getName());
-                        HP::restore((*Battle::user)[pokemon], userRestoreItems[userItem].getAmount());
-                        HP::restoreMessage((*Battle::user)[pokemon], userRestoreItems[userItem].getAmount());
+                        useItem(Battle::user->getItem(itemType, userItem));
+                        useItemMessage(Battle::user->getItem(itemType, userItem).getName());
+                        HP::restore((*Battle::user)[pokemon], Battle::user->getItem(itemType, userItem).getAmount());
+                        HP::restoreMessage((*Battle::user)[pokemon], Battle::user->getItem(itemType, userItem).getAmount());
                     }
-                        // if item selected restores PP...
-                    else if (userRestoreItems[userItem].getRestoreType() == "PP") {
+                    // if item selected restores PP...
+                    else if (Battle::user->getItem(itemType, userItem).getRestoreType() == RestoreType::PP) {
                         int move = 0;
                         print = true;
 
@@ -561,84 +558,103 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
 
                         else {
                             displayHPBar(true);
-                            useItem(userRestoreItems[userItem]);
-                            useItemMessage(userRestoreItems[userItem].getName());
-                            PP::restore((*Battle::user)[pokemon][move], userRestoreItems[userItem].getAmount());
-                            PP::restoreMessage((*Battle::user)[pokemon][move], userRestoreItems[userItem].getAmount());
+                            useItem(Battle::user->getItem(itemType, userItem));
+                            useItemMessage(Battle::user->getItem(itemType, userItem).getName());
+                            PP::restore((*Battle::user)[pokemon][move], Battle::user->getItem(itemType, userItem).getAmount());
+                            PP::restoreMessage((*Battle::user)[pokemon][move], Battle::user->getItem(itemType, userItem).getAmount());
                         }
                     }
                 }
             }
-                // trainer is out of selected item
+            // trainer is out of selected item
             else {
                 displayHPBar(true);
-                itemErrorMessage(&userRestoreItems[userItem]);
+                itemErrorMessage(Battle::user->getItem(itemType, userItem));
                 goto chooseRestoreItem;
             }
             break;
 
         case 1:
+            print = true;
+
         chooseStatusItem:
             displayHPBar(true);
-            ::displayItems(userStatusItems);
-            userItem = getInt(0, static_cast<int>(userStatusItems.size()));
+            displayItems(Battle::user, itemType, userItem, print);
 
-            if (userItem == 0) {
+            if (not chooseOption(userItem, Battle::user->getNumItems(itemType)))
+                goto chooseStatusItem;
+
+            if (userItem == Battle::user->getNumItems(itemType)) {
+                itemType = 0;
+                userItem = 0;
+                print = true;
                 goto chooseItemType;
             }
-                // if trainer has at least 1 of the item selected...
-            else if (userStatusItems[userItem - 1].getQuantity() > 0) {
+
+            // if trainer has at least 1 of the item selected...
+            else if (Battle::user->getItem(itemType, userItem)) {
+                int pokemon = 0;
+                print = true;
+
                 chooseStatusPokemon:
                 displayHPBar(true);
-                displayPokemon(*Battle::user);
-                int pokemon = getInt(0, Battle::user->partySize());
+                displayPokemon(pokemon, print);
 
-                if (pokemon == 0) {
-                    goto chooseStatusItem;
+                if (not chooseOption(pokemon, Battle::user->partySize())) {
+                    pokemon = 0;
+                    goto chooseStatusPokemon;
                 }
-                    // if Pokémon is not fainted...
-                else if (not (*Battle::user)[pokemon - 1].isFainted()) {
+                // if Pokémon is not fainted...
+                else if (not (*Battle::user)[pokemon].isFainted()) {
                     // if Pokémon has status condition...
-                    if ((*Battle::user)[pokemon - 1].isAfflicted()) {
+                    if ((*Battle::user)[pokemon].isAfflicted()) {
                         displayHPBar(true);
-                        useItem(userStatusItems[userItem - 1]);
-                        useItemMessage(userStatusItems[userItem - 1].getName());
-                        cure((*Battle::user)[pokemon - 1], userStatusItems[userItem - 1]);
-                        cureMessage((*Battle::user)[pokemon - 1], userStatusItems[userItem - 1].getRestoreType());
+                        useItem(Battle::user->getItem(itemType, userItem));
+                        useItemMessage(Battle::user->getItem(itemType, userItem).getName());
+                        cure((*Battle::user)[pokemon], &Battle::user->getItem(itemType, userItem));
+                        cureMessage((*Battle::user)[pokemon], Battle::user->getItem(itemType, userItem).getStatus());
                     }
-                        // Pokémon did not have a status condition
+                    // Pokémon did not have a status condition
                     else {
                         displayHPBar(true);
-                        useItem(userStatusItems[userItem - 1]);
-                        noEffectMessage(&userStatusItems[userItem - 1], (*Battle::user)[pokemon - 1]);
+                        useItem(Battle::user->getItem(itemType, userItem));
+                        noEffectMessage(Battle::user->getItem(itemType, userItem), (*Battle::user)[pokemon]);
                     }
                 }
-                    // Pokémon is fainted
+                // Pokémon is fainted
                 else {
                     displayHPBar(true);
                     hpEmptyMessage((*Battle::user)[pokemon - 1]);
                     goto chooseStatusPokemon;
                 }
             }
-                // trainer is out of selected item
+            // trainer is out of selected item
             else {
                 displayHPBar(true);
-                itemErrorMessage(&userStatusItems[userItem - 1]);
+                itemErrorMessage(Battle::user->getItem(itemType, userItem));
                 goto chooseStatusItem;
             }
             break;
 
         case 2:
+            print = true;
+
         choosePokeball:
             displayHPBar(true);
-            ::displayItems(userPokeBalls);
-            userItem = getInt(0, static_cast<int>(userPokeBalls.size()));
+            displayItems(Battle::user, itemType, userItem, print);
 
-            if (userItem == 0) {
+            if (not chooseOption(userItem, Battle::user->getNumItems(itemType)))
+                goto choosePokeball;
+
+            if (userItem == Battle::user->getNumItems(itemType)) {
+                itemType = 0;
+                userItem = 0;
+                print = true;
                 goto chooseItemType;
             }
-                // if a trainer has at least one of the items selected...
-            else if (userPokeBalls[userItem - 1].getQuantity() > 0) {
+
+            // if a trainer has at least one of the items selected...
+            else if (Battle::user->getItem(itemType, userItem)) {
                 if (isTrainerBattle) {
                     displayHPBar(true);
                     printMessage("You cannot catch another trainer's Pokemon!");
@@ -646,8 +662,8 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
                     goto chooseItemType;
                 }
                 displayHPBar(true);
-                useItem(userPokeBalls[userItem - 1]);
-                useItemMessage(userPokeBalls[userItem - 1].getName());
+                useItem(Battle::user->getItem(itemType, userItem));
+                useItemMessage(Battle::user->getItem(itemType, userItem).getName());
 
                 bool shakes[4];
                 bool caught = catchPokemon(shakes);
@@ -657,37 +673,45 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
                     return;
                 }
             }
-                // trainer is out of selected item
+            // trainer is out of selected item
             else {
                 displayHPBar(true);
-                itemErrorMessage(&userPokeBalls[userItem - 1]);
+                itemErrorMessage(Battle::user->getItem(itemType, userItem));
                 goto choosePokeball;
             }
             break;
 
         case 3:
+            print = true;
+
         chooseBattleItem:
             displayHPBar(true);
-            ::displayItems(userBattleItems);
-            userItem = getInt(0, static_cast<int>(userBattleItems.size()));
+            displayItems(Battle::user, itemType, userItem, print);
 
-            if (userItem == 0) {
+            if (not chooseOption(userItem, Battle::user->getNumItems(itemType)))
+                goto chooseBattleItem;
+
+            if (userItem == Battle::user->getNumItems(itemType)) {
+                itemType = 0;
+                userItem = 0;
+                print = true;
                 goto chooseItemType;
             }
-                // if trainer has at least 1 of the item selected...
-            else if (userBattleItems[userItem - 1].getQuantity() > 0) {
+
+            // if trainer has at least 1 of the item selected...
+            else if (Battle::user->getItem(itemType, userItem)) {
                 displayHPBar(true);
-                useItem(userBattleItems[userItem - 1]);
-                useItemMessage(userBattleItems[userItem - 1].getName());
+                useItem(Battle::user->getItem(itemType, userItem));
+                useItemMessage(Battle::user->getItem(itemType, userItem).getName());
 
                 bool limitReached = false;
-                boostStat(userBattleItems[userItem - 1], (*Battle::user)[0], 1, limitReached);
-                boostMessage((*Battle::user)[0], userBattleItems[userItem - 1].getStat(), 1, limitReached);
+                boostStat(&Battle::user->getItem(itemType, userItem), (*Battle::user)[0], 1, limitReached);
+                boostMessage((*Battle::user)[0], Battle::user->getItem(itemType, userItem).getStat(), 1, limitReached);
             }
-                // trainer is out of selected item
+            // trainer is out of selected item
             else {
                 displayHPBar(true);
-                itemErrorMessage(&userBattleItems[userItem - 1]);
+                itemErrorMessage(Battle::user->getItem(itemType, userItem));
                 goto chooseBattleItem;
             }
             break;
@@ -780,7 +804,7 @@ void Battle::choosePokemon(bool &skip) {
                 // Pokémon chosen is not fainted
                 if (not (*Battle::user)[pokemon].isFainted()) {
                     displayHPBar(true);
-                    switchOut((*Battle::user), pokemon);
+                    Battle::user->swapPokemon(0, pokemon);
                     switchOutMessage((*Battle::user), pokemon);
                 }
                     // Pokémon chosen is fainted
@@ -803,7 +827,7 @@ void Battle::fight(int userMove, bool &keepPlaying) {
     displayHPBar(true);
     int opponentMove = generateInteger(0, (*Battle::opponent)[0].numMoves() - 1);
     // re-selects opponent move if it's out of PP
-    while (not (*Battle::opponent)[0][opponentMove].canUse())
+    while (not (*Battle::opponent)[0][opponentMove])
         opponentMove = generateInteger(0, 3);
 
     bool skip = false;

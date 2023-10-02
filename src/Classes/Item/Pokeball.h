@@ -7,12 +7,12 @@
 #include "Item.h"
 
 class PokeBall : public Item {
-private:
-    float catchRate;
+protected:
+    double catchRate;
+    PokeBall(int quantity, double catchRate, const char * name);
 
 public:
-    PokeBall();
-    PokeBall(int quantity, float catchRate, const char * name);
+    explicit PokeBall(int quantity);
 
-    float getCatchRate() const;
+    double getCatchRate() const;
 };

@@ -42,9 +42,9 @@ add_executable(PokemonBattle
         src/Classes/NPC/NPC.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
-        src/Data/ItemList/Potion.h
-        src/Data/ItemList/Ether.h
         src/Data/ItemList.h
-        src/Data/ItemList/ParalyzeHeal.h
         src/Classes/Battle/Battle.h
-        src/Classes/Battle/Battle.cpp)
+        src/Classes/Battle/Battle.cpp
+        src/Data/ItemList/PokeBalls.h
+        src/Data/ItemList/StatusItems.h
+        src/Data/ItemList/RestoreItems.h src/Classes/Entity/Entity.cpp src/Classes/Entity/Entity.h src/Data/ItemList/BattleItems.h)

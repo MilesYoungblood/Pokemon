@@ -9,12 +9,12 @@
 class RestoreItem : public Item {
 private:
     int amount;
-    std::string restoreType;
+    RestoreType restoreType;
 
 public:
     RestoreItem();
-    RestoreItem(int quantity, int amount, const char * name, const char * restoreType);
+    RestoreItem(int quantity, int amount, const char * name, RestoreType restoreType);
 
-    int getAmount() const;
-    std::string getRestoreType() const;
+    int getAmount() const override;
+    RestoreType getRestoreType() const override;
 };

@@ -4,9 +4,11 @@
 
 #pragma once
 
+#include "../Entity/Entity.h"
 #include "../Move/Move.h"
+#include "../Item/Item.h"
 
-class Pokemon {
+class Pokemon : public Entity {
 private:
     const static int MAX_NUM_MOVES = 4;
     const static int MAX_NUM_TYPES = 2;
@@ -28,7 +30,7 @@ private:
     int level;
 
     std::string name;
-    std::string status;
+    Status status;
     Move* moveSet[Pokemon::MAX_NUM_MOVES];
     std::string types[Pokemon::MAX_NUM_TYPES];
     
@@ -37,11 +39,11 @@ private:
 
 public:
     Pokemon();
-    Pokemon(const Pokemon &pokemonToCopy);
+    Pokemon(const Pokemon &pokemonToCopy) = delete;
     Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
     Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
     ~Pokemon();
-    Pokemon& operator=(const Pokemon& pokemonToCopy);
+    //Pokemon& operator=(const Pokemon& pokemonToCopy);
 
     int numMoves() const;
 
@@ -72,8 +74,8 @@ public:
 
     std::string getType(bool type_1) const;
 
-    void setStatus(const char * newStatus);
-    std::string getStatus() const;
+    void setStatus(Status newStatus);
+    Status getStatus() const;
 
     int getLevel() const;
 

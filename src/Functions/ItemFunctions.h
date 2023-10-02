@@ -58,38 +58,27 @@ inline void displayBag(int arrow, bool &print) {
     print = false;
 }
 
-template <typename Item>
-inline void displayItems(const std::vector<Item> &items, int arrow, bool &print) {
+inline void displayItems(Trainer * trainer, int iType, int arrow, bool &print) {
     if (print) {
         printMessage("Choose an item:\n");
     }
     else {
         std::cout << "Choose an item:\n";
     }
-    for (int i = 0; i < items.size(); ++i)
+    for (int i = 0; i < trainer->getNumItems(iType); ++i)
         if (arrow == i) {
-            std::cout << "   ->   " << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x"
-                      << items[i].getQuantity() << '\n';
+            std::cout << "   ->   " << trainer->getItem(iType, i).getName() << std::string(15 - trainer->getItem(iType, i).getName().length(), ' ') << " x"
+                      << trainer->getItem(iType, i).getQuantity() << '\n';
         }
         else {
-            std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x"
-                      << items[i].getQuantity() << '\n';
+            std::cout << '\t' << trainer->getItem(iType, i).getName() << std::string(15 - trainer->getItem(iType, i).getName().length(), ' ') << " x"
+                      << trainer->getItem(iType, i).getQuantity() << '\n';
         }
 
-    arrow == items.size() ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
+    arrow == trainer->getNumItems(iType) ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
     std::cout.flush();
 
     print = false;
-}
-
-template <typename Item>
-inline void displayItems(const std::vector<Item> &items) {
-    printMessage("Choose an item:\n");
-    for (int i = 0; i < items.size(); ++i)
-        std::cout << '\t' << items[i].getName() << std::string(15 - items[i].getName().length(), ' ') << " x" << items[i].getQuantity() << " (" << i + 1 << ")\n";
-
-    std::cout << "\nCancel (0)\n";
-    std::cout.flush();
 }
 
 namespace HP {
@@ -118,14 +107,39 @@ namespace PP {
     }
 }
 
-inline void cure(Pokemon& pokemon, const StatusItem& item) {
-    if (pokemon.getStatus() == item.getRestoreType())
-        pokemon.setStatus("No status");
+inline void cure(Pokemon& pokemon, const Item * item) {
+    if (pokemon.getStatus() == item->getStatus())
+        pokemon.setStatus(Status::NONE);
 }
 
-inline void cureMessage(const Pokemon& pokemonCured, const std::string& status) {
-    if (pokemonCured.getStatus() == "No status") {
-        printMessage(pokemonCured.getName() + " recovered from " + status + "!\n");
+inline void cureMessage(const Pokemon& pokemonCured, Status status) {
+    const char * string;
+    switch (status) {
+        case Status::PARALYSIS:
+            string = "paralysis";
+            break;
+
+        case Status::BURN:
+            string = "burn";
+            break;
+
+        case Status::FREEZE:
+            string = "freezing";
+            break;
+
+        case Status::POISON:
+            string = "poisoning";
+            break;
+
+        case Status::SLEEP:
+            string = "slumber";
+            break;
+        default:
+            throw std::runtime_error("Unexpected error: function cureMessage");
+    }
+
+    if (pokemonCured.getStatus() == Status::NONE) {
+        printMessage(pokemonCured.getName() + " recovered from " + string + "!\n");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     else
@@ -178,43 +192,43 @@ inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     std::cout.flush();
 }
 
-inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
-    if (itemToUse.getStat() == "attack") {
+inline void boostStat(const Item * itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
+    if (itemToUse->getStat() == Stat::ATTACK) {
         if (pokemonToBoost.getAttack() < 6)
             pokemonToBoost.setAttack(pokemonToBoost.getAttack() + amountToBoost);
 
         else
             limitReached = true;
     }
-    else if (itemToUse.getStat() == "spAttack") {
+    else if (itemToUse->getStat() == Stat::SP_ATTACK) {
         if (pokemonToBoost.getSpAttack() < 6)
             pokemonToBoost.setSpAttack(pokemonToBoost.getSpAttack() + amountToBoost);
 
         else
             limitReached = true;
     }
-    else if (itemToUse.getStat() == "defense") {
+    else if (itemToUse->getStat() == Stat::DEFENSE) {
         if (pokemonToBoost.getDefense() < 6)
             pokemonToBoost.setDefense(pokemonToBoost.getDefense() + amountToBoost);
 
         else
             limitReached = true;
     }
-    else if (itemToUse.getStat() == "spDefense") {
+    else if (itemToUse->getStat() == Stat::SP_DEFENSE) {
         if (pokemonToBoost.getSpDefense() < 6)
             pokemonToBoost.setSpDefense(pokemonToBoost.getSpDefense() + amountToBoost);
 
         else
             limitReached = true;
     }
-    else if (itemToUse.getStat() == "speed") {
+    else if (itemToUse->getStat() == Stat::SPEED) {
         if (pokemonToBoost.getSpeed() < 6)
             pokemonToBoost.setSpeed(pokemonToBoost.getSpeed() + amountToBoost);
 
         else
             limitReached = true;
     }
-    else if (itemToUse.getStat() == "accuracy") {
+    else if (itemToUse->getStat() == Stat::ACCURACY) {
         if (pokemonToBoost.getAccuracy() < 6)
             pokemonToBoost.setAccuracy(pokemonToBoost.getAccuracy() + amountToBoost);
 
@@ -223,9 +237,40 @@ inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int 
     }
 }
 
-inline void boostMessage(const Pokemon &pokemon, const std::string &statBoosted, int amountBoosted, bool limit) {
+inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoosted, bool limit) {
+    const char * string;
+
+    switch (statBoosted) {
+        case Stat::ATTACK:
+            string = "attack";
+            break;
+
+        case Stat::SP_ATTACK:
+            string = "special attack";
+            break;
+
+        case Stat::DEFENSE:
+            string = "defense";
+            break;
+
+        case Stat::SP_DEFENSE:
+            string = "special defense";
+            break;
+
+        case Stat::SPEED:
+            string = "speed";
+            break;
+
+        case Stat::ACCURACY:
+            string = "accuracy";
+            break;
+
+        default:
+            throw std::runtime_error("Unexpected error: function boostMessage");
+    }
+
     if (not limit) {
-        printMessage(pokemon.getName() + "'s " + statBoosted + " rose");
+        printMessage(pokemon.getName() + "'s " + string + " rose");
         if (amountBoosted == 2)
             printMessage(" sharply");
 
@@ -235,7 +280,7 @@ inline void boostMessage(const Pokemon &pokemon, const std::string &statBoosted,
         printMessage("!\n");
     }
     else
-        printMessage(pokemon.getName() + "'s " + statBoosted + " can't go any higher!\n");
+        printMessage(pokemon.getName() + "'s " + string + " can't go any higher!\n");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
@@ -265,12 +310,12 @@ inline void useItemMessage(const std::string &itemUsed) {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-inline void itemErrorMessage(const Item * item) {
-    printMessage("You don't have any " + item->getName() + "'s.\n");
+inline void itemErrorMessage(const Item &item) {
+    printMessage("You don't have any " + item.getName() + "'s.\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-inline void noEffectMessage(const Item * item, const Pokemon &pokemon) {
-    printMessage(item->getName() + " had no effect on " + pokemon.getName() + ".\n");
+inline void noEffectMessage(const Item &item, const Pokemon &pokemon) {
+    printMessage(item.getName() + " had no effect on " + pokemon.getName() + ".\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

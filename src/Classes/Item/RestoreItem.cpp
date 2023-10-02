@@ -6,13 +6,13 @@
 
 RestoreItem::RestoreItem() : Item() {
     this->amount = 0;
-    this->restoreType = "No restore type";
+    this->restoreType = RestoreType::NONE;
 }
-RestoreItem::RestoreItem(int quantity, int amount, const char * name, const char * restoreType) : Item(quantity, name){
+RestoreItem::RestoreItem(int quantity, int amount, const char * name, RestoreType restoreType) : Item(quantity, name){
     this->amount = amount;
     this->restoreType = restoreType;
 }
 
 int RestoreItem::getAmount() const { return this->amount; }
 
-std::string RestoreItem::getRestoreType() const { return this->restoreType; }
+RestoreType RestoreItem::getRestoreType() const { return this->restoreType; }

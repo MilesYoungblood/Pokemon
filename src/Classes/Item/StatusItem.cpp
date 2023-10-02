@@ -4,8 +4,8 @@
 
 #include "StatusItem.h"
 
-StatusItem::StatusItem() : Item() { this->restoreType = "No restore type"; }
+StatusItem::StatusItem() : Item() { this->status = Status::NONE; }
 StatusItem::StatusItem(const StatusItem &copy) = default;
-StatusItem::StatusItem(int quantity, const char * name, const char * restoreType) : Item(quantity, name) { this->restoreType = restoreType; }
+StatusItem::StatusItem(int quantity, const char * name, Status status) : Item(quantity, name) { this->status = status; }
 
-std::string StatusItem::getRestoreType() const { return this->restoreType; }
+Status StatusItem::getStatus() const { return this->status; }

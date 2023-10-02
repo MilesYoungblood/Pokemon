@@ -22,15 +22,28 @@ Item::Item(int quantity, const char * name) {
 void Item::setQuantity(int newQuantity) { this->quantity = newQuantity; }
 int Item::getQuantity() const { return this->quantity; }
 
-std::string Item::getName() const { return this->name; }
-
-bool Item::canUse() const {
-    return this->quantity > 0;
+int Item::getAmount() const {
+    return 0;
 }
+RestoreType Item::getRestoreType() const {
+    return RestoreType::NONE;
+}
+Status Item::getStatus() const {
+    return Status::NONE;
+}
+Stat Item::getStat() const {
+    return Stat::NONE;
+}
+
+std::string Item::getName() const { return this->name; }
 
 std::ostream& operator<<(std::ostream &out, const Item &rhs) {
     out << rhs.name;
     return out;
+}
+
+Item::operator bool() const {
+    return this->quantity > 0;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -4,6 +4,7 @@
 
 #include "Map.h"
 
+// places obstructions along the rim of the map
 void Map::setBorders(const Map * from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
@@ -45,39 +46,7 @@ Map::Map(const char * name, int width, int height, const std::vector<NPC> &npcAr
     this->npcArray = npcArray;
 }
 
-Map::Map(const Map &toCopy) {
-    this->width = toCopy.width;
-    this->height = toCopy.height;
-
-    this->npcArray = toCopy.npcArray;
-
-    this->layout = toCopy.layout;
-    this->setBorders(&toCopy);
-
-    this->exitPoints = toCopy.exitPoints;
-    for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
-    }
-}
-
-Map& Map::operator=(const Map &rhs) {
-    if (this != &rhs) {
-        this->width = rhs.width;
-        this->height = rhs.height;
-
-        this->npcArray = rhs.npcArray;
-
-        this->layout = rhs.layout;
-        this->setBorders(&rhs);
-
-        this->exitPoints = rhs.exitPoints;
-        for (ExitPoint &exitPoint : this->exitPoints) {
-            this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
-        }
-    }
-    return *this;
-}
-
+// returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     // out of bounds or an NPC is already in this spot
     if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isNPCHere(x, y)) {
@@ -88,6 +57,7 @@ bool Map::isObstructionHere(int x, int y) const {
     }
 }
 
+// returns an array with the new x and y coordinates and the new map respectively
 std::array<int, 3> Map::isExitPointHere(int x, int y) const {
     for (const ExitPoint &exitPoint : this->exitPoints) {
         if (exitPoint.x == x and exitPoint.y == y) {
@@ -97,6 +67,7 @@ std::array<int, 3> Map::isExitPointHere(int x, int y) const {
     return { 0, 0, -1 };
 }
 
+// returns the number of NPCs
 int Map::numNPCs() {
     return static_cast<int>(this->npcArray.size());
 }
@@ -105,6 +76,7 @@ NPC& Map::operator[](int index) {
     return this->npcArray[index];
 }
 
+// places an obstruction at the passed coordinates
 void Map::setObstruction(int x, int y) {
     if (not this->isNPCHere(x, y)) {
         this->layout[x][y] = Map::tiles::OBSTRUCTION;
@@ -112,9 +84,10 @@ void Map::setObstruction(int x, int y) {
 }
 
 // 242 = green, 244 = red, 240 = black
+
+// prints the map and everything in it
 void Map::print(const Trainer &trainer) const {
     system("cls");
-    //std::cout << "Press ESC to quit\n";
 
     for (int y = 0; y < this->height; ++y) {
         for (int x = 0; x < this->width; ++x) {
@@ -162,7 +135,7 @@ void Map::print(const Trainer &trainer) const {
 
 // moves the NPC to the player
 void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
-    if (this->hasVisionOf(&trainer) and not this->isDefeated()) {
+    if (this->hasVisionOf(&trainer) and not this->canFight()) {
         if (this->isFacingNorth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveNorth();

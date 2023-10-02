@@ -8,11 +8,11 @@
 
 class BattleItem : public Item {
 private:
-    std::string stat;
+    Stat stat;
 
 public:
     BattleItem();
-    BattleItem(int quantity, const char * name, const char * stat);
+    BattleItem(int quantity, const char * name, Stat stat);
 
-    std::string getStat() const;
+    Stat getStat() const override;
 };
