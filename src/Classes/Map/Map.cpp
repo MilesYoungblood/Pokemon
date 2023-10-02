@@ -135,7 +135,7 @@ void Map::print(const Trainer &trainer) const {
 
 // moves the NPC to the player
 void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
-    if (this->hasVisionOf(&trainer) and not this->canFight()) {
+    if (this->hasVisionOf(&trainer)) {
         if (this->isFacingNorth()) {
             while (not this->isNextTo(&trainer)) {
                 this->moveNorth();

@@ -6,11 +6,11 @@
 
 NPC::NPC(const std::vector<Pokemon*> &pokemon, int x, int y, int range) : Trainer(pokemon, x, y) {
     this->range = range;
-    this->defeated = false;
+    this->canBattle = true;
 }
 
 NPC::NPC(const NPC &toCopy) : Trainer(toCopy) {
-    this->defeated = toCopy.defeated;
+    this->canBattle = toCopy.canBattle;
 }
 
 NPC::~NPC() {
@@ -30,7 +30,7 @@ NPC& NPC::operator=(const NPC &rhs) {
         this->range = rhs.range;
         this->direction = rhs.direction;
         this->model = rhs.model;
-        this->defeated = rhs.defeated;
+        this->canBattle = rhs.canBattle;
 
         for (int i = 0; i < this->numPokemon; ++i) {
             delete this->party[i];
@@ -53,10 +53,16 @@ NPC& NPC::operator=(const NPC &rhs) {
     return *this;
 }
 
-bool NPC::canFight() const {
-    return this->defeated;
+NPC::operator bool() const {
+    return this->canBattle;
 }
 
+/*
+bool NPC::canFight() const {
+    return this->canBattle;
+}
+ */
+
 void NPC::defeat() {
-    this->defeated = true;
+    this->canBattle = false;
 }

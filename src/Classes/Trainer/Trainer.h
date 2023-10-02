@@ -49,6 +49,7 @@ public:
 
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
+    virtual explicit operator bool() const;
 
-    virtual bool canFight() const;
+    //virtual bool canFight() const;
 };

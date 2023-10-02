@@ -172,6 +172,12 @@ const Pokemon& Trainer::operator[](int spot) const {
     return *this->party[spot];
 }
 
+/*
 bool Trainer::canFight() const {
+    return this->numFainted < this->numPokemon;
+}
+*/
+
+Trainer::operator bool() const {
     return this->numFainted < this->numPokemon;
 }

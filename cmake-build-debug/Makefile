@@ -128,6 +128,54 @@ PokemonBattle/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/build
 .PHONY : PokemonBattle/fast
 
+src/Classes/Battle/Battle.obj: src/Classes/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Battle/Battle.obj
+
+# target to build an object file
+src/Classes/Battle/Battle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Battle/Battle.cpp.obj
+
+src/Classes/Battle/Battle.i: src/Classes/Battle/Battle.cpp.i
+.PHONY : src/Classes/Battle/Battle.i
+
+# target to preprocess a source file
+src/Classes/Battle/Battle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.i
+.PHONY : src/Classes/Battle/Battle.cpp.i
+
+src/Classes/Battle/Battle.s: src/Classes/Battle/Battle.cpp.s
+.PHONY : src/Classes/Battle/Battle.s
+
+# target to generate assembly for a file
+src/Classes/Battle/Battle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.s
+.PHONY : src/Classes/Battle/Battle.cpp.s
+
+src/Classes/Entity/Entity.obj: src/Classes/Entity/Entity.cpp.obj
+.PHONY : src/Classes/Entity/Entity.obj
+
+# target to build an object file
+src/Classes/Entity/Entity.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj
+.PHONY : src/Classes/Entity/Entity.cpp.obj
+
+src/Classes/Entity/Entity.i: src/Classes/Entity/Entity.cpp.i
+.PHONY : src/Classes/Entity/Entity.i
+
+# target to preprocess a source file
+src/Classes/Entity/Entity.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.i
+.PHONY : src/Classes/Entity/Entity.cpp.i
+
+src/Classes/Entity/Entity.s: src/Classes/Entity/Entity.cpp.s
+.PHONY : src/Classes/Entity/Entity.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Entity.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
+.PHONY : src/Classes/Entity/Entity.cpp.s
+
 src/Classes/Item/BattleItem.obj: src/Classes/Item/BattleItem.cpp.obj
 .PHONY : src/Classes/Item/BattleItem.obj
 
@@ -425,6 +473,12 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... PokemonBattle
+	@echo ... src/Classes/Battle/Battle.obj
+	@echo ... src/Classes/Battle/Battle.i
+	@echo ... src/Classes/Battle/Battle.s
+	@echo ... src/Classes/Entity/Entity.obj
+	@echo ... src/Classes/Entity/Entity.i
+	@echo ... src/Classes/Entity/Entity.s
 	@echo ... src/Classes/Item/BattleItem.obj
 	@echo ... src/Classes/Item/BattleItem.i
 	@echo ... src/Classes/Item/BattleItem.s

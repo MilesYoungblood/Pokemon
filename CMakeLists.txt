@@ -47,4 +47,7 @@ add_executable(PokemonBattle
         src/Classes/Battle/Battle.cpp
         src/Data/ItemList/PokeBalls.h
         src/Data/ItemList/StatusItems.h
-        src/Data/ItemList/RestoreItems.h src/Classes/Entity/Entity.cpp src/Classes/Entity/Entity.h src/Data/ItemList/BattleItems.h)
+        src/Data/ItemList/RestoreItems.h
+        src/Classes/Entity/Entity.cpp
+        src/Classes/Entity/Entity.h
+        src/Data/ItemList/BattleItems.h)

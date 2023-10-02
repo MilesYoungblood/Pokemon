@@ -376,7 +376,7 @@ void Battle::Action(Trainer &attacker, Trainer &defender, int move, bool &switch
         defender[0].faint();
         defender.incFaintCount();
         faintMessage(defender[0]);
-        if (not defender.canFight()) {
+        if (not defender) {
             defender.defeat();
             displayHPBar(true);
             isUserAttacking ? winMessage() : loseMessage();
@@ -393,7 +393,7 @@ void Battle::PostStatus(Trainer &trainer, bool isUser, bool &keepPlaying) {
     takeDamage(trainer, static_cast<int>(lround(trainer[0].getMaxHp() * 0.0625)));
     takeDamageMessage(trainer[0]);
 
-    if (not trainer.canFight()) {
+    if (not trainer) {
         trainer.defeat();
         isUser ? loseMessage() : winMessage();
         keepPlaying = false;
@@ -731,7 +731,9 @@ bool Battle::runAway(bool &skip, bool canRun) {
         return false;
     }
     else {
-        bool runAway = generateInteger(0, 1) == 1;
+        //bool runAway = generateInteger(0, 1) == 1;
+        //FIXME commented out for testing purposes
+        bool runAway = true;
         runMessage(runAway);
 
         return runAway;

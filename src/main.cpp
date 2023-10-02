@@ -34,7 +34,7 @@ void turn(Map &map, Trainer &t, int index) {
                 map[index].face(&map[index]);
                 map.print(t);
 
-                if (map[index].hasVisionOf(&t) and not map[index].canFight()) {
+                if (map[index].hasVisionOf(&t) and map[index]) {
                     engage();
                     return;
                 }
@@ -51,7 +51,7 @@ void turn(Map &map, Trainer &t, int index) {
                 }
                 map.print(t);
 
-                if (map[index].hasVisionOf(&t) and not map[index].canFight()) {
+                if (map[index].hasVisionOf(&t) and map[index]) {
                     engage();
                     return;
                 }
@@ -121,7 +121,7 @@ updateMap:
 
         // checks if the player is in line of sight of any NPC
         for (int i = 0; i < numNPCs; ++i) {
-            if ((*currentMap)[i].hasVisionOf(&Trainer_1) and not(*currentMap)[i].canFight()) {
+            if ((*currentMap)[i].hasVisionOf(&Trainer_1) and (*currentMap)[i]) {
                 engage(i);
             }
         }
@@ -186,7 +186,7 @@ retry:
                         (*currentMap)[i].face(&Trainer_1);
                         currentMap->print(Trainer_1);
 
-                        if (not(*currentMap)[i].canFight()) {
+                        if ((*currentMap)[i]) {
                             engage(i);
                         }
                         break;
