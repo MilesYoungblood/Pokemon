@@ -251,9 +251,104 @@ void Battle::displayMoves(const Pokemon &pokemon, int arrow, bool &print) {
 }
 
 void Battle::displayMoveSummary(const Move &move) {
+    const char * type;
+
+    switch (move.getType()) {
+        case Type::NORMAL:
+            type = "normal";
+            break;
+
+        case Type::FIRE:
+            type = "fire";
+            break;
+
+        case Type::WATER:
+            type = "water";
+            break;
+
+        case Type::ELECTRIC:
+            type = "electric";
+            break;
+
+        case Type::GRASS:
+            type = "grass";
+            break;
+
+        case Type::ICE:
+            type = "ice";
+            break;
+
+        case Type::FIGHTING:
+            type = "fighting";
+            break;
+
+        case Type::POISON:
+            type = "poison";
+            break;
+
+        case Type::GROUND:
+            type = "ground";
+            break;
+
+        case Type::FLYING:
+            type = "flying";
+            break;
+
+        case Type::PSYCHIC:
+            type = "psychic";
+            break;
+
+        case Type::BUG:
+            type = "bug";
+            break;
+
+        case Type::ROCK:
+            type = "rock";
+            break;
+
+        case Type::GHOST:
+            type = "ghost";
+            break;
+
+        case Type::DRAGON:
+            type = "dragon";
+            break;
+
+        case Type::DARK:
+            type = "dark";
+            break;
+
+        case Type::STEEL:
+            type = "steel";
+            break;
+
+        case Type::FAIRY:
+            type = "fairy";
+            break;
+
+        default:
+            throw std::runtime_error("Unexpected error: function displayMoveSummary");
+    }
+
+    const char * category;
+
+    switch (move.getCategory()) {
+        case Category::PHYSICAL:
+            category = "physical";
+            break;
+
+        case Category::SPECIAL:
+            category = "special";
+            break;
+
+        case Category::STATUS:
+            category = "status";
+            break;
+    }
+
     std::cout << move << '\n';
-    std::cout << "\tType:     " << move.getType() << '\n';
-    std::cout << "\tCategory: " << move.getCategory() << '\n';
+    std::cout << "\tType:     " << type << '\n';
+    std::cout << "\tCategory: " << category << '\n';
     std::cout << "\tPower:    " << move.getPower() << '\n';
     std::cout << "\tAccuracy: " << move.getAccuracy() << '\n';
     std::cout << "\tPP:       " << move.getPP() << '/' << move.getMaxPP() << '\n';
@@ -311,10 +406,10 @@ double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
 
 int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
     int initialDamage = 0;
-    if (move.getCategory() == "physical")
+    if (move.getCategory() == Category::PHYSICAL)
         initialDamage = getPhysicalAttack(attackingPokemon, defendingPokemon, move);
 
-    else if (move.getCategory() == "special")
+    else if (move.getCategory() == Category::SPECIAL)
         initialDamage = getSpecialAttack(attackingPokemon, defendingPokemon, move);
 
     const int finalDamage = (initialDamage / 50) + 2;

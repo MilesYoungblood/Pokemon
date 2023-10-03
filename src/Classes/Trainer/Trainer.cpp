@@ -18,67 +18,16 @@ Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Entity(x,
     }
 }
 
-Trainer::Trainer(const Trainer &toCopy) : Entity(toCopy), party(), items(), numItems() {
-    this->numFainted = toCopy.numFainted;
-    this->numPokemon = toCopy.numPokemon;
-
-    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-        this->numItems[i] = toCopy.numItems[i];
-    }
-
-    for (int i = 0; i < toCopy.numPokemon; ++i) {
-        this->party[i] = toCopy.party[i];
-    }
-
-    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-        for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
-            this->items[i][j] = toCopy.items[i][j];
-        }
-    }
-}
-
 Trainer::~Trainer() {
-    for (auto &type : this->items) {
-        for (auto &item : type) {
-            delete item;
+    for (int i = 0; i < this->numPokemon; ++i) {
+        delete this->party[i];
+    }
+
+    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
+        for (int j = 0; j < this->numItems[i]; ++j) {
+            delete items[i][j];
         }
     }
-}
-
-Trainer& Trainer::operator=(const Trainer &rhs) {
-    if (this != &rhs) {
-        this->numFainted = rhs.numFainted;
-        this->numPokemon = rhs.numPokemon;
-
-        for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-            this->numItems[i] = rhs.numItems[i];
-        }
-
-        this->x = rhs.x;
-        this->y = rhs.y;
-        this->range = rhs.range;
-        this->direction = rhs.direction;
-        this->model = rhs.model;
-
-        for (auto &pokemon : this->party) {
-            delete pokemon;
-        }
-        for (int i = 0; i < rhs.numPokemon; ++i) {
-            this->party[i] = rhs.party[i];
-        }
-
-        for (auto &item : this->items) {
-            for (auto &j : item) {
-                delete j;
-            }
-        }
-        for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-            for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
-                this->items[i][j] = rhs.items[i][j];
-            }
-        }
-    }
-    return *this;
 }
 
 int Trainer::partySize() const {
@@ -91,6 +40,15 @@ int Trainer::getNumItems(int type) {
 
 Item& Trainer::getItem(int type, int item) {
     return *this->items[type][item];
+}
+
+void Trainer::addPokemon(Pokemon *toAdd) {
+    if (this->numPokemon == Trainer::MAX_POKEMON) {
+        return;
+    }
+
+    this->party[this->numPokemon] = toAdd;
+    ++this->numPokemon;
 }
 
 __attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
@@ -171,12 +129,6 @@ const Pokemon& Trainer::operator[](int spot) const {
 
     return *this->party[spot];
 }
-
-/*
-bool Trainer::canFight() const {
-    return this->numFainted < this->numPokemon;
-}
-*/
 
 Trainer::operator bool() const {
     return this->numFainted < this->numPokemon;

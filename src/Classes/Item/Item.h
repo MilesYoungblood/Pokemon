@@ -18,7 +18,7 @@ private:
 public:
     Item();
     Item(const Item &copy);
-    Item(int quantity, const char * name);
+    Item(int n, const char * name);
 
     void setQuantity(int newQuantity);
     int getQuantity() const;

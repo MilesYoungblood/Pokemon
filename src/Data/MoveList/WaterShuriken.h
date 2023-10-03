@@ -5,7 +5,7 @@
 #pragma once
 
 struct WaterShuriken : public Move {
-    WaterShuriken() : Move("Water Shuriken", "water", "special", 20, 15, 100) {}
+    WaterShuriken() : Move("Water Shuriken", Type::WATER, Category::SPECIAL, 20, 15, 100) {}
     int numHits = 0; // number of hits landed (from 2 to 5)
 
     int getDamage() override {

@@ -7,21 +7,21 @@
 #include "../../Classes/Item/StatusItem.h"
 
 struct Antidote : public StatusItem {
-    explicit Antidote(int quantity) : StatusItem(quantity, "Antidote", Status::POISON) {}
+    explicit Antidote(int n) : StatusItem(n, "Antidote", Status::POISON) {}
 };
 
 struct Awakening : public StatusItem {
-    explicit Awakening(int quantity) : StatusItem(quantity, "Awakening", Status::SLEEP) {}
+    explicit Awakening(int n) : StatusItem(n, "Awakening", Status::SLEEP) {}
 };
 
 struct BurnHeal : public StatusItem {
-    explicit BurnHeal(int quantity) : StatusItem(quantity, "Burn Heal", Status::BURN) {}
+    explicit BurnHeal(int n) : StatusItem(n, "Burn Heal", Status::BURN) {}
 };
 
 struct IceHeal : public StatusItem {
-    explicit IceHeal(int quantity) : StatusItem(quantity, "Ice Heal", Status::FREEZE) {}
+    explicit IceHeal(int n) : StatusItem(n, "Ice Heal", Status::FREEZE) {}
 };
 
 struct ParalyzeHeal : public StatusItem {
-    explicit ParalyzeHeal(int quantity) : StatusItem(quantity, "Paralyze Heal", Status::PARALYSIS) {}
+    explicit ParalyzeHeal(int n) : StatusItem(n, "Paralyze Heal", Status::PARALYSIS) {}
 };

@@ -13,7 +13,7 @@ private:
 
 public:
     RestoreItem();
-    RestoreItem(int quantity, int amount, const char * name, RestoreType restoreType);
+    RestoreItem(int n, int amount, const char * name, RestoreType restoreType);
 
     int getAmount() const override;
     RestoreType getRestoreType() const override;

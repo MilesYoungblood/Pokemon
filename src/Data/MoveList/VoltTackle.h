@@ -7,7 +7,7 @@
 struct VoltTackle : public Move {
     bool paralysisState = false;
 
-    VoltTackle() : Move("Volt Tackle", "electric", "physical", 15, 120, 100) {}
+    VoltTackle() : Move("Volt Tackle", Type::ELECTRIC, Category::PHYSICAL, 15, 120, 100) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

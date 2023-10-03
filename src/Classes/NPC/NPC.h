@@ -14,13 +14,13 @@ private:
 
 public:
     NPC(const std::vector<Pokemon*> &pokemon, int x, int y, int range);\
-    NPC(const NPC &toCopy);
-    ~NPC();
-    NPC& operator=(const NPC &rhs);
+    NPC(const NPC &toCopy) = delete;
+    NPC& operator=(const NPC &rhs) = delete;
 
     explicit operator bool() const override;
+    bool canFight() const;
+    void setBattleStatus(bool flag);
 
-    //bool canFight() const override;
     void defeat() override;
     void moveToPlayer(const Map &map, const Trainer &trainer);
 };

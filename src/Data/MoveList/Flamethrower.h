@@ -7,7 +7,7 @@
 struct Flamethrower : public Move {
     bool burnState = false;
 
-    Flamethrower() : Move("Flamethrower", "fire", "special", 15, 90, 100) {}
+    Flamethrower() : Move("Flamethrower", Type::FIRE, Category::SPECIAL, 15, 90, 100) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

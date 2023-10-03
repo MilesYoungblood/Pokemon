@@ -7,7 +7,7 @@
 struct IronTail : public Move {
     bool loweredState = false;
 
-    IronTail() : Move("Iron Tail", "steel", "physical", 15, 100, 75) {}
+    IronTail() : Move("Iron Tail", Type::STEEL, Category::PHYSICAL, 15, 100, 75) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

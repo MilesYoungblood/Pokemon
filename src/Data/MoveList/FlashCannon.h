@@ -7,7 +7,7 @@
 struct FlashCannon : public Move {
     bool loweredState = false;
 
-    FlashCannon() : Move("Flash Cannon", "steel", "special", 10, 80, 100) {}
+    FlashCannon() : Move("Flash Cannon", Type::STEEL, Category::SPECIAL, 10, 80, 100) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

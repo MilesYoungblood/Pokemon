@@ -133,6 +133,18 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CXX_COMPIL
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity
 
+build CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Game/Game.cpp || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Game\Game.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Game
+
+build CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Player/Player.cpp || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Player\Player.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Player
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target PokemonBattle
@@ -141,7 +153,7 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable PokemonBattle.exe
 
-build PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj
+build PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir

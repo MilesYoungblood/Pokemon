@@ -8,27 +8,27 @@
 #include <random>
 #include <thread>
 
-enum categories { PHYSICAL, SPECIAL, STATUS };
+enum class Category { PHYSICAL, SPECIAL, STATUS };
+
+enum class Type {
+    NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
+    ICE, FIGHTING, POISON, GROUND, FLYING,
+    PSYCHIC, BUG, ROCK, GHOST, DRAGON,
+    DARK, STEEL, FAIRY
+};
 
 class Pokemon;
 
 class Move {
 protected:
-    enum Type {
-        NORMAL, FIRE, WATER, ELECTRIC, GRASS,
-        ICE, FIGHTING, POISON, GROUND, FLYING,
-        PSYCHIC, BUG, ROCK, GHOST, DRAGON,
-        DARK, STEEL, FAIRY
-    };
-
     int pp;
     int maxPp;
     int power;
     int accuracy;
 
-    std::string type;
-    std::string category;
     std::string name;
+    Type type;
+    Category category;
 
     // returns a random integer from a range
     static int generateInteger(int from, int to) {
@@ -68,10 +68,9 @@ protected:
     }
 
 public:
-    Move();
-    Move(const char * name, const char * type, const char * category, int pp, int power, int accuracy);
-    Move(const Move &moveToCopy);
-    Move& operator=(const Move& rhs);
+    Move(const char * name, Type type, Category category, int pp, int power, int accuracy);
+    Move(const Move &moveToCopy) = delete;
+    Move& operator=(const Move &rhs) = delete;
 
     virtual int getDamage();
 
@@ -87,9 +86,9 @@ public:
 
     int getAccuracy() const;
 
-    std::string getType() const;
+    Type getType() const;
 
-    std::string getCategory() const;
+    Category getCategory() const;
 
     std::string getName() const;
 

@@ -7,7 +7,7 @@
 struct FocusBlast : public Move {
     bool loweredState = false;
 
-    FocusBlast() : Move("Focus Blast", "fighting", "special", 5, 120, 70) {}
+    FocusBlast() : Move("Focus Blast", Type::FIGHTING, Category::SPECIAL, 5, 120, 70) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

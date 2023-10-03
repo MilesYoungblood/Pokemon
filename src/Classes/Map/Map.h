@@ -12,7 +12,7 @@
 
 class Map {
 private:
-    enum tiles { FREE, OBSTRUCTION, GRASS __attribute__((unused)), WATER __attribute__((unused)) };
+    enum Tile { FREE, OBSTRUCTION, GRASS __attribute__((unused)), WATER __attribute__((unused)) };
 
     struct ExitPoint {
         int x;                              // x-coordinate of the exit spot
@@ -27,10 +27,10 @@ private:
 
     std::string name;                       // name of the map
 
-    std::vector<std::vector<int>> layout;   // The map is represented by a 2D int vector
+    std::vector<std::vector<Tile>> layout;  // The map is represented by a 2D int vector
                                             // values are represented by the tiles enum
 
-    std::vector<NPC> npcArray;              // the set of trainers in this map
+    std::vector<NPC*> npcArray;             // the set of trainers in this map
 
     std::vector<ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
 
@@ -39,8 +39,10 @@ private:
 
 public:
     Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints);
+    Map(const char * name, int width, int height, const std::initializer_list<NPC*> &npcArray, const std::vector<ExitPoint> &exitPoints);
     Map(const Map &toCopy) = delete;
+    Map& operator=(const Map &rhs) = delete;
+    ~Map();
 
     bool isObstructionHere(int x, int y) const;
     std::array<int, 3> isExitPointHere(int x, int y) const;

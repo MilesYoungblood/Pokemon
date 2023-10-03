@@ -7,7 +7,7 @@
 struct IceBeam : public Move {
     bool freezeState = false;
 
-    IceBeam() : Move("Ice Beam", "ice", "special", 10, 90, 100) {}
+    IceBeam() : Move("Ice Beam", Type::ICE, Category::SPECIAL, 10, 90, 100) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

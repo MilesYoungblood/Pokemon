@@ -14,12 +14,12 @@ Item::Item(const Item& copy) {
     this->name = copy.name;
 }
 
-Item::Item(int quantity, const char * name) {
-    this->quantity = quantity;
+Item::Item(int n, const char * name) {
+    this->quantity = n;
     this->name = name;
 }
 
-void Item::setQuantity(int newQuantity) { this->quantity = newQuantity; }
+void Item::setQuantity(int n) { this->quantity = n; }
 int Item::getQuantity() const { return this->quantity; }
 
 int Item::getAmount() const {

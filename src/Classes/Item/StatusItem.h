@@ -13,7 +13,7 @@ private:
 public:
     StatusItem();
     StatusItem(const StatusItem &copy);
-    StatusItem(int quantity, const char * name, Status status);
+    StatusItem(int n, const char * name, Status status);
 
     Status getStatus() const override;
 };

@@ -7,9 +7,9 @@
 #include "../../Classes/Item/BattleItem.h"
 
 struct XAttack : public BattleItem {
-    explicit XAttack(int quantity) : BattleItem(quantity, "X-Attack", Stat::ATTACK) {}
+    explicit XAttack(int n) : BattleItem(n, "X-Attack", Stat::ATTACK) {}
 };
 
 struct XSpeed : public BattleItem {
-    explicit XSpeed(int quantity) : BattleItem(quantity, "X-Speed", Stat::SPEED) {}
+    explicit XSpeed(int n) : BattleItem(n, "X-Speed", Stat::SPEED) {}
 };

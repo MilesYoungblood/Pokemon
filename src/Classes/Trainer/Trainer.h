@@ -26,13 +26,15 @@ protected:
 
 public:
     Trainer(const std::vector<Pokemon*> &pokemon, int x, int y);
-    Trainer(const Trainer &toCopy);
+    Trainer(const Trainer &toCopy) = delete;
+    Trainer& operator=(const Trainer &rhs) = delete;
     ~Trainer();
-    Trainer& operator=(const Trainer &rhs);
 
     int partySize() const;
     int getNumItems(int type);
     Item& getItem(int type, int item);
+
+    void addPokemon(Pokemon *toAdd);
 
     __attribute__((unused)) void setItems(const std::vector<std::vector<Item*>> &inventory);
     void setRestoreItems(const std::vector<Item*> &inventory);
@@ -49,7 +51,6 @@ public:
 
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
-    virtual explicit operator bool() const;
 
-    //virtual bool canFight() const;
+    virtual explicit operator bool() const;
 };

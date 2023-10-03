@@ -7,7 +7,7 @@
 struct Thunder : public Move {
     bool paralysisState = false;
 
-    Thunder() : Move("Thunder", "electric", "special", 10, 110, 70) {}
+    Thunder() : Move("Thunder", Type::ELECTRIC, Category::SPECIAL, 10, 110, 70) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses

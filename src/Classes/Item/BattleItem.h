@@ -12,7 +12,7 @@ private:
 
 public:
     BattleItem();
-    BattleItem(int quantity, const char * name, Stat stat);
+    BattleItem(int n, const char * name, Stat stat);
 
     Stat getStat() const override;
 };

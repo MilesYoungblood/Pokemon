@@ -30,20 +30,19 @@ private:
     int level;
 
     std::string name;
-    Status status;
     Move* moveSet[Pokemon::MAX_NUM_MOVES];
-    std::string types[Pokemon::MAX_NUM_TYPES];
+    Type types[Pokemon::MAX_NUM_TYPES];
+    Status status;
     
     int moveCounter;
     void setMoves(const std::vector<Move*> &moves);
 
 public:
-    Pokemon();
+    Pokemon(const char * name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
+    Pokemon(const char * name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
     Pokemon(const Pokemon &pokemonToCopy) = delete;
-    Pokemon(const char * name, const char * type1, const char * type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
-    Pokemon(const char * name, const char * type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
+    Pokemon& operator=(const Pokemon &rhs) = delete;
     ~Pokemon();
-    //Pokemon& operator=(const Pokemon& pokemonToCopy);
 
     int numMoves() const;
 
@@ -72,7 +71,7 @@ public:
 
     std::string getName() const;
 
-    std::string getType(bool type_1) const;
+    Type getType(bool type_1) const;
 
     void setStatus(Status newStatus);
     Status getStatus() const;

@@ -4,17 +4,7 @@
 
 #include "Move.h"
 
-Move::Move() {
-    this->maxPp = 0;
-    this->pp = 0;
-    this->power = 0;
-    this->accuracy = 0;
-    this->type = "No type";
-    this->category = "No category";
-    this->name = "No name";
-}
-
-Move::Move(const char * name, const char * type, const char * category, int pp, int power, int accuracy) {
+Move::Move(const char * name, Type type, Category category, int pp, int power, int accuracy) {
     this->maxPp = pp;
     this->pp = pp;
     this->power = power;
@@ -22,30 +12,6 @@ Move::Move(const char * name, const char * type, const char * category, int pp, 
     this->type = type;
     this->category = category;
     this->name = name;
-}
-
-Move::Move(const Move& moveToCopy) {
-    this->pp = moveToCopy.pp;
-    this->maxPp = moveToCopy.maxPp;
-    this->power = moveToCopy.power;
-    this->accuracy = moveToCopy.accuracy;
-    this->type = moveToCopy.type;
-    this->category = moveToCopy.category;
-    this->name = moveToCopy.name;
-}
-
-Move& Move::operator=(const Move& rhs) {
-    if (this != &rhs) {
-        this->pp = rhs.pp;
-        this->maxPp = rhs.maxPp;
-        this->power = rhs.power;
-        this->accuracy = rhs.accuracy;
-        this->type = rhs.type;
-        this->category = rhs.category;
-        this->name = rhs.name;
-    }
-
-    return *this;
 }
 
 int Move::getDamage() {
@@ -71,11 +37,11 @@ int Move::getAccuracy() const {
     return this->accuracy;
 }
 
-std::string Move::getType() const {
+Type Move::getType() const {
     return this->type;
 }
 
-std::string Move::getCategory() const {
+Category Move::getCategory() const {
     return this->category;
 }
 

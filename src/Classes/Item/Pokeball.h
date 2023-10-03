@@ -9,10 +9,10 @@
 class PokeBall : public Item {
 protected:
     double catchRate;
-    PokeBall(int quantity, double catchRate, const char * name);
+    PokeBall(int n, double catchRate, const char * name);
 
 public:
-    explicit PokeBall(int quantity);
+    explicit PokeBall(int n);
 
     double getCatchRate() const;
 };

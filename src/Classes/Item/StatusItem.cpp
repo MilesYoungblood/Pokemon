@@ -6,6 +6,6 @@
 
 StatusItem::StatusItem() : Item() { this->status = Status::NONE; }
 StatusItem::StatusItem(const StatusItem &copy) = default;
-StatusItem::StatusItem(int quantity, const char * name, Status status) : Item(quantity, name) { this->status = status; }
+StatusItem::StatusItem(int n, const char * name, Status status) : Item(n, name) { this->status = status; }
 
 Status StatusItem::getStatus() const { return this->status; }

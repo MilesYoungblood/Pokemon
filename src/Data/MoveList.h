@@ -21,29 +21,29 @@
 
 //TODO add flinching
 struct DarkPulse : public Move {
-    DarkPulse() : Move("Dark Pulse", "dark", "special", 15, 80, 100) {}
+    DarkPulse() : Move("Dark Pulse", Type::DARK, Category::SPECIAL, 15, 80, 100) {}
 };
 
 //TODO add flinching
 struct Extrasensory : public Move {
-    Extrasensory() : Move("Extrasensory", "psychic", "special", 15, 90, 100) {}
+    Extrasensory() : Move("Extrasensory", Type::PSYCHIC, Category::SPECIAL, 15, 90, 100) {}
 };
 
 //TODO add flinching
 struct AirSlash : public Move {
-    AirSlash() : Move("Air Slash", "flying", "special", 15, 75, 95) {}
+    AirSlash() : Move("Air Slash", Type::FLYING, Category::SPECIAL, 15, 75, 95) {}
 };
 
 struct DragonPulse : public Move {
-    DragonPulse() : Move("Dragon Pulse", "dragon", "special", 10, 85, 100) {}
+    DragonPulse() : Move("Dragon Pulse", Type::DRAGON, Category::SPECIAL, 10, 85, 100) {}
 };
 
 //TODO solar beam
 struct SolarBeam : public Move {
-    SolarBeam() : Move("Solar Beam", "grass", "special", 10, 120, 100) {}
+    SolarBeam() : Move("Solar Beam", Type::GRASS, Category::SPECIAL, 10, 120, 100) {}
 };
 
 //TODO priority
 struct QuickAttack : public Move {
-    QuickAttack() : Move("Quick Attack", "normal", "physical", 30, 40, 100) {}
+    QuickAttack() : Move("Quick Attack", Type::NORMAL, Category::PHYSICAL, 30, 40, 100) {}
 };

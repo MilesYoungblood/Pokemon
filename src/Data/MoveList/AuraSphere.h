@@ -5,7 +5,7 @@
 #pragma once
 
 struct AuraSphere : public Move {
-    AuraSphere() : Move("Aura Sphere", "fighting", "special", 20, 80, 100) {}
+    AuraSphere() : Move("Aura Sphere", Type::FIGHTING, Category::SPECIAL, 20, 80, 100) {}
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // if the calculation registers as a miss, force it as a hit

@@ -8,23 +8,23 @@
 void Map::setBorders(const Map * from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][0] = Map::tiles::OBSTRUCTION;
+        this->layout[x][0] = Map::Tile::OBSTRUCTION;
     }
 
     // set the inner layer borders
     for (int y = 1; y < from->height; ++y) {
-        this->layout[0][y] = Map::tiles::OBSTRUCTION;
-        this->layout[this->width - 1][y] = Map::tiles::OBSTRUCTION;
+        this->layout[0][y] = Map::Tile::OBSTRUCTION;
+        this->layout[this->width - 1][y] = Map::Tile::OBSTRUCTION;
     }
 
     // set the bottom border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][this->height - 1] = Map::tiles::OBSTRUCTION;
+        this->layout[x][this->height - 1] = Map::Tile::OBSTRUCTION;
     }
 }
 
 bool Map::isNPCHere(int x, int y) const {
-    return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC &npc){ return npc.getX() == x and npc.getY() == y; });
+    return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
 Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints) {
@@ -33,17 +33,23 @@ Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> 
 
     this->name = name;
 
-    this->layout = std::vector<std::vector<int>>(this->width, std::vector<int>(this->height, Map::tiles::FREE));
+    this->layout = std::vector<std::vector<Tile>>(this->width, std::vector<Tile>(this->height, Map::Tile::FREE));
     this->setBorders(this);
 
     this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y] = Map::tiles::FREE;
+        this->layout[exitPoint.x][exitPoint.y] = Map::Tile::FREE;
     }
 }
 
-Map::Map(const char * name, int width, int height, const std::vector<NPC> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
+Map::Map(const char * name, int width, int height, const std::initializer_list<NPC*> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
     this->npcArray = npcArray;
+}
+
+Map::~Map() {
+    for (NPC * npc : this->npcArray) {
+        delete npc;
+    }
 }
 
 // returns true if an obstruction is at the passed coordinates
@@ -53,7 +59,7 @@ bool Map::isObstructionHere(int x, int y) const {
         return true;
     }
     else {
-        return this->layout[x][y] != Map::tiles::FREE;
+        return this->layout[x][y] != Map::Tile::FREE;
     }
 }
 
@@ -73,13 +79,13 @@ int Map::numNPCs() {
 }
 
 NPC& Map::operator[](int index) {
-    return this->npcArray[index];
+    return *this->npcArray[index];
 }
 
 // places an obstruction at the passed coordinates
 void Map::setObstruction(int x, int y) {
     if (not this->isNPCHere(x, y)) {
-        this->layout[x][y] = Map::tiles::OBSTRUCTION;
+        this->layout[x][y] = Map::Tile::OBSTRUCTION;
     }
 }
 
@@ -109,11 +115,11 @@ void Map::print(const Trainer &trainer) const {
             bool found = false;      // necessary because an NPC might not be found
 
             // if the npc is currently at these coordinates
-            for (const NPC &npc : this->npcArray) {
-                if (x == npc.getX() and y == npc.getY()) {
+            for (const NPC *npc : this->npcArray) {
+                if (x == npc->getX() and y == npc->getY()) {
                     // change color of the text to red
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-                    std::cout << npc.getModel();
+                    std::cout << npc->getModel();
 
                     // change color of the text back to white
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);

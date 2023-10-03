@@ -7,6 +7,7 @@
 #include "../Classes/Map/Map.h"
 #include "MoveList.h"
 #include "ItemList.h"
+#include "Pokedex.h"
 
 // each exit point is assigned an ID that denotes what spot it is in the array,
 // and consequently which map it will lead to
@@ -15,12 +16,6 @@ enum MapIDs {
     ROUTE_2,
     ROUTE_3
 };
-
-extern Pokemon Greninja;
-extern Pokemon Charizard;
-extern Pokemon Hydreigon;
-extern Pokemon Pikachu;
-extern Pokemon Lucario;
 
 extern Trainer Trainer_1;
 
