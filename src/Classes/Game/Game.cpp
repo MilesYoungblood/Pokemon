@@ -7,12 +7,28 @@
 Game * Game::instancePtr = nullptr;
 Player * Game::player = nullptr;
 Map * Game::currentMap = nullptr;
+int Game::currentMapIndex = 0;
 
 Game::Game() {
     Game::instancePtr = nullptr;
     Game::currentMap = nullptr;
 
     Game::run();
+}
+
+void Game::run() {
+
+}
+
+void Game::saveData() {
+}
+
+void Game::loadData() {
+
+}
+
+void Game::eraseData() {
+
 }
 
 Game *Game::createGame() {
@@ -24,8 +40,4 @@ Game *Game::createGame() {
 
 void Game::destroyGame() {
     delete Game::instancePtr;
-}
-
-void Game::run() {
-
 }

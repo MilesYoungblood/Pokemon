@@ -108,7 +108,7 @@ inline bool isVowel(char ltr) {
 // returns a char of the user's selections
 inline char getChar(const std::vector<char> &options) {
     while (true) {
-        const char c = static_cast<char>(getch());
+        const char c = static_cast<char>(_getch());
         for (const char ltr : options) {
             if (c == ltr)
                 return c;
@@ -120,7 +120,7 @@ inline char getChar(const std::vector<char> &options) {
 inline int getInt(int lower, int upper) {
     while (true) {
         // subtracting by '0' gets the offset of the ASCII
-        const int i = getch() - '0';
+        const int i = _getch() - '0';
         if (lower <= i and i <= upper) {
             return i;
         }
@@ -152,8 +152,17 @@ inline void printMessage(const std::string &message) {
     }
 }
 
+inline void pressEnter() {
+    while (true) {
+        if (_getch() == keys::ENTER) {
+            return;
+        }
+    }
+}
+
 // prints out a character then sleeps
 inline void printMessage(char message) {
     std::cout << message;
     std::this_thread::sleep_for(std::chrono::milliseconds(25));
 }
+

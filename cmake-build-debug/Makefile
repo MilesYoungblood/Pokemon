@@ -176,6 +176,30 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
+src/Classes/Game/Game.obj: src/Classes/Game/Game.cpp.obj
+.PHONY : src/Classes/Game/Game.obj
+
+# target to build an object file
+src/Classes/Game/Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj
+.PHONY : src/Classes/Game/Game.cpp.obj
+
+src/Classes/Game/Game.i: src/Classes/Game/Game.cpp.i
+.PHONY : src/Classes/Game/Game.i
+
+# target to preprocess a source file
+src/Classes/Game/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.i
+.PHONY : src/Classes/Game/Game.cpp.i
+
+src/Classes/Game/Game.s: src/Classes/Game/Game.cpp.s
+.PHONY : src/Classes/Game/Game.s
+
+# target to generate assembly for a file
+src/Classes/Game/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.s
+.PHONY : src/Classes/Game/Game.cpp.s
+
 src/Classes/Item/BattleItem.obj: src/Classes/Item/BattleItem.cpp.obj
 .PHONY : src/Classes/Item/BattleItem.obj
 
@@ -368,6 +392,30 @@ src/Classes/NPC/NPC.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.s
 .PHONY : src/Classes/NPC/NPC.cpp.s
 
+src/Classes/Player/Player.obj: src/Classes/Player/Player.cpp.obj
+.PHONY : src/Classes/Player/Player.obj
+
+# target to build an object file
+src/Classes/Player/Player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj
+.PHONY : src/Classes/Player/Player.cpp.obj
+
+src/Classes/Player/Player.i: src/Classes/Player/Player.cpp.i
+.PHONY : src/Classes/Player/Player.i
+
+# target to preprocess a source file
+src/Classes/Player/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.i
+.PHONY : src/Classes/Player/Player.cpp.i
+
+src/Classes/Player/Player.s: src/Classes/Player/Player.cpp.s
+.PHONY : src/Classes/Player/Player.s
+
+# target to generate assembly for a file
+src/Classes/Player/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.s
+.PHONY : src/Classes/Player/Player.cpp.s
+
 src/Classes/Pokemon/Pokemon.obj: src/Classes/Pokemon/Pokemon.cpp.obj
 .PHONY : src/Classes/Pokemon/Pokemon.obj
 
@@ -479,6 +527,9 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
+	@echo ... src/Classes/Game/Game.obj
+	@echo ... src/Classes/Game/Game.i
+	@echo ... src/Classes/Game/Game.s
 	@echo ... src/Classes/Item/BattleItem.obj
 	@echo ... src/Classes/Item/BattleItem.i
 	@echo ... src/Classes/Item/BattleItem.s
@@ -503,6 +554,9 @@ help:
 	@echo ... src/Classes/NPC/NPC.obj
 	@echo ... src/Classes/NPC/NPC.i
 	@echo ... src/Classes/NPC/NPC.s
+	@echo ... src/Classes/Player/Player.obj
+	@echo ... src/Classes/Player/Player.i
+	@echo ... src/Classes/Player/Player.s
 	@echo ... src/Classes/Pokemon/Pokemon.obj
 	@echo ... src/Classes/Pokemon/Pokemon.i
 	@echo ... src/Classes/Pokemon/Pokemon.s

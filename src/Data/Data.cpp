@@ -4,14 +4,6 @@
 
 #include "Data.h"
 
-/// Player
-
-Trainer Trainer_1({
-    new Greninja({ new WaterShuriken, new DarkPulse, new IceBeam, new Extrasensory }),
-    new Charizard({ new Flamethrower, new AirSlash, new DragonPulse, new SolarBeam }),
-    new Hydreigon({ new DarkPulse, new DragonPulse, new Flamethrower, new FocusBlast })
-    }, 1, 1);
-
 /// Maps
 
 Map Route_1("Route 1", 12, 10, { new NPC({

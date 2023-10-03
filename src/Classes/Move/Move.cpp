@@ -4,14 +4,13 @@
 
 #include "Move.h"
 
-Move::Move(const char * name, Type type, Category category, int pp, int power, int accuracy) {
+Move::Move(const char *name, Type type, Category category, int pp, int power, int accuracy) : name(name) {
     this->maxPp = pp;
     this->pp = pp;
     this->power = power;
     this->accuracy = accuracy;
     this->type = type;
     this->category = category;
-    this->name = name;
 }
 
 int Move::getDamage() {

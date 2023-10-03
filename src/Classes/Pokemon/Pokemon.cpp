@@ -4,7 +4,7 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char * name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves) : Entity(0, 0), moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves) : Entity(0, 0), name(name), moveSet(), types() {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -20,7 +20,7 @@ Pokemon::Pokemon(const char * name, Type type, int level, int hp, int bAttack, i
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
 
-    this->name = name;
+    //this->name = name;
     this->types[0] = type;
     this->types[1] = Type::NONE;
     this->status = Status::NONE;
@@ -31,7 +31,7 @@ Pokemon::Pokemon(const char * name, Type type, int level, int hp, int bAttack, i
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move *> &moves) : Entity(0, 0), moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move *> &moves) : Entity(0, 0), name(name), moveSet(), types() {
     this->maxHp = hp;
     this->currentHp = hp;
     this->attack = 1;
@@ -47,7 +47,7 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
 
-    this->name = name;
+    //this->name = name;
     this->types[0] = type1;
     this->types[1] = type2;
     this->status = Status::NONE;
@@ -98,9 +98,9 @@ Type Pokemon::getType(bool type_1) const { return type_1 ? this->types[0] : this
 void Pokemon::setStatus(Status newStatus) { this->status = newStatus; }
 Status Pokemon::getStatus() const { return this->status; }
 
-void Pokemon::setMoves(const std::vector<Move*> &moves) {
+void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
     this->moveCounter = 0;
-    for (Move * move : moves) {
+    for (Move *move : moves) {
         if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
             break;
 
@@ -149,7 +149,7 @@ void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, i
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
         else if (typeEff >= 2.0) {
-            printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
+            printMessage(this->getName() + " did " + std::to_string(damage) + " damage! ");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             printMessage("It's super effective!\n");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -159,7 +159,7 @@ void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, i
             }
         }
         else if (typeEff <= 0.5) {
-            printMessage(this->name + " did " + std::to_string(damage) + " damage! ");
+            printMessage(this->getName() + " did " + std::to_string(damage) + " damage! ");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             printMessage("It's not very effective...\n");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -169,7 +169,7 @@ void Move::actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, i
             }
         }
         else {
-            printMessage(this->name + " did " + std::to_string(damage) + " damage!\n");
+            printMessage(this->getName() + " did " + std::to_string(damage) + " damage!\n");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }

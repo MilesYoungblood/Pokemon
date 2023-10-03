@@ -10,20 +10,22 @@ std::mutex mutex;
 bool canMove = true;        // signals whether the player can move
 bool keepMoving = true;     // signals whether the NPC can move
 
-void turn(Map &map, Player *t, int index) {
-    auto engage = [&map, &t, &index] {
+void turn(Player *player, Map &map, int index) {
+    auto engage = [&player, &map, &index] {
         mutex.lock();
         keepMoving = false;
         canMove = false;
 
-        map[index].moveToPlayer(map, *t);
-        t->face(&map[index]);
+        map[index].moveToPlayer(map, *player);
+        player->face(&map[index]);
 
-        map.print(*t);
+        map.print(*player);
 
+        printMessage("\n\nOur eyes met! You know what this means right?");
         std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-        Battle(t, &map[index]);
-        map.print(*t);
+
+        Battle(player, &map[index]);
+        map.print(*player);
 
         keepMoving = true;
         canMove = true;
@@ -34,9 +36,9 @@ void turn(Map &map, Player *t, int index) {
         switch (generateInteger(1, 6)) {
             case 1:
                 map[index].face(&map[index]);
-                map.print(*t);
+                map.print(*player);
 
-                if (map[index].hasVisionOf(t) and map[index]) {
+                if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
                     return;
                 }
@@ -51,9 +53,9 @@ void turn(Map &map, Player *t, int index) {
                 else if (map[index].isFacingEast() or map[index].isFacingWest()) {
                     coinFlip() ? map[index].faceNorth() : map[index].faceSouth();
                 }
-                map.print(*t);
+                map.print(*player);
 
-                if (map[index].hasVisionOf(t) and map[index]) {
+                if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
                     return;
                 }
@@ -67,15 +69,113 @@ void turn(Map &map, Player *t, int index) {
     }
 }
 
-#include "Data/Data.h"
+// for me to work between my laptop and desktop
+static bool desktop = false;
 
-const char * saveFilePath = R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
+const char *saveFilePath = desktop ?
+        R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
+        R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
+
+void saveData(Player *player, Map *maps[], int numMaps, int &currentMapIndex) {
+    std::ofstream saveFile(saveFilePath);
+    if (not saveFile) {
+        throw std::runtime_error("Could not open file");
+    }
+
+    auto saveDirection = [&saveFile](Entity *entity) {
+        if (entity->isFacingNorth()) {
+            saveFile << 0;
+        }
+        else if (entity->isFacingEast()) {
+            saveFile << 1;
+        }
+        else if (entity->isFacingSouth()) {
+            saveFile << 2;
+        }
+        else if (entity->isFacingWest()){
+            saveFile << 3;
+        }
+    };
+
+    saveFile << currentMapIndex << '\n';
+    saveFile << player->getX() << ' ' << player->getY() << ' ';
+    saveDirection(player);
+
+    for (int i = 0; i < numMaps; ++i) {
+        for (int j = 0; j < maps[i]->numNPCs(); ++i) {
+            saveFile << '\n' << i << ' ' << j << ' ' << (*maps)[i][j].canFight() << ' ';
+            saveDirection(&(*maps)[i][j]);
+        }
+    }
+
+    saveFile.close();
+}
+
+void loadData(Player *player, Map *maps[], int &currentMapIndex) {
+    std::ifstream saveFile(saveFilePath);
+
+    auto loadDirection = [&saveFile](Entity *entity) {
+        int direction;
+        saveFile >> direction;
+
+        switch (direction) {
+            case 0:
+                entity->faceNorth();
+                break;
+
+            case 1:
+                entity->faceEast();
+                break;
+
+            case 2:
+                entity->faceSouth();
+                break;
+
+            case 3:
+                entity->faceWest();
+                break;
+
+            default:
+                throw std::runtime_error("Unexpected error: lambda loadDirection");
+        }
+    };
+
+    if (saveFile) {
+        int currentMap;
+        int x;
+        int y;
+
+        saveFile >> currentMap >> x >> y;
+
+        currentMapIndex = currentMap;
+        player->setCoordinates(x, y);
+        loadDirection(player);
+
+        while (not saveFile.eof()) {
+            int mapSpot;
+            int npcSpot;
+            bool canFight;
+
+            saveFile >> mapSpot >> npcSpot >> canFight;
+            (*maps)[mapSpot][npcSpot].setBattleStatus(canFight);
+            loadDirection(&(*maps)[mapSpot][npcSpot]);
+        }
+
+        saveFile.close();
+    }
+}
+
+void eraseData() {
+    std::remove(saveFilePath);
+}
+
+#include "Data/Data.h"
 
 int main() {
     SetConsoleTitleA("Pokemon Game");
     ShowConsoleCursor(false);
 
-    Player * player = Player::getPlayer(1, 1);
+    Player *player = Player::getPlayer(1, 1);
 
     player->addPokemon(new Greninja({ new WaterShuriken, new DarkPulse, new IceBeam, new Extrasensory }));
     player->addPokemon(new Charizard({ new Flamethrower, new AirSlash, new DragonPulse, new SolarBeam }));
@@ -94,61 +194,10 @@ int main() {
 
     int currentMapIndex = 0;
 
-    Map * maps[] = { &Route_1, &Route_2, &Route_3 };
+    Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
-    auto saveData = [&player, &maps, &currentMapIndex] {
-        std::ofstream saveFile(saveFilePath);
-        if (not saveFile) {
-            throw std::runtime_error("Could not open file");
-        }
-
-        saveFile << currentMapIndex << '\n';
-        saveFile << player->getX() << ' ' << player->getY() << '\n';
-
-        //TODO save player's direction and model as well
-
-        for (int i = 0; i < sizeof maps / sizeof maps[0]; ++i) {
-            for (int j = 0; j < maps[i]->numNPCs(); ++i) {
-                saveFile << i << ' ' << j << ' ' << (*maps)[i][j].canFight() << '\n';
-            }
-        }
-
-        saveFile.close();
-    };
-
-    auto loadData = [&player, &currentMapIndex, &maps] {
-        std::ifstream saveFile(saveFilePath);
-        if (saveFile) {
-            int currentMap;
-            int x;
-            int y;
-
-            saveFile >> currentMap >> x >> y;
-
-            currentMapIndex = currentMap;
-            player->setCoordinates(x, y);
-
-            // TODO load player's direction and model as well
-
-            while (not saveFile.eof()) {
-                int mapSpot;
-                int npcSpot;
-                bool canFight;
-
-                saveFile >> mapSpot >> npcSpot >> canFight;
-                (*maps)[mapSpot][npcSpot].setBattleStatus(canFight);
-            }
-
-            saveFile.close();
-        }
-    };
-
-    auto resetData = [] {
-        std::remove(saveFilePath);
-    };
-
-    loadData();
-    Map * currentMap = maps[currentMapIndex];
+    loadData(player, maps, currentMapIndex);
+    Map *currentMap = maps[currentMapIndex];
 
     auto engage = [&player, &currentMap](int index) {
         mutex.lock();
@@ -158,7 +207,9 @@ int main() {
         player->face(&(*currentMap)[index]);
         currentMap->print(*player);
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        printMessage("\n\nOur eyes met! You know what this means right?");
+        std::cin.ignore();
+
         Battle(player, &(*currentMap)[index]);
         currentMap->print(*player);
 
@@ -174,7 +225,7 @@ renderMap:
     // create threads for each NPC to check if the player is in sight/ turn the NPC
     std::thread threads[numNPCs];
     for (int i = 0; i < numNPCs; ++i) {
-        threads[i] = std::thread(turn, std::ref(*currentMap), std::ref(player), i);
+        threads[i] = std::thread(turn, player, std::ref(*currentMap), i);
     }
 
     while (true) {
@@ -191,7 +242,7 @@ renderMap:
             }
         }
 
-retry:
+getInput:
         const char input = static_cast<char>(_getch());
 
         // ultimately, pauses execution of the main thread if the player is spotted
@@ -268,8 +319,8 @@ retry:
 
                 system("cls");
                 printMessage("Do you want to quit?\n");
-                std::cout << "Press 1 to quit,\n"
-                          << "Press 2 to return";
+                std::cout << "\tPress 1 to quit,\n"
+                          << "\tPress 2 to return";
 
                 int option;
                 option = getInt(1, 2);
@@ -277,16 +328,16 @@ retry:
                 if (option == 1) {
                     system("cls");
                     printMessage("Do you want to save?\n");
-                    std::cout << "Press 1 to save,\n"
-                              << "Press 2 to not save,\n"
-                              << "Press 3 to reset save data";
+                    std::cout << "\tPress 1 to save,\n"
+                              << "\tPress 2 to not save,\n"
+                              << "\tPress 3 to reset save data";
 
                     option = getInt(1, 3);
                     if (option == 1) {
-                        saveData();
+                        saveData(player, maps, sizeof maps / sizeof maps[0], currentMapIndex);
                     }
                     else if (option == 3) {
-                        resetData();
+                        eraseData();
                     }
                 }
                 else {
@@ -298,7 +349,7 @@ retry:
                 return 0;
 
             default:
-                goto retry;
+                goto getInput;
         }
 
         // the values of mapData are the new x, new y, and new map respectively

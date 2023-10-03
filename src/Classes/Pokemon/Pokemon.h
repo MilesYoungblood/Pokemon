@@ -29,17 +29,17 @@ private:
     int baseSpeed;
     int level;
 
-    std::string name;
-    Move* moveSet[Pokemon::MAX_NUM_MOVES];
+    const char *name;
+    Move *moveSet[Pokemon::MAX_NUM_MOVES];
     Type types[Pokemon::MAX_NUM_TYPES];
     Status status;
     
     int moveCounter;
-    void setMoves(const std::vector<Move*> &moves);
+    void setMoves(const std::initializer_list<Move*> &moves);
 
 public:
-    Pokemon(const char * name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
-    Pokemon(const char * name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::vector<Move*> &moves);
+    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
+    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
     Pokemon(const Pokemon &pokemonToCopy) = delete;
     Pokemon& operator=(const Pokemon &rhs) = delete;
     ~Pokemon();

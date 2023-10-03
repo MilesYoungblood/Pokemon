@@ -26,7 +26,7 @@ protected:
     int power;
     int accuracy;
 
-    std::string name;
+    const char *name;
     Type type;
     Category category;
 
@@ -68,7 +68,7 @@ protected:
     }
 
 public:
-    Move(const char * name, Type type, Category category, int pp, int power, int accuracy);
+    Move(const char *name, Type type, Category category, int pp, int power, int accuracy);
     Move(const Move &moveToCopy) = delete;
     Move& operator=(const Move &rhs) = delete;
 

@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include <fstream>
 #include "../../Classes/Map/Map.h"
 #include "../../Classes/Player/Player.h"
 
@@ -15,6 +16,7 @@ private:
 
     static Map* maps[3];
     static Map* currentMap;
+    static int currentMapIndex;
 
     Game();
 

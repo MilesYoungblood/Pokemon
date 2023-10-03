@@ -94,6 +94,12 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Game/Game.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Game/Game.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
@@ -140,6 +146,12 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/NPC/NPC.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Player/Player.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Player/Player.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.cpp">
@@ -203,6 +215,9 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/MoveList/WaterShuriken.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokedex.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h">

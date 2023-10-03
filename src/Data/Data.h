@@ -17,8 +17,6 @@ enum MapIDs {
     ROUTE_3
 };
 
-extern Trainer Trainer_1;
-
 extern Map Route_1;
 extern Map Route_2;
 extern Map Route_3;
