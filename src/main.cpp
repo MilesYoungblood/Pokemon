@@ -150,9 +150,8 @@ void loadData(Player *player, Map *maps[], int &currentMapIndex) {
         while (std::getline(saveFile, buffer)) {
             const int map = buffer[0] - '0';
             const int trainer = buffer[1] - '0';
-            const char canFight = buffer[2];
 
-            if (canFight == '0') {
+            if (buffer[2] == '0') {
                 while ((*maps)[map][trainer]) {
                     (*maps)[map][trainer].removePokemon(0);
                 }
