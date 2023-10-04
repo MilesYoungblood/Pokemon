@@ -76,6 +76,12 @@ void Trainer::removePokemon(int index) {
     --this->numPokemon;
 }
 
+void Trainer::clearParty() {
+    for (int i = 0; i < this->numPokemon; ++i) {
+        delete this->party[i];
+    }
+}
+
 __attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {

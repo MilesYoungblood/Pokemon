@@ -78,7 +78,6 @@ public:
 
     int getLevel() const;
 
-    void faint();
     bool isFainted() const;
     bool isFullHP() const;
     bool isFasterThan(const Pokemon &pokemon) const;

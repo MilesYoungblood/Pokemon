@@ -68,7 +68,14 @@ Pokemon::~Pokemon() {
 
 int Pokemon::numMoves() const { return this->moveCounter; }
 
-void Pokemon::setHP(int newHp) { this->currentHp = newHp; }
+void Pokemon::setHP(int newHp) {
+    this->currentHp = newHp;
+
+    // HP cannot be set lower than 0
+    if (this->currentHp < 0) {
+        this->currentHp = 0;
+    }
+}
 void Pokemon::setAttack(int newAttack) { this->attack = newAttack; }
 void Pokemon::setSpAttack(int newSpAttack) { this->spAttack = newSpAttack; }
 void Pokemon::setDefense(int newDefense) { this->defense = newDefense; }
@@ -112,8 +119,6 @@ void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
 }
 
 int Pokemon::getLevel() const { return this->level; }
-
-void Pokemon::faint() { this->currentHp = 0; }
 
 bool Pokemon::isFainted() const { return this->currentHp <= 0; }
 bool Pokemon::isFullHP() const { return this->currentHp == this->maxHp; }

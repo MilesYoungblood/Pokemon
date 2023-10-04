@@ -33,14 +33,13 @@ private:
 
     static void forcedSwitchPrompt();
 
-    __attribute__((unused)) static bool run(const Pokemon &trainer_1, const Pokemon &trainer_2);
     static bool run();
     static void runMessage(bool runStatus);
     static void runErrorMessage();
 
     static void pokemonPrompt(int arrow, bool &print);
 
-    static void switchOutMessage(const Trainer &t, int pokemonSwitched);
+    static void switchOutMessage(const Trainer *t, int pokemonSwitched);
 
     static void inBattleMessage();
 

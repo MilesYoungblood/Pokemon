@@ -69,7 +69,7 @@ void turn(Player *player, Map &map, int index) {
 }
 
 // for me to work between my laptop and desktop
-static bool desktop = true;
+static bool desktop = false;
 
 const char *saveFilePath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :

@@ -368,30 +368,6 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
-src/Classes/NPC/NPC.obj: src/Classes/NPC/NPC.cpp.obj
-.PHONY : src/Classes/NPC/NPC.obj
-
-# target to build an object file
-src/Classes/NPC/NPC.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.obj
-.PHONY : src/Classes/NPC/NPC.cpp.obj
-
-src/Classes/NPC/NPC.i: src/Classes/NPC/NPC.cpp.i
-.PHONY : src/Classes/NPC/NPC.i
-
-# target to preprocess a source file
-src/Classes/NPC/NPC.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.i
-.PHONY : src/Classes/NPC/NPC.cpp.i
-
-src/Classes/NPC/NPC.s: src/Classes/NPC/NPC.cpp.s
-.PHONY : src/Classes/NPC/NPC.s
-
-# target to generate assembly for a file
-src/Classes/NPC/NPC.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/NPC/NPC.cpp.s
-.PHONY : src/Classes/NPC/NPC.cpp.s
-
 src/Classes/Player/Player.obj: src/Classes/Player/Player.cpp.obj
 .PHONY : src/Classes/Player/Player.obj
 
@@ -551,9 +527,6 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
-	@echo ... src/Classes/NPC/NPC.obj
-	@echo ... src/Classes/NPC/NPC.i
-	@echo ... src/Classes/NPC/NPC.s
 	@echo ... src/Classes/Player/Player.obj
 	@echo ... src/Classes/Player/Player.i
 	@echo ... src/Classes/Player/Player.s

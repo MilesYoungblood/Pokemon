@@ -39,6 +39,7 @@ public:
 
     void addPokemon(Pokemon *toAdd);
     void removePokemon(int index);
+    void clearParty();
 
     __attribute__((unused)) void setItems(const std::vector<std::vector<Item*>> &inventory);
     void setRestoreItems(const std::vector<Item*> &inventory);

@@ -28,12 +28,12 @@ void Battle::returnMessage(const Pokemon &pokemon) {
 void Battle::introMessage() {
     printMessage("Your opponent sent out " + (*Battle::opponent)[0].getName() + "!\n");
     pressEnter();
-    printMessage("Go " + (*Battle::user)[0].getName());
+    //printMessage("Go " + (*Battle::user)[0].getName());
     Battle::sendOutMessage((*Battle::user)[0]);
 }
 
 void Battle::displayChoices(int arrow, bool &print) {
-    print ? printMessage("What will " + (*Battle::user)[0].getName() + " do?\n") : printMessage("What will " + (*Battle::user)[0].getName(), 0);
+    print ? printMessage("What will " + (*Battle::user)[0].getName() + " do?\n") : printMessage("What will " + (*Battle::user)[0].getName() + " do?\n", 0);
 
     arrow == 0 ? std::cout << "   ->   Fight\n" : std::cout << "\tFight\n";
     arrow == 1 ? std::cout << "   ->   Bag\n" : std::cout << "\tBag\n";
@@ -130,12 +130,11 @@ void Battle::forcedSwitchPrompt() {
     std::cout.flush();
 }
 
-__attribute__((unused)) bool Battle::run(const Pokemon &trainer_1, const Pokemon &trainer_2) {
-    return ((trainer_1.getBaseSpeed() * 32) / ((trainer_2.getBaseSpeed() / 4) % 256)) + 30;
-}
-
 bool Battle::run() {
-    return generateInteger(0, 1) == 1;
+    const int opponentSpeed = ((*Battle::opponent)[0].getBaseSpeed() / 4) % 256;
+    const int odds = (((*Battle::user)[0].getBaseSpeed() * 32) / opponentSpeed) + 30;
+
+    return opponentSpeed == 0 or odds > 255 or generateInteger(0, 255) < odds;
 }
 
 void Battle::runMessage(bool runStatus) {
@@ -163,9 +162,9 @@ void Battle::pokemonPrompt(int arrow, bool &print) {
     print = false;
 }
 
-void Battle::switchOutMessage(const Trainer &t, int pokemonSwitched) {
-    Battle::returnMessage(t[pokemonSwitched]);
-    Battle::sendOutMessage(t[0]);
+void Battle::switchOutMessage(const Trainer *t, int pokemonSwitched) {
+    Battle::returnMessage((*t)[pokemonSwitched]);
+    Battle::sendOutMessage((*t)[0]);
 }
 
 void Battle::inBattleMessage() {
@@ -356,8 +355,8 @@ void Battle::attackErrorMessage() {
 
 void Battle::takeDamage(Trainer *t, int damage) {
     (*t)[0].setHP((*t)[0].getHP() - damage);
+
     if ((*t)[0].isFainted()) {
-        (*t)[0].faint();
         (*t).incFaintCount();
         faintMessage((*t)[0]);
     }
@@ -435,7 +434,6 @@ void Battle::SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying) {
     }
 
     trainer->swapPokemon(0, toSwitch);
-    sendOutMessage((*trainer)[0]);
 }
 
 void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying) {
@@ -446,15 +444,12 @@ void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switch
     (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], damage, crit, getTypeEffective((*attacker)[0][move], (*defender)[0]));
 
     if ((*defender)[0].isFainted()) {
-        (*defender)[0].faint();
         defender->incFaintCount();
         faintMessage((*defender)[0]);
         if (not defender) {
             Battle::displayHPBar(true);
             if (isUserAttacking) {
-                while (defender) {
-                    defender->removePokemon(0);
-                }
+                defender->clearParty();
                 winMessage();
             }
             else {
@@ -463,6 +458,49 @@ void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switch
             keepPlaying = false;
         }
         else {
+            if (isUserAttacking) {
+                SwitchOut(defender, false, keepPlaying);
+
+                int option = 0;
+                bool print = true;
+
+                reprint:
+                Battle::displayHPBar(true);
+                print ? printMessage("Your opponent is about to send out " + (*Battle::opponent)[0].getName() + ".\n") : printMessage("Your opponent is about to send out " + (*Battle::opponent)[0].getName() + ".\n", 0);
+                if (print) pressEnter();
+                print ? printMessage("Would you like to swap out?\n") : printMessage("Would you like to swap out?\n", 0);
+                option == 0 ? std::cout << "   ->   Yes\n" : std::cout << "\tYes\n";
+                option == 1 ? std::cout << "   ->   No" : std::cout << "\tNo";
+
+                print = false;
+
+                if (not chooseOption(option, 1)) {
+                    goto reprint;
+                }
+
+                print = true;
+                if (option == 0) {
+                    printAgain:
+                    Battle::displayHPBar(true);
+                    Battle::displayPokemon(option, print);
+
+                    if (not chooseOption(option, Battle::user->partySize())) {
+                        goto printAgain;
+                    }
+
+                    if (option == 0) {
+                        Battle::displayHPBar(true);
+                        Battle::inBattleMessage();
+                        goto printAgain;
+                    }
+
+                    if (option < Battle::user->partySize()) {
+                        Battle::displayHPBar(true);
+                        Battle::user->swapPokemon(0, option);
+                        Battle::switchOutMessage(&(Battle::user)[0], option);
+                    }
+                }
+            }
             isUserAttacking ? SwitchOut(defender, false, keepPlaying) : SwitchOut(defender, true, keepPlaying);
             switched = true;
         }
@@ -826,7 +864,7 @@ bool Battle::runAway(bool &skip, bool canRun) {
         return false;
     }
     else {
-        //bool runAway = generateInteger(0, 1) == 1;
+        //bool runAway = run();
         //FIXME commented out for testing purposes
         bool runAway = true;
         runMessage(runAway);
@@ -902,7 +940,7 @@ void Battle::choosePokemon(bool &skip) {
                 if (not (*Battle::user)[pokemon].isFainted()) {
                     Battle::displayHPBar(true);
                     Battle::user->swapPokemon(0, pokemon);
-                    switchOutMessage((*Battle::user), pokemon);
+                    switchOutMessage(&(*Battle::user), pokemon);
                 }
                 // Pokémon chosen is fainted
                 else {
