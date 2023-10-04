@@ -6,15 +6,19 @@
 
 Player * Player::instancePtr = nullptr;
 
-Player::Player(int x, int y) : Trainer({}, x, y) {}
+Player::Player() : Trainer(1, 1) {}
 
-Player *Player::getPlayer(int x, int y) {
+Player *Player::getPlayer() {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(x, y);
+        Player::instancePtr = new Player();
     }
     return Player::instancePtr;
 }
 
 void Player::destroyPlayer() {
     delete Player::instancePtr;
+}
+
+Player::operator bool() const {
+    return this->numFainted < this->numPokemon;
 }

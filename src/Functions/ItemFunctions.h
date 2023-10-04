@@ -4,36 +4,6 @@
 
 #pragma once
 
-// returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
-inline bool chooseOption(int &option, int upper) {
-    retry:
-    switch (static_cast<char>(getch())) {
-        case 'w':
-            if (option - 1 >= 0) {
-                --option;
-                return false;
-            }
-            else {
-                goto retry;
-            }
-
-        case 's':
-            if (option + 1 <= upper) {
-                ++option;
-                return false;
-            }
-            else {
-                goto retry;
-            }
-
-        case 13:
-            return true;
-
-        default:
-            goto retry;
-    }
-}
-
 #include "../Classes/Trainer/Trainer.h"
 
 inline void failMessage() {

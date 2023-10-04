@@ -4,10 +4,17 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Entity(x, y), party(), items(), numItems() {
+Trainer::Trainer() : Entity(), party(), items(), numItems() {
     this->numFainted = 0;
-    this->numPokemon= 0;
+    this->numPokemon = 0;
+}
 
+Trainer::Trainer(int x, int y) : Entity(x, y), party(), items(), numItems() {
+    this->numFainted = 0;
+    this->numPokemon = 0;
+}
+
+Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Trainer(x, y) {
     for (const auto &p : pokemon) {
         if (this->numPokemon == Trainer::MAX_POKEMON) {
             break;
@@ -15,6 +22,9 @@ Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Entity(x,
 
         this->party[this->numPokemon] = p;
         ++this->numPokemon;
+    }
+    for (int i = this->numPokemon; i < Trainer::MAX_POKEMON; ++i) {
+        this->party[i] = nullptr;
     }
 }
 
@@ -49,6 +59,21 @@ void Trainer::addPokemon(Pokemon *toAdd) {
 
     this->party[this->numPokemon] = toAdd;
     ++this->numPokemon;
+}
+
+void Trainer::removePokemon(int index) {
+    // decrement the faint count if the Pokémon we're removing is fainted
+    if (this->party[index]->isFainted()) {
+        --this->numFainted;
+    }
+
+    delete this->party[index];
+
+    for (int i = index; i < this->numPokemon; ++i) {
+        this->party[i] = party[i + 1];
+    }
+
+    --this->numPokemon;
 }
 
 __attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
@@ -114,8 +139,6 @@ void Trainer::swapPokemon(int first, int second) {
     this->party[second] = copy;
 }
 
-void Trainer::defeat() {}
-
 Pokemon& Trainer::operator[](int spot)  {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
@@ -131,5 +154,5 @@ const Pokemon& Trainer::operator[](int spot) const {
 }
 
 Trainer::operator bool() const {
-    return this->numFainted < this->numPokemon;
+    return this->numPokemon > 0;
 }

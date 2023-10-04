@@ -38,8 +38,6 @@ add_executable(PokemonBattle
         src/Data/MoveList/Thunder.h
         src/Data/MoveList/FocusBlast.h
         src/Data/MoveList/IronTail.h
-        src/Classes/NPC/NPC.cpp
-        src/Classes/NPC/NPC.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
         src/Data/ItemList.h

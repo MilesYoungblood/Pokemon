@@ -4,20 +4,20 @@
 
 #include "Entity.h"
 
-Entity::Entity(int x, int y) {
-    this->x = x;
-    this->y = y;
-    this->range = 1;
-    this->direction = directions::SOUTH;
+Entity::Entity() {
+    this->x = 0;
+    this->y = 0;
+    this->vision = 1;
+    this->direction = Direction::SOUTH;
     this->model = 'S';
 }
 
-Entity::Entity(const Entity &toCopy) {
-    this->x = toCopy.x;
-    this->y = toCopy.y;
-    this->range = toCopy.range;
-    this->direction = toCopy.direction;
-    this->model = toCopy.model;
+Entity::Entity(int x, int y) {
+    this->x = x;
+    this->y = y;
+    this->vision = 1;
+    this->direction = Direction::SOUTH;
+    this->model = 'S';
 }
 
 void Entity::moveNorth() {
@@ -37,22 +37,22 @@ void Entity::moveWest() {
 }
 
 void Entity::faceNorth() {
-    this->direction = Entity::directions::NORTH;
+    this->direction = Entity::Direction::NORTH;
     this->model = 'N';
 }
 
 void Entity::faceEast() {
-    this->direction = Entity::directions::EAST;
+    this->direction = Entity::Direction::EAST;
     this->model = 'E';
 }
 
 void Entity::faceSouth() {
-    this->direction = Entity::directions::SOUTH;
+    this->direction = Entity::Direction::SOUTH;
     this->model = 'S';
 }
 
 void Entity::faceWest() {
-    this->direction = Entity::directions::WEST;
+    this->direction = Entity::Direction::WEST;
     this->model = 'W';
 }
 
@@ -74,19 +74,19 @@ char Entity::getModel() const {
 }
 
 bool Entity::isFacingNorth() const {
-    return this->direction == Entity::directions::NORTH;
+    return this->direction == Entity::Direction::NORTH;
 }
 
 bool Entity::isFacingEast() const {
-    return this->direction == Entity::directions::EAST;
+    return this->direction == Entity::Direction::EAST;
 }
 
 bool Entity::isFacingSouth() const {
-    return this->direction == Entity::directions::SOUTH;
+    return this->direction == Entity::Direction::SOUTH;
 }
 
 bool Entity::isFacingWest() const {
-    return this->direction == Entity::directions::WEST;
+    return this->direction == Entity::Direction::WEST;
 }
 
 // makes this face the entity
@@ -106,7 +106,7 @@ void Entity::face(const Entity * entity) {
 }
 
 // returns true if this is right next to another entity, not necessarily facing
-bool Entity::isNextTo(const Entity * entity) const {
+bool Entity::isNextTo(const Entity *entity) const {
     if (this->isFacingNorth()) {
         return this->y == entity->y + 1 and this->x == entity->x;
     }
@@ -124,18 +124,18 @@ bool Entity::isNextTo(const Entity * entity) const {
     }
 }
 
-bool Entity::hasVisionOf(const Entity * entity) const {
+bool Entity::hasVisionOf(const Entity *entity) const {
     if (this->isFacingNorth()) {
-        return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->range;
+        return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
     }
     else if (this->isFacingEast()) {
-        return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->range;
+        return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
     }
     else if (this->isFacingSouth()) {
-        return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->range;
+        return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->vision;
     }
     else if (this->isFacingWest()) {
-        return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->range;
+        return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
     }
     else {
         return false;

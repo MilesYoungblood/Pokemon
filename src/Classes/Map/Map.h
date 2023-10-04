@@ -8,7 +8,7 @@
 #include <array>
 #include <algorithm>
 #include <windows.h>
-#include "../NPC/NPC.h"
+#include "../Trainer/Trainer.h"
 
 class Map {
 private:
@@ -30,16 +30,16 @@ private:
     std::vector<std::vector<Tile>> layout;  // The map is represented by a 2D int vector
                                             // values are represented by the tiles enum
 
-    std::vector<NPC*> npcArray;             // the set of trainers in this map
+    std::vector<Trainer*> trainers;         // the set of trainers in this map
 
     std::vector<ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
 
     void setBorders(const Map * from);
-    bool isNPCHere(int x, int y) const;
+    bool isTrainerHere(int x, int y) const;
 
 public:
     Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char * name, int width, int height, const std::initializer_list<NPC*> &npcArray, const std::vector<ExitPoint> &exitPoints);
+    Map(const char * name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints);
     Map(const Map &toCopy) = delete;
     Map& operator=(const Map &rhs) = delete;
     ~Map();
@@ -48,8 +48,8 @@ public:
     std::array<int, 3> isExitPointHere(int x, int y) const;
 
     int numNPCs();
-    NPC& operator[](int index);
+    Trainer& operator[](int index);
 
     void setObstruction(int x, int y);
-    void print(const Trainer &trainer) const;
+    void print(const Trainer *player) const;
 };

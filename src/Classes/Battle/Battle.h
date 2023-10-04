@@ -4,18 +4,18 @@
 
 #pragma once
 
-#include "../../Classes/Trainer/Trainer.h"
+#include "../../Classes/Player/Player.h"
 #include "../../main.h"
 #include "../../Functions/ItemFunctions.h"
 #include "../../Functions/TypeCalculations/TypeChart.h"
 
 class Battle {
 private:
-    static Trainer * user;
+    static Player * user;
     static Trainer * opponent;
     static size_t turn;
 
-    static void wildPokemonMessage(const Pokemon &pokemon);
+    //static void wildPokemonMessage(const Pokemon &pokemon);
 
     static void sendOutMessage(const Pokemon &pokemon);
     static void returnMessage(const Pokemon &pokemon);
@@ -25,7 +25,7 @@ private:
     static void displayChoices(int arrow, bool &print);
 
     static void displayPokemon(int arrow, bool &print);
-    static void displayPokemon(const Trainer &t);
+    static void displayPokemon(const Trainer *t);
 
     static void displayHPBar(bool displayPokemon);
 
@@ -50,18 +50,14 @@ private:
     static void winMessage();
     static void loseMessage();
 
-    static bool preStatus(Status status);
-    static bool postStatus(Status status);
-
-    static void inflictedMessage(const Pokemon& pokemon);
+    static void inflictedMessage(const Pokemon &pokemon);
 
     static void displayMoves(const Pokemon &pokemon, int arrow, bool &print);
     static void displayMoveSummary(const Move &move);
 
     static void attackErrorMessage();
 
-    static void takeDamage(Trainer &t, int damage);
-    static void takeDamageMessage(const Pokemon& pokemon);
+    static void takeDamage(Trainer *t, int damage);
 
     static int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move);
     static int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move);
@@ -72,11 +68,10 @@ private:
 
     static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit);
 
-    static void SwitchOut(Trainer &trainer, bool isUser, bool &keepPlaying);
+    static void SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
 
-    static void Action(Trainer &attacker, Trainer &defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
+    static void Action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
 
-    static void PostStatus(Trainer &trainer, bool isUser, bool &keepPlaying);
     static void PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &keepPlaying);
     static void PostStatus(bool isUserFaster, bool &keepPlaying);
 
@@ -89,5 +84,5 @@ private:
     static void engageBattle(bool isTrainer);
 
 public:
-    Battle(Trainer * trainer_1, Trainer * trainer_2);
+    Battle(Player *trainer_1, Trainer *trainer_2);
 };

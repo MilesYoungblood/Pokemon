@@ -23,8 +23,8 @@ void Map::setBorders(const Map * from) {
     }
 }
 
-bool Map::isNPCHere(int x, int y) const {
-    return std::any_of(this->npcArray.begin(), this->npcArray.end(), [&x, &y](const NPC *npc){ return npc->getX() == x and npc->getY() == y; });
+bool Map::isTrainerHere(int x, int y) const {
+    return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
 Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints) {
@@ -42,20 +42,20 @@ Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> 
     }
 }
 
-Map::Map(const char * name, int width, int height, const std::initializer_list<NPC*> &npcArray, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
-    this->npcArray = npcArray;
+Map::Map(const char * name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
+    this->trainers = trainerList;
 }
 
 Map::~Map() {
-    for (NPC * npc : this->npcArray) {
-        delete npc;
+    for (Trainer *trainer : this->trainers) {
+        delete trainer;
     }
 }
 
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     // out of bounds or an NPC is already in this spot
-    if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isNPCHere(x, y)) {
+    if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isTrainerHere(x, y)) {
         return true;
     }
     else {
@@ -75,16 +75,16 @@ std::array<int, 3> Map::isExitPointHere(int x, int y) const {
 
 // returns the number of NPCs
 int Map::numNPCs() {
-    return static_cast<int>(this->npcArray.size());
+    return static_cast<int>(this->trainers.size());
 }
 
-NPC& Map::operator[](int index) {
-    return *this->npcArray[index];
+Trainer& Map::operator[](int index) {
+    return *this->trainers[index];
 }
 
 // places an obstruction at the passed coordinates
 void Map::setObstruction(int x, int y) {
-    if (not this->isNPCHere(x, y)) {
+    if (not this->isTrainerHere(x, y)) {
         this->layout[x][y] = Map::Tile::OBSTRUCTION;
     }
 }
@@ -92,7 +92,7 @@ void Map::setObstruction(int x, int y) {
 // 242 = green, 244 = red, 240 = black
 
 // prints the map and everything in it
-void Map::print(const Trainer &trainer) const {
+void Map::print(const Trainer *player) const {
     system("cls");
 
     for (int y = 0; y < this->height; ++y) {
@@ -103,10 +103,10 @@ void Map::print(const Trainer &trainer) const {
                 continue;
             }
             // if the player is currently at these coordinates
-            else if (x == trainer.getX() and y == trainer.getY()) {
+            else if (x == player->getX() and y == player->getY()) {
                 // change color of the text to green
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                std::cout << trainer.getModel();
+                std::cout << player->getModel();
 
                 // change color of the text back to white
                 SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
@@ -115,7 +115,7 @@ void Map::print(const Trainer &trainer) const {
             bool found = false;      // necessary because an NPC might not be found
 
             // if the npc is currently at these coordinates
-            for (const NPC *npc : this->npcArray) {
+            for (const Trainer *npc : this->trainers) {
                 if (x == npc->getX() and y == npc->getY()) {
                     // change color of the text to red
                     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
@@ -139,35 +139,35 @@ void Map::print(const Trainer &trainer) const {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-// moves the NPC to the player
-void NPC::moveToPlayer(const Map &map, const Trainer &trainer) {
-    if (this->hasVisionOf(&trainer)) {
+// moves the Trainer to the player
+void Trainer::moveToPlayer(const Map &map, const Trainer *player) {
+    if (this->hasVisionOf(player)) {
         if (this->isFacingNorth()) {
-            while (not this->isNextTo(&trainer)) {
+            while (not this->isNextTo(player)) {
                 this->moveNorth();
                 std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(trainer);
+                map.print(player);
             }
         }
         else if (this->isFacingEast()) {
-            while (not this->isNextTo(&trainer)) {
+            while (not this->isNextTo(player)) {
                 this->moveEast();
                 std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(trainer);
+                map.print(player);
             }
         }
         else if (this->isFacingSouth()) {
-            while (not this->isNextTo(&trainer)) {
+            while (not this->isNextTo(player)) {
                 this->moveSouth();
                 std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(trainer);
+                map.print(player);
             }
         }
         else if (this->isFacingWest()) {
-            while (not this->isNextTo(&trainer)) {
+            while (not this->isNextTo(player)) {
                 this->moveWest();
                 std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(trainer);
+                map.print(player);
             }
         }
     }

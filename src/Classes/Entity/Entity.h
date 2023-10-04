@@ -6,17 +6,19 @@
 
 class Entity {
 protected:
-    enum directions { NORTH, EAST, SOUTH, WEST };
+    enum Direction { NORTH, EAST, SOUTH, WEST };
 
     int x;                                  // x-coordinate on map
     int y;                                  // y-coordinate on map
-    int range;                              // line of sight
-    int direction;                          // numerical representation of which way the trainer is facing
+    int vision;                             // line of sight
     char model;                             // visual representation of which way the trainer is facing
+    Direction direction;                    // numerical representation of which way the trainer is facing
 
 public:
+    Entity();
     Entity(int x, int y);
-    Entity(const Entity &toCopy);
+    Entity(const Entity &toCopy) = delete;
+    Entity& operator=(const Entity &toCopy) = delete;
 
     void moveNorth();
     void moveEast();
@@ -39,8 +41,8 @@ public:
     bool isFacingSouth() const;
     bool isFacingWest() const;
 
-    void face(const Entity * entity);
+    void face(const Entity *entity);
 
-    bool isNextTo(const Entity * entity) const;
-    bool hasVisionOf(const Entity * entity) const;
+    bool isNextTo(const Entity *entity) const;
+    bool hasVisionOf(const Entity *entity) const;
 };

@@ -9,9 +9,11 @@
 class Player : public Trainer {
 private:
     static Player * instancePtr;
-    Player(int x, int y);
+    Player();
 
 public:
-    static Player* getPlayer(int x, int y);
+    static Player* getPlayer();
     static void destroyPlayer();
+
+    explicit operator bool() const override;
 };

@@ -12,7 +12,7 @@
 #include <conio.h>
 #include <windows.h>
 
-enum keys {
+enum Keys {
     ESC = 27,
     UP_ARROW __attribute__((unused)) = 72,
     LEFT_ARROW __attribute__((unused)) = 75,
@@ -105,6 +105,36 @@ inline bool isVowel(char ltr) {
     return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
+// returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
+inline bool chooseOption(int &option, int upper) {
+    retry:
+    switch (static_cast<char>(getch())) {
+        case 'w':
+            if (option - 1 >= 0) {
+                --option;
+                return false;
+            }
+            else {
+                goto retry;
+            }
+
+        case 's':
+            if (option + 1 <= upper) {
+                ++option;
+                return false;
+            }
+            else {
+                goto retry;
+            }
+
+        case Keys::ENTER:
+            return true;
+
+        default:
+            goto retry;
+    }
+}
+
 // returns a char of the user's selections
 inline char getChar(const std::vector<char> &options) {
     while (true) {
@@ -144,6 +174,7 @@ inline int generateInteger(int from, int to) {
     return dist(mt);
 }
 
+/*
 // prints out a string and sleeps in between prints
 inline void printMessage(const std::string &message) {
     for (char ltr : message) {
@@ -151,12 +182,13 @@ inline void printMessage(const std::string &message) {
         std::this_thread::sleep_for(std::chrono::milliseconds(25));
     }
 }
+ */
 
-inline void pressEnter() {
-    while (true) {
-        if (_getch() == keys::ENTER) {
-            return;
-        }
+// prints out a string and sleeps in between prints
+inline void printMessage(const std::string &message, int interval = 25) {
+    for (char ltr : message) {
+        std::cout << ltr;
+        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
     }
 }
 
@@ -166,3 +198,10 @@ inline void printMessage(char message) {
     std::this_thread::sleep_for(std::chrono::milliseconds(25));
 }
 
+inline void pressEnter() {
+    while (true) {
+        if (static_cast<char>(_getch()) == Keys::ENTER) {
+            return;
+        }
+    }
+}

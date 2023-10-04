@@ -5,11 +5,12 @@
 #pragma once
 
 #include "../Pokemon/Pokemon.h"
-#include "../Item/Item.h"
 #include "../Item/RestoreItem.h"
 #include "../Item/StatusItem.h"
 #include "../Item/Pokeball.h"
 #include "../Item/BattleItem.h"
+
+class Map;
 
 class Trainer : public Entity {
 protected:
@@ -25,6 +26,8 @@ protected:
     Item* items[Trainer::NUM_ITEM_TYPES][Trainer::MAX_ITEMS];
 
 public:
+    Trainer();
+    Trainer(int x, int y);
     Trainer(const std::vector<Pokemon*> &pokemon, int x, int y);
     Trainer(const Trainer &toCopy) = delete;
     Trainer& operator=(const Trainer &rhs) = delete;
@@ -35,6 +38,7 @@ public:
     Item& getItem(int type, int item);
 
     void addPokemon(Pokemon *toAdd);
+    void removePokemon(int index);
 
     __attribute__((unused)) void setItems(const std::vector<std::vector<Item*>> &inventory);
     void setRestoreItems(const std::vector<Item*> &inventory);
@@ -47,10 +51,10 @@ public:
 
     void swapPokemon(int first, int second);
 
-    virtual void defeat();
-
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
     virtual explicit operator bool() const;
+
+    void moveToPlayer(const Map &map, const Trainer *trainer);
 };

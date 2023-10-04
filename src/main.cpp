@@ -1,4 +1,3 @@
-#include "Classes/Map/Map.h"
 #include "Classes/Battle/Battle.h"
 #include "Classes/Game/Game.h"
 
@@ -16,16 +15,16 @@ void turn(Player *player, Map &map, int index) {
         keepMoving = false;
         canMove = false;
 
-        map[index].moveToPlayer(map, *player);
+        map[index].moveToPlayer(map, player);
         player->face(&map[index]);
 
-        map.print(*player);
+        map.print(player);
 
         printMessage("\n\nOur eyes met! You know what this means right?");
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        pressEnter();
 
         Battle(player, &map[index]);
-        map.print(*player);
+        map.print(player);
 
         keepMoving = true;
         canMove = true;
@@ -36,7 +35,7 @@ void turn(Player *player, Map &map, int index) {
         switch (generateInteger(1, 6)) {
             case 1:
                 map[index].face(&map[index]);
-                map.print(*player);
+                map.print(player);
 
                 if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
@@ -53,7 +52,7 @@ void turn(Player *player, Map &map, int index) {
                 else if (map[index].isFacingEast() or map[index].isFacingWest()) {
                     coinFlip() ? map[index].faceNorth() : map[index].faceSouth();
                 }
-                map.print(*player);
+                map.print(player);
 
                 if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
@@ -70,7 +69,7 @@ void turn(Player *player, Map &map, int index) {
 }
 
 // for me to work between my laptop and desktop
-static bool desktop = false;
+static bool desktop = true;
 
 const char *saveFilePath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
@@ -98,12 +97,12 @@ void saveData(Player *player, Map *maps[], int numMaps, int &currentMapIndex) {
     };
 
     saveFile << currentMapIndex << '\n';
-    saveFile << player->getX() << ' ' << player->getY() << ' ';
+    saveFile << player->getX() << player->getY();
     saveDirection(player);
 
     for (int i = 0; i < numMaps; ++i) {
         for (int j = 0; j < maps[i]->numNPCs(); ++i) {
-            saveFile << '\n' << i << ' ' << j << ' ' << (*maps)[i][j].canFight() << ' ';
+            saveFile << '\n' << i << j << (*maps)[i][j].partySize();
             saveDirection(&(*maps)[i][j]);
         }
     }
@@ -114,10 +113,7 @@ void saveData(Player *player, Map *maps[], int numMaps, int &currentMapIndex) {
 void loadData(Player *player, Map *maps[], int &currentMapIndex) {
     std::ifstream saveFile(saveFilePath);
 
-    auto loadDirection = [&saveFile](Entity *entity) {
-        int direction;
-        saveFile >> direction;
-
+    auto loadDirection = [](Entity *entity, int direction) {
         switch (direction) {
             case 0:
                 entity->faceNorth();
@@ -141,24 +137,27 @@ void loadData(Player *player, Map *maps[], int &currentMapIndex) {
     };
 
     if (saveFile) {
-        int currentMap;
-        int x;
-        int y;
+        std::string buffer;
 
-        saveFile >> currentMap >> x >> y;
+        std::getline(saveFile, buffer);
+        currentMapIndex = buffer[0] - '0';
 
-        currentMapIndex = currentMap;
-        player->setCoordinates(x, y);
-        loadDirection(player);
+        std::getline(saveFile, buffer);
+        player->setCoordinates(buffer[0] - '0', buffer[1] - '0');
 
-        while (not saveFile.eof()) {
-            int mapSpot;
-            int npcSpot;
-            bool canFight;
+        loadDirection(player, buffer[2] - '0');
 
-            saveFile >> mapSpot >> npcSpot >> canFight;
-            (*maps)[mapSpot][npcSpot].setBattleStatus(canFight);
-            loadDirection(&(*maps)[mapSpot][npcSpot]);
+        while (std::getline(saveFile, buffer)) {
+            const int map = buffer[0] - '0';
+            const int trainer = buffer[1] - '0';
+            const char canFight = buffer[2];
+
+            if (canFight == '0') {
+                while ((*maps)[map][trainer]) {
+                    (*maps)[map][trainer].removePokemon(0);
+                }
+            }
+            loadDirection(&(*maps)[map][trainer], buffer[3] - '0');
         }
 
         saveFile.close();
@@ -175,7 +174,7 @@ int main() {
     SetConsoleTitleA("Pokemon Game");
     ShowConsoleCursor(false);
 
-    Player *player = Player::getPlayer(1, 1);
+    Player *player = Player::getPlayer();
 
     player->addPokemon(new Greninja({ new WaterShuriken, new DarkPulse, new IceBeam, new Extrasensory }));
     player->addPokemon(new Charizard({ new Flamethrower, new AirSlash, new DragonPulse, new SolarBeam }));
@@ -203,21 +202,21 @@ int main() {
         mutex.lock();
         keepMoving = false;
 
-        (*currentMap)[index].moveToPlayer(*currentMap, *player);
+        (*currentMap)[index].moveToPlayer(*currentMap, player);
         player->face(&(*currentMap)[index]);
-        currentMap->print(*player);
+        currentMap->print(player);
 
         printMessage("\n\nOur eyes met! You know what this means right?");
-        std::cin.ignore();
+        pressEnter();
 
         Battle(player, &(*currentMap)[index]);
-        currentMap->print(*player);
+        currentMap->print(player);
 
         mutex.unlock();
     };
 
 renderMap:
-    currentMap->print(*player);
+    currentMap->print(player);
 
     keepMoving = true;
     const int numNPCs = currentMap->numNPCs();
@@ -254,53 +253,53 @@ getInput:
             case 'w':
                 if (not player->isFacingNorth()) {
                     player->faceNorth();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 else if (not currentMap->isObstructionHere(player->getX(), player->getY() - 1)) {
                     player->moveNorth();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 break;
 
             case 'a':
                 if (not player->isFacingWest()) {
                     player->faceWest();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 else if (not currentMap->isObstructionHere(player->getX() - 1, player->getY())) {
                     player->moveWest();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 break;
 
             case 's':
                 if (not player->isFacingSouth()) {
                     player->faceSouth();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 else if (not currentMap->isObstructionHere(player->getX(), player->getY() + 1)) {
                     player->moveSouth();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 break;
 
             case 'd':
                 if (not player->isFacingEast()) {
                     player->faceEast();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 else if (not currentMap->isObstructionHere(player->getX() + 1, player->getY())) {
                     player->moveEast();
-                    currentMap->print(*player);
+                    currentMap->print(player);
                 }
                 break;
 
             // interact
-            case keys::ENTER:
+            case Keys::ENTER:
                 for (int i = 0; i < numNPCs; ++i) {
                     if (player->hasVisionOf(&(*currentMap)[i]) and not (*currentMap)[i].hasVisionOf(player)) {
                         (*currentMap)[i].face(player);
-                        currentMap->print(*player);
+                        currentMap->print(player);
 
                         if ((*currentMap)[i]) {
                             engage(i);
@@ -310,7 +309,7 @@ getInput:
                 }
                 break;
 
-            case keys::ESC:
+            case Keys::ESC:
                 keepMoving = false;
                 // detach all threads of the NPCs
                 for (std::thread &thread : threads) {
