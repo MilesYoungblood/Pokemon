@@ -176,6 +176,54 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
+src/Classes/Factory/MoveFactory/MoveFactory.obj: src/Classes/Factory/MoveFactory/MoveFactory.cpp.obj
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.obj
+
+# target to build an object file
+src/Classes/Factory/MoveFactory/MoveFactory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/MoveFactory/MoveFactory.cpp.obj
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.cpp.obj
+
+src/Classes/Factory/MoveFactory/MoveFactory.i: src/Classes/Factory/MoveFactory/MoveFactory.cpp.i
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.i
+
+# target to preprocess a source file
+src/Classes/Factory/MoveFactory/MoveFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/MoveFactory/MoveFactory.cpp.i
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.cpp.i
+
+src/Classes/Factory/MoveFactory/MoveFactory.s: src/Classes/Factory/MoveFactory/MoveFactory.cpp.s
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.s
+
+# target to generate assembly for a file
+src/Classes/Factory/MoveFactory/MoveFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/MoveFactory/MoveFactory.cpp.s
+.PHONY : src/Classes/Factory/MoveFactory/MoveFactory.cpp.s
+
+src/Classes/Factory/PokemonFactory/PokemonFactory.obj: src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.obj
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.obj
+
+# target to build an object file
+src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.obj
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.obj
+
+src/Classes/Factory/PokemonFactory/PokemonFactory.i: src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.i
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.i
+
+# target to preprocess a source file
+src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.i
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.i
+
+src/Classes/Factory/PokemonFactory/PokemonFactory.s: src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.s
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.s
+
+# target to generate assembly for a file
+src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.s
+.PHONY : src/Classes/Factory/PokemonFactory/PokemonFactory.cpp.s
+
 src/Classes/Game/Game.obj: src/Classes/Game/Game.cpp.obj
 .PHONY : src/Classes/Game/Game.obj
 
@@ -503,6 +551,12 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
+	@echo ... src/Classes/Factory/MoveFactory/MoveFactory.obj
+	@echo ... src/Classes/Factory/MoveFactory/MoveFactory.i
+	@echo ... src/Classes/Factory/MoveFactory/MoveFactory.s
+	@echo ... src/Classes/Factory/PokemonFactory/PokemonFactory.obj
+	@echo ... src/Classes/Factory/PokemonFactory/PokemonFactory.i
+	@echo ... src/Classes/Factory/PokemonFactory/PokemonFactory.s
 	@echo ... src/Classes/Game/Game.obj
 	@echo ... src/Classes/Game/Game.i
 	@echo ... src/Classes/Game/Game.s

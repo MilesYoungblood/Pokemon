@@ -1,5 +1,8 @@
 #include "Classes/Battle/Battle.h"
-#include "Classes/Game/Game.h"
+#include "Classes/Map/Map.h"
+
+#include "Classes/Factory/PokemonFactory/PokemonFactory.h"
+#include "Classes/Factory/MoveFactory/MoveFactory.h"
 
 #include <mutex>
 #include <fstream>
@@ -69,7 +72,7 @@ void turn(Player *player, Map &map, int index) {
 }
 
 // for me to work between my laptop and desktop
-static bool desktop = true;
+static bool desktop = false;
 
 const char *saveFilePath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
@@ -96,9 +99,21 @@ void saveData(Player *player, Map *maps[], int numMaps, int &currentMapIndex) {
         }
     };
 
-    saveFile << currentMapIndex << '\n';
-    saveFile << player->getX() << player->getY();
+    saveFile << currentMapIndex;
+    saveFile << '\n' << player->getX() << player->getY();
     saveDirection(player);
+
+    saveFile << '\n' << player->partySize();
+
+    for (int i = 0; i < player->partySize(); ++i) {
+        saveFile << '\n' << static_cast<int>((*player)[i].getID()) << ' ';
+
+        const int numMoves = (*player)[i].numMoves();
+        saveFile << numMoves << ' ';
+        for (int j = 0; j < numMoves; ++j) {
+            saveFile << static_cast<int>((*player)[i][j].getID()) << ' ';
+        }
+    }
 
     for (int i = 0; i < numMaps; ++i) {
         for (int j = 0; j < maps[i]->numNPCs(); ++i) {
@@ -146,6 +161,24 @@ void loadData(Player *player, Map *maps[], int &currentMapIndex) {
         player->setCoordinates(buffer[0] - '0', buffer[1] - '0');
 
         loadDirection(player, buffer[2] - '0');
+
+        std::getline(saveFile, buffer);
+        const int partySize = buffer[0] - '0';
+
+        player->clearParty();
+        for (int i = 0; i < partySize; ++i) {
+            std::getline(saveFile, buffer, ' ');
+            player->addPokemon(PokemonFactory::getPokemon(PokemonID(buffer[0] - '0')));
+
+            std::getline(saveFile, buffer, ' ');
+            const int numMoves = buffer[0] - '0';
+
+            (*player)[i].clearMoves();
+            for (int j = 0; j < numMoves; ++j) {
+                std::getline(saveFile, buffer, ' ');
+                (*player)[i].addMove(MoveFactory::getMove(MoveID(std::stoi(buffer))));
+            }
+        }
 
         while (std::getline(saveFile, buffer)) {
             const int map = buffer[0] - '0';

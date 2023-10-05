@@ -9,6 +9,10 @@ struct FocusBlast : public Move {
 
     FocusBlast() : Move("Focus Blast", 5, 120, 70, Type::FIGHTING, Category::SPECIAL) {}
 
+    MoveID getID() override {
+        return MoveID::FOCUS_BLAST;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

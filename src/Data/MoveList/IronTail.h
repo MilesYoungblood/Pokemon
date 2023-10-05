@@ -9,6 +9,10 @@ struct IronTail : public Move {
 
     IronTail() : Move("Iron Tail", 15, 100, 75, Type::STEEL, Category::PHYSICAL) {}
 
+    MoveID getID() override {
+        return MoveID::IRON_TAIL;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

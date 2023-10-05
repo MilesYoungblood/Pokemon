@@ -9,6 +9,10 @@ struct Thunder : public Move {
 
     Thunder() : Move("Thunder", 10, 110, 70, Type::ELECTRIC, Category::SPECIAL) {}
 
+    MoveID getID() override {
+        return MoveID::THUNDER;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

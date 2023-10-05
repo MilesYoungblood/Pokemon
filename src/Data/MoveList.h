@@ -22,28 +22,52 @@
 //TODO add flinching
 struct DarkPulse : public Move {
     DarkPulse() : Move("Dark Pulse", 15, 80, 100, Type::DARK, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::DARK_PULSE;
+    }
 };
 
 //TODO add flinching
 struct Extrasensory : public Move {
     Extrasensory() : Move("Extrasensory", 15, 90, 100, Type::PSYCHIC, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::EXTRASENSORY;
+    }
 };
 
 //TODO add flinching
 struct AirSlash : public Move {
     AirSlash() : Move("Air Slash", 15, 75, 95, Type::FLYING, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::AIR_SLASH;
+    }
 };
 
 struct DragonPulse : public Move {
     DragonPulse() : Move("Dragon Pulse", 10, 85, 100, Type::DRAGON, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::DRAGON_PULSE;
+    }
 };
 
 //TODO solar beam
 struct SolarBeam : public Move {
     SolarBeam() : Move("Solar Beam", 10, 120, 100, Type::GRASS, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::SOLAR_BEAM;
+    }
 };
 
 //TODO priority
 struct QuickAttack : public Move {
     QuickAttack() : Move("Quick Attack", 30, 40, 100, Type::NORMAL, Category::PHYSICAL) {}
+
+    MoveID getID() override {
+        return MoveID::QUICK_ATTACK;
+    }
 };

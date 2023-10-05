@@ -5,8 +5,13 @@
 #pragma once
 
 struct WaterShuriken : public Move {
-    WaterShuriken() : Move("Water Shuriken", 20, 15, 100, Type::WATER, Category::SPECIAL) {}
     int numHits = 0; // number of hits landed (from 2 to 5)
+
+    WaterShuriken() : Move("Water Shuriken", 20, 15, 100, Type::WATER, Category::SPECIAL) {}
+
+    MoveID getID() override {
+        return MoveID::WATER_SHURIKEN;
+    }
 
     int getDamage() override {
         for (int i = 0; i < generateInteger(2, 5); ++i) { // determines hits and misses

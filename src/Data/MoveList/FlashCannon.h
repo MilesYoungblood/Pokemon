@@ -9,6 +9,10 @@ struct FlashCannon : public Move {
 
     FlashCannon() : Move("Flash Cannon", 10, 80, 100, Type::STEEL, Category::SPECIAL) {}
 
+    MoveID getID() override {
+        return MoveID::FLASH_CANNON;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

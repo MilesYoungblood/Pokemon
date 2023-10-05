@@ -14,7 +14,7 @@ Trainer::Trainer(int x, int y) : Entity(x, y), party(), items(), numItems() {
     this->numPokemon = 0;
 }
 
-Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Trainer(x, y) {
+Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) : Trainer(x, y) {
     for (const auto &p : pokemon) {
         if (this->numPokemon == Trainer::MAX_POKEMON) {
             break;
@@ -26,6 +26,10 @@ Trainer::Trainer(const std::vector<Pokemon*> &pokemon, int x, int y) : Trainer(x
     for (int i = this->numPokemon; i < Trainer::MAX_POKEMON; ++i) {
         this->party[i] = nullptr;
     }
+}
+
+Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision) : Trainer(pokemon, x, y) {
+    this->vision = vision;
 }
 
 Trainer::~Trainer() {
@@ -83,14 +87,6 @@ void Trainer::clearParty() {
     this->numPokemon = 0;
 }
 
-__attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
-    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-        for (int j = 0; j < Trainer::MAX_ITEMS; ++j) {
-            this->items[i][j] = inventory[i][j];
-            ++this->numItems[i];
-        }
-    }
-}
 void Trainer::setRestoreItems(const std::vector<Item *> &inventory) {
     for (int i = 0; i < inventory.size(); ++i) {
         if (this->numItems[0] == Trainer::MAX_ITEMS) {

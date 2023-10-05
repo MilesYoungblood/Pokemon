@@ -4,7 +4,8 @@
 
 #include "Move.h"
 
-Move::Move(const char *name, int pp, int power, int accuracy, Type type, Category category) : name(name) {
+Move::Move(const char *name, int pp, int power, int accuracy, Type type, Category category) {
+    this->name = name;
     this->maxPp = pp;
     this->pp = pp;
     this->power = power;

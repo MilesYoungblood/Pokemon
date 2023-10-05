@@ -9,6 +9,10 @@ struct IceBeam : public Move {
 
     IceBeam() : Move("Ice Beam", 10, 90, 100, Type::ICE, Category::SPECIAL) {}
 
+    MoveID getID() override {
+        return MoveID::ICE_BEAM;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

@@ -9,6 +9,10 @@ struct VoltTackle : public Move {
 
     VoltTackle() : Move("Volt Tackle", 15, 120, 100, Type::ELECTRIC, Category::PHYSICAL) {}
 
+    MoveID getID() override {
+        return MoveID::VOLT_TACKLE;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

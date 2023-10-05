@@ -4,7 +4,8 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves) : Entity(0, 0), name(name), moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) : moveSet(), types() {
+    this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
     this->attack = 1;
@@ -26,11 +27,15 @@ Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, in
 
     this->level = level;
     this->moveCounter = 0;
+}
 
+Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves)
+    : Pokemon(name, type, level, hp, bAttack, bSpAttack, bDefense, bSpDefense, bSpeed) {
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move *> &moves) : Entity(0, 0), name(name), moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed) : moveSet(), types() {
+    this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
     this->attack = 1;
@@ -52,7 +57,10 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
 
     this->level = level;
     this->moveCounter = 0;
+}
 
+Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move *> &moves)
+    : Pokemon(name, type1, type2, level, hp, bAttack, bSpAttack, bDefense, bSpDefense, bSpeed) {
     this->setMoves(moves);
 }
 
@@ -65,6 +73,17 @@ Pokemon::~Pokemon() {
 }
 
 int Pokemon::numMoves() const { return this->moveCounter; }
+
+void Pokemon::addMove(Move *move) {
+    this->moveSet[this->moveCounter] = move;
+    ++this->moveCounter;
+}
+
+void Pokemon::clearMoves() {
+    for (int i = 0; i < this->moveCounter; ++i) {
+        delete this->moveSet[i];
+    }
+}
 
 void Pokemon::setHP(int newHP) {
     this->currentHP = newHP;
@@ -113,23 +132,18 @@ const char * Pokemon::getStatusAsString() {
     switch (this->status) {
         case Status::PARALYSIS:
             return "paralysis";
-            break;
 
         case Status::BURN:
             return "burn";
-            break;
 
         case Status::FREEZE:
             return "freezing";
-            break;
 
         case Status::POISON:
             return "poisoning";
-            break;
 
         case Status::SLEEP:
             return "slumber";
-            break;
 
         default:
             throw std::runtime_error("Unexpected error: function getStatusAsString");

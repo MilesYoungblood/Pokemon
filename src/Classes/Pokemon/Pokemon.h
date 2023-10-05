@@ -9,6 +9,10 @@
 
 enum class Status { NONE, PARALYSIS, BURN, FREEZE, POISON, SLEEP };
 
+enum PokemonID {
+    CHARIZARD, PIKACHU, LUCARIO, HYDREIGON, GRENINJA
+};
+
 class Pokemon : public Entity {
 private:
     const static int MAX_NUM_MOVES = 4;
@@ -39,13 +43,20 @@ private:
     void setMoves(const std::initializer_list<Move*> &moves);
 
 public:
+    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
+    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
     Pokemon(const Pokemon &pokemonToCopy) = delete;
     Pokemon& operator=(const Pokemon &rhs) = delete;
     ~Pokemon();
 
+    virtual PokemonID getID() = 0;
+
     int numMoves() const;
+
+    void addMove(Move *move);
+    void clearMoves();
 
     void setHP(int newHP);
     void setAttack(int newAttack);

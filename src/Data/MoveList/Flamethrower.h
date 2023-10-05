@@ -9,6 +9,10 @@ struct Flamethrower : public Move {
 
     Flamethrower() : Move("Flamethrower", 15, 90, 100, Type::FIRE, Category::SPECIAL) {}
 
+    MoveID getID() override {
+        return MoveID::FLAMETHROWER;
+    }
+
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
         // damage will be negative if the attack misses
         if (damage > 0) {

@@ -19,7 +19,7 @@ protected:
     const static int NUM_ITEM_TYPES = 4;    // number of types of items
 
     int numFainted;                         // number of fainted Pokémon
-    int numPokemon;                         // current number of Pokémon in party
+    int numPokemon;                         // current number of Pokémon in the party
     int numItems[Trainer::NUM_ITEM_TYPES];  // number of each type of item
 
     Pokemon* party[Trainer::MAX_POKEMON];
@@ -28,7 +28,8 @@ protected:
 public:
     Trainer();
     Trainer(int x, int y);
-    Trainer(const std::vector<Pokemon*> &pokemon, int x, int y);
+    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
+    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision);
     Trainer(const Trainer &toCopy) = delete;
     Trainer& operator=(const Trainer &rhs) = delete;
     ~Trainer();
@@ -38,11 +39,9 @@ public:
     Item& getItem(int type, int item) const;
 
     void addPokemon(Pokemon *toAdd);
-
     __attribute__((unused)) void removePokemon(int index);
     void clearParty();
 
-    __attribute__((unused)) void setItems(const std::vector<std::vector<Item*>> &inventory);
     void setRestoreItems(const std::vector<Item*> &inventory);
     void setStatusItems(const std::vector<Item*> &inventory);
     void setPokeBalls(const std::vector<Item*> &inventory);
@@ -57,7 +56,7 @@ public:
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
-    virtual explicit operator bool() const;
+    explicit operator bool() const;
 
     void moveToPlayer(const Map &map, const Trainer *trainer);
 };

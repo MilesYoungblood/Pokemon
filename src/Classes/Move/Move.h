@@ -12,6 +12,25 @@
 
 enum class Category { PHYSICAL, SPECIAL, STATUS };
 
+enum class MoveID {
+    NONE,
+    AIR_SLASH,
+    AURA_SPHERE,
+    DARK_PULSE,
+    DRAGON_PULSE,
+    EXTRASENSORY,
+    FLAMETHROWER,
+    FLASH_CANNON,
+    FOCUS_BLAST,
+    ICE_BEAM,
+    IRON_TAIL,
+    QUICK_ATTACK,
+    SOLAR_BEAM,
+    THUNDER,
+    VOLT_TACKLE,
+    WATER_SHURIKEN
+};
+
 enum class Type {
     NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
     ICE, FIGHTING, POISON, GROUND, FLYING,
@@ -37,6 +56,9 @@ public:
     Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
     Move(const Move &moveToCopy) = delete;
     Move& operator=(const Move &rhs) = delete;
+    virtual ~Move() = default;
+
+    virtual MoveID getID() = 0;
 
     virtual int getDamage();
 

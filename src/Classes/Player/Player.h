@@ -14,6 +14,4 @@ private:
 public:
     static Player* getPlayer();
     static void destroyPlayer();
-
-    explicit operator bool() const override;
 };
