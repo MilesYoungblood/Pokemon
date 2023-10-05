@@ -44,11 +44,11 @@ int Trainer::partySize() const {
     return this->numPokemon;
 }
 
-int Trainer::getNumItems(int type) {
+int Trainer::getNumItems(int type) const {
     return this->numItems[type];
 }
 
-Item& Trainer::getItem(int type, int item) {
+Item& Trainer::getItem(int type, int item) const {
     return *this->items[type][item];
 }
 
@@ -61,14 +61,14 @@ void Trainer::addPokemon(Pokemon *toAdd) {
     ++this->numPokemon;
 }
 
-void Trainer::removePokemon(int index) {
+__attribute__((unused)) void Trainer::removePokemon(int index) {
     // decrement the faint count if the Pokémon we're removing is fainted
     if (this->party[index]->isFainted()) {
         --this->numFainted;
     }
-
     delete this->party[index];
 
+    // shifts over the Pokémon that were after it
     for (int i = index; i < this->numPokemon; ++i) {
         this->party[i] = party[i + 1];
     }
@@ -80,6 +80,7 @@ void Trainer::clearParty() {
     for (int i = 0; i < this->numPokemon; ++i) {
         delete this->party[i];
     }
+    this->numPokemon = 0;
 }
 
 __attribute__((unused)) void Trainer::setItems(const std::vector<std::vector<Item*>> &inventory) {
@@ -135,7 +136,7 @@ void Trainer::incFaintCount() {
     ++this->numFainted;
 }
 
-void Trainer::decFaintCount() {
+__attribute__((unused)) void Trainer::decFaintCount() {
     --this->numFainted;
 }
 
@@ -148,17 +149,15 @@ void Trainer::swapPokemon(int first, int second) {
 Pokemon& Trainer::operator[](int spot)  {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
-
     return *this->party[spot];
 }
 
 const Pokemon& Trainer::operator[](int spot) const {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
-
     return *this->party[spot];
 }
 
 Trainer::operator bool() const {
-    return this->numPokemon > 0;
+    return this->numFainted < this->numPokemon;
 }

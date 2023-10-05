@@ -6,27 +6,36 @@
 
 #include <iostream>
 
+#include "../../Classes/Pokemon/Pokemon.h"
+
 enum class RestoreType { NONE, HP, PP };
-enum class Status { NONE, PARALYSIS, BURN, FREEZE, POISON, SLEEP };
 enum class Stat { NONE, ATTACK, SP_ATTACK, DEFENSE, SP_DEFENSE, SPEED, ACCURACY };
 
 class Item {
-private:
+protected:
+    const char *name;
     int quantity;
-    std::string name;
 
 public:
     Item();
-    Item(const Item &copy);
-    Item(int n, const char * name);
+    Item(const char *name, int n);
+    virtual ~Item() = default;
 
-    void setQuantity(int newQuantity);
+    __attribute__((unused)) void setQuantity(int newQuantity);
     int getQuantity() const;
+
+    void use();
+    virtual void useMessage();
 
     virtual int getAmount() const;
     virtual RestoreType getRestoreType() const;
     virtual Status getStatus() const;
     virtual Stat getStat() const;
+
+    virtual void restore(Pokemon &pokemon) = 0;
+    virtual void restore(Move &move) = 0;
+    virtual void restoreMessage(Pokemon &pokemon) = 0;
+    virtual void restoreMessage(Move &move) = 0;
 
     std::string getName() const;
 

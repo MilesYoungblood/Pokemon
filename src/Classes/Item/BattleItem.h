@@ -11,8 +11,12 @@ private:
     Stat stat;
 
 public:
-    BattleItem();
-    BattleItem(int n, const char * name, Stat stat);
+    BattleItem(const char *name, int quantity, Stat stat);
 
     Stat getStat() const override;
+
+    void restore(Pokemon &pokemon) override;
+    void restore(Move &move) override;
+    void restoreMessage(Pokemon &pokemon) override;
+    void restoreMessage(Move &move) override;
 };

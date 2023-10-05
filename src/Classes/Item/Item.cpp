@@ -5,22 +5,32 @@
 #include "Item.h"
 
 Item::Item() {
+    this->name = "N/A";
     this->quantity = 0;
-    this->name = "No name";
 }
 
-Item::Item(const Item& copy) {
-    this->quantity = copy.quantity;
-    this->name = copy.name;
-}
-
-Item::Item(int n, const char * name) {
-    this->quantity = n;
+Item::Item(const char *name, int n) {
     this->name = name;
+    this->quantity = n;
 }
 
-void Item::setQuantity(int n) { this->quantity = n; }
+__attribute__((unused)) void Item::setQuantity(int n) { this->quantity = n; }
 int Item::getQuantity() const { return this->quantity; }
+
+void Item::use() {
+    if (this->quantity > 0) {
+        --this->quantity;
+    }
+}
+
+void Item::useMessage() {
+    printMessage("You used a");
+
+    if (isVowel(this->name[0]))
+        printMessage('n');
+
+    printMessage(' ' + this->getName() + "! ");
+}
 
 int Item::getAmount() const {
     return 0;

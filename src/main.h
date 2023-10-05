@@ -135,17 +135,6 @@ inline bool chooseOption(int &option, int upper) {
     }
 }
 
-// returns a char of the user's selections
-inline char getChar(const std::vector<char> &options) {
-    while (true) {
-        const char c = static_cast<char>(_getch());
-        for (const char ltr : options) {
-            if (c == ltr)
-                return c;
-        }
-    }
-}
-
 // returns an integer if in range of the user's choice
 inline int getInt(int lower, int upper) {
     while (true) {
@@ -174,21 +163,36 @@ inline int generateInteger(int from, int to) {
     return dist(mt);
 }
 
-/*
-// prints out a string and sleeps in between prints
-inline void printMessage(const std::string &message) {
-    for (char ltr : message) {
-        std::cout << ltr;
-        std::this_thread::sleep_for(std::chrono::milliseconds(25));
+// prints out a c-string and sleeps in between prints
+inline void printMessage(const char *message, int interval = 25) {
+    bool sleep = true;
+    size_t len = strlen(message);
+    for (size_t i = 0; i < len; ++i) {
+        if (sleep and _kbhit()) {
+            if (static_cast<char>(_getch()) == Keys::ENTER) {
+                sleep = false;
+            }
+        }
+        std::cout << message[i];
+        if (sleep) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+        }
     }
 }
- */
 
 // prints out a string and sleeps in between prints
 inline void printMessage(const std::string &message, int interval = 25) {
+    bool sleep = true;
     for (char ltr : message) {
+        if (sleep and _kbhit()) {
+            if (static_cast<char>(_getch()) == Keys::ENTER) {
+                sleep = false;
+            }
+        }
         std::cout << ltr;
-        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+        if (sleep) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
+        }
     }
 }
 

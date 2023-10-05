@@ -7,17 +7,17 @@
 #include "../../Classes/Item/RestoreItem.h"
 
 struct Ether : public RestoreItem {
-    explicit Ether(int n) : RestoreItem(n, 5, "Ether", RestoreType::PP) {}
+    explicit Ether(int n) : RestoreItem("Ether", n, 5, RestoreType::PP) {}
 };
 
 struct Potion : public RestoreItem {
-    explicit Potion(int n) : RestoreItem(n, 20, "Potion", RestoreType::HP) {};
+    explicit Potion(int n) : RestoreItem("Potion", n, 20, RestoreType::HP) {};
 };
 
 struct SuperPotion : public RestoreItem {
-    explicit SuperPotion(int n) : RestoreItem(n, 60, "Super Potion", RestoreType::HP) {}
+    explicit SuperPotion(int n) : RestoreItem("Super Potion", n, 60, RestoreType::HP) {}
 };
 
 struct HyperPotion : public RestoreItem {
-    explicit HyperPotion(int n) : RestoreItem(n, 120, "Hyper Potion", RestoreType::HP) {}
+    explicit HyperPotion(int n) : RestoreItem("Hyper Potion", n, 120, RestoreType::HP) {}
 };

@@ -7,9 +7,9 @@
 #include "../../Classes/Item/Pokeball.h"
 
 struct GreatBall : public PokeBall {
-    explicit GreatBall(int n) : PokeBall(n, 1.5, "Great Ball") {}
+    explicit GreatBall(int n) : PokeBall("Great Ball", n, 1.5) {}
 };
 
 struct UltraBall : public PokeBall {
-    explicit UltraBall(int n) : PokeBall(n, 2.0, "Ultra Ball") {}
+    explicit UltraBall(int n) : PokeBall("Ultra Ball", n, 2.0) {}
 };

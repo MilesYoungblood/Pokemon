@@ -11,9 +11,12 @@ private:
     Status status;
 
 public:
-    StatusItem();
-    StatusItem(const StatusItem &copy);
-    StatusItem(int n, const char * name, Status status);
+    StatusItem(const char *name, int quantity, Status status);
 
     Status getStatus() const override;
+
+    void restore(Pokemon &pokemon) override;
+    void restore(Move &move) override;
+    void restoreMessage(Pokemon &pokemon) override;
+    void restoreMessage(Move &move) override;
 };

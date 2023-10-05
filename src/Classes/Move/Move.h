@@ -8,6 +8,8 @@
 #include <random>
 #include <thread>
 
+#include "../../main.h"
+
 enum class Category { PHYSICAL, SPECIAL, STATUS };
 
 enum class Type {
@@ -21,54 +23,18 @@ class Pokemon;
 
 class Move {
 protected:
+    const char *name;
+
     int pp;
     int maxPp;
     int power;
     int accuracy;
 
-    const char *name;
     Type type;
     Category category;
 
-    // returns a random integer from a range
-    static int generateInteger(int from, int to) {
-        std::random_device rd;
-        std::mt19937 mt(rd());
-        std::uniform_int_distribution<int> dist(from, to);
-
-        return dist(mt);
-    }
-
-    // prints out a string and sleeps in between prints
-    static void printMessage(const std::string &message) {
-        for (char ltr : message) {
-            std::cout << ltr;
-            std::this_thread::sleep_for(std::chrono::milliseconds(25));
-        }
-    }
-
-    // prints out a string and sleeps in between prints
-    static void printMessage(const std::string &message, int interval) {
-        for (char ltr : message) {
-            std::cout << ltr;
-            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-        }
-    }
-
-    // prints out a character then sleeps
-    static void printMessage(char message) {
-        std::cout << message;
-        std::this_thread::sleep_for(std::chrono::milliseconds(25));
-    }
-
-    // prints out a character then sleeps
-    static void printMessage(char message, int interval) {
-        std::cout << message;
-        std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-    }
-
 public:
-    Move(const char *name, Type type, Category category, int pp, int power, int accuracy);
+    Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
     Move(const Move &moveToCopy) = delete;
     Move& operator=(const Move &rhs) = delete;
 

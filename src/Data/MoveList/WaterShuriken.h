@@ -5,12 +5,12 @@
 #pragma once
 
 struct WaterShuriken : public Move {
-    WaterShuriken() : Move("Water Shuriken", Type::WATER, Category::SPECIAL, 20, 15, 100) {}
+    WaterShuriken() : Move("Water Shuriken", 20, 15, 100, Type::WATER, Category::SPECIAL) {}
     int numHits = 0; // number of hits landed (from 2 to 5)
 
     int getDamage() override {
-        for (int i = 0; i < Move::generateInteger(2, 5); ++i) { // determines hits and misses
-            if (Move::generateInteger(1, 100) <= this->accuracy) {
+        for (int i = 0; i < generateInteger(2, 5); ++i) { // determines hits and misses
+            if (generateInteger(1, 100) <= this->accuracy) {
                 ++this->numHits;
             }
         }
@@ -19,34 +19,34 @@ struct WaterShuriken : public Move {
     }
 
     void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
-        Move::printMessage(attackingPokemon.getName() + " used Water Shuriken! ");
+        printMessage(attackingPokemon.getName() + " used Water Shuriken! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
         if (damage > 0) {
-            Move::printMessage("Water Shuriken did " + std::to_string(damage) + " damage! ");
+            printMessage("Water Shuriken did " + std::to_string(damage) + " damage! ");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             if (typeEff >= 2.0) {
-                Move::printMessage("It's super effective! ");
+                printMessage("It's super effective! ");
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
             else if (typeEff <= 0.5) {
-                Move::printMessage("It's not very effective... ");
+                printMessage("It's not very effective... ");
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
 
-            Move::printMessage("It hit " + std::to_string(this->numHits) + " times! ");
+            printMessage("It hit " + std::to_string(this->numHits) + " times! ");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             if (criticalHit) {
-                Move::printMessage('x' + std::to_string(this->numHits) + " critical hits!");
+                printMessage('x' + std::to_string(this->numHits) + " critical hits!");
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }
         else {
-            Move::printMessage(defendingPokemon.getName() + " avoided the attack!");
+            printMessage(defendingPokemon.getName() + " avoided the attack!");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
 
-        Move::printMessage('\n', 0);
+        printMessage('\n');
         this->numHits = 0;
     }
 };

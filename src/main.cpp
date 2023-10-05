@@ -69,7 +69,7 @@ void turn(Player *player, Map &map, int index) {
 }
 
 // for me to work between my laptop and desktop
-static bool desktop = false;
+static bool desktop = true;
 
 const char *saveFilePath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
@@ -152,9 +152,7 @@ void loadData(Player *player, Map *maps[], int &currentMapIndex) {
             const int trainer = buffer[1] - '0';
 
             if (buffer[2] == '0') {
-                while ((*maps)[map][trainer]) {
-                    (*maps)[map][trainer].removePokemon(0);
-                }
+                (*maps)[map][trainer].clearParty();
             }
             loadDirection(&(*maps)[map][trainer], buffer[3] - '0');
         }

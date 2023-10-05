@@ -34,11 +34,12 @@ public:
     ~Trainer();
 
     int partySize() const;
-    int getNumItems(int type);
-    Item& getItem(int type, int item);
+    int getNumItems(int type) const;
+    Item& getItem(int type, int item) const;
 
     void addPokemon(Pokemon *toAdd);
-    void removePokemon(int index);
+
+    __attribute__((unused)) void removePokemon(int index);
     void clearParty();
 
     __attribute__((unused)) void setItems(const std::vector<std::vector<Item*>> &inventory);
@@ -48,7 +49,8 @@ public:
     void setBattleItems(const std::vector<Item*> &inventory);
 
     void incFaintCount();
-    __attribute__((unused)) void decFaintCount();
+
+    __attribute__((unused)) __attribute__((unused)) void decFaintCount();
 
     void swapPokemon(int first, int second);
 

@@ -4,7 +4,7 @@
 
 #include "Move.h"
 
-Move::Move(const char *name, Type type, Category category, int pp, int power, int accuracy) : name(name) {
+Move::Move(const char *name, int pp, int power, int accuracy, Type type, Category category) : name(name) {
     this->maxPp = pp;
     this->pp = pp;
     this->power = power;
@@ -19,6 +19,15 @@ int Move::getDamage() {
 
 void Move::setPP(int newPP) {
     this->pp = newPP;
+
+    // PP cannot be set lower than 0
+    if (this->pp < 0) {
+        this->pp = 0;
+    }
+    // PP cannot be set higher than max PP
+    else if (this->pp > this->maxPp) {
+        this->pp = this->maxPp;
+    }
 }
 int Move::getPP() const {
     return this->pp;

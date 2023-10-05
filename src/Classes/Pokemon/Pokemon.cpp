@@ -5,8 +5,8 @@
 #include "Pokemon.h"
 
 Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves) : Entity(0, 0), name(name), moveSet(), types() {
-    this->maxHp = hp;
-    this->currentHp = hp;
+    this->maxHP = hp;
+    this->currentHP = hp;
     this->attack = 1;
     this->spAttack = 1;
     this->defense = 1;
@@ -20,7 +20,6 @@ Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, in
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
 
-    //this->name = name;
     this->types[0] = type;
     this->types[1] = Type::NONE;
     this->status = Status::NONE;
@@ -32,8 +31,8 @@ Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, in
 }
 
 Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move *> &moves) : Entity(0, 0), name(name), moveSet(), types() {
-    this->maxHp = hp;
-    this->currentHp = hp;
+    this->maxHP = hp;
+    this->currentHP = hp;
     this->attack = 1;
     this->spAttack = 1;
     this->defense = 1;
@@ -47,7 +46,6 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
 
-    //this->name = name;
     this->types[0] = type1;
     this->types[1] = type2;
     this->status = Status::NONE;
@@ -68,12 +66,16 @@ Pokemon::~Pokemon() {
 
 int Pokemon::numMoves() const { return this->moveCounter; }
 
-void Pokemon::setHP(int newHp) {
-    this->currentHp = newHp;
+void Pokemon::setHP(int newHP) {
+    this->currentHP = newHP;
 
     // HP cannot be set lower than 0
-    if (this->currentHp < 0) {
-        this->currentHp = 0;
+    if (this->currentHP < 0) {
+        this->currentHP = 0;
+    }
+    // HP cannot be set higher than max HP
+    else if (this->currentHP > this->maxHP) {
+        this->currentHP = this->maxHP;
     }
 }
 void Pokemon::setAttack(int newAttack) { this->attack = newAttack; }
@@ -83,8 +85,8 @@ void Pokemon::setSpDefense(int newSpDefense) { this->spDefense = newSpDefense; }
 void Pokemon::setSpeed(int newSpeed) { this->speed = newSpeed; }
 void Pokemon::setAccuracy(int newAccuracy) { this->accuracy = newAccuracy; }
 
-int Pokemon::getMaxHp() const { return this->maxHp; }
-int Pokemon::getHP() const { return this->currentHp; }
+int Pokemon::getMaxHp() const { return this->maxHP; }
+int Pokemon::getHP() const { return this->currentHP; }
 int Pokemon::getAttack() const { return this->attack; }
 int Pokemon::getSpAttack() const { return this->spAttack; }
 int Pokemon::getDefense() const { return this->defense; }
@@ -98,6 +100,8 @@ int Pokemon::getBaseDefense() const { return this->baseDefense; }
 int Pokemon::getBaseSpDefense() const { return this->baseSpDefense; }
 int Pokemon::getBaseSpeed() const { return this->baseSpeed; }
 
+void Pokemon::restoreHP(int amount) { this->currentHP += amount; }
+
 std::string Pokemon::getName() const { return this->name; }
 
 Type Pokemon::getType(bool type_1) const { return type_1 ? this->types[0] : this->types[1]; }
@@ -105,8 +109,34 @@ Type Pokemon::getType(bool type_1) const { return type_1 ? this->types[0] : this
 void Pokemon::setStatus(Status newStatus) { this->status = newStatus; }
 Status Pokemon::getStatus() const { return this->status; }
 
+const char * Pokemon::getStatusAsString() {
+    switch (this->status) {
+        case Status::PARALYSIS:
+            return "paralysis";
+            break;
+
+        case Status::BURN:
+            return "burn";
+            break;
+
+        case Status::FREEZE:
+            return "freezing";
+            break;
+
+        case Status::POISON:
+            return "poisoning";
+            break;
+
+        case Status::SLEEP:
+            return "slumber";
+            break;
+
+        default:
+            throw std::runtime_error("Unexpected error: function getStatusAsString");
+    }
+}
+
 void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
-    this->moveCounter = 0;
     for (Move *move : moves) {
         if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
             break;
@@ -120,14 +150,31 @@ void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
 
 int Pokemon::getLevel() const { return this->level; }
 
-bool Pokemon::isFainted() const { return this->currentHp <= 0; }
-bool Pokemon::isFullHP() const { return this->currentHp == this->maxHp; }
+bool Pokemon::isFainted() const { return this->currentHP == 0; }
+bool Pokemon::isFullHP() const { return this->currentHP == this->maxHP; }
 
 bool Pokemon::isFasterThan(const Pokemon &pokemon) const { return this->baseSpeed > pokemon.baseSpeed; }
 bool Pokemon::isAfflicted() const { return this->status != Status::NONE; }
 
-Move& Pokemon::operator[](int spot) { return *this->moveSet[spot]; }
-const Move& Pokemon::operator[](int spot) const { return *this->moveSet[spot]; }
+void Pokemon::hpEmptyMessage() const {
+    printMessage(this->getName() + "'s HP is empty!\n");
+}
+void Pokemon::hpFullMessage() const {
+    printMessage(this->getName() + "'s HP is full!\n");
+}
+
+Move& Pokemon::operator[](int index) {
+    if (3 < index or index < 0) {
+        throw std::runtime_error("Index out of bounds");
+    }
+    return *this->moveSet[index];
+}
+const Move& Pokemon::operator[](int index) const {
+    if (3 < index or index < 0) {
+        throw std::runtime_error("Index out of bounds");
+    }
+    return *this->moveSet[index];
+}
 
 std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
     out << pokemon.getName();

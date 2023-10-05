@@ -5,14 +5,13 @@
 #pragma once
 
 #include "../../Classes/Player/Player.h"
-#include "../../main.h"
 #include "../../Functions/ItemFunctions.h"
 #include "../../Functions/TypeCalculations/TypeChart.h"
 
 class Battle {
 private:
-    static Player * user;
-    static Trainer * opponent;
+    static Player *player;
+    static Trainer *opponent;
     static size_t turn;
 
     //static void wildPokemonMessage(const Pokemon &pokemon);
@@ -25,13 +24,12 @@ private:
     static void displayChoices(int arrow, bool &print);
 
     static void displayPokemon(int arrow, bool &print);
-    static void displayPokemon(const Trainer *t);
 
     static void displayHPBar(bool displayPokemon);
 
     static void faintMessage(const Pokemon &pokemon);
 
-    static void forcedSwitchPrompt();
+    static void forcedSwitchPrompt(int arrow, bool &print);
 
     static bool run();
     static void runMessage(bool runStatus);
@@ -42,9 +40,6 @@ private:
     static void switchOutMessage(const Trainer *t, int pokemonSwitched);
 
     static void inBattleMessage();
-
-    static void hpEmptyMessage(const Pokemon &pokemon);
-    static void hpFullMessage(const Pokemon &pokemon);
 
     static void winMessage();
     static void loseMessage();

@@ -9,10 +9,17 @@
 class PokeBall : public Item {
 protected:
     double catchRate;
-    PokeBall(int n, double catchRate, const char * name);
+    PokeBall(const char *name, int quantity, double catchRate);
 
 public:
     explicit PokeBall(int n);
 
-    double getCatchRate() const;
+    void useMessage() override;
+
+    void restore(Pokemon &pokemon) override;
+    void restore(Move &move) override;
+    void restoreMessage(Pokemon &pokemon) override;
+    void restoreMessage(Move &move) override;
+
+    __attribute__((unused)) double getCatchRate() const;
 };
