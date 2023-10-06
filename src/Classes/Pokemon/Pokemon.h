@@ -49,14 +49,13 @@ public:
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
     Pokemon(const Pokemon &pokemonToCopy) = delete;
     Pokemon& operator=(const Pokemon &rhs) = delete;
-    ~Pokemon();
+    virtual ~Pokemon();
 
     virtual PokemonID getID() = 0;
 
     int numMoves() const;
 
     void addMove(Move *move);
-    void clearMoves();
 
     void setHP(int newHP);
     void setAttack(int newAttack);

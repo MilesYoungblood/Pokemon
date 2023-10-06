@@ -130,6 +130,10 @@ inline bool chooseOption(int &option, int upper) {
         case Keys::ENTER:
             return true;
 
+        case Keys::ESC:
+            option = upper;
+            return true;
+
         default:
             goto retry;
     }

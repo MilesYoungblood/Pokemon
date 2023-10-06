@@ -30,6 +30,9 @@ public:
     void faceSouth();
     void faceWest();
 
+    void setDirection(Direction newDirection);
+    Entity::Direction getDirection();
+
     void setCoordinates(int newX, int newY);
     int getX() const;
     int getY() const;

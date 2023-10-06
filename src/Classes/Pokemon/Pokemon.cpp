@@ -75,14 +75,11 @@ Pokemon::~Pokemon() {
 int Pokemon::numMoves() const { return this->moveCounter; }
 
 void Pokemon::addMove(Move *move) {
+    if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
+        return;
+
     this->moveSet[this->moveCounter] = move;
     ++this->moveCounter;
-}
-
-void Pokemon::clearMoves() {
-    for (int i = 0; i < this->moveCounter; ++i) {
-        delete this->moveSet[i];
-    }
 }
 
 void Pokemon::setHP(int newHP) {

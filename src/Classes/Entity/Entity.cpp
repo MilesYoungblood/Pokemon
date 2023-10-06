@@ -56,6 +56,14 @@ void Entity::faceWest() {
     this->model = 'W';
 }
 
+void Entity::setDirection(Entity::Direction newDirection) {
+    this->direction = newDirection;
+}
+
+Entity::Direction Entity::getDirection() {
+    return this->direction;
+}
+
 void Entity::setCoordinates(int newX, int newY) {
     this->x = newX;
     this->y = newY;

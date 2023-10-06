@@ -621,9 +621,9 @@ int Battle::chooseMove(bool &skip) {
         attackErrorMessage();
         goto chooseMove;
     }
-    else {
-        return move;
-    }
+
+    return move;
+
 }
 
 void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {

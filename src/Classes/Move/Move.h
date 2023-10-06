@@ -12,8 +12,7 @@
 
 enum class Category { PHYSICAL, SPECIAL, STATUS };
 
-enum class MoveID {
-    NONE,
+enum MoveID {
     AIR_SLASH,
     AURA_SPHERE,
     DARK_PULSE,

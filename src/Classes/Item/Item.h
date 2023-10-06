@@ -8,6 +8,10 @@
 
 #include "../../Classes/Pokemon/Pokemon.h"
 
+enum ItemID {
+
+};
+
 enum class RestoreType { NONE, HP, PP };
 enum class Stat { NONE, ATTACK, SP_ATTACK, DEFENSE, SP_DEFENSE, SPEED, ACCURACY };
 
