@@ -13,13 +13,16 @@ struct VoltTackle : public Move {
         return MoveID::VOLT_TACKLE;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
+    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
-            defendingPokemon.setHP(defendingPokemon.getHP() - damage);
-            attackingPokemon.setHP(attackingPokemon.getHP() - static_cast<int>(lround(damage * 0.3)));
+            defendingPokemon.takeDamage(damage);
+            attackingPokemon.takeDamage(static_cast<int>(lround(damage / 3.0)));
 
             //FIXME faint Pokemon if necessary
+            if (attackingPokemon.isFainted()) {
+
+            }
 
             this->paralysisState = generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
             if (this->paralysisState)
@@ -29,7 +32,7 @@ struct VoltTackle : public Move {
         --this->pp;
     }
 
-    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Volt Tackle! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
@@ -61,7 +64,7 @@ struct VoltTackle : public Move {
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
 
-                printMessage(attackingPokemon.getName() + " took " + std::to_string(static_cast<int>(lround(damage * 0.3))) + " damage!");
+                printMessage(attackingPokemon.getName() + " took " + std::to_string(static_cast<int>(lround(damage / 3.0))) + " damage!");
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }

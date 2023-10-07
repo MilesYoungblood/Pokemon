@@ -7,10 +7,15 @@
 #include "../Entity/Entity.h"
 #include "../Move/Move.h"
 
-enum class Status { NONE, PARALYSIS, BURN, FREEZE, POISON, SLEEP };
+enum class Status { NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP };
 
 enum PokemonID {
-    CHARIZARD, PIKACHU, LUCARIO, HYDREIGON, GRENINJA
+    VENASAUR,
+    CHARIZARD,
+    PIKACHU,
+    LUCARIO,
+    HYDREIGON,
+    GRENINJA
 };
 
 class Pokemon : public Entity {
@@ -21,15 +26,15 @@ private:
     int maxHP;
     int currentHP;
     int attack;
-    int spAttack;
     int defense;
+    int spAttack;
     int spDefense;
     int speed;
     int accuracy;
 
     int baseAttack;
-    int baseSpAttack;
     int baseDefense;
+    int baseSpAttack;
     int baseSpDefense;
     int baseSpeed;
     int level;
@@ -40,15 +45,14 @@ private:
     Status status;
     
     int moveCounter;
-    void setMoves(const std::initializer_list<Move*> &moves);
 
 public:
-    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
-    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed);
-    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
-    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bSpAttack, int bDefense, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
-    Pokemon(const Pokemon &pokemonToCopy) = delete;
-    Pokemon& operator=(const Pokemon &rhs) = delete;
+    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
+    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
+    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
+    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves);
+    Pokemon(const Pokemon &) = delete;
+    Pokemon& operator=(const Pokemon &) = delete;
     virtual ~Pokemon();
 
     virtual PokemonID getID() = 0;
@@ -56,6 +60,7 @@ public:
     int numMoves() const;
 
     void addMove(Move *move);
+    void setMoves(const std::initializer_list<Move*> &moves);
 
     void setHP(int newHP);
     void setAttack(int newAttack);
@@ -81,6 +86,7 @@ public:
     int getBaseSpeed() const;
 
     void restoreHP(int newHP);
+    void takeDamage(int amount);
 
     std::string getName() const;
 

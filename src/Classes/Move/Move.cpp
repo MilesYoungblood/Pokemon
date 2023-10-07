@@ -14,7 +14,7 @@ Move::Move(const char *name, int pp, int power, int accuracy, Type type, Categor
     this->category = category;
 }
 
-int Move::getDamage() {
+int Move::getDamage() const {
     return generateInteger(1, 100) <= this->accuracy ? this->power : -1;
 }
 
@@ -50,8 +50,85 @@ Type Move::getType() const {
     return this->type;
 }
 
+const char *Move::getTypeAsString() const {
+    switch (this->type) {
+        case Type::NORMAL:
+            return "normal";
+
+        case Type::FIRE:
+            return "fire";
+
+        case Type::WATER:
+            return "water";
+
+        case Type::ELECTRIC:
+            return "electric";
+
+        case Type::GRASS:
+            return "grass";
+
+        case Type::ICE:
+            return "ice";
+
+        case Type::FIGHTING:
+            return "fighting";
+
+        case Type::POISON:
+            return "poison";
+
+        case Type::GROUND:
+            return "ground";
+
+        case Type::FLYING:
+            return "flying";
+
+        case Type::PSYCHIC:
+            return "psychic";
+
+        case Type::BUG:
+            return "bug";
+
+        case Type::ROCK:
+            return "rock";
+
+        case Type::GHOST:
+            return "ghost";
+
+        case Type::DRAGON:
+            return "dragon";
+
+        case Type::DARK:
+            return "dark";
+
+        case Type::STEEL:
+            return "steel";
+
+        case Type::FAIRY:
+            return "fairy";
+
+        default:
+            throw std::runtime_error("Unexpected error: function getTypeAsString");
+    }
+}
+
 Category Move::getCategory() const {
     return this->category;
+}
+
+const char *Move::getCategoryAsString() const {
+    switch (this->category) {
+        case Category::PHYSICAL:
+            return "physical";
+
+        case Category::SPECIAL:
+            return "special";
+
+        case Category::STATUS:
+            return "status";
+
+        default:
+            throw std::runtime_error("Unexpected error: function getCategoryAsString");
+    }
 }
 
 std::string Move::getName() const {

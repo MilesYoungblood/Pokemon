@@ -9,7 +9,10 @@
 
 #include "../Classes/Pokemon/Pokemon.h"
 
+#include "./MoveList/AirSlash.h"
 #include "./MoveList/AuraSphere.h"
+#include "./MoveList/DarkPulse.h"
+#include "./MoveList/Extrasensory.h"
 #include "./MoveList/Flamethrower.h"
 #include "./MoveList/FlashCannon.h"
 #include "./MoveList/FocusBlast.h"
@@ -18,33 +21,6 @@
 #include "./MoveList/Thunder.h"
 #include "./MoveList/VoltTackle.h"
 #include "./MoveList/WaterShuriken.h"
-
-//TODO add flinching
-struct DarkPulse : public Move {
-    DarkPulse() : Move("Dark Pulse", 15, 80, 100, Type::DARK, Category::SPECIAL) {}
-
-    MoveID getID() override {
-        return MoveID::DARK_PULSE;
-    }
-};
-
-//TODO add flinching
-struct Extrasensory : public Move {
-    Extrasensory() : Move("Extrasensory", 15, 90, 100, Type::PSYCHIC, Category::SPECIAL) {}
-
-    MoveID getID() override {
-        return MoveID::EXTRASENSORY;
-    }
-};
-
-//TODO add flinching
-struct AirSlash : public Move {
-    AirSlash() : Move("Air Slash", 15, 75, 95, Type::FLYING, Category::SPECIAL) {}
-
-    MoveID getID() override {
-        return MoveID::AIR_SLASH;
-    }
-};
 
 struct DragonPulse : public Move {
     DragonPulse() : Move("Dragon Pulse", 10, 85, 100, Type::DRAGON, Category::SPECIAL) {}

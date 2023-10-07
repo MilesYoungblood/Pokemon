@@ -18,3 +18,11 @@ Player *Player::getPlayer() {
 void Player::destroyPlayer() {
     delete Player::instancePtr;
 }
+
+Player::operator bool() const {
+    return this->numFainted < this->numPokemon;
+}
+
+bool Player::canFight() const {
+    return this->numFainted < this->numPokemon;
+}

@@ -59,10 +59,10 @@ public:
 
     virtual MoveID getID() = 0;
 
-    virtual int getDamage();
+    virtual int getDamage() const;
 
-    virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage);
-    virtual void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff);
+    virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
+    virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
     void setPP(int newPP);
     int getPP() const;
@@ -74,8 +74,10 @@ public:
     int getAccuracy() const;
 
     Type getType() const;
+    const char * getTypeAsString() const;
 
     Category getCategory() const;
+    const char * getCategoryAsString() const;
 
     std::string getName() const;
 

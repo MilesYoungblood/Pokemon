@@ -11,7 +11,7 @@ struct AuraSphere : public Move {
         return MoveID::AURA_SPHERE;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
+    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // if the calculation registers as a miss, force it as a hit
         if (damage < 0)
             damage *= -1;

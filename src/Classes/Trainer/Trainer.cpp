@@ -5,11 +5,13 @@
 #include "Trainer.h"
 
 Trainer::Trainer() : Entity(), party(), items(), numItems() {
+    this->dialogue = "";
     this->numFainted = 0;
     this->numPokemon = 0;
 }
 
 Trainer::Trainer(int x, int y) : Entity(x, y), party(), items(), numItems() {
+    this->dialogue = "";
     this->numFainted = 0;
     this->numPokemon = 0;
 }
@@ -155,5 +157,9 @@ const Pokemon& Trainer::operator[](int spot) const {
 }
 
 Trainer::operator bool() const {
-    return this->numFainted < this->numPokemon;
+    return this->numPokemon > 0;
+}
+
+bool Trainer::canFight() const {
+    return this->numPokemon > 0;
 }

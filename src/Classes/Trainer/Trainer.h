@@ -13,6 +13,9 @@
 class Map;
 
 class Trainer : public Entity {
+private:
+    const char *dialogue;
+
 protected:
     const static int MAX_POKEMON = 6;       // max number of Pokémon per party
     const static int MAX_ITEMS = 50;        // max number of items per bag
@@ -56,7 +59,8 @@ public:
     Pokemon& operator[](int spot);
     const Pokemon& operator[](int spot) const;
 
-    explicit operator bool() const;
+    virtual explicit operator bool() const;
+    virtual bool canFight() const;
 
     void moveToPlayer(const Map &map, const Trainer *trainer);
 };

@@ -9,6 +9,8 @@
 namespace PokemonFactory {
     Pokemon *getPokemon(PokemonID id) {
         switch (id) {
+            case VENASAUR:
+                return new Venasaur();
             case CHARIZARD:
                 return new Charizard();
             case PIKACHU:

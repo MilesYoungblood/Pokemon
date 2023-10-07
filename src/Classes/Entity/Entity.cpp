@@ -98,7 +98,7 @@ bool Entity::isFacingWest() const {
 }
 
 // makes this face the entity
-void Entity::face(const Entity * entity) {
+void Entity::face(const Entity *entity) {
     if (entity->isFacingNorth()) {
         this->faceSouth();
     }

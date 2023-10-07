@@ -29,12 +29,10 @@ inline void displayBag(int arrow, bool &print) {
 }
 
 inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &print) {
-    if (print) {
+    if (print)
         printMessage("Choose an item:\n");
-    }
-    else {
+    else
         std::cout << "Choose an item:\n";
-    }
 
     const int starting = 10 * (arrow / 10);
     const int numItems = trainer->getNumItems(iType);

@@ -7,15 +7,16 @@
 #include <mutex>
 #include <fstream>
 
-std::mutex mutex;
+std::mutex m;
 
-bool canMove = true;        // signals whether the player can move
-bool keepMoving = true;     // signals whether the NPC can move
+bool canMove = true;            // signals when the player can move
+bool threadsPaused = false;     // signals when to pause all threads
+bool stopThreads = false;       // signals when to end all threads
 
 void turn(Player *player, Map &map, int index) {
     auto engage = [&player, &map, &index] {
-        mutex.lock();
-        keepMoving = false;
+        m.lock();
+        threadsPaused = true;
         canMove = false;
 
         map[index].moveToPlayer(map, player);
@@ -29,12 +30,17 @@ void turn(Player *player, Map &map, int index) {
         Battle(player, &map[index]);
         map.print(player);
 
-        keepMoving = true;
+        threadsPaused = false;
         canMove = true;
-        mutex.unlock();
+        m.unlock();
     };
 
-    while (keepMoving) {
+    while (not stopThreads) {
+        if (threadsPaused) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            continue;
+        }
+
         switch (generateInteger(1, 6)) {
             case 1:
                 map[index].face(&map[index]);
@@ -79,6 +85,8 @@ const char *saveFilePath = desktop ?
         R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
 
 void saveData(Player *player, Map *maps[], int numMaps, int currentMapIndex) {
+    std::cout << "Saving please wait...";
+
     std::ofstream saveFile(saveFilePath);
     if (not saveFile) {
         throw std::runtime_error("Could not open file");
@@ -246,11 +254,13 @@ bool openMenu(Player *player, Map *maps[], int numMaps, int currentMapIndex) {
                 system("cls");
                 printMessage("Save complete!");
                 pressEnter();
+                return false;
             }
-
-            option = 0;
-            print = true;
-            return false;
+            else {
+                option = 0;
+                print = true;
+                goto reprint_1;
+            }
 
         case 3:
             return true;
@@ -287,9 +297,9 @@ int main() {
     Map *currentMap = maps[currentMapIndex];
 
     auto engage = [&player, &currentMap](int index) {
-        mutex.lock();
-        keepMoving = false;
-        mutex.unlock();
+        m.lock();
+        threadsPaused = true;
+        m.unlock();
 
         (*currentMap)[index].moveToPlayer(*currentMap, player);
         player->face(&(*currentMap)[index]);
@@ -299,13 +309,18 @@ int main() {
         pressEnter();
 
         Battle(player, &(*currentMap)[index]);
+
         currentMap->print(player);
+
+        m.lock();
+        threadsPaused = false;
+        m.unlock();
     };
 
 renderMap:
     currentMap->print(player);
 
-    keepMoving = true;
+    stopThreads = false;
     const int numNPCs = currentMap->numNPCs();
 
     // create threads for each NPC to check if the player is in sight/ turn the NPC
@@ -397,7 +412,7 @@ getInput:
                 break;
 
             case Keys::ESC:
-                keepMoving = false;
+                stopThreads = true;
                 // detach all threads of the NPCs
                 for (std::thread &thread : threads) {
                     thread.join();
@@ -416,7 +431,7 @@ getInput:
         // the values of mapData are the new x, new y, and new map respectively
         const std::array<int, 3> mapData = currentMap->isExitPointHere(player->getX(), player->getY());
         if (mapData[2] != -1) {
-            keepMoving = false;
+            stopThreads = true;
 
             // detach all threads of the NPCs
             for (std::thread &thread : threads) {

@@ -1,39 +1,32 @@
 //
-// Created by Miles Youngblood on 6/15/2023.
+// Created by Miles on 10/6/2023.
 //
 
 #pragma once
 
-struct IronTail : public Move {
-    bool loweredState = false;
-
-    IronTail() : Move("Iron Tail", 15, 100, 75, Type::STEEL, Category::PHYSICAL) {}
+struct DarkPulse : public Move {
+    DarkPulse() : Move("Dark Pulse", 15, 80, 100, Type::DARK, Category::SPECIAL) {}
 
     MoveID getID() override {
-        return MoveID::IRON_TAIL;
+        return MoveID::DARK_PULSE;
     }
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
-        if (damage > 0) {
+        if (damage > 0)
             defendingPokemon.takeDamage(damage);
 
-            //FIXME redo calculations
-            this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
-
-            if (this->loweredState)
-                defendingPokemon.setDefense(defendingPokemon.getDefense() - 1);
-        }
-
         --this->pp;
+
+        skip = generateInteger(1, 5) == 1;
     }
 
     void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) override {
-        printMessage(attackingPokemon.getName() + " used Iron Tail! ");
+        printMessage(attackingPokemon.getName() + " used Dark Pulse! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
         if (damage > 0) {
-            printMessage("Iron Tail did " + std::to_string(damage) + " damage! ");
+            printMessage("Dark Pulse did " + std::to_string(damage) + " damage! ");
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 
             if (typeEff >= 2.0) {
@@ -50,8 +43,8 @@ struct IronTail : public Move {
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
 
-            if (this->loweredState) {
-                printMessage(defendingPokemon.getName() + "'s defense was lowered!");
+            if (skipTurn) {
+                printMessage(defendingPokemon.getName() + " flinched!");
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }
@@ -62,7 +55,5 @@ struct IronTail : public Move {
 
         printMessage('\n');
         std::cout.flush();
-
-        this->loweredState = false;
     }
 };

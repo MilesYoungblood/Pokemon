@@ -48,4 +48,4 @@ add_executable(PokemonBattle
         src/Data/ItemList/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Data/ItemList/BattleItems.h src/Data/Pokedex.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Player/Player.cpp src/Classes/Player/Player.h src/Classes/Factory/MoveFactory.h src/Classes/Factory/ItemFactory.h)
+        src/Data/ItemList/BattleItems.h src/Data/Pokedex.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Player/Player.cpp src/Classes/Player/Player.h src/Classes/Factory/MoveFactory.h src/Classes/Factory/ItemFactory.h src/Data/MoveList/DarkPulse.h src/Data/MoveList/Extrasensory.h src/Data/MoveList/AirSlash.h)

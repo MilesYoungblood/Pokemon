@@ -14,16 +14,17 @@ private:
     static Trainer *opponent;
     static size_t turn;
 
-    //static void wildPokemonMessage(const Pokemon &pokemon);
+    static bool skipPlayerTurn;
+    static bool skipOpponentTurn;
 
-    static void sendOutMessage(const Pokemon &pokemon);
+    static void sendOutMessage(const Pokemon &pokemon, bool isPlayer);
     static void returnMessage(const Pokemon &pokemon);
 
     static void introMessage();
 
     static void displayChoices(int arrow, bool &print);
 
-    static void displayPokemon(int arrow, bool &print);
+    static void displayPokemon(int arrow, bool &index);
 
     static void displayHPBar(bool displayPokemon);
 
@@ -46,15 +47,10 @@ private:
 
     static void inflictedMessage(const Pokemon &pokemon);
 
-    static void displayMoves(const Pokemon &pokemon, int arrow, bool &print);
+    static void displayMoves(const Pokemon &pokemon, int index, bool &print);
     static void displayMoveSummary(const Move &move);
 
     static void attackErrorMessage();
-
-    static void takeDamage(Trainer *t, int damage);
-
-    static int getPhysicalAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move);
-    static int getSpecialAttack(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move);
 
     static std::pair<double, bool> criticalHit();
 
@@ -66,7 +62,7 @@ private:
 
     static void Action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
 
-    static void PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &keepPlaying);
+    static void PreStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
     static void PostStatus(bool isUserFaster, bool &keepPlaying);
 
     static int chooseMove(bool &skip);

@@ -9,7 +9,23 @@
 #include "../../Classes/Pokemon/Pokemon.h"
 
 enum ItemID {
+    POTION,
+    SUPER_POTION,
+    HYPER_POTION,
+    ETHER,
 
+    ANTIDOTE,
+    AWAKENING,
+    BURN_HEAL,
+    ICE_HEAL,
+    PARALYZE_HEAL,
+
+    POKE_BALL,
+    GREAT_BALL,
+    ULTRA_BALL,
+
+    X_ATTACK,
+    X_SPEED
 };
 
 enum class RestoreType { NONE, HP, PP };

@@ -13,10 +13,10 @@ struct FlashCannon : public Move {
         return MoveID::FLASH_CANNON;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage) override {
+    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
-            defendingPokemon.setHP(defendingPokemon.getHP() - damage);
+            defendingPokemon.takeDamage(damage);
 
             //FIXME redo calculations
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
@@ -28,7 +28,7 @@ struct FlashCannon : public Move {
         --this->pp;
     }
 
-    void actionMessage(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool criticalHit, double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Flash Cannon! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
