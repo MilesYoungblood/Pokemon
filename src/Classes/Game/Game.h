@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <SDL.h>
+#include <SDL_image.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Classes/Player/Player.h"
 
@@ -27,14 +28,13 @@ private:
 
 public:
     Game();
-    Game(const Game &game) = delete;
-    Game& operator=(const Game &game) = delete;
+    Game(const Game &) = delete;
+    Game& operator=(const Game &) = delete;
 
-    void init(const char *title, int x, int y, int width, int height);
     void handleEvents();
     void update();
     void render();
     void clean();
 
-    bool running() const;
+    explicit operator bool() const;
 };

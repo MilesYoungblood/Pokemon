@@ -4,20 +4,22 @@
 
 #include "Game.h"
 
+const int WINDOW_WIDTH = 640;
+const int WINDOW_HEIGHT = 480;
+
+const int SCROLL_SPEED = 300;
+
+SDL_Texture *playerText;
+
 Game::Game() : maps() {
     this->player = nullptr;
     this->currentMap = nullptr;
     this->currentMapIndex = 0;
-    this->window = nullptr;
-    this->renderer = nullptr;
-    this->isRunning = false;
-}
 
-void Game::init(const char *title, int x, int y, int width, int height) {
     if (SDL_Init(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "Subsystems initialized!" << std::endl;
 
-        this->window = SDL_CreateWindow(title, x, y, width, height, 0);
+        this->window = SDL_CreateWindow("Pokemon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
         if (this->window) {
             std::cout << "Window created!" << std::endl;
         }
@@ -32,6 +34,21 @@ void Game::init(const char *title, int x, int y, int width, int height) {
     else {
         this->isRunning = false;
     }
+
+    SDL_Surface *surface = IMG_Load(R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)");
+    if (not surface) {
+        std::cerr << "Error creating surface: " << SDL_GetError();
+        SDL_DestroyRenderer(this->renderer);
+        SDL_DestroyWindow(this->window);
+        SDL_Quit();
+        exit(1);
+    }
+    playerText = SDL_CreateTextureFromSurface(this->renderer, surface);
+
+    SDL_SetWindowIcon(this->window, surface);
+
+    SDL_FreeSurface(surface);
+
 }
 
 void Game::handleEvents() {
@@ -55,6 +72,8 @@ void Game::render() {
     SDL_RenderClear(this->renderer);
 
     // add stuff to render
+    SDL_RenderCopy(this->renderer, playerText, nullptr, nullptr);
+
 
     SDL_RenderPresent(this->renderer);
 }
@@ -65,10 +84,6 @@ void Game::clean() {
     SDL_Quit();
 
     std::cout << "Game cleaned!" << std::endl;
-}
-
-bool Game::running() const {
-    return this->isRunning;
 }
 
 void Game::saveData() {
@@ -113,4 +128,8 @@ void Game::loadData() {
 
 void Game::eraseData() {
 
+}
+
+Game::operator bool() const {
+    return this->isRunning;
 }

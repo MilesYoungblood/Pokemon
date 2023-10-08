@@ -89,9 +89,7 @@ const int SCROLL_SPEED = 300;
 int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[]) {
     Game game;
 
-    game.init("Pokemon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT);
-
-    while (game.running()) {
+    while (game) {
         game.handleEvents();
         game.update();
         game.render();
