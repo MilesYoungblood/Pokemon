@@ -9,13 +9,13 @@
 Trainer* Joey = new Trainer({
     new Pikachu({ new Thunder, new QuickAttack, new IronTail, new VoltTackle }),
     new Lucario({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse })
-    }, 6, 6, 3);
+    }, 7, 6, 3);
 
 Trainer* Red = new Trainer({
     new Pikachu(),
     new Venasaur(),
     new Charizard()
-    }, 1, 1, 3);
+    }, 2, 4, 3);
 
 Map Route_1("Route 1", 13, 10, { Joey, Red }, { { 6, 0, MapIDs::ROUTE_2, 10, 18 } });
 

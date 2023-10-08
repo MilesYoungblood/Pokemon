@@ -52,90 +52,105 @@ build cmake_object_order_depends_target_PokemonBattle: phony || CMakeFiles/Pokem
 build CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/main.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\main.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Pokemon\Pokemon.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Pokemon
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Move\Move.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Move
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\Item.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Trainer\Trainer.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Trainer
 
 build CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Data.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Data.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\RestoreItem.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\StatusItem.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\Pokeball.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\BattleItem.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Map\Map.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Map
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Battle/Battle.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Battle\Battle.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Battle
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\Entity.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Game/Game.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Game\Game.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Game
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj: CXX_COMPILER__PokemonBattle_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Player/Player.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Player\Player.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always -std=gnu++14
+  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Player
 
@@ -147,9 +162,9 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj: CXX_COMPIL
 #############################################
 # Link the executable PokemonBattle.exe
 
-build PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj
+build PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj | C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a C$:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll
   FLAGS = -g
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = -lmingw32  -mwindows  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a  C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -202,14 +217,14 @@ build all: phony PokemonBattle.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/WindowsPaths.cmake C$:/Users/Miles/Documents/GitHub/PokemonBattle/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeRCCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/WindowsPaths.cmake C$:/Users/Miles/Documents/GitHub/PokemonBattle/CMakeLists.txt C$:/Users/Miles/Documents/GitHub/PokemonBattle/cmake_modules/FindSDL2.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeRCCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/WindowsPaths.cmake C$:/Users/Miles/Documents/GitHub/PokemonBattle/CMakeLists.txt CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeRCCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
+build C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCXXInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeCommonLanguageInclude.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeGenericSystem.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeInitializeConfigs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeLanguageInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeRCInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInformation.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CMakeSystemSpecificInitialize.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckCSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckIncludeFile.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/CheckLibraryExists.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/CMakeCommonCompilerMacros.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Compiler/GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindPackageHandleStandardArgs.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindPackageMessage.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/FindThreads.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Internal/CheckSourceCompiles.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-C.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX-ABI.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU-CXX.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-GNU.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows-windres.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/Windows.cmake C$:/Program$ Files/JetBrains/CLion$ 2022.3.2/bin/cmake/win/x64/share/cmake-3.25/Modules/Platform/WindowsPaths.cmake C$:/Users/Miles/Documents/GitHub/PokemonBattle/CMakeLists.txt C$:/Users/Miles/Documents/GitHub/PokemonBattle/cmake_modules/FindSDL2.cmake CMakeCache.txt CMakeFiles/3.25.2/CMakeCCompiler.cmake CMakeFiles/3.25.2/CMakeCXXCompiler.cmake CMakeFiles/3.25.2/CMakeRCCompiler.cmake CMakeFiles/3.25.2/CMakeSystem.cmake: phony
 
 
 #############################################

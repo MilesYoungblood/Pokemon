@@ -21,8 +21,9 @@ struct IronTail : public Move {
             //FIXME redo calculations
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
 
+            //FIXME account for limit reached
             if (this->loweredState)
-                defendingPokemon.setDefense(defendingPokemon.getDefense() - 1);
+                defendingPokemon.lowerDefense(1);
         }
 
         --this->pp;

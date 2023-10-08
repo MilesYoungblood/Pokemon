@@ -12,12 +12,11 @@ inline void failMessage() {
 }
 
 inline void displayBag(int arrow, bool &print) {
-    if (print) {
+    if (print)
         printMessage("Choose an option:\n");
-    }
-    else {
+    else
         std::cout << "Choose an option:\n";
-    }
+
     arrow == 0 ? std::cout << "   ->   HP/PP restore\n" : std::cout << "\tHP/PP restore\n";
     arrow == 1 ? std::cout << "   ->   Status restore\n" : std::cout << "\tStatus restore\n";
     arrow == 2 ? std::cout << "   ->   Poke Balls\n" : std::cout << "\tPoke Balls\n";
@@ -58,16 +57,6 @@ inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &pri
     print = false;
 }
 
-inline bool catchPokemon(bool attempts[]) {
-    // FIXME catch function does not take into account levels or catch rates
-    attempts[0] = generateInteger(1, 100) < 80;
-    attempts[1] = generateInteger(1, 100) < 70;
-    attempts[2] = generateInteger(1, 100) < 60;
-    attempts[3] = generateInteger(1, 100) < 50;
-
-    return attempts[0] and attempts[1] and attempts[2] and attempts[3];
-}
-
 inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
     if (attempts[0]) {
         printMessage("1...");
@@ -105,47 +94,51 @@ inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
 }
 
 inline void boostStat(const Item *itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
-    if (itemToUse->getStat() == Stat::ATTACK) {
-        if (pokemonToBoost.getAttack() < 6)
-            pokemonToBoost.setAttack(pokemonToBoost.getAttack() + amountToBoost);
+    switch (itemToUse->getStat()) {
+        case Stat::ATTACK:
+            if (pokemonToBoost.getAttack() < 6)
+                pokemonToBoost.raiseAttack(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
-    }
-    else if (itemToUse->getStat() == Stat::SP_ATTACK) {
-        if (pokemonToBoost.getSpAttack() < 6)
-            pokemonToBoost.setSpAttack(pokemonToBoost.getSpAttack() + amountToBoost);
+        case Stat::DEFENSE:
+            if (pokemonToBoost.getDefense() < 6)
+                pokemonToBoost.raiseDefense(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
-    }
-    else if (itemToUse->getStat() == Stat::DEFENSE) {
-        if (pokemonToBoost.getDefense() < 6)
-            pokemonToBoost.setDefense(pokemonToBoost.getDefense() + amountToBoost);
+        case Stat::SP_ATTACK:
+            if (pokemonToBoost.getSpAttack() < 6)
+                pokemonToBoost.raiseSpAttack(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
-    }
-    else if (itemToUse->getStat() == Stat::SP_DEFENSE) {
-        if (pokemonToBoost.getSpDefense() < 6)
-            pokemonToBoost.setSpDefense(pokemonToBoost.getSpDefense() + amountToBoost);
+        case Stat::SP_DEFENSE:
+            if (pokemonToBoost.getSpDefense() < 6)
+                pokemonToBoost.raiseSpDefense(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
-    }
-    else if (itemToUse->getStat() == Stat::SPEED) {
-        if (pokemonToBoost.getSpeed() < 6)
-            pokemonToBoost.setSpeed(pokemonToBoost.getSpeed() + amountToBoost);
+        case Stat::SPEED:
+            if (pokemonToBoost.getSpeed() < 6)
+                pokemonToBoost.raiseSpeed(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
-    }
-    else if (itemToUse->getStat() == Stat::ACCURACY) {
-        if (pokemonToBoost.getAccuracy() < 6)
-            pokemonToBoost.setAccuracy(pokemonToBoost.getAccuracy() + amountToBoost);
+        case Stat::ACCURACY:
+            if (pokemonToBoost.getAccuracy() < 6)
+                pokemonToBoost.raiseAccuracy(amountToBoost);
+            else
+                limitReached = true;
+            break;
 
-        else
-            limitReached = true;
+        default:
+            throw std::runtime_error("Unexpected error: function boostStat");
     }
 }
 
@@ -195,11 +188,6 @@ inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoo
         printMessage(pokemon.getName() + "'s " + string + " can't go any higher!\n");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-}
-
-inline void itemErrorMessage(const Item &item) {
-    printMessage("You don't have any " + item.getName() + "'s.\n");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 inline void noEffectMessage(const Item &item, const Pokemon &pokemon) {

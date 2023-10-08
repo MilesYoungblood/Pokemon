@@ -22,7 +22,7 @@ struct FlashCannon : public Move {
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
 
             if (this->loweredState)
-                defendingPokemon.setSpDefense(defendingPokemon.getSpDefense() - 1);
+                defendingPokemon.lowerSpDefense(1);
         }
 
         --this->pp;

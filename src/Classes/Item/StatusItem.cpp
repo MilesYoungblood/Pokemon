@@ -24,3 +24,5 @@ void StatusItem::restoreMessage(Pokemon &pokemon) {
 }
 
 void StatusItem::restoreMessage(Move &move) {}
+
+bool StatusItem::catchPokemon(const Pokemon &pokemon, bool attempts[]) { return false; }

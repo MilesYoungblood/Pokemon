@@ -33,3 +33,5 @@ void RestoreItem::restoreMessage(Pokemon &pokemon) {
 void RestoreItem::restoreMessage(Move &move) {
     printMessage(move.getName() + " recovered " + std::to_string(this->amount) + " PP!\n");
 }
+
+bool RestoreItem::catchPokemon(const Pokemon &pokemon, bool attempts[]) { return false; }

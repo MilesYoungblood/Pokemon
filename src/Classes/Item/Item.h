@@ -23,13 +23,18 @@ enum ItemID {
     POKE_BALL,
     GREAT_BALL,
     ULTRA_BALL,
+    MASTER_BALL,
 
     X_ATTACK,
-    X_SPEED
+    X_DEFENSE,
+    X_SP_ATTACK,
+    X_SP_DEFENSE,
+    X_SPEED,
+    X_ACCURACY
 };
 
 enum class RestoreType { NONE, HP, PP };
-enum class Stat { NONE, ATTACK, SP_ATTACK, DEFENSE, SP_DEFENSE, SPEED, ACCURACY };
+enum class Stat { NONE, ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY };
 
 class Item {
 protected:
@@ -56,6 +61,7 @@ public:
     virtual void restore(Move &move) = 0;
     virtual void restoreMessage(Pokemon &pokemon) = 0;
     virtual void restoreMessage(Move &move) = 0;
+    virtual bool catchPokemon(const Pokemon &pokemon, bool attempts[]) = 0;
 
     std::string getName() const;
 

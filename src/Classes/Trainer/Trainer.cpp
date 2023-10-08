@@ -50,14 +50,6 @@ int Trainer::partySize() const {
     return this->numPokemon;
 }
 
-int Trainer::getNumItems(int type) const {
-    return this->numItems[type];
-}
-
-Item& Trainer::getItem(int type, int item) const {
-    return *this->items[type][item];
-}
-
 void Trainer::addPokemon(Pokemon *toAdd) {
     if (this->numPokemon == Trainer::MAX_POKEMON) {
         return;
@@ -67,7 +59,11 @@ void Trainer::addPokemon(Pokemon *toAdd) {
     ++this->numPokemon;
 }
 
-__attribute__((unused)) void Trainer::removePokemon(int index) {
+void Trainer::removePokemon(int index) {
+    if (index < 0 or 5 < index) {
+        return;
+    }
+
     // decrement the faint count if the Pokémon we're removing is fainted
     if (this->party[index]->isFainted()) {
         --this->numFainted;
@@ -76,7 +72,7 @@ __attribute__((unused)) void Trainer::removePokemon(int index) {
 
     // shifts over the Pokémon that were after it
     for (int i = index; i < this->numPokemon; ++i) {
-        this->party[i] = party[i + 1];
+        this->party[i] = this->party[i + 1];
     }
 
     --this->numPokemon;
@@ -87,6 +83,40 @@ void Trainer::clearParty() {
         delete this->party[i];
     }
     this->numPokemon = 0;
+}
+
+int Trainer::getNumItems(int type) const {
+    if (type < 0 or 3 < type) {
+        throw std::runtime_error("Out of bounds: getNumItems");
+    }
+    return this->numItems[type];
+}
+
+Item& Trainer::getItem(int type, int item) const {
+    return *this->items[type][item];
+}
+
+void Trainer::addItem(int type, Item *toAdd) {
+    if (type < 0 or 3 < type or this->numItems[type] == Trainer::MAX_ITEMS) {
+        return;
+    }
+
+    this->items[type][this->numItems[type]] = toAdd;
+    ++this->numItems[type];
+}
+
+void Trainer::removeItem(int type, int index) {
+    if (type < 0 or 3 < type) {
+        throw std::runtime_error("Out of bounds: removeItem");
+    }
+
+    delete this->items[type][index];
+
+    for (int i = index; i < this->numItems[type]; ++i) {
+        this->items[type][i] = this->items[type][i + 1];
+    }
+
+    --this->numItems[type];
 }
 
 void Trainer::setRestoreItems(const std::vector<Item *> &inventory) {
@@ -139,7 +169,7 @@ __attribute__((unused)) void Trainer::decFaintCount() {
 }
 
 void Trainer::swapPokemon(int first, int second) {
-    Pokemon * copy = this->party[first];
+    Pokemon *copy = this->party[first];
     this->party[first] = this->party[second];
     this->party[second] = copy;
 }

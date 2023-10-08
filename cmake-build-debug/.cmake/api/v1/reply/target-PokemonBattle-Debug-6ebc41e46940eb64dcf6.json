@@ -13,7 +13,9 @@
 	{
 		"commands" : 
 		[
-			"add_executable"
+			"add_executable",
+			"target_link_libraries",
+			"include_directories"
 		],
 		"files" : 
 		[
@@ -27,7 +29,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 6,
+				"line" : 15,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 73,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 74,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 13,
 				"parent" : 0
 			}
 		]
@@ -42,6 +68,17 @@
 				},
 				{
 					"fragment" : "-std=gnu++14"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2"
 				}
 			],
 			"language" : "CXX",
@@ -85,6 +122,31 @@
 			{
 				"fragment" : "",
 				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-lmingw32",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-mwindows",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "C:\\libs\\SDL2-2.28.4\\x86_64-w64-mingw32\\lib\\libSDL2main.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "C:\\libs\\SDL2-2.28.4\\x86_64-w64-mingw32\\lib\\libSDL2.dll.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "C:\\libs\\SDL2_image-2.6.3\\x86_64-w64-mingw32\\bin\\SDL2_image.dll",
+				"role" : "libraries"
 			},
 			{
 				"fragment" : "-lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32",
@@ -166,7 +228,8 @@
 				51,
 				52,
 				53,
-				54
+				54,
+				55
 			]
 		}
 	],
@@ -460,6 +523,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/Data/MoveList/AirSlash.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Functions/GameFunctions.h",
 			"sourceGroupIndex" : 1
 		}
 	],

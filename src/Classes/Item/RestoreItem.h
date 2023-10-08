@@ -21,4 +21,5 @@ public:
     void restore(Move &move) override;
     void restoreMessage(Pokemon &pokemon) override;
     void restoreMessage(Move &move) override;
+    bool catchPokemon(const Pokemon &pokemon, bool attempts[]) override;
 };

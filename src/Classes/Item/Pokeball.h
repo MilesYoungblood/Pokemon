@@ -20,6 +20,5 @@ public:
     void restore(Move &move) override;
     void restoreMessage(Pokemon &pokemon) override;
     void restoreMessage(Move &move) override;
-
-    __attribute__((unused)) double getCatchRate() const;
+    bool catchPokemon(const Pokemon &pokemon, bool attempts[]) override;
 };

@@ -15,3 +15,5 @@ void BattleItem::restore(Move &move) {}
 void BattleItem::restoreMessage(Pokemon &pokemon) {}
 
 void BattleItem::restoreMessage(Move &move) {}
+
+bool BattleItem::catchPokemon(const Pokemon &pokemon, bool attempts[]) { return false; }

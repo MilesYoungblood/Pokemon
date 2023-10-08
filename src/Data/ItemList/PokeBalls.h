@@ -13,3 +13,7 @@ struct GreatBall : public PokeBall {
 struct UltraBall : public PokeBall {
     explicit UltraBall(int n) : PokeBall("Ultra Ball", n, 2.0) {}
 };
+
+struct MasterBall : public PokeBall {
+    explicit MasterBall(int n) : PokeBall("Master Ball", n, 255.0) {}
+};

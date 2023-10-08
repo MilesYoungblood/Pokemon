@@ -33,17 +33,19 @@ public:
     Trainer(int x, int y);
     Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
     Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision);
-    Trainer(const Trainer &toCopy) = delete;
-    Trainer& operator=(const Trainer &rhs) = delete;
+    Trainer(const Trainer &) = delete;
+    Trainer& operator=(const Trainer &) = delete;
     ~Trainer();
 
     int partySize() const;
+    void addPokemon(Pokemon *toAdd);
+    void removePokemon(int index);
+    void clearParty();
+
     int getNumItems(int type) const;
     Item& getItem(int type, int item) const;
-
-    void addPokemon(Pokemon *toAdd);
-    __attribute__((unused)) void removePokemon(int index);
-    void clearParty();
+    void addItem(int type, Item *toAdd);
+    void removeItem(int type, int index);
 
     void setRestoreItems(const std::vector<Item*> &inventory);
     void setStatusItems(const std::vector<Item*> &inventory);

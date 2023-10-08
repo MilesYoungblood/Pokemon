@@ -9,12 +9,15 @@
 class Player : public Trainer {
 private:
     static Player * instancePtr;
+    static Pokemon *pc[12][30];
     Player();
 
 public:
     static Player* getPlayer();
     static void destroyPlayer();
 
+    static void addToPC(Pokemon *toAdd);
+
     explicit operator bool() const override;
-    virtual bool canFight() const override;
+    bool canFight() const override;
 };

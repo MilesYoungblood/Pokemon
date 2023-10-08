@@ -5,8 +5,9 @@
 #include "Player.h"
 
 Player * Player::instancePtr = nullptr;
+Pokemon * Player::pc[12][30];
 
-Player::Player() : Trainer(1, 1) {}
+Player::Player() : Trainer(6, 8) {}
 
 Player *Player::getPlayer() {
     if (Player::instancePtr == nullptr) {
@@ -17,6 +18,16 @@ Player *Player::getPlayer() {
 
 void Player::destroyPlayer() {
     delete Player::instancePtr;
+}
+
+void Player::addToPC(Pokemon *toAdd) {
+    for (auto &box : Player::pc) {
+        for (auto &pokemon : box) {
+            if (pokemon == nullptr) {
+                pokemon = toAdd;
+            }
+        }
+    }
 }
 
 Player::operator bool() const {

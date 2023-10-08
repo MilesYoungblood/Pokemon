@@ -638,6 +638,18 @@
 			"value" : "OFF"
 		},
 		{
+			"name" : "CMAKE_HAVE_LIBC_PTHREAD",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Test CMAKE_HAVE_LIBC_PTHREAD"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "1"
+		},
+		{
 			"name" : "CMAKE_HOME_DIRECTORY",
 			"properties" : 
 			[
@@ -1254,6 +1266,42 @@
 			"value" : "FALSE"
 		},
 		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_SDL2",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding SDL2"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a][C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2][v()]"
+		},
+		{
+			"name" : "FIND_PACKAGE_MESSAGE_DETAILS_Threads",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Details about finding Threads"
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "[TRUE][v()]"
+		},
+		{
+			"name" : "MINGW32_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "mwindows for MinGW"
+				}
+			],
+			"type" : "STRING",
+			"value" : "mingw32;-mwindows"
+		},
+		{
 			"name" : "PokemonBattle_BINARY_DIR",
 			"properties" : 
 			[
@@ -1288,6 +1336,66 @@
 			],
 			"type" : "STATIC",
 			"value" : "C:/Users/Miles/Documents/GitHub/PokemonBattle"
+		},
+		{
+			"name" : "SDL2MAIN_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a library."
+				}
+			],
+			"type" : "FILEPATH",
+			"value" : "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a"
+		},
+		{
+			"name" : "SDL2_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "The directory containing a CMake configuration file for SDL2."
+				}
+			],
+			"type" : "PATH",
+			"value" : "SDL2_DIR-NOTFOUND"
+		},
+		{
+			"name" : "SDL2_INCLUDE_DIR",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Path to a file."
+				}
+			],
+			"type" : "PATH",
+			"value" : "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2"
+		},
+		{
+			"name" : "SDL2_LIBRARY",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "Where the SDL2 Library can be found"
+				}
+			],
+			"type" : "STRING",
+			"value" : "mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a"
+		},
+		{
+			"name" : "SDL2_LIBRARY_TEMP",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : ""
+				}
+			],
+			"type" : "INTERNAL",
+			"value" : "mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;mingw32;-mwindows;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a;C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a"
 		},
 		{
 			"name" : "_CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED",

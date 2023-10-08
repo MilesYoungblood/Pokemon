@@ -5,30 +5,36 @@
 #pragma once
 
 #include <fstream>
+#include <SDL.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Classes/Player/Player.h"
 
 class Game {
 private:
-    static Game* instancePtr;
+    bool isRunning;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
 
-    static Player* player;
+    Player *player;
 
-    static Map* maps[3];
-    static Map* currentMap;
-    static int currentMapIndex;
+    Map *maps[3];
+    Map *currentMap;
+    int currentMapIndex;
 
-    Game();
-
-    static void run();
-    static void saveData();
-    static void loadData();
-    static void eraseData();
+    void saveData();
+    void loadData();
+    void eraseData();
 
 public:
+    Game();
     Game(const Game &game) = delete;
     Game& operator=(const Game &game) = delete;
 
-    static Game* createGame();
-    static void destroyGame();
+    void init(const char *title, int x, int y, int width, int height);
+    void handleEvents();
+    void update();
+    void render();
+    void clean();
+
+    bool running() const;
 };

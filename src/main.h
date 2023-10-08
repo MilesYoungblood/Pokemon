@@ -139,17 +139,6 @@ inline bool chooseOption(int &option, int upper) {
     }
 }
 
-// returns an integer if in range of the user's choice
-inline int getInt(int lower, int upper) {
-    while (true) {
-        // subtracting by '0' gets the offset of the ASCII
-        const int i = _getch() - '0';
-        if (lower <= i and i <= upper) {
-            return i;
-        }
-    }
-}
-
 inline bool coinFlip() {
     std::random_device rd;
     std::mt19937 mt(rd());

@@ -3,6 +3,15 @@ project(PokemonBattle)
 
 set(CMAKE_CXX_STANDARD 14)
 
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
+
+set(SDL2_PATH "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32")
+
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIR})
+
+include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
+
 add_executable(PokemonBattle
         src/main.cpp
         src/Classes/Pokemon/Pokemon.h
@@ -48,4 +57,18 @@ add_executable(PokemonBattle
         src/Data/ItemList/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Data/ItemList/BattleItems.h src/Data/Pokedex.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Game/Game.cpp src/Classes/Game/Game.h src/Classes/Player/Player.cpp src/Classes/Player/Player.h src/Classes/Factory/MoveFactory.h src/Classes/Factory/ItemFactory.h src/Data/MoveList/DarkPulse.h src/Data/MoveList/Extrasensory.h src/Data/MoveList/AirSlash.h)
+        src/Data/ItemList/BattleItems.h
+        src/Data/Pokedex.h
+        src/Classes/Game/Game.cpp
+        src/Classes/Game/Game.h
+        src/Classes/Player/Player.cpp
+        src/Classes/Player/Player.h
+        src/Classes/Factory/MoveFactory.h
+        src/Classes/Factory/ItemFactory.h
+        src/Data/MoveList/DarkPulse.h
+        src/Data/MoveList/Extrasensory.h
+        src/Data/MoveList/AirSlash.h
+        src/Functions/GameFunctions.h)
+
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
+target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")

@@ -7,36 +7,46 @@
 #include "../../Data/ItemList.h"
 
 namespace ItemFactory {
-    Item *getItem(ItemID id) {
+    Item *getItem(ItemID id, int n) {
         switch (id) {
             case POTION:
-                break;
+                return new Potion(n);
             case SUPER_POTION:
-                break;
+                return new SuperPotion(n);
             case HYPER_POTION:
-                break;
+                return new HyperPotion(n);
             case ETHER:
-                break;
+                return new Ether(n);
             case ANTIDOTE:
-                break;
+                return new Antidote(n);
             case AWAKENING:
-                break;
+                return new Awakening(n);
             case BURN_HEAL:
-                break;
+                return new BurnHeal(n);
             case ICE_HEAL:
-                break;
+                return new IceHeal(n);
             case PARALYZE_HEAL:
-                break;
+                return new ParalyzeHeal(n);
             case POKE_BALL:
-                break;
+                return new PokeBall(n);
             case GREAT_BALL:
-                break;
+                return new GreatBall(n);
             case ULTRA_BALL:
-                break;
+                return new UltraBall(n);
+            case MASTER_BALL:
+                return new MasterBall(n);
             case X_ATTACK:
-                break;
+                return new XAttack(n);
+            case X_DEFENSE:
+                return new XDefense(n);
+            case X_SP_ATTACK:
+                return new XSpAttack(n);
+            case X_SP_DEFENSE:
+                return new XSpDefense(n);
             case X_SPEED:
-                break;
+                return new XSpeed(n);
+            case X_ACCURACY:
+                return new XAccuracy(n);
             default:
                 return nullptr;
         }

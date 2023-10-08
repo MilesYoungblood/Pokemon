@@ -4,22 +4,25 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed) : moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate) : moveSet(), types() {
     this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
-    this->attack = 1;
-    this->defense = 1;
-    this->spAttack = 1;
-    this->spDefense = 1;
-    this->speed = 1;
-    this->accuracy = 1;
+    this->attack = 0;
+    this->defense = 0;
+    this->spAttack = 0;
+    this->spDefense = 0;
+    this->speed = 0;
+    this->accuracy = 0;
+    this->evasiveness = 0;
 
     this->baseAttack = bAttack;
     this->baseDefense = bDefense;
     this->baseSpAttack = bSpAttack;
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
+
+    this->catchRate = catchRate;
 
     this->types[0] = type;
     this->types[1] = Type::NONE;
@@ -29,27 +32,30 @@ Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, in
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, const std::initializer_list<Move*> &moves)
-    : Pokemon(name, type, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {
+Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves)
+    : Pokemon(name, type, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed) : moveSet(), types() {
+Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate) : moveSet(), types() {
     this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
-    this->attack = 1;
-    this->spAttack = 1;
-    this->defense = 1;
-    this->spDefense = 1;
-    this->speed = 1;
-    this->accuracy = 1;
+    this->attack = 0;
+    this->spAttack = 0;
+    this->defense = 0;
+    this->spDefense = 0;
+    this->speed = 0;
+    this->accuracy = 0;
+    this->evasiveness = 0;
 
     this->baseAttack = bAttack;
     this->baseDefense = bDefense;
     this->baseSpAttack = bSpAttack;
     this->baseSpDefense = bSpDefense;
     this->baseSpeed = bSpeed;
+
+    this->catchRate = catchRate;
 
     this->types[0] = type1;
     this->types[1] = type2;
@@ -59,8 +65,8 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, const std::initializer_list<Move *> &moves)
-    : Pokemon(name, type1, type2, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {
+Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move *> &moves)
+    : Pokemon(name, type1, type2, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
     this->setMoves(moves);
 }
 
@@ -69,6 +75,57 @@ Pokemon::~Pokemon() {
         if (this->moveSet[i] != nullptr) {
             delete this->moveSet[i];
         }
+    }
+}
+
+void Pokemon::raiseStat(int &stat, int amount) {
+    stat += amount;
+
+    // stat modifier cannot be higher than 6
+    if (stat > 6) {
+        stat = 6;
+    }
+}
+
+void Pokemon::lowerStat(int &stat, int amount) {
+    stat -= amount;
+
+    // stat modifier cannot be lower than -6
+    if (stat < -6) {
+        stat = -6;
+    }
+}
+
+double Pokemon::getStatMod(int stat) {
+    switch (stat) {
+        case -6:
+            return 2.0 / 8.0;
+        case -5:
+            return 2.0 / 7.0;
+        case -4:
+            return 2.0 / 6.0;
+        case -3:
+            return 2.0 / 5.0;
+        case -2:
+            return 2.0 / 4.0;
+        case -1:
+            return 2.0 / 3.0;
+        case 0:
+            return 2.0 / 2.0;
+        case 1:
+            return 3.0 / 2.0;
+        case 2:
+            return 4.0 / 2.0;
+        case 3:
+            return 5.0 / 2.0;
+        case 4:
+            return 6.0 / 2.0;
+        case 5:
+            return 7.0 / 2.0;
+        case 6:
+            return 8.0 / 2.0;
+        default:
+            throw std::runtime_error("Unexpected error: function getStatMod");
     }
 }
 
@@ -106,27 +163,6 @@ void Pokemon::setHP(int newHP) {
         this->currentHP = this->maxHP;
     }
 }
-void Pokemon::setAttack(int newAttack) { this->attack = newAttack; }
-void Pokemon::setSpAttack(int newSpAttack) { this->spAttack = newSpAttack; }
-void Pokemon::setDefense(int newDefense) { this->defense = newDefense; }
-void Pokemon::setSpDefense(int newSpDefense) { this->spDefense = newSpDefense; }
-void Pokemon::setSpeed(int newSpeed) { this->speed = newSpeed; }
-void Pokemon::setAccuracy(int newAccuracy) { this->accuracy = newAccuracy; }
-
-int Pokemon::getMaxHp() const { return this->maxHP; }
-int Pokemon::getHP() const { return this->currentHP; }
-int Pokemon::getAttack() const { return this->attack; }
-int Pokemon::getSpAttack() const { return this->spAttack; }
-int Pokemon::getDefense() const { return this->defense; }
-int Pokemon::getSpDefense() const { return this->spDefense; }
-int Pokemon::getSpeed() const { return this->speed; }
-int Pokemon::getAccuracy() const { return this->accuracy; }
-
-int Pokemon::getBaseAttack() const { return this->baseAttack; }
-int Pokemon::getBaseSpAttack() const { return this->baseSpAttack; }
-int Pokemon::getBaseDefense() const { return this->baseDefense; }
-int Pokemon::getBaseSpDefense() const { return this->baseSpDefense; }
-int Pokemon::getBaseSpeed() const { return this->baseSpeed; }
 
 void Pokemon::restoreHP(int amount) {
     this->currentHP += amount;
@@ -135,12 +171,109 @@ void Pokemon::restoreHP(int amount) {
         this->currentHP = this->maxHP;
     }
 }
+
 void Pokemon::takeDamage(int amount) {
     this->currentHP -= amount;
 
     if (this->currentHP < 0) {
         this->currentHP = 0;
     }
+}
+
+void Pokemon::resetStatMods() {
+    this->attack = 0;
+    this->spAttack = 0;
+    this->defense = 0;
+    this->spDefense = 0;
+    this->speed = 0;
+    this->accuracy = 0;
+    this->evasiveness = 0;
+}
+
+void Pokemon::raiseAttack(int amount) {
+    this->raiseStat(this->attack, amount);
+}
+
+void Pokemon::raiseDefense(int amount) {
+    this->raiseStat(this->defense, amount);
+}
+
+void Pokemon::raiseSpAttack(int amount) {
+    this->raiseStat(this->spAttack, amount);
+}
+
+void Pokemon::raiseSpDefense(int amount) {
+    this->raiseStat(this->spDefense, amount);
+}
+
+void Pokemon::raiseSpeed(int amount) {
+    this->raiseStat(this->speed, amount);
+}
+
+void Pokemon::raiseAccuracy(int amount) {
+    this->raiseStat(this->accuracy, amount);
+}
+
+void Pokemon::raiseEvasiveness(int amount) {
+    this->raiseStat(this->evasiveness, amount);
+}
+
+void Pokemon::lowerAttack(int amount) {
+    this->lowerStat(this->attack, amount);
+}
+
+void Pokemon::lowerDefense(int amount) {
+    this->lowerStat(this->defense, amount);
+}
+
+void Pokemon::lowerSpAttack(int amount) {
+    this->lowerStat(this->spAttack, amount);
+}
+
+void Pokemon::lowerSpDefense(int amount) {
+    this->lowerStat(this->spDefense, amount);
+}
+
+void Pokemon::lowerSpeed(int amount) {
+    this->lowerStat(this->speed, amount);
+}
+
+void Pokemon::lowerAccuracy(int amount) {
+    this->lowerStat(this->accuracy, amount);
+}
+
+void Pokemon::lowerEvasiveness(int amount) {
+    this->lowerStat(this->evasiveness, amount);
+}
+
+int Pokemon::getMaxHp() const { return this->maxHP; }
+int Pokemon::getHP() const { return this->currentHP; }
+int Pokemon::getAttack() const { return this->attack; }
+int Pokemon::getDefense() const { return this->defense; }
+int Pokemon::getSpAttack() const { return this->spAttack; }
+int Pokemon::getSpDefense() const { return this->spDefense; }
+int Pokemon::getSpeed() const { return this->speed; }
+int Pokemon::getAccuracy() const { return this->accuracy; }
+int Pokemon::getEvasiveness() const { return this->evasiveness; }
+
+int Pokemon::getBaseAttack() const {
+    return this->baseAttack * static_cast<int>(lround(getStatMod(this->attack)));
+}
+
+int Pokemon::getBaseDefense() const {
+    return this->baseDefense * static_cast<int>(lround(getStatMod(this->defense)));
+}
+
+int Pokemon::getBaseSpAttack() const {
+    return this->baseSpAttack * static_cast<int>(lround(getStatMod(this->spAttack)));
+}
+
+int Pokemon::getBaseSpDefense() const {
+    return this->baseSpDefense * static_cast<int>(lround(getStatMod(this->spDefense)));
+}
+
+int Pokemon::getBaseSpeed() const {
+    return this->baseSpeed * static_cast<int>(lround(getStatMod(this->speed)));
 }
 
 std::string Pokemon::getName() const { return this->name; }
@@ -188,12 +321,22 @@ const char * Pokemon::getStatusAsString() {
 }
 
 int Pokemon::getLevel() const { return this->level; }
+int Pokemon::getCatchRate() const { return this->catchRate; }
 
 bool Pokemon::isFainted() const { return this->currentHP == 0; }
 bool Pokemon::isFullHP() const { return this->currentHP == this->maxHP; }
 
 bool Pokemon::isFasterThan(const Pokemon &pokemon) const { return this->baseSpeed > pokemon.baseSpeed; }
 bool Pokemon::isAfflicted() const { return this->status != Status::NONE; }
+
+bool Pokemon::canAttack() const {
+    for (int i = 0; i < this->moveCounter; ++i) {
+        if (not this->moveSet[i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
 void Pokemon::hpEmptyMessage() const {
     printMessage(this->getName() + "'s HP is empty!\n");
