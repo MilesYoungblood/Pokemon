@@ -4,6 +4,13 @@
 
 #include "Map.h"
 
+//SDL_Renderer *Map::renderer = nullptr;
+//SDL_Texture *Map::free = nullptr;
+//SDL_Texture *Map::obstruction = nullptr;
+//SDL_Texture *Map::grass = nullptr;
+SDL_Texture *Map::tallGrass = nullptr;
+SDL_Texture *Map::water = nullptr;
+
 // places obstructions along the rim of the map
 void Map::setBorders(const Map * from) {
     // set the top border
@@ -27,7 +34,7 @@ bool Map::isTrainerHere(int x, int y) const {
     return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
-Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints) {
+Map::Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r) : src(), dest() {
     this->width = width;
     this->height = height;
 
@@ -40,9 +47,20 @@ Map::Map(const char * name, int width, int height, const std::vector<ExitPoint> 
     for (ExitPoint &exitPoint : this->exitPoints) {
         this->layout[exitPoint.x][exitPoint.y] = Map::Tile::FREE;
     }
+
+    this->src.x = this->src.y = 0;
+    this->src.w = this->dest.h = 50;
+    this->src.h = this->dest.h = 50;
+
+    this->dest.x = this->dest.y = 0;
+
+    Map::renderer = r;
+    this->free = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\grass.png)", Map::renderer);
+    this->obstruction = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)", Map::renderer);
+    this->grass = nullptr;
 }
 
-Map::Map(const char * name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints) : Map(name, width, height, exitPoints) {
+Map::Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r) : Map(name, width, height, exitPoints, r) {
     this->trainers = trainerList;
 }
 
@@ -50,6 +68,11 @@ Map::~Map() {
     for (Trainer *trainer : this->trainers) {
         delete trainer;
     }
+    SDL_DestroyTexture(this->free);
+    SDL_DestroyTexture(this->obstruction);
+    SDL_DestroyTexture(this->grass);
+    SDL_DestroyTexture(Map::tallGrass);
+    SDL_DestroyTexture(Map::water);
 }
 
 // returns true if an obstruction is at the passed coordinates
@@ -135,6 +158,29 @@ void Map::print(const Trainer *player) const {
         std::cout << '\n';
     }
     std::cout << this->name;
+}
+
+void Map::DrawMap() {
+    for (int row = 0; row < this->width; ++row) {
+        for (int column = 0; column < this->height; ++column) {
+            this->dest.x = column * 50;
+            this->dest.y = row * 50;
+
+            switch (this->layout[row][column]) {
+                case Map::Tile::FREE:
+                    TextureManager::Draw(Map::renderer, this->free, this->dest);
+                    break;
+
+                case Map::Tile::OBSTRUCTION:
+                    TextureManager::Draw(Map::renderer, this->obstruction, this->dest);
+                    break;
+
+                default:
+                    TextureManager::Draw(Map::renderer, this->grass, this->dest);
+                    break;
+            }
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

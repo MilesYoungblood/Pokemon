@@ -30,8 +30,10 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) :
     }
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision) : Trainer(pokemon, x, y) {
+Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision, SDL_Renderer *r) : Trainer(pokemon, x, y) {
     this->vision = vision;
+    Trainer::renderer = r;
+    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)", Trainer::renderer);
 }
 
 Trainer::~Trainer() {

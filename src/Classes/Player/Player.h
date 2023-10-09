@@ -10,10 +10,10 @@ class Player : public Trainer {
 private:
     static Player * instancePtr;
     static Pokemon *pc[12][30];
-    Player();
+    explicit Player(SDL_Renderer *renderer);
 
 public:
-    static Player* getPlayer();
+    static Player* getPlayer(SDL_Renderer *renderer);
     static void destroyPlayer();
 
     static void addToPC(Pokemon *toAdd);

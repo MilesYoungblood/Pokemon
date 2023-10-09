@@ -12,7 +12,13 @@
 
 class Map {
 private:
-    enum Tile { FREE, OBSTRUCTION, GRASS __attribute__((unused)), WATER __attribute__((unused)) };
+    enum Tile {
+        FREE,
+        OBSTRUCTION,
+        GRASS,
+        TALL_GRASS,
+        WATER
+    };
 
     struct ExitPoint {
         int x;                              // x-coordinate of the exit spot
@@ -24,6 +30,16 @@ private:
 
     int width;                              // width of the map
     int height;                             // height of the map
+
+    SDL_Rect dest;
+    SDL_Rect src;
+
+    SDL_Renderer *renderer;          // renderer
+    SDL_Texture *free;
+    SDL_Texture *obstruction;
+    SDL_Texture *grass;
+    static SDL_Texture *tallGrass;
+    static SDL_Texture *water;
 
     std::string name;                       // name of the map
 
@@ -38,10 +54,10 @@ private:
     bool isTrainerHere(int x, int y) const;
 
 public:
-    Map(const char * name, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char * name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints);
-    Map(const Map &toCopy) = delete;
-    Map& operator=(const Map &rhs) = delete;
+    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r);
+    Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *renderer);
+    Map(const Map &) = delete;
+    Map& operator=(const Map &) = delete;
     ~Map();
 
     bool isObstructionHere(int x, int y) const;
@@ -52,4 +68,5 @@ public:
 
     void setObstruction(int x, int y);
     void print(const Trainer *player) const;
+    void DrawMap();
 };

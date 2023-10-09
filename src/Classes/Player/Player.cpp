@@ -7,11 +7,16 @@
 Player * Player::instancePtr = nullptr;
 Pokemon * Player::pc[12][30];
 
-Player::Player() : Trainer(6, 8) {}
+Player::Player(SDL_Renderer *renderer) : Trainer(6, 8) {
+    Player::renderer = renderer;
 
-Player *Player::getPlayer() {
+    //TODO remember to manually change path for now
+    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)", this->renderer);
+}
+
+Player *Player::getPlayer(SDL_Renderer *renderer) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player();
+        Player::instancePtr = new Player(renderer);
     }
     return Player::instancePtr;
 }

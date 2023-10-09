@@ -4,20 +4,32 @@
 
 #include "Entity.h"
 
-Entity::Entity() {
+SDL_Renderer *Entity::renderer = nullptr;
+
+Entity::Entity() : srcRect(), destRect() {
     this->x = 0;
     this->y = 0;
     this->vision = 1;
     this->direction = Direction::SOUTH;
     this->model = 'S';
+
+    Entity::renderer = nullptr;
+    this->texture = nullptr;
 }
 
-Entity::Entity(int x, int y) {
+Entity::Entity(int x, int y) : Entity() {
     this->x = x;
     this->y = y;
-    this->vision = 1;
-    this->direction = Direction::SOUTH;
-    this->model = 'S';
+}
+
+Entity::Entity(int x, int y, const char *textureSheet, SDL_Renderer *r) : Entity(x, y) {
+    Entity::renderer = r;
+    this->texture = TextureManager::LoadTexture(textureSheet, r);
+}
+
+Entity::~Entity() {
+    SDL_DestroyTexture(this->texture);
+    //SDL_DestroyRenderer(Entity::renderer);
 }
 
 void Entity::moveNorth() {
@@ -148,4 +160,16 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     else {
         return false;
     }
+}
+
+void Entity::update(int x_pos, int y_pos) {
+    this->destRect.h = 50;
+    this->destRect.w = 50;
+
+    this->destRect.x = x_pos;
+    this->destRect.y = y_pos;
+}
+
+void Entity::render() {
+    SDL_RenderCopy(Entity::renderer, this->texture, nullptr, &this->destRect);
 }

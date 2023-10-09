@@ -1,5 +1,9 @@
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMacroInspection"
+
+#define SDL_MAIN_HANDLED
+
 #include <SDL.h>
-#include <SDL_image.h>
 #include <SDL_timer.h>
 
 #include "Classes/Battle/Battle.h"
@@ -84,21 +88,36 @@ void turn(Player *player, Map &map, int index) {
 const int WINDOW_WIDTH = 640;
 const int WINDOW_HEIGHT = 480;
 
-const int SCROLL_SPEED = 300;
+int main() {
+    SDL_SetMainReady();
 
-int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[]) {
+    const int FPS = 30;
+    const int frameDelay = 1000 / FPS;
+
+    Uint32 frameStart;
+    Uint32 frameTime;
+
     Game game;
 
     while (game) {
-        game.handleEvents();
-        game.update();
-        game.render();
+        frameStart = SDL_GetTicks();
+
+        Game::handleEvents();
+        Game::update();
+        Game::render();
+
+        frameTime = SDL_GetTicks() - frameStart;
+
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
+        }
     }
 
-    game.clean();
+    Game::clean();
     return 0;
 
 
+    /*
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
         std::cerr << "Error initializing SDL: " << SDL_GetError();
     }
@@ -166,6 +185,7 @@ int main(__attribute__((unused)) int argc, __attribute__((unused)) char *argv[])
     SDL_Quit();
 
     return 0;
+
     SetConsoleTitleA("Pokemon");
     ShowConsoleCursor(false);
 
@@ -229,7 +249,7 @@ renderMap:
             continue;
         }
 
-        // checks if the player is in line of sight of any NPC
+        // checks if the player is in LoS for any NPC
         for (int i = 0; i < numNPCs; ++i) {
             if ((*currentMap)[i].hasVisionOf(player) and (*currentMap)[i]) {
                 engage(i);
@@ -343,4 +363,8 @@ getInput:
             goto renderMap;
         }
     }
+     */
 }
+
+
+#pragma clang diagnostic pop

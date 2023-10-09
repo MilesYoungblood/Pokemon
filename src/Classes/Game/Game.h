@@ -12,16 +12,6 @@
 
 class Game {
 private:
-    bool isRunning;
-    SDL_Window *window;
-    SDL_Renderer *renderer;
-
-    Player *player;
-
-    Map *maps[3];
-    Map *currentMap;
-    int currentMapIndex;
-
     void saveData();
     void loadData();
     void eraseData();
@@ -31,10 +21,10 @@ public:
     Game(const Game &) = delete;
     Game& operator=(const Game &) = delete;
 
-    void handleEvents();
-    void update();
-    void render();
-    void clean();
+    static void handleEvents();
+    static void update();
+    static void render();
+    static void clean();
 
     explicit operator bool() const;
 };
