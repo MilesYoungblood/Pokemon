@@ -82,7 +82,6 @@ void turn(Player *player, Map &map, int index) {
     }
 }
 
-#include "Data/Data.h"
 #include "Classes/Game/Game.h"
 
 const int WINDOW_WIDTH = 640;

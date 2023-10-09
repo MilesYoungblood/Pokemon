@@ -4,7 +4,6 @@
 
 #include "Game.h"
 
-
 #include "../../Data/Data.h"
 
 Player *player = nullptr;
@@ -35,8 +34,7 @@ bool keepMovingLeft = false;
 bool keepMovingRight = false;
 
 int counter = 0;
-SDL_Rect dest{};
-SDL_Texture *txt;
+
 Trainer* Joey = new Trainer({
     new Pikachu({ new Thunder, new QuickAttack, new IronTail, new VoltTackle }),
     new Lucario({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse })
@@ -94,7 +92,6 @@ Game::Game() {
     SDL_FreeSurface(surface);
 
     player = Player::getPlayer(renderer);
-    txt = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\grass.png)", renderer);
 }
 
 void Game::handleEvents() {
@@ -158,24 +155,27 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    if (up or keepMovingUp) {
+    const int xCoord = player->getX();
+    const int yCoord = player->getY();
+
+    if (not maps[currentMapIndex]->isObstructionHere(xCoord, yCoord - 1) and (keepMovingUp or up)) {
         y_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
     }
-    else if (down or keepMovingDown) {
+    else if (not maps[currentMapIndex]->isObstructionHere(xCoord, yCoord + 1) and (keepMovingDown or down)) {
         y_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
     }
-    else if (left or keepMovingLeft) {
+    else if (not maps[currentMapIndex]->isObstructionHere(xCoord - 1, yCoord) and (keepMovingLeft or left)) {
         x_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
     }
-    else if (right or keepMovingRight) {
+    else if (not maps[currentMapIndex]->isObstructionHere(xCoord + 1, yCoord) and (keepMovingRight or right)) {
         x_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
     }
 
-    // if your sprite is centered on a tile
+    // if your sprite has reached a tile
     if (counter % TILE_SIZE == 0) {
         // update player coordinates
         player->setCoordinates(x_pos / TILE_SIZE, y_pos / TILE_SIZE);
@@ -190,11 +190,6 @@ void Game::update() {
         }
     }
 
-    dest.x = 200;
-    dest.y = 100;
-    dest.h = 50;
-    dest.h = 50;
-
     player->update(x_pos, y_pos);
     for (int i = 0; i < maps[currentMapIndex]->numNPCs(); ++i) {
         (*maps)[currentMapIndex][i].update((*maps)[currentMapIndex][i].getX() * 50, (*maps)[currentMapIndex][i].getY() * 50);
@@ -203,9 +198,7 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    //(*maps)[currentMapIndex].DrawMap();
-
-    SDL_RenderCopy(renderer, txt, nullptr, &dest);
+    (*maps)[currentMapIndex].DrawMap();
 
     player->render();
     for (int i = 0; i < maps[currentMapIndex]->numNPCs(); ++i) {
@@ -216,13 +209,10 @@ void Game::render() {
 }
 
 void Game::clean() {
-    SDL_DestroyTexture(txt);
     Player::destroyPlayer();
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_Quit();
-
-    std::cout << "Game cleaned!" << std::endl;
 }
 
 void Game::saveData() {

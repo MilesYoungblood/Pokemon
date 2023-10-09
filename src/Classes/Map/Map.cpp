@@ -49,7 +49,7 @@ Map::Map(const char *name, int width, int height, const std::vector<ExitPoint> &
     }
 
     this->src.x = this->src.y = 0;
-    this->src.w = this->dest.h = 50;
+    this->src.w = this->dest.w = 50;
     this->src.h = this->dest.h = 50;
 
     this->dest.x = this->dest.y = 0;
@@ -82,7 +82,7 @@ bool Map::isObstructionHere(int x, int y) const {
         return true;
     }
     else {
-        return this->layout[x][y] != Map::Tile::FREE;
+        return this->layout[x][y] == Map::Tile::OBSTRUCTION;
     }
 }
 
@@ -163,8 +163,8 @@ void Map::print(const Trainer *player) const {
 void Map::DrawMap() {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            this->dest.x = column * 50;
-            this->dest.y = row * 50;
+            this->dest.x = row * 50;
+            this->dest.y = column * 50;
 
             switch (this->layout[row][column]) {
                 case Map::Tile::FREE:

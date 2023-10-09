@@ -11,7 +11,7 @@ Player::Player(SDL_Renderer *renderer) : Trainer(6, 8) {
     Player::renderer = renderer;
 
     //TODO remember to manually change path for now
-    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)", this->renderer);
+    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)", Player::renderer);
 }
 
 Player *Player::getPlayer(SDL_Renderer *renderer) {
