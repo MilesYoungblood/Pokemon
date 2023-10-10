@@ -7,6 +7,11 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "../../Classes/TextureManager/TextureManager.h"
+#include "../ESC.h"
+#include "../Components.h"
+
+const static int TILE_SIZE = 70;
+static bool desktop = true;
 
 class Entity {
 protected:
@@ -20,13 +25,11 @@ protected:
 
     static SDL_Renderer *renderer;
     SDL_Texture *texture;
-    SDL_Rect srcRect;
     SDL_Rect destRect;
 
 public:
     Entity();
     Entity(int x, int y);
-    Entity(int x, int y, const char *textureSheet, SDL_Renderer *r);
     Entity(const Entity &toCopy) = delete;
     Entity& operator=(const Entity &toCopy) = delete;
     ~Entity();
@@ -60,10 +63,13 @@ public:
     bool isNextTo(const Entity *entity) const;
     bool hasVisionOf(const Entity *entity) const;
 
-    void update(int x_pos, int y_pos);
-    void render();
+    // these functions do NOT update the entity's internal coordinates
+    // these functions merely update where the entity appears on in the window
+    // these functions may later be incorporated into a camera rather than here
+    void shiftDownOnMap(int distance);
+    void shiftUpOnMap(int distance);
+    void shiftRightOnMap(int distance);
+    void shiftLeftOnMap(int distance);
 
-    SDL_Rect getRect() {
-        return this->destRect;
-    }
+    void render();
 };

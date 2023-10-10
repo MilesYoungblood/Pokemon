@@ -6,12 +6,17 @@
 
 SDL_Renderer *Entity::renderer = nullptr;
 
-Entity::Entity() : srcRect(), destRect() {
+Entity::Entity() : destRect() {
     this->x = 0;
     this->y = 0;
     this->vision = 1;
     this->direction = Direction::SOUTH;
     this->model = 'S';
+
+    this->destRect.h = TILE_SIZE;
+    this->destRect.w = TILE_SIZE;
+    this->destRect.x = 0;
+    this->destRect.y = 0;
 
     Entity::renderer = nullptr;
     this->texture = nullptr;
@@ -20,16 +25,13 @@ Entity::Entity() : srcRect(), destRect() {
 Entity::Entity(int x, int y) : Entity() {
     this->x = x;
     this->y = y;
-}
 
-Entity::Entity(int x, int y, const char *textureSheet, SDL_Renderer *r) : Entity(x, y) {
-    Entity::renderer = r;
-    this->texture = TextureManager::LoadTexture(textureSheet, r);
+    this->destRect.x = this->x * TILE_SIZE;
+    this->destRect.y = this->y * TILE_SIZE;
 }
 
 Entity::~Entity() {
     SDL_DestroyTexture(this->texture);
-    //SDL_DestroyRenderer(Entity::renderer);
 }
 
 void Entity::moveNorth() {
@@ -162,12 +164,20 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Entity::update(int x_pos, int y_pos) {
-    this->destRect.h = 50;
-    this->destRect.w = 50;
+void Entity::shiftDownOnMap(int distance) {
+    this->destRect.y += distance;
+}
 
-    this->destRect.x = x_pos;
-    this->destRect.y = y_pos;
+void Entity::shiftUpOnMap(int distance) {
+    this->destRect.y -= distance;
+}
+
+void Entity::shiftRightOnMap(int distance) {
+    this->destRect.x += distance;
+}
+
+void Entity::shiftLeftOnMap(int distance) {
+    this->destRect.x -= distance;
 }
 
 void Entity::render() {

@@ -7,16 +7,19 @@
 Player * Player::instancePtr = nullptr;
 Pokemon * Player::pc[12][30];
 
-Player::Player(SDL_Renderer *renderer) : Trainer(6, 8) {
+Player::Player(SDL_Renderer *renderer, int mapX, int mapY) : Trainer(mapX * TILE_SIZE, mapY * TILE_SIZE) {
     Player::renderer = renderer;
 
+    this->destRect.x = mapX;
+    this->destRect.y = mapY;
+
     //TODO remember to manually change path for now
-    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)", Player::renderer);
+    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\Hilbert_front.png)", Player::renderer);
 }
 
-Player *Player::getPlayer(SDL_Renderer *renderer) {
+Player *Player::getPlayer(SDL_Renderer *renderer, int mapX, int mapY) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(renderer);
+        Player::instancePtr = new Player(renderer, mapX, mapY);
     }
     return Player::instancePtr;
 }

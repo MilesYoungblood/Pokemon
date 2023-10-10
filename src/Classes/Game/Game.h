@@ -12,7 +12,7 @@
 
 class Game {
 private:
-    void saveData();
+    static void saveData();
     void loadData();
     void eraseData();
 

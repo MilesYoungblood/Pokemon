@@ -4,10 +4,10 @@
 
 #include "Map.h"
 
-//SDL_Renderer *Map::renderer = nullptr;
-//SDL_Texture *Map::free = nullptr;
-//SDL_Texture *Map::obstruction = nullptr;
-//SDL_Texture *Map::grass = nullptr;
+SDL_Renderer *Map::renderer = nullptr;
+SDL_Texture *Map::free = nullptr;
+SDL_Texture *Map::obstruction = nullptr;
+SDL_Texture *Map::grass = nullptr;
 SDL_Texture *Map::tallGrass = nullptr;
 SDL_Texture *Map::water = nullptr;
 
@@ -15,18 +15,18 @@ SDL_Texture *Map::water = nullptr;
 void Map::setBorders(const Map * from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][0] = Map::Tile::OBSTRUCTION;
+        this->layout[x][0].setID(TileID::OBSTRUCTION);
     }
 
     // set the inner layer borders
     for (int y = 1; y < from->height; ++y) {
-        this->layout[0][y] = Map::Tile::OBSTRUCTION;
-        this->layout[this->width - 1][y] = Map::Tile::OBSTRUCTION;
+        this->layout[0][y].setID(TileID::OBSTRUCTION);
+        this->layout[this->width - 1][y].setID(TileID::OBSTRUCTION);
     }
 
     // set the bottom border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][this->height - 1] = Map::Tile::OBSTRUCTION;
+        this->layout[x][this->height - 1].setID(TileID::OBSTRUCTION);
     }
 }
 
@@ -34,33 +34,47 @@ bool Map::isTrainerHere(int x, int y) const {
     return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
-Map::Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r) : src(), dest() {
+Map::Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r) : dest() {
+    this->name = name;
+
     this->width = width;
     this->height = height;
 
-    this->name = name;
+    this->layout.resize(this->width);
+    for (int i = 0; i < this->width; ++i) {
+        this->layout[i].resize(this->height);
 
-    this->layout = std::vector<std::vector<Tile>>(this->width, std::vector<Tile>(this->height, Map::Tile::FREE));
+        for (int j = 0; j < this->height; ++j) {
+            this->layout[i][j] = Tile(TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE);
+        }
+    }
     this->setBorders(this);
 
     this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y] = Map::Tile::FREE;
+        this->layout[exitPoint.x][exitPoint.y].setID(TileID::GRASS);
     }
 
-    this->src.x = this->src.y = 0;
-    this->src.w = this->dest.w = 50;
-    this->src.h = this->dest.h = 50;
+    this->dest.w = TILE_SIZE;
+    this->dest.h = TILE_SIZE;
 
     this->dest.x = this->dest.y = 0;
 
     Map::renderer = r;
-    this->free = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\grass.png)", Map::renderer);
-    this->obstruction = TextureManager::LoadTexture(R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)", Map::renderer);
-    this->grass = nullptr;
+    const char *obstructionPath = desktop ?
+            R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)" :
+            R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)";
+
+    Map::obstruction = TextureManager::LoadTexture(obstructionPath, Map::renderer);
+    const char *grassPath = desktop ?
+            R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\grass.png)" :
+            R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\grass.png)";
+
+    Map::grass = TextureManager::LoadTexture(grassPath, Map::renderer);
 }
 
-Map::Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r) : Map(name, width, height, exitPoints, r) {
+Map::Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r)
+    : Map(name, width, height, exitPoints, r) {
     this->trainers = trainerList;
 }
 
@@ -68,9 +82,10 @@ Map::~Map() {
     for (Trainer *trainer : this->trainers) {
         delete trainer;
     }
-    SDL_DestroyTexture(this->free);
-    SDL_DestroyTexture(this->obstruction);
-    SDL_DestroyTexture(this->grass);
+
+    SDL_DestroyTexture(Map::free);
+    SDL_DestroyTexture(Map::obstruction);
+    SDL_DestroyTexture(Map::grass);
     SDL_DestroyTexture(Map::tallGrass);
     SDL_DestroyTexture(Map::water);
 }
@@ -82,7 +97,7 @@ bool Map::isObstructionHere(int x, int y) const {
         return true;
     }
     else {
-        return this->layout[x][y] == Map::Tile::OBSTRUCTION;
+        return this->layout[x][y].getID() == TileID::OBSTRUCTION;
     }
 }
 
@@ -108,7 +123,7 @@ Trainer& Map::operator[](int index) {
 // places an obstruction at the passed coordinates
 void Map::setObstruction(int x, int y) {
     if (not this->isTrainerHere(x, y)) {
-        this->layout[x][y] = Map::Tile::OBSTRUCTION;
+        this->layout[x][y].setID(TileID::OBSTRUCTION);
     }
 }
 
@@ -121,7 +136,7 @@ void Map::print(const Trainer *player) const {
     for (int y = 0; y < this->height; ++y) {
         for (int x = 0; x < this->width; ++x) {
             // if an obstruction is in this spot
-            if (this->layout[x][y]) {
+            if (this->layout[x][y].getID()) {
                 std::cout << 'X';
                 continue;
             }
@@ -151,7 +166,7 @@ void Map::print(const Trainer *player) const {
                 }
             }
             // empty space if all else is false
-            if (not this->layout[x][y] and not found) {
+            if (not this->layout[x][y].getID() and not found) {
                 std::cout << ' ';
             }
         }
@@ -160,23 +175,68 @@ void Map::print(const Trainer *player) const {
     std::cout << this->name;
 }
 
+void Map::UpdateMap(int newCoord, int flag) {
+    for (int row = 0; row < this->width; ++row) {
+        for (int column = 0; column < this->height; ++column) {
+            const int x = this->layout[row][column].getX();
+            const int y = this->layout[row][column].getY();
+
+            switch (flag) {
+                case 1:
+                    this->layout[row][column].update(x, y + newCoord);
+                    break;
+                case 2:
+                    this->layout[row][column].update(x, y - newCoord);
+                    break;
+                case 3:
+                    this->layout[row][column].update(x + newCoord, y);
+                    break;
+                case 4:
+                    this->layout[row][column].update(x - newCoord, y);
+                    break;
+                default:
+                    return;
+            }
+        }
+    }
+
+    for (Trainer *&trainer : this->trainers) {
+        switch (flag) {
+            case 1:
+                trainer->shiftDownOnMap(newCoord);
+                break;
+            case 2:
+                trainer->shiftUpOnMap(newCoord);
+                break;
+            case 3:
+                trainer->shiftRightOnMap(newCoord);
+                break;
+            case 4:
+                trainer->shiftLeftOnMap(newCoord);
+                break;
+            default:
+                return;
+        }
+    }
+}
+
 void Map::DrawMap() {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            this->dest.x = row * 50;
-            this->dest.y = column * 50;
+            this->dest.x = this->layout[row][column].getX();
+            this->dest.y = this->layout[row][column].getY();
 
-            switch (this->layout[row][column]) {
-                case Map::Tile::FREE:
-                    TextureManager::Draw(Map::renderer, this->free, this->dest);
+            switch (this->layout[row][column].getID()) {
+                case TileID::FREE:
+                    TextureManager::Draw(Map::renderer, Map::free, this->dest);
                     break;
 
-                case Map::Tile::OBSTRUCTION:
-                    TextureManager::Draw(Map::renderer, this->obstruction, this->dest);
+                case TileID::OBSTRUCTION:
+                    TextureManager::Draw(Map::renderer, Map::obstruction, this->dest);
                     break;
 
                 default:
-                    TextureManager::Draw(Map::renderer, this->grass, this->dest);
+                    TextureManager::Draw(Map::renderer, Map::grass, this->dest);
                     break;
             }
         }

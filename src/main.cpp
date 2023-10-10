@@ -3,22 +3,18 @@
 
 #define SDL_MAIN_HANDLED
 
-#include <SDL.h>
-#include <SDL_timer.h>
-
 #include "Classes/Battle/Battle.h"
-#include "Classes/Map/Map.h"
-#include "Functions/GameFunctions.h"
+#include "Classes/Game/Game.h"
 
 #include <mutex>
 
 std::mutex m;
 
-bool canMove = true;            // signals when the player can move
+__attribute__((unused)) bool canMove = true;            // signals when the player can move
 bool threadsPaused = false;     // signals when to pause all threads
 bool stopThreads = false;       // signals when to end all threads
 
-void turn(Player *player, Map &map, int index) {
+__attribute__((unused)) void turn(Player *player, Map &map, int index) {
     auto engage = [&player, &map, &index] {
         m.lock();
         threadsPaused = true;
@@ -82,15 +78,10 @@ void turn(Player *player, Map &map, int index) {
     }
 }
 
-#include "Classes/Game/Game.h"
-
-const int WINDOW_WIDTH = 640;
-const int WINDOW_HEIGHT = 480;
-
 int main() {
     SDL_SetMainReady();
 
-    const int FPS = 30;
+    const int FPS = 30;                     // Pokémon runs at 30 fps in overworld, and 60 fps during battles
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
@@ -98,6 +89,7 @@ int main() {
 
     Game game;
 
+    // game loop
     while (game) {
         frameStart = SDL_GetTicks();
 
@@ -114,77 +106,12 @@ int main() {
 
     Game::clean();
     return 0;
+}
 
+
+#pragma clang diagnostic pop
 
     /*
-    if (SDL_Init(SDL_INIT_EVERYTHING) != 0) {
-        std::cerr << "Error initializing SDL: " << SDL_GetError();
-    }
-
-    SDL_Window *window = SDL_CreateWindow("Pokemon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-    if (not window) {
-        std::cerr << "Error creating window: " << SDL_GetError();
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (not renderer) {
-        std::cerr << "Error creating renderer: " << SDL_GetError();
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Surface *surface = IMG_Load(R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)");
-    if (not surface) {
-        std::cerr << "Error creating surface: " << SDL_GetError();
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer, surface);
-    SDL_FreeSurface(surface);
-    if (not texture) {
-        std::cerr << "Error creating texture: " << SDL_GetError();
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
-        SDL_Quit();
-        return 1;
-    }
-
-    SDL_Rect dest;
-
-    SDL_QueryTexture(texture, nullptr, nullptr, &dest.w, &dest.h);
-
-    dest.w /= 20;
-    dest.h /= 20;
-
-    dest.x = (WINDOW_WIDTH - dest.w) / 2;
-
-    double y_pos = WINDOW_HEIGHT;
-    while (dest.y >= -dest.h) {
-        SDL_RenderClear(renderer);
-
-        dest.y = static_cast<int>(y_pos);
-
-        SDL_RenderCopy(renderer, texture, nullptr, &dest);
-        SDL_RenderPresent(renderer);
-
-        y_pos -= static_cast<double>(SCROLL_SPEED / 60.0);
-
-        SDL_Delay(1000 / 60);
-    }
-
-    SDL_DestroyTexture(texture);
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
-
-    return 0;
-
     SetConsoleTitleA("Pokemon");
     ShowConsoleCursor(false);
 
@@ -363,7 +290,3 @@ getInput:
         }
     }
      */
-}
-
-
-#pragma clang diagnostic pop
