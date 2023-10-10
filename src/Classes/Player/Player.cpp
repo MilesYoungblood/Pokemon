@@ -13,8 +13,11 @@ Player::Player(SDL_Renderer *renderer, int mapX, int mapY) : Trainer(mapX * TILE
     this->destRect.x = mapX;
     this->destRect.y = mapY;
 
-    //TODO remember to manually change path for now
-    this->texture = TextureManager::LoadTexture(R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\Hilbert_front.png)", Player::renderer);
+    const char *playerPath = desktop ?
+        R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\Hilbert_front.png)" :
+        R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)";
+
+    this->texture = TextureManager::LoadTexture(playerPath, Player::renderer);
 }
 
 Player *Player::getPlayer(SDL_Renderer *renderer, int mapX, int mapY) {
