@@ -7,10 +7,7 @@
 Player * Player::instancePtr = nullptr;
 Pokemon * Player::pc[12][30];
 
-Player::Player(int mapX, int mapY) : Trainer(mapX * TILE_SIZE, mapY * TILE_SIZE) {
-    this->destRect.x = mapX;
-    this->destRect.y = mapY;
-
+Player::Player(int xPos, int yPos) : Trainer(1, 1) {
     std::string playerPath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\)" :
         R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\)";
@@ -20,12 +17,15 @@ Player::Player(int mapX, int mapY) : Trainer(mapX * TILE_SIZE, mapY * TILE_SIZE)
     this->leftModel = TextureManager::LoadTexture((playerPath + "Hilbert_left.png").c_str());
     this->rightModel = TextureManager::LoadTexture((playerPath + "Hilbert_right.png").c_str());
 
-    this->currentTexture = frontModel;
+    this->currentTexture = this->frontModel;
+
+    this->destRect.x = this->x * TILE_SIZE;
+    this->destRect.y = this->y * TILE_SIZE;
 }
 
-Player *Player::getPlayer(int mapX, int mapY) {
+Player *Player::getPlayer(int xPos, int yPos) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(mapX, mapY);
+        Player::instancePtr = new Player(xPos, yPos);
     }
     return Player::instancePtr;
 }

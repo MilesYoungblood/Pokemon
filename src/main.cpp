@@ -25,7 +25,7 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
 
         map.print(player);
 
-        printMessage("\n\nI challenge you to a Pokemon battle!");
+        printMessage("\n\nI challenge you to a Pokémon battle!");
         pressEnter();
 
         Battle(player, &map[index]);
@@ -81,7 +81,7 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
 int main() {
     SDL_SetMainReady();
 
-    const int FPS = 30;                     // Pokémon runs at 30 fps in overworld, and 60 fps during battles
+    const int FPS = 30;                     // Pokémon runs at 30 fps in over-world, and 60 fps during battles
     const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
@@ -112,7 +112,7 @@ int main() {
 #pragma clang diagnostic pop
 
     /*
-    SetConsoleTitleA("Pokemon");
+    SetConsoleTitleA("Pokémon");
     ShowConsoleCursor(false);
 
     Player *player = Player::getPlayer();
@@ -144,7 +144,7 @@ int main() {
         player->face(&(*currentMap)[index]);
         currentMap->print(player);
 
-        printMessage("\n\nI challenge you to a Pokemon battle!");
+        printMessage("\n\nI challenge you to a Pokémon battle!");
         pressEnter();
 
         Battle(player, &(*currentMap)[index]);

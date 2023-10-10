@@ -56,6 +56,27 @@ Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
 
+inline void centerCameraOnPlayer() {
+    int xFromCenter = x_pos - (player->getX() * TILE_SIZE);
+    int yFromCenter = y_pos - player->getY() * TILE_SIZE;
+
+    int xDirection = xFromCenter > 0 ? 3 : 4;
+    int yDirection = yFromCenter > 0 ? 1 : 2;
+
+    if (xDirection == 3) {
+        player->shiftRightOnMap(xFromCenter);
+    }
+    else {
+        player->shiftLeftOnMap(xFromCenter);
+    }
+    if (yDirection == 1) {
+        player->shiftDownOnMap(yFromCenter);
+    }
+    else {
+        player->shiftUpOnMap(yFromCenter);
+    }
+}
+
 Game::Game() {
     if (not SDL_InitSubSystem(SDL_INIT_EVERYTHING)) {
         std::cout << "Subsystems initialized!" << std::endl;
@@ -102,6 +123,7 @@ Game::Game() {
 
     player = Player::getPlayer(x_pos, y_pos);
     std::cout << "Player created!" << std::endl << std::endl;
+    centerCameraOnPlayer();
 }
 
 void Game::handleEvents() {
