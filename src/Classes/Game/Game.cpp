@@ -6,9 +6,9 @@
 
 #include "../../Data/Data.h"
 
-const static int WINDOW_HEIGHT = TILE_SIZE * 7;         // height of the window
-const static int WINDOW_WIDTH = TILE_SIZE * 9;          // width of the window
-const static int SCROLL_SPEED = TILE_SIZE / 10.0;       // scroll speed
+constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
+constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
+constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
 static SDL_Window *window = SDL_CreateWindow("Pokemon", 0x2FFF0000u, 0x2FFF0000u, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
@@ -50,7 +50,7 @@ Map Route_1("Route 1", 13, 10, { Joey, Red }, { { 6, 0, MapIDs::ROUTE_2, 10, 18 
 Map Route_2("Route 2", 21, 20, { { 10, 19, MapIDs::ROUTE_1, 6, 1 }, { 0, 10, MapIDs::ROUTE_3, 19, 5 } }, renderer);
 Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } }, renderer);
 
-Map *maps[3] = { &Route_1, &Route_2, &Route_3 };
+Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
 
@@ -99,7 +99,7 @@ Game::Game() {
     SDL_FreeSurface(surface);
 
     player = Player::getPlayer(renderer, x_pos, y_pos);
-    std::cout << "Player created!" << std::endl;
+    std::cout << "Player created!" << std::endl << std::endl;
 }
 
 void Game::handleEvents() {
@@ -222,13 +222,13 @@ void Game::clean() {
     std::cout << "Game cleaned!" << std::endl;
 
     Player::destroyPlayer();
-    std::cout << "Player destroyed!" << std::endl;
 }
 
+const char *saveFilePath = desktop ?
+                           R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
+                           R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
+
 void Game::saveData() {
-    const char *saveFilePath = desktop ?
-                               R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
-                               R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
     std::cout << "Saving please wait...";
 
     std::ofstream saveFile(saveFilePath);
@@ -250,7 +250,7 @@ void Game::saveData() {
         }
     }
 
-    for (int i = 0; i < 3; ++i) {
+    for (int i = 0; i < sizeof maps / sizeof maps[0]; ++i) {
         for (int j = 0; j < maps[i]->numNPCs(); ++i) {
             saveFile << '\n' << i << j << (*maps)[i][j].partySize();
             saveFile << (*maps)[i][j].getDirection();
@@ -261,11 +261,81 @@ void Game::saveData() {
 }
 
 void Game::loadData() {
+    std::ifstream saveFile(saveFilePath);
 
+    auto loadDirection = [](Entity *entity, int direction) {
+        switch (direction) {
+            case 0:
+                entity->faceNorth();
+                break;
+
+            case 1:
+                entity->faceEast();
+                break;
+
+            case 2:
+                entity->faceSouth();
+                break;
+
+            case 3:
+                entity->faceWest();
+                break;
+
+            default:
+                throw std::runtime_error("Unexpected error: lambda loadDirection");
+        }
+    };
+
+    if (saveFile) {
+        std::string buffer;
+
+        std::getline(saveFile, buffer);
+        currentMapIndex = buffer[0] - '0';
+
+        std::getline(saveFile, buffer);
+        player->setCoordinates(buffer[0] - '0', buffer[1] - '0');
+
+        loadDirection(player, buffer[2] - '0');
+
+        std::getline(saveFile, buffer);
+        const int partySize = buffer[0] - '0';
+
+        player->clearParty();
+        for (int i = 0; i < partySize; ++i) {
+            std::getline(saveFile, buffer, ' ');
+            player->addPokemon(PokemonFactory::getPokemon(PokemonID(std::stoi(buffer))));
+
+            std::getline(saveFile, buffer, ' ');
+            const int numMoves = buffer[0] - '0';
+
+            for (int j = 0; j < numMoves; ++j) {
+                std::getline(saveFile, buffer, ' ');
+                (*player)[i].addMove(MoveFactory::getMove(MoveID(std::stoi(buffer))));
+            }
+            std::getline(saveFile, buffer);
+        }
+
+        while (std::getline(saveFile, buffer)) {
+            const int map = buffer[0] - '0';
+            const int trainer = buffer[1] - '0';
+
+            if (buffer[2] == '0') {
+                (*maps)[map][trainer].clearParty();
+            }
+            loadDirection(&(*maps)[map][trainer], buffer[3] - '0');
+        }
+
+        saveFile.close();
+    }
+    else {
+        player->addPokemon(new Greninja({ new WaterShuriken, new DarkPulse, new IceBeam, new Extrasensory }));
+        player->addPokemon(new Charizard({ new Flamethrower, new AirSlash, new DragonPulse, new SolarBeam }));
+        player->addPokemon(new Hydreigon({ new DarkPulse, new DragonPulse, new Flamethrower, new FocusBlast }));
+    }
 }
 
 void Game::eraseData() {
-
+    std::remove(saveFilePath);
 }
 
 Game::operator bool() const {

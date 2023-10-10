@@ -7,7 +7,7 @@
 #include "../../Data/Pokedex.h"
 
 namespace PokemonFactory {
-    Pokemon *getPokemon(PokemonID id) {
+    inline Pokemon *getPokemon(PokemonID id) {
         switch (id) {
             case VENASAUR:
                 return new Venasaur();

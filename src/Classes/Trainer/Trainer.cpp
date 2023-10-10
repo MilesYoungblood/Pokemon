@@ -43,12 +43,16 @@ Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, 
 }
 
 Trainer::~Trainer() {
+    std::cout << "Trainer destructor called!" << std::endl;
     for (int i = 0; i < this->numPokemon; ++i) {
+        std::cout << "\tDeleting " << this->party[i]->getName() << '!' << std::endl;
         delete this->party[i];
     }
+    std::cout << std::endl;
 
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < this->numItems[i]; ++j) {
+            std::cout << "Deleting " << this->items[i][j]->getName() << '!' << std::endl;
             delete items[i][j];
         }
     }

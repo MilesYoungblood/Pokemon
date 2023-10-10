@@ -21,5 +21,5 @@ extern Map Route_1;
 extern Map Route_2;
 extern Map Route_3;
 
-extern Map *maps[3];
+extern Map *maps[];
 extern Map *currentMap;

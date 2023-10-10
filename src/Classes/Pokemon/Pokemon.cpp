@@ -73,6 +73,7 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
 Pokemon::~Pokemon() {
     for (int i = 0; i < this->moveCounter; ++i) {
         if (this->moveSet[i] != nullptr) {
+            std::cout << "\t\tDeleting " << this->name << "'s " << this->moveSet[i]->getName() << '!' << std::endl;
             delete this->moveSet[i];
         }
     }
@@ -99,31 +100,31 @@ void Pokemon::lowerStat(int &stat, int amount) {
 double Pokemon::getStatMod(int stat) {
     switch (stat) {
         case -6:
-            return 2.0 / 8.0;
+            return 0.25;
         case -5:
             return 2.0 / 7.0;
         case -4:
             return 2.0 / 6.0;
         case -3:
-            return 2.0 / 5.0;
+            return 0.4;
         case -2:
-            return 2.0 / 4.0;
+            return 0.5;
         case -1:
             return 2.0 / 3.0;
         case 0:
-            return 2.0 / 2.0;
+            return 1.0;
         case 1:
-            return 3.0 / 2.0;
+            return 1.5;
         case 2:
-            return 4.0 / 2.0;
+            return 2.0;
         case 3:
-            return 5.0 / 2.0;
+            return 2.5;
         case 4:
-            return 6.0 / 2.0;
+            return 3.0;
         case 5:
-            return 7.0 / 2.0;
+            return 3.5;
         case 6:
-            return 8.0 / 2.0;
+            return 4.0;
         default:
             throw std::runtime_error("Unexpected error: function getStatMod");
     }

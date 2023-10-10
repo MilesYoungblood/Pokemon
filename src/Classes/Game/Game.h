@@ -9,12 +9,14 @@
 #include <SDL_image.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Classes/Player/Player.h"
+#include "../../Classes/Factory/PokemonFactory.h"
+#include "../../Classes/Factory/MoveFactory.h"
 
 class Game {
 private:
     static void saveData();
-    void loadData();
-    void eraseData();
+    static void loadData();
+    static void eraseData();
 
 public:
     Game();
