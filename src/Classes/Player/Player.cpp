@@ -7,7 +7,7 @@
 Player * Player::instancePtr = nullptr;
 Pokemon * Player::pc[12][30];
 
-Player::Player(int xPos, int yPos) : Trainer(1, 1) {
+Player::Player() : Trainer(1, 1) {
     std::string playerPath = desktop ?
         R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\)" :
         R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\)";
@@ -23,9 +23,9 @@ Player::Player(int xPos, int yPos) : Trainer(1, 1) {
     this->destRect.y = this->y * TILE_SIZE;
 }
 
-Player *Player::getPlayer(int xPos, int yPos) {
+Player *Player::getPlayer() {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(xPos, yPos);
+        Player::instancePtr = new Player();
     }
     return Player::instancePtr;
 }

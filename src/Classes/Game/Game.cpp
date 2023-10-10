@@ -56,25 +56,25 @@ Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
 
-inline void centerCameraOnPlayer() {
-    int xFromCenter = x_pos - (player->getX() * TILE_SIZE);
-    int yFromCenter = y_pos - player->getY() * TILE_SIZE;
+inline void lockOnPlayer() {
+    const int xFromCenter = x_pos - player->getX() * TILE_SIZE;
+    const int yFromCenter = y_pos - player->getY() * TILE_SIZE;
 
-    int xDirection = xFromCenter > 0 ? 3 : 4;
-    int yDirection = yFromCenter > 0 ? 1 : 2;
+    const int xDirection = xFromCenter > 0 ? 3 : 4;
+    const int yDirection = yFromCenter > 0 ? 1 : 2;
 
-    if (xDirection == 3) {
+    if (xDirection == 3)
         player->shiftRightOnMap(xFromCenter);
-    }
-    else {
+    else
         player->shiftLeftOnMap(xFromCenter);
-    }
-    if (yDirection == 1) {
+
+    if (yDirection == 1)
         player->shiftDownOnMap(yFromCenter);
-    }
-    else {
+    else
         player->shiftUpOnMap(yFromCenter);
-    }
+
+    maps[currentMapIndex]->UpdateMap(xFromCenter, xDirection);
+    maps[currentMapIndex]->UpdateMap(yFromCenter, yDirection);
 }
 
 Game::Game() {
@@ -121,9 +121,11 @@ Game::Game() {
     SDL_SetWindowIcon(window, surface);
     SDL_FreeSurface(surface);
 
-    player = Player::getPlayer(x_pos, y_pos);
+    player = Player::getPlayer();
     std::cout << "Player created!" << std::endl << std::endl;
-    centerCameraOnPlayer();
+    lockOnPlayer();
+
+    std::cout << player->getX() << ' ' << player->getY() << std::endl;
 }
 
 void Game::handleEvents() {
@@ -213,27 +215,45 @@ void Game::update() {
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 1);
         y_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
+
+        if (counter % TILE_SIZE == 0) {
+            player->moveNorth();
+            std::cout << player->getX() << ' ' << player->getY() << std::endl;
+        }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 2);
         y_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
+
+        if (counter % TILE_SIZE == 0) {
+            player->moveSouth();
+            std::cout << player->getX() << ' ' << player->getY() << std::endl;
+        }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 3);
         x_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
+
+        if (counter % TILE_SIZE == 0) {
+            player->moveWest();
+            std::cout << player->getX() << ' ' << player->getY() << std::endl;
+        }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 4);
         x_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
+
+        if (counter % TILE_SIZE == 0) {
+            player->moveEast();
+            std::cout << player->getX() << ' ' << player->getY() << std::endl;
+        }
     }
 
     // if your sprite has reached a tile
     if (counter % TILE_SIZE == 0) {
-        // update player coordinates
-        player->setCoordinates(x_pos / TILE_SIZE, y_pos / TILE_SIZE);
 
         // if you are not inputting any directions
         if (not (up or down or left or right)) {
