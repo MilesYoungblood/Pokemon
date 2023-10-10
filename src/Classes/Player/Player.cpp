@@ -7,22 +7,25 @@
 Player * Player::instancePtr = nullptr;
 Pokemon * Player::pc[12][30];
 
-Player::Player(SDL_Renderer *renderer, int mapX, int mapY) : Trainer(mapX * TILE_SIZE, mapY * TILE_SIZE) {
-    Player::renderer = renderer;
-
+Player::Player(int mapX, int mapY) : Trainer(mapX * TILE_SIZE, mapY * TILE_SIZE) {
     this->destRect.x = mapX;
     this->destRect.y = mapY;
 
-    const char *playerPath = desktop ?
-        R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\Hilbert_front.png)" :
-        R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\Hilbert_front.png)";
+    std::string playerPath = desktop ?
+        R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\)" :
+        R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\)";
 
-    this->texture = TextureManager::LoadTexture(playerPath, Player::renderer);
+    this->frontModel = TextureManager::LoadTexture((playerPath + "Hilbert_front.png").c_str());
+    this->backModel = TextureManager::LoadTexture((playerPath + "Hilbert_back.png").c_str());
+    this->leftModel = TextureManager::LoadTexture((playerPath + "Hilbert_left.png").c_str());
+    this->rightModel = TextureManager::LoadTexture((playerPath + "Hilbert_right.png").c_str());
+
+    this->currentTexture = frontModel;
 }
 
-Player *Player::getPlayer(SDL_Renderer *renderer, int mapX, int mapY) {
+Player *Player::getPlayer(int mapX, int mapY) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(renderer, mapX, mapY);
+        Player::instancePtr = new Player(mapX, mapY);
     }
     return Player::instancePtr;
 }

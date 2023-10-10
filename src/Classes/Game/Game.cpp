@@ -10,8 +10,10 @@ constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
-static SDL_Window *window = SDL_CreateWindow("Pokemon", 0x2FFF0000u, 0x2FFF0000u, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+static SDL_Window *window = SDL_CreateWindow("Pokémon", 0x2FFF0000u, 0x2FFF0000u, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);;
+
+__attribute__((unused)) static TextureManager r(renderer);
 
 static SDL_Event event;
 
@@ -37,18 +39,18 @@ Player *player = nullptr;
 Trainer* Joey = new Trainer({
     new Pikachu({ new Thunder, new QuickAttack, new IronTail, new VoltTackle }),
     new Lucario({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse })
-}, 7, 6, 3, renderer);
+}, 7, 6, 3);
 
 Trainer* Red = new Trainer({
     new Pikachu(),
     new Venasaur(),
     new Charizard()
-}, 2, 4, 3, renderer);
+}, 2, 4, 3);
 
-Map Route_1("Route 1", 13, 10, { Joey, Red }, { { 6, 0, MapIDs::ROUTE_2, 10, 18 } }, renderer);
+Map Route_1("Route 1", 13, 10, { Joey, Red }, { { 6, 0, MapIDs::ROUTE_2, 10, 18 } });
 
-Map Route_2("Route 2", 21, 20, { { 10, 19, MapIDs::ROUTE_1, 6, 1 }, { 0, 10, MapIDs::ROUTE_3, 19, 5 } }, renderer);
-Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } }, renderer);
+Map Route_2("Route 2", 21, 20, { { 10, 19, MapIDs::ROUTE_1, 6, 1 }, { 0, 10, MapIDs::ROUTE_3, 19, 5 } });
+Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } });
 
 Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
@@ -98,7 +100,7 @@ Game::Game() {
     SDL_SetWindowIcon(window, surface);
     SDL_FreeSurface(surface);
 
-    player = Player::getPlayer(renderer, x_pos, y_pos);
+    player = Player::getPlayer(x_pos, y_pos);
     std::cout << "Player created!" << std::endl << std::endl;
 }
 
@@ -113,24 +115,44 @@ void Game::handleEvents() {
         case SDL_KEYDOWN:
             // do not accept keyboard input if your sprite is still moving
             if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
-                return;
+                break;
             }
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
-                    up = true;
-                    keepMovingUp = true;
+                    if (not player->isFacingNorth()) {
+                        player->faceNorth();
+                    }
+                    else {
+                        up = true;
+                        keepMovingUp = true;
+                    }
                     break;
                 case SDL_SCANCODE_A:
-                    left = true;
-                    keepMovingLeft = true;
+                    if (not player->isFacingWest()) {
+                        player->faceWest();
+                    }
+                    else {
+                        left = true;
+                        keepMovingLeft = true;
+                    }
                     break;
                 case SDL_SCANCODE_S:
-                    down = true;
-                    keepMovingDown = true;
+                    if (not player->isFacingSouth()) {
+                        player->faceSouth();
+                    }
+                    else {
+                        down = true;
+                        keepMovingDown = true;
+                    }
                     break;
                 case SDL_SCANCODE_D:
-                    keepMovingRight = true;
-                    right = true;
+                    if (not player->isFacingEast()) {
+                        player->faceEast();
+                    }
+                    else {
+                        keepMovingRight = true;
+                        right = true;
+                    }
                     break;
                 default:
                     break;

@@ -32,7 +32,7 @@ public:
     Trainer();
     Trainer(int x, int y);
     Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
-    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision, SDL_Renderer *r);
+    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision);
     Trainer(const Trainer &) = delete;
     Trainer& operator=(const Trainer &) = delete;
     ~Trainer();

@@ -4,22 +4,23 @@
 
 #include "Entity.h"
 
-SDL_Renderer *Entity::renderer = nullptr;
-
 Entity::Entity() : destRect() {
     this->x = 0;
     this->y = 0;
     this->vision = 1;
     this->direction = Direction::SOUTH;
-    this->model = 'S';
 
     this->destRect.h = TILE_SIZE;
     this->destRect.w = TILE_SIZE;
     this->destRect.x = 0;
     this->destRect.y = 0;
 
-    Entity::renderer = nullptr;
-    this->texture = nullptr;
+    this->frontModel = nullptr;
+    this->backModel = nullptr;
+    this->leftModel = nullptr;
+    this->rightModel = nullptr;
+
+    this->currentTexture = nullptr;
 }
 
 Entity::Entity(int x, int y) : Entity() {
@@ -31,7 +32,7 @@ Entity::Entity(int x, int y) : Entity() {
 }
 
 Entity::~Entity() {
-    SDL_DestroyTexture(this->texture);
+    SDL_DestroyTexture(this->frontModel);
 }
 
 void Entity::moveNorth() {
@@ -52,22 +53,22 @@ void Entity::moveWest() {
 
 void Entity::faceNorth() {
     this->direction = Entity::Direction::NORTH;
-    this->model = 'N';
+    this->currentTexture = this->backModel;
 }
 
 void Entity::faceEast() {
     this->direction = Entity::Direction::EAST;
-    this->model = 'E';
+    this->currentTexture = this->rightModel;
 }
 
 void Entity::faceSouth() {
     this->direction = Entity::Direction::SOUTH;
-    this->model = 'S';
+    this->currentTexture = this->frontModel;
 }
 
 void Entity::faceWest() {
     this->direction = Entity::Direction::WEST;
-    this->model = 'W';
+    this->currentTexture = this->leftModel;
 }
 
 void Entity::setDirection(Entity::Direction newDirection) {
@@ -89,10 +90,6 @@ int Entity::getX() const {
 
 int Entity::getY() const {
     return this->y;
-}
-
-char Entity::getModel() const {
-    return this->model;
 }
 
 bool Entity::isFacingNorth() const {
@@ -181,5 +178,5 @@ void Entity::shiftLeftOnMap(int distance) {
 }
 
 void Entity::render() {
-    SDL_RenderCopy(Entity::renderer, this->texture, nullptr, &this->destRect);
+    TextureManager::Draw(this->currentTexture, this->destRect);
 }

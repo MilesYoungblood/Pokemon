@@ -8,8 +8,6 @@
 #include <SDL_image.h>
 #include <SDL_thread.h>
 #include "../../Classes/TextureManager/TextureManager.h"
-#include "../ESC.h"
-#include "../Components.h"
 
 const static int TILE_SIZE = 70;
 static bool desktop = true;
@@ -21,11 +19,15 @@ protected:
     int x;                                  // x-coordinate on map
     int y;                                  // y-coordinate on map
     int vision;                             // line of sight
-    char model;                             // visual representation of which way the trainer is facing
     Entity::Direction direction;            // numerical representation of which way the trainer is facing
 
-    static SDL_Renderer *renderer;
-    SDL_Texture *texture;
+    SDL_Texture *frontModel;                // model of the entity when facing south
+    SDL_Texture *backModel;                 // model of the entity when facing north
+    SDL_Texture *leftModel;                 // model of the entity when facing west
+    SDL_Texture *rightModel;                // model of the entity when facing east
+
+    SDL_Texture *currentTexture;
+
     SDL_Rect destRect;
 
 public:
@@ -51,8 +53,6 @@ public:
     void setCoordinates(int newX, int newY);
     int getX() const;
     int getY() const;
-
-    char getModel() const;
 
     bool isFacingNorth() const;
     bool isFacingEast() const;

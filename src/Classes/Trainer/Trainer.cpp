@@ -30,16 +30,16 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) :
     }
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision, SDL_Renderer *r) : Trainer(pokemon, x, y) {
+Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision) : Trainer(pokemon, x, y) {
     this->vision = vision;
-    Trainer::renderer = r;
 
     //FIXME change this to an actual trainer model
     const char *modelPath = desktop ?
                             R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)" :
                             R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)";
 
-    this->texture = TextureManager::LoadTexture(modelPath, Trainer::renderer);
+    this->frontModel = TextureManager::LoadTexture(modelPath);
+    this->currentTexture = this->frontModel;
 }
 
 Trainer::~Trainer() {

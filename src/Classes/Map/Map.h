@@ -10,44 +10,40 @@
 #include <windows.h>
 #include "../Trainer/Trainer.h"
 
-enum TileID {
-    FREE,
-    OBSTRUCTION,
-    GRASS,
-    TALL_GRASS __attribute__((unused)),
-    WATER __attribute__((unused))
-};
-
-class Tile {
-private:
-    TileID id;
-    SDL_Rect dest;
-
-public:
-    Tile() = default;
-    explicit Tile(TileID id, int x, int y) : dest({ x, y, TILE_SIZE, TILE_SIZE }) {
-        this->id = id;
-    }
-
-    void update(int x, int y) {
-        this->dest.x = x;
-        this->dest.y = y;
-    }
-
-    int getX() const { return this->dest.x; }
-    int getY() const { return this->dest.y; }
-
-    void setID(TileID newID) {
-        this->id = newID;
-    }
-
-    TileID getID() const {
-        return this->id;
-    }
-};
-
 class Map {
 private:
+    enum TileID {
+        FREE,
+        OBSTRUCTION,
+        GRASS,
+        TALL_GRASS __attribute__((unused)),
+        WATER __attribute__((unused))
+    };
+
+    class Tile {
+    private:
+        TileID id;
+        SDL_Rect dest;
+
+    public:
+        Tile() = default;
+        explicit Tile(TileID id, int x, int y) : dest({ x, y, TILE_SIZE, TILE_SIZE }) {
+            this->id = id;
+        }
+
+        void update(int x, int y) {
+            this->dest.x = x;
+            this->dest.y = y;
+        }
+
+        int getX() const { return this->dest.x; }
+        int getY() const { return this->dest.y; }
+
+        void setID(TileID newID) { this->id = newID; }
+
+        TileID getID() const { return this->id; }
+    };
+
     struct ExitPoint {
         int x;                              // x-coordinate of the exit spot
         int y;                              // y-coordinate of the exit spot
@@ -63,26 +59,25 @@ private:
 
     SDL_Rect dest;
 
-    static SDL_Renderer *renderer;          // renderer
     static SDL_Texture *free;
     static SDL_Texture *obstruction;
     static SDL_Texture *grass;
     static SDL_Texture *tallGrass;
     static SDL_Texture *water;
 
-    std::vector<std::vector<Tile>> layout;  // The map is represented by a 2D int vector
+    std::vector<std::vector<Map::Tile>> layout;  // The map is represented by a 2D int vector
                                             // values are represented by the tiles enum
 
     std::vector<Trainer*> trainers;         // the set of trainers in this map
 
-    std::vector<ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
+    std::vector<Map::ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
 
-    void setBorders(const Map * from);
+    void setBorders(const Map *from);
     bool isTrainerHere(int x, int y) const;
 
 public:
-    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *r);
-    Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints, SDL_Renderer *renderer);
+    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints);
+    Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints);
     Map(const Map &) = delete;
     Map& operator=(const Map &) = delete;
     ~Map();
