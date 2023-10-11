@@ -10,7 +10,7 @@
 #include "../../Classes/TextureManager/TextureManager.h"
 
 const static int TILE_SIZE = 70;
-static bool desktop = true;
+static bool desktop = false;
 
 class Entity {
 protected:
@@ -67,10 +67,12 @@ public:
     // these functions do NOT update the entity's internal coordinates
     // these functions merely update where the entity appears on in the window
     // these functions may later be incorporated into a camera rather than here
-    void shiftDownOnMap(int distance);
     void shiftUpOnMap(int distance);
-    void shiftRightOnMap(int distance);
+    void shiftDownOnMap(int distance);
     void shiftLeftOnMap(int distance);
+    void shiftRightOnMap(int distance);
+    
+    SDL_Rect* getRectangle() { return &this->destRect; }
 
     void render();
 };

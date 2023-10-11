@@ -161,20 +161,20 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Entity::shiftDownOnMap(int distance) {
-    this->destRect.y += distance;
-}
-
 void Entity::shiftUpOnMap(int distance) {
     this->destRect.y -= distance;
 }
 
-void Entity::shiftRightOnMap(int distance) {
-    this->destRect.x += distance;
+void Entity::shiftDownOnMap(int distance) {
+    this->destRect.y += distance;
 }
 
 void Entity::shiftLeftOnMap(int distance) {
     this->destRect.x -= distance;
+}
+
+void Entity::shiftRightOnMap(int distance) {
+    this->destRect.x += distance;
 }
 
 void Entity::render() {

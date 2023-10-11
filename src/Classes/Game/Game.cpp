@@ -5,22 +5,20 @@
 #include "Game.h"
 
 #include "../../Data/Data.h"
+#include "../../Classes/Camera/Camera.h"
 
 constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
 static SDL_Window *window = SDL_CreateWindow("Pokémon", 0x2FFF0000u, 0x2FFF0000u, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);;
+static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
 
 __attribute__((unused)) static TextureManager r(renderer);
 
 static SDL_Event event;
 
 static bool isRunning = true;                           // determines whether the game is running
-
-static int x_pos = (WINDOW_WIDTH - TILE_SIZE) / 2;      // player's x-coordinates on the map
-static int y_pos = (WINDOW_HEIGHT - TILE_SIZE) / 2;     // player's y-coordinates on the map
 
 static bool up = false;
 static bool down = false;
@@ -55,27 +53,6 @@ Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } });
 Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
-
-inline void lockOnPlayer() {
-    const int xFromCenter = x_pos - player->getX() * TILE_SIZE;
-    const int yFromCenter = y_pos - player->getY() * TILE_SIZE;
-
-    const int xDirection = xFromCenter > 0 ? 3 : 4;
-    const int yDirection = yFromCenter > 0 ? 1 : 2;
-
-    if (xDirection == 3)
-        player->shiftRightOnMap(xFromCenter);
-    else
-        player->shiftLeftOnMap(xFromCenter);
-
-    if (yDirection == 1)
-        player->shiftDownOnMap(yFromCenter);
-    else
-        player->shiftUpOnMap(yFromCenter);
-
-    maps[currentMapIndex]->UpdateMap(xFromCenter, xDirection);
-    maps[currentMapIndex]->UpdateMap(yFromCenter, yDirection);
-}
 
 Game::Game() {
     if (not SDL_InitSubSystem(SDL_INIT_EVERYTHING)) {
@@ -123,9 +100,7 @@ Game::Game() {
 
     player = Player::getPlayer();
     std::cout << "Player created!" << std::endl << std::endl;
-    lockOnPlayer();
-
-    std::cout << player->getX() << ' ' << player->getY() << std::endl;
+    Camera::lockOnPlayer(player, maps[currentMapIndex], (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2);
 }
 
 void Game::handleEvents() {
@@ -212,57 +187,49 @@ void Game::update() {
     const int playerY = player->getY();
 
     if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or up)) {
+        Camera::shiftDown(SCROLL_SPEED);
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 1);
-        y_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
 
         if (counter % TILE_SIZE == 0) {
             player->moveNorth();
-            std::cout << player->getX() << ' ' << player->getY() << std::endl;
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
+        Camera::shiftUp(SCROLL_SPEED);
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 2);
-        y_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
 
         if (counter % TILE_SIZE == 0) {
             player->moveSouth();
-            std::cout << player->getX() << ' ' << player->getY() << std::endl;
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
+        Camera::shiftRight(SCROLL_SPEED);
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 3);
-        x_pos -= SCROLL_SPEED;
         counter += SCROLL_SPEED;
 
         if (counter % TILE_SIZE == 0) {
             player->moveWest();
-            std::cout << player->getX() << ' ' << player->getY() << std::endl;
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
+        Camera::shiftLeft(SCROLL_SPEED);
         maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 4);
-        x_pos += SCROLL_SPEED;
         counter += SCROLL_SPEED;
 
         if (counter % TILE_SIZE == 0) {
             player->moveEast();
-            std::cout << player->getX() << ' ' << player->getY() << std::endl;
         }
     }
 
-    // if your sprite has reached a tile
-    if (counter % TILE_SIZE == 0) {
-
-        // if you are not inputting any directions
-        if (not (up or down or left or right)) {
-            keepMovingUp = false;
-            keepMovingDown = false;
-            keepMovingLeft = false;
-            keepMovingRight = false;
-            counter = 0;
-        }
+    // if your sprite has reached a tile, and you are not inputting any directions
+    if (counter % TILE_SIZE == 0 and not (up or down or left or right)) {
+        keepMovingUp = false;
+        keepMovingDown = false;
+        keepMovingLeft = false;
+        keepMovingRight = false;
+        counter = 0;
     }
 }
 
@@ -364,7 +331,7 @@ void Game::loadData() {
         std::getline(saveFile, buffer);
         const int partySize = buffer[0] - '0';
 
-        player->clearParty();
+        //player->clearParty();
         for (int i = 0; i < partySize; ++i) {
             std::getline(saveFile, buffer, ' ');
             player->addPokemon(PokemonFactory::getPokemon(PokemonID(std::stoi(buffer))));

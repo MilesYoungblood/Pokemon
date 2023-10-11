@@ -15,18 +15,18 @@ SDL_Texture *Map::water = nullptr;
 void Map::setBorders(const Map *from) {
     // set the top border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][0].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][0].setID(TileID::OBSTRUCTION);
     }
 
     // set the inner layer borders
     for (int y = 1; y < from->height; ++y) {
-        this->layout[0][y].setID(Map::TileID::OBSTRUCTION);
-        this->layout[this->width - 1][y].setID(Map::TileID::OBSTRUCTION);
+        this->layout[0][y].setID(TileID::OBSTRUCTION);
+        this->layout[this->width - 1][y].setID(TileID::OBSTRUCTION);
     }
 
     // set the bottom border
     for (int x = 0; x < from->width; ++x) {
-        this->layout[x][this->height - 1].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][this->height - 1].setID(TileID::OBSTRUCTION);
     }
 }
 
@@ -45,14 +45,14 @@ Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoi
         this->layout[i].resize(this->height);
 
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = Map::Tile(Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE);
+            this->layout[i][j] = Tile(TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE);
         }
     }
     this->setBorders(this);
 
     this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y].setID(Map::TileID::GRASS);
+        this->layout[exitPoint.x][exitPoint.y].setID(TileID::GRASS);
     }
 
     this->dest.w = TILE_SIZE;
@@ -96,7 +96,7 @@ bool Map::isObstructionHere(int x, int y) const {
         return true;
     }
     else {
-        return this->layout[x][y].getID() == Map::TileID::OBSTRUCTION;
+        return this->layout[x][y].getID() == TileID::OBSTRUCTION;
     }
 }
 
@@ -122,7 +122,7 @@ Trainer& Map::operator[](int index) {
 // places an obstruction at the passed coordinates
 void Map::setObstruction(int x, int y) {
     if (not this->isTrainerHere(x, y)) {
-        this->layout[x][y].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][y].setID(TileID::OBSTRUCTION);
     }
 }
 
@@ -226,11 +226,11 @@ void Map::DrawMap() {
             this->dest.y = this->layout[row][column].getY();
 
             switch (this->layout[row][column].getID()) {
-                case Map::TileID::FREE:
+                case TileID::FREE:
                     TextureManager::Draw(Map::free, this->dest);
                     break;
 
-                case Map::TileID::OBSTRUCTION:
+                case TileID::OBSTRUCTION:
                     TextureManager::Draw(Map::obstruction, this->dest);
                     break;
 
