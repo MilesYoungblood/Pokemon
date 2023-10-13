@@ -6,11 +6,9 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <SDL_thread.h>
 #include "../../Classes/TextureManager/TextureManager.h"
 
 const static int TILE_SIZE = 70;
-static bool desktop = false;
 
 class Entity {
 protected:
@@ -72,7 +70,7 @@ public:
     void shiftLeftOnMap(int distance);
     void shiftRightOnMap(int distance);
     
-    SDL_Rect* getRectangle() { return &this->destRect; }
+    SDL_Rect *getRect();
 
     void render();
 };

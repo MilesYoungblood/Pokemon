@@ -21,15 +21,6 @@ enum Keys {
     ENTER = 13
 };
 
-// toggles cursor
-inline void ShowConsoleCursor(bool showFlag) {
-    CONSOLE_CURSOR_INFO cursorInfo;
-
-    GetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-    cursorInfo.bVisible = showFlag; // set the cursor visibility
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursorInfo);
-}
-
 class __attribute__((unused)) SortClass {
 private:
     template <typename Comparable>

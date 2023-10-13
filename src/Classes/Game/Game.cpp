@@ -5,18 +5,20 @@
 #include "Game.h"
 
 #include "../../Data/Data.h"
-#include "../../Classes/Camera/Camera.h"
+#include <fstream>
+
+const std::string path = std::filesystem::current_path().parent_path().generic_string();
 
 constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
-static SDL_Window *window = SDL_CreateWindow("Pokémon", 0x2FFF0000u, 0x2FFF0000u, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+static SDL_Window *window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
 static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+static SDL_Event event;
+static Mix_Chunk *music = nullptr;
 
 __attribute__((unused)) static TextureManager r(renderer);
-
-static SDL_Event event;
 
 static bool isRunning = true;                           // determines whether the game is running
 
@@ -30,16 +32,16 @@ static bool keepMovingDown = false;
 static bool keepMovingLeft = false;
 static bool keepMovingRight = false;
 
-static int counter = 0;
+static int walkCounter = 0;                             // measures how many screen pixels an entity has moved
 
 Player *player = nullptr;
 
-Trainer* Joey = new Trainer({
+Trainer *Joey = new Trainer({
     new Pikachu({ new Thunder, new QuickAttack, new IronTail, new VoltTackle }),
     new Lucario({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse })
 }, 7, 6, 3);
 
-Trainer* Red = new Trainer({
+Trainer *Red = new Trainer({
     new Pikachu(),
     new Venasaur(),
     new Charizard()
@@ -54,17 +56,48 @@ Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
 
-Game::Game() {
-    if (not SDL_InitSubSystem(SDL_INIT_EVERYTHING)) {
-        std::cout << "Subsystems initialized!" << std::endl;
+// finds the player's current position on the screen map,
+// then shifts everything, including the player, accordingly
+inline void lockOnPlayer(Player *p, int x, int y, void(*updateMap)(int, int)) {
+    const int xFromCenter = x - p->getX() * TILE_SIZE;  // x-distance of the player from the center of the screen
+    const int yFromCenter = y - p->getY() * TILE_SIZE;  // y-distance of the player from the center of the screen
+
+    const int xDirection = xFromCenter > 0 ? 3 : 4;     // determines whether to shift left or right
+    const int yDirection = yFromCenter > 0 ? 1 : 2;     // determines whether to shift up or down
+
+    if (xDirection == 3) {
+        p->shiftRightOnMap(xFromCenter);
+        Camera::shiftRight(xFromCenter);
     }
     else {
-        std::cerr << "Error initializing subsystems " << SDL_GetError() << std::endl;
+        p->shiftLeftOnMap(xFromCenter);
+        Camera::shiftLeft(xFromCenter);
+    }
+
+    if (yDirection == 1) {
+        p->shiftDownOnMap(yFromCenter);
+        Camera::shiftDown(yFromCenter);
+    }
+    else {
+        p->shiftUpOnMap(yFromCenter);
+        Camera::shiftUp(yFromCenter);
+    }
+
+    updateMap(xFromCenter, xDirection);
+    updateMap(yFromCenter, yDirection);
+}
+
+Game::Game() {
+    if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
+        std::cout << "Subsystems initialized!\n";
+    }
+    else {
+        std::cerr << "Error initializing subsystems " << SDL_GetError() << '\n';
         exit(1);
     }
 
     if (window) {
-        std::cout << "Window created!" << std::endl;
+        std::cout << "Window created!\n";
     }
     else {
         std::cerr << "Error creating window " << SDL_GetError();
@@ -73,7 +106,7 @@ Game::Game() {
     }
 
     if (renderer) {
-        std::cout << "Renderer created!" << std::endl;
+        std::cout << "Renderer created!\n";
     }
     else {
         std::cerr << "Error creating renderer " << SDL_GetError() << std::endl;
@@ -82,11 +115,7 @@ Game::Game() {
         exit(1);
     }
 
-    const char *iconPath = desktop ?
-            R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)" :
-            R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)";
-
-    SDL_Surface *surface = IMG_Load(iconPath);
+    SDL_Surface *surface = IMG_Load((path + "\\sprites\\pokeball.png").c_str());
     if (not surface) {
         std::cerr << "Error creating surface: " << SDL_GetError();
         SDL_DestroyRenderer(renderer);
@@ -98,9 +127,45 @@ Game::Game() {
     SDL_SetWindowIcon(window, surface);
     SDL_FreeSurface(surface);
 
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == 0) {
+        std::cout << "Default audio device opened!\n";
+    }
+    else {
+        std::cerr << "Could not open the default audio device: " << SDL_GetError();
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        exit(1);
+    }
+
+    music = Mix_LoadWAV((path + "\\music\\TrainerBattleMusic.wav").c_str());
+    if (not music) {
+        std::cerr << "Could not play sound " << SDL_GetError();
+        Mix_CloseAudio();
+        SDL_DestroyRenderer(renderer);
+        SDL_DestroyWindow(window);
+        SDL_Quit();
+        exit(1);
+    }
+    Mix_PlayChannel(-1, music, -1);
+
     player = Player::getPlayer();
-    std::cout << "Player created!" << std::endl << std::endl;
-    Camera::lockOnPlayer(player, maps[currentMapIndex], (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2);
+    std::cout << "Player created!\n\n";
+
+    const auto instructions = [](int distance, int flag) -> void { maps[currentMapIndex]->updateMap(distance, flag); };
+    lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+}
+
+Game::~Game() {
+    Mix_FreeChunk(music);
+    Mix_CloseAudio();
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+
+    std::cout << "Game cleaned!" << std::endl;
+
+    Player::destroyPlayer();
 }
 
 void Game::handleEvents() {
@@ -149,8 +214,8 @@ void Game::handleEvents() {
                         player->faceEast();
                     }
                     else {
-                        keepMovingRight = true;
                         right = true;
+                        keepMovingRight = true;
                     }
                     break;
                 default:
@@ -188,81 +253,70 @@ void Game::update() {
 
     if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or up)) {
         Camera::shiftDown(SCROLL_SPEED);
-        maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 1);
-        counter += SCROLL_SPEED;
+        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 1);
+        walkCounter += SCROLL_SPEED;
 
-        if (counter % TILE_SIZE == 0) {
+        if (walkCounter % TILE_SIZE == 0) {
             player->moveNorth();
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
         Camera::shiftUp(SCROLL_SPEED);
-        maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 2);
-        counter += SCROLL_SPEED;
+        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 2);
+        walkCounter += SCROLL_SPEED;
 
-        if (counter % TILE_SIZE == 0) {
+        if (walkCounter % TILE_SIZE == 0) {
             player->moveSouth();
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
         Camera::shiftRight(SCROLL_SPEED);
-        maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 3);
-        counter += SCROLL_SPEED;
+        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 3);
+        walkCounter += SCROLL_SPEED;
 
-        if (counter % TILE_SIZE == 0) {
+        if (walkCounter % TILE_SIZE == 0) {
             player->moveWest();
         }
     }
     else if (not maps[currentMapIndex]->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
         Camera::shiftLeft(SCROLL_SPEED);
-        maps[currentMapIndex]->UpdateMap(SCROLL_SPEED, 4);
-        counter += SCROLL_SPEED;
+        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 4);
+        walkCounter += SCROLL_SPEED;
 
-        if (counter % TILE_SIZE == 0) {
+        if (walkCounter % TILE_SIZE == 0) {
             player->moveEast();
         }
     }
 
     // if your sprite has reached a tile, and you are not inputting any directions
-    if (counter % TILE_SIZE == 0 and not (up or down or left or right)) {
+    if (walkCounter % TILE_SIZE == 0 and not (up or down or left or right)) {
         keepMovingUp = false;
         keepMovingDown = false;
         keepMovingLeft = false;
         keepMovingRight = false;
-        counter = 0;
+        walkCounter = 0;
     }
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    (*maps)[currentMapIndex].DrawMap();
+    (*maps)[currentMapIndex].renderMap();
 
     for (int i = 0; i < maps[currentMapIndex]->numNPCs(); ++i) {
-        (*maps)[currentMapIndex][i].render();
+        // prevents rendering trainers that aren't onscreen
+        if (Camera::isInView((*maps)[currentMapIndex][i].getRect())) {
+            (*maps)[currentMapIndex][i].render();
+        }
     }
     player->render();
 
     SDL_RenderPresent(renderer);
 }
 
-void Game::clean() {
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
-    SDL_Quit();
-
-    std::cout << "Game cleaned!" << std::endl;
-
-    Player::destroyPlayer();
-}
-
-const char *saveFilePath = desktop ?
-                           R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)" :
-                           R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Data\SaveData.txt)";
-
 void Game::saveData() {
     std::cout << "Saving please wait...";
 
-    std::ofstream saveFile(saveFilePath);
+    std::ofstream saveFile(path + R"(\src\Data\SaveData.txt)");
     if (not saveFile) {
         throw std::runtime_error("Could not open file");
     }
@@ -292,7 +346,7 @@ void Game::saveData() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(saveFilePath);
+    std::ifstream saveFile(path + R"(\src\Data\SaveData.txt)");
 
     auto loadDirection = [](Entity *entity, int direction) {
         switch (direction) {
@@ -366,7 +420,7 @@ void Game::loadData() {
 }
 
 void Game::eraseData() {
-    std::remove(saveFilePath);
+    std::remove((path + R"(\src\Data\SaveData.txt)").c_str());
 }
 
 Game::operator bool() const {

@@ -4,7 +4,6 @@
 
 #include "Map.h"
 
-//SDL_Renderer *Map::renderer = nullptr;
 SDL_Texture *Map::free = nullptr;
 SDL_Texture *Map::obstruction = nullptr;
 SDL_Texture *Map::grass = nullptr;
@@ -34,7 +33,7 @@ bool Map::isTrainerHere(int x, int y) const {
     return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
-Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoint> &exitPoints) : dest() {
+Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoint> &exitPoints) {
     this->name = name;
 
     this->width = width;
@@ -55,21 +54,8 @@ Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoi
         this->layout[exitPoint.x][exitPoint.y].setID(TileID::GRASS);
     }
 
-    this->dest.w = TILE_SIZE;
-    this->dest.h = TILE_SIZE;
-
-    this->dest.x = this->dest.y = 0;
-
-    const char *obstructionPath = desktop ?
-            R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\pokeball.png)" :
-            R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\pokeball.png)";
-
-    Map::obstruction = TextureManager::LoadTexture(obstructionPath);
-    const char *grassPath = desktop ?
-            R"(C:\Users\Miles\Documents\GitHub\PokemonBattle\grass.png)" :
-            R"(C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\grass.png)";
-
-    Map::grass = TextureManager::LoadTexture(grassPath);
+    Map::obstruction = TextureManager::LoadTexture(PROJECT_PATH + "\\sprites\\pokeball.png");
+    Map::grass = TextureManager::LoadTexture(PROJECT_PATH + "\\sprites\\grass.png");
 }
 
 Map::Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<Map::ExitPoint> &exitPoints)
@@ -126,55 +112,7 @@ void Map::setObstruction(int x, int y) {
     }
 }
 
-// 242 = green, 244 = red, 240 = black
-
-// prints the map and everything in it
-void Map::print(const Trainer *player) const {
-    system("cls");
-
-    for (int y = 0; y < this->height; ++y) {
-        for (int x = 0; x < this->width; ++x) {
-            // if an obstruction is in this spot
-            if (this->layout[x][y].getID()) {
-                std::cout << 'X';
-                continue;
-            }
-            // if the player is currently at these coordinates
-            else if (x == player->getX() and y == player->getY()) {
-                // change color of the text to green
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
-                //std::cout << player->getModel();
-
-                // change color of the text back to white
-                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-                continue;
-            }
-            bool found = false;      // necessary because an NPC might not be found
-
-            // if the npc is currently at these coordinates
-            for (const Trainer *npc : this->trainers) {
-                if (x == npc->getX() and y == npc->getY()) {
-                    // change color of the text to red
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 12);
-                    //std::cout << npc->getModel();
-
-                    // change color of the text back to white
-                    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
-                    found = true;
-                    break;
-                }
-            }
-            // empty space if all else is false
-            if (not this->layout[x][y].getID() and not found) {
-                std::cout << ' ';
-            }
-        }
-        std::cout << '\n';
-    }
-    std::cout << this->name;
-}
-
-void Map::UpdateMap(int newCoord, int flag) {
+void Map::updateMap(int distance, int flag) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
             const int x = this->layout[row][column].getX();
@@ -182,16 +120,16 @@ void Map::UpdateMap(int newCoord, int flag) {
 
             switch (flag) {
                 case 1:
-                    this->layout[row][column].update(x, y + newCoord);
+                    this->layout[row][column].update(x, y + distance);
                     break;
                 case 2:
-                    this->layout[row][column].update(x, y - newCoord);
+                    this->layout[row][column].update(x, y - distance);
                     break;
                 case 3:
-                    this->layout[row][column].update(x + newCoord, y);
+                    this->layout[row][column].update(x + distance, y);
                     break;
                 case 4:
-                    this->layout[row][column].update(x - newCoord, y);
+                    this->layout[row][column].update(x - distance, y);
                     break;
                 default:
                     return;
@@ -202,16 +140,16 @@ void Map::UpdateMap(int newCoord, int flag) {
     for (Trainer *&trainer : this->trainers) {
         switch (flag) {
             case 1:
-                trainer->shiftDownOnMap(newCoord);
+                trainer->shiftDownOnMap(distance);
                 break;
             case 2:
-                trainer->shiftUpOnMap(newCoord);
+                trainer->shiftUpOnMap(distance);
                 break;
             case 3:
-                trainer->shiftRightOnMap(newCoord);
+                trainer->shiftRightOnMap(distance);
                 break;
             case 4:
-                trainer->shiftLeftOnMap(newCoord);
+                trainer->shiftLeftOnMap(distance);
                 break;
             default:
                 return;
@@ -219,60 +157,27 @@ void Map::UpdateMap(int newCoord, int flag) {
     }
 }
 
-void Map::DrawMap() {
+void Map::renderMap() {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            this->dest.x = this->layout[row][column].getX();
-            this->dest.y = this->layout[row][column].getY();
+            const SDL_Rect *r = this->layout[row][column].getRect();
+            // prevents rendering tiles that aren't onscreen
+            if (not Camera::isInView(r)) {
+                continue;
+            }
 
             switch (this->layout[row][column].getID()) {
                 case TileID::FREE:
-                    TextureManager::Draw(Map::free, this->dest);
+                    TextureManager::Draw(Map::free, *r);
                     break;
 
                 case TileID::OBSTRUCTION:
-                    TextureManager::Draw(Map::obstruction, this->dest);
+                    TextureManager::Draw(Map::obstruction, *r);
                     break;
 
                 default:
-                    TextureManager::Draw(Map::grass, this->dest);
+                    TextureManager::Draw(Map::grass, *r);
                     break;
-            }
-        }
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// moves the Trainer to the player
-void Trainer::moveToPlayer(const Map &map, const Trainer *player) {
-    if (this->hasVisionOf(player)) {
-        if (this->isFacingNorth()) {
-            while (not this->isNextTo(player)) {
-                this->moveNorth();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(player);
-            }
-        }
-        else if (this->isFacingEast()) {
-            while (not this->isNextTo(player)) {
-                this->moveEast();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(player);
-            }
-        }
-        else if (this->isFacingSouth()) {
-            while (not this->isNextTo(player)) {
-                this->moveSouth();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(player);
-            }
-        }
-        else if (this->isFacingWest()) {
-            while (not this->isNextTo(player)) {
-                this->moveWest();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-                map.print(player);
             }
         }
     }

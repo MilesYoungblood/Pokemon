@@ -4,13 +4,15 @@
 
 #pragma once
 
+#include <filesystem>
+
 #include "../Pokemon/Pokemon.h"
 #include "../Item/RestoreItem.h"
 #include "../Item/StatusItem.h"
 #include "../Item/Pokeball.h"
 #include "../Item/BattleItem.h"
 
-class Map;
+inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_path().generic_string();
 
 class Trainer : public Entity {
 private:
@@ -64,5 +66,5 @@ public:
     virtual explicit operator bool() const;
     virtual bool canFight() const;
 
-    void moveToPlayer(const Map &map, const Trainer *trainer);
+    void moveToPlayer(const Trainer *trainer);
 };

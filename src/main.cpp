@@ -3,9 +3,8 @@
 
 #define SDL_MAIN_HANDLED
 
-#include "Classes/Battle/Battle.h"
-#include "Classes/Game/Game.h"
-
+//#include "Classes/Game/Game.h"
+/*
 #include <mutex>
 
 std::mutex m;
@@ -20,16 +19,13 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
         threadsPaused = true;
         canMove = false;
 
-        map[index].moveToPlayer(map, player);
+        map[index].moveToPlayer(player);
         player->face(&map[index]);
-
-        map.print(player);
 
         printMessage("\n\nI challenge you to a Pokémon battle!");
         pressEnter();
 
         Battle(player, &map[index]);
-        map.print(player);
 
         threadsPaused = false;
         canMove = true;
@@ -45,7 +41,7 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
         switch (generateInteger(1, 6)) {
             case 1:
                 map[index].face(&map[index]);
-                map.print(player);
+                //map.print(player);
 
                 if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
@@ -62,7 +58,6 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
                 else if (map[index].isFacingEast() or map[index].isFacingWest()) {
                     coinFlip() ? map[index].faceNorth() : map[index].faceSouth();
                 }
-                map.print(player);
 
                 if (map[index].hasVisionOf(player) and map[index]) {
                     engage();
@@ -77,19 +72,21 @@ __attribute__((unused)) void turn(Player *player, Map &map, int index) {
         }
     }
 }
+ */
+
+#include "Classes/Game/Game.h"
+
+constexpr int FPS = 30;
+constexpr int frameDelay = 1000 / FPS;
 
 int main() {
     SDL_SetMainReady();
-
-    const int FPS = 30;                     // Pokémon runs at 30 fps in over-world, and 60 fps during battles
-    const int frameDelay = 1000 / FPS;
 
     Uint32 frameStart;
     Uint32 frameTime;
 
     Game game;
 
-    // game loop
     while (game) {
         frameStart = SDL_GetTicks();
 
@@ -104,7 +101,6 @@ int main() {
         }
     }
 
-    Game::clean();
     return 0;
 }
 

@@ -6,14 +6,18 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <string>
 
 class TextureManager {
 private:
     static SDL_Renderer *renderer;
 
 public:
+    TextureManager() = default;
+    static void SetRenderer(SDL_Renderer *r) {
+        TextureManager::renderer = r;
+    }
     explicit TextureManager(SDL_Renderer *r);
-    static void EstablishRenderer(SDL_Renderer *r);
-    static SDL_Texture * LoadTexture(const char *texture);
+    static SDL_Texture * LoadTexture(const std::string &texture);
     static void Draw(SDL_Texture *texture, SDL_Rect dest);
 };

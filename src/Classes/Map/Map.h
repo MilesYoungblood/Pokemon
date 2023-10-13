@@ -7,8 +7,8 @@
 #include <vector>
 #include <array>
 #include <algorithm>
-#include <windows.h>
-#include "../Trainer/Trainer.h"
+#include "../Player/Player.h"
+#include "../Camera/Camera.h"
 
 enum TileID {
     FREE,
@@ -34,11 +34,11 @@ public:
         this->dest.y = y;
     }
 
+    SDL_Rect *getRect() { return &this->dest; }
     int getX() const { return this->dest.x; }
     int getY() const { return this->dest.y; }
 
     void setID(TileID newID) { this->id = newID; }
-
     TileID getID() const { return this->id; }
 };
 
@@ -56,8 +56,6 @@ private:
 
     int width;                              // width of the map
     int height;                             // height of the map
-
-    SDL_Rect dest;
 
     static SDL_Texture *free;
     static SDL_Texture *obstruction;
@@ -89,9 +87,7 @@ public:
     Trainer& operator[](int index);
 
     void setObstruction(int x, int y);
-    void print(const Trainer *player) const;
 
-    Tile& getTile(int row, int column) { return this->layout[row][column]; }
-    void UpdateMap(int newCoord, int flag);
-    void DrawMap();
+    void updateMap(int distance, int flag);
+    void renderMap();
 };

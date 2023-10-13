@@ -4,16 +4,11 @@
 
 #include "Entity.h"
 
-Entity::Entity() : destRect() {
+Entity::Entity() : destRect({ 0, 0, TILE_SIZE, TILE_SIZE }) {
     this->x = 0;
     this->y = 0;
     this->vision = 1;
     this->direction = Direction::SOUTH;
-
-    this->destRect.h = TILE_SIZE;
-    this->destRect.w = TILE_SIZE;
-    this->destRect.x = 0;
-    this->destRect.y = 0;
 
     this->frontModel = nullptr;
     this->backModel = nullptr;
@@ -33,6 +28,9 @@ Entity::Entity(int x, int y) : Entity() {
 
 Entity::~Entity() {
     SDL_DestroyTexture(this->frontModel);
+    SDL_DestroyTexture(this->backModel);
+    SDL_DestroyTexture(this->leftModel);
+    SDL_DestroyTexture(this->rightModel);
 }
 
 void Entity::moveNorth() {
@@ -175,6 +173,10 @@ void Entity::shiftLeftOnMap(int distance) {
 
 void Entity::shiftRightOnMap(int distance) {
     this->destRect.x += distance;
+}
+
+SDL_Rect *Entity::getRect() {
+    return &this->destRect;
 }
 
 void Entity::render() {
