@@ -109,7 +109,7 @@ Game::Game() {
         std::cout << "Renderer created!\n";
     }
     else {
-        std::cerr << "Error creating renderer " << SDL_GetError() << std::endl;
+        std::cerr << "Error creating renderer " << SDL_GetError() << '\n';
         SDL_DestroyWindow(window);
         SDL_Quit();
         exit(1);
@@ -152,7 +152,7 @@ Game::Game() {
     player = Player::getPlayer();
     std::cout << "Player created!\n\n";
 
-    const auto instructions = [](int distance, int flag) -> void { maps[currentMapIndex]->updateMap(distance, flag); };
+    const auto instructions = [](int d, int f) -> void { maps[currentMapIndex]->updateMap(d, f); };
     lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
 }
 
@@ -163,7 +163,7 @@ Game::~Game() {
     SDL_DestroyWindow(window);
     SDL_Quit();
 
-    std::cout << "Game cleaned!" << std::endl;
+    std::cout << "Game cleaned!\n";
 
     Player::destroyPlayer();
 }
@@ -348,7 +348,7 @@ void Game::saveData() {
 void Game::loadData() {
     std::ifstream saveFile(path + R"(\src\Data\SaveData.txt)");
 
-    auto loadDirection = [](Entity *entity, int direction) {
+    const auto loadDirection = [](Entity *entity, int direction) -> void {
         switch (direction) {
             case 0:
                 entity->faceNorth();
