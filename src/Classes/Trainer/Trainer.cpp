@@ -34,21 +34,21 @@ Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, 
     this->vision = vision;
 
     //FIXME change this to an actual trainer model
-    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + "\\sprites\\pokeball.png");
+    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
     this->currentTexture = this->frontModel;
 }
 
 Trainer::~Trainer() {
-    std::cout << "Trainer destructor called!" << std::endl;
+    std::cout << "Trainer destructor called!\n";
     for (int i = 0; i < this->numPokemon; ++i) {
-        std::cout << "\tDeleting " << this->party[i]->getName() << '!' << std::endl;
+        std::cout << "\tDeleting " << this->party[i]->getName() << "!\n";
         delete this->party[i];
     }
-    std::cout << std::endl;
+    std::cout << '\n';
 
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < this->numItems[i]; ++j) {
-            std::cout << "Deleting " << this->items[i][j]->getName() << '!' << std::endl;
+            std::cout << "Deleting " << this->items[i][j]->getName() << "!\n";
             delete items[i][j];
         }
     }

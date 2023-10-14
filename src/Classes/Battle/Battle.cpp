@@ -46,7 +46,7 @@ void Battle::displayChoices(int arrow, bool &print) {
 }
 
 void Battle::displayPokemon(int arrow, bool &print) {
-    auto printOut = [](const char *string, int index) {
+    void (*printOut)(const char *, int) = [](const char *string, int index) -> void {
         std::cout << string << (*Battle::player)[index] << std::string(15 - (*Battle::player)[index].getName().length(), ' ')
                   << "(HP: " << (*Battle::player)[index].getHP() << std::string(3 - std::to_string((*Battle::player)[index].getHP()).length(), ' ')
                   << '/' << std::string(3 - std::to_string((*Battle::player)[index].getMaxHp()).length(), ' ') << (*Battle::player)[index].getMaxHp()
@@ -72,7 +72,7 @@ void Battle::displayPokemon(int arrow, bool &print) {
 }
 
 void Battle::displayHPBar(bool displayPokemon = true) {
-    auto printOut = [](Trainer *trainer) {
+    void (*printOut)(Trainer *) = [](Trainer *trainer) -> void {
         std::cout << "| " << (*trainer)[0] << std::string(15 - (*trainer)[0].getName().length(), ' ')
                   << "| HP: " << (*trainer)[0].getHP()
                   << std::string(3 - std::to_string((*trainer)[0].getHP()).length(), ' ')
@@ -202,7 +202,7 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
 }
 
 void Battle::displayMoves(const Pokemon &pokemon, int arrow, bool &print) {
-    auto printOut = [&pokemon](const char *string, int index) {
+    const auto printOut = [&pokemon](const char *string, int index) -> void {
         std::cout << string << pokemon[index] << std::string(15 - pokemon[index].getName().length(), ' ')
                   << " (PP: " << pokemon[index].getPP() << std::string(2 - std::to_string(pokemon[index].getPP()).length(), ' ')
                   << '/' << std::string(2 - std::to_string(pokemon[index].getMaxPP()).length(), ' ') << pokemon[index].getMaxPP()
@@ -433,11 +433,11 @@ void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switch
 // This function commences attacking of each Pokémon and takes into account who is faster.
 // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
 void Battle::PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &keepPlaying) {
-    auto hasStatusCondition = [](Status status) {
+    bool (*hasStatusCondition)(Status) = [](Status status) -> bool {
         return status == Status::PARALYSIS ? generateInteger(1, 4) == 1 : status == Status::FREEZE or status == Status::SLEEP;
     };
 
-    auto userAction = [&userMove, &hasStatusCondition, &keepPlaying] {
+    const auto userAction = [&userMove, &hasStatusCondition, &keepPlaying] -> void {
         if (userMove < (*Battle::player)[0].numMoves()) {
             if (not hasStatusCondition((*Battle::player)[0].getStatus()))
                 Battle::Action(Battle::player, Battle::opponent, userMove, Battle::skipOpponentTurn, true, keepPlaying);
@@ -446,7 +446,7 @@ void Battle::PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &
         }
     };
 
-    auto opponentAction = [&opponentMove, &hasStatusCondition, &keepPlaying] {
+    const auto opponentAction = [&opponentMove, &hasStatusCondition, &keepPlaying] -> void {
         if (not hasStatusCondition((*Battle::opponent)[0].getStatus()))
             Battle::Action(Battle::opponent, Battle::player, opponentMove, Battle::skipPlayerTurn, false, keepPlaying);
         else
@@ -481,7 +481,7 @@ void Battle::PostStatus(bool isUserFaster, bool &keepPlaying) {
         return;
     }
 
-    auto hasStatusCondition = [](Status status) {
+    bool (*hasStatusCondition)(Status) = [](Status status) -> bool {
         return status == Status::BURN or status == Status::POISON;
     };
 
@@ -563,7 +563,7 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
     int userItem = 0;
     bool print = true;
 
-    auto resetVariables = [&itemType, &userItem, &print] {
+    const auto resetVariables = [&itemType, &userItem, &print] -> void {
         itemType = 0;
         userItem = 0;
         print = true;

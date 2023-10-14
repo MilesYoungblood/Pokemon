@@ -33,4 +33,35 @@ namespace Camera {
         SDL_Rect r{ xPos, yPos, WIDTH, HEIGHT };
         return SDL_HasIntersection(rect, &r);
     }
+
+    // finds the player's current position on the screen map,
+    // then shifts everything, including the player, accordingly
+    inline void lockOnPlayer(Player *p, int x, int y, void(*updateMap)(int, int)) {
+        const int xFromCenter = x - p->getX() * TILE_SIZE;  // x-distance of the player from the center of the screen
+        const int yFromCenter = y - p->getY() * TILE_SIZE;  // y-distance of the player from the center of the screen
+
+        const int xDirection = xFromCenter > 0 ? 3 : 4;     // determines whether to shift left or right
+        const int yDirection = yFromCenter > 0 ? 1 : 2;     // determines whether to shift up or down
+
+        if (xDirection == 3) {
+            p->shiftRightOnMap(xFromCenter);
+            Camera::shiftRight(xFromCenter);
+        }
+        else {
+            p->shiftLeftOnMap(xFromCenter);
+            Camera::shiftLeft(xFromCenter);
+        }
+
+        if (yDirection == 1) {
+            p->shiftDownOnMap(yFromCenter);
+            Camera::shiftDown(yFromCenter);
+        }
+        else {
+            p->shiftUpOnMap(yFromCenter);
+            Camera::shiftUp(yFromCenter);
+        }
+
+        updateMap(xFromCenter, xDirection);
+        updateMap(yFromCenter, yDirection);
+    }
 }

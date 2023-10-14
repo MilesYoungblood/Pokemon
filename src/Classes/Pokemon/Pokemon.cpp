@@ -73,7 +73,7 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
 Pokemon::~Pokemon() {
     for (int i = 0; i < this->moveCounter; ++i) {
         if (this->moveSet[i] != nullptr) {
-            std::cout << "\t\tDeleting " << this->name << "'s " << this->moveSet[i]->getName() << '!' << std::endl;
+            std::cout << "\t\tDeleting " << this->name << "'s " << this->moveSet[i]->getName() << "!\n";
             delete this->moveSet[i];
         }
     }

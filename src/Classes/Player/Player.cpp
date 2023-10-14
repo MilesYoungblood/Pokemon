@@ -4,11 +4,11 @@
 
 #include "Player.h"
 
-Player * Player::instancePtr = nullptr;
-Pokemon * Player::pc[12][30];
+Player *Player::instancePtr = nullptr;
+Pokemon *Player::pc[12][30];
 
 Player::Player() : Trainer(1, 1) {
-    const std::string path = std::filesystem::current_path().parent_path().generic_string() + "\\sprites\\Hilbert_";
+    const std::string path = std::filesystem::current_path().parent_path().generic_string() + R"(\sprites\Hilbert_)";
 
     this->frontModel = TextureManager::LoadTexture(path + "front.png");
     this->backModel = TextureManager::LoadTexture(path + "back.png");

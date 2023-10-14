@@ -3,11 +3,9 @@
 //
 
 #include "Game.h"
-
 #include "../../Data/Data.h"
-#include <fstream>
 
-const std::string path = std::filesystem::current_path().parent_path().generic_string();
+const std::string PATH = std::filesystem::current_path().parent_path().generic_string();
 
 constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
@@ -56,37 +54,6 @@ Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
 
-// finds the player's current position on the screen map,
-// then shifts everything, including the player, accordingly
-inline void lockOnPlayer(Player *p, int x, int y, void(*updateMap)(int, int)) {
-    const int xFromCenter = x - p->getX() * TILE_SIZE;  // x-distance of the player from the center of the screen
-    const int yFromCenter = y - p->getY() * TILE_SIZE;  // y-distance of the player from the center of the screen
-
-    const int xDirection = xFromCenter > 0 ? 3 : 4;     // determines whether to shift left or right
-    const int yDirection = yFromCenter > 0 ? 1 : 2;     // determines whether to shift up or down
-
-    if (xDirection == 3) {
-        p->shiftRightOnMap(xFromCenter);
-        Camera::shiftRight(xFromCenter);
-    }
-    else {
-        p->shiftLeftOnMap(xFromCenter);
-        Camera::shiftLeft(xFromCenter);
-    }
-
-    if (yDirection == 1) {
-        p->shiftDownOnMap(yFromCenter);
-        Camera::shiftDown(yFromCenter);
-    }
-    else {
-        p->shiftUpOnMap(yFromCenter);
-        Camera::shiftUp(yFromCenter);
-    }
-
-    updateMap(xFromCenter, xDirection);
-    updateMap(yFromCenter, yDirection);
-}
-
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
         std::cout << "Subsystems initialized!\n";
@@ -115,7 +82,7 @@ Game::Game() {
         exit(1);
     }
 
-    SDL_Surface *surface = IMG_Load((path + "\\sprites\\pokeball.png").c_str());
+    SDL_Surface *surface = IMG_Load((PATH + R"(\sprites\pokeball.png)").c_str());
     if (not surface) {
         std::cerr << "Error creating surface: " << SDL_GetError();
         SDL_DestroyRenderer(renderer);
@@ -138,7 +105,7 @@ Game::Game() {
         exit(1);
     }
 
-    music = Mix_LoadWAV((path + "\\music\\TrainerBattleMusic.wav").c_str());
+    music = Mix_LoadWAV((PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
     if (not music) {
         std::cerr << "Could not play sound " << SDL_GetError();
         Mix_CloseAudio();
@@ -152,8 +119,8 @@ Game::Game() {
     player = Player::getPlayer();
     std::cout << "Player created!\n\n";
 
-    const auto instructions = [](int d, int f) -> void { maps[currentMapIndex]->updateMap(d, f); };
-    lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+    void (*instructions)(int, int) = [](int d, int f) -> void { maps[currentMapIndex]->updateMap(d, f); };
+    Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
 }
 
 Game::~Game() {
@@ -316,7 +283,7 @@ void Game::render() {
 void Game::saveData() {
     std::cout << "Saving please wait...";
 
-    std::ofstream saveFile(path + R"(\src\Data\SaveData.txt)");
+    std::ofstream saveFile(PATH + R"(\src\Data\SaveData.txt)");
     if (not saveFile) {
         throw std::runtime_error("Could not open file");
     }
@@ -346,9 +313,9 @@ void Game::saveData() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(path + R"(\src\Data\SaveData.txt)");
+    std::ifstream saveFile(PATH + R"(\src\Data\SaveData.txt)");
 
-    const auto loadDirection = [](Entity *entity, int direction) -> void {
+    void (*loadDirection)(Entity *, int) = [](Entity *entity, int direction) -> void {
         switch (direction) {
             case 0:
                 entity->faceNorth();
@@ -420,7 +387,7 @@ void Game::loadData() {
 }
 
 void Game::eraseData() {
-    std::remove((path + R"(\src\Data\SaveData.txt)").c_str());
+    std::filesystem::remove(PATH + R"(\src\Data\SaveData.txt)");
 }
 
 Game::operator bool() const {
