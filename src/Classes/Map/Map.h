@@ -83,7 +83,7 @@ public:
     bool isObstructionHere(int x, int y) const;
     std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    int numNPCs();
+    int numTrainers();
     Trainer& operator[](int index);
 
     void setObstruction(int x, int y);

@@ -97,7 +97,7 @@ std::array<int, 3> Map::isExitPointHere(int x, int y) const {
 }
 
 // returns the number of NPCs
-int Map::numNPCs() {
+int Map::numTrainers() {
     return static_cast<int>(this->trainers.size());
 }
 

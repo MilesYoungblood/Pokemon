@@ -53,6 +53,7 @@ Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } });
 Map *maps[] = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
+Map *currentMap = maps[currentMapIndex];
 
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
@@ -120,7 +121,7 @@ Game::Game() {
     //loadData();
     std::cout << "Player created!\n\n";
 
-    void (*instructions)(int, int) = [](int d, int f) -> void { maps[currentMapIndex]->updateMap(d, f); };
+    void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
     Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
 }
 
@@ -220,36 +221,36 @@ void Game::update() {
     const int playerX = player->getX();
     const int playerY = player->getY();
 
-    if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or up)) {
+    if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or up)) {
         Camera::shiftDown(SCROLL_SPEED);
-        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 1);
+        currentMap->updateMap(SCROLL_SPEED, 1);
         walkCounter += SCROLL_SPEED;
 
         if (walkCounter % TILE_SIZE == 0) {
             player->moveNorth();
         }
     }
-    else if (not maps[currentMapIndex]->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
+    else if (not currentMap->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
         Camera::shiftUp(SCROLL_SPEED);
-        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 2);
+        currentMap->updateMap(SCROLL_SPEED, 2);
         walkCounter += SCROLL_SPEED;
 
         if (walkCounter % TILE_SIZE == 0) {
             player->moveSouth();
         }
     }
-    else if (not maps[currentMapIndex]->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
+    else if (not currentMap->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
         Camera::shiftRight(SCROLL_SPEED);
-        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 3);
+        currentMap->updateMap(SCROLL_SPEED, 3);
         walkCounter += SCROLL_SPEED;
 
         if (walkCounter % TILE_SIZE == 0) {
             player->moveWest();
         }
     }
-    else if (not maps[currentMapIndex]->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
+    else if (not currentMap->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
         Camera::shiftLeft(SCROLL_SPEED);
-        maps[currentMapIndex]->updateMap(SCROLL_SPEED, 4);
+        currentMap->updateMap(SCROLL_SPEED, 4);
         walkCounter += SCROLL_SPEED;
 
         if (walkCounter % TILE_SIZE == 0) {
@@ -265,16 +266,44 @@ void Game::update() {
         keepMovingRight = false;
         walkCounter = 0;
     }
+
+    // FIXME make trainers turn slower
+    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
+        switch (generateInteger(1, 50)) {
+            case 1:
+                (*currentMap)[trainer].face(&(*currentMap)[trainer]);
+
+                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                    //engage();
+                    return;
+                }
+                break;
+
+            case 2:
+                if ((*currentMap)[trainer].isFacingNorth() or (*currentMap)[trainer].isFacingSouth()) {
+                    coinFlip() ? (*currentMap)[trainer].faceEast() : (*currentMap)[trainer].faceWest();
+                }
+                else if ((*currentMap)[trainer].isFacingEast() or (*currentMap)[trainer].isFacingWest()) {
+                    coinFlip() ? (*currentMap)[trainer].faceNorth() : (*currentMap)[trainer].faceSouth();
+                }
+
+                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                    //engage();
+                    return;
+                }
+                break;
+        }
+    }
 }
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    maps[currentMapIndex]->renderMap();
+    currentMap->renderMap();
 
-    for (int i = 0; i < maps[currentMapIndex]->numNPCs(); ++i) {
+    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
         // prevents rendering trainers that aren't onscreen
-        if (Camera::isInView((*maps)[currentMapIndex][i].getRect())) {
-            (*maps)[currentMapIndex][i].render();
+        if (Camera::isInView((*currentMap)[trainer].getRect())) {
+            (*currentMap)[trainer].render();
         }
     }
     player->render();
@@ -304,10 +333,10 @@ void Game::saveData() {
         }
     }
 
-    for (int i = 0; i < sizeof maps / sizeof maps[0]; ++i) {
-        for (int j = 0; j < maps[i]->numNPCs(); ++i) {
-            saveFile << '\n' << i << j << (*maps)[i][j].partySize();
-            saveFile << (*maps)[i][j].getDirection();
+    for (int map = 0; map < sizeof maps / sizeof maps[0]; ++map) {
+        for (int j = 0; j < maps[map]->numTrainers(); ++map) {
+            saveFile << '\n' << map << j << (*maps)[map][j].partySize();
+            saveFile << (*maps)[map][j].getDirection();
         }
     }
 
