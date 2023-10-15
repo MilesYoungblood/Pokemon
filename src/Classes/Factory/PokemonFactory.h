@@ -10,91 +10,91 @@ namespace PokemonFactory {
     inline Pokemon *getPokemon(PokemonID id) {
         switch (id) {
             case VENASAUR:
-                return new Venasaur();
+                return new Venasaur;
             case CHARIZARD:
-                return new Charizard();
+                return new Charizard;
             case PIKACHU:
-                return new Pikachu();
+                return new Pikachu;
             case LUCARIO:
-                return new Lucario();
+                return new Lucario;
             case GRENINJA:
-                return new Greninja();
+                return new Greninja;
             case VICTINI:
-                return new Victini();
+                return new Victini;
             case SNIVY:
-                return new Snivy();
+                return new Snivy;
             case SERVINE:
-                return new Servine();
+                return new Servine;
             case SERPERIOR:
-                return new Serperior();
+                return new Serperior;
             case TEPIG:
-                return new Tepig();
+                return new Tepig;
             case PIGNITE:
-                return new Pignite();
+                return new Pignite;
             case EMBOAR:
-                return new Emboar();
+                return new Emboar;
             case OSHAWOTT:
-                return new Oshawott();
+                return new Oshawott;
             case DEWOTT:
-                return new Dewott();
+                return new Dewott;
             case SAMUROTT:
-                return new Samurott();
+                return new Samurott;
             case PATRAT:
-                break;
+                return new Patrat;
             case WATCHOG:
-                break;
+                return new Watchog;
             case LILLIPUP:
-                break;
+                return new Lillipup;
             case HERDIER:
-                break;
+                return new Herdier;
             case STOUTLAND:
-                break;
+                return new Stoutland;
             case PURRLOIN:
-                break;
+                return new Purrloin;
             case LIEPARD:
-                break;
+                return new Liepard;
             case PANSAGE:
-                break;
+                return new Pansage;
             case SIMISAGE:
-                break;
+                return new Simisage;
             case PANSEAR:
-                break;
+                return new Pansear;
             case SIMISEAR:
-                break;
+                return new Simisear;
             case PANPOUR:
-                break;
+                return new Panpour;
             case SIMIPOUR:
-                break;
+                return new Simipour;
             case MUNNA:
-                break;
+                return new Munna;
             case MUSHARNA:
-                break;
+                return new Musharna;
             case PIDOVE:
-                break;
+                return new Pidove;
             case TRANQUILL:
-                break;
+                return new Tranquill;
             case UNFEZANT:
-                break;
+                return new Unfezant;
             case BLITZLE:
-                break;
+                return new Blitzle;
             case ZEBSTRIKA:
-                break;
+                return new Zebstrika;
             case ROGGENROLA:
-                break;
+                return new Roggenrola;
             case BOLDORE:
-                break;
+                return new Boldore;
             case GIGALITH:
-                break;
+                return new Gigalith;
             case WOOBAT:
-                break;
+                return new Woobat;
             case SWOOBAT:
-                break;
+                return new Swoobat;
             case DRILBUR:
-                break;
+                return new Drilbur;
             case EXCADRILL:
-                break;
+                return new Excadrill;
             case AUDINO:
-                break;
+                return new Audino;
             case TIMBURR:
                 break;
             case GURDURR:
@@ -181,7 +181,7 @@ namespace PokemonFactory {
                 break;
             case GOTHITA:
                 break;
-            case GORORITA:
+            case GOTHORITA:
                 break;
             case GOTHITELLE:
                 break;
@@ -199,7 +199,7 @@ namespace PokemonFactory {
                 break;
             case VANILLISH:
                 break;
-            case VANINILLUXE:
+            case VANILLUXE:
                 break;
             case DEERLING:
                 break;
@@ -299,10 +299,10 @@ namespace PokemonFactory {
                 break;
             case DEINO:
                 break;
-            case ZEWILOUS:
+            case ZWEILOUS:
                 break;
             case HYDREIGON:
-                return new Hydreigon();
+                return new Hydreigon;
             case LARVESTA:
                 break;
             case VOLCARONA:

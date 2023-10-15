@@ -130,6 +130,230 @@ struct Samurott : public Pokemon {
     }
 };
 
+struct Patrat : public Pokemon {
+    Patrat() : Pokemon("Patrat", Type::NORMAL, 19, 45, 55, 39, 35, 39, 43, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::PATRAT;
+    }
+};
+
+struct Watchog : public Pokemon {
+    Watchog() : Pokemon("Watchog", Type::NORMAL, 50, 60, 85, 69, 60, 69, 77, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::WATCHOG;
+    }
+};
+
+struct Lillipup : public Pokemon {
+    Lillipup() : Pokemon("Lillipup", Type::NORMAL, 15, 45, 60, 45, 25, 45, 55, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::LILLIPUP;
+    }
+};
+
+struct Herdier : public Pokemon {
+    Herdier() : Pokemon("Herdier", Type::NORMAL, 31, 65, 80, 65, 35, 65, 60, 120) {}
+
+    PokemonID getID() override {
+        return PokemonID::HERDIER;
+    }
+};
+
+struct Stoutland : public Pokemon {
+    Stoutland() : Pokemon("Stoutland", Type::NORMAL, 50, 85, 110, 90, 45, 90, 80, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::STOUTLAND;
+    }
+};
+
+struct Purrloin : public Pokemon {
+    Purrloin() : Pokemon("Purrloin", Type::DARK, 19, 41, 50, 37, 50, 37, 66, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::PURRLOIN;
+    }
+};
+
+struct Liepard : public Pokemon {
+    Liepard() : Pokemon("Liepard", Type::DARK, 50, 64, 88, 50, 88, 50, 106, 90) {}
+
+    PokemonID getID() override {
+        return PokemonID::LIEPARD;
+    }
+};
+
+struct Pansage : public Pokemon {
+    Pansage() : Pokemon("Pansage", Type::GRASS, 10, 50, 53, 48, 53, 48, 64, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::PANSAGE;
+    }
+};
+
+struct Simisage : public Pokemon {
+    Simisage() : Pokemon("Simisage", Type::GRASS, 50, 75, 98, 63, 98, 63, 101, 75) {}
+
+    PokemonID getID() override {
+        return PokemonID::SIMISAGE;
+    }
+};
+
+struct Pansear : public Pokemon {
+    Pansear() : Pokemon("Pansear", Type::FIRE, 10, 50, 53, 48, 53, 48, 64, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::PANSEAR;
+    }
+};
+
+struct Simisear : public Pokemon {
+    Simisear() : Pokemon("Simisear", Type::FIRE, 50, 75, 98, 63, 98, 63, 101, 75) {}
+
+    PokemonID getID() override {
+        return PokemonID::SIMISEAR;
+    }
+};
+
+struct Panpour : public Pokemon {
+    Panpour() : Pokemon("Panpour", Type::WATER, 10, 50, 53, 48, 53, 48, 64, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::PANPOUR;
+    }
+};
+
+struct Simipour : public Pokemon {
+    Simipour() : Pokemon("Simipour", Type::WATER, 50, 75, 98, 63, 98, 63, 101, 75) {}
+
+    PokemonID getID() override {
+        return PokemonID::SIMIPOUR;
+    }
+};
+
+struct Munna : public Pokemon {
+    Munna() : Pokemon("Munna", Type::PSYCHIC, 10, 76, 25, 45, 67, 55, 24, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::MUNNA;
+    }
+};
+
+struct Musharna : public Pokemon {
+    Musharna() : Pokemon("Musharna", Type::PSYCHIC, 50, 116, 55, 85, 107, 95, 29, 75) {}
+
+    PokemonID getID() override {
+        return PokemonID::MUSHARNA;
+    }
+};
+
+struct Pidove : public Pokemon {
+    Pidove() : Pokemon("Pidove", Type::NORMAL, Type::FLYING, 20, 50, 55, 50, 36, 30, 43, 225) {}
+
+    PokemonID getID() override {
+        return PokemonID::PIDOVE;
+    }
+};
+
+struct Tranquill : public Pokemon {
+    Tranquill() : Pokemon("Tranquill", Type::NORMAL, Type::FLYING, 31, 62, 77, 62, 50, 42, 65, 120) {}
+
+    PokemonID getID() override {
+        return PokemonID::TRANQUILL;
+    }
+};
+
+struct Unfezant : public Pokemon {
+    Unfezant() : Pokemon("Unfezant", Type::NORMAL, Type::FLYING, 50, 80, 115, 80, 65, 55, 93, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::UNFEZANT;
+    }
+};
+
+struct Blitzle : public Pokemon {
+    Blitzle() : Pokemon("Blitzle", Type::ELECTRIC, 26, 45, 60, 32, 50, 32, 76, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::BLITZLE;
+    }
+};
+
+struct Zebstrika : public Pokemon {
+    Zebstrika() : Pokemon("Zebstrika", Type::ELECTRIC, 50, 75, 100, 63, 80, 63, 116, 75) {}
+
+    PokemonID getID() override {
+        return PokemonID::ZEBSTRIKA;
+    }
+};
+
+struct Roggenrola : public Pokemon {
+    Roggenrola() : Pokemon("Roggenrola", Type::ROCK, 24, 55, 75, 85, 25, 25, 15, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::ROGGENROLA;
+    }
+};
+
+struct Boldore : public Pokemon {
+    Boldore() : Pokemon("Boldore", Type::ROCK, 25, 70, 105, 105, 50, 40, 20, 120) {}
+
+    PokemonID getID() override {
+        return PokemonID::BOLDORE;
+    }
+};
+
+struct Gigalith : public Pokemon {
+    Gigalith() : Pokemon("Gigalith", Type::ROCK, 50, 85, 135, 130, 60, 80, 25, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::GIGALITH;
+    }
+};
+
+struct Woobat : public Pokemon {
+    Woobat() : Pokemon("Woobat", Type::PSYCHIC, Type::FLYING, 10, 65, 45, 43, 55, 43, 72, 190) {}
+
+    PokemonID getID() override {
+        return PokemonID::WOOBAT;
+    }
+};
+
+struct Swoobat : public Pokemon {
+    Swoobat() : Pokemon("Swoobat", Type::PSYCHIC, Type::FLYING, 50, 67, 57, 55, 77, 55, 114, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::SWOOBAT;
+    }
+};
+
+struct Drilbur : public Pokemon {
+    Drilbur() : Pokemon("Drilbur", Type::GROUND, 30, 60, 85, 40, 30, 45, 68, 120) {}
+
+    PokemonID getID() override {
+        return PokemonID::DRILBUR;
+    }
+};
+
+struct Excadrill : public Pokemon {
+    Excadrill() : Pokemon("Excadrill", Type::GROUND, Type::STEEL, 50, 110, 135, 60, 50, 65, 88, 60) {}
+
+    PokemonID getID() override {
+        return PokemonID::EXCADRILL;
+    }
+};
+
+struct Audino : public Pokemon {
+    Audino() : Pokemon("Audino", Type::NORMAL, 50, 103, 60, 86, 60, 86, 50, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::AUDINO;
+    }
+};
+
 struct Hydreigon : public Pokemon {
     Hydreigon() : Pokemon("Hydreigon", Type::DARK, Type::DRAGON, 50, 92, 105, 90, 125, 90, 98, 45) {}
     Hydreigon(const std::initializer_list<Move*> &moves) : Hydreigon() {

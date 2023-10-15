@@ -80,6 +80,9 @@ Entity::Direction Entity::getDirection() {
 void Entity::setCoordinates(int newX, int newY) {
     this->x = newX;
     this->y = newY;
+
+    this->destRect.x = this->x * TILE_SIZE;
+    this->destRect.y = this->y * TILE_SIZE;
 }
 
 int Entity::getX() const {

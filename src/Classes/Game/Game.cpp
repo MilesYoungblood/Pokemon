@@ -59,7 +59,7 @@ Game::Game() {
         std::cout << "Subsystems initialized!\n";
     }
     else {
-        std::cerr << "Error initializing subsystems " << SDL_GetError() << '\n';
+        std::cerr << "Error initializing subsystems: " << SDL_GetError() << '\n';
         exit(1);
     }
 
@@ -67,7 +67,7 @@ Game::Game() {
         std::cout << "Window created!\n";
     }
     else {
-        std::cerr << "Error creating window " << SDL_GetError();
+        std::cerr << "Error creating window: " << SDL_GetError();
         SDL_Quit();
         exit(1);
     }
@@ -76,7 +76,7 @@ Game::Game() {
         std::cout << "Renderer created!\n";
     }
     else {
-        std::cerr << "Error creating renderer " << SDL_GetError() << '\n';
+        std::cerr << "Error creating renderer: " << SDL_GetError() << '\n';
         SDL_DestroyWindow(window);
         SDL_Quit();
         exit(1);
@@ -107,7 +107,7 @@ Game::Game() {
 
     music = Mix_LoadWAV((PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
     if (not music) {
-        std::cerr << "Could not play sound " << SDL_GetError();
+        std::cerr << "Could not play sound: " << SDL_GetError();
         Mix_CloseAudio();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
@@ -117,6 +117,7 @@ Game::Game() {
     Mix_PlayChannel(-1, music, -1);
 
     player = Player::getPlayer();
+    //loadData();
     std::cout << "Player created!\n\n";
 
     void (*instructions)(int, int) = [](int d, int f) -> void { maps[currentMapIndex]->updateMap(d, f); };
@@ -124,6 +125,7 @@ Game::Game() {
 }
 
 Game::~Game() {
+    //saveData();
     Mix_FreeChunk(music);
     Mix_CloseAudio();
     SDL_DestroyRenderer(renderer);
@@ -267,7 +269,7 @@ void Game::update() {
 
 void Game::render() {
     SDL_RenderClear(renderer);
-    (*maps)[currentMapIndex].renderMap();
+    maps[currentMapIndex]->renderMap();
 
     for (int i = 0; i < maps[currentMapIndex]->numNPCs(); ++i) {
         // prevents rendering trainers that aren't onscreen
@@ -292,13 +294,13 @@ void Game::saveData() {
     saveFile << '\n' << player->getX() << player->getY() << player->getDirection();
     saveFile << '\n' << player->partySize();
 
-    for (int i = 0; i < player->partySize(); ++i) {
-        saveFile << '\n' << (*player)[i].getID() << ' ';
+    for (int pokemon = 0; pokemon < player->partySize(); ++pokemon) {
+        saveFile << '\n' << (*player)[pokemon].getID() << ' ';
 
-        const int numMoves = (*player)[i].numMoves();
+        const int numMoves = (*player)[pokemon].numMoves();
         saveFile << numMoves << ' ';
-        for (int j = 0; j < numMoves; ++j) {
-            saveFile << (*player)[i][j].getID() << ' ';
+        for (int move = 0; move < numMoves; ++move) {
+            saveFile << (*player)[pokemon][move].getID() << ' ';
         }
     }
 
@@ -352,17 +354,16 @@ void Game::loadData() {
         std::getline(saveFile, buffer);
         const int partySize = buffer[0] - '0';
 
-        //player->clearParty();
-        for (int i = 0; i < partySize; ++i) {
+        for (int pokemon = 0; pokemon < partySize; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
             player->addPokemon(PokemonFactory::getPokemon(PokemonID(std::stoi(buffer))));
 
             std::getline(saveFile, buffer, ' ');
             const int numMoves = buffer[0] - '0';
 
-            for (int j = 0; j < numMoves; ++j) {
+            for (int move = 0; move < numMoves; ++move) {
                 std::getline(saveFile, buffer, ' ');
-                (*player)[i].addMove(MoveFactory::getMove(MoveID(std::stoi(buffer))));
+                (*player)[pokemon].addMove(MoveFactory::getMove(MoveID(std::stoi(buffer))));
             }
             std::getline(saveFile, buffer);
         }
