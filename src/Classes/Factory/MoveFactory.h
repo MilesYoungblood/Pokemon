@@ -10,35 +10,35 @@ namespace MoveFactory {
     inline Move *getMove(MoveID id) {
         switch (id) {
             case MoveID::AIR_SLASH:
-                return new AirSlash();
+                return new AirSlash;
             case MoveID::AURA_SPHERE:
-                return new AuraSphere();
+                return new AuraSphere;
             case MoveID::DARK_PULSE:
-                return new DarkPulse();
+                return new DarkPulse;
             case MoveID::DRAGON_PULSE:
-                return new DragonPulse();
+                return new DragonPulse;
             case MoveID::EXTRASENSORY:
-                return new Extrasensory();
+                return new Extrasensory;
             case MoveID::FLAMETHROWER:
-                return new Flamethrower();
+                return new Flamethrower;
             case MoveID::FLASH_CANNON:
-                return new FlashCannon();
+                return new FlashCannon;
             case MoveID::FOCUS_BLAST:
-                return new FocusBlast();
+                return new FocusBlast;
             case MoveID::ICE_BEAM:
-                return new IceBeam();
+                return new IceBeam;
             case MoveID::IRON_TAIL:
-                return new IronTail();
+                return new IronTail;
             case MoveID::QUICK_ATTACK:
-                return new QuickAttack();
+                return new QuickAttack;
             case MoveID::SOLAR_BEAM:
-                return new SolarBeam();
+                return new SolarBeam;
             case MoveID::THUNDER:
-                return new Thunder();
+                return new Thunder;
             case MoveID::VOLT_TACKLE:
-                return new VoltTackle();
+                return new VoltTackle;
             case MoveID::WATER_SHURIKEN:
-                return new WaterShuriken();
+                return new WaterShuriken;
             default:
                 return nullptr;
         }

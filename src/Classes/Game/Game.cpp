@@ -267,7 +267,7 @@ void Game::update() {
 
     // FIXME make trainers turn slower
     for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
-        switch (generateInteger(1, 50)) {
+        switch (generateInteger(1, 100)) {
             case 1:
                 (*currentMap)[trainer].face(&(*currentMap)[trainer]);
 

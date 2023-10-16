@@ -334,5 +334,8 @@ namespace PokemonFactory {
             default:
                 return nullptr;
         }
+
+        //FIXME get rid of
+        return nullptr;
     }
 }

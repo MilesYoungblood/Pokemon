@@ -33,8 +33,12 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) :
 Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision) : Trainer(pokemon, x, y) {
     this->vision = vision;
 
-    //FIXME change this to an actual trainer model
-    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
+    //FIXME change these to not be Hilbert
+    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)");
+    this->backModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)");
+    this->leftModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)");
+    this->rightModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)");
+
     this->currentTexture = this->frontModel;
 }
 
