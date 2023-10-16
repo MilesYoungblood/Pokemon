@@ -1,9 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(PokemonBattle)
 
-set(CMAKE_EXPERIMENTAL_CXX_MODULE_DYNDEP 1)
-set(CMAKE_EXPERIMENTAL_CXX_MODULE_CMAKE_API "2182bf5c-ef0d-489a-91da-49dbc3090d2a")
-
 set(CMAKE_CXX_STANDARD 23)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
@@ -15,6 +12,8 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmodules-ts")
 
 add_executable(PokemonBattle
         src/main.cpp
@@ -78,10 +77,7 @@ add_executable(PokemonBattle
 
 target_compile_features(PokemonBattle PRIVATE cxx_std_20)
 
-set_target_properties(PokemonBattle PROPERTIES CXX_EXTENSIONS OFF)
-target_compile_options(PokemonBattle PRIVATE
-        "-fmodules-ts"
-)
+#set_target_properties(PokemonBattle PROPERTIES CXX_EXTENSIONS OFF)
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")

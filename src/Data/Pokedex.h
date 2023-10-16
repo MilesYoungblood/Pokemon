@@ -51,7 +51,7 @@ struct Lucario : public Pokemon {
 };
 
 struct Victini : public Pokemon {
-    Victini() : Pokemon("Victini", Type::PSYCHIC, Type::FIRE, 50, 100, 100, 100, 100, 100, 100, 3) {}
+    Victini() : Pokemon("Victini", Type::PSYCHIC, Type::FIRE, 15, 100, 100, 100, 100, 100, 100, 3) {}
 
     PokemonID getID() override {
         return PokemonID::VICTINI;
@@ -59,7 +59,7 @@ struct Victini : public Pokemon {
 };
 
 struct Snivy : public Pokemon {
-    Snivy() : Pokemon("Snivy", Type::GRASS, 16, 45, 45, 55, 45, 55, 63, 45) {}
+    Snivy() : Pokemon("Snivy", Type::GRASS, 1, 45, 45, 55, 45, 55, 63, 45) {}
 
     PokemonID getID() override {
         return PokemonID::SNIVY;
@@ -67,7 +67,7 @@ struct Snivy : public Pokemon {
 };
 
 struct Servine : public Pokemon {
-    Servine() : Pokemon("Servine", Type::GRASS, 35, 60, 60, 75, 60, 75, 83, 45) {}
+    Servine() : Pokemon("Servine", Type::GRASS, 17, 60, 60, 75, 60, 75, 83, 45) {}
 
     PokemonID getID() override {
         return PokemonID::SERVINE;
@@ -75,7 +75,7 @@ struct Servine : public Pokemon {
 };
 
 struct Serperior : public Pokemon {
-    Serperior() : Pokemon("Serperior", Type::GRASS, 50, 75, 75, 95, 75, 95, 113, 45) {}
+    Serperior() : Pokemon("Serperior", Type::GRASS, 36, 75, 75, 95, 75, 95, 113, 45) {}
 
     PokemonID getID() override {
         return PokemonID::SERPERIOR;
@@ -83,7 +83,7 @@ struct Serperior : public Pokemon {
 };
 
 struct Tepig : public Pokemon {
-    Tepig() : Pokemon("Tepig", Type::FIRE, 16, 65, 63, 45, 45, 45, 45, 45) {}
+    Tepig() : Pokemon("Tepig", Type::FIRE, 1, 65, 63, 45, 45, 45, 45, 45) {}
 
     PokemonID getID() override {
         return PokemonID::TEPIG;
@@ -91,7 +91,7 @@ struct Tepig : public Pokemon {
 };
 
 struct Pignite : public Pokemon {
-    Pignite() : Pokemon("Pignite", Type::FIRE, Type::FIGHTING, 35, 90, 93, 55, 70, 55, 55, 45) {}
+    Pignite() : Pokemon("Pignite", Type::FIRE, Type::FIGHTING, 17, 90, 93, 55, 70, 55, 55, 45) {}
 
     PokemonID getID() override {
         return PokemonID::PIGNITE;
@@ -99,7 +99,7 @@ struct Pignite : public Pokemon {
 };
 
 struct Emboar : public Pokemon {
-    Emboar() : Pokemon("Emboar", Type::FIRE, Type::FIGHTING, 50, 110, 123, 65, 100, 65, 65, 45) {}
+    Emboar() : Pokemon("Emboar", Type::FIRE, Type::FIGHTING, 36, 110, 123, 65, 100, 65, 65, 45) {}
 
     PokemonID getID() override {
         return PokemonID::EMBOAR;
@@ -107,7 +107,7 @@ struct Emboar : public Pokemon {
 };
 
 struct Oshawott : public Pokemon {
-    Oshawott() : Pokemon("Oshawott", Type::WATER, 16, 55, 55, 45, 63, 45, 45, 45) {}
+    Oshawott() : Pokemon("Oshawott", Type::WATER, 1, 55, 55, 45, 63, 45, 45, 45) {}
 
     PokemonID getID() override {
         return PokemonID::OSHAWOTT;
@@ -115,7 +115,7 @@ struct Oshawott : public Pokemon {
 };
 
 struct Dewott : public Pokemon {
-    Dewott() : Pokemon("Dewott", Type::WATER, 35, 75, 75, 60, 83, 60, 60, 45) {}
+    Dewott() : Pokemon("Dewott", Type::WATER, 17, 75, 75, 60, 83, 60, 60, 45) {}
 
     PokemonID getID() override {
         return PokemonID::DEWOTT;
@@ -123,7 +123,7 @@ struct Dewott : public Pokemon {
 };
 
 struct Samurott : public Pokemon {
-    Samurott() : Pokemon("Samurott", Type::WATER, 50, 95, 100, 85, 108, 70, 70, 45) {}
+    Samurott() : Pokemon("Samurott", Type::WATER, 1, 95, 100, 85, 108, 70, 70, 45) {}
 
     PokemonID getID() override {
         return PokemonID::SAMUROTT;
@@ -131,7 +131,7 @@ struct Samurott : public Pokemon {
 };
 
 struct Patrat : public Pokemon {
-    Patrat() : Pokemon("Patrat", Type::NORMAL, 19, 45, 55, 39, 35, 39, 43, 255) {}
+    Patrat() : Pokemon("Patrat", Type::NORMAL, 1, 45, 55, 39, 35, 39, 43, 255) {}
 
     PokemonID getID() override {
         return PokemonID::PATRAT;
@@ -139,7 +139,7 @@ struct Patrat : public Pokemon {
 };
 
 struct Watchog : public Pokemon {
-    Watchog() : Pokemon("Watchog", Type::NORMAL, 50, 60, 85, 69, 60, 69, 77, 255) {}
+    Watchog() : Pokemon("Watchog", Type::NORMAL, 20, 60, 85, 69, 60, 69, 77, 255) {}
 
     PokemonID getID() override {
         return PokemonID::WATCHOG;
@@ -147,7 +147,7 @@ struct Watchog : public Pokemon {
 };
 
 struct Lillipup : public Pokemon {
-    Lillipup() : Pokemon("Lillipup", Type::NORMAL, 15, 45, 60, 45, 25, 45, 55, 255) {}
+    Lillipup() : Pokemon("Lillipup", Type::NORMAL, 1, 45, 60, 45, 25, 45, 55, 255) {}
 
     PokemonID getID() override {
         return PokemonID::LILLIPUP;
@@ -155,7 +155,7 @@ struct Lillipup : public Pokemon {
 };
 
 struct Herdier : public Pokemon {
-    Herdier() : Pokemon("Herdier", Type::NORMAL, 31, 65, 80, 65, 35, 65, 60, 120) {}
+    Herdier() : Pokemon("Herdier", Type::NORMAL, 16, 65, 80, 65, 35, 65, 60, 120) {}
 
     PokemonID getID() override {
         return PokemonID::HERDIER;
@@ -163,7 +163,7 @@ struct Herdier : public Pokemon {
 };
 
 struct Stoutland : public Pokemon {
-    Stoutland() : Pokemon("Stoutland", Type::NORMAL, 50, 85, 110, 90, 45, 90, 80, 45) {}
+    Stoutland() : Pokemon("Stoutland", Type::NORMAL, 32, 85, 110, 90, 45, 90, 80, 45) {}
 
     PokemonID getID() override {
         return PokemonID::STOUTLAND;
@@ -171,7 +171,7 @@ struct Stoutland : public Pokemon {
 };
 
 struct Purrloin : public Pokemon {
-    Purrloin() : Pokemon("Purrloin", Type::DARK, 19, 41, 50, 37, 50, 37, 66, 255) {}
+    Purrloin() : Pokemon("Purrloin", Type::DARK, 1, 41, 50, 37, 50, 37, 66, 255) {}
 
     PokemonID getID() override {
         return PokemonID::PURRLOIN;
@@ -179,7 +179,7 @@ struct Purrloin : public Pokemon {
 };
 
 struct Liepard : public Pokemon {
-    Liepard() : Pokemon("Liepard", Type::DARK, 50, 64, 88, 50, 88, 50, 106, 90) {}
+    Liepard() : Pokemon("Liepard", Type::DARK, 20, 64, 88, 50, 88, 50, 106, 90) {}
 
     PokemonID getID() override {
         return PokemonID::LIEPARD;
@@ -187,7 +187,7 @@ struct Liepard : public Pokemon {
 };
 
 struct Pansage : public Pokemon {
-    Pansage() : Pokemon("Pansage", Type::GRASS, 10, 50, 53, 48, 53, 48, 64, 190) {}
+    Pansage() : Pokemon("Pansage", Type::GRASS, 1, 50, 53, 48, 53, 48, 64, 190) {}
 
     PokemonID getID() override {
         return PokemonID::PANSAGE;
@@ -195,7 +195,7 @@ struct Pansage : public Pokemon {
 };
 
 struct Simisage : public Pokemon {
-    Simisage() : Pokemon("Simisage", Type::GRASS, 50, 75, 98, 63, 98, 63, 101, 75) {}
+    Simisage() : Pokemon("Simisage", Type::GRASS, 1, 75, 98, 63, 98, 63, 101, 75) {}
 
     PokemonID getID() override {
         return PokemonID::SIMISAGE;
@@ -203,7 +203,7 @@ struct Simisage : public Pokemon {
 };
 
 struct Pansear : public Pokemon {
-    Pansear() : Pokemon("Pansear", Type::FIRE, 10, 50, 53, 48, 53, 48, 64, 190) {}
+    Pansear() : Pokemon("Pansear", Type::FIRE, 1, 50, 53, 48, 53, 48, 64, 190) {}
 
     PokemonID getID() override {
         return PokemonID::PANSEAR;
@@ -211,7 +211,7 @@ struct Pansear : public Pokemon {
 };
 
 struct Simisear : public Pokemon {
-    Simisear() : Pokemon("Simisear", Type::FIRE, 50, 75, 98, 63, 98, 63, 101, 75) {}
+    Simisear() : Pokemon("Simisear", Type::FIRE, 1, 75, 98, 63, 98, 63, 101, 75) {}
 
     PokemonID getID() override {
         return PokemonID::SIMISEAR;
@@ -219,7 +219,7 @@ struct Simisear : public Pokemon {
 };
 
 struct Panpour : public Pokemon {
-    Panpour() : Pokemon("Panpour", Type::WATER, 10, 50, 53, 48, 53, 48, 64, 190) {}
+    Panpour() : Pokemon("Panpour", Type::WATER, 1, 50, 53, 48, 53, 48, 64, 190) {}
 
     PokemonID getID() override {
         return PokemonID::PANPOUR;
@@ -227,7 +227,7 @@ struct Panpour : public Pokemon {
 };
 
 struct Simipour : public Pokemon {
-    Simipour() : Pokemon("Simipour", Type::WATER, 50, 75, 98, 63, 98, 63, 101, 75) {}
+    Simipour() : Pokemon("Simipour", Type::WATER, 1, 75, 98, 63, 98, 63, 101, 75) {}
 
     PokemonID getID() override {
         return PokemonID::SIMIPOUR;
@@ -235,7 +235,7 @@ struct Simipour : public Pokemon {
 };
 
 struct Munna : public Pokemon {
-    Munna() : Pokemon("Munna", Type::PSYCHIC, 10, 76, 25, 45, 67, 55, 24, 190) {}
+    Munna() : Pokemon("Munna", Type::PSYCHIC, 1, 76, 25, 45, 67, 55, 24, 190) {}
 
     PokemonID getID() override {
         return PokemonID::MUNNA;
@@ -243,7 +243,7 @@ struct Munna : public Pokemon {
 };
 
 struct Musharna : public Pokemon {
-    Musharna() : Pokemon("Musharna", Type::PSYCHIC, 50, 116, 55, 85, 107, 95, 29, 75) {}
+    Musharna() : Pokemon("Musharna", Type::PSYCHIC, 1, 116, 55, 85, 107, 95, 29, 75) {}
 
     PokemonID getID() override {
         return PokemonID::MUSHARNA;
@@ -251,7 +251,7 @@ struct Musharna : public Pokemon {
 };
 
 struct Pidove : public Pokemon {
-    Pidove() : Pokemon("Pidove", Type::NORMAL, Type::FLYING, 20, 50, 55, 50, 36, 30, 43, 225) {}
+    Pidove() : Pokemon("Pidove", Type::NORMAL, Type::FLYING, 1, 50, 55, 50, 36, 30, 43, 225) {}
 
     PokemonID getID() override {
         return PokemonID::PIDOVE;
@@ -259,7 +259,7 @@ struct Pidove : public Pokemon {
 };
 
 struct Tranquill : public Pokemon {
-    Tranquill() : Pokemon("Tranquill", Type::NORMAL, Type::FLYING, 31, 62, 77, 62, 50, 42, 65, 120) {}
+    Tranquill() : Pokemon("Tranquill", Type::NORMAL, Type::FLYING, 21, 62, 77, 62, 50, 42, 65, 120) {}
 
     PokemonID getID() override {
         return PokemonID::TRANQUILL;
@@ -267,7 +267,7 @@ struct Tranquill : public Pokemon {
 };
 
 struct Unfezant : public Pokemon {
-    Unfezant() : Pokemon("Unfezant", Type::NORMAL, Type::FLYING, 50, 80, 115, 80, 65, 55, 93, 45) {}
+    Unfezant() : Pokemon("Unfezant", Type::NORMAL, Type::FLYING, 32, 80, 115, 80, 65, 55, 93, 45) {}
 
     PokemonID getID() override {
         return PokemonID::UNFEZANT;
@@ -275,7 +275,7 @@ struct Unfezant : public Pokemon {
 };
 
 struct Blitzle : public Pokemon {
-    Blitzle() : Pokemon("Blitzle", Type::ELECTRIC, 26, 45, 60, 32, 50, 32, 76, 190) {}
+    Blitzle() : Pokemon("Blitzle", Type::ELECTRIC, 1, 45, 60, 32, 50, 32, 76, 190) {}
 
     PokemonID getID() override {
         return PokemonID::BLITZLE;
@@ -283,7 +283,7 @@ struct Blitzle : public Pokemon {
 };
 
 struct Zebstrika : public Pokemon {
-    Zebstrika() : Pokemon("Zebstrika", Type::ELECTRIC, 50, 75, 100, 63, 80, 63, 116, 75) {}
+    Zebstrika() : Pokemon("Zebstrika", Type::ELECTRIC, 27, 75, 100, 63, 80, 63, 116, 75) {}
 
     PokemonID getID() override {
         return PokemonID::ZEBSTRIKA;
@@ -291,7 +291,7 @@ struct Zebstrika : public Pokemon {
 };
 
 struct Roggenrola : public Pokemon {
-    Roggenrola() : Pokemon("Roggenrola", Type::ROCK, 24, 55, 75, 85, 25, 25, 15, 255) {}
+    Roggenrola() : Pokemon("Roggenrola", Type::ROCK, 1, 55, 75, 85, 25, 25, 15, 255) {}
 
     PokemonID getID() override {
         return PokemonID::ROGGENROLA;
@@ -307,7 +307,7 @@ struct Boldore : public Pokemon {
 };
 
 struct Gigalith : public Pokemon {
-    Gigalith() : Pokemon("Gigalith", Type::ROCK, 50, 85, 135, 130, 60, 80, 25, 45) {}
+    Gigalith() : Pokemon("Gigalith", Type::ROCK, 25, 85, 135, 130, 60, 80, 25, 45) {}
 
     PokemonID getID() override {
         return PokemonID::GIGALITH;
@@ -315,7 +315,7 @@ struct Gigalith : public Pokemon {
 };
 
 struct Woobat : public Pokemon {
-    Woobat() : Pokemon("Woobat", Type::PSYCHIC, Type::FLYING, 10, 65, 45, 43, 55, 43, 72, 190) {}
+    Woobat() : Pokemon("Woobat", Type::PSYCHIC, Type::FLYING, 1, 65, 45, 43, 55, 43, 72, 190) {}
 
     PokemonID getID() override {
         return PokemonID::WOOBAT;
@@ -323,7 +323,7 @@ struct Woobat : public Pokemon {
 };
 
 struct Swoobat : public Pokemon {
-    Swoobat() : Pokemon("Swoobat", Type::PSYCHIC, Type::FLYING, 50, 67, 57, 55, 77, 55, 114, 45) {}
+    Swoobat() : Pokemon("Swoobat", Type::PSYCHIC, Type::FLYING, 1, 67, 57, 55, 77, 55, 114, 45) {}
 
     PokemonID getID() override {
         return PokemonID::SWOOBAT;
@@ -331,7 +331,7 @@ struct Swoobat : public Pokemon {
 };
 
 struct Drilbur : public Pokemon {
-    Drilbur() : Pokemon("Drilbur", Type::GROUND, 30, 60, 85, 40, 30, 45, 68, 120) {}
+    Drilbur() : Pokemon("Drilbur", Type::GROUND, 1, 60, 85, 40, 30, 45, 68, 120) {}
 
     PokemonID getID() override {
         return PokemonID::DRILBUR;
@@ -339,7 +339,7 @@ struct Drilbur : public Pokemon {
 };
 
 struct Excadrill : public Pokemon {
-    Excadrill() : Pokemon("Excadrill", Type::GROUND, Type::STEEL, 50, 110, 135, 60, 50, 65, 88, 60) {}
+    Excadrill() : Pokemon("Excadrill", Type::GROUND, Type::STEEL, 31, 110, 135, 60, 50, 65, 88, 60) {}
 
     PokemonID getID() override {
         return PokemonID::EXCADRILL;
@@ -347,15 +347,80 @@ struct Excadrill : public Pokemon {
 };
 
 struct Audino : public Pokemon {
-    Audino() : Pokemon("Audino", Type::NORMAL, 50, 103, 60, 86, 60, 86, 50, 255) {}
+    Audino() : Pokemon("Audino", Type::NORMAL, 1, 103, 60, 86, 60, 86, 50, 255) {}
 
     PokemonID getID() override {
         return PokemonID::AUDINO;
     }
 };
 
+struct Timburr : public Pokemon {
+    Timburr() : Pokemon("Timburr", Type::FIGHTING, 1, 75, 80, 55, 25, 35, 35, 180) {}
+
+    PokemonID getID() override {
+        return PokemonID::TIMBURR;
+    }
+};
+
+struct Gurdurr : public Pokemon {
+    Gurdurr() : Pokemon("Gurdurr", Type::FIGHTING, 25, 85, 105, 85, 40, 50, 40, 90) {}
+
+    PokemonID getID() override {
+        return PokemonID::GURDURR;
+    }
+};
+
+struct Conkeldurr : public Pokemon {
+    Conkeldurr() : Pokemon("Conkeldurr", Type::FIGHTING, 25, 105, 140, 95, 55, 65, 45, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::CONKELDURR;
+    }
+};
+
+struct Tympole : public Pokemon {
+    Tympole() : Pokemon("Tympole", Type::WATER, 1, 50, 50, 40, 50, 40, 64, 255) {}
+
+    PokemonID getID() override {
+        return PokemonID::TYMPOLE;
+    }
+};
+
+struct Palpitoad : public Pokemon {
+    Palpitoad() : Pokemon("Palpitoad", Type::WATER, Type::GROUND, 25, 75, 65, 55, 65, 55, 69, 120) {}
+
+    PokemonID getID() override {
+        return PokemonID::PALPITOAD;
+    }
+};
+
+struct Seismitoad : public Pokemon {
+    Seismitoad() : Pokemon("Seismitoad", Type::WATER, Type::GROUND, 36, 105, 95, 75, 85, 75, 74, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::SEISMITOAD;
+    }
+
+};
+
+struct Throh : public Pokemon {
+    Throh() : Pokemon("Throh", Type::FIGHTING, 1, 120, 100, 85, 30, 85, 45, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::THROH;
+    }
+};
+
+struct Sawk : public Pokemon {
+    Sawk() : Pokemon("Sawk", Type::FIGHTING, 1, 75, 125, 75, 30, 75, 85, 45) {}
+
+    PokemonID getID() override {
+        return PokemonID::SAWK;
+    }
+};
+
 struct Hydreigon : public Pokemon {
-    Hydreigon() : Pokemon("Hydreigon", Type::DARK, Type::DRAGON, 50, 92, 105, 90, 125, 90, 98, 45) {}
+    Hydreigon() : Pokemon("Hydreigon", Type::DARK, Type::DRAGON, 64, 92, 105, 90, 125, 90, 98, 45) {}
     Hydreigon(const std::initializer_list<Move*> &moves) : Hydreigon() {
         this->setMoves(moves);
     }
@@ -375,3 +440,4 @@ struct Greninja : public Pokemon {
         return PokemonID::GRENINJA;
     }
 };
+

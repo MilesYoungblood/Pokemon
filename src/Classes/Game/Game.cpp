@@ -68,7 +68,7 @@ Game::Game() {
         std::cout << "Window created!\n";
     }
     else {
-        std::cerr << "Error creating window: " << SDL_GetError();
+        std::cerr << "Error creating window: " << SDL_GetError() << '\n';
         SDL_Quit();
         exit(1);
     }
@@ -85,7 +85,7 @@ Game::Game() {
 
     SDL_Surface *surface = IMG_Load((PATH + R"(\sprites\pokeball.png)").c_str());
     if (not surface) {
-        std::cerr << "Error creating surface: " << SDL_GetError();
+        std::cerr << "Error creating surface: " << SDL_GetError() << '\n';
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
@@ -99,7 +99,7 @@ Game::Game() {
         std::cout << "Default audio device opened!\n";
     }
     else {
-        std::cerr << "Could not open the default audio device: " << SDL_GetError();
+        std::cerr << "Could not open the default audio device: " << SDL_GetError() << '\n';
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
         SDL_Quit();
@@ -108,7 +108,7 @@ Game::Game() {
 
     music = Mix_LoadWAV((PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
     if (not music) {
-        std::cerr << "Could not play sound: " << SDL_GetError();
+        std::cerr << "Could not play sound: " << SDL_GetError() << '\n';
         Mix_CloseAudio();
         SDL_DestroyRenderer(renderer);
         SDL_DestroyWindow(window);
@@ -118,7 +118,6 @@ Game::Game() {
     Mix_PlayChannel(-1, music, -1);
 
     player = Player::getPlayer();
-    //loadData();
     std::cout << "Player created!\n\n";
 
     void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
@@ -126,7 +125,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-    //saveData();
     Mix_FreeChunk(music);
     Mix_CloseAudio();
     SDL_DestroyRenderer(renderer);

@@ -96,21 +96,21 @@ namespace PokemonFactory {
             case AUDINO:
                 return new Audino;
             case TIMBURR:
-                break;
+                return new Timburr;
             case GURDURR:
-                break;
+                return new Gurdurr;
             case CONKELDURR:
-                break;
+                return new Conkeldurr;
             case TYMPOLE:
-                break;
+                return new Tympole;
             case PALPITOAD:
-                break;
+                return new Palpitoad;
             case SEISMITOAD:
-                break;
+                return new Seismitoad;
             case THROH:
-                break;
+                return new Throh;
             case SAWK:
-                break;
+                return new Sawk;
             case SEWADDLE:
                 break;
             case SWADLOON:
