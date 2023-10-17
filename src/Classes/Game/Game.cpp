@@ -20,6 +20,8 @@ __attribute__((unused)) static TextureManager textureManager(gameRenderer);
 
 static bool isRunning = true;                           // determines whether the game is running
 
+static bool canMove = true;                             // determines whether the player can move
+
 static bool moveUp = false;                             // becomes true when the user presses 'w'
 static bool moveDown = false;                           // becomes true when the user presses 's'
 static bool moveLeft = false;                           // becomes true when the user presses 'a'
@@ -31,6 +33,7 @@ static bool keepMovingLeft = false;
 static bool keepMovingRight = false;
 
 static int walkCounter = 0;                             // measures how many screen pixels an entity has moved
+std::vector<int> walkCounters(currentMap->numTrainers(), 0); // NOLINT(*-interfaces-global-init)
 
 Player *player = nullptr;
 
@@ -251,8 +254,8 @@ void Game::handleOverworldEvents() {
             break;
 
         case SDL_KEYDOWN:
-            // do not accept keyboard input if your sprite is still moving
-            if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
+            // do not accept keyboard input if your sprite is still moving or if the player cannot currently move
+            if (not canMove or keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
                 break;
             }
             switch (event.key.keysym.scancode) {
@@ -366,13 +369,45 @@ void Game::updateOverworld() {
         }
     }
 
-    // if your sprite has reached a tile, and you are not inputting any directions
+    // stops the player from moving if their sprite has reached a tile, and you are not inputting any directions
     if (walkCounter % TILE_SIZE == 0 and not (moveUp or moveDown or moveLeft or moveRight)) {
         keepMovingUp = false;
         keepMovingDown = false;
         keepMovingLeft = false;
         keepMovingRight = false;
         walkCounter = 0;
+
+        // checks if the player is in LoS for any trainer
+        for (int i = 0; i < currentMap->numTrainers(); ++i) {
+            if ((*currentMap)[i].hasVisionOf(player) and (*currentMap)[i]) {
+                canMove = false;
+
+                if ((*currentMap)[i].isFacingNorth()) {
+                    (*currentMap)[i].shiftUpOnMap(SCROLL_SPEED);
+                    walkCounters[i] += SCROLL_SPEED;
+
+
+                }
+                else if ((*currentMap)[i].isFacingEast()) {
+                    (*currentMap)[i].shiftLeftOnMap(SCROLL_SPEED);
+                    walkCounters[i] += SCROLL_SPEED;
+
+
+                }
+                else if ((*currentMap)[i].isFacingSouth()) {
+                    (*currentMap)[i].shiftDownOnMap(SCROLL_SPEED);
+                    walkCounters[i] += SCROLL_SPEED;
+
+
+                }
+                else if ((*currentMap)[i].isFacingWest()) {
+                    (*currentMap)[i].shiftRightOnMap(SCROLL_SPEED);
+                    walkCounters[i] += SCROLL_SPEED;
+
+
+                }
+            }
+        }
     }
 
     // FIXME make trainers turn slower

@@ -3,81 +3,10 @@
 
 #define SDL_MAIN_HANDLED
 
-//#include "Classes/Game/Game.h"
-/*
-#include <mutex>
-
-std::mutex m;
-
-__attribute__((unused)) bool canMove = true;            // signals when the player can move
-bool threadsPaused = false;     // signals when to pause all threads
-bool stopThreads = false;       // signals when to end all threads
-
-__attribute__((unused)) void turn(Player *player, Map &map, int index) {
-    auto engage = [&player, &map, &index] {
-        m.lock();
-        threadsPaused = true;
-        canMove = false;
-
-        map[index].moveToPlayer(player);
-        player->face(&map[index]);
-
-        printMessage("\n\nI challenge you to a Pokémon battle!");
-        pressEnter();
-
-        Battle(player, &map[index]);
-
-        threadsPaused = false;
-        canMove = true;
-        m.unlock();
-    };
-
-    while (not stopThreads) {
-        if (threadsPaused) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            continue;
-        }
-
-        switch (generateInteger(1, 6)) {
-            case 1:
-                map[index].face(&map[index]);
-                //map.print(player);
-
-                if (map[index].hasVisionOf(player) and map[index]) {
-                    engage();
-                    return;
-                }
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                break;
-
-            case 2:
-                if (map[index].isFacingNorth() or map[index].isFacingSouth()) {
-                    coinFlip() ? map[index].faceEast() : map[index].faceWest();
-                }
-                else if (map[index].isFacingEast() or map[index].isFacingWest()) {
-                    coinFlip() ? map[index].faceNorth() : map[index].faceSouth();
-                }
-
-                if (map[index].hasVisionOf(player) and map[index]) {
-                    engage();
-                    return;
-                }
-
-                std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                break;
-
-            default:
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        }
-    }
-}
- */
-
 #include "Classes/Game/Game.h"
 
 constexpr int FPS = 30;
-constexpr int frameDelay = 1000 / FPS;
+constexpr int FRAME_DELAY = 1000 / FPS;
 
 int main() {
     SDL_SetMainReady();
@@ -96,8 +25,8 @@ int main() {
 
         frameTime = SDL_GetTicks() - frameStart;
 
-        if (frameDelay > frameTime) {
-            SDL_Delay(frameDelay - frameTime);
+        if (FRAME_DELAY > frameTime) {
+            SDL_Delay(FRAME_DELAY - frameTime);
         }
     }
 
