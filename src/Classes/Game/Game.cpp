@@ -11,19 +11,19 @@ constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
-static SDL_Window *window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-static SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+static SDL_Window *gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+static SDL_Renderer *gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
 static SDL_Event event;
 static Mix_Chunk *music = nullptr;
 
-__attribute__((unused)) static TextureManager r(renderer);
+__attribute__((unused)) static TextureManager textureManager(gameRenderer);
 
 static bool isRunning = true;                           // determines whether the game is running
 
-static bool up = false;
-static bool down = false;
-static bool left = false;
-static bool right = false;
+static bool moveUp = false;                             // becomes true when the user presses 'w'
+static bool moveDown = false;                           // becomes true when the user presses 's'
+static bool moveLeft = false;                           // becomes true when the user presses 'a'
+static bool moveRight = false;                          // becomes true when the user presses 'd'
 
 static bool keepMovingUp = false;
 static bool keepMovingDown = false;
@@ -34,26 +34,12 @@ static int walkCounter = 0;                             // measures how many scr
 
 Player *player = nullptr;
 
-Trainer *Joey = new Trainer({
-    new Pikachu({ new Thunder, new QuickAttack, new IronTail, new VoltTackle }),
-    new Lucario({ new AuraSphere, new FlashCannon, new DragonPulse, new DarkPulse })
-}, 7, 6, 3);
+int functionState = 0;                                  // denotes which set of functions to use
 
-Trainer *Red = new Trainer({
-    new Pikachu(),
-    new Venasaur(),
-    new Charizard()
-}, 2, 4, 3);
-
-Map Route_1("Route 1", 13, 10, { Joey, Red }, { { 6, 0, MapIDs::ROUTE_2, 10, 18 } });
-
-Map Route_2("Route 2", 21, 20, { { 10, 19, MapIDs::ROUTE_1, 6, 1 }, { 0, 10, MapIDs::ROUTE_3, 19, 5 } });
-Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } });
-
-Map *maps[] = { &Route_1, &Route_2, &Route_3 };
-
-int currentMapIndex = 0;
-Map *currentMap = maps[currentMapIndex];
+constexpr static int NUM_STATES = 2;
+std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
+std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
+std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
 
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
@@ -64,7 +50,7 @@ Game::Game() {
         exit(1);
     }
 
-    if (window) {
+    if (gameWindow) {
         std::cout << "Window created!\n";
     }
     else {
@@ -73,35 +59,35 @@ Game::Game() {
         exit(1);
     }
 
-    if (renderer) {
+    if (gameRenderer) {
         std::cout << "Renderer created!\n";
     }
     else {
         std::cerr << "Error creating renderer: " << SDL_GetError() << '\n';
-        SDL_DestroyWindow(window);
+        SDL_DestroyWindow(gameWindow);
         SDL_Quit();
         exit(1);
     }
 
-    SDL_Surface *surface = IMG_Load((PATH + R"(\sprites\pokeball.png)").c_str());
-    if (not surface) {
+    SDL_Surface *pokeball = IMG_Load((PATH + R"(\sprites\pokeball.png)").c_str());
+    if (not pokeball) {
         std::cerr << "Error creating surface: " << SDL_GetError() << '\n';
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(gameRenderer);
+        SDL_DestroyWindow(gameWindow);
         SDL_Quit();
         exit(1);
     }
 
-    SDL_SetWindowIcon(window, surface);
-    SDL_FreeSurface(surface);
+    SDL_SetWindowIcon(gameWindow, pokeball);
+    SDL_FreeSurface(pokeball);
 
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == 0) {
         std::cout << "Default audio device opened!\n";
     }
     else {
         std::cerr << "Could not open the default audio device: " << SDL_GetError() << '\n';
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(gameRenderer);
+        SDL_DestroyWindow(gameWindow);
         SDL_Quit();
         exit(1);
     }
@@ -110,8 +96,8 @@ Game::Game() {
     if (not music) {
         std::cerr << "Could not play sound: " << SDL_GetError() << '\n';
         Mix_CloseAudio();
-        SDL_DestroyRenderer(renderer);
-        SDL_DestroyWindow(window);
+        SDL_DestroyRenderer(gameRenderer);
+        SDL_DestroyWindow(gameWindow);
         SDL_Quit();
         exit(1);
     }
@@ -127,8 +113,8 @@ Game::Game() {
 Game::~Game() {
     Mix_FreeChunk(music);
     Mix_CloseAudio();
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
+    SDL_DestroyRenderer(gameRenderer);
+    SDL_DestroyWindow(gameWindow);
     SDL_Quit();
 
     std::cout << "Game cleaned!\n";
@@ -138,175 +124,15 @@ Game::~Game() {
 
 void Game::handleEvents() {
     SDL_PollEvent(&event);
-
-    switch (event.type) {
-        case SDL_QUIT:
-            isRunning = false;
-            break;
-
-        case SDL_KEYDOWN:
-            // do not accept keyboard input if your sprite is still moving
-            if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
-                break;
-            }
-            switch (event.key.keysym.scancode) {
-                case SDL_SCANCODE_W:
-                    if (not player->isFacingNorth()) {
-                        player->faceNorth();
-                    }
-                    else {
-                        up = true;
-                        keepMovingUp = true;
-                    }
-                    break;
-                case SDL_SCANCODE_A:
-                    if (not player->isFacingWest()) {
-                        player->faceWest();
-                    }
-                    else {
-                        left = true;
-                        keepMovingLeft = true;
-                    }
-                    break;
-                case SDL_SCANCODE_S:
-                    if (not player->isFacingSouth()) {
-                        player->faceSouth();
-                    }
-                    else {
-                        down = true;
-                        keepMovingDown = true;
-                    }
-                    break;
-                case SDL_SCANCODE_D:
-                    if (not player->isFacingEast()) {
-                        player->faceEast();
-                    }
-                    else {
-                        right = true;
-                        keepMovingRight = true;
-                    }
-                    break;
-                default:
-                    break;
-            }
-            break;
-
-        case SDL_KEYUP:
-            switch (event.key.keysym.scancode) {
-                case SDL_SCANCODE_W:
-                    up = false;
-                    break;
-                case SDL_SCANCODE_A:
-                    left = false;
-                    break;
-                case SDL_SCANCODE_S:
-                    down = false;
-                    break;
-                case SDL_SCANCODE_D:
-                    right = false;
-                    break;
-                default:
-                    break;
-            }
-            break;
-
-        default:
-            break;
-    }
+    handleFunctions[functionState]();
 }
 
 void Game::update() {
-    const int playerX = player->getX();
-    const int playerY = player->getY();
-
-    if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or up)) {
-        Camera::shiftDown(SCROLL_SPEED);
-        currentMap->updateMap(SCROLL_SPEED, 1);
-        walkCounter += SCROLL_SPEED;
-
-        if (walkCounter % TILE_SIZE == 0) {
-            player->moveNorth();
-        }
-    }
-    else if (not currentMap->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or down)) {
-        Camera::shiftUp(SCROLL_SPEED);
-        currentMap->updateMap(SCROLL_SPEED, 2);
-        walkCounter += SCROLL_SPEED;
-
-        if (walkCounter % TILE_SIZE == 0) {
-            player->moveSouth();
-        }
-    }
-    else if (not currentMap->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or left)) {
-        Camera::shiftRight(SCROLL_SPEED);
-        currentMap->updateMap(SCROLL_SPEED, 3);
-        walkCounter += SCROLL_SPEED;
-
-        if (walkCounter % TILE_SIZE == 0) {
-            player->moveWest();
-        }
-    }
-    else if (not currentMap->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or right)) {
-        Camera::shiftLeft(SCROLL_SPEED);
-        currentMap->updateMap(SCROLL_SPEED, 4);
-        walkCounter += SCROLL_SPEED;
-
-        if (walkCounter % TILE_SIZE == 0) {
-            player->moveEast();
-        }
-    }
-
-    // if your sprite has reached a tile, and you are not inputting any directions
-    if (walkCounter % TILE_SIZE == 0 and not (up or down or left or right)) {
-        keepMovingUp = false;
-        keepMovingDown = false;
-        keepMovingLeft = false;
-        keepMovingRight = false;
-        walkCounter = 0;
-    }
-
-    // FIXME make trainers turn slower
-    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
-        switch (generateInteger(1, 100)) {
-            case 1:
-                (*currentMap)[trainer].face(&(*currentMap)[trainer]);
-
-                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
-                    //engage();
-                    return;
-                }
-                break;
-
-            case 2:
-                if ((*currentMap)[trainer].isFacingNorth() or (*currentMap)[trainer].isFacingSouth()) {
-                    coinFlip() ? (*currentMap)[trainer].faceEast() : (*currentMap)[trainer].faceWest();
-                }
-                else if ((*currentMap)[trainer].isFacingEast() or (*currentMap)[trainer].isFacingWest()) {
-                    coinFlip() ? (*currentMap)[trainer].faceNorth() : (*currentMap)[trainer].faceSouth();
-                }
-
-                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
-                    //engage();
-                    return;
-                }
-                break;
-        }
-    }
+    updateFunctions[functionState]();
 }
 
 void Game::render() {
-    SDL_RenderClear(renderer);
-    currentMap->renderMap();
-
-    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
-        // prevents rendering trainers that aren't onscreen
-        if (Camera::isInView((*currentMap)[trainer].getRect())) {
-            (*currentMap)[trainer].render();
-        }
-    }
-    player->render();
-
-    SDL_RenderPresent(renderer);
+    renderFunctions[functionState]();
 }
 
 void Game::saveData() {
@@ -331,10 +157,10 @@ void Game::saveData() {
         }
     }
 
-    for (int map = 0; map < sizeof maps / sizeof maps[0]; ++map) {
-        for (int j = 0; j < maps[map]->numTrainers(); ++map) {
-            saveFile << '\n' << map << j << (*maps)[map][j].partySize();
-            saveFile << (*maps)[map][j].getDirection();
+    for (int map = 0; map < maps.size(); ++map) {
+        for (int trainer = 0; trainer < maps[map]->numTrainers(); ++map) {
+            saveFile << '\n' << map << trainer << (*maps[map])[trainer].partySize();
+            saveFile << (*maps[map])[trainer].getDirection();
         }
     }
 
@@ -349,19 +175,15 @@ void Game::loadData() {
             case 0:
                 entity->faceNorth();
                 break;
-
             case 1:
                 entity->faceEast();
                 break;
-
             case 2:
                 entity->faceSouth();
                 break;
-
             case 3:
                 entity->faceWest();
                 break;
-
             default:
                 throw std::runtime_error("Unexpected error: lambda loadDirection");
         }
@@ -400,9 +222,9 @@ void Game::loadData() {
             const int trainer = buffer[1] - '0';
 
             if (buffer[2] == '0') {
-                (*maps)[map][trainer].clearParty();
+                (*maps[map])[trainer].clearParty();
             }
-            loadDirection(&(*maps)[map][trainer], buffer[3] - '0');
+            loadDirection(&(*maps[map])[trainer], buffer[3] - '0');
         }
 
         saveFile.close();
@@ -420,4 +242,187 @@ void Game::eraseData() {
 
 Game::operator bool() const {
     return isRunning;
+}
+
+void Game::handleOverworldEvents() {
+    switch (event.type) {
+        case SDL_QUIT:
+            isRunning = false;
+            break;
+
+        case SDL_KEYDOWN:
+            // do not accept keyboard input if your sprite is still moving
+            if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
+                break;
+            }
+            switch (event.key.keysym.scancode) {
+                case SDL_SCANCODE_W:
+                    if (not player->isFacingNorth()) {
+                        player->faceNorth();
+                    }
+                    else {
+                        moveUp = true;
+                        keepMovingUp = true;
+                    }
+                    break;
+                case SDL_SCANCODE_A:
+                    if (not player->isFacingWest()) {
+                        player->faceWest();
+                    }
+                    else {
+                        moveLeft = true;
+                        keepMovingLeft = true;
+                    }
+                    break;
+                case SDL_SCANCODE_S:
+                    if (not player->isFacingSouth()) {
+                        player->faceSouth();
+                    }
+                    else {
+                        moveDown = true;
+                        keepMovingDown = true;
+                    }
+                    break;
+                case SDL_SCANCODE_D:
+                    if (not player->isFacingEast()) {
+                        player->faceEast();
+                    }
+                    else {
+                        moveRight = true;
+                        keepMovingRight = true;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            break;
+
+        case SDL_KEYUP:
+            switch (event.key.keysym.scancode) {
+                case SDL_SCANCODE_W:
+                    moveUp = false;
+                    break;
+                case SDL_SCANCODE_A:
+                    moveLeft = false;
+                    break;
+                case SDL_SCANCODE_S:
+                    moveDown = false;
+                    break;
+                case SDL_SCANCODE_D:
+                    moveRight = false;
+                    break;
+                default:
+                    break;
+            }
+            break;
+
+        default:
+            break;
+    }
+}
+
+void Game::handleBattleEvents() {
+
+}
+
+void Game::updateOverworld() {
+    const int playerX = player->getX();
+    const int playerY = player->getY();
+
+    if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or moveUp)) {
+        Camera::shiftDown(SCROLL_SPEED);
+        currentMap->updateMap(SCROLL_SPEED, 1);
+        walkCounter += SCROLL_SPEED;
+
+        if (walkCounter % TILE_SIZE == 0) {
+            player->moveNorth();
+        }
+    }
+    else if (not currentMap->isObstructionHere(playerX, playerY + 1) and (keepMovingDown or moveDown)) {
+        Camera::shiftUp(SCROLL_SPEED);
+        currentMap->updateMap(SCROLL_SPEED, 2);
+        walkCounter += SCROLL_SPEED;
+
+        if (walkCounter % TILE_SIZE == 0) {
+            player->moveSouth();
+        }
+    }
+    else if (not currentMap->isObstructionHere(playerX - 1, playerY) and (keepMovingLeft or moveLeft)) {
+        Camera::shiftRight(SCROLL_SPEED);
+        currentMap->updateMap(SCROLL_SPEED, 3);
+        walkCounter += SCROLL_SPEED;
+
+        if (walkCounter % TILE_SIZE == 0) {
+            player->moveWest();
+        }
+    }
+    else if (not currentMap->isObstructionHere(playerX + 1, playerY) and (keepMovingRight or moveRight)) {
+        Camera::shiftLeft(SCROLL_SPEED);
+        currentMap->updateMap(SCROLL_SPEED, 4);
+        walkCounter += SCROLL_SPEED;
+
+        if (walkCounter % TILE_SIZE == 0) {
+            player->moveEast();
+        }
+    }
+
+    // if your sprite has reached a tile, and you are not inputting any directions
+    if (walkCounter % TILE_SIZE == 0 and not (moveUp or moveDown or moveLeft or moveRight)) {
+        keepMovingUp = false;
+        keepMovingDown = false;
+        keepMovingLeft = false;
+        keepMovingRight = false;
+        walkCounter = 0;
+    }
+
+    // FIXME make trainers turn slower
+    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
+        switch (generateInteger(1, 100)) {
+            case 1:
+                (*currentMap)[trainer].face(&(*currentMap)[trainer]);
+
+                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                    //engage();
+                    return;
+                }
+                break;
+
+            case 2:
+                if ((*currentMap)[trainer].isFacingNorth() or (*currentMap)[trainer].isFacingSouth()) {
+                    coinFlip() ? (*currentMap)[trainer].faceEast() : (*currentMap)[trainer].faceWest();
+                }
+                else if ((*currentMap)[trainer].isFacingEast() or (*currentMap)[trainer].isFacingWest()) {
+                    coinFlip() ? (*currentMap)[trainer].faceNorth() : (*currentMap)[trainer].faceSouth();
+                }
+
+                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                    //engage();
+                    return;
+                }
+                break;
+        }
+    }
+}
+
+void Game::updateBattle() {
+
+}
+
+void Game::renderOverworld() {
+    SDL_RenderClear(gameRenderer);
+    currentMap->renderMap();
+
+    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
+        // prevents rendering trainers that aren't onscreen
+        if (Camera::isInView((*currentMap)[trainer].getRect())) {
+            (*currentMap)[trainer].render();
+        }
+    }
+    player->render();
+
+    SDL_RenderPresent(gameRenderer);
+}
+
+void Game::renderBattle() {
+
 }

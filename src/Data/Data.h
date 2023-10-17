@@ -21,5 +21,7 @@ extern Map Route_1;
 extern Map Route_2;
 extern Map Route_3;
 
-extern Map *maps[];
+extern std::array<Map *, 3> maps;
+
+extern int currentMapIndex;
 extern Map *currentMap;

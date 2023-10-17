@@ -30,4 +30,13 @@ public:
     static void render();
 
     explicit operator bool() const;
+
+    static void handleOverworldEvents();
+    static void handleBattleEvents();
+
+    static void updateOverworld();
+    static void updateBattle();
+
+    static void renderOverworld();
+    static void renderBattle();
 };
