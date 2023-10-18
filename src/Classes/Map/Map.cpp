@@ -182,3 +182,15 @@ void Map::renderMap() {
         }
     }
 }
+
+void Map::resetMap() {
+    for (int i = 0; i < this->width; ++i) {
+        for (int j = 0; j < this->height; ++j) {
+            this->layout[i][j] = Tile(this->layout[i][j].getID(), i * TILE_SIZE, j * TILE_SIZE);
+        }
+    }
+
+    for (auto &trainer : this->trainers) {
+        trainer->resetPos();
+    }
+}

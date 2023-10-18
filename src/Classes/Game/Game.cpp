@@ -32,6 +32,8 @@ static bool keepMovingDown = false;
 static bool keepMovingLeft = false;
 static bool keepMovingRight = false;
 
+static bool interact = false;
+
 static int walkCounter = 0;                             // measures how many screen pixels an entity has moved
 
 static std::vector<int> walkCounters;
@@ -256,46 +258,57 @@ void Game::handleOverworldEvents() {
 
         case SDL_KEYDOWN:
             // FIXME change to account for ENTER key
-            // do not accept keyboard input if your sprite is still moving or if the player cannot currently move
-            if (not canMove or keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
+            // do not accept keyboard input if your sprite is still moving
+            if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
                 break;
             }
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
-                    if (not player->isFacingNorth()) {
-                        player->faceNorth();
-                    }
-                    else {
-                        moveUp = true;
-                        keepMovingUp = true;
+                    if (canMove) {
+                        if (not player->isFacingNorth()) {
+                            player->faceNorth();
+                        }
+                        else {
+                            moveUp = true;
+                            keepMovingUp = true;
+                        }
                     }
                     break;
                 case SDL_SCANCODE_A:
-                    if (not player->isFacingWest()) {
-                        player->faceWest();
-                    }
-                    else {
-                        moveLeft = true;
-                        keepMovingLeft = true;
+                    if (canMove) {
+                        if (not player->isFacingWest()) {
+                            player->faceWest();
+                        }
+                        else {
+                            moveLeft = true;
+                            keepMovingLeft = true;
+                        }
                     }
                     break;
                 case SDL_SCANCODE_S:
-                    if (not player->isFacingSouth()) {
-                        player->faceSouth();
-                    }
-                    else {
-                        moveDown = true;
-                        keepMovingDown = true;
+                    if (canMove) {
+                        if (not player->isFacingSouth()) {
+                            player->faceSouth();
+                        }
+                        else {
+                            moveDown = true;
+                            keepMovingDown = true;
+                        }
                     }
                     break;
                 case SDL_SCANCODE_D:
-                    if (not player->isFacingEast()) {
-                        player->faceEast();
+                    if (canMove) {
+                        if (not player->isFacingEast()) {
+                            player->faceEast();
+                        }
+                        else {
+                            moveRight = true;
+                            keepMovingRight = true;
+                        }
                     }
-                    else {
-                        moveRight = true;
-                        keepMovingRight = true;
-                    }
+                    break;
+                case SDL_SCANCODE_RETURN:
+                    interact = true;
                     break;
                 default:
                     break;
@@ -334,7 +347,32 @@ void Game::updateOverworld() {
     const int playerX = player->getX();     // variable used to reduce the number of function calls
     const int playerY = player->getY();     // variable used to reduce the number of function calls
 
-    if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or moveUp)) {
+    const std::array<int, 3> mapData = currentMap->isExitPointHere(playerX, playerY);
+    if (mapData[2] != -1) {
+        currentMap->resetMap();
+
+        currentMapIndex = mapData[2];
+        currentMap = maps[currentMapIndex];
+
+        walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
+        lockOn = std::vector<bool>(currentMap->numTrainers(), false);
+
+        // set the player's new coordinates
+        // FIXME get to a point where this is uncommented: player->setCoordinates(mapData[0], mapData[1]);
+        player->setCoordinates(1, 1);
+        void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
+        Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+    }
+    else if (interact) {
+        for (int i = 0; i < currentMap->numTrainers(); ++i) {
+            if (player->hasVisionOf(&(*currentMap)[i]) and not (*currentMap)[i].hasVisionOf(player)) {
+                (*currentMap)[i].face(player);
+                break;
+            }
+        }
+        interact = false;
+    }
+    else if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or moveUp)) {
         Camera::shiftDown(SCROLL_SPEED);
         currentMap->updateMap(SCROLL_SPEED, 1);
         walkCounter += SCROLL_SPEED;

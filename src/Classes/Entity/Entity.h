@@ -73,4 +73,6 @@ public:
     SDL_Rect *getRect();
 
     void render();
+
+    void resetPos();
 };

@@ -48,21 +48,6 @@ int main() {
     Route_1.setObstruction(4, 5);
     Route_1.setObstruction(3, 5);
 
-        // interact
-        case Keys::ENTER:
-            for (int i = 0; i < numNPCs; ++i) {
-                if (player->hasVisionOf(&(*currentMap)[i]) and not (*currentMap)[i].hasVisionOf(player)) {
-                    (*currentMap)[i].face(player);
-                    currentMap->print(player);
-
-                    if ((*currentMap)[i]) {
-                        engage(i);
-                    }
-                    break;
-                }
-            }
-            break;
-
         case Keys::ESC:
             threadsPaused = true;
 

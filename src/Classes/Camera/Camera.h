@@ -36,7 +36,11 @@ namespace Camera {
 
     // finds the player's current position on the screen map,
     // then shifts everything, including the player, accordingly
+    //FIXME bugged: does not work is position is in right hemisphere
     inline void lockOnPlayer(Player *p, int x, int y, void(*updateMap)(int, int)) {
+        xPos = 0;
+        yPos = 0;
+
         const int xFromCenter = x - p->getX() * TILE_SIZE;  // x-distance of the player from the center of the screen
         const int yFromCenter = y - p->getY() * TILE_SIZE;  // y-distance of the player from the center of the screen
 

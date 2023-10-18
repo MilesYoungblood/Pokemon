@@ -185,3 +185,8 @@ SDL_Rect *Entity::getRect() {
 void Entity::render() {
     TextureManager::Draw(this->currentTexture, this->destRect);
 }
+
+void Entity::resetPos() {
+    this->destRect.x = this->x * TILE_SIZE;
+    this->destRect.y = this->y * TILE_SIZE;
+}

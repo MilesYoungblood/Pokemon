@@ -90,4 +90,6 @@ public:
 
     void updateMap(int distance, int flag);
     void renderMap();
+
+    void resetMap();
 };
