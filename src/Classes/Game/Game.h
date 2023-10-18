@@ -29,8 +29,6 @@ public:
     static void update();
     static void render();
 
-    explicit operator bool() const;
-
     static void handleOverworldEvents();
     static void handleBattleEvents();
 
@@ -39,4 +37,6 @@ public:
 
     static void renderOverworld();
     static void renderBattle();
+
+    explicit operator bool() const;
 };

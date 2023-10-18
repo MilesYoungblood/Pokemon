@@ -5,7 +5,7 @@
 #include "Game.h"
 #include "../../Data/Data.h"
 
-const std::string PATH = std::filesystem::current_path().parent_path().generic_string();
+const static std::string PATH = std::filesystem::current_path().parent_path().generic_string();
 
 constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
@@ -33,16 +33,18 @@ static bool keepMovingLeft = false;
 static bool keepMovingRight = false;
 
 static int walkCounter = 0;                             // measures how many screen pixels an entity has moved
-std::vector<int> walkCounters(currentMap->numTrainers(), 0); // NOLINT(*-interfaces-global-init)
 
-Player *player = nullptr;
+static std::vector<int> walkCounters;
+static std::vector<bool> lockOn;
 
-int functionState = 0;                                  // denotes which set of functions to use
+static Player *player = nullptr;
+
+static int functionState = 0;                           // denotes which set of functions to use
 
 constexpr static int NUM_STATES = 2;
-std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
-std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
-std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
+static std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
+static std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
+static std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
 
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
@@ -111,6 +113,9 @@ Game::Game() {
 
     void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
     Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+
+    walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
+    lockOn = std::vector<bool>(currentMap->numTrainers(), false);
 }
 
 Game::~Game() {
@@ -243,10 +248,6 @@ void Game::eraseData() {
     std::filesystem::remove(PATH + R"(\src\Data\SaveData.txt)");
 }
 
-Game::operator bool() const {
-    return isRunning;
-}
-
 void Game::handleOverworldEvents() {
     switch (event.type) {
         case SDL_QUIT:
@@ -254,6 +255,7 @@ void Game::handleOverworldEvents() {
             break;
 
         case SDL_KEYDOWN:
+            // FIXME change to account for ENTER key
             // do not accept keyboard input if your sprite is still moving or if the player cannot currently move
             if (not canMove or keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
                 break;
@@ -329,8 +331,8 @@ void Game::handleBattleEvents() {
 }
 
 void Game::updateOverworld() {
-    const int playerX = player->getX();
-    const int playerY = player->getY();
+    const int playerX = player->getX();     // variable used to reduce the number of function calls
+    const int playerY = player->getY();     // variable used to reduce the number of function calls
 
     if (not currentMap->isObstructionHere(playerX, playerY - 1) and (keepMovingUp or moveUp)) {
         Camera::shiftDown(SCROLL_SPEED);
@@ -369,49 +371,77 @@ void Game::updateOverworld() {
         }
     }
 
-    // stops the player from moving if their sprite has reached a tile, and you are not inputting any directions
-    if (walkCounter % TILE_SIZE == 0 and not (moveUp or moveDown or moveLeft or moveRight)) {
-        keepMovingUp = false;
-        keepMovingDown = false;
-        keepMovingLeft = false;
-        keepMovingRight = false;
-        walkCounter = 0;
+    // if the player's sprite is on a tile...
+    if (walkCounter % TILE_SIZE == 0) {
+        // resets movement variables if you are not inputting any directions
+        if (not (moveUp or moveDown or moveLeft or moveRight)) {
+            keepMovingUp = false;
+            keepMovingDown = false;
+            keepMovingLeft = false;
+            keepMovingRight = false;
+            walkCounter = 0;
+        }
 
         // checks if the player is in LoS for any trainer
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            if ((*currentMap)[i].hasVisionOf(player) and (*currentMap)[i]) {
+            Trainer &trainer = (*currentMap)[i];    // variable used to reduce the number of function calls
+
+            if (trainer.hasVisionOf(player) and trainer) {
                 canMove = false;
+                lockOn[i] = true;
 
-                if ((*currentMap)[i].isFacingNorth()) {
-                    (*currentMap)[i].shiftUpOnMap(SCROLL_SPEED);
+                if (trainer.isNextTo(player)) {
+                    // TODO open dialogue, start battle
+                    // functionState = 1;
+                    player->face(&trainer);
+                    trainer.clearParty();
+                    canMove = true;
+                    lockOn[i] = false;
+                }
+                else if (trainer.isFacingNorth()) {
+                    trainer.shiftUpOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
-
+                    if (walkCounters[i] % TILE_SIZE == 0) {
+                        trainer.moveNorth();
+                    }
                 }
-                else if ((*currentMap)[i].isFacingEast()) {
-                    (*currentMap)[i].shiftLeftOnMap(SCROLL_SPEED);
+                else if (trainer.isFacingEast()) {
+                    trainer.shiftRightOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
-
+                    if (walkCounters[i] % TILE_SIZE == 0) {
+                        trainer.moveEast();
+                    }
                 }
-                else if ((*currentMap)[i].isFacingSouth()) {
-                    (*currentMap)[i].shiftDownOnMap(SCROLL_SPEED);
+                else if (trainer.isFacingSouth()) {
+                    trainer.shiftDownOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
-
+                    if (walkCounters[i] % TILE_SIZE == 0) {
+                        trainer.moveSouth();
+                    }
                 }
-                else if ((*currentMap)[i].isFacingWest()) {
-                    (*currentMap)[i].shiftRightOnMap(SCROLL_SPEED);
+                else if (trainer.isFacingWest()) {
+                    trainer.shiftLeftOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
-
+                    if (walkCounters[i] % TILE_SIZE == 0) {
+                        trainer.moveWest();
+                    }
                 }
+
+                break;
             }
         }
     }
 
-    // FIXME make trainers turn slower
+    // FIXME possibly make trainers turn slower
     for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
+        // does not potentially make the trainer move if true
+        if (lockOn[trainer]) {
+            continue;
+        }
         switch (generateInteger(1, 100)) {
             case 1:
                 (*currentMap)[trainer].face(&(*currentMap)[trainer]);
@@ -460,4 +490,8 @@ void Game::renderOverworld() {
 
 void Game::renderBattle() {
 
+}
+
+Game::operator bool() const {
+    return isRunning;
 }

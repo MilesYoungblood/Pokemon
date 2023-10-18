@@ -205,33 +205,3 @@ Trainer::operator bool() const {
 bool Trainer::canFight() const {
     return this->numPokemon > 0;
 }
-
-// moves the Trainer to the player
-void Trainer::moveToPlayer(const Trainer *player) {
-    if (this->hasVisionOf(player)) {
-        if (this->isFacingNorth()) {
-            while (not this->isNextTo(player)) {
-                this->moveNorth();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-            }
-        }
-        else if (this->isFacingEast()) {
-            while (not this->isNextTo(player)) {
-                this->moveEast();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-            }
-        }
-        else if (this->isFacingSouth()) {
-            while (not this->isNextTo(player)) {
-                this->moveSouth();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-            }
-        }
-        else if (this->isFacingWest()) {
-            while (not this->isNextTo(player)) {
-                this->moveWest();
-                std::this_thread::sleep_for(std::chrono::milliseconds(250));
-            }
-        }
-    }
-}

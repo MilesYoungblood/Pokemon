@@ -65,6 +65,4 @@ public:
 
     virtual explicit operator bool() const;
     virtual bool canFight() const;
-
-    void moveToPlayer(const Trainer *trainer);
 };
