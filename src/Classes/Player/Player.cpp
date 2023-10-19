@@ -7,13 +7,11 @@
 Player *Player::instancePtr = nullptr;
 Pokemon *Player::pc[12][30];
 
-Player::Player() : Trainer(1, 1) {
-    const std::string path = std::filesystem::current_path().parent_path().generic_string() + R"(\sprites\Hilbert_)";
-
-    this->frontModel = TextureManager::LoadTexture(path + "front.png");
-    this->backModel = TextureManager::LoadTexture(path + "back.png");
-    this->leftModel = TextureManager::LoadTexture(path + "left.png");
-    this->rightModel = TextureManager::LoadTexture(path + "right.png");
+Player::Player() : Trainer(6, 8) {
+    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)");
+    this->backModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)");
+    this->leftModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)");
+    this->rightModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)");
 
     this->currentTexture = this->frontModel;
 

@@ -19,5 +19,5 @@ public:
     static void addToPC(Pokemon *toAdd);
 
     explicit operator bool() const override;
-    bool canFight() const override;
+    [[nodiscard]] bool canFight() const override;
 };

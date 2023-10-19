@@ -14,9 +14,6 @@ private:
 
 public:
     TextureManager() = default;
-    static void SetRenderer(SDL_Renderer *r) {
-        TextureManager::renderer = r;
-    }
     explicit TextureManager(SDL_Renderer *r);
     static SDL_Texture * LoadTexture(const std::string &texture);
     static void Draw(SDL_Texture *texture, SDL_Rect dest);

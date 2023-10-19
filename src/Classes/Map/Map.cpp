@@ -10,35 +10,17 @@ SDL_Texture *Map::grass = nullptr;
 SDL_Texture *Map::tallGrass = nullptr;
 SDL_Texture *Map::water = nullptr;
 
-// places obstructions along the rim of the map
-void Map::setBorders(const Map *from) {
-    // set the top border
-    for (int x = 0; x < from->width; ++x) {
-        this->layout[x][0].setID(TileID::OBSTRUCTION);
-    }
-
-    // set the inner layer borders
-    for (int y = 1; y < from->height; ++y) {
-        this->layout[0][y].setID(TileID::OBSTRUCTION);
-        this->layout[this->width - 1][y].setID(TileID::OBSTRUCTION);
-    }
-
-    // set the bottom border
-    for (int x = 0; x < from->width; ++x) {
-        this->layout[x][this->height - 1].setID(TileID::OBSTRUCTION);
-    }
-}
-
-bool Map::isTrainerHere(int x, int y) const {
+bool Map::isTrainerHere(const int x, const int y) const {
     return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
-Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoint> &exitPoints) {
+Map::Map(const char *name, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) {
     this->name = name;
 
     this->width = width;
     this->height = height;
 
+    // initialize the layout with grass
     this->layout.resize(this->width);
     for (int i = 0; i < this->width; ++i) {
         this->layout[i].resize(this->height);
@@ -47,18 +29,34 @@ Map::Map(const char *name, int width, int height, const std::vector<Map::ExitPoi
             this->layout[i][j] = Tile(TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE);
         }
     }
-    this->setBorders(this);
 
+    // set the top border
+    for (int x = 0; x < this->width; ++x) {
+        this->layout[x][0].setID(TileID::OBSTRUCTION);
+    }
+
+    // set the inner layer borders
+    for (int y = 1; y < this->height; ++y) {
+        this->layout[0][y].setID(TileID::OBSTRUCTION);
+        this->layout[this->width - 1][y].setID(TileID::OBSTRUCTION);
+    }
+
+    // set the bottom border
+    for (int x = 0; x < this->width; ++x) {
+        this->layout[x][this->height - 1].setID(TileID::OBSTRUCTION);
+    }
+
+    // set any exit points
     this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
         this->layout[exitPoint.x][exitPoint.y].setID(TileID::GRASS);
     }
 
-    Map::obstruction = TextureManager::LoadTexture(PROJECT_PATH + "\\sprites\\pokeball.png");
-    Map::grass = TextureManager::LoadTexture(PROJECT_PATH + "\\sprites\\grass.png");
+    Map::obstruction = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
+    Map::grass = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\grass.png)");
 }
 
-Map::Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<Map::ExitPoint> &exitPoints)
+Map::Map(const char *name, const int width, const int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<Map::ExitPoint> &exitPoints)
     : Map(name, width, height, exitPoints) {
     this->trainers = trainerList;
 }
@@ -76,7 +74,7 @@ Map::~Map() {
 }
 
 // returns true if an obstruction is at the passed coordinates
-bool Map::isObstructionHere(int x, int y) const {
+bool Map::isObstructionHere(const int x, const int y) const {
     // out of bounds or an NPC is already in this spot
     if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isTrainerHere(x, y)) {
         return true;
@@ -86,8 +84,9 @@ bool Map::isObstructionHere(int x, int y) const {
     }
 }
 
-// returns an array with the new x and y coordinates and the new map respectively
-std::array<int, 3> Map::isExitPointHere(int x, int y) const {
+// returns an array with the new x and y coordinates and the new map respectively,
+// if no exit point is here, returns filler coordinates with the third element being -1
+std::array<int, 3> Map::isExitPointHere(const int x, const int y) const {
     for (const ExitPoint &exitPoint : this->exitPoints) {
         if (exitPoint.x == x and exitPoint.y == y) {
             return { exitPoint.newX, exitPoint.newY, exitPoint.newMap };
@@ -101,18 +100,20 @@ int Map::numTrainers() const {
     return static_cast<int>(this->trainers.size());
 }
 
-Trainer& Map::operator[](int index) {
+// returns the trainer at the passed index
+Trainer& Map::operator[](const int index) {
     return *this->trainers[index];
 }
 
 // places an obstruction at the passed coordinates
-void Map::setObstruction(int x, int y) {
+[[maybe_unused]] void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
         this->layout[x][y].setID(TileID::OBSTRUCTION);
     }
 }
 
-void Map::updateMap(int distance, int flag) {
+// shift the map and its trainers, according to a passed in flag
+void Map::updateMap(const int distance, const int flag) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
             const int x = this->layout[row][column].getX();
@@ -183,6 +184,8 @@ void Map::renderMap() {
     }
 }
 
+// resets the previous map's tile positions
+// as well as the trainer's positions
 void Map::resetMap() {
     for (int i = 0; i < this->width; ++i) {
         for (int j = 0; j < this->height; ++j) {

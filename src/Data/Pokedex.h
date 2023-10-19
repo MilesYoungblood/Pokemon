@@ -440,4 +440,3 @@ struct Greninja : public Pokemon {
         return PokemonID::GRENINJA;
     }
 };
-

@@ -221,7 +221,7 @@ public:
 
     virtual PokemonID getID() = 0;
 
-    int numMoves() const;
+    [[nodiscard]] int numMoves() const;
 
     void addMove(Move *move);
     void setMoves(const std::initializer_list<Move*> &moves);
@@ -248,38 +248,38 @@ public:
     void lowerAccuracy(int amount);
     void lowerEvasiveness(int amount);
 
-    int getHP() const;
-    int getAttack() const;
-    int getDefense() const;
-    int getSpAttack() const;
-    int getSpDefense() const;
-    int getSpeed() const;
-    int getAccuracy() const;
-    int getEvasiveness() const;
+    [[nodiscard]] int getHP() const;
+    [[nodiscard]] int getAttack() const;
+    [[nodiscard]] int getDefense() const;
+    [[nodiscard]] int getSpAttack() const;
+    [[nodiscard]] int getSpDefense() const;
+    [[nodiscard]] int getSpeed() const;
+    [[nodiscard]] int getAccuracy() const;
+    [[nodiscard]] int getEvasiveness() const;
 
-    int getMaxHp() const;
-    int getBaseAttack() const;
-    int getBaseDefense() const;
-    int getBaseSpAttack() const;
-    int getBaseSpDefense() const;
-    int getBaseSpeed() const;
+    [[nodiscard]] int getMaxHp() const;
+    [[nodiscard]] int getBaseAttack() const;
+    [[nodiscard]] int getBaseDefense() const;
+    [[nodiscard]] int getBaseSpAttack() const;
+    [[nodiscard]] int getBaseSpDefense() const;
+    [[nodiscard]] int getBaseSpeed() const;
 
-    std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
-    Type getType(bool type_1) const;
+    [[nodiscard]] Type getType(bool type_1) const;
 
     void setStatus(Status newStatus);
-    Status getStatus() const;
-    const char * getStatusAsString();
+    [[nodiscard]] Status getStatus() const;
+    [[nodiscard]] const char * getStatusAsString() const;
 
-    int getLevel() const;
-    int getCatchRate() const;
+    [[nodiscard]] int getLevel() const;
+    [[nodiscard]] int getCatchRate() const;
 
-    bool isFainted() const;
-    bool isFullHP() const;
-    bool isFasterThan(const Pokemon &pokemon) const;
-    bool isAfflicted() const;
-    bool canAttack() const;
+    [[nodiscard]] bool isFainted() const;
+    [[nodiscard]] bool isFullHP() const;
+    [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
+    [[nodiscard]] bool isAfflicted() const;
+    [[nodiscard]] bool canAttack() const;
 
     void hpEmptyMessage() const;
     void hpFullMessage() const;

@@ -7,7 +7,7 @@
 #include "../../Data/MoveList.h"
 
 namespace MoveFactory {
-    inline Move *getMove(MoveID id) {
+    inline Move *getMove(const MoveID id) {
         switch (id) {
             case MoveID::AIR_SLASH:
                 return new AirSlash;
@@ -43,5 +43,4 @@ namespace MoveFactory {
                 return nullptr;
         }
     }
-
 }

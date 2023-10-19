@@ -5,8 +5,6 @@
 #include "Game.h"
 #include "../../Data/Data.h"
 
-const static std::string PATH = std::filesystem::current_path().parent_path().generic_string();
-
 constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
@@ -27,26 +25,26 @@ static bool moveDown = false;                           // becomes true when the
 static bool moveLeft = false;                           // becomes true when the user presses 'a'
 static bool moveRight = false;                          // becomes true when the user presses 'd'
 
-static bool keepMovingUp = false;
-static bool keepMovingDown = false;
-static bool keepMovingLeft = false;
-static bool keepMovingRight = false;
+static bool keepMovingUp = false;                       // ultimately, determines when to stop moving up
+static bool keepMovingDown = false;                     // ultimately, determines when to stop moving down
+static bool keepMovingLeft = false;                     // ultimately, determines when to stop moving left
+static bool keepMovingRight = false;                    // ultimately, determines when to stop moving right
 
-static bool interact = false;
+static bool interact = false;                           // signals when the player is trying to interact with something
 
-static int walkCounter = 0;                             // measures how many screen pixels an entity has moved
+static int walkCounter = 0;                             // measures how many screen pixels the player has moved
 
-static std::vector<int> walkCounters;
-static std::vector<bool> lockOn;
+static std::vector<int> walkCounters;                   // measures how many screen pixels a trainer has moved
+static std::vector<bool> lockOn;                        // determines whether a trainer can move spontaneously
 
 static Player *player = nullptr;
 
-static int functionState = 0;                           // denotes which set of functions to use
+static int functionState = 0;                           // determines which set of functions to use
 
 constexpr static int NUM_STATES = 2;
-static std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
-static std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
-static std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
+const static std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
+const static std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
+const static std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
 
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
@@ -76,7 +74,7 @@ Game::Game() {
         exit(1);
     }
 
-    SDL_Surface *pokeball = IMG_Load((PATH + R"(\sprites\pokeball.png)").c_str());
+    SDL_Surface *pokeball = IMG_Load((PROJECT_PATH + R"(\sprites\pokeball.png)").c_str());
     if (not pokeball) {
         std::cerr << "Error creating surface: " << SDL_GetError() << '\n';
         SDL_DestroyRenderer(gameRenderer);
@@ -99,7 +97,7 @@ Game::Game() {
         exit(1);
     }
 
-    music = Mix_LoadWAV((PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
+    music = Mix_LoadWAV((PROJECT_PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
     if (not music) {
         std::cerr << "Could not play sound: " << SDL_GetError() << '\n';
         Mix_CloseAudio();
@@ -113,8 +111,12 @@ Game::Game() {
     player = Player::getPlayer();
     std::cout << "Player created!\n\n";
 
-    void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
-    Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+    player->setRestoreItems({ new Potion(5), new SuperPotion(5), new HyperPotion(5), new Ether(5) });
+    player->setStatusItems({ new ParalyzeHeal(5), new BurnHeal(5), new IceHeal(5), new Antidote(5), new Awakening(5) });
+    player->setPokeBalls({ new PokeBall(5), new GreatBall(5), new UltraBall(5), new MasterBall(1) });
+    player->setBattleItems({ new XAttack(5), new XDefense(5), new XSpAttack(5), new XSpDefense(5), new XSpeed(5), new XAccuracy(5) });
+
+    Camera::lockOnPlayer(player, [](int d, int f) -> void { currentMap->updateMap(d, f); });
 
     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
     lockOn = std::vector<bool>(currentMap->numTrainers(), false);
@@ -148,7 +150,7 @@ void Game::render() {
 void Game::saveData() {
     std::cout << "Saving please wait...";
 
-    std::ofstream saveFile(PATH + R"(\src\Data\SaveData.txt)");
+    std::ofstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
     if (not saveFile) {
         throw std::runtime_error("Could not open file");
     }
@@ -178,9 +180,9 @@ void Game::saveData() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(PATH + R"(\src\Data\SaveData.txt)");
+    std::ifstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
 
-    void (*loadDirection)(Entity *, int) = [](Entity *entity, int direction) -> void {
+    void (*loadDirection)(Entity *, const int) = [](Entity *entity, const int direction) -> void {
         switch (direction) {
             case 0:
                 entity->faceNorth();
@@ -247,7 +249,7 @@ void Game::loadData() {
 }
 
 void Game::eraseData() {
-    std::filesystem::remove(PATH + R"(\src\Data\SaveData.txt)");
+    std::filesystem::remove(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
 }
 
 void Game::handleOverworldEvents() {
@@ -257,7 +259,6 @@ void Game::handleOverworldEvents() {
             break;
 
         case SDL_KEYDOWN:
-            // FIXME change to account for ENTER key
             // do not accept keyboard input if your sprite is still moving
             if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
                 break;
@@ -351,22 +352,24 @@ void Game::updateOverworld() {
     if (mapData[2] != -1) {
         currentMap->resetMap();
 
+        // switches the map
         currentMapIndex = mapData[2];
         currentMap = maps[currentMapIndex];
 
+        // resets the states of these variables for each trainer
         walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
         lockOn = std::vector<bool>(currentMap->numTrainers(), false);
 
-        // set the player's new coordinates
-        // FIXME get to a point where this is uncommented: player->setCoordinates(mapData[0], mapData[1]);
-        player->setCoordinates(1, 1);
-        void (*instructions)(int, int) = [](int d, int f) -> void { currentMap->updateMap(d, f); };
-        Camera::lockOnPlayer(player, (WINDOW_WIDTH - TILE_SIZE) / 2, (WINDOW_HEIGHT - TILE_SIZE) / 2, instructions);
+        player->setCoordinates(mapData[0], mapData[1]);
+
+        Camera::lockOnPlayer(player, [](int d, int f) -> void { currentMap->updateMap(d, f); });
     }
     else if (interact) {
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            if (player->hasVisionOf(&(*currentMap)[i]) and not (*currentMap)[i].hasVisionOf(player)) {
-                (*currentMap)[i].face(player);
+            Trainer &trainer = (*currentMap)[i];    // variable used to reduce the number of function calls
+
+            if (player->hasVisionOf(&trainer) and not trainer.hasVisionOf(player)) {
+                trainer.face(player);
                 break;
             }
         }
@@ -475,30 +478,32 @@ void Game::updateOverworld() {
     }
 
     // FIXME possibly make trainers turn slower
-    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
-        // does not potentially make the trainer move if true
-        if (lockOn[trainer]) {
+    for (int i = 0; i < currentMap->numTrainers(); ++i) {
+        // does not potentially make the trainer move spontaneously if true
+        if (lockOn[i]) {
             continue;
         }
+
+        Trainer &trainer = (*currentMap)[i];    // variable to reduce the number of function calls
         switch (generateInteger(1, 100)) {
             case 1:
-                (*currentMap)[trainer].face(&(*currentMap)[trainer]);
+                trainer.face(&trainer);
 
-                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                if (trainer.hasVisionOf(player) and trainer) {
                     //engage();
                     return;
                 }
                 break;
 
             case 2:
-                if ((*currentMap)[trainer].isFacingNorth() or (*currentMap)[trainer].isFacingSouth()) {
-                    coinFlip() ? (*currentMap)[trainer].faceEast() : (*currentMap)[trainer].faceWest();
+                if (trainer.isFacingNorth() or trainer.isFacingSouth()) {
+                    coinFlip() ? trainer.faceEast() : trainer.faceWest();
                 }
-                else if ((*currentMap)[trainer].isFacingEast() or (*currentMap)[trainer].isFacingWest()) {
-                    coinFlip() ? (*currentMap)[trainer].faceNorth() : (*currentMap)[trainer].faceSouth();
+                else if (trainer.isFacingEast() or trainer.isFacingWest()) {
+                    coinFlip() ? trainer.faceNorth() : trainer.faceSouth();
                 }
 
-                if ((*currentMap)[trainer].hasVisionOf(player) and (*currentMap)[trainer]) {
+                if (trainer.hasVisionOf(player) and trainer) {
                     //engage();
                     return;
                 }

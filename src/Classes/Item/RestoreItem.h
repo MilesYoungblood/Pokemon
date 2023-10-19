@@ -14,12 +14,12 @@ private:
 public:
     RestoreItem(const char *name, int quantity, int amount, RestoreType restoreType);
 
-    int getAmount() const override;
-    RestoreType getRestoreType() const override;
+    [[nodiscard]] int getAmount() const override;
+    [[nodiscard]] RestoreType getRestoreType() const override;
 
     void restore(Pokemon &pokemon) override;
     void restore(Move &move) override;
-    void restoreMessage(Pokemon &pokemon) override;
-    void restoreMessage(Move &move) override;
+    void restoreMessage(const Pokemon &pokemon) override;
+    void restoreMessage(const Move &move) override;
     bool catchPokemon(const Pokemon &pokemon, bool attempts[]) override;
 };

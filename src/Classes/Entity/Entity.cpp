@@ -18,7 +18,7 @@ Entity::Entity() : destRect({ 0, 0, TILE_SIZE, TILE_SIZE }) {
     this->currentTexture = nullptr;
 }
 
-Entity::Entity(int x, int y) : Entity() {
+Entity::Entity(const int x, const int y) : Entity() {
     this->x = x;
     this->y = y;
 
@@ -77,7 +77,8 @@ Entity::Direction Entity::getDirection() {
     return this->direction;
 }
 
-void Entity::setCoordinates(int newX, int newY) {
+// sets the player's map coordinates and screen coordinates
+void Entity::setCoordinates(const int newX, const int newY) {
     this->x = newX;
     this->y = newY;
 
@@ -162,19 +163,19 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Entity::shiftUpOnMap(int distance) {
+void Entity::shiftUpOnMap(const int distance) {
     this->destRect.y -= distance;
 }
 
-void Entity::shiftDownOnMap(int distance) {
+void Entity::shiftDownOnMap(const int distance) {
     this->destRect.y += distance;
 }
 
-void Entity::shiftLeftOnMap(int distance) {
+void Entity::shiftLeftOnMap(const int distance) {
     this->destRect.x -= distance;
 }
 
-void Entity::shiftRightOnMap(int distance) {
+void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
 }
 

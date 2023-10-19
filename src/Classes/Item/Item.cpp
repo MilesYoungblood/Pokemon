@@ -9,12 +9,12 @@ Item::Item() {
     this->quantity = 0;
 }
 
-Item::Item(const char *name, int n) {
+Item::Item(const char *name, const int n) {
     this->name = name;
     this->quantity = n;
 }
 
-__attribute__((unused)) void Item::setQuantity(int n) { this->quantity = n; }
+void Item::setQuantity(const int n) { this->quantity = n; }
 int Item::getQuantity() const { return this->quantity; }
 
 void Item::use() {
@@ -55,6 +55,3 @@ std::ostream& operator<<(std::ostream &out, const Item &rhs) {
 Item::operator bool() const {
     return this->quantity > 0;
 }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-

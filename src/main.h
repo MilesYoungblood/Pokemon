@@ -92,12 +92,12 @@ public:
 };
 
 // returns true if character is a vowel
-inline bool isVowel(char ltr) {
+inline bool isVowel(const char ltr) {
     return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
-inline bool chooseOption(int &option, int upper) {
+inline bool chooseOption(int &option, const int upper) {
     retry:
     switch (static_cast<char>(getch())) {
         case 'w':
@@ -139,7 +139,7 @@ inline bool coinFlip() {
 }
 
 // returns a random integer from a range
-inline int generateInteger(int from, int to) {
+inline int generateInteger(const int from, const int to) {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(from, to);
@@ -148,7 +148,7 @@ inline int generateInteger(int from, int to) {
 }
 
 // prints out a c-string and sleeps in between prints
-inline void printMessage(const char *message, int interval = 25) {
+inline void printMessage(const char *message, const int interval = 25) {
     bool sleep = true;
     size_t len = strlen(message);
     for (size_t i = 0; i < len; ++i) {
@@ -165,7 +165,7 @@ inline void printMessage(const char *message, int interval = 25) {
 }
 
 // prints out a string and sleeps in between prints
-inline void printMessage(const std::string &message, int interval = 25) {
+inline void printMessage(const std::string &message, const int interval = 25) {
     bool sleep = true;
     for (char ltr : message) {
         if (sleep and _kbhit()) {
@@ -181,7 +181,7 @@ inline void printMessage(const std::string &message, int interval = 25) {
 }
 
 // prints out a character then sleeps
-inline void printMessage(char message) {
+inline void printMessage(const char message) {
     std::cout << message;
     std::this_thread::sleep_for(std::chrono::milliseconds(25));
 }

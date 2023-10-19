@@ -35,11 +35,11 @@ public:
     }
 
     SDL_Rect *getRect() { return &this->dest; }
-    int getX() const { return this->dest.x; }
-    int getY() const { return this->dest.y; }
+    [[nodiscard]] int getX() const { return this->dest.x; }
+    [[nodiscard]] int getY() const { return this->dest.y; }
 
     void setID(TileID newID) { this->id = newID; }
-    TileID getID() const { return this->id; }
+    [[nodiscard]] TileID getID() const { return this->id; }
 };
 
 class Map {
@@ -68,10 +68,9 @@ private:
 
     std::vector<Trainer*> trainers;         // the set of trainers in this map
 
-    std::vector<Map::ExitPoint> exitPoints;      // coordinates where the player can leave this map to enter another
+    std::vector<Map::ExitPoint> exitPoints; // coordinates where the player can leave this map to enter another
 
-    void setBorders(const Map *from);
-    bool isTrainerHere(int x, int y) const;
+    [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
     Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints);
@@ -80,10 +79,10 @@ public:
     Map& operator=(const Map &) = delete;
     ~Map();
 
-    bool isObstructionHere(int x, int y) const;
-    std::array<int, 3> isExitPointHere(int x, int y) const;
+    [[nodiscard]] bool isObstructionHere(int x, int y) const;
+    [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    int numTrainers() const;
+    [[nodiscard]] int numTrainers() const;
     Trainer& operator[](int index);
 
     void setObstruction(int x, int y);

@@ -11,19 +11,19 @@ namespace Camera {
     static int xPos = 0;
     static int yPos = 0;
 
-    inline void shiftUp(int distance) {
+    inline void shiftUp(const int distance) {
         yPos -= distance;
     }
 
-    inline void shiftDown(int distance) {
+    inline void shiftDown(const int distance) {
         yPos += distance;
     }
 
-    inline void shiftLeft(int distance) {
+    inline void shiftLeft(const int distance) {
         xPos -= distance;
     }
 
-    inline void shiftRight(int distance) {
+    inline void shiftRight(const int distance) {
         xPos += distance;
     }
 
@@ -36,22 +36,22 @@ namespace Camera {
 
     // finds the player's current position on the screen map,
     // then shifts everything, including the player, accordingly
-    //FIXME bugged: does not work is position is in right hemisphere
-    inline void lockOnPlayer(Player *p, int x, int y, void(*updateMap)(int, int)) {
+    inline void lockOnPlayer(Player *p, void (*instructions)(int, int)) {
         xPos = 0;
         yPos = 0;
 
-        const int xFromCenter = x - p->getX() * TILE_SIZE;  // x-distance of the player from the center of the screen
-        const int yFromCenter = y - p->getY() * TILE_SIZE;  // y-distance of the player from the center of the screen
+        int xFromCenter = ((WIDTH - TILE_SIZE) / 2) - p->getX() * TILE_SIZE;    // x-distance of the player from the center of the screen
+        int yFromCenter = ((HEIGHT - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;   // y-distance of the player from the center of the screen
 
-        const int xDirection = xFromCenter > 0 ? 3 : 4;     // determines whether to shift left or right
-        const int yDirection = yFromCenter > 0 ? 1 : 2;     // determines whether to shift up or down
+        const int xDirection = xFromCenter > 0 ? 3 : 4;                         // determines whether to shift left or right
+        const int yDirection = yFromCenter > 0 ? 1 : 2;                         // determines whether to shift up or down
 
         if (xDirection == 3) {
             p->shiftRightOnMap(xFromCenter);
             Camera::shiftRight(xFromCenter);
         }
         else {
+            xFromCenter *= -1;
             p->shiftLeftOnMap(xFromCenter);
             Camera::shiftLeft(xFromCenter);
         }
@@ -61,11 +61,12 @@ namespace Camera {
             Camera::shiftDown(yFromCenter);
         }
         else {
+            yFromCenter *= -1;
             p->shiftUpOnMap(yFromCenter);
             Camera::shiftUp(yFromCenter);
         }
 
-        updateMap(xFromCenter, xDirection);
-        updateMap(yFromCenter, yDirection);
+        instructions(xFromCenter, xDirection);
+        instructions(yFromCenter, yDirection);
     }
 }

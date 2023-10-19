@@ -56,7 +56,7 @@ private:
 
     static double stabCheck(const Pokemon &pokemon, const Move &move);
 
-    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit);
+    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
 
     static void SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
 

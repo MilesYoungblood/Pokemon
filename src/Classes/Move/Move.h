@@ -59,27 +59,27 @@ public:
 
     virtual MoveID getID() = 0;
 
-    virtual int getDamage() const;
+    [[nodiscard]] virtual int getDamage() const;
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
     void setPP(int newPP);
-    int getPP() const;
+    [[nodiscard]] int getPP() const;
 
-    int getMaxPP() const;
+    [[nodiscard]] int getMaxPP() const;
 
-    int getPower() const;
+    [[nodiscard]] int getPower() const;
 
-    int getAccuracy() const;
+    [[nodiscard]] int getAccuracy() const;
 
-    Type getType() const;
-    const char * getTypeAsString() const;
+    [[nodiscard]] Type getType() const;
+    [[nodiscard]] const char * getTypeAsString() const;
 
-    Category getCategory() const;
-    const char * getCategoryAsString() const;
+    [[nodiscard]] Category getCategory() const;
+    [[nodiscard]] const char * getCategoryAsString() const;
 
-    std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
     explicit operator bool() const;
 

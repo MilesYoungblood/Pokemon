@@ -46,24 +46,24 @@ public:
     Item(const char *name, int n);
     virtual ~Item() = default;
 
-    __attribute__((unused)) void setQuantity(int newQuantity);
-    int getQuantity() const;
+    void setQuantity(int newQuantity);
+    [[nodiscard]] int getQuantity() const;
 
     void use();
     virtual void useMessage();
 
-    virtual int getAmount() const;
-    virtual RestoreType getRestoreType() const;
-    virtual Status getStatus() const;
-    virtual Stat getStat() const;
+    [[nodiscard]] virtual int getAmount() const;
+    [[nodiscard]] virtual RestoreType getRestoreType() const;
+    [[nodiscard]] virtual Status getStatus() const;
+    [[nodiscard]] virtual Stat getStat() const;
 
     virtual void restore(Pokemon &pokemon) = 0;
     virtual void restore(Move &move) = 0;
-    virtual void restoreMessage(Pokemon &pokemon) = 0;
-    virtual void restoreMessage(Move &move) = 0;
+    virtual void restoreMessage(const Pokemon &pokemon) = 0;
+    virtual void restoreMessage(const Move &move) = 0;
     virtual bool catchPokemon(const Pokemon &pokemon, bool attempts[]) = 0;
 
-    std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
     explicit operator bool() const;
 

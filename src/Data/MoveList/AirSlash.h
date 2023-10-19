@@ -4,7 +4,6 @@
 
 #pragma once
 
-//TODO add flinching
 struct AirSlash : public Move {
     AirSlash() : Move("Air Slash", 15, 75, 95, Type::FLYING, Category::SPECIAL) {}
 
@@ -22,7 +21,7 @@ struct AirSlash : public Move {
         skip = generateInteger(1, 100) <= 30;
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Air Slash! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

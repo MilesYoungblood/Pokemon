@@ -10,13 +10,13 @@ Trainer::Trainer() : Entity(), party(), items(), numItems() {
     this->numPokemon = 0;
 }
 
-Trainer::Trainer(int x, int y) : Entity(x, y), party(), items(), numItems() {
+Trainer::Trainer(const int x, const int y) : Entity(x, y), party(), items(), numItems() {
     this->dialogue = "";
     this->numFainted = 0;
     this->numPokemon = 0;
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) : Trainer(x, y) {
+Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, const int x, const int y) : Trainer(x, y) {
     for (const auto &p : pokemon) {
         if (this->numPokemon == Trainer::MAX_POKEMON) {
             break;
@@ -30,7 +30,7 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y) :
     }
 }
 
-Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, int x, int y, int vision) : Trainer(pokemon, x, y) {
+Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, const int x, const int y, int vision) : Trainer(pokemon, x, y) {
     this->vision = vision;
 
     //FIXME change these to not be Hilbert
@@ -71,7 +71,7 @@ void Trainer::addPokemon(Pokemon *toAdd) {
     ++this->numPokemon;
 }
 
-void Trainer::removePokemon(int index) {
+void Trainer::removePokemon(const int index) {
     if (index < 0 or 5 < index) {
         return;
     }
@@ -97,18 +97,18 @@ void Trainer::clearParty() {
     this->numPokemon = 0;
 }
 
-int Trainer::getNumItems(int type) const {
+int Trainer::getNumItems(const int type) const {
     if (type < 0 or 3 < type) {
         throw std::runtime_error("Out of bounds: getNumItems");
     }
     return this->numItems[type];
 }
 
-Item& Trainer::getItem(int type, int item) const {
+Item& Trainer::getItem(const int type, const int item) const {
     return *this->items[type][item];
 }
 
-void Trainer::addItem(int type, Item *toAdd) {
+void Trainer::addItem(const int type, Item *toAdd) {
     if (type < 0 or 3 < type or this->numItems[type] == Trainer::MAX_ITEMS) {
         return;
     }
@@ -117,7 +117,7 @@ void Trainer::addItem(int type, Item *toAdd) {
     ++this->numItems[type];
 }
 
-void Trainer::removeItem(int type, int index) {
+void Trainer::removeItem(const int type, const int index) {
     if (type < 0 or 3 < type) {
         throw std::runtime_error("Out of bounds: removeItem");
     }
@@ -176,23 +176,23 @@ void Trainer::incFaintCount() {
     ++this->numFainted;
 }
 
-__attribute__((unused)) void Trainer::decFaintCount() {
+void Trainer::decFaintCount() {
     --this->numFainted;
 }
 
-void Trainer::swapPokemon(int first, int second) {
+void Trainer::swapPokemon(const int first, const int second) {
     Pokemon *copy = this->party[first];
     this->party[first] = this->party[second];
     this->party[second] = copy;
 }
 
-Pokemon& Trainer::operator[](int spot)  {
+Pokemon& Trainer::operator[](const int spot)  {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
     return *this->party[spot];
 }
 
-const Pokemon& Trainer::operator[](int spot) const {
+const Pokemon& Trainer::operator[](const int spot) const {
     if (5 < spot or spot < 0)
         throw std::runtime_error("Index out of bounds");
     return *this->party[spot];

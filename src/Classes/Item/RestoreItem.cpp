@@ -4,7 +4,7 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(const char *name, int quantity, int amount, RestoreType restoreType) : Item(name, quantity){
+RestoreItem::RestoreItem(const char *name, const int quantity, const int amount, const RestoreType restoreType) : Item(name, quantity){
     this->amount = amount;
     this->restoreType = restoreType;
 }
@@ -26,11 +26,11 @@ void RestoreItem::restore(Move &move) {
     }
 }
 
-void RestoreItem::restoreMessage(Pokemon &pokemon) {
+void RestoreItem::restoreMessage(const Pokemon &pokemon) {
     printMessage(pokemon.getName() + " recovered " + std::to_string(this->amount) + " HP!\n");
 }
 
-void RestoreItem::restoreMessage(Move &move) {
+void RestoreItem::restoreMessage(const Move &move) {
     printMessage(move.getName() + " recovered " + std::to_string(this->amount) + " PP!\n");
 }
 

@@ -39,13 +39,14 @@ public:
     Trainer& operator=(const Trainer &) = delete;
     ~Trainer();
 
-    int partySize() const;
+    [[nodiscard]] int partySize() const;
     void addPokemon(Pokemon *toAdd);
     void removePokemon(int index);
     void clearParty();
 
-    int getNumItems(int type) const;
-    Item& getItem(int type, int item) const;
+    [[nodiscard]] int getNumItems(int type) const;
+    [[nodiscard]] Item & getItem(int type, int item) const;
+
     void addItem(int type, Item *toAdd);
     void removeItem(int type, int index);
 
@@ -56,7 +57,7 @@ public:
 
     void incFaintCount();
 
-    __attribute__((unused)) __attribute__((unused)) void decFaintCount();
+    void decFaintCount();
 
     void swapPokemon(int first, int second);
 
@@ -64,5 +65,5 @@ public:
     const Pokemon& operator[](int spot) const;
 
     virtual explicit operator bool() const;
-    virtual bool canFight() const;
+    [[nodiscard]] virtual bool canFight() const;
 };

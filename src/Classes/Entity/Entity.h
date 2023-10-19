@@ -49,13 +49,13 @@ public:
     Entity::Direction getDirection();
 
     void setCoordinates(int newX, int newY);
-    int getX() const;
-    int getY() const;
+    [[nodiscard]] int getX() const;
+    [[nodiscard]] int getY() const;
 
-    bool isFacingNorth() const;
-    bool isFacingEast() const;
-    bool isFacingSouth() const;
-    bool isFacingWest() const;
+    [[nodiscard]] bool isFacingNorth() const;
+    [[nodiscard]] bool isFacingEast() const;
+    [[nodiscard]] bool isFacingSouth() const;
+    [[nodiscard]] bool isFacingWest() const;
 
     void face(const Entity *entity);
 

@@ -7,7 +7,7 @@
 #include "../../Data/ItemList.h"
 
 namespace ItemFactory {
-    Item *getItem(ItemID id, int n) {
+    Item *getItem(const ItemID id, const int n) {
         switch (id) {
             case POTION:
                 return new Potion(n);

@@ -4,7 +4,7 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate) : moveSet(), types() {
+Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : moveSet(), types() {
     this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
@@ -32,12 +32,12 @@ Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, in
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves)
+Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move*> &moves)
     : Pokemon(name, type, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate) : moveSet(), types() {
+Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : moveSet(), types() {
     this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
@@ -65,7 +65,7 @@ Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, in
     this->moveCounter = 0;
 }
 
-Pokemon::Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move *> &moves)
+Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move *> &moves)
     : Pokemon(name, type1, type2, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
     this->setMoves(moves);
 }
@@ -79,7 +79,7 @@ Pokemon::~Pokemon() {
     }
 }
 
-void Pokemon::raiseStat(int &stat, int amount) {
+void Pokemon::raiseStat(int &stat, const int amount) {
     stat += amount;
 
     // stat modifier cannot be higher than 6
@@ -88,7 +88,7 @@ void Pokemon::raiseStat(int &stat, int amount) {
     }
 }
 
-void Pokemon::lowerStat(int &stat, int amount) {
+void Pokemon::lowerStat(int &stat, const int amount) {
     stat -= amount;
 
     // stat modifier cannot be lower than -6
@@ -97,7 +97,7 @@ void Pokemon::lowerStat(int &stat, int amount) {
     }
 }
 
-double Pokemon::getStatMod(int stat) {
+double Pokemon::getStatMod(const int stat) {
     switch (stat) {
         case -6:
             return 0.25;
@@ -152,7 +152,7 @@ void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
     }
 }
 
-void Pokemon::setHP(int newHP) {
+void Pokemon::setHP(const int newHP) {
     this->currentHP = newHP;
 
     // HP cannot be set lower than 0
@@ -165,7 +165,7 @@ void Pokemon::setHP(int newHP) {
     }
 }
 
-void Pokemon::restoreHP(int amount) {
+void Pokemon::restoreHP(const int amount) {
     this->currentHP += amount;
 
     if (this->currentHP > this->maxHP) {
@@ -173,7 +173,7 @@ void Pokemon::restoreHP(int amount) {
     }
 }
 
-void Pokemon::takeDamage(int amount) {
+void Pokemon::takeDamage(const int amount) {
     this->currentHP -= amount;
 
     if (this->currentHP < 0) {
@@ -191,59 +191,59 @@ void Pokemon::resetStatMods() {
     this->evasiveness = 0;
 }
 
-void Pokemon::raiseAttack(int amount) {
+void Pokemon::raiseAttack(const int amount) {
     this->raiseStat(this->attack, amount);
 }
 
-void Pokemon::raiseDefense(int amount) {
+void Pokemon::raiseDefense(const int amount) {
     this->raiseStat(this->defense, amount);
 }
 
-void Pokemon::raiseSpAttack(int amount) {
+void Pokemon::raiseSpAttack(const int amount) {
     this->raiseStat(this->spAttack, amount);
 }
 
-void Pokemon::raiseSpDefense(int amount) {
+void Pokemon::raiseSpDefense(const int amount) {
     this->raiseStat(this->spDefense, amount);
 }
 
-void Pokemon::raiseSpeed(int amount) {
+void Pokemon::raiseSpeed(const int amount) {
     this->raiseStat(this->speed, amount);
 }
 
-void Pokemon::raiseAccuracy(int amount) {
+void Pokemon::raiseAccuracy(const int amount) {
     this->raiseStat(this->accuracy, amount);
 }
 
-void Pokemon::raiseEvasiveness(int amount) {
+void Pokemon::raiseEvasiveness(const int amount) {
     this->raiseStat(this->evasiveness, amount);
 }
 
-void Pokemon::lowerAttack(int amount) {
+void Pokemon::lowerAttack(const int amount) {
     this->lowerStat(this->attack, amount);
 }
 
-void Pokemon::lowerDefense(int amount) {
+void Pokemon::lowerDefense(const int amount) {
     this->lowerStat(this->defense, amount);
 }
 
-void Pokemon::lowerSpAttack(int amount) {
+void Pokemon::lowerSpAttack(const int amount) {
     this->lowerStat(this->spAttack, amount);
 }
 
-void Pokemon::lowerSpDefense(int amount) {
+void Pokemon::lowerSpDefense(const int amount) {
     this->lowerStat(this->spDefense, amount);
 }
 
-void Pokemon::lowerSpeed(int amount) {
+void Pokemon::lowerSpeed(const int amount) {
     this->lowerStat(this->speed, amount);
 }
 
-void Pokemon::lowerAccuracy(int amount) {
+void Pokemon::lowerAccuracy(const int amount) {
     this->lowerStat(this->accuracy, amount);
 }
 
-void Pokemon::lowerEvasiveness(int amount) {
+void Pokemon::lowerEvasiveness(const int amount) {
     this->lowerStat(this->evasiveness, amount);
 }
 
@@ -279,9 +279,9 @@ int Pokemon::getBaseSpeed() const {
 
 std::string Pokemon::getName() const { return this->name; }
 
-Type Pokemon::getType(bool type_1) const { return type_1 ? this->types[0] : this->types[1]; }
+Type Pokemon::getType(const bool type_1) const { return type_1 ? this->types[0] : this->types[1]; }
 
-void Pokemon::setStatus(Status newStatus) {
+void Pokemon::setStatus(const Status newStatus) {
     this->status = newStatus;
 
     if (this->status == Status::NONE) {
@@ -299,7 +299,7 @@ void Pokemon::setStatus(Status newStatus) {
 }
 Status Pokemon::getStatus() const { return this->status; }
 
-const char * Pokemon::getStatusAsString() {
+const char * Pokemon::getStatusAsString() const {
     switch (this->status) {
         case Status::PARALYSIS:
             return "paralysis";
@@ -346,13 +346,13 @@ void Pokemon::hpFullMessage() const {
     printMessage(this->getName() + "'s HP is full!\n");
 }
 
-Move& Pokemon::operator[](int index) {
+Move& Pokemon::operator[](const int index) {
     if (3 < index or index < 0) {
         throw std::runtime_error("Index out of bounds");
     }
     return *this->moveSet[index];
 }
-const Move& Pokemon::operator[](int index) const {
+const Move& Pokemon::operator[](const int index) const {
     if (3 < index or index < 0) {
         throw std::runtime_error("Index out of bounds");
     }
@@ -374,7 +374,7 @@ void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int dama
     --this->pp;
 }
 
-void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) {
+void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, const bool skipTurn, const bool criticalHit, const double typeEff) {
     printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     // damage will be negative if the attack misses

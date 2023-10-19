@@ -11,7 +11,7 @@ size_t Battle::turn = 0ULL;
 bool Battle::skipPlayerTurn = false;
 bool Battle::skipOpponentTurn = false;
 
-void Battle::sendOutMessage(const Pokemon &pokemon, bool isPlayer) {
+void Battle::sendOutMessage(const Pokemon &pokemon, const bool isPlayer) {
     if (isPlayer)
         printMessage("Go " + pokemon.getName() + "!\n");
     else
@@ -29,7 +29,7 @@ void Battle::introMessage() {
     pressEnter();
 }
 
-void Battle::displayChoices(int arrow, bool &print) {
+void Battle::displayChoices(const int arrow, bool &print) {
     if (print)
         printMessage("What will " + (*Battle::player)[0].getName() + " do?\n");
     else
@@ -45,8 +45,8 @@ void Battle::displayChoices(int arrow, bool &print) {
     print = false;
 }
 
-void Battle::displayPokemon(int arrow, bool &print) {
-    void (*printOut)(const char *, int) = [](const char *string, int index) -> void {
+void Battle::displayPokemon(const int arrow, bool &print) {
+    void (*printOut)(const char *, const int) = [](const char *string, const int index) -> void {
         std::cout << string << (*Battle::player)[index] << std::string(15 - (*Battle::player)[index].getName().length(), ' ')
                   << "(HP: " << (*Battle::player)[index].getHP() << std::string(3 - std::to_string((*Battle::player)[index].getHP()).length(), ' ')
                   << '/' << std::string(3 - std::to_string((*Battle::player)[index].getMaxHp()).length(), ' ') << (*Battle::player)[index].getMaxHp()
@@ -71,7 +71,7 @@ void Battle::displayPokemon(int arrow, bool &print) {
     print = false;
 }
 
-void Battle::displayHPBar(bool displayPokemon = true) {
+void Battle::displayHPBar(const bool displayPokemon = true) {
     void (*printOut)(Trainer *) = [](Trainer *trainer) -> void {
         std::cout << "| " << (*trainer)[0] << std::string(15 - (*trainer)[0].getName().length(), ' ')
                   << "| HP: " << (*trainer)[0].getHP()
@@ -107,7 +107,7 @@ void Battle::faintMessage(const Pokemon &pokemon) {
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
-void Battle::forcedSwitchPrompt(int arrow, bool &print) {
+void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
     if (print)
         printMessage("Choose an option:\n");
     else
@@ -127,7 +127,7 @@ bool Battle::run() {
     return opponentSpeed == 0 or odds > 255 or generateInteger(0, 255) < odds;
 }
 
-void Battle::runMessage(bool runStatus) {
+void Battle::runMessage(const bool runStatus) {
     runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't get away!\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
@@ -137,7 +137,7 @@ void Battle::runErrorMessage() {
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-void Battle::pokemonPrompt(int arrow, bool &print) {
+void Battle::pokemonPrompt(const int arrow, bool &print) {
     if (print)
         printMessage("Choose an option:\n");
     else
@@ -151,7 +151,7 @@ void Battle::pokemonPrompt(int arrow, bool &print) {
     print = false;
 }
 
-void Battle::switchOutMessage(const Trainer *t, int pokemonSwitched) {
+void Battle::switchOutMessage(const Trainer *t, const int pokemonSwitched) {
     Battle::returnMessage((*t)[pokemonSwitched]);
     pressEnter();
     Battle::sendOutMessage((*t)[0], true);
@@ -201,7 +201,7 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
     pressEnter();
 }
 
-void Battle::displayMoves(const Pokemon &pokemon, int arrow, bool &print) {
+void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) {
     const auto printOut = [&pokemon](const char *string, int index) -> void {
         std::cout << string << pokemon[index] << std::string(15 - pokemon[index].getName().length(), ' ')
                   << " (PP: " << pokemon[index].getPP() << std::string(2 - std::to_string(pokemon[index].getPP()).length(), ' ')
@@ -254,7 +254,7 @@ double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
     return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
 }
 
-int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, Move &move, bool &crit) {
+int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
     int initialDamage = 0;
 
     const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
@@ -272,7 +272,7 @@ int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defe
     return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) * c.first);
 }
 
-void Battle::SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying) {
+void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
     Battle::displayHPBar();
     int toSwitch = 0;
 
@@ -327,7 +327,7 @@ void Battle::SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying) {
     trainer->swapPokemon(0, toSwitch);
 }
 
-void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying) {
+void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &switched, const bool isUserAttacking, bool &keepPlaying) {
     bool &skip = isUserAttacking ? Battle::skipOpponentTurn : Battle::skipPlayerTurn;
     bool crit = false;
     const int dmg = calculateDamage((*attacker)[0], (*defender)[0], (*attacker)[0][move], crit);
@@ -432,8 +432,8 @@ void Battle::Action(Trainer *attacker, Trainer *defender, int move, bool &switch
 
 // This function commences attacking of each Pokémon and takes into account who is faster.
 // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
-void Battle::PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &keepPlaying) {
-    bool (*hasStatusCondition)(Status) = [](Status status) -> bool {
+void Battle::PreStatus(const int userMove, const int opponentMove, const bool isUserFaster, bool &keepPlaying) {
+    bool (*hasStatusCondition)(const Status) = [](const Status status) -> bool {
         return status == Status::PARALYSIS ? generateInteger(1, 4) == 1 : status == Status::FREEZE or status == Status::SLEEP;
     };
 
@@ -476,7 +476,7 @@ void Battle::PreStatus(int userMove, int opponentMove, bool isUserFaster, bool &
 }
 
 // If a Pokémon is inflicted with a post-move status condition (burn, poison), it will take damage based on max HP.
-void Battle::PostStatus(bool isUserFaster, bool &keepPlaying) {
+void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
     if (not keepPlaying) {
         return;
     }
@@ -558,7 +558,7 @@ int Battle::chooseMove(bool &skip) {
 
 }
 
-void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
+void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlaying) {
     int itemType = 0;
     int userItem = 0;
     bool print = true;
@@ -831,7 +831,7 @@ void Battle::chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying) {
     }
 }
 
-bool Battle::runAway(bool &skip, bool canRun) {
+bool Battle::runAway(bool &skip, const bool canRun) {
     Battle::displayHPBar();
 
     if (not canRun) {
@@ -934,7 +934,7 @@ void Battle::choosePokemon(bool &skip) {
     }
 }
 
-void Battle::fight(int userMove, bool &keepPlaying) {
+void Battle::fight(const int userMove, bool &keepPlaying) {
     Battle::displayHPBar();
 
     int opponentMove;
@@ -981,7 +981,7 @@ Battle::Battle(Player *trainer_1, Trainer *trainer_2) {
     Battle::engageBattle(false);
 }
 
-void Battle::engageBattle(bool isTrainer) {
+void Battle::engageBattle(const bool isTrainer) {
     Battle::displayHPBar(false);
     Battle::introMessage();
 

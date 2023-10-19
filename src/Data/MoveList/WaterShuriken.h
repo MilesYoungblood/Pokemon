@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "../../Classes/Move/Move.h"
-
 class Pokemon;
 
 static int numHits = 0;     // number of hits landed (from 2 to 5)
@@ -17,7 +15,7 @@ struct WaterShuriken : public Move {
         return MoveID::WATER_SHURIKEN;
     }
 
-    int getDamage() const override {
+    [[nodiscard]] int getDamage() const override {
         for (int i = 0; i < generateInteger(2, 5); ++i) { // determines hits and misses
             if (generateInteger(1, 100) <= this->accuracy) {
                 ++numHits;
@@ -27,7 +25,7 @@ struct WaterShuriken : public Move {
         return this->power * numHits;
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Water Shuriken! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses
