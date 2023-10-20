@@ -136,17 +136,28 @@ void Pokemon::addMove(Move *move) {
     if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
         return;
 
-    this->moveSet[this->moveCounter] = move;
+    this->moveSet.push_back(move);
     ++this->moveCounter;
 }
 
-void Pokemon::setMoves(const std::initializer_list<Move*> &moves) {
+void Pokemon::deleteMove(const int index) {
+    if (index < 0 or this->moveCounter - 1 < index )
+        return;
+
+    delete this->moveSet[index];
+    this->moveSet[index] = nullptr;
+
+    this->moveSet.erase(this->moveSet.begin() + index);
+    --this->moveCounter;
+}
+
+void Pokemon::setMoves(const std::initializer_list<Move *> &moves) {
     for (Move *move : moves) {
         if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
             break;
 
         else {
-            this->moveSet[this->moveCounter] = move;
+            this->moveSet.push_back(move);
             ++this->moveCounter;
         }
     }
@@ -347,20 +358,14 @@ void Pokemon::hpFullMessage() const {
 }
 
 Move& Pokemon::operator[](const int index) {
-    if (3 < index or index < 0) {
-        throw std::runtime_error("Index out of bounds");
-    }
     return *this->moveSet[index];
 }
 const Move& Pokemon::operator[](const int index) const {
-    if (3 < index or index < 0) {
-        throw std::runtime_error("Index out of bounds");
-    }
     return *this->moveSet[index];
 }
 
 std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
-    out << pokemon.getName();
+    out << pokemon.name;
     return out;
 }
 
@@ -374,7 +379,7 @@ void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int dama
     --this->pp;
 }
 
-void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, const bool skipTurn, const bool criticalHit, const double typeEff) {
+void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) {
     printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     // damage will be negative if the attack misses

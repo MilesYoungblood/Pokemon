@@ -105,6 +105,10 @@ Trainer& Map::operator[](const int index) {
     return *this->trainers[index];
 }
 
+const Trainer& Map::operator[](const int index) const {
+    return *this->trainers[index];
+}
+
 // places an obstruction at the passed coordinates
 [[maybe_unused]] void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {

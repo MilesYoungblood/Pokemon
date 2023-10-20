@@ -84,6 +84,7 @@ public:
 
     [[nodiscard]] int numTrainers() const;
     Trainer& operator[](int index);
+    const Trainer& operator[](int index) const;
 
     void setObstruction(int x, int y);
 

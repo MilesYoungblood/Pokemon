@@ -199,7 +199,7 @@ private:
 
     int catchRate;
 
-    Move *moveSet[Pokemon::MAX_NUM_MOVES];
+    std::vector<Move *> moveSet;
     Type types[Pokemon::MAX_NUM_TYPES];
     Status status;
     
@@ -224,7 +224,8 @@ public:
     [[nodiscard]] int numMoves() const;
 
     void addMove(Move *move);
-    void setMoves(const std::initializer_list<Move*> &moves);
+    void deleteMove(int index);
+    void setMoves(const std::initializer_list<Move *> &moves);
 
     void setHP(int newHP);
     void restoreHP(int newHP);

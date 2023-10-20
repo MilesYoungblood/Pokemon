@@ -109,7 +109,6 @@ Game::Game() {
     Mix_PlayChannel(-1, music, -1);
 
     player = Player::getPlayer();
-    std::cout << "Player created!\n\n";
 
     player->setRestoreItems({ new Potion(5), new SuperPotion(5), new HyperPotion(5), new Ether(5) });
     player->setStatusItems({ new ParalyzeHeal(5), new BurnHeal(5), new IceHeal(5), new Antidote(5), new Awakening(5) });
@@ -148,8 +147,6 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::cout << "Saving please wait...";
-
     std::ofstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
     if (not saveFile) {
         throw std::runtime_error("Could not open file");
@@ -412,6 +409,8 @@ void Game::updateOverworld() {
         }
     }
 
+    Trainer *trainer;       // variable used to reduce the number of function calls
+
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
         // resets movement variables if you are not inputting any directions
@@ -425,50 +424,51 @@ void Game::updateOverworld() {
 
         // checks if the player is in LoS for any trainer
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            Trainer &trainer = (*currentMap)[i];    // variable used to reduce the number of function calls
+            trainer = &(*currentMap)[i];
 
-            if (trainer.hasVisionOf(player) and trainer) {
+            if (trainer->hasVisionOf(player) and *trainer) {
                 canMove = false;
                 lockOn[i] = true;
 
-                if (trainer.isNextTo(player)) {
+                if (trainer->isNextTo(player)) {
                     // TODO open dialogue, start battle
                     // functionState = 1;
-                    player->face(&trainer);
-                    trainer.clearParty();
-                    canMove = true;
+                    player->face(trainer);
+                    trainer->clearParty();
+                    walkCounters[i] = 0;
                     lockOn[i] = false;
+                    canMove = true;
                 }
-                else if (trainer.isFacingNorth()) {
-                    trainer.shiftUpOnMap(SCROLL_SPEED);
+                else if (trainer->isFacingNorth()) {
+                    trainer->shiftUpOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
                     if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer.moveNorth();
+                        trainer->moveNorth();
                     }
                 }
-                else if (trainer.isFacingEast()) {
-                    trainer.shiftRightOnMap(SCROLL_SPEED);
+                else if (trainer->isFacingEast()) {
+                    trainer->shiftRightOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
                     if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer.moveEast();
+                        trainer->moveEast();
                     }
                 }
-                else if (trainer.isFacingSouth()) {
-                    trainer.shiftDownOnMap(SCROLL_SPEED);
+                else if (trainer->isFacingSouth()) {
+                    trainer->shiftDownOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
                     if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer.moveSouth();
+                        trainer->moveSouth();
                     }
                 }
-                else if (trainer.isFacingWest()) {
-                    trainer.shiftLeftOnMap(SCROLL_SPEED);
+                else if (trainer->isFacingWest()) {
+                    trainer->shiftLeftOnMap(SCROLL_SPEED);
                     walkCounters[i] += SCROLL_SPEED;
 
                     if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer.moveWest();
+                        trainer->moveWest();
                     }
                 }
 
@@ -484,26 +484,26 @@ void Game::updateOverworld() {
             continue;
         }
 
-        Trainer &trainer = (*currentMap)[i];    // variable to reduce the number of function calls
+        trainer = &(*currentMap)[i];
         switch (generateInteger(1, 100)) {
             case 1:
-                trainer.face(&trainer);
+                trainer->face(trainer);
 
-                if (trainer.hasVisionOf(player) and trainer) {
+                if (trainer->hasVisionOf(player) and *trainer) {
                     //engage();
                     return;
                 }
                 break;
 
             case 2:
-                if (trainer.isFacingNorth() or trainer.isFacingSouth()) {
-                    coinFlip() ? trainer.faceEast() : trainer.faceWest();
+                if (trainer->isFacingNorth() or trainer->isFacingSouth()) {
+                    coinFlip() ? trainer->faceEast() : trainer->faceWest();
                 }
-                else if (trainer.isFacingEast() or trainer.isFacingWest()) {
-                    coinFlip() ? trainer.faceNorth() : trainer.faceSouth();
+                else if (trainer->isFacingEast() or trainer->isFacingWest()) {
+                    coinFlip() ? trainer->faceNorth() : trainer->faceSouth();
                 }
 
-                if (trainer.hasVisionOf(player) and trainer) {
+                if (trainer->hasVisionOf(player) and *trainer) {
                     //engage();
                     return;
                 }
@@ -520,10 +520,12 @@ void Game::renderOverworld() {
     SDL_RenderClear(gameRenderer);
     currentMap->renderMap();
 
-    for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
+    Trainer *trainer;       // variable to reduce the number of function calls
+    for (int i = 0; i < currentMap->numTrainers(); ++i) {
+        trainer = &(*currentMap)[i];
         // prevents rendering trainers that aren't onscreen
-        if (Camera::isInView((*currentMap)[trainer].getRect())) {
-            (*currentMap)[trainer].render();
+        if (Camera::isInView(trainer->getRect())) {
+            trainer->render();
         }
     }
     player->render();

@@ -17,6 +17,8 @@ Player::Player() : Trainer(6, 8) {
 
     this->destRect.x = this->x * TILE_SIZE;
     this->destRect.y = this->y * TILE_SIZE;
+
+    std::cout << "Player created!\n\n";
 }
 
 Player *Player::getPlayer() {
@@ -28,6 +30,7 @@ Player *Player::getPlayer() {
 
 void Player::destroyPlayer() {
     delete Player::instancePtr;
+    Player::instancePtr = nullptr;
 }
 
 void Player::addToPC(Pokemon *toAdd) {
