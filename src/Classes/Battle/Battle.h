@@ -32,13 +32,13 @@ private:
 
     static void forcedSwitchPrompt(int arrow, bool &print);
 
-    static bool run();
+    static auto run() -> bool;
     static void runMessage(bool runStatus);
     static void runErrorMessage();
 
     static void pokemonPrompt(int arrow, bool &print);
 
-    static void switchOutMessage(const Trainer *t, int pokemonSwitched);
+    static void switchOutMessage(const Trainer *trainer, int pokemonSwitched);
 
     static void inBattleMessage();
 
@@ -52,11 +52,11 @@ private:
 
     static void attackErrorMessage();
 
-    static std::pair<double, bool> criticalHit();
+    static auto criticalHit() -> std::pair<double, bool>;
 
-    static double stabCheck(const Pokemon &pokemon, const Move &move);
+    static auto stabCheck(const Pokemon &pokemon, const Move &move) -> double;
 
-    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
+    static auto calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int;
 
     static void SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
 
@@ -65,9 +65,9 @@ private:
     static void PreStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
     static void PostStatus(bool isUserFaster, bool &keepPlaying);
 
-    static int chooseMove(bool &skip);
+    static auto chooseMove(bool &skip) -> int;
     static void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
-    static bool runAway(bool &skip, bool canRun);
+    static auto runAway(bool &skip, bool canRun) -> bool;
     static void choosePokemon(bool &skip);
 
     static void fight(int userMove, bool &keepPlaying);

@@ -4,32 +4,10 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : moveSet(), types() {
-    this->name = name;
-    this->maxHP = hp;
-    this->currentHP = hp;
-    this->attack = 0;
-    this->defense = 0;
-    this->spAttack = 0;
-    this->spDefense = 0;
-    this->speed = 0;
-    this->accuracy = 0;
-    this->evasiveness = 0;
-
-    this->baseAttack = bAttack;
-    this->baseDefense = bDefense;
-    this->baseSpAttack = bSpAttack;
-    this->baseSpDefense = bSpDefense;
-    this->baseSpeed = bSpeed;
-
-    this->catchRate = catchRate;
-
+Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
+    : name(name), maxHP(hp), currentHP(hp), attack(0), defense(0), spAttack(0), spDefense(0), speed(0), accuracy(0), evasiveness(0), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types(), status(Status::NONE), moveCounter(0) {
     this->types[0] = type;
     this->types[1] = Type::NONE;
-    this->status = Status::NONE;
-
-    this->level = level;
-    this->moveCounter = 0;
 }
 
 Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move*> &moves)
@@ -37,7 +15,7 @@ Pokemon::Pokemon(const char *name, const Type type, const int level, const int h
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : moveSet(), types() {
+Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : types() {
     this->name = name;
     this->maxHP = hp;
     this->currentHP = hp;
@@ -153,13 +131,13 @@ void Pokemon::deleteMove(const int index) {
 
 void Pokemon::setMoves(const std::initializer_list<Move *> &moves) {
     for (Move *move : moves) {
-        if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
+        if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
             break;
-
-        else {
-            this->moveSet.push_back(move);
-            ++this->moveCounter;
         }
+
+        this->moveSet.push_back(move);
+        ++this->moveCounter;
+
     }
 }
 
@@ -296,17 +274,19 @@ void Pokemon::setStatus(const Status newStatus) {
     this->status = newStatus;
 
     if (this->status == Status::NONE) {
-        if (newStatus == Status::BURN)
+        if (newStatus == Status::BURN) {
             this->attack *= 2;
-        else if (newStatus == Status::PARALYSIS)
+        }
+        else if (newStatus == Status::PARALYSIS) {
             this->speed *= 2;
+        }
     }
-
-    else if (this->status == Status::BURN)
+    else if (this->status == Status::BURN) {
         this->attack /= 2;
-
-    else if (this->status == Status::PARALYSIS)
+    }
+    else if (this->status == Status::PARALYSIS) {
         this->speed /= 2;
+    }
 }
 Status Pokemon::getStatus() const { return this->status; }
 
@@ -343,7 +323,7 @@ bool Pokemon::isAfflicted() const { return this->status != Status::NONE; }
 
 bool Pokemon::canAttack() const {
     for (int i = 0; i < this->moveCounter; ++i) {
-        if (not this->moveSet[i]) {
+        if (this->moveSet[i] == nullptr) {
             return false;
         }
     }
@@ -373,8 +353,9 @@ std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
 
 void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) {
     // damage will be negative if the attack misses
-    if (damage > 0)
+    if (damage > 0) {
         defendingPokemon.takeDamage(damage);
+    }
 
     --this->pp;
 }

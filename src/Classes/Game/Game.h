@@ -10,8 +10,9 @@
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Classes/Player/Player.h"
-#include "../../Classes/Factory/PokemonFactory.h"
-#include "../../Classes/Factory/MoveFactory.h"
+#include "../../Namespaces/Factory/PokemonFactory.h"
+#include "../../Namespaces/Factory/ItemFactory.h"
+#include "../../Namespaces/Factory/MoveFactory.h"
 
 class Game {
 private:
@@ -23,7 +24,7 @@ public:
     Game();
     ~Game();
     Game(const Game &) = delete;
-    Game& operator=(const Game &) = delete;
+    auto operator=(const Game &) -> Game& = delete;
 
     static void handleEvents();
     static void update();

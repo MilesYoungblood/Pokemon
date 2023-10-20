@@ -5,10 +5,8 @@
 #pragma once
 
 #include <vector>
-#include <array>
-#include <algorithm>
 #include "../Player/Player.h"
-#include "../Camera/Camera.h"
+#include "../../Namespaces/Camera/Camera.h"
 
 class Map {
 private:
@@ -36,26 +34,26 @@ private:
             this->dest.y = y;
         }
 
-        SDL_Rect *getRect() { return &this->dest; }
-        [[nodiscard]] int getX() const { return this->dest.x; }
-        [[nodiscard]] int getY() const { return this->dest.y; }
+        [[nodiscard]] auto getRect() const -> SDL_Rect { return this->dest; }
+        [[nodiscard]] auto getX() const -> int { return this->dest.x; }
+        [[nodiscard]] auto getY() const -> int { return this->dest.y; }
 
         void setID(TileID newID) { this->id = newID; }
-        [[nodiscard]] TileID getID() const { return this->id; }
+        [[nodiscard]] auto getID() const -> TileID { return this->id; }
     };
 
     struct ExitPoint {
-        const int x;                              // x-coordinate of the exit spot
-        const int y;                              // y-coordinate of the exit spot
-        const int newMap;                   // map that this exit point leads to
-        const int newX;                     // the player's new x-coordinates
-        const int newY;                     // the player's new y-coordinates
+        const int x;                                // x-coordinate of the exit spot
+        const int y;                                // y-coordinate of the exit spot
+        const int newMap;                           // map that this exit point leads to
+        const int newX;                             // the player's new x-coordinates
+        const int newY;                             // the player's new y-coordinates
     };
 
-    const char *name;                       // name of the map
+    const char *name;                               // name of the map
 
-    const int width;                        // width of the map
-    const int height;                       // height of the map
+    const int width;                                // width of the map
+    const int height;                               // height of the map
 
     static SDL_Texture *free;
     static SDL_Texture *obstruction;
@@ -63,33 +61,31 @@ private:
     static SDL_Texture *tallGrass;
     static SDL_Texture *water;
 
-    std::vector<std::vector<Tile>> layout;  // The map is represented by a 2D int vector
-                                            // values are represented by the tiles enum
+    std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
 
-    std::vector<Trainer*> trainers;         // the set of trainers in this map
+    std::vector<Trainer *> trainers;                 // the set of trainers in this map
 
-    std::vector<Map::ExitPoint> exitPoints; // coordinates where the player can leave this map to enter another
+    std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
 
-    [[nodiscard]] bool isTrainerHere(int x, int y) const;
+    [[nodiscard]] auto isTrainerHere(int x, int y) const -> bool;
 
 public:
     Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char *name, int width, int height, const std::initializer_list<Trainer*> &trainerList, const std::vector<ExitPoint> &exitPoints);
+    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
     Map(const Map &) = delete;
-    Map& operator=(const Map &) = delete;
+    auto operator=(const Map &) -> Map& = delete;
     ~Map();
 
-    [[nodiscard]] bool isObstructionHere(int x, int y) const;
-    [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
+    [[nodiscard]] auto isObstructionHere(int x, int y) const -> bool;
+    [[nodiscard]] auto isExitPointHere(int x, int y) const -> std::array<int, 3>;
 
-    [[nodiscard]] int numTrainers() const;
-    Trainer& operator[](int index);
-    const Trainer& operator[](int index) const;
+    [[nodiscard]] auto numTrainers() const -> int;
+    auto operator[](int index) -> Trainer&;
+    auto operator[](int index) const -> const Trainer&;
 
     void setObstruction(int x, int y);
 
     void updateMap(int distance, int flag);
     void renderMap();
-
     void resetMap();
 };

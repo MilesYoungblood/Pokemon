@@ -30,7 +30,7 @@ add_executable(PokemonBattle
         src/Functions/TypeCalculations/SpecialTypes.h
         src/Classes/Trainer/Trainer.cpp
         src/Classes/Trainer/Trainer.h
-        src/main.h
+        src/Functions/GeneralFunctions.h
         src/Data/Data.cpp
         src/Data/Data.h
         src/Classes/Item/RestoreItem.cpp
@@ -66,14 +66,15 @@ add_executable(PokemonBattle
         src/Classes/Game/Game.h
         src/Classes/Player/Player.cpp
         src/Classes/Player/Player.h
-        src/Classes/Factory/MoveFactory.h
-        src/Classes/Factory/ItemFactory.h
+        src/Namespaces/Factory/MoveFactory.h
+        src/Namespaces/Factory/ItemFactory.h
         src/Data/MoveList/DarkPulse.h
         src/Data/MoveList/Extrasensory.h
         src/Data/MoveList/AirSlash.h
         src/Classes/TextureManager/TextureManager.cpp
         src/Classes/TextureManager/TextureManager.h
-        src/Classes/Camera/Camera.h)
+        src/Namespaces/Camera/Camera.h
+        src/Namespaces/Factory/PokemonFactory.h)
 
 target_compile_features(PokemonBattle PRIVATE cxx_std_20)
 

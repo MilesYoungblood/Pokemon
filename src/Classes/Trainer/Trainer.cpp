@@ -4,17 +4,9 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer() : Entity(), party(), items(), numItems() {
-    this->dialogue = "";
-    this->numFainted = 0;
-    this->numPokemon = 0;
-}
+Trainer::Trainer() : items(), numItems() {}
 
-Trainer::Trainer(const int x, const int y) : Entity(x, y), party(), items(), numItems() {
-    this->dialogue = "";
-    this->numFainted = 0;
-    this->numPokemon = 0;
-}
+Trainer::Trainer(const int x, const int y) : Entity(x, y), items(), numItems() {}
 
 Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, const int x, const int y) : Trainer(x, y) {
     for (const auto &p : pokemon) {
@@ -49,15 +41,15 @@ Trainer::~Trainer() {
     std::cout << '\n';
 
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-        for (int j = 0; j < this->numItems[i]; ++j) {
-            std::cout << "Deleting " << this->items[i][j]->getName() << "!\n";
-            delete this->items[i][j];
-            this->items[i][j] = nullptr;
+        for (int j = 0; j < this->numItems.at(i); ++j) {
+            std::cout << "Deleting " << this->items.at(i)[j]->getName() << "!\n";
+            delete this->items.at(i)[j];
+            this->items.at(i)[j] = nullptr;
         }
     }
 }
 
-int Trainer::partySize() const {
+auto Trainer::partySize() const -> int {
     return this->numPokemon;
 }
 
@@ -95,24 +87,24 @@ void Trainer::clearParty() {
     this->numPokemon = 0;
 }
 
-int Trainer::getNumItems(const int type) const {
+auto Trainer::getNumItems(const int type) const -> int {
     if (type < 0 or 3 < type) {
         throw std::runtime_error("Out of bounds: getNumItems");
     }
-    return this->numItems[type];
+    return this->numItems.at(type);
 }
 
-Item& Trainer::getItem(const int type, const int item) const {
-    return *this->items[type][item];
+auto Trainer::getItem(const int type, const int item) const -> Item& {
+    return *this->items.at(type)[item];
 }
 
 void Trainer::addItem(const int type, Item *toAdd) {
-    if (type < 0 or 3 < type or this->numItems[type] == Trainer::MAX_ITEMS) {
+    if (type < 0 or 3 < type or this->numItems.at(type) == Trainer::MAX_ITEMS) {
         return;
     }
 
-    this->items[type].push_back(toAdd);
-    ++this->numItems[type];
+    this->items.at(type).push_back(toAdd);
+    ++this->numItems.at(type);
 }
 
 void Trainer::removeItem(const int type, const int index) {
@@ -120,12 +112,12 @@ void Trainer::removeItem(const int type, const int index) {
         throw std::runtime_error("Out of bounds: removeItem");
     }
 
-    delete this->items[type][index];
-    this->items[type][index] = nullptr;
+    delete this->items.at(type)[index];
+    this->items.at(type)[index] = nullptr;
 
-    this->items[type].erase(this->items[type].begin() + index);
+    this->items.at(type).erase(this->items.at(type).begin() + index);
 
-    --this->numItems[type];
+    --this->numItems.at(type);
 }
 
 void Trainer::setRestoreItems(const std::initializer_list<Item *> &inventory) {
@@ -186,15 +178,17 @@ void Trainer::swapPokemon(const int first, const int second) {
     this->party[second] = copy;
 }
 
-Pokemon& Trainer::operator[](const int spot)  {
-    if (5 < spot or spot < 0)
+auto Trainer::operator[](const int spot) -> Pokemon&  {
+    if (5 < spot or spot < 0) {
         throw std::runtime_error("Index out of bounds");
+    }
     return *this->party[spot];
 }
 
-const Pokemon& Trainer::operator[](const int spot) const {
-    if (5 < spot or spot < 0)
+auto Trainer::operator[](const int spot) const -> const Pokemon& {
+    if (5 < spot or spot < 0) {
         throw std::runtime_error("Index out of bounds");
+    }
     return *this->party[spot];
 }
 
@@ -202,6 +196,6 @@ Trainer::operator bool() const {
     return this->numPokemon > 0;
 }
 
-bool Trainer::canFight() const {
+auto Trainer::canFight() const -> bool {
     return this->numPokemon > 0;
 }

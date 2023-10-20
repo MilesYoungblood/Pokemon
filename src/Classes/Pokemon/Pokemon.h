@@ -7,6 +7,8 @@
 #include "../Entity/Entity.h"
 #include "../Move/Move.h"
 
+#include <array>
+
 enum class Status { NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP };
 
 enum PokemonID {
@@ -200,7 +202,7 @@ private:
     int catchRate;
 
     std::vector<Move *> moveSet;
-    Type types[Pokemon::MAX_NUM_TYPES];
+    std::array<Type, Pokemon::MAX_NUM_TYPES> types;
     Status status;
     
     int moveCounter;
@@ -208,7 +210,7 @@ private:
     static void raiseStat(int &stat, int amount);
     static void lowerStat(int &stat, int amount);
 
-    static double getStatMod(int stat);
+    static auto getStatMod(int stat) -> double;
 
 public:
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
@@ -216,12 +218,14 @@ public:
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves);
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves);
     Pokemon(const Pokemon &) = delete;
-    Pokemon& operator=(const Pokemon &) = delete;
+    auto operator=(const Pokemon &) -> Pokemon& = delete;
+    Pokemon(const Pokemon &&) = delete;
+    auto operator=(const Pokemon &&) -> Pokemon& = delete;
     virtual ~Pokemon();
 
-    virtual PokemonID getID() = 0;
+    virtual auto getID() -> PokemonID = 0;
 
-    [[nodiscard]] int numMoves() const;
+    [[nodiscard]] auto numMoves() const -> int;
 
     void addMove(Move *move);
     void deleteMove(int index);
@@ -249,44 +253,44 @@ public:
     void lowerAccuracy(int amount);
     void lowerEvasiveness(int amount);
 
-    [[nodiscard]] int getHP() const;
-    [[nodiscard]] int getAttack() const;
-    [[nodiscard]] int getDefense() const;
-    [[nodiscard]] int getSpAttack() const;
-    [[nodiscard]] int getSpDefense() const;
-    [[nodiscard]] int getSpeed() const;
-    [[nodiscard]] int getAccuracy() const;
-    [[nodiscard]] int getEvasiveness() const;
+    [[nodiscard]] auto getHP() const -> int;
+    [[nodiscard]] auto getAttack() const -> int;
+    [[nodiscard]] auto getDefense() const -> int;
+    [[nodiscard]] auto getSpAttack() const -> int;
+    [[nodiscard]] auto getSpDefense() const -> int;
+    [[nodiscard]] auto getSpeed() const -> int;
+    [[nodiscard]] auto getAccuracy() const -> int;
+    [[nodiscard]] auto getEvasiveness() const -> int;
 
-    [[nodiscard]] int getMaxHp() const;
-    [[nodiscard]] int getBaseAttack() const;
-    [[nodiscard]] int getBaseDefense() const;
-    [[nodiscard]] int getBaseSpAttack() const;
-    [[nodiscard]] int getBaseSpDefense() const;
-    [[nodiscard]] int getBaseSpeed() const;
+    [[nodiscard]] auto getMaxHp() const -> int;
+    [[nodiscard]] auto getBaseAttack() const -> int;
+    [[nodiscard]] auto getBaseDefense() const -> int;
+    [[nodiscard]] auto getBaseSpAttack() const -> int;
+    [[nodiscard]] auto getBaseSpDefense() const -> int;
+    [[nodiscard]] auto getBaseSpeed() const -> int;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] auto getName() const -> std::string;
 
-    [[nodiscard]] Type getType(bool type_1) const;
+    [[nodiscard]] auto getType(bool type_1) const -> Type;
 
     void setStatus(Status newStatus);
-    [[nodiscard]] Status getStatus() const;
-    [[nodiscard]] const char * getStatusAsString() const;
+    [[nodiscard]] auto getStatus() const -> Status;
+    [[nodiscard]] auto getStatusAsString() const -> const char *;
 
-    [[nodiscard]] int getLevel() const;
-    [[nodiscard]] int getCatchRate() const;
+    [[nodiscard]] auto getLevel() const -> int;
+    [[nodiscard]] auto getCatchRate() const -> int;
 
-    [[nodiscard]] bool isFainted() const;
-    [[nodiscard]] bool isFullHP() const;
-    [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
-    [[nodiscard]] bool isAfflicted() const;
-    [[nodiscard]] bool canAttack() const;
+    [[nodiscard]] auto isFainted() const -> bool;
+    [[nodiscard]] auto isFullHP() const -> bool;
+    [[nodiscard]] auto isFasterThan(const Pokemon &pokemon) const -> bool;
+    [[nodiscard]] auto isAfflicted() const -> bool;
+    [[nodiscard]] auto canAttack() const -> bool;
 
     void hpEmptyMessage() const;
     void hpFullMessage() const;
 
-    Move& operator[](int index);
-    const Move& operator[](int index) const;
+    auto operator[](int index) -> Move&;
+    auto operator[](int index) const -> const Move&;
 
-    friend std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon);
+    friend auto operator<<(std::ostream &out, const Pokemon &pokemon) -> std::ostream&;
 };

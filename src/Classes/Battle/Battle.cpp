@@ -12,10 +12,12 @@ bool Battle::skipPlayerTurn = false;
 bool Battle::skipOpponentTurn = false;
 
 void Battle::sendOutMessage(const Pokemon &pokemon, const bool isPlayer) {
-    if (isPlayer)
+    if (isPlayer) {
         printMessage("Go " + pokemon.getName() + "!\n");
-    else
+    }
+    else {
         printMessage("Your opponent sent out " + pokemon.getName() + "!\n");
+    }
 }
 
 void Battle::returnMessage(const Pokemon &pokemon) {
@@ -30,10 +32,12 @@ void Battle::introMessage() {
 }
 
 void Battle::displayChoices(const int arrow, bool &print) {
-    if (print)
+    if (print) {
         printMessage("What will " + (*Battle::player)[0].getName() + " do?\n");
-    else
+    }
+    else {
         std:: cout << "What will " << (*Battle::player)[0] << " do?\n";
+    }
 
     arrow == 0 ? std::cout << "   ->   Fight\n" : std::cout << "\tFight\n";
     arrow == 1 ? std::cout << "   ->   Bag\n" : std::cout << "\tBag\n";
@@ -53,16 +57,20 @@ void Battle::displayPokemon(const int arrow, bool &print) {
                   << ")\n";
     };
 
-    if (print)
+    if (print) {
         printMessage("Choose a Pokemon:\n");
-    else
+    }
+    else {
         std::cout << "Choose a Pokemon:\n";
+    }
 
     for (int i = 0; i < Battle::player->partySize(); ++i) {
-        if (arrow == i)
+        if (arrow == i) {
             printOut("   ->   ", i);
-        else
+        }
+        else {
             printOut("        ", i);
+        }
     }
 
     arrow == Battle::player->partySize() ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
@@ -108,10 +116,12 @@ void Battle::faintMessage(const Pokemon &pokemon) {
 }
 
 void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
-    if (print)
+    if (print) {
         printMessage("Choose an option:\n");
-    else
+    }
+    else {
         std::cout << "Choose an option:\n";
+    }
 
     arrow == 0 ? std::cout << "   ->   Fight\n" : std::cout << "\tFight\n";
     arrow == 1 ? std::cout << "   ->   Run" : std::cout << "\tRun";
@@ -120,7 +130,7 @@ void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
     std::cout.flush();
 }
 
-bool Battle::run() {
+auto Battle::run() -> bool {
     const int opponentSpeed = ((*Battle::opponent)[0].getBaseSpeed() / 4) % 256;
     const int odds = (((*Battle::player)[0].getBaseSpeed() * 32) / opponentSpeed) + 30;
 
@@ -151,10 +161,10 @@ void Battle::pokemonPrompt(const int arrow, bool &print) {
     print = false;
 }
 
-void Battle::switchOutMessage(const Trainer *t, const int pokemonSwitched) {
-    Battle::returnMessage((*t)[pokemonSwitched]);
+void Battle::switchOutMessage(const Trainer *trainer, const int pokemonSwitched) {
+    Battle::returnMessage((*trainer)[pokemonSwitched]);
     pressEnter();
-    Battle::sendOutMessage((*t)[0], true);
+    Battle::sendOutMessage((*trainer)[0], true);
     pressEnter();
 }
 
@@ -180,7 +190,7 @@ void Battle::loseMessage() {
 void Battle::inflictedMessage(const Pokemon &pokemon) {
     switch (pokemon.getStatus()) {
         case Status::BURN:
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's burn!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * 0.0625))) + " damage from it's burn!\n");
             break;
         case Status::PARALYSIS:
             printMessage(pokemon.getName() + " is paralyzed! It can't move!\n");
@@ -189,7 +199,7 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
             printMessage(pokemon.getName() + " is frozen solid!\n");
             break;
         case Status::POISON:
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * .0625))) + " damage from it's poisoning!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * 0.0625))) + " damage from it's poisoning!\n");
             break;
         case Status::SLEEP:
             printMessage(pokemon.getName() + " is fast asleep!\n");
@@ -245,16 +255,16 @@ void Battle::attackErrorMessage() {
 
 // generates a random number between 1 and 16, inclusive
 // returns true and 2.0 if that number is 1 and 1.0 and false otherwise
-std::pair<double, bool> Battle::criticalHit() {
+auto Battle::criticalHit() -> std::pair<double, bool> {
     return generateInteger(1, 16) == 1 ? std::make_pair(2.0, true) : std::make_pair(1.0, false);
 }
 
 // returns 1.5 if move is a STAB move, and 1.0 otherwise
-double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
+auto Battle::stabCheck(const Pokemon &pokemon, const Move &move) -> double {
     return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
 }
 
-int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
+auto Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int {
     int initialDamage = 0;
 
     const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
@@ -313,15 +323,17 @@ void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
                 goto reprint_2;
             }
 
-            else
+            else {
                 break;
+            }
         }
     }
 
     else {
-        do
+        toSwitch = generateInteger(0, trainer->partySize() - 1);
+        while ((*trainer)[toSwitch].isFainted()) {
             toSwitch = generateInteger(0, trainer->partySize() - 1);
-        while ((*trainer)[toSwitch].isFainted());
+        }
     }
 
     trainer->swapPokemon(0, toSwitch);
@@ -370,18 +382,23 @@ void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &
                 reprint_1:
                 Battle::displayHPBar();
 
-                if (print)
+                if (print) {
                     printMessage("Your opponent is about to send out " + (*Battle::opponent)[0].getName() + ".\n");
-                else
+                }
+                else {
                     std::cout << "Your opponent is about to send out " << (*Battle::opponent)[0] << ".\n";
+                }
 
-                if (print)
+                if (print) {
                     pressEnter();
+                }
 
-                if (print)
+                if (print) {
                     printMessage("Would you like to swap out?\n");
-                else
+                }
+                else {
                     std::cout << "Would you like to swap out?\n";
+                }
 
                 option == 0 ? std::cout << "   ->   Yes\n" : std::cout << "\tYes\n";
                 option == 1 ? std::cout << "   ->   No" : std::cout << "\tNo";
@@ -439,18 +456,22 @@ void Battle::PreStatus(const int userMove, const int opponentMove, const bool is
 
     const auto userAction = [&userMove, &hasStatusCondition, &keepPlaying] -> void {
         if (userMove < (*Battle::player)[0].numMoves()) {
-            if (not hasStatusCondition((*Battle::player)[0].getStatus()))
+            if (not hasStatusCondition((*Battle::player)[0].getStatus())) {
                 Battle::Action(Battle::player, Battle::opponent, userMove, Battle::skipOpponentTurn, true, keepPlaying);
-            else
+            }
+            else {
                 inflictedMessage((*Battle::player)[0]);
+            }
         }
     };
 
     const auto opponentAction = [&opponentMove, &hasStatusCondition, &keepPlaying] -> void {
-        if (not hasStatusCondition((*Battle::opponent)[0].getStatus()))
+        if (not hasStatusCondition((*Battle::opponent)[0].getStatus())) {
             Battle::Action(Battle::opponent, Battle::player, opponentMove, Battle::skipPlayerTurn, false, keepPlaying);
-        else
+        }
+        else {
             inflictedMessage((*Battle::opponent)[0]);
+        }
     };
 
     if (isUserFaster) {
@@ -507,31 +528,36 @@ void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
             }
             keepPlaying = false;
         }
-        if ((*trainer)[0].isFainted())
+        if ((*trainer)[0].isFainted()) {
             isUser ? Battle::SwitchOut(trainer, true, keepPlaying) : Battle::SwitchOut(trainer, false, keepPlaying);
+        }
     };
 
     if (isUserFaster) {
         // if Pokémon is inflicted with a post-move status condition...
-        if (hasStatusCondition((*Battle::player)[0].getStatus()))
+        if (hasStatusCondition((*Battle::player)[0].getStatus())) {
             PostStatus(Battle::player, true);
+        }
 
         // if Pokémon is inflicted with a post-move status condition...
-        if (hasStatusCondition((*Battle::opponent)[0].getStatus()))
+        if (hasStatusCondition((*Battle::opponent)[0].getStatus())) {
             PostStatus(Battle::opponent, false);
+        }
     }
     else {
         // if Pokémon is inflicted with a post-move status condition...
-        if (hasStatusCondition((*Battle::opponent)[0].getStatus()))
+        if (hasStatusCondition((*Battle::opponent)[0].getStatus())) {
             PostStatus(Battle::opponent, false);
+        }
 
         // if Pokémon is inflicted with a post-move status condition...
-        if (hasStatusCondition((*Battle::player)[0].getStatus()))
+        if (hasStatusCondition((*Battle::player)[0].getStatus())) {
             PostStatus(Battle::player, true);
+        }
     }
 }
 
-int Battle::chooseMove(bool &skip) {
+auto Battle::chooseMove(bool &skip) -> int {
     int move = 0;
     bool print = true;
 
@@ -549,7 +575,7 @@ int Battle::chooseMove(bool &skip) {
         return 0;
     }
     // if move chosen is out of PP...
-    else if (not (*Battle::player)[0][move]) {
+    if (not (*Battle::player)[0][move]) {
         attackErrorMessage();
         goto chooseMove;
     }
@@ -573,8 +599,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
     Battle::displayHPBar();
     displayBag(itemType, print);
 
-    if (not chooseOption(itemType, 4))
+    if (not chooseOption(itemType, 4)) {
         goto chooseItemType;
+    }
 
     // trainer chose HP/PP items
     switch (itemType) {
@@ -585,8 +612,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
             Battle::displayHPBar();
             displayItems(Battle::player, itemType, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(itemType)))
+            if (not chooseOption(userItem, Battle::player->getNumItems(itemType))) {
                 goto chooseRestoreItem;
+            }
 
             if (userItem == Battle::player->getNumItems(itemType)) {
                 resetVariables();
@@ -602,8 +630,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 Battle::displayHPBar();
                 displayPokemon(pokemon, print);
 
-                if (not chooseOption(pokemon, Battle::player->partySize()))
+                if (not chooseOption(pokemon, Battle::player->partySize())) {
                     goto chooseRestorePokemon;
+                }
 
                 if (pokemon == Battle::player->partySize()) {
                     resetVariables();
@@ -649,12 +678,13 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                         Battle::displayHPBar();
                         Battle::displayMoves((*Battle::player)[pokemon], move, print);
 
-                        if (not chooseOption(move, (*Battle::player)[0].numMoves()))
+                        if (not chooseOption(move, (*Battle::player)[0].numMoves())) {
                             goto choosePokemon;
+                        }
 
-                        if (move == (*Battle::player)[0].numMoves())
+                        if (move == (*Battle::player)[0].numMoves()) {
                             goto chooseRestorePokemon;
-
+                        }
                         else {
                             Battle::displayHPBar();
 
@@ -681,8 +711,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
             Battle::displayHPBar();
             displayItems(Battle::player, itemType, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(itemType)))
+            if (not chooseOption(userItem, Battle::player->getNumItems(itemType))) {
                 goto chooseStatusItem;
+            }
 
             if (userItem == Battle::player->getNumItems(itemType)) {
                 resetVariables();
@@ -756,8 +787,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
             Battle::displayHPBar();
             displayItems(Battle::player, itemType, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(itemType)))
+            if (not chooseOption(userItem, Battle::player->getNumItems(itemType))) {
                 goto choosePokeball;
+            }
 
             if (userItem == Battle::player->getNumItems(itemType)) {
                 resetVariables();
@@ -782,6 +814,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                     Battle::player->removeItem(itemType, userItem);
                 }
 
+                //FIXME
                 bool shakes[4];
                 bool caught = Battle::player->getItem(itemType, userItem).catchPokemon((*Battle::opponent)[0], shakes);
                 catchPokemonMessage((*Battle::opponent)[0], shakes);
@@ -799,8 +832,9 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
             Battle::displayHPBar();
             displayItems(Battle::player, itemType, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(itemType)))
+            if (not chooseOption(userItem, Battle::player->getNumItems(itemType))) {
                 goto chooseBattleItem;
+            }
 
             if (userItem == Battle::player->getNumItems(itemType)) {
                 resetVariables();
@@ -831,7 +865,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
     }
 }
 
-bool Battle::runAway(bool &skip, const bool canRun) {
+auto Battle::runAway(bool &skip, const bool canRun) -> bool {
     Battle::displayHPBar();
 
     if (not canRun) {
@@ -839,14 +873,13 @@ bool Battle::runAway(bool &skip, const bool canRun) {
         skip = true;
         return false;
     }
-    else {
-        //bool runAway = run();
-        //FIXME commented out for testing purposes
-        const bool runAway = true;
-        Battle::runMessage(runAway);
+    //bool runAway = run();
+    //FIXME commented out for testing purposes
+    const bool runAway = true;
+    Battle::runMessage(runAway);
 
-        return runAway;
-    }
+    return runAway;
+
 }
 
 void Battle::choosePokemon(bool &skip) {
@@ -857,8 +890,9 @@ void Battle::choosePokemon(bool &skip) {
     Battle::displayHPBar();
     displayPokemon(pokemon, print);
 
-    if (not chooseOption(pokemon, Battle::player->partySize()))
+    if (not chooseOption(pokemon, Battle::player->partySize())) {
         goto choosePokemon;
+    }
 
     if (pokemon == Battle::player->partySize()) {
         skip = true;
@@ -872,10 +906,11 @@ void Battle::choosePokemon(bool &skip) {
     Battle::displayHPBar();
     Battle::pokemonPrompt(option, print);
 
-    if (not chooseOption(option, 2))
+    if (not chooseOption(option, 2)) {
         goto chooseOption;
+    }
 
-    int userMove;
+    int userMove = 0;
 
     switch (option) {
         case 0:
@@ -886,8 +921,9 @@ void Battle::choosePokemon(bool &skip) {
             Battle::displayHPBar();
             Battle::displayMoves((*Battle::player)[pokemon], userMove, print);
 
-            if (not chooseOption(userMove, (*Battle::player)[pokemon].numMoves()))
+            if (not chooseOption(userMove, (*Battle::player)[pokemon].numMoves())) {
                 goto chooseMove;
+            }
 
             if (userMove == (*Battle::player)[pokemon].numMoves()) {
                 option = 0;
@@ -937,17 +973,17 @@ void Battle::choosePokemon(bool &skip) {
 void Battle::fight(const int userMove, bool &keepPlaying) {
     Battle::displayHPBar();
 
-    int opponentMove;
+    int opponentMove = 0;
     if (not (*Battle::opponent)[0].canAttack()) {
         // TODO add struggle
         throw std::runtime_error("Struggle not implemented yet");
     }
-    else {
-        // re-selects opponent move if it's out of PP
-        do {
-            opponentMove = generateInteger(0, (*Battle::opponent)[0].numMoves() - 1);
-        } while (not(*Battle::opponent)[0][opponentMove]);
+    // re-selects opponent move if it's out of PP
+    opponentMove = generateInteger(0, (*Battle::opponent)[0].numMoves() - 1);
+    while (not(*Battle::opponent)[0][opponentMove]) {
+        opponentMove = generateInteger(0, (*Battle::opponent)[0].numMoves() - 1);
     }
+
 
     // if trainer is faster than opponent...
     if ((*Battle::player)[0].isFasterThan((*Battle::opponent)[0])) {
@@ -996,8 +1032,9 @@ void Battle::engageBattle(const bool isTrainer) {
         Battle::displayHPBar();
         Battle::displayChoices(option, print);
 
-        if (not chooseOption(option, 3))
+        if (not chooseOption(option, 3)) {
             goto reprint;
+        }
 
         int userMove = (*Battle::player)[0].numMoves();    // passed into the fight to determine move used
         bool cancel = false;                               // passed into core four functions to know if to return
@@ -1026,7 +1063,8 @@ void Battle::engageBattle(const bool isTrainer) {
                 goto chooseOption;
         }
 
-        if (not cancel)
+        if (not cancel) {
             Battle::fight(userMove, keepPlaying);
+        }
     }
 }

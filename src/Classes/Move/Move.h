@@ -8,7 +8,7 @@
 #include <random>
 #include <thread>
 
-#include "../../main.h"
+#include "../../Functions/GeneralFunctions.h"
 
 enum class Category { PHYSICAL, SPECIAL, STATUS };
 
@@ -54,34 +54,34 @@ protected:
 public:
     Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
     Move(const Move &moveToCopy) = delete;
-    Move& operator=(const Move &rhs) = delete;
+    auto operator=(const Move &rhs) -> Move& = delete;
     virtual ~Move() = default;
 
-    virtual MoveID getID() = 0;
+    virtual auto getID() -> MoveID = 0;
 
-    [[nodiscard]] virtual int getDamage() const;
+    [[nodiscard]] virtual auto getDamage() const -> int;
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
     void setPP(int newPP);
-    [[nodiscard]] int getPP() const;
+    [[nodiscard]] auto getPP() const -> int;
 
-    [[nodiscard]] int getMaxPP() const;
+    [[nodiscard]] auto getMaxPP() const -> int;
 
-    [[nodiscard]] int getPower() const;
+    [[nodiscard]] auto getPower() const -> int;
 
-    [[nodiscard]] int getAccuracy() const;
+    [[nodiscard]] auto getAccuracy() const -> int;
 
-    [[nodiscard]] Type getType() const;
-    [[nodiscard]] const char * getTypeAsString() const;
+    [[nodiscard]] auto getType() const -> Type;
+    [[nodiscard]] auto getTypeAsString() const -> const char *;
 
-    [[nodiscard]] Category getCategory() const;
-    [[nodiscard]] const char * getCategoryAsString() const;
+    [[nodiscard]] auto getCategory() const -> Category;
+    [[nodiscard]] auto getCategoryAsString() const -> const char *;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] auto getName() const -> std::string;
 
     explicit operator bool() const;
 
-    friend std::ostream& operator<<(std::ostream &out, const Move &rhs);
+    friend auto operator<<(std::ostream &out, const Move &rhs) -> std::ostream&;
 };

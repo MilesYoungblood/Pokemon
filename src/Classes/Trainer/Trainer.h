@@ -16,19 +16,19 @@ inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_p
 
 class Trainer : public Entity {
 private:
-    const char *dialogue;
+    const char *dialogue{""};
 
 protected:
-    const static int MAX_POKEMON = 6;       // max number of Pokémon per party
-    const static int MAX_ITEMS = 50;        // max number of items per bag
-    const static int NUM_ITEM_TYPES = 4;    // number of types of items
+    const static int MAX_POKEMON = 6;                   // max number of Pokémon per party
+    const static int MAX_ITEMS = 50;                    // max number of items per bag
+    const static int NUM_ITEM_TYPES = 4;                // number of types of items
 
-    int numFainted;                         // number of fainted Pokémon
-    int numPokemon;                         // current number of Pokémon in the party
-    int numItems[Trainer::NUM_ITEM_TYPES];  // number of each type of item
+    int numFainted{0};                                  // number of fainted Pokémon
+    int numPokemon{0};                                  // current number of Pokémon in the party
+    std::array<int, Trainer::NUM_ITEM_TYPES> numItems;  // number of each type of item
 
     std::vector<Pokemon *> party;
-    std::vector<Item *> items[Trainer::NUM_ITEM_TYPES];
+    std::array<std::vector<Item *>, Trainer::NUM_ITEM_TYPES> items;
 
 public:
     Trainer();
@@ -36,16 +36,18 @@ public:
     Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
     Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision);
     Trainer(const Trainer &) = delete;
-    Trainer& operator=(const Trainer &) = delete;
-    ~Trainer();
+    auto operator=(const Trainer &) -> Trainer& = delete;
+    Trainer(const Trainer &&) = delete;
+    auto operator=(const Trainer &&) -> Trainer& = delete;
+    virtual ~Trainer();
 
-    [[nodiscard]] int partySize() const;
+    [[nodiscard]] auto partySize() const -> int;
     void addPokemon(Pokemon *toAdd);
     void removePokemon(int index);
     void clearParty();
 
-    [[nodiscard]] int getNumItems(int type) const;
-    [[nodiscard]] Item & getItem(int type, int item) const;
+    [[nodiscard]] auto getNumItems(int type) const -> int;
+    [[nodiscard]] auto getItem(int type, int item) const -> Item &;
 
     void addItem(int type, Item *toAdd);
     void removeItem(int type, int index);
@@ -61,9 +63,9 @@ public:
 
     void swapPokemon(int first, int second);
 
-    Pokemon& operator[](int spot);
-    const Pokemon& operator[](int spot) const;
+    auto operator[](int spot) -> Pokemon&;
+    auto operator[](int spot) const -> const Pokemon&;
 
     virtual explicit operator bool() const;
-    [[nodiscard]] virtual bool canFight() const;
+    [[nodiscard]] virtual auto canFight() const -> bool;
 };

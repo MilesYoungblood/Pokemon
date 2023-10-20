@@ -14,7 +14,7 @@ static SDL_Renderer *gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
 static SDL_Event event;
 static Mix_Chunk *music = nullptr;
 
-__attribute__((unused)) static TextureManager textureManager(gameRenderer);
+[[maybe_unused]] static TextureManager textureManager(gameRenderer);
 
 static bool isRunning = true;                           // determines whether the game is running
 
@@ -55,7 +55,7 @@ Game::Game() {
         exit(1);
     }
 
-    if (gameWindow) {
+    if (gameWindow != nullptr) {
         std::cout << "Window created!\n";
     }
     else {
@@ -64,7 +64,7 @@ Game::Game() {
         exit(1);
     }
 
-    if (gameRenderer) {
+    if (gameRenderer != nullptr) {
         std::cout << "Renderer created!\n";
     }
     else {
@@ -75,7 +75,7 @@ Game::Game() {
     }
 
     SDL_Surface *pokeball = IMG_Load((PROJECT_PATH + R"(\sprites\pokeball.png)").c_str());
-    if (not pokeball) {
+    if (pokeball == nullptr) {
         std::cerr << "Error creating surface: " << SDL_GetError() << '\n';
         SDL_DestroyRenderer(gameRenderer);
         SDL_DestroyWindow(gameWindow);
@@ -98,7 +98,7 @@ Game::Game() {
     }
 
     music = Mix_LoadWAV((PROJECT_PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
-    if (not music) {
+    if (music == nullptr) {
         std::cerr << "Could not play sound: " << SDL_GetError() << '\n';
         Mix_CloseAudio();
         SDL_DestroyRenderer(gameRenderer);
@@ -115,7 +115,8 @@ Game::Game() {
     player->setPokeBalls({ new PokeBall(5), new GreatBall(5), new UltraBall(5), new MasterBall(1) });
     player->setBattleItems({ new XAttack(5), new XDefense(5), new XSpAttack(5), new XSpDefense(5), new XSpeed(5), new XAccuracy(5) });
 
-    Camera::lockOnPlayer(player, [](int d, int f) -> void { currentMap->updateMap(d, f); });
+
+    Camera::lockOnPlayer(player, [](int dist, int direction) -> void { currentMap->updateMap(dist, direction); });
 
     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
     lockOn = std::vector<bool>(currentMap->numTrainers(), false);
@@ -135,15 +136,15 @@ Game::~Game() {
 
 void Game::handleEvents() {
     SDL_PollEvent(&event);
-    handleFunctions[functionState]();
+    handleFunctions.at(functionState)();
 }
 
 void Game::update() {
-    updateFunctions[functionState]();
+    updateFunctions.at(functionState)();
 }
 
 void Game::render() {
-    renderFunctions[functionState]();
+    renderFunctions.at(functionState)();
 }
 
 void Game::saveData() {
@@ -167,9 +168,9 @@ void Game::saveData() {
     }
 
     for (int map = 0; map < maps.size(); ++map) {
-        for (int trainer = 0; trainer < maps[map]->numTrainers(); ++map) {
-            saveFile << '\n' << map << trainer << (*maps[map])[trainer].partySize();
-            saveFile << (*maps[map])[trainer].getDirection();
+        for (int trainer = 0; trainer < maps.at(map)->numTrainers(); ++trainer) {
+            saveFile << '\n' << map << trainer << (*maps.at(map))[trainer].partySize();
+            saveFile << (*maps.at(map))[trainer].getDirection();
         }
     }
 
@@ -231,9 +232,9 @@ void Game::loadData() {
             const int trainer = buffer[1] - '0';
 
             if (buffer[2] == '0') {
-                (*maps[map])[trainer].clearParty();
+                (*maps.at(map))[trainer].clearParty();
             }
-            loadDirection(&(*maps[map])[trainer], buffer[3] - '0');
+            loadDirection(&(*maps.at(map))[trainer], buffer[3] - '0');
         }
 
         saveFile.close();
@@ -351,7 +352,7 @@ void Game::updateOverworld() {
 
         // switches the map
         currentMapIndex = mapData[2];
-        currentMap = maps[currentMapIndex];
+        currentMap = maps.at(currentMapIndex);
 
         // resets the states of these variables for each trainer
         walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
@@ -359,7 +360,7 @@ void Game::updateOverworld() {
 
         player->setCoordinates(mapData[0], mapData[1]);
 
-        Camera::lockOnPlayer(player, [](int d, int f) -> void { currentMap->updateMap(d, f); });
+        Camera::lockOnPlayer(player, [](int dist, int direction) -> void { currentMap->updateMap(dist, direction); });
     }
     else if (interact) {
         Trainer *trainer;       // variable used to reduce the number of function calls

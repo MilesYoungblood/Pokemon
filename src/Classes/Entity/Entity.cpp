@@ -179,8 +179,8 @@ void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
 }
 
-SDL_Rect *Entity::getRect() {
-    return &this->destRect;
+SDL_Rect Entity::getRect() const {
+    return this->destRect;
 }
 
 void Entity::render() {

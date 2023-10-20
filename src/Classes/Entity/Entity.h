@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <SDL.h>
-#include <SDL_image.h>
 #include "../../Classes/TextureManager/TextureManager.h"
 
 const static int TILE_SIZE = 70;
@@ -31,8 +29,10 @@ protected:
 public:
     Entity();
     Entity(int x, int y);
-    Entity(const Entity &toCopy) = delete;
-    Entity& operator=(const Entity &toCopy) = delete;
+    Entity(const Entity &) = delete;
+    auto operator=(const Entity &) -> Entity& = delete;
+    Entity(const Entity &&) = delete;
+    auto operator=(const Entity &&) ->Entity& = delete;
     ~Entity();
 
     void moveNorth();
@@ -46,21 +46,21 @@ public:
     void faceWest();
 
     void setDirection(Direction newDirection);
-    Entity::Direction getDirection();
+    auto getDirection() -> Entity::Direction;
 
     void setCoordinates(int newX, int newY);
-    [[nodiscard]] int getX() const;
-    [[nodiscard]] int getY() const;
+    [[nodiscard]] auto getX() const -> int;
+    [[nodiscard]] auto getY() const -> int;
 
-    [[nodiscard]] bool isFacingNorth() const;
-    [[nodiscard]] bool isFacingEast() const;
-    [[nodiscard]] bool isFacingSouth() const;
-    [[nodiscard]] bool isFacingWest() const;
+    [[nodiscard]] auto isFacingNorth() const -> bool;
+    [[nodiscard]] auto isFacingEast() const -> bool;
+    [[nodiscard]] auto isFacingSouth() const -> bool;
+    [[nodiscard]] auto isFacingWest() const -> bool;
 
     void face(const Entity *entity);
 
-    bool isNextTo(const Entity *entity) const;
-    bool hasVisionOf(const Entity *entity) const;
+    auto isNextTo(const Entity *entity) const -> bool;
+    auto hasVisionOf(const Entity *entity) const -> bool;
 
     // these functions do NOT update the entity's internal coordinates
     // these functions merely update where the entity appears on in the window
@@ -70,7 +70,7 @@ public:
     void shiftLeftOnMap(int distance);
     void shiftRightOnMap(int distance);
     
-    SDL_Rect *getRect();
+    [[nodiscard]] auto getRect() const -> SDL_Rect;
 
     void render();
 

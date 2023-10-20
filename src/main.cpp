@@ -9,7 +9,7 @@
 constexpr int FPS = 30;
 constexpr int FRAME_DELAY = 1000 / FPS;
 
-int main() {
+auto main() -> int {
     SDL_SetMainReady();
 
     Uint32 frameStart;
