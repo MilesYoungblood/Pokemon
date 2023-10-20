@@ -22,11 +22,8 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, const int x, co
             break;
         }
 
-        this->party[this->numPokemon] = p;
+        this->party.push_back(p);
         ++this->numPokemon;
-    }
-    for (int i = this->numPokemon; i < Trainer::MAX_POKEMON; ++i) {
-        this->party[i] = nullptr;
     }
 }
 
@@ -47,13 +44,15 @@ Trainer::~Trainer() {
     for (int i = 0; i < this->numPokemon; ++i) {
         std::cout << "\tDeleting " << this->party[i]->getName() << "!\n";
         delete this->party[i];
+        this->party[i] = nullptr;
     }
     std::cout << '\n';
 
     for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
         for (int j = 0; j < this->numItems[i]; ++j) {
             std::cout << "Deleting " << this->items[i][j]->getName() << "!\n";
-            delete items[i][j];
+            delete this->items[i][j];
+            this->items[i][j] = nullptr;
         }
     }
 }
@@ -67,7 +66,7 @@ void Trainer::addPokemon(Pokemon *toAdd) {
         return;
     }
 
-    this->party[this->numPokemon] = toAdd;
+    this->party.push_back(toAdd);
     ++this->numPokemon;
 }
 
@@ -81,11 +80,9 @@ void Trainer::removePokemon(const int index) {
         --this->numFainted;
     }
     delete this->party[index];
+    this->party[index] = nullptr;
 
-    // shifts over the Pokémon that were after it
-    for (int i = index; i < this->numPokemon; ++i) {
-        this->party[i] = this->party[i + 1];
-    }
+    this->party.erase(this->party.begin() + index);
 
     --this->numPokemon;
 }
@@ -93,6 +90,7 @@ void Trainer::removePokemon(const int index) {
 void Trainer::clearParty() {
     for (int i = 0; i < this->numPokemon; ++i) {
         delete this->party[i];
+        this->party[i] = nullptr;
     }
     this->numPokemon = 0;
 }
@@ -113,7 +111,7 @@ void Trainer::addItem(const int type, Item *toAdd) {
         return;
     }
 
-    this->items[type][this->numItems[type]] = toAdd;
+    this->items[type].push_back(toAdd);
     ++this->numItems[type];
 }
 
@@ -123,51 +121,53 @@ void Trainer::removeItem(const int type, const int index) {
     }
 
     delete this->items[type][index];
+    this->items[type][index] = nullptr;
 
-    for (int i = index; i < this->numItems[type]; ++i) {
-        this->items[type][i] = this->items[type][i + 1];
-    }
+    this->items[type].erase(this->items[type].begin() + index);
 
     --this->numItems[type];
 }
 
-void Trainer::setRestoreItems(const std::vector<Item *> &inventory) {
-    for (int i = 0; i < inventory.size(); ++i) {
+void Trainer::setRestoreItems(const std::initializer_list<Item *> &inventory) {
+    for (const auto &item : inventory) {
         if (this->numItems[0] == Trainer::MAX_ITEMS) {
             break;
         }
 
-        this->items[0][i] = inventory[i];
+        this->items[0].push_back(item);
         ++this->numItems[0];
     }
 }
-void Trainer::setStatusItems(const std::vector<Item *> &inventory) {
-    for (int i = 0; i < inventory.size(); ++i) {
+
+void Trainer::setStatusItems(const std::initializer_list<Item *> &inventory) {
+    for (const auto &item : inventory) {
         if (this->numItems[1] == Trainer::MAX_ITEMS) {
             break;
         }
 
-        this->items[1][i] = inventory[i];
+        this->items[1].push_back(item);
         ++this->numItems[1];
     }
 }
-void Trainer::setPokeBalls(const std::vector<Item *> &inventory) {
-    for (int i = 0; i < inventory.size(); ++i) {
+
+void Trainer::setPokeBalls(const std::initializer_list<Item *> &inventory) {
+    for (const auto &item : inventory) {
         if (this->numItems[2] == Trainer::MAX_ITEMS) {
             break;
         }
 
-        this->items[2][i] = inventory[i];
+        this->items[2].push_back(item);
         ++this->numItems[2];
     }
 }
-void Trainer::setBattleItems(const std::vector<Item *> &inventory) {
-    for (int i = 0; i < inventory.size(); ++i) {
+
+void Trainer::setBattleItems(const std::initializer_list<Item *> &inventory) {
+    for (const auto &item : inventory) {
         if (this->numItems[3] == Trainer::MAX_ITEMS) {
             break;
         }
 
-        this->items[3][i] = inventory[i];
+        this->items[3].push_back(item);
         ++this->numItems[3];
     }
 }

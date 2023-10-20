@@ -362,11 +362,13 @@ void Game::updateOverworld() {
         Camera::lockOnPlayer(player, [](int d, int f) -> void { currentMap->updateMap(d, f); });
     }
     else if (interact) {
-        for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            Trainer &trainer = (*currentMap)[i];    // variable used to reduce the number of function calls
+        Trainer *trainer;       // variable used to reduce the number of function calls
 
-            if (player->hasVisionOf(&trainer) and not trainer.hasVisionOf(player)) {
-                trainer.face(player);
+        for (int i = 0; i < currentMap->numTrainers(); ++i) {
+            trainer = &(*currentMap)[i];
+
+            if (player->hasVisionOf(trainer) and not trainer->hasVisionOf(player)) {
+                trainer->face(player);
                 break;
             }
         }

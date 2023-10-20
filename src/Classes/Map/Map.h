@@ -10,52 +10,52 @@
 #include "../Player/Player.h"
 #include "../Camera/Camera.h"
 
-enum TileID {
-    FREE,
-    OBSTRUCTION,
-    GRASS,
-    TALL_GRASS __attribute__((unused)),
-    WATER __attribute__((unused))
-};
-
-class Tile {
-private:
-    TileID id;
-    SDL_Rect dest;
-
-public:
-    Tile() = default;
-    explicit Tile(TileID id, int x, int y) : dest({ x, y, TILE_SIZE, TILE_SIZE }) {
-        this->id = id;
-    }
-
-    void update(int x, int y) {
-        this->dest.x = x;
-        this->dest.y = y;
-    }
-
-    SDL_Rect *getRect() { return &this->dest; }
-    [[nodiscard]] int getX() const { return this->dest.x; }
-    [[nodiscard]] int getY() const { return this->dest.y; }
-
-    void setID(TileID newID) { this->id = newID; }
-    [[nodiscard]] TileID getID() const { return this->id; }
-};
-
 class Map {
 private:
+    enum TileID {
+        FREE,
+        OBSTRUCTION,
+        GRASS,
+        TALL_GRASS __attribute__((unused)),
+        WATER __attribute__((unused))
+    };
+
+    class Tile {
+    private:
+        TileID id;
+        SDL_Rect dest;
+
+    public:
+        Tile() = default;
+        explicit Tile(TileID id, int x, int y) : dest({ x, y, TILE_SIZE, TILE_SIZE }) {
+            this->id = id;
+        }
+
+        void update(int x, int y) {
+            this->dest.x = x;
+            this->dest.y = y;
+        }
+
+        SDL_Rect *getRect() { return &this->dest; }
+        [[nodiscard]] int getX() const { return this->dest.x; }
+        [[nodiscard]] int getY() const { return this->dest.y; }
+
+        void setID(TileID newID) { this->id = newID; }
+        [[nodiscard]] TileID getID() const { return this->id; }
+    };
+
     struct ExitPoint {
-        int x;                              // x-coordinate of the exit spot
-        int y;                              // y-coordinate of the exit spot
-        int newMap;                         // map that this exit point leads to
-        int newX;                           // the player's new x-coordinates
-        int newY;                           // the player's new y-coordinates
+        const int x;                              // x-coordinate of the exit spot
+        const int y;                              // y-coordinate of the exit spot
+        const int newMap;                   // map that this exit point leads to
+        const int newX;                     // the player's new x-coordinates
+        const int newY;                     // the player's new y-coordinates
     };
 
     const char *name;                       // name of the map
 
-    int width;                              // width of the map
-    int height;                             // height of the map
+    const int width;                        // width of the map
+    const int height;                       // height of the map
 
     static SDL_Texture *free;
     static SDL_Texture *obstruction;

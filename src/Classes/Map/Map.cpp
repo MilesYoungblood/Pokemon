@@ -14,11 +14,8 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return std::any_of(this->trainers.begin(), this->trainers.end(), [&x, &y](const Trainer *npc){ return npc->getX() == x and npc->getY() == y; });
 }
 
-Map::Map(const char *name, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) {
+Map::Map(const char *name, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) : width(width), height(height), exitPoints(exitPoints) {
     this->name = name;
-
-    this->width = width;
-    this->height = height;
 
     // initialize the layout with grass
     this->layout.resize(this->width);
@@ -47,7 +44,6 @@ Map::Map(const char *name, const int width, const int height, const std::vector<
     }
 
     // set any exit points
-    this->exitPoints = exitPoints;
     for (ExitPoint &exitPoint : this->exitPoints) {
         this->layout[exitPoint.x][exitPoint.y].setID(TileID::GRASS);
     }

@@ -27,8 +27,8 @@ protected:
     int numPokemon;                         // current number of Pokémon in the party
     int numItems[Trainer::NUM_ITEM_TYPES];  // number of each type of item
 
-    Pokemon* party[Trainer::MAX_POKEMON];
-    Item* items[Trainer::NUM_ITEM_TYPES][Trainer::MAX_ITEMS];
+    std::vector<Pokemon *> party;
+    std::vector<Item *> items[Trainer::NUM_ITEM_TYPES];
 
 public:
     Trainer();
@@ -50,10 +50,10 @@ public:
     void addItem(int type, Item *toAdd);
     void removeItem(int type, int index);
 
-    void setRestoreItems(const std::vector<Item*> &inventory);
-    void setStatusItems(const std::vector<Item*> &inventory);
-    void setPokeBalls(const std::vector<Item*> &inventory);
-    void setBattleItems(const std::vector<Item*> &inventory);
+    void setRestoreItems(const std::initializer_list<Item*> &inventory);
+    void setStatusItems(const std::initializer_list<Item*> &inventory);
+    void setPokeBalls(const std::initializer_list<Item*> &inventory);
+    void setBattleItems(const std::initializer_list<Item*> &inventory);
 
     void incFaintCount();
 
