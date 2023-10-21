@@ -5,7 +5,7 @@
 #include "Pokemon.h"
 
 Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
-    : name(name), maxHP(hp), currentHP(hp), attack(0), defense(0), spAttack(0), spDefense(0), speed(0), accuracy(0), evasiveness(0), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types(), status(Status::NONE), moveCounter(0) {
+    : name(name), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
     this->types[0] = type;
     this->types[1] = Type::NONE;
 }
@@ -15,32 +15,10 @@ Pokemon::Pokemon(const char *name, const Type type, const int level, const int h
     this->setMoves(moves);
 }
 
-Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate) : types() {
-    this->name = name;
-    this->maxHP = hp;
-    this->currentHP = hp;
-    this->attack = 0;
-    this->spAttack = 0;
-    this->defense = 0;
-    this->spDefense = 0;
-    this->speed = 0;
-    this->accuracy = 0;
-    this->evasiveness = 0;
-
-    this->baseAttack = bAttack;
-    this->baseDefense = bDefense;
-    this->baseSpAttack = bSpAttack;
-    this->baseSpDefense = bSpDefense;
-    this->baseSpeed = bSpeed;
-
-    this->catchRate = catchRate;
-
+Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
+    : name(name), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
     this->types[0] = type1;
     this->types[1] = type2;
-    this->status = Status::NONE;
-
-    this->level = level;
-    this->moveCounter = 0;
 }
 
 Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move *> &moves)
@@ -75,7 +53,7 @@ void Pokemon::lowerStat(int &stat, const int amount) {
     }
 }
 
-double Pokemon::getStatMod(const int stat) {
+auto Pokemon::getStatMod(const int stat) -> double {
     switch (stat) {
         case -6:
             return 0.25;
@@ -108,19 +86,21 @@ double Pokemon::getStatMod(const int stat) {
     }
 }
 
-int Pokemon::numMoves() const { return this->moveCounter; }
+auto Pokemon::numMoves() const -> int { return this->moveCounter; }
 
 void Pokemon::addMove(Move *move) {
-    if (this->moveCounter == Pokemon::MAX_NUM_MOVES)
+    if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
         return;
+    }
 
     this->moveSet.push_back(move);
     ++this->moveCounter;
 }
 
 void Pokemon::deleteMove(const int index) {
-    if (index < 0 or this->moveCounter - 1 < index )
+    if (index < 0 or this->moveCounter - 1 < index ) {
         return;
+    }
 
     delete this->moveSet[index];
     this->moveSet[index] = nullptr;
@@ -236,39 +216,39 @@ void Pokemon::lowerEvasiveness(const int amount) {
     this->lowerStat(this->evasiveness, amount);
 }
 
-int Pokemon::getMaxHp() const { return this->maxHP; }
-int Pokemon::getHP() const { return this->currentHP; }
-int Pokemon::getAttack() const { return this->attack; }
-int Pokemon::getDefense() const { return this->defense; }
-int Pokemon::getSpAttack() const { return this->spAttack; }
-int Pokemon::getSpDefense() const { return this->spDefense; }
-int Pokemon::getSpeed() const { return this->speed; }
-int Pokemon::getAccuracy() const { return this->accuracy; }
-int Pokemon::getEvasiveness() const { return this->evasiveness; }
+auto Pokemon::getMaxHp() const -> int { return this->maxHP; }
+auto Pokemon::getHP() const -> int { return this->currentHP; }
+auto Pokemon::getAttack() const -> int { return this->attack; }
+auto Pokemon::getDefense() const -> int { return this->defense; }
+auto Pokemon::getSpAttack() const -> int { return this->spAttack; }
+auto Pokemon::getSpDefense() const -> int { return this->spDefense; }
+auto Pokemon::getSpeed() const -> int { return this->speed; }
+auto Pokemon::getAccuracy() const -> int { return this->accuracy; }
+auto Pokemon::getEvasiveness() const -> int { return this->evasiveness; }
 
-int Pokemon::getBaseAttack() const {
+auto Pokemon::getBaseAttack() const -> int {
     return this->baseAttack * static_cast<int>(lround(getStatMod(this->attack)));
 }
 
-int Pokemon::getBaseDefense() const {
+auto Pokemon::getBaseDefense() const -> int {
     return this->baseDefense * static_cast<int>(lround(getStatMod(this->defense)));
 }
 
-int Pokemon::getBaseSpAttack() const {
+auto Pokemon::getBaseSpAttack() const -> int {
     return this->baseSpAttack * static_cast<int>(lround(getStatMod(this->spAttack)));
 }
 
-int Pokemon::getBaseSpDefense() const {
+auto Pokemon::getBaseSpDefense() const -> int {
     return this->baseSpDefense * static_cast<int>(lround(getStatMod(this->spDefense)));
 }
 
-int Pokemon::getBaseSpeed() const {
+auto Pokemon::getBaseSpeed() const -> int {
     return this->baseSpeed * static_cast<int>(lround(getStatMod(this->speed)));
 }
 
-std::string Pokemon::getName() const { return this->name; }
+auto Pokemon::getName() const -> std::string { return this->name; }
 
-Type Pokemon::getType(const bool type_1) const { return type_1 ? this->types[0] : this->types[1]; }
+auto Pokemon::getType(const bool type_1) const -> Type { return type_1 ? this->types[0] : this->types[1]; }
 
 void Pokemon::setStatus(const Status newStatus) {
     this->status = newStatus;
@@ -288,9 +268,9 @@ void Pokemon::setStatus(const Status newStatus) {
         this->speed /= 2;
     }
 }
-Status Pokemon::getStatus() const { return this->status; }
+auto Pokemon::getStatus() const -> Status { return this->status; }
 
-const char * Pokemon::getStatusAsString() const {
+auto Pokemon::getStatusAsString() const -> const char * {
     switch (this->status) {
         case Status::PARALYSIS:
             return "paralysis";
@@ -312,16 +292,16 @@ const char * Pokemon::getStatusAsString() const {
     }
 }
 
-int Pokemon::getLevel() const { return this->level; }
-int Pokemon::getCatchRate() const { return this->catchRate; }
+auto Pokemon::getLevel() const -> int { return this->level; }
+auto Pokemon::getCatchRate() const -> int { return this->catchRate; }
 
-bool Pokemon::isFainted() const { return this->currentHP == 0; }
-bool Pokemon::isFullHP() const { return this->currentHP == this->maxHP; }
+auto Pokemon::isFainted() const -> bool { return this->currentHP == 0; }
+auto Pokemon::isFullHP() const -> bool { return this->currentHP == this->maxHP; }
 
-bool Pokemon::isFasterThan(const Pokemon &pokemon) const { return this->baseSpeed > pokemon.baseSpeed; }
-bool Pokemon::isAfflicted() const { return this->status != Status::NONE; }
+auto Pokemon::isFasterThan(const Pokemon &pokemon) const -> bool { return this->baseSpeed > pokemon.baseSpeed; }
+auto Pokemon::isAfflicted() const -> bool { return this->status != Status::NONE; }
 
-bool Pokemon::canAttack() const {
+auto Pokemon::canAttack() const -> bool {
     for (int i = 0; i < this->moveCounter; ++i) {
         if (this->moveSet[i] == nullptr) {
             return false;
@@ -337,21 +317,21 @@ void Pokemon::hpFullMessage() const {
     printMessage(this->getName() + "'s HP is full!\n");
 }
 
-Move& Pokemon::operator[](const int index) {
+auto Pokemon::operator[](const int index) -> Move& {
     return *this->moveSet[index];
 }
-const Move& Pokemon::operator[](const int index) const {
+auto Pokemon::operator[](const int index) const -> const Move& {
     return *this->moveSet[index];
 }
 
-std::ostream& operator<<(std::ostream &out, const Pokemon &pokemon) {
+auto operator<<(std::ostream &out, const Pokemon &pokemon) -> std::ostream& {
     out << pokemon.name;
     return out;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) {
+void Move::action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) {
     // damage will be negative if the attack misses
     if (damage > 0) {
         defendingPokemon.takeDamage(damage);
@@ -360,7 +340,7 @@ void Move::action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int dama
     --this->pp;
 }
 
-void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) {
+void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) {
     printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     // damage will be negative if the attack misses

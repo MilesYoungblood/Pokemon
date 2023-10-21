@@ -13,11 +13,11 @@ private:
 public:
     BattleItem(const char *name, int quantity, Stat stat);
 
-    [[nodiscard]] Stat getStat() const override;
+    [[nodiscard]] auto getStat() const -> Stat override;
 
     void restore(Pokemon &pokemon) override;
     void restore(Move &move) override;
     void restoreMessage(const Pokemon &pokemon) override;
     void restoreMessage(const Move &move) override;
-    bool catchPokemon(const Pokemon &pokemon, bool attempts[]) override;
+    auto catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) -> bool override;
 };

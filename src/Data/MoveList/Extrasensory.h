@@ -7,16 +7,17 @@
 struct Extrasensory : public Move {
     Extrasensory() : Move("Extrasensory", 15, 90, 100, Type::PSYCHIC, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::EXTRASENSORY;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
-        if (damage > 0)
+        if (damage > 0) {
             defendingPokemon.takeDamage(damage);
+        }
 
-        --this->pp;
+        this->use();
 
         skip = generateInteger(1, 10) == 1;
     }

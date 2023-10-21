@@ -25,7 +25,7 @@
 struct DragonPulse : public Move {
     DragonPulse() : Move("Dragon Pulse", 10, 85, 100, Type::DRAGON, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::DRAGON_PULSE;
     }
 };
@@ -34,7 +34,7 @@ struct DragonPulse : public Move {
 struct SolarBeam : public Move {
     SolarBeam() : Move("Solar Beam", 10, 120, 100, Type::GRASS, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::SOLAR_BEAM;
     }
 };
@@ -43,7 +43,7 @@ struct SolarBeam : public Move {
 struct QuickAttack : public Move {
     QuickAttack() : Move("Quick Attack", 30, 40, 100, Type::NORMAL, Category::PHYSICAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::QUICK_ATTACK;
     }
 };

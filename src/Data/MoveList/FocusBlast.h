@@ -5,29 +5,32 @@
 #pragma once
 
 struct FocusBlast : public Move {
+private:
     bool loweredState = false;
 
+public:
     FocusBlast() : Move("Focus Blast", 5, 120, 70, Type::FIGHTING, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::FOCUS_BLAST;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
 
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
 
-            if (this->loweredState)
+            if (this->loweredState) {
                 defendingPokemon.lowerSpDefense(1);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Focus Blast! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

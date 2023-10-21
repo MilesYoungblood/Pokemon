@@ -7,16 +7,17 @@
 struct DarkPulse : public Move {
     DarkPulse() : Move("Dark Pulse", 15, 80, 100, Type::DARK, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::DARK_PULSE;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
-        if (damage > 0)
+        if (damage > 0) {
             defendingPokemon.takeDamage(damage);
+        }
 
-        --this->pp;
+        this->use();
 
         skip = generateInteger(1, 5) == 1;
     }

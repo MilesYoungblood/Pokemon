@@ -5,28 +5,31 @@
 #pragma once
 
 struct Thunder : public Move {
+private:
     bool paralysisState = false;
 
+public:
     Thunder() : Move("Thunder", 10, 110, 70, Type::ELECTRIC, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::THUNDER;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
 
             this->paralysisState = generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
-            if (this->paralysisState)
+            if (this->paralysisState) {
                 defendingPokemon.setStatus(Status::PARALYSIS);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Thunder! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

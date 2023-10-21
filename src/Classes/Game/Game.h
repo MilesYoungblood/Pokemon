@@ -20,6 +20,8 @@ private:
     static void loadData();
     static void eraseData();
 
+    static void handleOverworldKeyDown();
+
 public:
     Game();
     ~Game();

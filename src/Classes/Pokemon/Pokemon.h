@@ -183,14 +183,14 @@ private:
     const char *name;
 
     int maxHP;
-    int currentHP;
-    int attack;
-    int defense;
-    int spAttack;
-    int spDefense;
-    int speed;
-    int accuracy;
-    int evasiveness;
+    int currentHP{0};
+    int attack{0};
+    int defense{0};
+    int spAttack{0};
+    int spDefense{0};
+    int speed{0};
+    int accuracy{0};
+    int evasiveness{0};
 
     int baseAttack;
     int baseDefense;
@@ -203,9 +203,9 @@ private:
 
     std::vector<Move *> moveSet;
     std::array<Type, Pokemon::MAX_NUM_TYPES> types;
-    Status status;
+    Status status{Status::NONE};
     
-    int moveCounter;
+    int moveCounter{0};
 
     static void raiseStat(int &stat, int amount);
     static void lowerStat(int &stat, int amount);

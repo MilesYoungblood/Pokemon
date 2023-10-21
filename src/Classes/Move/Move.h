@@ -40,7 +40,7 @@ enum class Type {
 class Pokemon;
 
 class Move {
-protected:
+private:
     const char *name;
 
     int pp;
@@ -53,8 +53,10 @@ protected:
 
 public:
     Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
-    Move(const Move &moveToCopy) = delete;
-    auto operator=(const Move &rhs) -> Move& = delete;
+    Move(const Move &) = delete;
+    auto operator=(const Move &) -> Move& = delete;
+    Move(const Move &&) = delete;
+    auto operator=(const Move &&) -> Move& = delete;
     virtual ~Move() = default;
 
     virtual auto getID() -> MoveID = 0;
@@ -64,6 +66,7 @@ public:
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
+    void use();
     void setPP(int newPP);
     [[nodiscard]] auto getPP() const -> int;
 

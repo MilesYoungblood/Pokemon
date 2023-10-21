@@ -7,7 +7,7 @@
 #include "PhysicalTypes.h"
 #include "SpecialTypes.h"
 
-inline double getTypeEffective(const Move &move, const Pokemon &pokemon) {
+inline auto getTypeEffective(const Move &move, const Pokemon &pokemon) -> double {
     switch (move.getType()) {
         case Type::NORMAL:
             return checkNormal(pokemon);

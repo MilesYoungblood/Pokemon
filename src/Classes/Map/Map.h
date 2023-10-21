@@ -25,14 +25,9 @@ private:
 
     public:
         Tile() = default;
-        explicit Tile(TileID id, int x, int y) : dest({ x, y, TILE_SIZE, TILE_SIZE }) {
-            this->id = id;
-        }
+        Tile(TileID id, int x, int y) : id(id), dest({ x, y, TILE_SIZE, TILE_SIZE }) {}
 
-        void update(int x, int y) {
-            this->dest.x = x;
-            this->dest.y = y;
-        }
+        void update(int x, int y);
 
         [[nodiscard]] auto getRect() const -> SDL_Rect { return this->dest; }
         [[nodiscard]] auto getX() const -> int { return this->dest.x; }
@@ -74,6 +69,8 @@ public:
     Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
     Map(const Map &) = delete;
     auto operator=(const Map &) -> Map& = delete;
+    Map(const Map &&) = delete;
+    auto operator=(const Map &&) -> Map& = delete;
     ~Map();
 
     [[nodiscard]] auto isObstructionHere(int x, int y) const -> bool;

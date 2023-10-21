@@ -25,14 +25,16 @@ private:
         const size_t subArrayTwo = right - mid;
 
         // Create temp arrays
-        Comparable leftArray[subArrayOne];
-        Comparable rightArray[subArrayTwo];
+        std::vector<Comparable> leftArray(subArrayOne);
+        std::vector<Comparable> rightArray(subArrayTwo);
 
         // Copy data to temp arrays leftArray[] and rightArray[]
-        for (int i = 0; i < subArrayOne; ++i)
+        for (int i = 0; i < subArrayOne; ++i) {
             leftArray[i] = array[left + i];
-        for (int i = 0; i < subArrayTwo; ++i)
+        }
+        for (int i = 0; i < subArrayTwo; ++i) {
             rightArray[i] = array[mid + i + 1];
+        }
 
         size_t indexOfSubArrayOne = 0;
         size_t indexOfSubArrayTwo = 0;
@@ -94,35 +96,36 @@ inline auto isVowel(char ltr) -> bool {
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
 inline auto chooseOption(int &option, const int upper) -> bool {
-    retry:
-    switch (static_cast<char>(getch())) {
-        case 'w':
-            if (option - 1 >= 0) {
-                --option;
-                return false;
-            }
-            else {
-                goto retry;
-            }
+    while (true) {
+        switch (static_cast<char>(getch())) {
+            case 'w':
+                if (option - 1 >= 0) {
+                    --option;
+                    return false;
+                }
+                else {
+                    continue;
+                }
 
-        case 's':
-            if (option + 1 <= upper) {
-                ++option;
-                return false;
-            }
-            else {
-                goto retry;
-            }
+            case 's':
+                if (option + 1 <= upper) {
+                    ++option;
+                    return false;
+                }
+                else {
+                    continue;
+                }
 
-        case Keys::ENTER:
-            return true;
+            case Keys::ENTER:
+                return true;
 
-        case Keys::ESC:
-            option = upper;
-            return true;
+            case Keys::ESC:
+                option = upper;
+                return true;
 
-        default:
-            goto retry;
+            default:
+                continue;
+        }
     }
 }
 
@@ -146,14 +149,15 @@ inline auto generateInteger(const int from, const int to) -> int {
 // prints out a c-string and sleeps in between prints
 inline void printMessage(const char *message, const int interval = 25) {
     bool sleep = true;
-    size_t len = strlen(message);
-    for (size_t i = 0; i < len; ++i) {
+    const std::string_view str = message;
+
+    for (const char ltr : str) {
         if (sleep and (_kbhit() != 0)) {
             if (static_cast<char>(_getch()) == Keys::ENTER) {
                 sleep = false;
             }
         }
-        std::cout << message[i];
+        std::cout << ltr;
         if (sleep) {
             std::this_thread::sleep_for(std::chrono::milliseconds(interval));
         }
@@ -163,7 +167,7 @@ inline void printMessage(const char *message, const int interval = 25) {
 // prints out a string and sleeps in between prints
 inline void printMessage(const std::string &message, const int interval = 25) {
     bool sleep = true;
-    for (char ltr : message) {
+    for (const char ltr : message) {
         if (sleep and (_kbhit() != 0)) {
             if (static_cast<char>(_getch()) == Keys::ENTER) {
                 sleep = false;

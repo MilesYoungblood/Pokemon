@@ -5,28 +5,31 @@
 #pragma once
 
 struct IceBeam : public Move {
+private:
     bool freezeState = false;
 
+public:
     IceBeam() : Move("Ice Beam", 10, 90, 100, Type::ICE, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::ICE_BEAM;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
 
             this->freezeState = generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
-            if (this->freezeState)
+            if (this->freezeState) {
                 defendingPokemon.setStatus(Status::FREEZE);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Ice Beam! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

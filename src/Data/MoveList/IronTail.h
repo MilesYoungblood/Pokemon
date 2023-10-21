@@ -5,15 +5,17 @@
 #pragma once
 
 struct IronTail : public Move {
+private:
     bool loweredState = false;
 
+public:
     IronTail() : Move("Iron Tail", 15, 100, 75, Type::STEEL, Category::PHYSICAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::IRON_TAIL;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
@@ -22,14 +24,15 @@ struct IronTail : public Move {
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
 
             //FIXME account for limit reached
-            if (this->loweredState)
+            if (this->loweredState) {
                 defendingPokemon.lowerDefense(1);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Iron Tail! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

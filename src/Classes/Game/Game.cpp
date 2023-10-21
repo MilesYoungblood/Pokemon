@@ -9,42 +9,44 @@ constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
-static SDL_Window *gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
-static SDL_Renderer *gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
-static SDL_Event event;
-static Mix_Chunk *music = nullptr;
+namespace {
+    SDL_Window *gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    SDL_Renderer *gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
+    SDL_Event event;
+    Mix_Chunk *music = nullptr;
 
-[[maybe_unused]] static TextureManager textureManager(gameRenderer);
+    [[maybe_unused]] TextureManager textureManager(gameRenderer);
 
-static bool isRunning = true;                           // determines whether the game is running
+    bool isRunning = true;                           // determines whether the game is running
 
-static bool canMove = true;                             // determines whether the player can move
+    bool canMove = true;                             // determines whether the player can move
 
-static bool moveUp = false;                             // becomes true when the user presses 'w'
-static bool moveDown = false;                           // becomes true when the user presses 's'
-static bool moveLeft = false;                           // becomes true when the user presses 'a'
-static bool moveRight = false;                          // becomes true when the user presses 'd'
+    bool moveUp = false;                             // becomes true when the user presses 'w'
+    bool moveDown = false;                           // becomes true when the user presses 's'
+    bool moveLeft = false;                           // becomes true when the user presses 'a'
+    bool moveRight = false;                          // becomes true when the user presses 'd'
 
-static bool keepMovingUp = false;                       // ultimately, determines when to stop moving up
-static bool keepMovingDown = false;                     // ultimately, determines when to stop moving down
-static bool keepMovingLeft = false;                     // ultimately, determines when to stop moving left
-static bool keepMovingRight = false;                    // ultimately, determines when to stop moving right
+    bool keepMovingUp = false;                       // ultimately, determines when to stop moving up
+    bool keepMovingDown = false;                     // ultimately, determines when to stop moving down
+    bool keepMovingLeft = false;                     // ultimately, determines when to stop moving left
+    bool keepMovingRight = false;                    // ultimately, determines when to stop moving right
 
-static bool interact = false;                           // signals when the player is trying to interact with something
+    bool interact = false;                           // signals when the player is trying to interact with something
 
-static int walkCounter = 0;                             // measures how many screen pixels the player has moved
+    int walkCounter = 0;                             // measures how many screen pixels the player has moved
 
-static std::vector<int> walkCounters;                   // measures how many screen pixels a trainer has moved
-static std::vector<bool> lockOn;                        // determines whether a trainer can move spontaneously
+    std::vector<int> walkCounters;                   // measures how many screen pixels a trainer has moved
+    std::vector<bool> lockOn;                        // determines whether a trainer can move spontaneously
 
-static Player *player = nullptr;
+    Player *player = nullptr;
 
-static int functionState = 0;                           // determines which set of functions to use
+    int functionState = 0;                           // determines which set of functions to use
 
-constexpr static int NUM_STATES = 2;
-const static std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
-const static std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
-const static std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
+    constexpr int NUM_STATES = 2;
+    const std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
+    const std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
+    const std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
+}
 
 Game::Game() {
     if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
@@ -52,7 +54,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error initializing subsystems: " << SDL_GetError() << '\n';
-        exit(1);
+        abort();
     }
 
     if (gameWindow != nullptr) {
@@ -61,7 +63,7 @@ Game::Game() {
     else {
         std::cerr << "Error creating window: " << SDL_GetError() << '\n';
         SDL_Quit();
-        exit(1);
+        abort();
     }
 
     if (gameRenderer != nullptr) {
@@ -71,7 +73,7 @@ Game::Game() {
         std::cerr << "Error creating renderer: " << SDL_GetError() << '\n';
         SDL_DestroyWindow(gameWindow);
         SDL_Quit();
-        exit(1);
+        abort();
     }
 
     SDL_Surface *pokeball = IMG_Load((PROJECT_PATH + R"(\sprites\pokeball.png)").c_str());
@@ -80,7 +82,7 @@ Game::Game() {
         SDL_DestroyRenderer(gameRenderer);
         SDL_DestroyWindow(gameWindow);
         SDL_Quit();
-        exit(1);
+        abort();
     }
 
     SDL_SetWindowIcon(gameWindow, pokeball);
@@ -94,7 +96,7 @@ Game::Game() {
         SDL_DestroyRenderer(gameRenderer);
         SDL_DestroyWindow(gameWindow);
         SDL_Quit();
-        exit(1);
+        abort();
     }
 
     music = Mix_LoadWAV((PROJECT_PATH + R"(\music\TrainerBattleMusic.wav)").c_str());
@@ -104,7 +106,7 @@ Game::Game() {
         SDL_DestroyRenderer(gameRenderer);
         SDL_DestroyWindow(gameWindow);
         SDL_Quit();
-        exit(1);
+        abort();
     }
     Mix_PlayChannel(-1, music, -1);
 
@@ -114,7 +116,6 @@ Game::Game() {
     player->setStatusItems({ new ParalyzeHeal(5), new BurnHeal(5), new IceHeal(5), new Antidote(5), new Awakening(5) });
     player->setPokeBalls({ new PokeBall(5), new GreatBall(5), new UltraBall(5), new MasterBall(1) });
     player->setBattleItems({ new XAttack(5), new XDefense(5), new XSpAttack(5), new XSpDefense(5), new XSpeed(5), new XAccuracy(5) });
-
 
     Camera::lockOnPlayer(player, [](int dist, int direction) -> void { currentMap->updateMap(dist, direction); });
 
@@ -250,6 +251,60 @@ void Game::eraseData() {
     std::filesystem::remove(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
 }
 
+void Game::handleOverworldKeyDown() {
+    switch (event.key.keysym.scancode) {
+        case SDL_SCANCODE_W:
+            if (canMove) {
+                if (not player->isFacingNorth()) {
+                    player->faceNorth();
+                }
+                else {
+                    moveUp = true;
+                    keepMovingUp = true;
+                }
+            }
+            break;
+        case SDL_SCANCODE_A:
+            if (canMove) {
+                if (not player->isFacingWest()) {
+                    player->faceWest();
+                }
+                else {
+                    moveLeft = true;
+                    keepMovingLeft = true;
+                }
+            }
+            break;
+        case SDL_SCANCODE_S:
+            if (canMove) {
+                if (not player->isFacingSouth()) {
+                    player->faceSouth();
+                }
+                else {
+                    moveDown = true;
+                    keepMovingDown = true;
+                }
+            }
+            break;
+        case SDL_SCANCODE_D:
+            if (canMove) {
+                if (not player->isFacingEast()) {
+                    player->faceEast();
+                }
+                else {
+                    moveRight = true;
+                    keepMovingRight = true;
+                }
+            }
+            break;
+        case SDL_SCANCODE_RETURN:
+            interact = true;
+            break;
+        default:
+            break;
+    }
+}
+
 void Game::handleOverworldEvents() {
     switch (event.type) {
         case SDL_QUIT:
@@ -259,59 +314,9 @@ void Game::handleOverworldEvents() {
         case SDL_KEYDOWN:
             // do not accept keyboard input if your sprite is still moving
             if (keepMovingUp or keepMovingDown or keepMovingLeft or keepMovingRight) {
-                break;
+                return;
             }
-            switch (event.key.keysym.scancode) {
-                case SDL_SCANCODE_W:
-                    if (canMove) {
-                        if (not player->isFacingNorth()) {
-                            player->faceNorth();
-                        }
-                        else {
-                            moveUp = true;
-                            keepMovingUp = true;
-                        }
-                    }
-                    break;
-                case SDL_SCANCODE_A:
-                    if (canMove) {
-                        if (not player->isFacingWest()) {
-                            player->faceWest();
-                        }
-                        else {
-                            moveLeft = true;
-                            keepMovingLeft = true;
-                        }
-                    }
-                    break;
-                case SDL_SCANCODE_S:
-                    if (canMove) {
-                        if (not player->isFacingSouth()) {
-                            player->faceSouth();
-                        }
-                        else {
-                            moveDown = true;
-                            keepMovingDown = true;
-                        }
-                    }
-                    break;
-                case SDL_SCANCODE_D:
-                    if (canMove) {
-                        if (not player->isFacingEast()) {
-                            player->faceEast();
-                        }
-                        else {
-                            moveRight = true;
-                            keepMovingRight = true;
-                        }
-                    }
-                    break;
-                case SDL_SCANCODE_RETURN:
-                    interact = true;
-                    break;
-                default:
-                    break;
-            }
+            Game::handleOverworldKeyDown();
             break;
 
         case SDL_KEYUP:

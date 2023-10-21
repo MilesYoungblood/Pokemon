@@ -4,15 +4,16 @@
 
 #include "Pokeball.h"
 
-PokeBall::PokeBall(const char *name, const int quantity, const double catchRate) : Item(name, quantity) { this->catchRate = catchRate; }
+PokeBall::PokeBall(const char *name, const int quantity, const double catchRate) : Item(name, quantity), catchRate(catchRate) {}
 
 PokeBall::PokeBall(int n) : PokeBall("Poke Ball", n, 1.0) {}
 
 void PokeBall::useMessage() {
     printMessage("You threw a");
 
-    if (isVowel(this->name[0]))
+    if (isVowel(this->getName()[0])) {
         printMessage('n');
+    }
 
     printMessage(' ' + this->getName() + "! ");
 }
@@ -25,7 +26,7 @@ void PokeBall::restoreMessage(const Pokemon &pokemon) {}
 
 void PokeBall::restoreMessage(const Move &move) {}
 
-bool PokeBall::catchPokemon(const Pokemon &pokemon, bool attempts[]) {
+auto PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) -> bool {
     // using gen III-IV catch mechanics
 
     double a = 3 * pokemon.getMaxHp() - 2 * pokemon.getHP();
@@ -56,7 +57,7 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, bool attempts[]) {
 
     const double b = 1048560 / sqrt(sqrt(16711680 / a));
     for (int i = 0; i < 4; ++i) {
-        attempts[i] = generateInteger(0, 65535) < b;
+        attempts.at(i) = generateInteger(0, 65535) < b;
     }
 
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];

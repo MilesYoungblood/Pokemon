@@ -5,23 +5,20 @@
 #include "Player.h"
 
 Player *Player::instancePtr = nullptr;
-Pokemon *Player::pc[12][30];
+std::array<std::array<Pokemon *, 30>, 12> Player::pc;
 
 Player::Player() : Trainer(6, 8) {
-    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)");
-    this->backModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)");
-    this->leftModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)");
-    this->rightModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)");
+    this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
+    this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
+    this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
+    this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
 
-    this->currentTexture = this->frontModel;
-
-    this->destRect.x = this->x * TILE_SIZE;
-    this->destRect.y = this->y * TILE_SIZE;
+    this->setCurrentModel(this->getFrontModel());
 
     std::cout << "Player created!\n\n";
 }
 
-Player *Player::getPlayer() {
+auto Player::getPlayer() -> Player * {
     if (Player::instancePtr == nullptr) {
         Player::instancePtr = new Player();
     }
@@ -44,9 +41,9 @@ void Player::addToPC(Pokemon *toAdd) {
 }
 
 Player::operator bool() const {
-    return this->numFainted < this->numPokemon;
+    return this->getFaintCount() < this->partySize();
 }
 
-bool Player::canFight() const {
-    return this->numFainted < this->numPokemon;
+auto Player::canFight() const -> bool {
+    return this->getFaintCount() < this->partySize();
 }

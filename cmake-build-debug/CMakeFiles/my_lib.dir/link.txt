@@ -1,0 +1,2 @@
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ar.exe qc libmy_lib.a CMakeFiles/my_lib.dir/test.ixx.obj
+C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\ranlib.exe libmy_lib.a

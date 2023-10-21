@@ -203,3 +203,8 @@ void Map::resetMap() {
         trainer->resetPos();
     }
 }
+
+void Map::Tile::update(int x, int y) {
+    this->dest.x = x;
+    this->dest.y = y;
+}

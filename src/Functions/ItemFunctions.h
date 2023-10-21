@@ -12,10 +12,12 @@ inline void failMessage() {
 }
 
 inline void displayBag(int arrow, bool &print) {
-    if (print)
+    if (print) {
         printMessage("Choose an option:\n");
-    else
+    }
+    else {
         std::cout << "Choose an option:\n";
+    }
 
     arrow == 0 ? std::cout << "   ->   HP/PP restore\n" : std::cout << "\tHP/PP restore\n";
     arrow == 1 ? std::cout << "   ->   Status restore\n" : std::cout << "\tStatus restore\n";
@@ -28,10 +30,12 @@ inline void displayBag(int arrow, bool &print) {
 }
 
 inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &print) {
-    if (print)
+    if (print) {
         printMessage("Choose an item:\n");
-    else
+    }
+    else {
         std::cout << "Choose an item:\n";
+    }
 
     const int starting = 10 * (arrow / 10);
     const int numItems = trainer->getNumItems(iType);
@@ -57,7 +61,7 @@ inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &pri
     print = false;
 }
 
-inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
+inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> attempts) {
     if (attempts[0]) {
         printMessage("1...");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -96,45 +100,57 @@ inline void catchPokemonMessage(const Pokemon &pokemon, const bool attempts[]) {
 inline void boostStat(const Item *itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
     switch (itemToUse->getStat()) {
         case Stat::ATTACK:
-            if (pokemonToBoost.getAttack() < 6)
+            if (pokemonToBoost.getAttack() < 6) {
                 pokemonToBoost.raiseAttack(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         case Stat::DEFENSE:
-            if (pokemonToBoost.getDefense() < 6)
+            if (pokemonToBoost.getDefense() < 6) {
                 pokemonToBoost.raiseDefense(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         case Stat::SP_ATTACK:
-            if (pokemonToBoost.getSpAttack() < 6)
+            if (pokemonToBoost.getSpAttack() < 6) {
                 pokemonToBoost.raiseSpAttack(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         case Stat::SP_DEFENSE:
-            if (pokemonToBoost.getSpDefense() < 6)
+            if (pokemonToBoost.getSpDefense() < 6) {
                 pokemonToBoost.raiseSpDefense(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         case Stat::SPEED:
-            if (pokemonToBoost.getSpeed() < 6)
+            if (pokemonToBoost.getSpeed() < 6) {
                 pokemonToBoost.raiseSpeed(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         case Stat::ACCURACY:
-            if (pokemonToBoost.getAccuracy() < 6)
+            if (pokemonToBoost.getAccuracy() < 6) {
                 pokemonToBoost.raiseAccuracy(amountToBoost);
-            else
+            }
+            else {
                 limitReached = true;
+            }
             break;
 
         default:
@@ -143,7 +159,7 @@ inline void boostStat(const Item *itemToUse, Pokemon &pokemonToBoost, int amount
 }
 
 inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoosted, bool limit) {
-    const char * string;
+    std::string string;
 
     switch (statBoosted) {
         case Stat::ATTACK:
@@ -176,16 +192,18 @@ inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoo
 
     if (not limit) {
         printMessage(pokemon.getName() + "'s " + string + " rose");
-        if (amountBoosted == 2)
+        if (amountBoosted == 2) {
             printMessage(" sharply");
-
-        else if (amountBoosted > 2)
+        }
+        else if (amountBoosted > 2) {
             printMessage(" drastically");
+        }
 
         printMessage("!\n");
     }
-    else
+    else {
         printMessage(pokemon.getName() + "'s " + string + " can't go any higher!\n");
+    }
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }

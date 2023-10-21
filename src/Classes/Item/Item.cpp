@@ -4,18 +4,10 @@
 
 #include "Item.h"
 
-Item::Item() {
-    this->name = "N/A";
-    this->quantity = 0;
-}
-
-Item::Item(const char *name, const int n) {
-    this->name = name;
-    this->quantity = n;
-}
+Item::Item(const char *name, const int n) : name(name), quantity(n) {}
 
 void Item::setQuantity(const int n) { this->quantity = n; }
-int Item::getQuantity() const { return this->quantity; }
+auto Item::getQuantity() const -> int { return this->quantity; }
 
 void Item::use() {
     if (this->quantity > 0) {
@@ -26,28 +18,32 @@ void Item::use() {
 void Item::useMessage() {
     printMessage("You used a");
 
-    if (isVowel(this->name[0]))
+    if (isVowel(this->name[0])) {
         printMessage('n');
+    }
 
     printMessage(' ' + this->getName() + "! ");
 }
 
-int Item::getAmount() const {
+auto Item::getAmount() const -> int {
     return 0;
 }
-RestoreType Item::getRestoreType() const {
+
+auto Item::getRestoreType() const -> RestoreType {
     return RestoreType::NONE;
 }
-Status Item::getStatus() const {
+
+auto Item::getStatus() const -> Status {
     return Status::NONE;
 }
-Stat Item::getStat() const {
+
+auto Item::getStat() const -> Stat {
     return Stat::NONE;
 }
 
-std::string Item::getName() const { return this->name; }
+auto Item::getName() const -> std::string { return this->name; }
 
-std::ostream& operator<<(std::ostream &out, const Item &rhs) {
+auto operator<<(std::ostream &out, const Item &rhs) -> std::ostream& {
     out << rhs.name;
     return out;
 }

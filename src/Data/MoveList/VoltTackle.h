@@ -5,15 +5,17 @@
 #pragma once
 
 struct VoltTackle : public Move {
+private:
     bool paralysisState = false;
 
+public:
     VoltTackle() : Move("Volt Tackle", 15, 120, 100, Type::ELECTRIC, Category::PHYSICAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::VOLT_TACKLE;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
@@ -25,14 +27,15 @@ struct VoltTackle : public Move {
             }
 
             this->paralysisState = generateInteger(1, 10) == 1 and defendingPokemon.getStatus() == Status::NONE;
-            if (this->paralysisState)
+            if (this->paralysisState) {
                 defendingPokemon.setStatus(Status::PARALYSIS);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Volt Tackle! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

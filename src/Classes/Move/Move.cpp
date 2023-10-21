@@ -18,6 +18,12 @@ int Move::getDamage() const {
     return generateInteger(1, 100) <= this->accuracy ? this->power : -1;
 }
 
+void Move::use() {
+    if (this->pp > 0) {
+        --this->pp;
+    }
+}
+
 void Move::setPP(const int newPP) {
     this->pp = newPP;
 
@@ -30,6 +36,7 @@ void Move::setPP(const int newPP) {
         this->pp = this->maxPp;
     }
 }
+
 int Move::getPP() const {
     return this->pp;
 }

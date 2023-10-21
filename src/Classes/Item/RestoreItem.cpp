@@ -4,14 +4,11 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(const char *name, const int quantity, const int amount, const RestoreType restoreType) : Item(name, quantity){
-    this->amount = amount;
-    this->restoreType = restoreType;
-}
+RestoreItem::RestoreItem(const char *name, const int quantity, const int amount, const RestoreType restoreType) : Item(name, quantity), amount(amount), restoreType(restoreType) {}
 
-int RestoreItem::getAmount() const { return this->amount; }
+auto RestoreItem::getAmount() const -> int { return this->amount; }
 
-RestoreType RestoreItem::getRestoreType() const { return this->restoreType; }
+auto RestoreItem::getRestoreType() const -> RestoreType { return this->restoreType; }
 
 void RestoreItem::restore(Pokemon &pokemon) {
     if (this->restoreType == RestoreType::HP) {
@@ -34,4 +31,4 @@ void RestoreItem::restoreMessage(const Move &move) {
     printMessage(move.getName() + " recovered " + std::to_string(this->amount) + " PP!\n");
 }
 
-bool RestoreItem::catchPokemon(const Pokemon &pokemon, bool attempts[]) { return false; }
+auto RestoreItem::catchPokemon(const Pokemon & /*pokemon*/, std::array<bool, 4> & /*attempts*/) -> bool { return false; }

@@ -37,35 +37,39 @@ enum class RestoreType { NONE, HP, PP };
 enum class Stat { NONE, ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY };
 
 class Item {
-protected:
-    const char *name;
-    int quantity;
+private:
+    const char *name{"N/A"};
+    int quantity{0};
 
 public:
-    Item();
+    Item() = default;
     Item(const char *name, int n);
+    Item(const Item &) = delete;
+    auto operator=(const Item &) -> Item& = delete;
+    Item(const Item &&) = delete;
+    auto operator=(const Item &&) -> Item& = delete;
     virtual ~Item() = default;
 
     void setQuantity(int newQuantity);
-    [[nodiscard]] int getQuantity() const;
+    [[nodiscard]] auto getQuantity() const -> int;
 
     void use();
     virtual void useMessage();
 
-    [[nodiscard]] virtual int getAmount() const;
-    [[nodiscard]] virtual RestoreType getRestoreType() const;
-    [[nodiscard]] virtual Status getStatus() const;
-    [[nodiscard]] virtual Stat getStat() const;
+    [[nodiscard]] virtual auto getAmount() const -> int;
+    [[nodiscard]] virtual auto getRestoreType() const -> RestoreType;
+    [[nodiscard]] virtual auto getStatus() const -> Status;
+    [[nodiscard]] virtual auto getStat() const -> Stat;
 
     virtual void restore(Pokemon &pokemon) = 0;
     virtual void restore(Move &move) = 0;
     virtual void restoreMessage(const Pokemon &pokemon) = 0;
     virtual void restoreMessage(const Move &move) = 0;
-    virtual bool catchPokemon(const Pokemon &pokemon, bool attempts[]) = 0;
+    virtual auto catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) -> bool = 0;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] auto getName() const -> std::string;
 
     explicit operator bool() const;
 
-    friend std::ostream& operator<<(std::ostream &out, const Item &rhs);
+    friend auto operator<<(std::ostream &out, const Item &rhs) -> std::ostream&;
 };

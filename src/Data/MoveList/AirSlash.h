@@ -7,16 +7,17 @@
 struct AirSlash : public Move {
     AirSlash() : Move("Air Slash", 15, 75, 95, Type::FLYING, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::AIR_SLASH;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses
-        if (damage > 0)
+        if (damage > 0) {
             defendingPokemon.takeDamage(damage);
+        }
 
-        --this->pp;
+        this->use();
 
         skip = generateInteger(1, 100) <= 30;
     }

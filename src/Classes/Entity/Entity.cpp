@@ -4,27 +4,9 @@
 
 #include "Entity.h"
 
-Entity::Entity() : destRect({ 0, 0, TILE_SIZE, TILE_SIZE }) {
-    this->x = 0;
-    this->y = 0;
-    this->vision = 1;
-    this->direction = Direction::SOUTH;
+Entity::Entity() : destRect({ 0, 0, TILE_SIZE, TILE_SIZE }) {}
 
-    this->frontModel = nullptr;
-    this->backModel = nullptr;
-    this->leftModel = nullptr;
-    this->rightModel = nullptr;
-
-    this->currentTexture = nullptr;
-}
-
-Entity::Entity(const int x, const int y) : Entity() {
-    this->x = x;
-    this->y = y;
-
-    this->destRect.x = this->x * TILE_SIZE;
-    this->destRect.y = this->y * TILE_SIZE;
-}
+Entity::Entity(const int x, const int y) : x(x), y(y), destRect({ x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE }) {}
 
 Entity::~Entity() {
     SDL_DestroyTexture(this->frontModel);
@@ -51,29 +33,29 @@ void Entity::moveWest() {
 
 void Entity::faceNorth() {
     this->direction = Entity::Direction::NORTH;
-    this->currentTexture = this->backModel;
+    this->currentModel = this->backModel;
 }
 
 void Entity::faceEast() {
     this->direction = Entity::Direction::EAST;
-    this->currentTexture = this->rightModel;
+    this->currentModel = this->rightModel;
 }
 
 void Entity::faceSouth() {
     this->direction = Entity::Direction::SOUTH;
-    this->currentTexture = this->frontModel;
+    this->currentModel = this->frontModel;
 }
 
 void Entity::faceWest() {
     this->direction = Entity::Direction::WEST;
-    this->currentTexture = this->leftModel;
+    this->currentModel = this->leftModel;
 }
 
 void Entity::setDirection(Entity::Direction newDirection) {
     this->direction = newDirection;
 }
 
-Entity::Direction Entity::getDirection() {
+auto Entity::getDirection() -> Entity::Direction {
     return this->direction;
 }
 
@@ -86,27 +68,27 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->destRect.y = this->y * TILE_SIZE;
 }
 
-int Entity::getX() const {
+auto Entity::getX() const -> int {
     return this->x;
 }
 
-int Entity::getY() const {
+auto Entity::getY() const -> int {
     return this->y;
 }
 
-bool Entity::isFacingNorth() const {
+auto Entity::isFacingNorth() const -> bool {
     return this->direction == Entity::Direction::NORTH;
 }
 
-bool Entity::isFacingEast() const {
+auto Entity::isFacingEast() const -> bool {
     return this->direction == Entity::Direction::EAST;
 }
 
-bool Entity::isFacingSouth() const {
+auto Entity::isFacingSouth() const -> bool {
     return this->direction == Entity::Direction::SOUTH;
 }
 
-bool Entity::isFacingWest() const {
+auto Entity::isFacingWest() const -> bool {
     return this->direction == Entity::Direction::WEST;
 }
 
@@ -127,40 +109,40 @@ void Entity::face(const Entity *entity) {
 }
 
 // returns true if this is right next to another entity, not necessarily facing
-bool Entity::isNextTo(const Entity *entity) const {
+auto Entity::isNextTo(const Entity *entity) const -> bool {
     if (this->isFacingNorth()) {
         return this->y == entity->y + 1 and this->x == entity->x;
     }
-    else if (this->isFacingEast()) {
+    if (this->isFacingEast()) {
         return this->x == entity->x - 1 and this->y == entity->y;
     }
-    else if (this->isFacingSouth()) {
+    if (this->isFacingSouth()) {
         return this->y == entity->y - 1 and this->x == entity->x;
     }
-    else if (this->isFacingWest()) {
+    if (this->isFacingWest()) {
         return this->x == entity->x + 1 and this->y == entity->y;
     }
-    else {
-        return false;
-    }
+    return false;
 }
 
-bool Entity::hasVisionOf(const Entity *entity) const {
+auto Entity::hasVisionOf(const Entity *entity) const -> bool {
     if (this->isFacingNorth()) {
         return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
     }
-    else if (this->isFacingEast()) {
+    if (this->isFacingEast()) {
         return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
     }
-    else if (this->isFacingSouth()) {
+    if (this->isFacingSouth()) {
         return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->vision;
     }
-    else if (this->isFacingWest()) {
+    if (this->isFacingWest()) {
         return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
     }
-    else {
-        return false;
-    }
+    return false;
+}
+
+void Entity::setVision(int newVision) {
+    this->vision = newVision;
 }
 
 void Entity::shiftUpOnMap(const int distance) {
@@ -179,12 +161,36 @@ void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
 }
 
-SDL_Rect Entity::getRect() const {
+auto Entity::getRect() const -> SDL_Rect {
     return this->destRect;
 }
 
+void Entity::setFrontModel(SDL_Texture *newFrontModel) {
+    this->frontModel = newFrontModel;
+}
+
+void Entity::setBackModel(SDL_Texture *newBackModel) {
+    this->backModel = newBackModel;
+}
+
+void Entity::setLeftModel(SDL_Texture *newLeftModel) {
+    this->leftModel = newLeftModel;
+}
+
+void Entity::setRightModel(SDL_Texture *newRightModel) {
+    this->rightModel = newRightModel;
+}
+
+void Entity::setCurrentModel(SDL_Texture *newCurrentModel) {
+    this->currentModel = newCurrentModel;
+}
+
+auto Entity::getFrontModel() -> SDL_Texture * {
+    return this->frontModel;
+}
+
 void Entity::render() {
-    TextureManager::Draw(this->currentTexture, this->destRect);
+    TextureManager::Draw(this->currentModel, this->destRect);
 }
 
 void Entity::resetPos() {

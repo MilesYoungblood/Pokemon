@@ -18,7 +18,6 @@ class Trainer : public Entity {
 private:
     const char *dialogue{""};
 
-protected:
     const static int MAX_POKEMON = 6;                   // max number of Pokémon per party
     const static int MAX_ITEMS = 50;                    // max number of items per bag
     const static int NUM_ITEM_TYPES = 4;                // number of types of items
@@ -58,8 +57,8 @@ public:
     void setBattleItems(const std::initializer_list<Item*> &inventory);
 
     void incFaintCount();
-
     void decFaintCount();
+    [[nodiscard]] auto getFaintCount() const -> int;
 
     void swapPokemon(int first, int second);
 

@@ -6,8 +6,8 @@
 
 #include "Classes/Game/Game.h"
 
-constexpr int FPS = 30;
-constexpr int FRAME_DELAY = 1000 / FPS;
+constexpr static int FPS = 30;
+constexpr static int FRAME_DELAY = 1000 / FPS;
 
 auto main() -> int {
     SDL_SetMainReady();
@@ -15,7 +15,7 @@ auto main() -> int {
     Uint32 frameStart;
     Uint32 frameTime;
 
-    Game game;
+    const Game game;
 
     while (game) {
         frameStart = SDL_GetTicks();

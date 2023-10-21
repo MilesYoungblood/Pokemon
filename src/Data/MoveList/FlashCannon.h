@@ -5,15 +5,17 @@
 #pragma once
 
 struct FlashCannon : public Move {
+private:
     bool loweredState = false;
 
+public:
     FlashCannon() : Move("Flash Cannon", 10, 80, 100, Type::STEEL, Category::SPECIAL) {}
 
-    MoveID getID() override {
+    auto getID() -> MoveID override {
         return MoveID::FLASH_CANNON;
     }
 
-    void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip) override {
+    void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
@@ -21,14 +23,15 @@ struct FlashCannon : public Move {
             //FIXME redo calculations
             this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
 
-            if (this->loweredState)
+            if (this->loweredState) {
                 defendingPokemon.lowerSpDefense(1);
+            }
         }
 
-        --this->pp;
+        this->use();
     }
 
-    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool skipTurn, const bool criticalHit, const double typeEff) override {
+    void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) override {
         printMessage(attackingPokemon.getName() + " used Flash Cannon! ");
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         // damage will be negative if the attack misses

@@ -25,4 +25,4 @@ Map Route_3("Route 3", 21, 11, { { 20, 5, MapIDs::ROUTE_2, 1, 10 } });
 std::array<Map *, 3> maps = { &Route_1, &Route_2, &Route_3 };
 
 int currentMapIndex = 0;
-Map *currentMap = maps[currentMapIndex];
+Map *currentMap = maps.at(currentMapIndex);

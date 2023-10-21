@@ -20,15 +20,15 @@ Trainer::Trainer(const std::initializer_list<Pokemon*> &pokemon, const int x, co
 }
 
 Trainer::Trainer(const std::initializer_list<Pokemon *> &pokemon, const int x, const int y, int vision) : Trainer(pokemon, x, y) {
-    this->vision = vision;
+    this->setVision(vision);
 
     //FIXME change these to not be Hilbert
-    this->frontModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)");
-    this->backModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)");
-    this->leftModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)");
-    this->rightModel = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)");
+    this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
+    this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
+    this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
+    this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
 
-    this->currentTexture = this->frontModel;
+    this->setCurrentModel(this->getFrontModel());
 }
 
 Trainer::~Trainer() {
@@ -170,6 +170,10 @@ void Trainer::incFaintCount() {
 
 void Trainer::decFaintCount() {
     --this->numFainted;
+}
+
+auto Trainer::getFaintCount() const -> int {
+    return this->numFainted;
 }
 
 void Trainer::swapPokemon(const int first, const int second) {

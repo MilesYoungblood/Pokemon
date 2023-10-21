@@ -8,16 +8,16 @@
 
 class Player : public Trainer {
 private:
-    static Player * instancePtr;
-    static Pokemon *pc[12][30];
-    explicit Player();
+    static Player *instancePtr;
+    static std::array<std::array<Pokemon *, 30>, 12> pc;
+    Player();
 
 public:
-    static Player* getPlayer();
+    static auto getPlayer() -> Player*;
     static void destroyPlayer();
 
     static void addToPC(Pokemon *toAdd);
 
     explicit operator bool() const override;
-    [[nodiscard]] bool canFight() const override;
+    [[nodiscard]] auto canFight() const -> bool override;
 };
