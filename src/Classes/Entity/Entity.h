@@ -8,14 +8,16 @@
 
 const static int TILE_SIZE = 70;
 
+enum Direction { NORTH, EAST, SOUTH, WEST };
+
+class Map;
+
 class Entity {
 private:
-    enum Direction { NORTH, EAST, SOUTH, WEST };
-
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
-    Entity::Direction direction{Direction::SOUTH};      // numerical representation of which way the trainer is facing
+    Direction direction{Direction::SOUTH};      // numerical representation of which way the trainer is facing
 
     SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
     SDL_Texture *backModel{nullptr};                    // model of the entity when facing north
@@ -40,13 +42,15 @@ public:
     void moveSouth();
     void moveWest();
 
+    void moveForward();
+
     void faceNorth();
     void faceEast();
     void faceSouth();
     void faceWest();
 
     void setDirection(Direction newDirection);
-    auto getDirection() -> Entity::Direction;
+    [[nodiscard]] auto getDirection() const -> Direction;
 
     void setCoordinates(int newX, int newY);
     [[nodiscard]] auto getX() const -> int;
@@ -59,6 +63,7 @@ public:
 
     void face(const Entity *entity);
 
+    auto canMoveForward(const Map *map) -> bool;
     auto isNextTo(const Entity *entity) const -> bool;
     auto hasVisionOf(const Entity *entity) const -> bool;
 
@@ -71,6 +76,8 @@ public:
     void shiftDownOnMap(int distance);
     void shiftLeftOnMap(int distance);
     void shiftRightOnMap(int distance);
+
+    void shiftDirectionOnMap(Direction direct, int distance);
     
     [[nodiscard]] auto getRect() const -> SDL_Rect;
 

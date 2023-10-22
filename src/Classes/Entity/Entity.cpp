@@ -31,31 +31,48 @@ void Entity::moveWest() {
     --this->x;
 }
 
+void Entity::moveForward() {
+    switch (this->direction) {
+        case NORTH:
+            --this->y;
+            break;
+        case EAST:
+            ++this->x;
+            break;
+        case SOUTH:
+            ++this->y;
+            break;
+        case WEST:
+            --this->x;
+            break;
+    }
+}
+
 void Entity::faceNorth() {
-    this->direction = Entity::Direction::NORTH;
+    this->direction = Direction::NORTH;
     this->currentModel = this->backModel;
 }
 
 void Entity::faceEast() {
-    this->direction = Entity::Direction::EAST;
+    this->direction = Direction::EAST;
     this->currentModel = this->rightModel;
 }
 
 void Entity::faceSouth() {
-    this->direction = Entity::Direction::SOUTH;
+    this->direction = Direction::SOUTH;
     this->currentModel = this->frontModel;
 }
 
 void Entity::faceWest() {
-    this->direction = Entity::Direction::WEST;
+    this->direction = Direction::WEST;
     this->currentModel = this->leftModel;
 }
 
-void Entity::setDirection(Entity::Direction newDirection) {
+void Entity::setDirection(Direction newDirection) {
     this->direction = newDirection;
 }
 
-auto Entity::getDirection() -> Entity::Direction {
+auto Entity::getDirection() const -> Direction {
     return this->direction;
 }
 
@@ -77,19 +94,19 @@ auto Entity::getY() const -> int {
 }
 
 auto Entity::isFacingNorth() const -> bool {
-    return this->direction == Entity::Direction::NORTH;
+    return this->direction == Direction::NORTH;
 }
 
 auto Entity::isFacingEast() const -> bool {
-    return this->direction == Entity::Direction::EAST;
+    return this->direction == Direction::EAST;
 }
 
 auto Entity::isFacingSouth() const -> bool {
-    return this->direction == Entity::Direction::SOUTH;
+    return this->direction == Direction::SOUTH;
 }
 
 auto Entity::isFacingWest() const -> bool {
-    return this->direction == Entity::Direction::WEST;
+    return this->direction == Direction::WEST;
 }
 
 // makes this face the entity
@@ -159,6 +176,23 @@ void Entity::shiftLeftOnMap(const int distance) {
 
 void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
+}
+
+void Entity::shiftDirectionOnMap(Direction direct, int distance) {
+    switch (direct) {
+        case Direction::NORTH:
+            this->destRect.y -= distance;
+            break;
+        case Direction::EAST:
+            this->destRect.x += distance;
+            break;
+        case Direction::SOUTH:
+            this->destRect.y += distance;
+            break;
+        case Direction::WEST:
+            this->destRect.x -= distance;
+            break;
+    }
 }
 
 auto Entity::getRect() const -> SDL_Rect {

@@ -13,6 +13,7 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
+#include_directories("C:/libs/GSL-4.0.0/include/gsl")
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmodules-ts")
 
@@ -35,9 +36,6 @@ add_executable(PokemonBattle
         src/Classes/Item/Item.h
         src/Functions/ItemFunctions.h
         src/Data/MoveList.h
-        src/Functions/TypeCalculations/TypeChart.h
-        src/Functions/TypeCalculations/PhysicalTypes.h
-        src/Functions/TypeCalculations/SpecialTypes.h
         src/Classes/Trainer/Trainer.cpp
         src/Classes/Trainer/Trainer.h
         src/Functions/GeneralFunctions.h
@@ -85,7 +83,6 @@ add_executable(PokemonBattle
         src/Classes/TextureManager/TextureManager.h
         src/Namespaces/Camera/Camera.h
         src/Namespaces/Factory/PokemonFactory.h
-
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)

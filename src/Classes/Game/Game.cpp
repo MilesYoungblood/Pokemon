@@ -9,6 +9,8 @@ constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;     // height of the window
 constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;      // width of the window
 constexpr static int SCROLL_SPEED = TILE_SIZE / 10;     // scroll speed
 
+constexpr static int NUM_FUNCTION_STATES = 2;           // number of function states
+
 namespace {
     SDL_Window *gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     SDL_Renderer *gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
@@ -17,35 +19,34 @@ namespace {
 
     [[maybe_unused]] TextureManager textureManager(gameRenderer);
 
-    bool isRunning = true;                           // determines whether the game is running
+    bool isRunning = true;                              // determines whether the game is running
 
-    bool canMove = true;                             // determines whether the player can move
+    bool canMove = true;                                // determines whether the player can move
 
-    bool moveUp = false;                             // becomes true when the user presses 'w'
-    bool moveDown = false;                           // becomes true when the user presses 's'
-    bool moveLeft = false;                           // becomes true when the user presses 'a'
-    bool moveRight = false;                          // becomes true when the user presses 'd'
+    bool moveUp = false;                                // becomes true when the user presses 'w'
+    bool moveDown = false;                              // becomes true when the user presses 's'
+    bool moveLeft = false;                              // becomes true when the user presses 'a'
+    bool moveRight = false;                             // becomes true when the user presses 'd'
 
-    bool keepMovingUp = false;                       // ultimately, determines when to stop moving up
-    bool keepMovingDown = false;                     // ultimately, determines when to stop moving down
-    bool keepMovingLeft = false;                     // ultimately, determines when to stop moving left
-    bool keepMovingRight = false;                    // ultimately, determines when to stop moving right
+    bool keepMovingUp = false;                          // ultimately, determines when to stop moving up
+    bool keepMovingDown = false;                        // ultimately, determines when to stop moving down
+    bool keepMovingLeft = false;                        // ultimately, determines when to stop moving left
+    bool keepMovingRight = false;                       // ultimately, determines when to stop moving right
 
-    bool interact = false;                           // signals when the player is trying to interact with something
+    bool interact = false;                              // signals when the player is trying to interact with something
 
-    int walkCounter = 0;                             // measures how many screen pixels the player has moved
+    int walkCounter = 0;                                // measures how many screen pixels the player has moved
 
-    std::vector<int> walkCounters;                   // measures how many screen pixels a trainer has moved
-    std::vector<bool> lockOn;                        // determines whether a trainer can move spontaneously
+    std::vector<int> walkCounters;                      // measures how many screen pixels a trainer has moved
+    std::vector<bool> lockOn;                           // determines whether a trainer can move spontaneously
 
     Player *player = nullptr;
 
-    int functionState = 0;                           // determines which set of functions to use
+    int functionState = 0;                              // determines which set of functions to use
 
-    constexpr int NUM_STATES = 2;
-    const std::array<void (*)(), NUM_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
-    const std::array<void (*)(), NUM_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
-    const std::array<void (*)(), NUM_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> handleFunctions = {Game::handleOverworldEvents, Game::handleBattleEvents };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> updateFunctions = {Game::updateOverworld, Game::updateBattle };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> renderFunctions = {Game::renderOverworld, Game::renderBattle };
 }
 
 Game::Game() {
@@ -418,16 +419,19 @@ void Game::updateOverworld() {
     }
 
     Trainer *trainer;       // variable used to reduce the number of function calls
+    void (*resetVariables)() = [] -> void {
+        keepMovingUp = false;
+        keepMovingDown = false;
+        keepMovingLeft = false;
+        keepMovingRight = false;
+        walkCounter = 0;
+    };
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
         // resets movement variables if you are not inputting any directions
         if (not (moveUp or moveDown or moveLeft or moveRight)) {
-            keepMovingUp = false;
-            keepMovingDown = false;
-            keepMovingLeft = false;
-            keepMovingRight = false;
-            walkCounter = 0;
+            resetVariables();
         }
 
         // checks if the player is in LoS for any trainer
@@ -435,6 +439,7 @@ void Game::updateOverworld() {
             trainer = &(*currentMap)[i];
 
             if (trainer->hasVisionOf(player) and *trainer) {
+                resetVariables();
                 canMove = false;
                 lockOn[i] = true;
 
@@ -447,37 +452,12 @@ void Game::updateOverworld() {
                     lockOn[i] = false;
                     canMove = true;
                 }
-                else if (trainer->isFacingNorth()) {
-                    trainer->shiftUpOnMap(SCROLL_SPEED);
-                    walkCounters[i] += SCROLL_SPEED;
 
-                    if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer->moveNorth();
-                    }
-                }
-                else if (trainer->isFacingEast()) {
-                    trainer->shiftRightOnMap(SCROLL_SPEED);
-                    walkCounters[i] += SCROLL_SPEED;
+                trainer->shiftDirectionOnMap(trainer->getDirection(), SCROLL_SPEED);
+                walkCounters[i] += SCROLL_SPEED;
 
-                    if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer->moveEast();
-                    }
-                }
-                else if (trainer->isFacingSouth()) {
-                    trainer->shiftDownOnMap(SCROLL_SPEED);
-                    walkCounters[i] += SCROLL_SPEED;
-
-                    if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer->moveSouth();
-                    }
-                }
-                else if (trainer->isFacingWest()) {
-                    trainer->shiftLeftOnMap(SCROLL_SPEED);
-                    walkCounters[i] += SCROLL_SPEED;
-
-                    if (walkCounters[i] % TILE_SIZE == 0) {
-                        trainer->moveWest();
-                    }
+                if (walkCounters[i] % TILE_SIZE == 0) {
+                    trainer->moveForward();
                 }
 
                 break;

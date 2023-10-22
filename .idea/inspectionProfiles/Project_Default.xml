@@ -2,7 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="ClangTidy" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="clangTidyChecks" value="-*,concurrency-*,misc-*,modernize-*,mpi-*,performance-*,portability-*,bugprone-*,-bugprone-easily-swappable-parameters,cert-err52-cpp,cert-err60-cpp,cert-err34-c,cert-str34-c,cert-dcl21-cpp,cert-msc50-cpp,cert-msc51-cpp,cert-dcl58-cpp,cert-flp30-c,google-default-arguments,google-runtime-operator,google-explicit-constructor,hicpp-multiway-paths-covered,hicpp-exception-baseclass,openmp-use-default-none,readability-*,-readability-identifier-length,-readability-magic-numbers,zircon-*,cppcoreguidelines-*,-cppcoreguidelines-avoid-non-const-global-variables,-cppcoreguidelines-avoid-const-or-ref-data-members,-cppcoreguidelines-avoid-magic-numbers" />
+      <option name="clangTidyChecks" value="-*,concurrency-*,misc-*,modernize-*,mpi-*,performance-*,portability-*,bugprone-*,-bugprone-easily-swappable-parameters,cert-err52-cpp,cert-err60-cpp,cert-err34-c,cert-str34-c,cert-dcl21-cpp,cert-msc50-cpp,cert-msc51-cpp,cert-dcl58-cpp,cert-flp30-c,google-default-arguments,google-runtime-operator,google-explicit-constructor,hicpp-multiway-paths-covered,hicpp-exception-baseclass,openmp-use-default-none,readability-*,-readability-identifier-length,-readability-magic-numbers,zircon-*,cppcoreguidelines-*,-cppcoreguidelines-avoid-non-const-global-variables,-cppcoreguidelines-avoid-const-or-ref-data-members,-cppcoreguidelines-avoid-magic-numbers,-cppcoreguidelines-init-variables" />
     </inspection_tool>
     <inspection_tool class="UnconstrainedVariableType" enabled="true" level="WARNING" enabled_by_default="true" />
   </profile>

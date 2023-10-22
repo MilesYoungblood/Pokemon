@@ -51,112 +51,112 @@ build cmake_object_order_depends_target_PokemonBattle: phony || CMakeFiles/Pokem
 
 build CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/main.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\main.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Pokemon/Pokemon.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Pokemon\Pokemon.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Pokemon
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Move\Move.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Move
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\Item.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Trainer/Trainer.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Trainer\Trainer.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Trainer
 
 build CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Data.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Data.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/RestoreItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\RestoreItem.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/StatusItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\StatusItem.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/Pokeball.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\Pokeball.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Item/BattleItem.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Item\BattleItem.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Item
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Map\Map.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Map
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Battle/Battle.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Battle\Battle.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Battle
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\Entity.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Game/Game.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Game\Game.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Game
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Player/Player.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Player\Player.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Player
 
 build CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/TextureManager/TextureManager.cpp || cmake_object_order_depends_target_PokemonBattle
   DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager\TextureManager.cpp.obj.d
-  FLAGS = -fmodules-ts -g -std=gnu++23 -fdiagnostics-color=always
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager
@@ -170,7 +170,7 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp
 # Link the executable PokemonBattle.exe
 
 build PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/BattleItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Player/Player.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj | C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a C$:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll C$:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll
-  FLAGS = -fmodules-ts -g
+  FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -mwindows  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a  C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll  C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   POST_BUILD = cd .

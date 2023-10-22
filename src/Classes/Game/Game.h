@@ -27,6 +27,8 @@ public:
     ~Game();
     Game(const Game &) = delete;
     auto operator=(const Game &) -> Game& = delete;
+    Game(const Game &&) = delete;
+    auto operator=(const Game &&) -> Game& = delete;
 
     static void handleEvents();
     static void update();

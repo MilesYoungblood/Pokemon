@@ -255,17 +255,17 @@ void Pokemon::setStatus(const Status newStatus) {
 
     if (this->status == Status::NONE) {
         if (newStatus == Status::BURN) {
-            this->attack *= 2;
+            this->baseAttack *= 2;
         }
         else if (newStatus == Status::PARALYSIS) {
-            this->speed *= 2;
+            this->baseSpeed *= 2;
         }
     }
     else if (this->status == Status::BURN) {
-        this->attack /= 2;
+        this->baseAttack /= 2;
     }
     else if (this->status == Status::PARALYSIS) {
-        this->speed /= 2;
+        this->baseSpeed /= 2;
     }
 }
 auto Pokemon::getStatus() const -> Status { return this->status; }

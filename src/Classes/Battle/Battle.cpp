@@ -4,6 +4,29 @@
 
 #include "Battle.h"
 
+static constexpr int NUM_TYPES = 18;
+
+static constexpr std::array<std::array<double, NUM_TYPES>, NUM_TYPES> TYPE_CHART = {
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5, 1.0 }, // normal
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0 }, // fire
+        std::array<double, NUM_TYPES> { 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // water
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // electric
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 1.0 }, // grass
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ice
+        std::array<double, NUM_TYPES> { 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0, 0.5 }, // fighting
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0, 2.0 }, // poison
+        std::array<double, NUM_TYPES> { 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0 }, // ground
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0 }, // flying
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5, 1.0 }, // psychic
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5, 0.5 }, // bug
+        std::array<double, NUM_TYPES> { 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0 }, // rock
+        std::array<double, NUM_TYPES> { 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // ghost
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.0 }, // dragon
+        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5 }, // dark
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0 }, // steel
+        std::array<double, NUM_TYPES> { 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0 }  // fairy
+};
+
 Player *Battle::player = nullptr;
 Trainer *Battle::opponent = nullptr;
 size_t Battle::turn = 0ULL;
@@ -270,6 +293,21 @@ auto Battle::stabCheck(const Pokemon &pokemon, const Move &move) -> double {
     return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
 }
 
+auto Battle::checkType(const Move &move, const Pokemon &pokemon) -> double {
+    const int moveType = static_cast<int>(move.getType()) - 1;
+    const double type_1 = TYPE_CHART.at(moveType).at(static_cast<int>(pokemon.getType(true)) - 1);
+
+    double type_2;
+    if (pokemon.getType(false) == Type::NONE) {
+        type_2 = 1.0;
+    }
+    else {
+        type_2 = TYPE_CHART.at(moveType).at(static_cast<int>(pokemon.getType(false)) - 1);
+    }
+
+    return type_1 * type_2;
+}
+
 auto Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int {
     int initialDamage = 0;
 
@@ -286,7 +324,7 @@ auto Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &def
     crit = c.second;
 
     //FIXME recalculate damage
-    return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * getTypeEffective(move, defendingPokemon) * c.first);
+    return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * checkType(move, defendingPokemon) * c.first);
 }
 
 void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
@@ -296,11 +334,11 @@ void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
     if (isUser) {
         bool print = true;
 
-        reprint_1:
-        forcedSwitchPrompt(toSwitch, print);
-
-        if (not chooseOption(toSwitch, 2)) {
-            goto reprint_1;
+        while (true) {
+            forcedSwitchPrompt(toSwitch, print);
+            if (chooseOption(toSwitch, 2)) {
+                break;
+            }
         }
 
         // player attempts to run
@@ -314,25 +352,22 @@ void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
             }
         }
 
-        while (true) {
-            print = true;
+        print = true;
 
-            reprint_2:
+        while (true) {
             displayPokemon(toSwitch, print);
 
             if (not chooseOption(toSwitch, Battle::player->partySize())) {
-                goto reprint_2;
+                continue;
             }
 
             if ((*trainer)[toSwitch].isFainted()) {
                 (*trainer)[toSwitch - 1].hpEmptyMessage();
                 pressEnter();
-                goto reprint_2;
+                continue;
             }
 
-            else {
-                break;
-            }
+            break;
         }
     }
 
@@ -353,7 +388,7 @@ void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &
 
     (*attacker)[0][move].action((*attacker)[0], (*defender)[0], dmg, skip);
     (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], dmg, skip,
-                                       crit, getTypeEffective((*attacker)[0][move], (*defender)[0]));
+                                       crit, checkType((*attacker)[0][move], (*defender)[0]));
 
     if ((*defender)[0].isFainted()) {
         defender->incFaintCount();

@@ -208,3 +208,16 @@ void Map::Tile::update(int x, int y) {
     this->dest.x = x;
     this->dest.y = y;
 }
+
+auto Entity::canMoveForward(const Map *map) -> bool {
+    switch (this->direction) {
+        case NORTH:
+            return not map->isObstructionHere(this->x, this->y - 1);
+        case EAST:
+            return not map->isObstructionHere(this->x + 1, this->y);
+        case SOUTH:
+            return not map->isObstructionHere(this->x, this->y - 1);
+        case WEST:
+            return not map->isObstructionHere(this->x - 1, this->y);
+    }
+}

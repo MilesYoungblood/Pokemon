@@ -47,12 +47,8 @@ inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &pri
 
     for (int i = starting; i < starting + remaining; ++i) {
         const Item *item = &trainer->getItem(iType, i);
-        if (arrow == i) {
-            std::cout << "   ->   " << *item << std::string(15 - item->getName().length(), ' ') << " x" << item->getQuantity() << '\n';
-        }
-        else {
-            std::cout << '\t' << *item << std::string(15 - item->getName().length(), ' ') << " x" << item->getQuantity() << '\n';
-        }
+        arrow == i ? std::cout << "   ->   " : std::cout << '\t';
+        std::cout << *item << std::string(15 - item->getName().length(), ' ') << " x" << item->getQuantity() << '\n';
     }
 
     arrow == numItems ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";

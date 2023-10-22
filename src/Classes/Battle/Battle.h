@@ -6,7 +6,6 @@
 
 #include "../../Classes/Player/Player.h"
 #include "../../Functions/ItemFunctions.h"
-#include "../../Functions/TypeCalculations/TypeChart.h"
 
 class Battle {
 private:
@@ -55,6 +54,8 @@ private:
     static auto criticalHit() -> std::pair<double, bool>;
 
     static auto stabCheck(const Pokemon &pokemon, const Move &move) -> double;
+
+    static auto checkType(const Move &move, const Pokemon &pokemon) -> double;
 
     static auto calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int;
 
