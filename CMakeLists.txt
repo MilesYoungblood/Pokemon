@@ -28,36 +28,35 @@ include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
 #add_library(my_lib test.ixx)
 add_executable(PokemonBattle
         src/main.cpp
-        src/Classes/Pokemon/Pokemon.h
-        src/Classes/Pokemon/Pokemon.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h
+        src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp
         src/Classes/Move/Move.h
         src/Classes/Move/Move.cpp
         src/Classes/Item/Item.cpp
         src/Classes/Item/Item.h
         src/Functions/ItemFunctions.h
-        src/Data/MoveList.h
-        src/Classes/Trainer/Trainer.cpp
-        src/Classes/Trainer/Trainer.h
+        src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp
+        src/Classes/Entity/DerivedClasses/Trainer/Trainer.h
         src/Functions/GeneralFunctions.h
         src/Data/Data.cpp
         src/Data/Data.h
-        src/Classes/Item/RestoreItem.cpp
-        src/Classes/Item/RestoreItem.h
-        src/Classes/Item/StatusItem.cpp
-        src/Classes/Item/StatusItem.h
-        src/Classes/Item/Pokeball.h
-        src/Classes/Item/Pokeball.cpp
-        src/Classes/Item/BattleItem.cpp
-        src/Classes/Item/BattleItem.h
-        src/Data/MoveList/WaterShuriken.h
-        src/Data/MoveList/VoltTackle.h
-        src/Data/MoveList/IceBeam.h
-        src/Data/MoveList/Flamethrower.h
-        src/Data/MoveList/AuraSphere.h
-        src/Data/MoveList/FlashCannon.h
-        src/Data/MoveList/Thunder.h
-        src/Data/MoveList/FocusBlast.h
-        src/Data/MoveList/IronTail.h
+        src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h
+        src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h
+        src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h
+        src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
+        src/Classes/Move/DerivedClasses/WaterShuriken.h
+        src/Classes/Move/DerivedClasses/VoltTackle.h
+        src/Classes/Move/DerivedClasses/IceBeam.h
+        src/Classes/Move/DerivedClasses/Flamethrower.h
+        src/Classes/Move/DerivedClasses/AuraSphere.h
+        src/Classes/Move/DerivedClasses/FlashCannon.h
+        src/Classes/Move/DerivedClasses/Thunder.h
+        src/Classes/Move/DerivedClasses/FocusBlast.h
+        src/Classes/Move/DerivedClasses/IronTail.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
         src/Data/ItemList.h
@@ -69,20 +68,21 @@ add_executable(PokemonBattle
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
         src/Data/ItemList/BattleItems.h
-        src/Data/Pokedex.h
         src/Classes/Game/Game.cpp
         src/Classes/Game/Game.h
-        src/Classes/Player/Player.cpp
-        src/Classes/Player/Player.h
+        src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
+        src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
         src/Namespaces/Factory/MoveFactory.h
         src/Namespaces/Factory/ItemFactory.h
-        src/Data/MoveList/DarkPulse.h
-        src/Data/MoveList/Extrasensory.h
-        src/Data/MoveList/AirSlash.h
+        src/Classes/Move/DerivedClasses/DarkPulse.h
+        src/Classes/Move/DerivedClasses/Extrasensory.h
+        src/Classes/Move/DerivedClasses/AirSlash.h
         src/Classes/TextureManager/TextureManager.cpp
         src/Classes/TextureManager/TextureManager.h
         src/Namespaces/Camera/Camera.h
         src/Namespaces/Factory/PokemonFactory.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h
+        src/Classes/Move/DerivedClasses/MoveList.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)

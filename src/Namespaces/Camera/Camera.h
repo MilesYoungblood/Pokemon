@@ -28,7 +28,7 @@ namespace Camera {
     }
 
     // returns whether an entity is in view of the camera,
-    // thus enabling the rendering of only necessary objects
+    // thus enabling the rendering of only the necessary objects
     inline bool isInView(const SDL_Rect &rect) {
         SDL_Rect r{ xPos, yPos, WIDTH, HEIGHT };
         return SDL_HasIntersection(&rect, &r);

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Item/Pokeball.h"
+#include "../../Classes/Item/DerivedClasses/Pokeball/Pokeball.h"
 
 struct GreatBall : public PokeBall {
     explicit GreatBall(int n) : PokeBall("Great Ball", n, 1.5) {}

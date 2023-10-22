@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "../../Data/Pokedex.h"
+#include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
-    inline Pokemon *getPokemon(const PokemonID id) {
+    inline Pokemon * getPokemon(const PokemonID id) {
         switch (id) {
             case VENASAUR:
                 return new Venasaur;

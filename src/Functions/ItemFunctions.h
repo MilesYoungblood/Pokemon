@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../Classes/Trainer/Trainer.h"
+#include "../Classes/Entity/DerivedClasses/Trainer/Trainer.h"
 
 inline void failMessage() {
     printMessage("But it failed!\n");

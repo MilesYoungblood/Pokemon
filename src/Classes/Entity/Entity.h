@@ -17,7 +17,7 @@ private:
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
-    Direction direction{Direction::SOUTH};      // numerical representation of which way the trainer is facing
+    Direction direction{Direction::SOUTH};              // numerical representation of which way the trainer is facing
 
     SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
     SDL_Texture *backModel{nullptr};                    // model of the entity when facing north
@@ -32,9 +32,9 @@ public:
     Entity();
     Entity(int x, int y);
     Entity(const Entity &) = delete;
-    auto operator=(const Entity &) -> Entity& = delete;
     Entity(const Entity &&) = delete;
-    auto operator=(const Entity &&) ->Entity& = delete;
+    Entity & operator=(const Entity &) = delete;
+    Entity & operator=(const Entity &&) = delete;
     ~Entity();
 
     void moveNorth();
@@ -49,23 +49,21 @@ public:
     void faceSouth();
     void faceWest();
 
-    void setDirection(Direction newDirection);
-    [[nodiscard]] auto getDirection() const -> Direction;
+    [[nodiscard]] Direction getDirection() const;
 
     void setCoordinates(int newX, int newY);
-    [[nodiscard]] auto getX() const -> int;
-    [[nodiscard]] auto getY() const -> int;
-
-    [[nodiscard]] auto isFacingNorth() const -> bool;
-    [[nodiscard]] auto isFacingEast() const -> bool;
-    [[nodiscard]] auto isFacingSouth() const -> bool;
-    [[nodiscard]] auto isFacingWest() const -> bool;
+    [[nodiscard]] int getX() const;
+    [[nodiscard]] int getY() const;
 
     void face(const Entity *entity);
+    [[nodiscard]] bool isFacingNorth() const;
+    [[nodiscard]] bool isFacingEast() const;
+    [[nodiscard]] bool isFacingSouth() const;
+    [[nodiscard]] bool isFacingWest() const;
 
-    auto canMoveForward(const Map *map) -> bool;
-    auto isNextTo(const Entity *entity) const -> bool;
-    auto hasVisionOf(const Entity *entity) const -> bool;
+    bool canMoveForward(const Map *map) const;
+    bool isNextTo(const Entity *entity) const;
+    bool hasVisionOf(const Entity *entity) const;
 
     void setVision(int newVision);
 
@@ -79,7 +77,7 @@ public:
 
     void shiftDirectionOnMap(Direction direct, int distance);
     
-    [[nodiscard]] auto getRect() const -> SDL_Rect;
+    [[nodiscard]] SDL_Rect getRect() const;
 
     void setFrontModel(SDL_Texture *newFrontModel);
     void setBackModel(SDL_Texture *newBackModel);
@@ -88,7 +86,7 @@ public:
 
     void setCurrentModel(SDL_Texture *newCurrentModel);
 
-    auto getFrontModel() -> SDL_Texture *;
+    SDL_Texture * getFrontModel();
 
     void render();
 

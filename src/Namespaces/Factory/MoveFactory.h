@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "../../Data/MoveList.h"
+#include "../../Classes/Move/DerivedClasses/MoveList.h"
 
 namespace MoveFactory {
-    inline Move *getMove(const MoveID id) {
+    inline Move * getMove(const MoveID id) {
         switch (id) {
             case MoveID::AIR_SLASH:
                 return new AirSlash;

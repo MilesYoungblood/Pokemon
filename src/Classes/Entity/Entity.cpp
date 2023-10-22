@@ -68,11 +68,7 @@ void Entity::faceWest() {
     this->currentModel = this->leftModel;
 }
 
-void Entity::setDirection(Direction newDirection) {
-    this->direction = newDirection;
-}
-
-auto Entity::getDirection() const -> Direction {
+Direction Entity::getDirection() const {
     return this->direction;
 }
 
@@ -85,28 +81,12 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->destRect.y = this->y * TILE_SIZE;
 }
 
-auto Entity::getX() const -> int {
+int Entity::getX() const {
     return this->x;
 }
 
-auto Entity::getY() const -> int {
+int Entity::getY() const {
     return this->y;
-}
-
-auto Entity::isFacingNorth() const -> bool {
-    return this->direction == Direction::NORTH;
-}
-
-auto Entity::isFacingEast() const -> bool {
-    return this->direction == Direction::EAST;
-}
-
-auto Entity::isFacingSouth() const -> bool {
-    return this->direction == Direction::SOUTH;
-}
-
-auto Entity::isFacingWest() const -> bool {
-    return this->direction == Direction::WEST;
 }
 
 // makes this face the entity
@@ -125,8 +105,24 @@ void Entity::face(const Entity *entity) {
     }
 }
 
+bool Entity::isFacingNorth() const {
+    return this->direction == Direction::NORTH;
+}
+
+bool Entity::isFacingEast() const {
+    return this->direction == Direction::EAST;
+}
+
+bool Entity::isFacingSouth() const {
+    return this->direction == Direction::SOUTH;
+}
+
+bool Entity::isFacingWest() const {
+    return this->direction == Direction::WEST;
+}
+
 // returns true if this is right next to another entity, not necessarily facing
-auto Entity::isNextTo(const Entity *entity) const -> bool {
+bool Entity::isNextTo(const Entity *entity) const {
     if (this->isFacingNorth()) {
         return this->y == entity->y + 1 and this->x == entity->x;
     }
@@ -142,7 +138,7 @@ auto Entity::isNextTo(const Entity *entity) const -> bool {
     return false;
 }
 
-auto Entity::hasVisionOf(const Entity *entity) const -> bool {
+bool Entity::hasVisionOf(const Entity *entity) const {
     if (this->isFacingNorth()) {
         return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
     }
@@ -195,7 +191,7 @@ void Entity::shiftDirectionOnMap(Direction direct, int distance) {
     }
 }
 
-auto Entity::getRect() const -> SDL_Rect {
+SDL_Rect Entity::getRect() const {
     return this->destRect;
 }
 
@@ -219,7 +215,7 @@ void Entity::setCurrentModel(SDL_Texture *newCurrentModel) {
     this->currentModel = newCurrentModel;
 }
 
-auto Entity::getFrontModel() -> SDL_Texture * {
+SDL_Texture * Entity::getFrontModel() {
     return this->frontModel;
 }
 

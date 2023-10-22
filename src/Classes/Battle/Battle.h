@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Player/Player.h"
+#include "../../Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Functions/ItemFunctions.h"
 
 class Battle {
@@ -31,7 +31,7 @@ private:
 
     static void forcedSwitchPrompt(int arrow, bool &print);
 
-    static auto run() -> bool;
+    static bool run();
     static void runMessage(bool runStatus);
     static void runErrorMessage();
 
@@ -51,13 +51,13 @@ private:
 
     static void attackErrorMessage();
 
-    static auto criticalHit() -> std::pair<double, bool>;
+    static std::pair<double, bool> criticalHit();
 
-    static auto stabCheck(const Pokemon &pokemon, const Move &move) -> double;
+    static double stabCheck(const Pokemon &pokemon, const Move &move);
 
-    static auto checkType(const Move &move, const Pokemon &pokemon) -> double;
+    static double checkType(const Move &move, const Pokemon &pokemon);
 
-    static auto calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int;
+    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
 
     static void SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
 
@@ -66,9 +66,9 @@ private:
     static void PreStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
     static void PostStatus(bool isUserFaster, bool &keepPlaying);
 
-    static auto chooseMove(bool &skip) -> int;
+    static int chooseMove(bool &skip);
     static void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
-    static auto runAway(bool &skip, bool canRun) -> bool;
+    static bool runAway(bool &skip, bool canRun);
     static void choosePokemon(bool &skip);
 
     static void fight(int userMove, bool &keepPlaying);

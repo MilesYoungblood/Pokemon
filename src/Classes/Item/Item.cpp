@@ -7,7 +7,7 @@
 Item::Item(const char *name, const int n) : name(name), quantity(n) {}
 
 void Item::setQuantity(const int n) { this->quantity = n; }
-auto Item::getQuantity() const -> int { return this->quantity; }
+int Item::getQuantity() const { return this->quantity; }
 
 void Item::use() {
     if (this->quantity > 0) {
@@ -25,29 +25,31 @@ void Item::useMessage() {
     printMessage(' ' + this->getName() + "! ");
 }
 
-auto Item::getAmount() const -> int {
+int Item::getAmount() const {
     return 0;
 }
 
-auto Item::getRestoreType() const -> RestoreType {
+RestoreType Item::getRestoreType() const {
     return RestoreType::NONE;
 }
 
-auto Item::getStatus() const -> Status {
+Status Item::getStatus() const {
     return Status::NONE;
 }
 
-auto Item::getStat() const -> Stat {
+Stat Item::getStat() const {
     return Stat::NONE;
 }
 
-auto Item::getName() const -> std::string { return this->name; }
-
-auto operator<<(std::ostream &out, const Item &rhs) -> std::ostream& {
-    out << rhs.name;
-    return out;
+std::string Item::getName() const {
+    return this->name;
 }
 
 Item::operator bool() const {
     return this->quantity > 0;
+}
+
+std::ostream & operator<<(std::ostream &out, const Item &rhs) {
+    out << rhs.name;
+    return out;
 }

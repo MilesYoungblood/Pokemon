@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Item/RestoreItem.h"
+#include "../../Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h"
 
 struct Ether : public RestoreItem {
     explicit Ether(int n) : RestoreItem("Ether", n, 5, RestoreType::PP) {}

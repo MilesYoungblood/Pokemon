@@ -153,7 +153,7 @@ void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
     std::cout.flush();
 }
 
-auto Battle::run() -> bool {
+bool Battle::run() {
     const int opponentSpeed = ((*Battle::opponent)[0].getBaseSpeed() / 4) % 256;
     const int odds = (((*Battle::player)[0].getBaseSpeed() * 32) / opponentSpeed) + 30;
 
@@ -284,16 +284,16 @@ void Battle::attackErrorMessage() {
 
 // generates a random number between 1 and 16, inclusive
 // returns true and 2.0 if that number is 1 and 1.0 and false otherwise
-auto Battle::criticalHit() -> std::pair<double, bool> {
+std::pair<double, bool> Battle::criticalHit() {
     return generateInteger(1, 16) == 1 ? std::make_pair(2.0, true) : std::make_pair(1.0, false);
 }
 
 // returns 1.5 if move is a STAB move, and 1.0 otherwise
-auto Battle::stabCheck(const Pokemon &pokemon, const Move &move) -> double {
+double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
     return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
 }
 
-auto Battle::checkType(const Move &move, const Pokemon &pokemon) -> double {
+double Battle::checkType(const Move &move, const Pokemon &pokemon) {
     const int moveType = static_cast<int>(move.getType()) - 1;
     const double type_1 = TYPE_CHART.at(moveType).at(static_cast<int>(pokemon.getType(true)) - 1);
 
@@ -308,7 +308,7 @@ auto Battle::checkType(const Move &move, const Pokemon &pokemon) -> double {
     return type_1 * type_2;
 }
 
-auto Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) -> int {
+int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
     int initialDamage = 0;
 
     const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
@@ -599,7 +599,7 @@ void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
     }
 }
 
-auto Battle::chooseMove(bool &skip) -> int {
+int Battle::chooseMove(bool &skip) {
     int move = 0;
     bool print = true;
 
@@ -906,7 +906,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
     }
 }
 
-auto Battle::runAway(bool &skip, const bool canRun) -> bool {
+bool Battle::runAway(bool &skip, const bool canRun) {
     Battle::displayHPBar();
 
     if (not canRun) {

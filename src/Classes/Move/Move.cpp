@@ -57,7 +57,7 @@ Type Move::getType() const {
     return this->type;
 }
 
-const char *Move::getTypeAsString() const {
+const char * Move::getTypeAsString() const {
     switch (this->type) {
         case Type::NORMAL:
             return "normal";
@@ -122,7 +122,7 @@ Category Move::getCategory() const {
     return this->category;
 }
 
-const char *Move::getCategoryAsString() const {
+const char * Move::getCategoryAsString() const {
     switch (this->category) {
         case Category::PHYSICAL:
             return "physical";

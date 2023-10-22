@@ -5,9 +5,9 @@
 #pragma once
 
 #include "../Classes/Map/Map.h"
-#include "MoveList.h"
+#include "../Classes/Move/DerivedClasses/MoveList.h"
 #include "ItemList.h"
-#include "Pokedex.h"
+#include "../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 // each exit point is assigned an ID that denotes what spot it is in the array,
 // and consequently which map it will lead to

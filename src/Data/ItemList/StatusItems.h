@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Item/StatusItem.h"
+#include "../../Classes/Item/DerivedClasses/StatusItem/StatusItem.h"
 
 struct Antidote : public StatusItem {
     explicit Antidote(int n) : StatusItem("Antidote", n, Status::POISON) {}

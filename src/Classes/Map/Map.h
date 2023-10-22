@@ -4,8 +4,7 @@
 
 #pragma once
 
-#include <vector>
-#include "../Player/Player.h"
+#include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Namespaces/Camera/Camera.h"
 
 class Map {
@@ -18,23 +17,9 @@ private:
         WATER __attribute__((unused))
     };
 
-    class Tile {
-    private:
+    struct Tile {
         TileID id;
         SDL_Rect dest;
-
-    public:
-        Tile() = default;
-        Tile(TileID id, int x, int y) : id(id), dest({ x, y, TILE_SIZE, TILE_SIZE }) {}
-
-        void update(int x, int y);
-
-        [[nodiscard]] auto getRect() const -> SDL_Rect { return this->dest; }
-        [[nodiscard]] auto getX() const -> int { return this->dest.x; }
-        [[nodiscard]] auto getY() const -> int { return this->dest.y; }
-
-        void setID(TileID newID) { this->id = newID; }
-        [[nodiscard]] auto getID() const -> TileID { return this->id; }
     };
 
     struct ExitPoint {
@@ -62,23 +47,23 @@ private:
 
     std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
 
-    [[nodiscard]] auto isTrainerHere(int x, int y) const -> bool;
+    [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
     Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints);
     Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
     Map(const Map &) = delete;
-    auto operator=(const Map &) -> Map& = delete;
     Map(const Map &&) = delete;
-    auto operator=(const Map &&) -> Map& = delete;
+    Map & operator=(const Map &) = delete;
+    Map & operator=(const Map &&) = delete;
     ~Map();
 
-    [[nodiscard]] auto isObstructionHere(int x, int y) const -> bool;
-    [[nodiscard]] auto isExitPointHere(int x, int y) const -> std::array<int, 3>;
+    [[nodiscard]] bool isObstructionHere(int x, int y) const;
+    [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    [[nodiscard]] auto numTrainers() const -> int;
-    auto operator[](int index) -> Trainer&;
-    auto operator[](int index) const -> const Trainer&;
+    [[nodiscard]] int numTrainers() const;
+    Trainer & operator[](int index);
+    const Trainer & operator[](int index) const;
 
     void setObstruction(int x, int y);
 

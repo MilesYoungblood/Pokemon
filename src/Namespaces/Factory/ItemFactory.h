@@ -7,45 +7,45 @@
 #include "../../Data/ItemList.h"
 
 namespace ItemFactory {
-    inline Item *getItem(const ItemID id, const int n) {
+    inline Item * getItem(const ItemID id, const int n) {
         switch (id) {
-            case POTION:
+            case ItemID::POTION:
                 return new Potion(n);
-            case SUPER_POTION:
+            case ItemID::SUPER_POTION:
                 return new SuperPotion(n);
-            case HYPER_POTION:
+            case ItemID::HYPER_POTION:
                 return new HyperPotion(n);
-            case ETHER:
+            case ItemID::ETHER:
                 return new Ether(n);
-            case ANTIDOTE:
+            case ItemID::ANTIDOTE:
                 return new Antidote(n);
-            case AWAKENING:
+            case ItemID::AWAKENING:
                 return new Awakening(n);
-            case BURN_HEAL:
+            case ItemID::BURN_HEAL:
                 return new BurnHeal(n);
-            case ICE_HEAL:
+            case ItemID::ICE_HEAL:
                 return new IceHeal(n);
-            case PARALYZE_HEAL:
+            case ItemID::PARALYZE_HEAL:
                 return new ParalyzeHeal(n);
-            case POKE_BALL:
+            case ItemID::POKE_BALL:
                 return new PokeBall(n);
-            case GREAT_BALL:
+            case ItemID::GREAT_BALL:
                 return new GreatBall(n);
-            case ULTRA_BALL:
+            case ItemID::ULTRA_BALL:
                 return new UltraBall(n);
-            case MASTER_BALL:
+            case ItemID::MASTER_BALL:
                 return new MasterBall(n);
-            case X_ATTACK:
+            case ItemID::X_ATTACK:
                 return new XAttack(n);
-            case X_DEFENSE:
+            case ItemID::X_DEFENSE:
                 return new XDefense(n);
-            case X_SP_ATTACK:
+            case ItemID::X_SP_ATTACK:
                 return new XSpAttack(n);
-            case X_SP_DEFENSE:
+            case ItemID::X_SP_DEFENSE:
                 return new XSpDefense(n);
-            case X_SPEED:
+            case ItemID::X_SPEED:
                 return new XSpeed(n);
-            case X_ACCURACY:
+            case ItemID::X_ACCURACY:
                 return new XAccuracy(n);
             default:
                 return nullptr;

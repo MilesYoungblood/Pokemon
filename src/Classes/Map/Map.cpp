@@ -10,7 +10,7 @@ SDL_Texture *Map::grass = nullptr;
 SDL_Texture *Map::tallGrass = nullptr;
 SDL_Texture *Map::water = nullptr;
 
-auto Map::isTrainerHere(const int x, const int y) const -> bool {
+bool Map::isTrainerHere(const int x, const int y) const {
     for (int i = 0; i < this->trainers.size(); ++i) {
         if (trainers[i]->getX() == x and trainers[i]->getY() == y) {
             return true;
@@ -26,29 +26,29 @@ Map::Map(const char *name, const int width, const int height, const std::vector<
         this->layout[i].resize(this->height);
 
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = Map::Tile(Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE);
+            this->layout[i][j] = { Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE };
         }
     }
 
     // set the top border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][0].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][0].id = Map::TileID::OBSTRUCTION;
     }
 
     // set the inner layer borders
     for (int y = 1; y < this->height; ++y) {
-        this->layout[0][y].setID(Map::TileID::OBSTRUCTION);
-        this->layout[this->width - 1][y].setID(Map::TileID::OBSTRUCTION);
+        this->layout[0][y].id = Map::TileID::OBSTRUCTION;
+        this->layout[this->width - 1][y].id = Map::TileID::OBSTRUCTION;
     }
 
     // set the bottom border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][this->height - 1].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][this->height - 1].id = Map::TileID::OBSTRUCTION;
     }
 
     // set any exit points
     for (const ExitPoint &exitPoint : this->exitPoints) {
-        this->layout[exitPoint.x][exitPoint.y].setID(Map::TileID::GRASS);
+        this->layout[exitPoint.x][exitPoint.y].id = Map::TileID::GRASS;
     }
 
     Map::obstruction = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
@@ -76,18 +76,18 @@ Map::~Map() {
 }
 
 // returns true if an obstruction is at the passed coordinates
-auto Map::isObstructionHere(const int x, const int y) const -> bool {
+bool Map::isObstructionHere(const int x, const int y) const {
     // out of bounds or an NPC is already in this spot
     if ((x < 0 or this->width - 1 < x) or (y < 0 or this->height - 1 < y) or this->isTrainerHere(x, y)) {
         return true;
     }
 
-    return this->layout[x][y].getID() == Map::TileID::OBSTRUCTION;
+    return this->layout[x][y].id == Map::TileID::OBSTRUCTION;
 }
 
 // returns an array with the new x and y coordinates and the new map respectively,
 // if no exit point is here, returns filler coordinates with the third element being -1
-auto Map::isExitPointHere(const int x, const int y) const -> std::array<int, 3> {
+std::array<int, 3> Map::isExitPointHere(const int x, const int y) const {
     for (const ExitPoint &exitPoint : this->exitPoints) {
         if (exitPoint.x == x and exitPoint.y == y) {
             return { exitPoint.newX, exitPoint.newY, exitPoint.newMap };
@@ -97,23 +97,23 @@ auto Map::isExitPointHere(const int x, const int y) const -> std::array<int, 3> 
 }
 
 // returns the number of NPCs
-auto Map::numTrainers() const -> int {
+int Map::numTrainers() const {
     return static_cast<int>(this->trainers.size());
 }
 
 // returns the trainer at the passed index
-auto Map::operator[](const int index) -> Trainer& {
+Trainer & Map::operator[](const int index) {
     return *this->trainers[index];
 }
 
-auto Map::operator[](const int index) const -> const Trainer& {
+const Trainer & Map::operator[](const int index) const {
     return *this->trainers[index];
 }
 
 // places an obstruction at the passed coordinates
-[[maybe_unused]] void Map::setObstruction(const int x, const int y) {
+void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
-        this->layout[x][y].setID(Map::TileID::OBSTRUCTION);
+        this->layout[x][y].id = Map::TileID::OBSTRUCTION;
     }
 }
 
@@ -121,21 +121,21 @@ auto Map::operator[](const int index) const -> const Trainer& {
 void Map::updateMap(const int distance, const int flag) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            const int x = this->layout[row][column].getX();
-            const int y = this->layout[row][column].getY();
+            const int x = this->layout[row][column].dest.x;
+            const int y = this->layout[row][column].dest.y;
 
             switch (flag) {
                 case 1:
-                    this->layout[row][column].update(x, y + distance);
+                    this->layout[row][column].dest.y += distance;
                     break;
                 case 2:
-                    this->layout[row][column].update(x, y - distance);
+                    this->layout[row][column].dest.y -= distance;
                     break;
                 case 3:
-                    this->layout[row][column].update(x + distance, y);
+                    this->layout[row][column].dest.x += distance;
                     break;
                 case 4:
-                    this->layout[row][column].update(x - distance, y);
+                    this->layout[row][column].dest.x -= distance;
                     break;
                 default:
                     return;
@@ -167,13 +167,13 @@ void Map::renderMap() {
     SDL_Rect sdlRect;
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            sdlRect = this->layout[row][column].getRect();
+            sdlRect = this->layout[row][column].dest;
             // prevents rendering tiles that aren't onscreen
             if (not Camera::isInView(sdlRect)) {
                 continue;
             }
 
-            switch (this->layout[row][column].getID()) {
+            switch (this->layout[row][column].id) {
                 case Map::TileID::FREE:
                     TextureManager::Draw(Map::free, sdlRect);
                     break;
@@ -195,7 +195,7 @@ void Map::renderMap() {
 void Map::resetMap() {
     for (int i = 0; i < this->width; ++i) {
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = Map::Tile(this->layout[i][j].getID(), i * TILE_SIZE, j * TILE_SIZE);
+            this->layout[i][j] = { this->layout[i][j].id, i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE };
         }
     }
 
@@ -204,12 +204,7 @@ void Map::resetMap() {
     }
 }
 
-void Map::Tile::update(int x, int y) {
-    this->dest.x = x;
-    this->dest.y = y;
-}
-
-auto Entity::canMoveForward(const Map *map) -> bool {
+bool Entity::canMoveForward(const Map *map) const {
     switch (this->direction) {
         case NORTH:
             return not map->isObstructionHere(this->x, this->y - 1);
@@ -219,5 +214,7 @@ auto Entity::canMoveForward(const Map *map) -> bool {
             return not map->isObstructionHere(this->x, this->y - 1);
         case WEST:
             return not map->isObstructionHere(this->x - 1, this->y);
+        default:
+            throw std::runtime_error("Unexpected error: function canMoveForward");
     }
 }

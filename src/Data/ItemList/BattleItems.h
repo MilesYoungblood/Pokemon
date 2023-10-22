@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Item/BattleItem.h"
+#include "../../Classes/Item/DerivedClasses/BattleItem/BattleItem.h"
 
 struct XAttack : public BattleItem {
     explicit XAttack(int n) : BattleItem("X Attack", n, Stat::ATTACK) {}

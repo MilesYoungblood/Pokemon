@@ -54,37 +54,37 @@ private:
 public:
     Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
     Move(const Move &) = delete;
-    auto operator=(const Move &) -> Move& = delete;
     Move(const Move &&) = delete;
-    auto operator=(const Move &&) -> Move& = delete;
+    Move & operator=(const Move &) = delete;
+    Move & operator=(const Move &&) = delete;
     virtual ~Move() = default;
 
-    virtual auto getID() -> MoveID = 0;
+    [[nodiscard]] virtual MoveID getID() const = 0;
 
-    [[nodiscard]] virtual auto getDamage() const -> int;
+    [[nodiscard]] virtual int getDamage() const;
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
     void use();
     void setPP(int newPP);
-    [[nodiscard]] auto getPP() const -> int;
+    [[nodiscard]] int getPP() const;
 
-    [[nodiscard]] auto getMaxPP() const -> int;
+    [[nodiscard]] int getMaxPP() const;
 
-    [[nodiscard]] auto getPower() const -> int;
+    [[nodiscard]] int getPower() const;
 
-    [[nodiscard]] auto getAccuracy() const -> int;
+    [[nodiscard]] int getAccuracy() const;
 
-    [[nodiscard]] auto getType() const -> Type;
-    [[nodiscard]] auto getTypeAsString() const -> const char *;
+    [[nodiscard]] Type getType() const;
+    [[nodiscard]] const char * getTypeAsString() const;
 
-    [[nodiscard]] auto getCategory() const -> Category;
-    [[nodiscard]] auto getCategoryAsString() const -> const char *;
+    [[nodiscard]] Category getCategory() const;
+    [[nodiscard]] const char * getCategoryAsString() const;
 
-    [[nodiscard]] auto getName() const -> std::string;
+    [[nodiscard]] std::string getName() const;
 
     explicit operator bool() const;
 
-    friend auto operator<<(std::ostream &out, const Move &rhs) -> std::ostream&;
+    friend std::ostream & operator<<(std::ostream &out, const Move &rhs);
 };

@@ -90,12 +90,12 @@ public:
 };
 
 // returns true if character is a vowel
-inline auto isVowel(char ltr) -> bool {
+inline bool isVowel(char ltr) {
     return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
 }
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
-inline auto chooseOption(int &option, const int upper) -> bool {
+inline bool chooseOption(int &option, const int upper) {
     while (true) {
         switch (static_cast<char>(getch())) {
             case 'w':
@@ -129,7 +129,7 @@ inline auto chooseOption(int &option, const int upper) -> bool {
     }
 }
 
-inline auto coinFlip() -> bool {
+inline bool coinFlip() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(0, 1);
@@ -138,7 +138,7 @@ inline auto coinFlip() -> bool {
 }
 
 // returns a random integer from a range
-inline auto generateInteger(const int from, const int to) -> int {
+inline int generateInteger(const int from, const int to) {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(from, to);

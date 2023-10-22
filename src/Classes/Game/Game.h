@@ -9,7 +9,6 @@
 #include <SDL_image.h>
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
-#include "../../Classes/Player/Player.h"
 #include "../../Namespaces/Factory/PokemonFactory.h"
 #include "../../Namespaces/Factory/ItemFactory.h"
 #include "../../Namespaces/Factory/MoveFactory.h"
@@ -26,9 +25,9 @@ public:
     Game();
     ~Game();
     Game(const Game &) = delete;
-    auto operator=(const Game &) -> Game& = delete;
     Game(const Game &&) = delete;
-    auto operator=(const Game &&) -> Game& = delete;
+    Game & operator=(const Game &) = delete;
+    Game & operator=(const Game &&) = delete;
 
     static void handleEvents();
     static void update();

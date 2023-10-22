@@ -44,9 +44,9 @@ namespace {
 
     int functionState = 0;                              // determines which set of functions to use
 
-    const std::array<void (*)(), NUM_FUNCTION_STATES> handleFunctions = {Game::handleOverworldEvents, Game::handleBattleEvents };
-    const std::array<void (*)(), NUM_FUNCTION_STATES> updateFunctions = {Game::updateOverworld, Game::updateBattle };
-    const std::array<void (*)(), NUM_FUNCTION_STATES> renderFunctions = {Game::renderOverworld, Game::renderBattle };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> handleFunctions = { Game::handleOverworldEvents, Game::handleBattleEvents };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> updateFunctions = { Game::updateOverworld, Game::updateBattle };
+    const std::array<void (*)(), NUM_FUNCTION_STATES> renderFunctions = { Game::renderOverworld, Game::renderBattle };
 }
 
 Game::Game() {
