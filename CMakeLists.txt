@@ -13,7 +13,9 @@ include_directories(${SDL2_INCLUDE_DIR})
 
 include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
-#include_directories("C:/libs/GSL-4.0.0/include/gsl")
+include_directories("C:/libs/GSL-4.0.0/include/gsl")
+
+#find_package(Microsoft.GSL CONFIG)
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmodules-ts")
 
@@ -90,3 +92,4 @@ add_executable(PokemonBattle
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll")
+#target_link_libraries(${PROJECT_NAME} Microsoft.GSL::GSL)

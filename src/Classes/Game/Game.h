@@ -13,6 +13,21 @@
 #include "../../Namespaces/Factory/ItemFactory.h"
 #include "../../Namespaces/Factory/MoveFactory.h"
 
+inline Direction oppositeDirection(const Direction direction) {
+    switch (direction) {
+        case NORTH:
+            return Direction::SOUTH;
+        case EAST:
+            return Direction::WEST;
+        case SOUTH:
+            return Direction::NORTH;
+        case WEST:
+            return Direction::EAST;
+        default:
+            throw std::runtime_error("Unexpected error: function oppositeDirection");
+    }
+}
+
 class Game {
 private:
     static void saveData();
@@ -20,6 +35,10 @@ private:
     static void eraseData();
 
     static void handleOverworldKeyDown();
+
+    static void changeMap(const std::array<int, 3> &data);
+    static void checkForOpponents();
+    static void updateTrainers();
 
 public:
     Game();
@@ -33,12 +52,15 @@ public:
     static void update();
     static void render();
 
+    static void handleTitleScreenEvents();
     static void handleOverworldEvents();
     static void handleBattleEvents();
 
+    static void updateTitleScreen();
     static void updateOverworld();
     static void updateBattle();
 
+    static void renderTitleScreen();
     static void renderOverworld();
     static void renderBattle();
 

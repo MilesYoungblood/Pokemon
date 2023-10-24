@@ -19,7 +19,7 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
-Map::Map(const char *name, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) : name(name), width(width), height(height), exitPoints(exitPoints) {
+Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) : name(name), music(music), width(width), height(height), exitPoints(exitPoints) {
     // initialize the layout with grass
     this->layout.resize(this->width);
     for (int i = 0; i < this->width; ++i) {
@@ -55,8 +55,8 @@ Map::Map(const char *name, const int width, const int height, const std::vector<
     Map::grass = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\grass.png)");
 }
 
-Map::Map(const char *name, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList)
-    : Map(name, width, height, exitPoints) {
+Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList)
+    : Map(name, music, width, height, exitPoints) {
     for (const auto &trainer : trainerList) {
         this->trainers.push_back(trainer);
     }
@@ -110,6 +110,10 @@ const Trainer & Map::operator[](const int index) const {
     return *this->trainers[index];
 }
 
+const char * Map::getMusic() const {
+    return this->music;
+}
+
 // places an obstruction at the passed coordinates
 void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
@@ -118,23 +122,20 @@ void Map::setObstruction(const int x, const int y) {
 }
 
 // shift the map and its trainers, according to a passed in flag
-void Map::updateMap(const int distance, const int flag) {
+void Map::updateMap(const Direction direction, const int distance) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
-            const int x = this->layout[row][column].dest.x;
-            const int y = this->layout[row][column].dest.y;
-
-            switch (flag) {
-                case 1:
+            switch (direction) {
+                case Direction::SOUTH:
                     this->layout[row][column].dest.y += distance;
                     break;
-                case 2:
+                case Direction::NORTH:
                     this->layout[row][column].dest.y -= distance;
                     break;
-                case 3:
+                case Direction::EAST:
                     this->layout[row][column].dest.x += distance;
                     break;
-                case 4:
+                case Direction::WEST:
                     this->layout[row][column].dest.x -= distance;
                     break;
                 default:
@@ -144,17 +145,17 @@ void Map::updateMap(const int distance, const int flag) {
     }
 
     for (Trainer *&trainer : this->trainers) {
-        switch (flag) {
-            case 1:
+        switch (direction) {
+            case Direction::SOUTH:
                 trainer->shiftDownOnMap(distance);
                 break;
-            case 2:
+            case Direction::NORTH:
                 trainer->shiftUpOnMap(distance);
                 break;
-            case 3:
+            case Direction::EAST:
                 trainer->shiftRightOnMap(distance);
                 break;
-            case 4:
+            case Direction::WEST:
                 trainer->shiftLeftOnMap(distance);
                 break;
             default:
@@ -169,7 +170,7 @@ void Map::renderMap() {
         for (int column = 0; column < this->height; ++column) {
             sdlRect = this->layout[row][column].dest;
             // prevents rendering tiles that aren't onscreen
-            if (not Camera::isInView(sdlRect)) {
+            if (Camera::isInView(sdlRect) == 0U) {
                 continue;
             }
 
@@ -205,14 +206,14 @@ void Map::resetMap() {
 }
 
 bool Entity::canMoveForward(const Map *map) const {
-    switch (this->direction) {
-        case NORTH:
+    switch (this->currentDirection) {
+        case Direction::NORTH:
             return not map->isObstructionHere(this->x, this->y - 1);
-        case EAST:
+        case Direction::EAST:
             return not map->isObstructionHere(this->x + 1, this->y);
-        case SOUTH:
-            return not map->isObstructionHere(this->x, this->y - 1);
-        case WEST:
+        case Direction::SOUTH:
+            return not map->isObstructionHere(this->x, this->y + 1);
+        case Direction::WEST:
             return not map->isObstructionHere(this->x - 1, this->y);
         default:
             throw std::runtime_error("Unexpected error: function canMoveForward");

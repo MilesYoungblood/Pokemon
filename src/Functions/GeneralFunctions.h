@@ -5,6 +5,7 @@
 #pragma once
 
 #include <iostream>
+#include <filesystem>
 #include <vector>
 #include <random>
 #include <algorithm>
@@ -91,7 +92,7 @@ public:
 
 // returns true if character is a vowel
 inline bool isVowel(char ltr) {
-    return tolower(ltr) == 'a' xor tolower(ltr) == 'e' xor tolower(ltr) == 'i' xor tolower(ltr) == 'o' xor tolower(ltr) == 'u';
+    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
 }
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
@@ -165,7 +166,7 @@ inline void printMessage(const char *message, const int interval = 25) {
 }
 
 // prints out a string and sleeps in between prints
-inline void printMessage(const std::string &message, const int interval = 25) {
+inline void printMessage(std::string_view message, const int interval = 25) {
     bool sleep = true;
     for (const char ltr : message) {
         if (sleep and (_kbhit() != 0)) {

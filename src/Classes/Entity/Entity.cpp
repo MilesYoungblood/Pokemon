@@ -15,24 +15,8 @@ Entity::~Entity() {
     SDL_DestroyTexture(this->rightModel);
 }
 
-void Entity::moveNorth() {
-    --this->y;
-}
-
-void Entity::moveEast() {
-    ++this->x;
-}
-
-void Entity::moveSouth() {
-    ++this->y;
-}
-
-void Entity::moveWest() {
-    --this->x;
-}
-
 void Entity::moveForward() {
-    switch (this->direction) {
+    switch (this->currentDirection) {
         case NORTH:
             --this->y;
             break;
@@ -49,27 +33,46 @@ void Entity::moveForward() {
 }
 
 void Entity::faceNorth() {
-    this->direction = Direction::NORTH;
+    this->currentDirection = Direction::NORTH;
     this->currentModel = this->backModel;
 }
 
 void Entity::faceEast() {
-    this->direction = Direction::EAST;
+    this->currentDirection = Direction::EAST;
     this->currentModel = this->rightModel;
 }
 
 void Entity::faceSouth() {
-    this->direction = Direction::SOUTH;
+    this->currentDirection = Direction::SOUTH;
     this->currentModel = this->frontModel;
 }
 
 void Entity::faceWest() {
-    this->direction = Direction::WEST;
+    this->currentDirection = Direction::WEST;
     this->currentModel = this->leftModel;
 }
 
+void Entity::setDirection(const Direction direction) {
+    this->currentDirection = direction;
+
+    switch (this->currentDirection) {
+        case NORTH:
+            this->currentModel = this->backModel;
+            break;
+        case EAST:
+            this->currentModel = this->rightModel;
+            break;
+        case SOUTH:
+            this->currentModel = this->frontModel;
+            break;
+        case WEST:
+            this->currentModel = this->leftModel;
+            break;
+    }
+}
+
 Direction Entity::getDirection() const {
-    return this->direction;
+    return this->currentDirection;
 }
 
 // sets the player's map coordinates and screen coordinates
@@ -106,19 +109,19 @@ void Entity::face(const Entity *entity) {
 }
 
 bool Entity::isFacingNorth() const {
-    return this->direction == Direction::NORTH;
+    return this->currentDirection == Direction::NORTH;
 }
 
 bool Entity::isFacingEast() const {
-    return this->direction == Direction::EAST;
+    return this->currentDirection == Direction::EAST;
 }
 
 bool Entity::isFacingSouth() const {
-    return this->direction == Direction::SOUTH;
+    return this->currentDirection == Direction::SOUTH;
 }
 
 bool Entity::isFacingWest() const {
-    return this->direction == Direction::WEST;
+    return this->currentDirection == Direction::WEST;
 }
 
 // returns true if this is right next to another entity, not necessarily facing
@@ -174,8 +177,8 @@ void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
 }
 
-void Entity::shiftDirectionOnMap(Direction direct, int distance) {
-    switch (direct) {
+void Entity::shiftDirectionOnMap(Direction direction, int distance) {
+    switch (direction) {
         case Direction::NORTH:
             this->destRect.y -= distance;
             break;

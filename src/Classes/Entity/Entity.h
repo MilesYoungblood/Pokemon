@@ -17,7 +17,7 @@ private:
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
-    Direction direction{Direction::SOUTH};              // numerical representation of which way the trainer is facing
+    Direction currentDirection{Direction::SOUTH};       // numerical representation of which way the trainer is facing
 
     SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
     SDL_Texture *backModel{nullptr};                    // model of the entity when facing north
@@ -37,11 +37,6 @@ public:
     Entity & operator=(const Entity &&) = delete;
     ~Entity();
 
-    void moveNorth();
-    void moveEast();
-    void moveSouth();
-    void moveWest();
-
     void moveForward();
 
     void faceNorth();
@@ -49,6 +44,7 @@ public:
     void faceSouth();
     void faceWest();
 
+    void setDirection(Direction direction);
     [[nodiscard]] Direction getDirection() const;
 
     void setCoordinates(int newX, int newY);
@@ -75,7 +71,7 @@ public:
     void shiftLeftOnMap(int distance);
     void shiftRightOnMap(int distance);
 
-    void shiftDirectionOnMap(Direction direct, int distance);
+    void shiftDirectionOnMap(Direction direction, int distance);
     
     [[nodiscard]] SDL_Rect getRect() const;
 

@@ -10,8 +10,8 @@ TextureManager::TextureManager(SDL_Renderer *r) {
     TextureManager::renderer = r;
 }
 
-SDL_Texture * TextureManager::LoadTexture(const std::string &texture) {
-    SDL_Surface *temp = IMG_Load(texture.c_str());
+SDL_Texture * TextureManager::LoadTexture(std::string_view texture) {
+    SDL_Surface *temp = IMG_Load(texture.data());
     SDL_Texture *text = SDL_CreateTextureFromSurface(TextureManager::renderer, temp);
     SDL_FreeSurface(temp);
 

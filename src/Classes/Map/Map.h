@@ -32,6 +32,8 @@ private:
 
     const char *name;                               // name of the map
 
+    const char *music;
+
     const int width;                                // width of the map
     const int height;                               // height of the map
 
@@ -50,8 +52,8 @@ private:
     [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
-    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char *name, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
+    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints);
+    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
     Map(const Map &) = delete;
     Map(const Map &&) = delete;
     Map & operator=(const Map &) = delete;
@@ -65,9 +67,11 @@ public:
     Trainer & operator[](int index);
     const Trainer & operator[](int index) const;
 
+    [[nodiscard]] const char * getMusic() const;
+
     void setObstruction(int x, int y);
 
-    void updateMap(int distance, int flag);
+    void updateMap(Direction direction, int distance);
     void renderMap();
     void resetMap();
 };

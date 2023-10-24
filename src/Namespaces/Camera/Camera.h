@@ -27,26 +27,42 @@ namespace Camera {
         xPos += distance;
     }
 
+    inline void shift(const Direction direction, const int distance) {
+        switch (direction) {
+            case NORTH:
+                yPos -= distance;
+            case EAST:
+                xPos += distance;
+            case SOUTH:
+                yPos += distance;
+            case WEST:
+                xPos -= distance;
+        }
+    }
+
     // returns whether an entity is in view of the camera,
     // thus enabling the rendering of only the necessary objects
-    inline bool isInView(const SDL_Rect &rect) {
-        SDL_Rect r{ xPos, yPos, WIDTH, HEIGHT };
+    inline SDL_bool isInView(const SDL_Rect &rect) {
+        const SDL_Rect r{ xPos, yPos, WIDTH, HEIGHT };
         return SDL_HasIntersection(&rect, &r);
     }
 
     // finds the player's current position on the screen map,
     // then shifts everything, including the player, accordingly
-    inline void lockOnPlayer(Player *p, void (*instructions)(int, int)) {
+    inline void lockOnPlayer(Player *p, void (*instructions)(Direction, int)) {
         xPos = 0;
         yPos = 0;
 
         int xFromCenter = ((WIDTH - TILE_SIZE) / 2) - p->getX() * TILE_SIZE;    // x-distance of the player from the center of the screen
         int yFromCenter = ((HEIGHT - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;   // y-distance of the player from the center of the screen
 
-        const int xDirection = xFromCenter > 0 ? 3 : 4;                         // determines whether to shift left or right
-        const int yDirection = yFromCenter > 0 ? 1 : 2;                         // determines whether to shift up or down
+        // determines whether to shift left or right
+        const Direction xDirection = xFromCenter > 0 ? Direction::EAST : Direction::WEST;
 
-        if (xDirection == 3) {
+        // determines whether to shift up or down
+        const Direction yDirection = yFromCenter > 0 ? Direction::SOUTH : Direction::NORTH;
+
+        if (xDirection == Direction::EAST) {
             p->shiftRightOnMap(xFromCenter);
             Camera::shiftRight(xFromCenter);
         }
@@ -56,7 +72,7 @@ namespace Camera {
             Camera::shiftLeft(xFromCenter);
         }
 
-        if (yDirection == 1) {
+        if (yDirection == Direction::SOUTH) {
             p->shiftDownOnMap(yFromCenter);
             Camera::shiftDown(yFromCenter);
         }
@@ -66,7 +82,7 @@ namespace Camera {
             Camera::shiftUp(yFromCenter);
         }
 
-        instructions(xFromCenter, xDirection);
-        instructions(yFromCenter, yDirection);
+        instructions(xDirection, xFromCenter);
+        instructions(yDirection, yFromCenter);
     }
 }
