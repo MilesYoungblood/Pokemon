@@ -10,27 +10,17 @@ Pokemon::Pokemon(const char *name, const Type type, const int level, const int h
     this->types[1] = Type::NONE;
 }
 
-Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move*> &moves)
-    : Pokemon(name, type, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
-    this->setMoves(moves);
-}
-
 Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
     : name(name), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
     this->types[0] = type1;
     this->types[1] = type2;
 }
 
-Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate, const std::initializer_list<Move *> &moves)
-    : Pokemon(name, type1, type2, level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed, catchRate) {
-    this->setMoves(moves);
-}
-
 Pokemon::~Pokemon() {
     for (int i = 0; i < this->moveCounter; ++i) {
         if (this->moveSet[i] != nullptr) {
             std::cout << "\t\tDeleting " << this->name << "'s " << this->moveSet[i]->getName() << "!\n";
-            delete this->moveSet[i];
+            //delete this->moveSet[i];
         }
     }
 }
@@ -86,14 +76,18 @@ double Pokemon::getStatMod(const int stat) {
     }
 }
 
+PokemonID Pokemon::getID() const {
+    return static_cast<PokemonID>(300);
+}
+
 int Pokemon::numMoves() const { return this->moveCounter; }
 
-void Pokemon::addMove(Move *move) {
+void Pokemon::addMove(std::unique_ptr<Move> move) {
     if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
         return;
     }
 
-    this->moveSet.push_back(move);
+    this->moveSet.push_back(std::move(move));
     ++this->moveCounter;
 }
 
@@ -102,8 +96,8 @@ void Pokemon::deleteMove(const int index) {
         return;
     }
 
-    delete this->moveSet[index];
-    this->moveSet[index] = nullptr;
+    //delete this->moveSet[index];
+    //this->moveSet[index] = nullptr;
 
     this->moveSet.erase(this->moveSet.begin() + index);
     --this->moveCounter;
@@ -115,7 +109,7 @@ void Pokemon::setMoves(const std::initializer_list<Move *> &moves) {
             break;
         }
 
-        this->moveSet.push_back(move);
+        //this->moveSet.push_back(move);
         ++this->moveCounter;
 
     }
@@ -391,7 +385,7 @@ void Move::action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int
 }
 
 void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) {
-    printMessage(attackingPokemon.getName() + " used " + this->name + "! ");
+    printMessage(attackingPokemon.getName() + " used " + this->getName() + "! ");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     // damage will be negative if the attack misses
     if (damage > 0) {

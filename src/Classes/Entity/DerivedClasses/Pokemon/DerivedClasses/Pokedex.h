@@ -8,9 +8,6 @@
 
 struct Venasaur : public Pokemon {
     Venasaur() : Pokemon("Venasaur", Type::GRASS, Type::POISON, 50, 80, 82, 83, 100, 100, 80, 45) {}
-    Venasaur(const std::initializer_list<Move*> &moves) : Venasaur() {
-        this->setMoves(moves);
-    }
 
     [[nodiscard]] PokemonID getID() const override {
         return PokemonID::VENASAUR;
@@ -19,9 +16,6 @@ struct Venasaur : public Pokemon {
 
 struct Charizard : public Pokemon {
     Charizard() : Pokemon("Charizard", Type::FIRE, Type::FLYING, 50, 78, 84, 78, 109, 85, 100, 45) {}
-    Charizard(const std::initializer_list<Move*> &moves) : Charizard() {
-        this->setMoves(moves);
-    }
 
     [[nodiscard]] PokemonID getID() const override {
         return PokemonID::CHARIZARD;
@@ -30,9 +24,6 @@ struct Charizard : public Pokemon {
 
 struct Pikachu : public Pokemon {
     Pikachu() : Pokemon("Pikachu", Type::ELECTRIC, 50, 35, 55, 40, 50, 50, 90, 190) {}
-    Pikachu(const std::initializer_list<Move*> &moves) : Pikachu() {
-        this->setMoves(moves);
-    }
 
     [[nodiscard]] PokemonID getID() const override {
         return PokemonID::PIKACHU;
@@ -41,9 +32,6 @@ struct Pikachu : public Pokemon {
 
 struct Lucario : public Pokemon {
     Lucario() : Pokemon("Lucario", Type::FIGHTING, Type::STEEL, 50, 70, 110, 70, 115, 70, 90, 45) {}
-    Lucario(const std::initializer_list<Move*> &moves) : Lucario() {
-        this->setMoves(moves);
-    }
 
     [[nodiscard]] PokemonID getID() const override {
         return PokemonID::LUCARIO;

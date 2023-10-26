@@ -10,10 +10,10 @@ class Player : public Trainer {
 private:
     static Player *instancePtr;
     static std::array<std::array<Pokemon *, 30>, 12> pc;
-    Player();
+    Player(int x, int y, int direction);
 
 public:
-    static Player * getPlayer();
+    static Player * getPlayer(int x = 6, int y = 8, int direction = 2);
     static void destroyPlayer();
 
     static void addToPC(Pokemon *toAdd);

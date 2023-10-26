@@ -4,41 +4,41 @@
 
 #pragma once
 
-#include "../../Classes/Move/DerivedClasses/MoveList.h"
+#include "../../Classes/Move/MoveList.h"
 
 namespace MoveFactory {
-    inline Move * getMove(const MoveID id) {
+    inline std::unique_ptr<Move> getMove(const MoveID id, const int pp = -1) {
         switch (id) {
             case MoveID::AIR_SLASH:
-                return new AirSlash;
+                return std::make_unique<AirSlash>(pp);
             case MoveID::AURA_SPHERE:
-                return new AuraSphere;
+                return std::make_unique<AuraSphere>(pp);
             case MoveID::DARK_PULSE:
-                return new DarkPulse;
+                return std::make_unique<DarkPulse>(pp);
             case MoveID::DRAGON_PULSE:
-                return new DragonPulse;
+                return std::make_unique<DragonPulse>(pp);
             case MoveID::EXTRASENSORY:
-                return new Extrasensory;
+                return std::make_unique<Extrasensory>(pp);
             case MoveID::FLAMETHROWER:
-                return new Flamethrower;
+                return std::make_unique<Flamethrower>(pp);
             case MoveID::FLASH_CANNON:
-                return new FlashCannon;
+                return std::make_unique<FlashCannon>(pp);
             case MoveID::FOCUS_BLAST:
-                return new FocusBlast;
+                return std::make_unique<FocusBlast>(pp);
             case MoveID::ICE_BEAM:
-                return new IceBeam;
+                return std::make_unique<IceBeam>(pp);
             case MoveID::IRON_TAIL:
-                return new IronTail;
+                return std::make_unique<IronTail>(pp);
             case MoveID::QUICK_ATTACK:
-                return new QuickAttack;
+                return std::make_unique<QuickAttack>(pp);
             case MoveID::SOLAR_BEAM:
-                return new SolarBeam;
+                return std::make_unique<SolarBeam>(pp);
             case MoveID::THUNDER:
-                return new Thunder;
+                return std::make_unique<Thunder>(pp);
             case MoveID::VOLT_TACKLE:
-                return new VoltTackle;
+                return std::make_unique<VoltTackle>(pp);
             case MoveID::WATER_SHURIKEN:
-                return new WaterShuriken;
+                return std::make_unique<WaterShuriken>(pp);
             default:
                 return nullptr;
         }

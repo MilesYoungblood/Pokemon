@@ -8,6 +8,8 @@ BattleItem::BattleItem(const char *name, const int quantity, const Stat stat) : 
 
 Stat BattleItem::getStat() const { return this->stat; }
 
+ItemType BattleItem::getType() const { return ItemType::BATTLE; }
+
 void BattleItem::restore(Pokemon &pokemon) {}
 
 void BattleItem::restore(Move &move) {}

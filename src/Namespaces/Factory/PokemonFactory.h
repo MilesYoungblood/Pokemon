@@ -7,110 +7,110 @@
 #include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
-    inline Pokemon * getPokemon(const PokemonID id) {
+    inline std::unique_ptr<Pokemon> getPokemon(const PokemonID id) {
         switch (id) {
             case VENASAUR:
-                return new Venasaur;
+                return std::make_unique<Venasaur>();
             case CHARIZARD:
-                return new Charizard;
+                return std::make_unique<Charizard>();
             case PIKACHU:
-                return new Pikachu;
+                return std::make_unique<Pikachu>();
             case LUCARIO:
-                return new Lucario;
+                return std::make_unique<Lucario>();
             case GRENINJA:
-                return new Greninja;
+                return std::make_unique<Greninja>();
             case VICTINI:
-                return new Victini;
+                return std::make_unique<Victini>();
             case SNIVY:
-                return new Snivy;
+                return std::make_unique<Snivy>();
             case SERVINE:
-                return new Servine;
+                return std::make_unique<Servine>();
             case SERPERIOR:
-                return new Serperior;
+                return std::make_unique<Serperior>();
             case TEPIG:
-                return new Tepig;
+                return std::make_unique<Tepig>();
             case PIGNITE:
-                return new Pignite;
+                return std::make_unique<Pignite>();
             case EMBOAR:
-                return new Emboar;
+                return std::make_unique<Emboar>();
             case OSHAWOTT:
-                return new Oshawott;
+                return std::make_unique<Oshawott>();
             case DEWOTT:
-                return new Dewott;
+                return std::make_unique<Dewott>();
             case SAMUROTT:
-                return new Samurott;
+                return std::make_unique<Samurott>();
             case PATRAT:
-                return new Patrat;
+                return std::make_unique<Patrat>();
             case WATCHOG:
-                return new Watchog;
+                return std::make_unique<Watchog>();
             case LILLIPUP:
-                return new Lillipup;
+                return std::make_unique<Lillipup>();
             case HERDIER:
-                return new Herdier;
+                return std::make_unique<Herdier>();
             case STOUTLAND:
-                return new Stoutland;
+                return std::make_unique<Stoutland>();
             case PURRLOIN:
-                return new Purrloin;
+                return std::make_unique<Purrloin>();
             case LIEPARD:
-                return new Liepard;
+                return std::make_unique<Liepard>();
             case PANSAGE:
-                return new Pansage;
+                return std::make_unique<Pansage>();
             case SIMISAGE:
-                return new Simisage;
+                return std::make_unique<Simisage>();
             case PANSEAR:
-                return new Pansear;
+                return std::make_unique<Pansear>();
             case SIMISEAR:
-                return new Simisear;
+                return std::make_unique<Simisear>();
             case PANPOUR:
-                return new Panpour;
+                return std::make_unique<Panpour>();
             case SIMIPOUR:
-                return new Simipour;
+                return std::make_unique<Simipour>();
             case MUNNA:
-                return new Munna;
+                return std::make_unique<Munna>();
             case MUSHARNA:
-                return new Musharna;
+                return std::make_unique<Musharna>();
             case PIDOVE:
-                return new Pidove;
+                return std::make_unique<Pidove>();
             case TRANQUILL:
-                return new Tranquill;
+                return std::make_unique<Tranquill>();
             case UNFEZANT:
-                return new Unfezant;
+                return std::make_unique<Unfezant>();
             case BLITZLE:
-                return new Blitzle;
+                return std::make_unique<Blitzle>();
             case ZEBSTRIKA:
-                return new Zebstrika;
+                return std::make_unique<Zebstrika>();
             case ROGGENROLA:
-                return new Roggenrola;
+                return std::make_unique<Roggenrola>();
             case BOLDORE:
-                return new Boldore;
+                return std::make_unique<Boldore>();
             case GIGALITH:
-                return new Gigalith;
+                return std::make_unique<Gigalith>();
             case WOOBAT:
-                return new Woobat;
+                return std::make_unique<Woobat>();
             case SWOOBAT:
-                return new Swoobat;
+                return std::make_unique<Swoobat>();
             case DRILBUR:
-                return new Drilbur;
+                return std::make_unique<Drilbur>();
             case EXCADRILL:
-                return new Excadrill;
+                return std::make_unique<Excadrill>();
             case AUDINO:
-                return new Audino;
+                return std::make_unique<Audino>();
             case TIMBURR:
-                return new Timburr;
+                return std::make_unique<Timburr>();
             case GURDURR:
-                return new Gurdurr;
+                return std::make_unique<Gurdurr>();
             case CONKELDURR:
-                return new Conkeldurr;
+                return std::make_unique<Conkeldurr>();
             case TYMPOLE:
-                return new Tympole;
+                return std::make_unique<Tympole>();
             case PALPITOAD:
-                return new Palpitoad;
+                return std::make_unique<Palpitoad>();
             case SEISMITOAD:
-                return new Seismitoad;
+                return std::make_unique<Seismitoad>();
             case THROH:
-                return new Throh;
+                return std::make_unique<Throh>();
             case SAWK:
-                return new Sawk;
+                return std::make_unique<Sawk>();
             case SEWADDLE:
                 break;
             case SWADLOON:
@@ -302,7 +302,7 @@ namespace PokemonFactory {
             case ZWEILOUS:
                 break;
             case HYDREIGON:
-                return new Hydreigon;
+                return std::make_unique<Hydreigon>();
             case LARVESTA:
                 break;
             case VOLCARONA:

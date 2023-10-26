@@ -248,6 +248,30 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
+src/Classes/Game/BattleFunctions.obj: src/Classes/Game/BattleFunctions.cpp.obj
+.PHONY : src/Classes/Game/BattleFunctions.obj
+
+# target to build an object file
+src/Classes/Game/BattleFunctions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj
+.PHONY : src/Classes/Game/BattleFunctions.cpp.obj
+
+src/Classes/Game/BattleFunctions.i: src/Classes/Game/BattleFunctions.cpp.i
+.PHONY : src/Classes/Game/BattleFunctions.i
+
+# target to preprocess a source file
+src/Classes/Game/BattleFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.i
+.PHONY : src/Classes/Game/BattleFunctions.cpp.i
+
+src/Classes/Game/BattleFunctions.s: src/Classes/Game/BattleFunctions.cpp.s
+.PHONY : src/Classes/Game/BattleFunctions.s
+
+# target to generate assembly for a file
+src/Classes/Game/BattleFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.s
+.PHONY : src/Classes/Game/BattleFunctions.cpp.s
+
 src/Classes/Game/Game.obj: src/Classes/Game/Game.cpp.obj
 .PHONY : src/Classes/Game/Game.obj
 
@@ -271,6 +295,54 @@ src/Classes/Game/Game.s: src/Classes/Game/Game.cpp.s
 src/Classes/Game/Game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.s
 .PHONY : src/Classes/Game/Game.cpp.s
+
+src/Classes/Game/OverworldFunctions.obj: src/Classes/Game/OverworldFunctions.cpp.obj
+.PHONY : src/Classes/Game/OverworldFunctions.obj
+
+# target to build an object file
+src/Classes/Game/OverworldFunctions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj
+.PHONY : src/Classes/Game/OverworldFunctions.cpp.obj
+
+src/Classes/Game/OverworldFunctions.i: src/Classes/Game/OverworldFunctions.cpp.i
+.PHONY : src/Classes/Game/OverworldFunctions.i
+
+# target to preprocess a source file
+src/Classes/Game/OverworldFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.i
+.PHONY : src/Classes/Game/OverworldFunctions.cpp.i
+
+src/Classes/Game/OverworldFunctions.s: src/Classes/Game/OverworldFunctions.cpp.s
+.PHONY : src/Classes/Game/OverworldFunctions.s
+
+# target to generate assembly for a file
+src/Classes/Game/OverworldFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.s
+.PHONY : src/Classes/Game/OverworldFunctions.cpp.s
+
+src/Classes/Game/TitleScreenFunctions.obj: src/Classes/Game/TitleScreenFunctions.cpp.obj
+.PHONY : src/Classes/Game/TitleScreenFunctions.obj
+
+# target to build an object file
+src/Classes/Game/TitleScreenFunctions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj
+.PHONY : src/Classes/Game/TitleScreenFunctions.cpp.obj
+
+src/Classes/Game/TitleScreenFunctions.i: src/Classes/Game/TitleScreenFunctions.cpp.i
+.PHONY : src/Classes/Game/TitleScreenFunctions.i
+
+# target to preprocess a source file
+src/Classes/Game/TitleScreenFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.i
+.PHONY : src/Classes/Game/TitleScreenFunctions.cpp.i
+
+src/Classes/Game/TitleScreenFunctions.s: src/Classes/Game/TitleScreenFunctions.cpp.s
+.PHONY : src/Classes/Game/TitleScreenFunctions.s
+
+# target to generate assembly for a file
+src/Classes/Game/TitleScreenFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.s
+.PHONY : src/Classes/Game/TitleScreenFunctions.cpp.s
 
 src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj: src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
 .PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj
@@ -440,30 +512,6 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
-src/Classes/TextureManager/TextureManager.obj: src/Classes/TextureManager/TextureManager.cpp.obj
-.PHONY : src/Classes/TextureManager/TextureManager.obj
-
-# target to build an object file
-src/Classes/TextureManager/TextureManager.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj
-.PHONY : src/Classes/TextureManager/TextureManager.cpp.obj
-
-src/Classes/TextureManager/TextureManager.i: src/Classes/TextureManager/TextureManager.cpp.i
-.PHONY : src/Classes/TextureManager/TextureManager.i
-
-# target to preprocess a source file
-src/Classes/TextureManager/TextureManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.i
-.PHONY : src/Classes/TextureManager/TextureManager.cpp.i
-
-src/Classes/TextureManager/TextureManager.s: src/Classes/TextureManager/TextureManager.cpp.s
-.PHONY : src/Classes/TextureManager/TextureManager.s
-
-# target to generate assembly for a file
-src/Classes/TextureManager/TextureManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.s
-.PHONY : src/Classes/TextureManager/TextureManager.cpp.s
-
 src/Data/Data.obj: src/Data/Data.cpp.obj
 .PHONY : src/Data/Data.obj
 
@@ -536,9 +584,18 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
+	@echo ... src/Classes/Game/BattleFunctions.obj
+	@echo ... src/Classes/Game/BattleFunctions.i
+	@echo ... src/Classes/Game/BattleFunctions.s
 	@echo ... src/Classes/Game/Game.obj
 	@echo ... src/Classes/Game/Game.i
 	@echo ... src/Classes/Game/Game.s
+	@echo ... src/Classes/Game/OverworldFunctions.obj
+	@echo ... src/Classes/Game/OverworldFunctions.i
+	@echo ... src/Classes/Game/OverworldFunctions.s
+	@echo ... src/Classes/Game/TitleScreenFunctions.obj
+	@echo ... src/Classes/Game/TitleScreenFunctions.i
+	@echo ... src/Classes/Game/TitleScreenFunctions.s
 	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj
 	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.i
 	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.s
@@ -560,9 +617,6 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
-	@echo ... src/Classes/TextureManager/TextureManager.obj
-	@echo ... src/Classes/TextureManager/TextureManager.i
-	@echo ... src/Classes/TextureManager/TextureManager.s
 	@echo ... src/Data/Data.obj
 	@echo ... src/Data/Data.i
 	@echo ... src/Data/Data.s

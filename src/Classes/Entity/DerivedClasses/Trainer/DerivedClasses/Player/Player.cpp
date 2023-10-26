@@ -7,20 +7,20 @@
 Player *Player::instancePtr = nullptr;
 std::array<std::array<Pokemon *, 30>, 12> Player::pc;
 
-Player::Player() : Trainer(6, 8) {
+Player::Player(int x, int y, int direction) : Trainer(x, y) {
     this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
     this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
     this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
     this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
 
-    this->setCurrentModel(this->getFrontModel());
+    this->setDirection(static_cast<Direction>(direction));
 
     std::cout << "Player created!\n\n";
 }
 
-Player * Player::getPlayer() {
+Player * Player::getPlayer(int x, int y, int direction) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player();
+        Player::instancePtr = new Player(x, y, direction);
     }
     return Player::instancePtr;
 }

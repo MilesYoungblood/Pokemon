@@ -41,25 +41,16 @@ class Pokemon;
 
 class Move {
 private:
-    const char *name;
-
     int pp;
     int maxPp;
-    int power;
-    int accuracy;
-
-    Type type;
-    Category category;
 
 public:
-    Move(const char *name, int pp, int power, int accuracy, Type type, Category category);
+    explicit Move(int pp);
     Move(const Move &) = delete;
     Move(const Move &&) = delete;
     Move & operator=(const Move &) = delete;
     Move & operator=(const Move &&) = delete;
     virtual ~Move() = default;
-
-    [[nodiscard]] virtual MoveID getID() const = 0;
 
     [[nodiscard]] virtual int getDamage() const;
 
@@ -68,21 +59,24 @@ public:
 
     void use();
     void setPP(int newPP);
+    void fillToMax();
     [[nodiscard]] int getPP() const;
 
     [[nodiscard]] int getMaxPP() const;
 
-    [[nodiscard]] int getPower() const;
+    [[nodiscard]] virtual int getPower() const = 0;
 
-    [[nodiscard]] int getAccuracy() const;
+    [[nodiscard]] virtual int getAccuracy() const;
 
-    [[nodiscard]] Type getType() const;
-    [[nodiscard]] const char * getTypeAsString() const;
+    [[nodiscard]] virtual Type getType() const = 0;
 
-    [[nodiscard]] Category getCategory() const;
-    [[nodiscard]] const char * getCategoryAsString() const;
+    [[nodiscard]] virtual Category getCategory() const = 0;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] virtual MoveID getID() const = 0;
+
+    [[nodiscard]] virtual std::string getName() const = 0;
+
+    [[nodiscard]] virtual const char * getDescription() const = 0;
 
     explicit operator bool() const;
 

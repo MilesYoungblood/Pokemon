@@ -8,6 +8,10 @@ PokeBall::PokeBall(const char *name, const int quantity, const double catchRate)
 
 PokeBall::PokeBall(int n) : PokeBall("Poke Ball", n, 1.0) {}
 
+ItemType PokeBall::getType() const { return ItemType::POKE_BALL; }
+
+ItemID PokeBall::getID() const { return ItemID::POKE_BALL; }
+
 void PokeBall::useMessage() {
     printMessage("You threw a");
 

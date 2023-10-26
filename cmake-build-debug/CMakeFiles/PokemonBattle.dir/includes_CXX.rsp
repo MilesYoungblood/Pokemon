@@ -1,1 +1,1 @@
--I"C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/GSL-4.0.0/include/gsl"
+-I"C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2" -I"C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2"

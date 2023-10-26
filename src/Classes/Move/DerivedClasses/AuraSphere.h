@@ -4,11 +4,20 @@
 
 #pragma once
 
-struct AuraSphere : public Move {
-    AuraSphere() : Move("Aura Sphere", 20, 80, 100, Type::FIGHTING, Category::SPECIAL) {}
+class AuraSphere : public Move {
+private:
+    const static int MAX_PP = 32;
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::AURA_SPHERE;
+public:
+    AuraSphere() : Move(20) {}
+
+    explicit AuraSphere(const int currentPP) : AuraSphere() {
+        if (currentPP < 0) {
+            this->setPP(this->getMaxPP());
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -17,7 +26,31 @@ struct AuraSphere : public Move {
             damage *= -1;
         }
 
-        defendingPokemon.setHP(defendingPokemon.getHP() - damage);
+        defendingPokemon.takeDamage(damage);
         this->use();
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 90;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::FIGHTING;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::AURA_SPHERE;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Aura Sphere";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user looses a blast of aura power from deep within its body at the target. This move is certain to hit.";
     }
 };

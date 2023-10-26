@@ -19,6 +19,37 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
+Map::Map(const char *name, const char *music, int width, int height) : name(name), music(music), width(width), height(height) {
+    // initialize the layout with grass
+    this->layout.resize(this->width);
+    for (int i = 0; i < this->width; ++i) {
+        this->layout[i].resize(this->height);
+
+        for (int j = 0; j < this->height; ++j) {
+            this->layout[i][j] = { Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE, TILE_SIZE, TILE_SIZE };
+        }
+    }
+
+    // set the top border
+    for (int x = 0; x < this->width; ++x) {
+        this->layout[x][0].id = Map::TileID::OBSTRUCTION;
+    }
+
+    // set the inner layer borders
+    for (int y = 1; y < this->height; ++y) {
+        this->layout[0][y].id = Map::TileID::OBSTRUCTION;
+        this->layout[this->width - 1][y].id = Map::TileID::OBSTRUCTION;
+    }
+
+    // set the bottom border
+    for (int x = 0; x < this->width; ++x) {
+        this->layout[x][this->height - 1].id = Map::TileID::OBSTRUCTION;
+    }
+
+    Map::obstruction = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
+    Map::grass = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\grass.png)");
+}
+
 Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints) : name(name), music(music), width(width), height(height), exitPoints(exitPoints) {
     // initialize the layout with grass
     this->layout.resize(this->width);
@@ -55,19 +86,16 @@ Map::Map(const char *name, const char *music, const int width, const int height,
     Map::grass = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\grass.png)");
 }
 
-Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList)
+//FIXME try not to copy vector parameter
+Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList)
     : Map(name, music, width, height, exitPoints) {
-    for (const auto &trainer : trainerList) {
-        this->trainers.push_back(trainer);
+    this->trainers.resize(trainerList.size());
+    for (int i = 0; i < this->trainers.size(); ++i) {
+        this->trainers[i] = std::move(trainerList[i]);
     }
 }
 
 Map::~Map() {
-    for (auto &trainer : this->trainers) {
-        delete trainer;
-        trainer = nullptr;
-    }
-
     SDL_DestroyTexture(Map::free);
     SDL_DestroyTexture(Map::obstruction);
     SDL_DestroyTexture(Map::grass);
@@ -85,6 +113,11 @@ bool Map::isObstructionHere(const int x, const int y) const {
     return this->layout[x][y].id == Map::TileID::OBSTRUCTION;
 }
 
+void Map::addExitPoint(const ExitPoint &exitPoint) {
+    this->exitPoints.push_back(exitPoint);
+    this->layout[exitPoint.x][exitPoint.y].id = Map::TileID::GRASS;
+}
+
 // returns an array with the new x and y coordinates and the new map respectively,
 // if no exit point is here, returns filler coordinates with the third element being -1
 std::array<int, 3> Map::isExitPointHere(const int x, const int y) const {
@@ -94,6 +127,10 @@ std::array<int, 3> Map::isExitPointHere(const int x, const int y) const {
         }
     }
     return { 0, 0, -1 };
+}
+
+void Map::addTrainer(std::unique_ptr<Trainer> toAdd) {
+    this->trainers.push_back(std::move(toAdd));
 }
 
 // returns the number of NPCs
@@ -144,7 +181,7 @@ void Map::updateMap(const Direction direction, const int distance) {
         }
     }
 
-    for (Trainer *&trainer : this->trainers) {
+    for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         switch (direction) {
             case Direction::SOUTH:
                 trainer->shiftDownOnMap(distance);
@@ -187,6 +224,13 @@ void Map::renderMap() {
                     TextureManager::Draw(Map::grass, sdlRect);
                     break;
             }
+        }
+    }
+
+    for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
+        // prevents rendering trainers that aren't onscreen
+        if (Camera::isInView(trainer->getRect()) != 0U) {
+            trainer->render();
         }
     }
 }

@@ -8,6 +8,8 @@ StatusItem::StatusItem(const char *name, const int quantity, const Status status
 
 Status StatusItem::getStatus() const { return this->status; }
 
+ItemType StatusItem::getType() const { return ItemType::STATUS; }
+
 void StatusItem::restore(Pokemon &pokemon) {
     if (this->status == pokemon.getStatus()) {
         pokemon.setStatus(Status::NONE);

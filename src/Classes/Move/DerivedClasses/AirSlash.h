@@ -4,11 +4,20 @@
 
 #pragma once
 
-struct AirSlash : public Move {
-    AirSlash() : Move("Air Slash", 15, 75, 95, Type::FLYING, Category::SPECIAL) {}
+class AirSlash : public Move {
+private:
+    const static int MAX_PP = 24;
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::AIR_SLASH;
+public:
+    AirSlash() : Move(20) {}
+
+    explicit AirSlash(const int currentPP) : AirSlash() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
@@ -56,5 +65,33 @@ struct AirSlash : public Move {
 
         printMessage('\n');
         std::cout.flush();
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 75;
+    }
+
+    [[nodiscard]] int getAccuracy() const override {
+        return 95;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::FLYING;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::AIR_SLASH;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Air Slash";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user attacks with a blade of air that slices even the sky. It may also make the target flinch.";
     }
 };

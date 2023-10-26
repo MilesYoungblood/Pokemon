@@ -7,6 +7,12 @@
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Namespaces/Camera/Camera.h"
 
+enum MapID {
+    ROUTE_1,
+    ROUTE_2,
+    ROUTE_3
+};
+
 class Map {
 private:
     enum TileID {
@@ -45,15 +51,18 @@ private:
 
     std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
 
-    std::vector<Trainer *> trainers;                 // the set of trainers in this map
+    std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
+
+    std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>> items;
 
     std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
 
     [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
+    Map(const char *name, const char *music, int width, int height);
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints);
-    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, const std::initializer_list<Trainer *> &trainerList);
+    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList);
     Map(const Map &) = delete;
     Map(const Map &&) = delete;
     Map & operator=(const Map &) = delete;
@@ -61,8 +70,11 @@ public:
     ~Map();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
+
+    void addExitPoint(const ExitPoint &exitPoint);
     [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
+    void addTrainer (std::unique_ptr<Trainer> toAdd);
     [[nodiscard]] int numTrainers() const;
     Trainer & operator[](int index);
     const Trainer & operator[](int index) const;

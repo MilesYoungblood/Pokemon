@@ -10,6 +10,8 @@ int RestoreItem::getAmount() const { return this->amount; }
 
 RestoreType RestoreItem::getRestoreType() const { return this->restoreType; }
 
+ItemType RestoreItem::getType() const { return ItemType::RESTORE; }
+
 void RestoreItem::restore(Pokemon &pokemon) {
     if (this->restoreType == RestoreType::HP) {
         pokemon.restoreHP(this->amount);

@@ -15,6 +15,39 @@ Entity::~Entity() {
     SDL_DestroyTexture(this->rightModel);
 }
 
+void Entity::setDialogue(const char *text) {
+    std::stringstream ss(text);
+
+    const int CHARACTER_LIMIT = 0;
+    int letterCounter = 0;
+    std::string buffer;
+    std::string dest;
+
+    while (std::getline(ss, buffer, ' ')) {
+        letterCounter += buffer.length();
+
+        // if the next word exceeds the limit
+        //if (letterCounter >= )
+    }
+}
+
+// sets the player's map coordinates and screen coordinates
+void Entity::setCoordinates(const int newX, const int newY) {
+    this->x = newX;
+    this->y = newY;
+
+    this->destRect.x = this->x * TILE_SIZE;
+    this->destRect.y = this->y * TILE_SIZE;
+}
+
+int Entity::getX() const {
+    return this->x;
+}
+
+int Entity::getY() const {
+    return this->y;
+}
+
 void Entity::moveForward() {
     switch (this->currentDirection) {
         case NORTH:
@@ -52,8 +85,8 @@ void Entity::faceWest() {
     this->currentModel = this->leftModel;
 }
 
-void Entity::setDirection(const Direction direction) {
-    this->currentDirection = direction;
+void Entity::setDirection(const Direction newDirection) {
+    this->currentDirection = newDirection;
 
     switch (this->currentDirection) {
         case NORTH:
@@ -73,23 +106,6 @@ void Entity::setDirection(const Direction direction) {
 
 Direction Entity::getDirection() const {
     return this->currentDirection;
-}
-
-// sets the player's map coordinates and screen coordinates
-void Entity::setCoordinates(const int newX, const int newY) {
-    this->x = newX;
-    this->y = newY;
-
-    this->destRect.x = this->x * TILE_SIZE;
-    this->destRect.y = this->y * TILE_SIZE;
-}
-
-int Entity::getX() const {
-    return this->x;
-}
-
-int Entity::getY() const {
-    return this->y;
 }
 
 // makes this face the entity

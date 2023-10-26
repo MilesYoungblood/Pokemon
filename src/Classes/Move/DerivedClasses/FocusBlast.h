@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct FocusBlast : public Move {
+class FocusBlast : public Move {
 private:
+    const static int MAX_PP = 8;
     bool loweredState = false;
 
 public:
-    FocusBlast() : Move("Focus Blast", 5, 120, 70, Type::FIGHTING, Category::SPECIAL) {}
+    FocusBlast() : Move(5) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::FOCUS_BLAST;
+    explicit FocusBlast(const int currentPP) : FocusBlast() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -72,5 +78,33 @@ public:
         std::cout.flush();
 
         this->loweredState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 120;
+    }
+
+    [[nodiscard]] int getAccuracy() const override {
+        return 70;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::FIGHTING;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::FOCUS_BLAST;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Focus Blast";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user heightens its mental focus and unleashes its power. It may also lower the target’s Sp. Def.";
     }
 };

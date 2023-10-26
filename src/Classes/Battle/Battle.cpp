@@ -268,8 +268,8 @@ void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) 
 
 void Battle::displayMoveSummary(const Move &move) {
     std::cout << move << '\n';
-    std::cout << "\tType:     " << move.getTypeAsString() << '\n';
-    std::cout << "\tCategory: " << move.getCategoryAsString() << '\n';
+    std::cout << "\tType:     " << getTypeAsString(static_cast<int>(move.getType())) << '\n';
+    std::cout << "\tCategory: " << getCategoryAsString(static_cast<int>(move.getCategory())) << '\n';
     std::cout << "\tPower:    " << move.getPower() << '\n';
     std::cout << "\tAccuracy: " << move.getAccuracy() << '\n';
     std::cout << "\tPP:       " << move.getPP() << '/' << move.getMaxPP() << '\n';

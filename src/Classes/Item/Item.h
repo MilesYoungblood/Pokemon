@@ -8,7 +8,14 @@
 
 #include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
-enum ItemID {
+enum class ItemType {
+    RESTORE,
+    STATUS,
+    POKE_BALL,
+    BATTLE
+};
+
+enum class ItemID {
     POTION,
     SUPER_POTION,
     HYPER_POTION,
@@ -60,6 +67,8 @@ public:
     [[nodiscard]] virtual RestoreType getRestoreType() const;
     [[nodiscard]] virtual Status getStatus() const;
     [[nodiscard]] virtual Stat getStat() const;
+    [[nodiscard]] virtual ItemID getID() const = 0;
+    [[nodiscard]] virtual ItemType getType() const = 0;
 
     virtual void restore(Pokemon &pokemon) = 0;
     virtual void restore(Move &move) = 0;

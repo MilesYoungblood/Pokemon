@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct Thunder : public Move {
+class Thunder : public Move {
 private:
+    const static int MAX_PP = 16;
     bool paralysisState = false;
 
 public:
-    Thunder() : Move("Thunder", 10, 110, 70, Type::ELECTRIC, Category::SPECIAL) {}
+    Thunder() : Move(10) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::THUNDER;
+    explicit Thunder(const int currentPP) : Thunder() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -71,5 +77,33 @@ public:
         std::cout.flush();
 
         this->paralysisState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 120;
+    }
+
+    [[nodiscard]] int getAccuracy() const override {
+        return 70;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::ELECTRIC;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::THUNDER;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Thunder";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.";
     }
 };

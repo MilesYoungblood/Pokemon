@@ -14,6 +14,8 @@ public:
     BattleItem(const char *name, int quantity, Stat stat);
 
     [[nodiscard]] Stat getStat() const override;
+    [[nodiscard]] ItemID getID() const override = 0;
+    [[nodiscard]] ItemType getType() const override;
 
     void restore(Pokemon &pokemon) override;
     void restore(Move &move) override;

@@ -15,6 +15,7 @@ public:
     StatusItem(const char *name, int quantity, Status status);
 
     [[nodiscard]] Status getStatus() const override;
+    [[nodiscard]] ItemType getType() const override;
 
     void restore(Pokemon &pokemon) override;
     void restore(Move &move) override;

@@ -16,6 +16,7 @@ public:
 
     [[nodiscard]] int getAmount() const override;
     [[nodiscard]] RestoreType getRestoreType() const override;
+    [[nodiscard]] ItemType getType() const override;
 
     void restore(Pokemon &pokemon) override;
     void restore(Move &move) override;

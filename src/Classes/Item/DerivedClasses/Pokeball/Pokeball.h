@@ -16,6 +16,9 @@ protected:
 public:
     explicit PokeBall(int n);
 
+    [[nodiscard]] ItemType getType() const override;
+    [[nodiscard]] ItemID getID() const override;
+
     void useMessage() override;
 
     void restore(Pokemon &pokemon) override;

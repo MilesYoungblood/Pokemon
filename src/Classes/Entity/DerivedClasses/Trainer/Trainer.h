@@ -16,8 +16,6 @@ inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_p
 
 class Trainer : public Entity {
 private:
-    const char *dialogue{""};
-
     const static int MAX_POKEMON = 6;                   // max number of Pokémon per party
     const static int MAX_ITEMS = 50;                    // max number of items per bag
     const static int NUM_ITEM_TYPES = 4;                // number of types of items
@@ -26,14 +24,14 @@ private:
     int numPokemon{0};                                  // current number of Pokémon in the party
     std::array<int, Trainer::NUM_ITEM_TYPES> numItems;  // number of each type of item
 
-    std::vector<Pokemon *> party;
-    std::array<std::vector<Item *>, Trainer::NUM_ITEM_TYPES> items;
+    std::vector<std::unique_ptr<Pokemon>> party;
+    std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
 
 public:
     Trainer();
     Trainer(int x, int y);
-    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y);
-    Trainer(const std::initializer_list<Pokemon*> &pokemon, int x, int y, int vision);
+    Trainer(int x, int y, int direction);
+    Trainer(int x, int y, int direction, int vision);
     Trainer(const Trainer &) = delete;
     Trainer(const Trainer &&) = delete;
     Trainer & operator=(const Trainer &) = delete;
@@ -41,26 +39,41 @@ public:
     virtual ~Trainer();
 
     [[nodiscard]] int partySize() const;
-    void addPokemon(Pokemon *toAdd);
+    inline void addPokemon(std::unique_ptr<Pokemon> toAdd) {
+        if (this->numPokemon == Trainer::MAX_POKEMON) {
+            return;
+        }
+
+        this->party.push_back(std::move(toAdd));
+        ++this->numPokemon;
+    }
+    template <typename P>
+    inline void addPokemon() {
+        try {
+            if (this->numPokemon == Trainer::MAX_POKEMON) {
+                return;
+            }
+
+            this->party.push_back(std::make_unique<P>());
+            ++this->numPokemon;
+        }
+        catch (const std::exception &exception) {
+            throw std::runtime_error(std::string("Error adding Pokemon: ") + exception.what());
+        }
+    }
     void removePokemon(int index);
+    void swapPokemon(int first, int second);
     void clearParty();
 
     [[nodiscard]] int getNumItems(int type) const;
     [[nodiscard]] Item & getItem(int type, int item) const;
 
-    void addItem(int type, Item *toAdd);
+    void addItem(std::unique_ptr<Item> toAdd);
     void removeItem(int type, int index);
-
-    void setRestoreItems(const std::initializer_list<Item*> &inventory);
-    void setStatusItems(const std::initializer_list<Item*> &inventory);
-    void setPokeBalls(const std::initializer_list<Item*> &inventory);
-    void setBattleItems(const std::initializer_list<Item*> &inventory);
 
     void incFaintCount();
     void decFaintCount();
     [[nodiscard]] int getFaintCount() const;
-
-    void swapPokemon(int first, int second);
 
     Pokemon & operator[](int spot);
     const Pokemon & operator[](int spot) const;

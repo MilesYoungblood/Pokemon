@@ -293,20 +293,50 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedCl
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Entity\DerivedClasses\Trainer\DerivedClasses\Player\Player.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Trainer\DerivedClasses\Player\Player.cpp.s
 
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/TextureManager/TextureManager.cpp
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager\TextureManager.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager\TextureManager.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\TextureManager\TextureManager.cpp"
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Game/OverworldFunctions.cpp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Game\OverworldFunctions.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\OverworldFunctions.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\OverworldFunctions.cpp"
 
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\TextureManager\TextureManager.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager\TextureManager.cpp.i
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\OverworldFunctions.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Game\OverworldFunctions.cpp.i
 
-CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\TextureManager\TextureManager.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\TextureManager\TextureManager.cpp.s
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\OverworldFunctions.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\OverworldFunctions.cpp.s
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Game/BattleFunctions.cpp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Game\BattleFunctions.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\BattleFunctions.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\BattleFunctions.cpp"
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\BattleFunctions.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Game\BattleFunctions.cpp.i
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\BattleFunctions.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\BattleFunctions.cpp.s
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Game/TitleScreenFunctions.cpp
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Game\TitleScreenFunctions.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\TitleScreenFunctions.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\TitleScreenFunctions.cpp"
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\TitleScreenFunctions.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Game\TitleScreenFunctions.cpp.i
+
+CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Game\TitleScreenFunctions.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Game\TitleScreenFunctions.cpp.s
 
 # Object files for target PokemonBattle
 PokemonBattle_OBJECTS = \
@@ -325,7 +355,9 @@ PokemonBattle_OBJECTS = \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj" \
-"CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj"
+"CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj" \
+"CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj" \
+"CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj"
 
 # External object files for target PokemonBattle
 PokemonBattle_EXTERNAL_OBJECTS =
@@ -345,16 +377,19 @@ PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.ob
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj
-PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.obj
+PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj
+PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj
+PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/build.make
 PokemonBattle.exe: C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2main.a
 PokemonBattle.exe: C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/lib/libSDL2.dll.a
 PokemonBattle.exe: C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll
 PokemonBattle.exe: C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll
+PokemonBattle.exe: C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/linkLibs.rsp
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/objects1.rsp
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable PokemonBattle.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable PokemonBattle.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\PokemonBattle.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

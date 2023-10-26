@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct Flamethrower : public Move {
+class Flamethrower : public Move {
 private:
+    const static int MAX_PP = 24;
     bool burnState = false;
 
 public:
-    Flamethrower() : Move("Flamethrower", 15, 90, 100, Type::FIRE, Category::SPECIAL) {}
+    Flamethrower() : Move(15) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::FLAMETHROWER;
+    explicit Flamethrower(const int currentPP) : Flamethrower() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -65,5 +71,29 @@ public:
         std::cout.flush();
 
         this->burnState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 95;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::FIRE;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::FLAMETHROWER;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Flamethrower";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The target is scorched with an intense blast of fire. It may also leave the target with a burn.";
     }
 };

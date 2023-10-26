@@ -201,7 +201,7 @@ private:
 
     int catchRate;
 
-    std::vector<Move *> moveSet;
+    std::vector<std::unique_ptr<Move>> moveSet;
     std::array<Type, Pokemon::MAX_NUM_TYPES> types;
     Status status{Status::NONE};
     
@@ -213,21 +213,20 @@ private:
     static double getStatMod(int stat);
 
 public:
+    Pokemon() = default;
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
-    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves);
-    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate, const std::initializer_list<Move*> &moves);
     Pokemon(const Pokemon &) = delete;
     Pokemon(const Pokemon &&) = delete;
     Pokemon & operator=(const Pokemon &) = delete;
     Pokemon & operator=(const Pokemon &&) = delete;
     virtual ~Pokemon();
 
-    [[nodiscard]] virtual PokemonID getID() const = 0;
+    [[nodiscard]] virtual PokemonID getID() const;
 
     [[nodiscard]] int numMoves() const;
 
-    void addMove(Move *move);
+    void addMove(std::unique_ptr<Move> move);
     void deleteMove(int index);
     void setMoves(const std::initializer_list<Move *> &moves);
 

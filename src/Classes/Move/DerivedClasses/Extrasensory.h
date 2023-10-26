@@ -4,11 +4,20 @@
 
 #pragma once
 
-struct Extrasensory : public Move {
-    Extrasensory() : Move("Extrasensory", 15, 90, 100, Type::PSYCHIC, Category::SPECIAL) {}
+class Extrasensory : public Move {
+private:
+    const static int MAX_PP = 32;       // FIXME likely incorrect
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::EXTRASENSORY;
+public:
+    Extrasensory() : Move(30) {}
+
+    explicit Extrasensory(const int currentPP) : Extrasensory() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
@@ -60,5 +69,29 @@ struct Extrasensory : public Move {
 
         printMessage('\n');
         std::cout.flush();
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 80;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::PSYCHIC;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::EXTRASENSORY;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Extrasensory";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user attacks with an odd, unseeable power. It may also make the target flinch.";
     }
 };

@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct IceBeam : public Move {
+class IceBeam : public Move {
 private:
+    const static int MAX_PP = 16;
     bool freezeState = false;
 
 public:
-    IceBeam() : Move("Ice Beam", 10, 90, 100, Type::ICE, Category::SPECIAL) {}
+    IceBeam() : Move(10) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::ICE_BEAM;
+    explicit IceBeam(const int currentPP) : IceBeam() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -65,5 +71,29 @@ public:
         std::cout.flush();
 
         this->freezeState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 95;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::ICE;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::ICE_BEAM;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Ice Beam";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The target is struck with an icy-cold beam of energy. It may also freeze the target solid.";
     }
 };

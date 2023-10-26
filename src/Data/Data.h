@@ -5,23 +5,10 @@
 #pragma once
 
 #include "../Classes/Map/Map.h"
-#include "../Classes/Move/DerivedClasses/MoveList.h"
+#include "../Classes/Move/MoveList.h"
 #include "ItemList.h"
 #include "../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 // each exit point is assigned an ID that denotes what spot it is in the array,
 // and consequently which map it will lead to
-enum MapIDs {
-    ROUTE_1,
-    ROUTE_2,
-    ROUTE_3
-};
 
-extern Map Route_1;
-extern Map Route_2;
-extern Map Route_3;
-
-extern std::array<Map *, 3> maps;
-
-extern int currentMapIndex;
-extern Map *currentMap;

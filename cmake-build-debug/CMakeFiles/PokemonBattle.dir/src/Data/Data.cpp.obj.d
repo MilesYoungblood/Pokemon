@@ -188,7 +188,8 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/TextureManager/TextureManager.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Namespaces/TextureManager/TextureManager.h \
+ C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_main.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_stdinc.h \
@@ -347,10 +348,14 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_locale.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_misc.h \
- C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2/SDL_image.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/SDL_version.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/begin_code.h \
  C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2/close_code.h \
+ C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2/SDL_ttf.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
@@ -370,10 +375,6 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/poly_laguerre.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/riemann_zeta.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.h \
- C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
- C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h \
- C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h \
- C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/vector.tcc \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/opt_random.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/random.tcc \
@@ -395,6 +396,16 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/this_thread_sleep.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/semaphore.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algo.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algo.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/enable_special_members.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algobase.h \
+ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/conio.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/sec_api/conio_s.h \
  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/windows.h \
@@ -545,16 +556,19 @@ CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj: \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Namespaces/Camera/Camera.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/MoveList.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/MoveList.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AirSlash.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DarkPulse.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Extrasensory.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FlashCannon.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FocusBlast.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IceBeam.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IronTail.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/VoltTackle.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/WaterShuriken.h \

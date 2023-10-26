@@ -5,10 +5,19 @@
 #pragma once
 
 struct DarkPulse : public Move {
-    DarkPulse() : Move("Dark Pulse", 15, 80, 100, Type::DARK, Category::SPECIAL) {}
+private:
+    const static int MAX_PP = 24;
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::DARK_PULSE;
+public:
+    DarkPulse() : Move(15) {}
+
+    explicit DarkPulse(const int currentPP) : Move(currentPP) {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
@@ -56,5 +65,29 @@ struct DarkPulse : public Move {
 
         printMessage('\n');
         std::cout.flush();
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 80;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::DARK;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::DARK_PULSE;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Dark Pulse";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch.";
     }
 };

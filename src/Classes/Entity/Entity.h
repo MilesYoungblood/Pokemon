@@ -4,9 +4,11 @@
 
 #pragma once
 
-#include "../../Classes/TextureManager/TextureManager.h"
+#include "../../Namespaces/TextureManager/TextureManager.h"
+#include <vector>
+#include <sstream>
 
-const static int TILE_SIZE = 70;
+inline const int TILE_SIZE = 80;
 
 enum Direction { NORTH, EAST, SOUTH, WEST };
 
@@ -14,6 +16,8 @@ class Map;
 
 class Entity {
 private:
+    std::vector<const char *> dialogue;
+
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
@@ -31,11 +35,18 @@ private:
 public:
     Entity();
     Entity(int x, int y);
-    Entity(const Entity &) = delete;
+    Entity(const Entity &) = default;
     Entity(const Entity &&) = delete;
     Entity & operator=(const Entity &) = delete;
     Entity & operator=(const Entity &&) = delete;
     ~Entity();
+
+    void setDialogue(const char *text);
+    [[nodiscard]] const char * getDialogue(int page) const;
+
+    void setCoordinates(int newX, int newY);
+    [[nodiscard]] int getX() const;
+    [[nodiscard]] int getY() const;
 
     void moveForward();
 
@@ -44,12 +55,8 @@ public:
     void faceSouth();
     void faceWest();
 
-    void setDirection(Direction direction);
+    void setDirection(Direction newDirection);
     [[nodiscard]] Direction getDirection() const;
-
-    void setCoordinates(int newX, int newY);
-    [[nodiscard]] int getX() const;
-    [[nodiscard]] int getY() const;
 
     void face(const Entity *entity);
     [[nodiscard]] bool isFacingNorth() const;

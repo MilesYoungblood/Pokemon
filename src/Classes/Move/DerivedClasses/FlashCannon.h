@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct FlashCannon : public Move {
+class FlashCannon : public Move {
 private:
+    const static int MAX_PP = 16;
     bool loweredState = false;
 
 public:
-    FlashCannon() : Move("Flash Cannon", 10, 80, 100, Type::STEEL, Category::SPECIAL) {}
+    FlashCannon() : Move(10) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::FLASH_CANNON;
+    explicit FlashCannon(const int currentPP) : FlashCannon() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -67,5 +73,29 @@ public:
         std::cout.flush();
 
         this->loweredState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 80;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::STEEL;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::FLASH_CANNON;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Flash Cannon";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user gathers all its light energy and releases it at once. It may also lower the target’s Sp. Def stat.";
     }
 };

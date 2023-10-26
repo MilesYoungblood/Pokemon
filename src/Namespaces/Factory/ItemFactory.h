@@ -7,46 +7,46 @@
 #include "../../Data/ItemList.h"
 
 namespace ItemFactory {
-    inline Item * getItem(const ItemID id, const int n) {
+    inline std::unique_ptr<Item> getItem(const ItemID id, const int quantity) {
         switch (id) {
             case ItemID::POTION:
-                return new Potion(n);
+                return std::make_unique<Potion>(quantity);
             case ItemID::SUPER_POTION:
-                return new SuperPotion(n);
+                return std::make_unique<SuperPotion>(quantity);
             case ItemID::HYPER_POTION:
-                return new HyperPotion(n);
+                return std::make_unique<HyperPotion>(quantity);
             case ItemID::ETHER:
-                return new Ether(n);
+                return std::make_unique<Ether>(quantity);
             case ItemID::ANTIDOTE:
-                return new Antidote(n);
+                return std::make_unique<Antidote>(quantity);
             case ItemID::AWAKENING:
-                return new Awakening(n);
+                return std::make_unique<Awakening>(quantity);
             case ItemID::BURN_HEAL:
-                return new BurnHeal(n);
+                return std::make_unique<BurnHeal>(quantity);
             case ItemID::ICE_HEAL:
-                return new IceHeal(n);
+                return std::make_unique<IceHeal>(quantity);
             case ItemID::PARALYZE_HEAL:
-                return new ParalyzeHeal(n);
+                return std::make_unique<ParalyzeHeal>(quantity);
             case ItemID::POKE_BALL:
-                return new PokeBall(n);
+                return std::make_unique<PokeBall>(quantity);
             case ItemID::GREAT_BALL:
-                return new GreatBall(n);
+                return std::make_unique<GreatBall>(quantity);
             case ItemID::ULTRA_BALL:
-                return new UltraBall(n);
+                return std::make_unique<UltraBall>(quantity);
             case ItemID::MASTER_BALL:
-                return new MasterBall(n);
+                return std::make_unique<MasterBall>(quantity);
             case ItemID::X_ATTACK:
-                return new XAttack(n);
+                return std::make_unique<XAttack>(quantity);
             case ItemID::X_DEFENSE:
-                return new XDefense(n);
+                return std::make_unique<XDefense>(quantity);
             case ItemID::X_SP_ATTACK:
-                return new XSpAttack(n);
+                return std::make_unique<XSpAttack>(quantity);
             case ItemID::X_SP_DEFENSE:
-                return new XSpDefense(n);
+                return std::make_unique<XSpDefense>(quantity);
             case ItemID::X_SPEED:
-                return new XSpeed(n);
+                return std::make_unique<XSpeed>(quantity);
             case ItemID::X_ACCURACY:
-                return new XAccuracy(n);
+                return std::make_unique<XAccuracy>(quantity);
             default:
                 return nullptr;
         }

@@ -90,6 +90,83 @@ public:
     }
 };
 
+inline const char * getCategoryAsString(int category) {
+    switch (category) {
+        case 0:
+            return "physical";
+
+        case 1:
+            return "special";
+
+        case 2:
+            return "status";
+
+        default:
+            throw std::runtime_error("Unexpected error: function getCategoryAsString");
+    }
+}
+
+inline const char * getTypeAsString(int type) {
+    switch (type) {
+        case 1:
+            return "normal";
+
+        case 2:
+            return "fire";
+
+        case 3:
+            return "water";
+
+        case 4:
+            return "electric";
+
+        case 5:
+            return "grass";
+
+        case 6:
+            return "ice";
+
+        case 7:
+            return "fighting";
+
+        case 8:
+            return "poison";
+
+        case 9:
+            return "ground";
+
+        case 10:
+            return "flying";
+
+        case 11:
+            return "psychic";
+
+        case 12:
+            return "bug";
+
+        case 13:
+            return "rock";
+
+        case 14:
+            return "ghost";
+
+        case 15:
+            return "dragon";
+
+        case 16:
+            return "dark";
+
+        case 17:
+            return "steel";
+
+        case 18:
+            return "fairy";
+
+        default:
+            throw std::runtime_error("Unexpected error: function getTypeAsString");
+    }
+}
+
 // returns true if character is a vowel
 inline bool isVowel(char ltr) {
     return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';

@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct VoltTackle : public Move {
+class VoltTackle : public Move {
 private:
+    const static int MAX_PP = 24;
     bool paralysisState = false;
 
 public:
-    VoltTackle() : Move("Volt Tackle", 15, 120, 100, Type::ELECTRIC, Category::PHYSICAL) {}
+    VoltTackle() : Move(15) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::VOLT_TACKLE;
+    explicit VoltTackle(const int currentPP) : VoltTackle() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -80,5 +86,29 @@ public:
         std::cout.flush();
 
         this->paralysisState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 120;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::ELECTRIC;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::PHYSICAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::VOLT_TACKLE;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Volt Tackle";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user electrifies itself, then charges. It causes considerable damage to the user and may leave the target with paralysis.";
     }
 };

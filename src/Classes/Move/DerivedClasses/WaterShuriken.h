@@ -4,19 +4,28 @@
 
 #pragma once
 
-struct WaterShuriken : public Move {
+// TODO add priority
+
+class WaterShuriken : public Move {
 private:
+    const static int MAX_PP = 32;
     mutable int numHits = 0;        // number of hits landed (from 2 to 5)
 
 public:
-    WaterShuriken() : Move("Water Shuriken", 20, 15, 100, Type::WATER, Category::SPECIAL) {}
+    WaterShuriken() : Move(20) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::WATER_SHURIKEN;
+    explicit WaterShuriken(const int currentPP) : WaterShuriken() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     [[nodiscard]] int getDamage() const override {
-        for (int i = 0; i < generateInteger(2, 5); ++i) { // determines hits and misses
+        const int possibleHits = generateInteger(2, 5);
+        for (int i = 0; i < possibleHits; ++i) { // determines hits and misses
             if (generateInteger(1, 100) <= this->getAccuracy()) {
                 ++this->numHits;
             }
@@ -55,5 +64,29 @@ public:
 
         printMessage('\n');
         numHits = 0;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 15;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::WATER;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::SPECIAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::WATER_SHURIKEN;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Water Shuriken";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The user hits the target with throwing stars two to five times in a row. This move always goes first.";
     }
 };

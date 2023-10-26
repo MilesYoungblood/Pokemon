@@ -4,15 +4,21 @@
 
 #pragma once
 
-struct IronTail : public Move {
+class IronTail : public Move {
 private:
+    const static int MAX_PP = 24;
     bool loweredState = false;
 
 public:
-    IronTail() : Move("Iron Tail", 15, 100, 75, Type::STEEL, Category::PHYSICAL) {}
+    IronTail() : Move(15) {}
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::IRON_TAIL;
+    explicit IronTail(const int currentPP) : IronTail() {
+        if (currentPP < 0) {
+            this->fillToMax();
+        }
+        else {
+            this->setPP(currentPP);
+        }
     }
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
@@ -68,5 +74,33 @@ public:
         std::cout.flush();
 
         this->loweredState = false;
+    }
+
+    [[nodiscard]] int getPower() const override {
+        return 100;
+    }
+
+    [[nodiscard]] int getAccuracy() const override {
+        return 75;
+    }
+
+    [[nodiscard]] Type getType() const override {
+        return Type::STEEL;
+    }
+
+    [[nodiscard]] Category getCategory() const override {
+        return Category::PHYSICAL;
+    }
+
+    [[nodiscard]] MoveID getID() const override {
+        return MoveID::IRON_TAIL;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Iron Tail";
+    }
+
+    [[nodiscard]] const char * getDescription() const override {
+        return "The target is slammed with a steel-hard tail. It may also lower the target’s Defense stat.";
     }
 };
