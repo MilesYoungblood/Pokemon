@@ -6,7 +6,9 @@
 
 const std::string string = "Pokemon White is the best \nPokemon game of all time!";
 int wordCounter = 0;
-int interactingWith;
+int interactingWith;            // keeps track of whom the player is interacting with
+
+bool isInteracting = false;     // turns on only when the player interacts with an entity
 
 int width;
 int height;
@@ -14,15 +16,27 @@ int height;
 void handleOverworldKeyDown() {
     switch (event.key.keysym.scancode) {
         case SDL_SCANCODE_RETURN:
-            if (canInteract) {
-                interact = true;
+            // blocks execution if the player is locked
+            if (not canInteract) {
+                return;
+            }
+            interact = true;
+
+            // only allow interaction if the update function allows it
+            if (isInteracting) {
                 print = not print;
                 canMove = not canMove;
-                lockTrainer[interactingWith] = false;
+                // prevents locking a trainer which does not exist
+                if (currentMap->numTrainers() > 0) {
+                    lockTrainer[interactingWith] = false;
+                }
                 interactingWith = -1;
                 wordCounter = 0;
+                isInteracting = false;
+
                 SDL_DestroyTexture(text);
             }
+
             break;
         default:
             if (not canMove) {
@@ -250,6 +264,7 @@ void updateOverworld() {
             if (player->hasVisionOf(trainer) and not trainer->hasVisionOf(player)) {
                 trainer->face(player);
                 print = true;
+                isInteracting = true;
                 interactingWith = i;
                 lockTrainer[i] = true;
                 canMove = false;

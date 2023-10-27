@@ -61,7 +61,7 @@ inline bool isRunning = true;                                   // determines wh
 
 inline bool canMove = true;                                     // determines whether the player can move
 
-inline bool canInteract = true;
+inline bool canInteract = true;                                 // determines whether the player can interact
 
 inline std::array<bool, 4> moveDirection = {                    // flags that determine when the player attempts to move
         false, false, false, false
