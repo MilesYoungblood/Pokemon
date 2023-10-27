@@ -8,6 +8,8 @@ const int extension_length = 4;
 std::string_view music_path;
 std::string_view song_name;
 
+Mix_Chunk *sound = nullptr;
+
 int counter = 0;
 bool showPrompt = true;
 
@@ -20,53 +22,68 @@ void handleTitleScreenEvents() {
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_RETURN:
-                    functionState = 1;
-
                     Mix_HaltMusic();
                     Mix_FreeMusic(gameMusic);
 
-                    maps[0] = std::move(std::make_unique<Map>("Route 1", "TrainerBattle.mp3", 13, 10));
-                    maps[0]->addTrainer(std::make_unique<Trainer>(7, 6, 1, 3));
-                    maps[0]->addTrainer(std::make_unique<Trainer>(2, 4, 1, 3));
-                    maps[0]->addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-
-                    maps[1] = std::move(std::make_unique<Map>("Route 2", "RivalBattle.mp3", 21, 20));
-                    maps[1]->addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
-                    maps[1]->addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
-
-                    maps[2] = std::move(std::make_unique<Map>("Route 3", "GymBattle.mp3", 21, 11));
-                    maps[2]->addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
-
-                    Game::loadData();
-
-                    music_path = currentMap->getMusic();
-                    song_name = music_path.substr(0, music_path.length() - extension_length);
-
-                    gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic()).data());
-                    if (gameMusic != nullptr) {
-                        std::cout << "Loaded \"" << song_name << "\"!\n";
+                    sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\SFX\\selection.wav").data());
+                    if (sound != nullptr) {
+                        std::cout << "Loaded \"selection\"!\n";
                     }
                     else {
-                        std::cerr << "Could not play music: " << SDL_GetError() << '\n';
-                        Player::destroyPlayer();
-                        Mix_CloseAudio();
-                        SDL_DestroyRenderer(gameRenderer);
-                        SDL_DestroyWindow(gameWindow);
-                        SDL_Quit();
-                        abort();
+                        std::cerr << "Unable to load \"selection\":" << SDL_GetError() << '\n';
+                        isRunning = false;
                     }
 
-                    Mix_PlayMusic(gameMusic, -1);
-                    std::cout << "Playing \"" << song_name << "\"!\n";
+                    Mix_PlayChannel(-1, sound, 0);
+                    Mix_ChannelFinished([](int) -> void {
+                        Mix_FreeChunk(sound);
 
-                    Camera::lockOnPlayer(player, [](Direction direct, int dist) -> void { currentMap->updateMap(direct, dist); });
+                        maps[0] = std::move(std::make_unique<Map>("Route 1", "TrainerBattle.mp3", 13, 10));
+                        maps[0]->addTrainer(std::make_unique<Trainer>(7, 6, 1, 3));
+                        maps[0]->addTrainer(std::make_unique<Trainer>(2, 4, 1, 3));
+                        maps[0]->addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
 
-                    walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
-                    lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
+                        maps[1] = std::move(std::make_unique<Map>("Route 2", "RivalBattle.mp3", 21, 20));
+                        maps[1]->addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+                        maps[1]->addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
 
-                    SDL_DestroyTexture(logo);
-                    SDL_DestroyTexture(text);
-                    SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+                        maps[2] = std::move(std::make_unique<Map>("Route 3", "GymBattle.mp3", 21, 11));
+                        maps[2]->addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
+
+                        Game::loadData();
+
+                        music_path = currentMap->getMusic();
+                        song_name = music_path.substr(0, music_path.length() - extension_length);
+
+                        gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic()).data());
+                        if (gameMusic != nullptr) {
+                            std::cout << "Loaded \"" << song_name << "\"!\n";
+                        }
+                        else {
+                            std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
+                            Player::destroyPlayer();
+                            Mix_CloseAudio();
+                            SDL_DestroyRenderer(gameRenderer);
+                            SDL_DestroyWindow(gameWindow);
+                            SDL_Quit();
+                            abort();
+                        }
+
+                        Mix_PlayMusic(gameMusic, -1);
+                        std::cout << "Playing \"" << song_name << "\"!\n";
+
+                        Camera::lockOnPlayer(player, [](Direction direct, int dist) -> void { currentMap->updateMap(direct, dist); });
+
+                        walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
+                        lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
+
+                        SDL_DestroyTexture(logo);
+                        SDL_DestroyTexture(text);
+                        SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+
+                        functionState = 1;
+                    });
+
                     break;
                 default:
                     return;

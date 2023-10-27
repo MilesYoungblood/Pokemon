@@ -36,12 +36,12 @@ private:
         const int newY;                             // the player's new y-coordinates
     };
 
-    const char *name;                               // name of the map
+    const char *name{""};                               // name of the map
 
-    const char *music;
+    const char *music{""};
 
-    const int width;                                // width of the map
-    const int height;                               // height of the map
+    int width{0};                                // width of the map
+    int height{0};                               // height of the map
 
     static SDL_Texture *free;
     static SDL_Texture *obstruction;
@@ -60,6 +60,7 @@ private:
     [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
+    Map() = default;
     Map(const char *name, const char *music, int width, int height);
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints);
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList);

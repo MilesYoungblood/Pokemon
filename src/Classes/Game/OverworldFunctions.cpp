@@ -4,11 +4,29 @@
 
 #include "Game.h"
 
-const std::string string = "Pokemon White is the best \nPokemon game of all time!";
+const static std::string string = "Pokemon White is the best Pokemon game of all time!";
 int wordCounter = 0;
 int interactingWith;            // keeps track of whom the player is interacting with
 
 bool isInteracting = false;     // turns on only when the player interacts with an entity
+
+constexpr static int BOX_WIDTH = TILE_SIZE * 7;
+constexpr static int BOX_HEIGHT = TILE_SIZE * 2;
+
+constexpr SDL_Rect textBox(
+        WINDOW_WIDTH / 2 - BOX_WIDTH / 2,
+        WINDOW_HEIGHT - BOX_HEIGHT,
+        BOX_WIDTH,
+        BOX_HEIGHT - TILE_SIZE / 2
+);
+
+constexpr static int BORDER_SIZE = textBox.h / (TILE_SIZE * 3 / 10);
+constexpr SDL_Rect border(
+        textBox.x - BORDER_SIZE,
+        textBox.y - BORDER_SIZE,
+        textBox.w + BORDER_SIZE * 2,
+        textBox.h + BORDER_SIZE * 2
+);
 
 int width;
 int height;
@@ -20,7 +38,7 @@ void handleOverworldKeyDown() {
             if (not canInteract) {
                 return;
             }
-            interact = true;
+            pressedEnter = true;
 
             // only allow interaction if the update function allows it
             if (isInteracting) {
@@ -255,7 +273,7 @@ void updateOverworld() {
     if (mapData[2] != -1) {
         changeMap(mapData);
     }
-    else if (interact) {
+    else if (pressedEnter) {
         Trainer *trainer;       // variable used to reduce the number of function calls
 
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
@@ -272,7 +290,7 @@ void updateOverworld() {
                 break;
             }
         }
-        interact = false;
+        pressedEnter = false;
     }
     else if (player->canMoveForward(currentMap.get()) and (moveDirection.at(pDirection) or keepMovingDirection.at(pDirection))) {
         const Direction qDirection = oppositeDirection(pDirection);
@@ -295,11 +313,6 @@ void updateOverworld() {
 }
 
 void renderTextBox() {
-    const SDL_Rect textBox = {WINDOW_WIDTH / 2 - TILE_SIZE * 7 / 2, WINDOW_HEIGHT - TILE_SIZE * 2, TILE_SIZE * 7, TILE_SIZE * 2 - TILE_SIZE / 2 };
-
-    const int borderSize = (TILE_SIZE * 2 - TILE_SIZE / 2) / (TILE_SIZE * 3 / 10);
-    const SDL_Rect border = {textBox.x - borderSize, textBox.y - borderSize, textBox.w + borderSize * 2, textBox.h + borderSize * 2 };
-
     // first draw the border of the dialogue box
     SDL_RenderFillRect(gameRenderer, &border);
     SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);

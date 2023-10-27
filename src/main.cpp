@@ -6,9 +6,6 @@
 
 #include "Classes/Game/Game.h"
 
-constexpr static int FPS = 30;
-constexpr static int FRAME_DELAY = 1000 / FPS;
-
 int main() {
     SDL_SetMainReady();
 

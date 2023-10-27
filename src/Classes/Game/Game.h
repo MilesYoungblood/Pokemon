@@ -41,6 +41,9 @@ void handleBattleEvents();
 void updateBattle();
 void renderBattle();
 
+inline constexpr static int FPS = 30;
+inline constexpr static int FRAME_DELAY = 1000 / FPS;
+
 inline constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;      // height of the window
 inline constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;       // width of the window
 inline constexpr static int SCROLL_SPEED = TILE_SIZE / 10;      // scroll speed
@@ -61,7 +64,7 @@ inline bool isRunning = true;                                   // determines wh
 
 inline bool canMove = true;                                     // determines whether the player can move
 
-inline bool canInteract = true;                                 // determines whether the player can interact
+inline bool canInteract = true;                                 // determines whether the player can pressedEnter
 
 inline std::array<bool, 4> moveDirection = {                    // flags that determine when the player attempts to move
         false, false, false, false
@@ -71,7 +74,8 @@ inline std::array<bool, 4> keepMovingDirection = {              // ultimately, d
         false, false, false, false
 };
 
-inline bool interact = false;                                   // signals when the player is trying to interact with something
+inline bool pressedEnter = false;                               // signals when the player is trying
+                                                                // to interact with something
 
 inline bool print = false;
 

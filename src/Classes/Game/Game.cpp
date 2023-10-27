@@ -74,7 +74,7 @@ Game::Game() {
         std::cout << "Loaded \"TitleScreen\"!\n";
     }
     else {
-        std::cerr << "Could not play \"TitleScreen\": " << SDL_GetError() << '\n';
+        std::cerr << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
         Player::destroyPlayer();
         Mix_CloseAudio();
         SDL_DestroyRenderer(gameRenderer);
