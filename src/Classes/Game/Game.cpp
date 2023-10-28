@@ -83,8 +83,19 @@ Game::Game() {
         abort();
     }
 
-    Mix_PlayMusic(gameMusic, -1);
-    std::cout << "Playing \"TitleScreen\"!\n";
+    if (Mix_PlayMusic(gameMusic, -1) == 0) {
+        std::cout << "Playing \"TitleScreen\"!\n";
+    }
+    else {
+        std::cerr << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
+        Player::destroyPlayer();
+        Mix_FreeMusic(gameMusic);
+        Mix_CloseAudio();
+        SDL_DestroyRenderer(gameRenderer);
+        SDL_DestroyWindow(gameWindow);
+        SDL_Quit();
+        abort();
+    }
 
     if (TTF_Init() == 0) {
         std::cout << "Initialized TTF subsystems!\n";
@@ -143,9 +154,11 @@ Game::~Game() {
     SDL_DestroyTexture(text);
     TTF_CloseFont(textFont);
     TTF_Quit();
+
     Mix_HaltMusic();
     Mix_FreeMusic(gameMusic);
     Mix_CloseAudio();
+
     SDL_DestroyRenderer(gameRenderer);
     SDL_DestroyWindow(gameWindow);
     SDL_Quit();

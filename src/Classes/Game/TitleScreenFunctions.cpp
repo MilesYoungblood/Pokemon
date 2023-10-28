@@ -39,13 +39,14 @@ void handleTitleScreenEvents() {
                         std::cout << "Playing \"selection\"!\n";
                     }
                     else {
-                        std::cerr << "Unable to play \nselection\": " << SDL_GetError() << '\n';
+                        std::cerr << "Unable to play \"selection\": " << SDL_GetError() << '\n';
                         isRunning = false;
                         return;
                     }
 
-                    //Mix_ChannelFinished([](int) -> void {
-                        Mix_FreeChunk(sound);
+                    Mix_ChannelFinished([](int at) -> void {
+                        Mix_FreeChunk(Mix_GetChunk(at));
+                    });
 
                         Game::loadData();
 
