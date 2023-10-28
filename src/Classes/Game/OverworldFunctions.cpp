@@ -6,9 +6,6 @@
 
 const static std::string string = "Pokemon White is the best Pokemon game of all time!";
 int wordCounter = 0;
-int interactingWith;            // keeps track of whom the player is interacting with
-
-bool isInteracting = false;     // turns on only when the player interacts with an entity
 
 constexpr static int BOX_WIDTH = TILE_SIZE * 7;
 constexpr static int BOX_HEIGHT = TILE_SIZE * 2;
@@ -34,27 +31,7 @@ int height;
 void handleOverworldKeyDown() {
     switch (event.key.keysym.scancode) {
         case SDL_SCANCODE_RETURN:
-            // blocks execution if the player is locked
-            if (not canInteract) {
-                return;
-            }
             pressedEnter = true;
-
-            // only allow interaction if the update function allows it
-            if (isInteracting) {
-                print = not print;
-                canMove = not canMove;
-                // prevents locking a trainer which does not exist
-                if (currentMap->numTrainers() > 0) {
-                    lockTrainer[interactingWith] = false;
-                }
-                interactingWith = -1;
-                wordCounter = 0;
-                isInteracting = false;
-
-                SDL_DestroyTexture(text);
-            }
-
             break;
         default:
             if (not canMove) {
@@ -66,8 +43,8 @@ void handleOverworldKeyDown() {
                         player->faceNorth();
                     }
                     else {
-                        moveDirection[Direction::NORTH] = true;
-                        keepMovingDirection[Direction::NORTH] = true;
+                        moveDirection[Direction::UP] = true;
+                        keepMovingDirection[Direction::UP] = true;
                     }
                     break;
                 case SDL_SCANCODE_A:
@@ -75,8 +52,8 @@ void handleOverworldKeyDown() {
                         player->faceWest();
                     }
                     else {
-                        moveDirection[Direction::WEST] = true;
-                        keepMovingDirection[Direction::WEST] = true;
+                        moveDirection[Direction::LEFT] = true;
+                        keepMovingDirection[Direction::LEFT] = true;
                     }
                     break;
                 case SDL_SCANCODE_S:
@@ -84,8 +61,8 @@ void handleOverworldKeyDown() {
                         player->faceSouth();
                     }
                     else {
-                        moveDirection[Direction::SOUTH] = true;
-                        keepMovingDirection[Direction::SOUTH] = true;
+                        moveDirection[Direction::DOWN] = true;
+                        keepMovingDirection[Direction::DOWN] = true;
                     }
                     break;
                 case SDL_SCANCODE_D:
@@ -93,8 +70,8 @@ void handleOverworldKeyDown() {
                         player->faceEast();
                     }
                     else {
-                        moveDirection[Direction::EAST] = true;
-                        keepMovingDirection[Direction::EAST] = true;
+                        moveDirection[Direction::RIGHT] = true;
+                        keepMovingDirection[Direction::RIGHT] = true;
                     }
                     break;
                 default:
@@ -121,16 +98,16 @@ void handleOverworldEvents() {
         case SDL_KEYUP:
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
-                    moveDirection[Direction::NORTH] = false;
+                    moveDirection[Direction::UP] = false;
                     break;
                 case SDL_SCANCODE_A:
-                    moveDirection[Direction::WEST] = false;
+                    moveDirection[Direction::LEFT] = false;
                     break;
                 case SDL_SCANCODE_S:
-                    moveDirection[Direction::SOUTH] = false;
+                    moveDirection[Direction::DOWN] = false;
                     break;
                 case SDL_SCANCODE_D:
-                    moveDirection[Direction::EAST] = false;
+                    moveDirection[Direction::RIGHT] = false;
                     break;
                 default:
                     break;
@@ -277,16 +254,19 @@ void updateOverworld() {
         Trainer *trainer;       // variable used to reduce the number of function calls
 
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
+            if (not canInteract) {
+                break;
+            }
             trainer = &(*currentMap)[i];
 
-            if (player->hasVisionOf(trainer) and not trainer->hasVisionOf(player)) {
+            if (player->hasVisionOf(trainer)) {
                 trainer->face(player);
-                print = true;
-                isInteracting = true;
-                interactingWith = i;
-                lockTrainer[i] = true;
-                canMove = false;
-                canInteract = false;
+                print = not print;
+                lockTrainer[i] = not lockTrainer[i];
+                canMove = not canMove;
+                wordCounter = 0;
+
+                SDL_DestroyTexture(text);
                 break;
             }
         }
@@ -329,6 +309,7 @@ void renderTextBox() {
         // buffer is required to store the substring
         const std::string buffer = wordCounter > 0 ? string.substr(0, wordCounter) : " ";
 
+        // recreate the texture
         SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), {0, 0, 0 }, textBox.w);
         text = SDL_CreateTextureFromSurface(gameRenderer, temp);
 

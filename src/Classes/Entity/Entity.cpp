@@ -18,8 +18,8 @@ Entity::~Entity() {
 void Entity::setDialogue(const char *text) {
     std::stringstream ss(text);
 
-    const int CHARACTER_LIMIT = 0;
-    int letterCounter = 0;
+    const int CHARACTER_LIMIT = 30;
+    std::size_t letterCounter = 0;
     std::string buffer;
     std::string dest;
 
@@ -27,8 +27,20 @@ void Entity::setDialogue(const char *text) {
         letterCounter += buffer.length();
 
         // if the next word exceeds the limit
-        //if (letterCounter >= )
+        if (letterCounter >= CHARACTER_LIMIT) {
+            this->dialogue.push_back(dest);
+            letterCounter = buffer.length();
+            dest = "";
+        }
+        dest += buffer + ' ';
     }
+    if (not dest.empty()) {
+        this->dialogue.push_back(dest);
+    }
+}
+
+std::vector<std::string> Entity::getDialogue() const {
+    return this->dialogue;
 }
 
 // sets the player's map coordinates and screen coordinates
@@ -50,38 +62,38 @@ int Entity::getY() const {
 
 void Entity::moveForward() {
     switch (this->currentDirection) {
-        case NORTH:
+        case UP:
             --this->y;
             break;
-        case EAST:
+        case RIGHT:
             ++this->x;
             break;
-        case SOUTH:
+        case DOWN:
             ++this->y;
             break;
-        case WEST:
+        case LEFT:
             --this->x;
             break;
     }
 }
 
 void Entity::faceNorth() {
-    this->currentDirection = Direction::NORTH;
+    this->currentDirection = Direction::UP;
     this->currentModel = this->backModel;
 }
 
 void Entity::faceEast() {
-    this->currentDirection = Direction::EAST;
+    this->currentDirection = Direction::RIGHT;
     this->currentModel = this->rightModel;
 }
 
 void Entity::faceSouth() {
-    this->currentDirection = Direction::SOUTH;
+    this->currentDirection = Direction::DOWN;
     this->currentModel = this->frontModel;
 }
 
 void Entity::faceWest() {
-    this->currentDirection = Direction::WEST;
+    this->currentDirection = Direction::LEFT;
     this->currentModel = this->leftModel;
 }
 
@@ -89,16 +101,16 @@ void Entity::setDirection(const Direction newDirection) {
     this->currentDirection = newDirection;
 
     switch (this->currentDirection) {
-        case NORTH:
+        case UP:
             this->currentModel = this->backModel;
             break;
-        case EAST:
+        case RIGHT:
             this->currentModel = this->rightModel;
             break;
-        case SOUTH:
+        case DOWN:
             this->currentModel = this->frontModel;
             break;
-        case WEST:
+        case LEFT:
             this->currentModel = this->leftModel;
             break;
     }
@@ -125,19 +137,19 @@ void Entity::face(const Entity *entity) {
 }
 
 bool Entity::isFacingNorth() const {
-    return this->currentDirection == Direction::NORTH;
+    return this->currentDirection == Direction::UP;
 }
 
 bool Entity::isFacingEast() const {
-    return this->currentDirection == Direction::EAST;
+    return this->currentDirection == Direction::RIGHT;
 }
 
 bool Entity::isFacingSouth() const {
-    return this->currentDirection == Direction::SOUTH;
+    return this->currentDirection == Direction::DOWN;
 }
 
 bool Entity::isFacingWest() const {
-    return this->currentDirection == Direction::WEST;
+    return this->currentDirection == Direction::LEFT;
 }
 
 // returns true if this is right next to another entity, not necessarily facing
@@ -195,16 +207,16 @@ void Entity::shiftRightOnMap(const int distance) {
 
 void Entity::shiftDirectionOnMap(Direction direction, int distance) {
     switch (direction) {
-        case Direction::NORTH:
+        case Direction::UP:
             this->destRect.y -= distance;
             break;
-        case Direction::EAST:
+        case Direction::RIGHT:
             this->destRect.x += distance;
             break;
-        case Direction::SOUTH:
+        case Direction::DOWN:
             this->destRect.y += distance;
             break;
-        case Direction::WEST:
+        case Direction::LEFT:
             this->destRect.x -= distance;
             break;
     }

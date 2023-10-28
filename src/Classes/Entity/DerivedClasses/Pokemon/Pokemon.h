@@ -213,7 +213,6 @@ private:
     static double getStatMod(int stat);
 
 public:
-    Pokemon() = default;
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
     Pokemon(const Pokemon &) = delete;

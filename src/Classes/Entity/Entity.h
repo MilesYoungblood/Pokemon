@@ -10,18 +10,18 @@
 
 inline const int TILE_SIZE = 80;
 
-enum Direction { NORTH, EAST, SOUTH, WEST };
+enum Direction { UP, DOWN, LEFT, RIGHT };
 
 class Map;
 
 class Entity {
 private:
-    std::vector<const char *> dialogue;
+    std::vector<std::string> dialogue;
 
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
-    Direction currentDirection{Direction::SOUTH};       // numerical representation of which way the trainer is facing
+    Direction currentDirection{Direction::DOWN};       // numerical representation of which way the trainer is facing
 
     SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
     SDL_Texture *backModel{nullptr};                    // model of the entity when facing north
@@ -42,7 +42,7 @@ public:
     ~Entity();
 
     void setDialogue(const char *text);
-    [[nodiscard]] const char * getDialogue(int page) const;
+    [[nodiscard]] std::vector<std::string> getDialogue() const;
 
     void setCoordinates(int newX, int newY);
     [[nodiscard]] int getX() const;
@@ -77,6 +77,9 @@ public:
     void shiftDownOnMap(int distance);
     void shiftLeftOnMap(int distance);
     void shiftRightOnMap(int distance);
+
+    void shiftHorizontally(int distance);
+    void shiftVertically(int distance);
 
     void shiftDirectionOnMap(Direction direction, int distance);
     

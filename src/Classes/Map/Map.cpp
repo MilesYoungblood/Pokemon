@@ -163,16 +163,16 @@ void Map::updateMap(const Direction direction, const int distance) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
             switch (direction) {
-                case Direction::SOUTH:
+                case Direction::DOWN:
                     this->layout[row][column].dest.y += distance;
                     break;
-                case Direction::NORTH:
+                case Direction::UP:
                     this->layout[row][column].dest.y -= distance;
                     break;
-                case Direction::EAST:
+                case Direction::RIGHT:
                     this->layout[row][column].dest.x += distance;
                     break;
-                case Direction::WEST:
+                case Direction::LEFT:
                     this->layout[row][column].dest.x -= distance;
                     break;
                 default:
@@ -183,16 +183,16 @@ void Map::updateMap(const Direction direction, const int distance) {
 
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         switch (direction) {
-            case Direction::SOUTH:
+            case Direction::DOWN:
                 trainer->shiftDownOnMap(distance);
                 break;
-            case Direction::NORTH:
+            case Direction::UP:
                 trainer->shiftUpOnMap(distance);
                 break;
-            case Direction::EAST:
+            case Direction::RIGHT:
                 trainer->shiftRightOnMap(distance);
                 break;
-            case Direction::WEST:
+            case Direction::LEFT:
                 trainer->shiftLeftOnMap(distance);
                 break;
             default:
@@ -207,22 +207,20 @@ void Map::renderMap() {
         for (int column = 0; column < this->height; ++column) {
             sdlRect = this->layout[row][column].dest;
             // prevents rendering tiles that aren't onscreen
-            if (Camera::isInView(sdlRect) == 0U) {
-                continue;
-            }
+            if (Camera::isInView(sdlRect) != 0U) {
+                switch (this->layout[row][column].id) {
+                    case Map::TileID::FREE:
+                        TextureManager::Draw(Map::free, sdlRect);
+                        break;
 
-            switch (this->layout[row][column].id) {
-                case Map::TileID::FREE:
-                    TextureManager::Draw(Map::free, sdlRect);
-                    break;
+                    case Map::TileID::OBSTRUCTION:
+                        TextureManager::Draw(Map::obstruction, sdlRect);
+                        break;
 
-                case Map::TileID::OBSTRUCTION:
-                    TextureManager::Draw(Map::obstruction, sdlRect);
-                    break;
-
-                default:
-                    TextureManager::Draw(Map::grass, sdlRect);
-                    break;
+                    default:
+                        TextureManager::Draw(Map::grass, sdlRect);
+                        break;
+                }
             }
         }
     }
@@ -251,13 +249,13 @@ void Map::resetMap() {
 
 bool Entity::canMoveForward(const Map *map) const {
     switch (this->currentDirection) {
-        case Direction::NORTH:
+        case Direction::UP:
             return not map->isObstructionHere(this->x, this->y - 1);
-        case Direction::EAST:
+        case Direction::RIGHT:
             return not map->isObstructionHere(this->x + 1, this->y);
-        case Direction::SOUTH:
+        case Direction::DOWN:
             return not map->isObstructionHere(this->x, this->y + 1);
-        case Direction::WEST:
+        case Direction::LEFT:
             return not map->isObstructionHere(this->x - 1, this->y);
         default:
             throw std::runtime_error("Unexpected error: function canMoveForward");

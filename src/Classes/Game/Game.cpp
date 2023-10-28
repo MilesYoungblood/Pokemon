@@ -119,6 +119,14 @@ Game::Game() {
     }
 
     text = TextureManager::LoadText(textFont, "Press enter to continue!", { 0, 0, 0 });
+    if (text != nullptr) {
+        std::cout << "Loaded title text!\n";
+    }
+    else {
+        std::cout << "Error loading title text: " << SDL_GetError() << '\n';
+        isRunning = false;
+        return;
+    }
 
     logo = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
     if (logo == nullptr) {
@@ -131,6 +139,7 @@ Game::Game() {
 }
 
 Game::~Game() {
+    SDL_DestroyTexture(logo);
     SDL_DestroyTexture(text);
     TTF_CloseFont(textFont);
     TTF_Quit();
@@ -274,6 +283,24 @@ void Game::loadData() {
 
             player->addItem(ItemFactory::getItem(static_cast<ItemID>(item), quantity));
         }
+
+        // initialize all maps
+        maps[0] = std::move(std::make_unique<Map>("Route 1", "TrainerBattle.mp3", 13, 10));
+        maps[0]->addTrainer(std::make_unique<Trainer>(7, 6, 1, 3));
+        maps[0]->addTrainer(std::make_unique<Trainer>(2, 4, 1, 3));
+        maps[0]->addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
+
+        (*maps[0])[0].setDialogue("This is a test to see how many characters I can store as well as if the dialogue wraps properly");
+        for (int i = 0; i < (*maps[0])[0].getDialogue().size(); ++i) {
+            std::cout << (*maps[0])[0].getDialogue()[i] << '\n';
+        }
+
+        maps[1] = std::move(std::make_unique<Map>("Route 2", "RivalBattle.mp3", 21, 20));
+        maps[1]->addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+        maps[1]->addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+
+        maps[2] = std::move(std::make_unique<Map>("Route 3", "GymBattle.mp3", 21, 11));
+        maps[2]->addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
 
         // load each trainer's data for every map
         while (std::getline(saveFile, buffer)) {

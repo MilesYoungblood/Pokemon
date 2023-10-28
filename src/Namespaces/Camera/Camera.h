@@ -29,13 +29,13 @@ namespace Camera {
 
     inline void shift(const Direction direction, const int distance) {
         switch (direction) {
-            case NORTH:
+            case UP:
                 yPos -= distance;
-            case EAST:
+            case RIGHT:
                 xPos += distance;
-            case SOUTH:
+            case DOWN:
                 yPos += distance;
-            case WEST:
+            case LEFT:
                 xPos -= distance;
         }
     }
@@ -57,12 +57,12 @@ namespace Camera {
         int yFromCenter = ((HEIGHT - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;   // y-distance of the player from the center of the screen
 
         // determines whether to shift left or right
-        const Direction xDirection = xFromCenter > 0 ? Direction::EAST : Direction::WEST;
+        const Direction xDirection = xFromCenter > 0 ? Direction::RIGHT : Direction::LEFT;
 
         // determines whether to shift up or down
-        const Direction yDirection = yFromCenter > 0 ? Direction::SOUTH : Direction::NORTH;
+        const Direction yDirection = yFromCenter > 0 ? Direction::DOWN : Direction::UP;
 
-        if (xDirection == Direction::EAST) {
+        if (xDirection == Direction::RIGHT) {
             p->shiftRightOnMap(xFromCenter);
             Camera::shiftRight(xFromCenter);
         }
@@ -72,7 +72,7 @@ namespace Camera {
             Camera::shiftLeft(xFromCenter);
         }
 
-        if (yDirection == Direction::SOUTH) {
+        if (yDirection == Direction::DOWN) {
             p->shiftDownOnMap(yFromCenter);
             Camera::shiftDown(yFromCenter);
         }

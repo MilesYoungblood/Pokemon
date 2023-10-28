@@ -16,14 +16,14 @@
 
 inline Direction oppositeDirection(const Direction direction) {
     switch (direction) {
-        case NORTH:
-            return Direction::SOUTH;
-        case EAST:
-            return Direction::WEST;
-        case SOUTH:
-            return Direction::NORTH;
-        case WEST:
-            return Direction::EAST;
+        case UP:
+            return Direction::DOWN;
+        case RIGHT:
+            return Direction::LEFT;
+        case DOWN:
+            return Direction::UP;
+        case LEFT:
+            return Direction::RIGHT;
         default:
             throw std::runtime_error("Unexpected error: function oppositeDirection");
     }
