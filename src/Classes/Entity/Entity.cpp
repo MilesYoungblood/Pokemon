@@ -205,6 +205,14 @@ void Entity::shiftRightOnMap(const int distance) {
     this->destRect.x += distance;
 }
 
+void Entity::shiftHorizontally(int distance) {
+    this->destRect.x += distance;
+}
+
+void Entity::shiftVertically(int distance) {
+    this->destRect.y += distance;
+}
+
 void Entity::shiftDirectionOnMap(Direction direction, int distance) {
     switch (direction) {
         case Direction::UP:

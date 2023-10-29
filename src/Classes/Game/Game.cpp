@@ -271,15 +271,14 @@ void Game::loadData() {
         maps[0] = std::move(std::make_unique<Map>("Route 1", "TrainerBattle.mp3", 13, 10));
         maps[0]->addTrainer(std::make_unique<Trainer>(7, 6, 1, 3));
         maps[0]->addTrainer(std::make_unique<Trainer>(2, 4, 1, 3));
+        maps[0]->addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
         maps[0]->addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-
-        (*maps[0])[0].setDialogue("This is a test to see how many characters I can store as well as if the dialogue wraps properly");
-        for (int i = 0; i < (*maps[0])[0].getDialogue().size(); ++i) {
-            std::cout << (*maps[0])[0].getDialogue()[i] << '\n';
-        }
+        maps[0]->addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
 
         maps[1] = std::move(std::make_unique<Map>("Route 2", "RivalBattle.mp3", 21, 20));
+        maps[1]->addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
         maps[1]->addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+        maps[1]->addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
         maps[1]->addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
 
         maps[2] = std::move(std::make_unique<Map>("Route 3", "GymBattle.mp3", 21, 11));
