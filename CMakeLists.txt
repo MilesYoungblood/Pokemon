@@ -74,14 +74,14 @@ add_executable(PokemonBattle
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
-        src/Namespaces/Factory/MoveFactory.h
-        src/Namespaces/Factory/ItemFactory.h
+        src/Namespaces/Factories/MoveFactory.h
+        src/Namespaces/Factories/ItemFactory.h
         src/Classes/Move/DerivedClasses/DarkPulse.h
         src/Classes/Move/DerivedClasses/Extrasensory.h
         src/Classes/Move/DerivedClasses/AirSlash.h
         src/Namespaces/TextureManager/TextureManager.h
         src/Namespaces/Camera/Camera.h
-        src/Namespaces/Factory/PokemonFactory.h
+        src/Namespaces/Factories/PokemonFactory.h
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h
         src/Classes/Move/MoveList.h
         src/Classes/Move/DerivedClasses/DragonPulse.h

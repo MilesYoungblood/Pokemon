@@ -330,14 +330,10 @@ void renderTextBox() {
 }
 
 void renderOverworld() {
-    SDL_RenderClear(gameRenderer);
-
     currentMap->renderMap();
     player->render();
 
     if (print) {
         renderTextBox();
     }
-
-    SDL_RenderPresent(gameRenderer);
 }

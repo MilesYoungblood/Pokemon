@@ -10,19 +10,19 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 #include "../../Classes/Map/Map.h"
-#include "../../Namespaces/Factory/PokemonFactory.h"
-#include "../../Namespaces/Factory/ItemFactory.h"
-#include "../../Namespaces/Factory/MoveFactory.h"
+#include "../../Namespaces/Factories/PokemonFactory.h"
+#include "../../Namespaces/Factories/ItemFactory.h"
+#include "../../Namespaces/Factories/MoveFactory.h"
 
 inline Direction oppositeDirection(const Direction direction) {
     switch (direction) {
-        case UP:
+        case Direction::UP:
             return Direction::DOWN;
-        case RIGHT:
+        case Direction::RIGHT:
             return Direction::LEFT;
-        case DOWN:
+        case Direction::DOWN:
             return Direction::UP;
-        case LEFT:
+        case Direction::LEFT:
             return Direction::RIGHT;
         default:
             throw std::runtime_error("Unexpected error: function oppositeDirection");
@@ -60,7 +60,7 @@ inline SDL_Texture *text = nullptr;                             // reusable text
 inline SDL_Texture *logo = nullptr;
 inline TTF_Font *textFont = nullptr;                            // global message box font
 
-inline bool isRunning = true;                                   // determines whether the game is running
+inline bool isRunning = false;                                  // determines whether the game is running
 
 inline bool canMove = true;                                     // determines whether the player can move
 

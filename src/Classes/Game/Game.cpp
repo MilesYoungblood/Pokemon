@@ -11,7 +11,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error initializing subsystems: " << SDL_GetError() << '\n';
-        abort();
+        return;
     }
 
     // create window
@@ -21,8 +21,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error creating window: " << SDL_GetError() << '\n';
-        SDL_Quit();
-        abort();
+        return;
     }
 
     // load window icon
@@ -32,9 +31,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error loading icon: " << SDL_GetError() << '\n';
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
     // set the window icon
@@ -48,9 +45,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error creating textureRenderer: " << SDL_GetError() << '\n';
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
     // assign the TextureManager's renderer
@@ -62,54 +57,35 @@ Game::Game() {
     }
     else {
         std::cerr << "Could not open the default audio device: " << SDL_GetError() << '\n';
-        SDL_DestroyRenderer(gameRenderer);
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
-    // load music
+    // load title screen music
     gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\music\TitleScreen.mp3)").data());
     if (gameMusic != nullptr) {
         std::cout << "Loaded \"TitleScreen\"!\n";
     }
     else {
         std::cerr << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
-        Player::destroyPlayer();
-        Mix_CloseAudio();
-        SDL_DestroyRenderer(gameRenderer);
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
+    // play title screen music
     if (Mix_PlayMusic(gameMusic, -1) == 0) {
         std::cout << "Playing \"TitleScreen\"!\n";
     }
     else {
         std::cerr << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
-        Player::destroyPlayer();
-        Mix_FreeMusic(gameMusic);
-        Mix_CloseAudio();
-        SDL_DestroyRenderer(gameRenderer);
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
+    // initialize true type font subsystems
     if (TTF_Init() == 0) {
         std::cout << "Initialized TTF subsystems!\n";
     }
     else {
         std::cerr << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
-        Player::destroyPlayer();
-        Mix_HaltMusic();
-        Mix_FreeMusic(gameMusic);
-        Mix_CloseAudio();
-        SDL_DestroyRenderer(gameRenderer);
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
     textFont = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\fonts\PokemonGb-RAeo.ttf)").data(), FONT_SIZE);
@@ -118,15 +94,7 @@ Game::Game() {
     }
     else {
         std::cerr << "Error creating font: " << SDL_GetError() << '\n';
-        Player::destroyPlayer();
-        TTF_Quit();
-        Mix_HaltMusic();
-        Mix_FreeMusic(gameMusic);
-        Mix_CloseAudio();
-        SDL_DestroyRenderer(gameRenderer);
-        SDL_DestroyWindow(gameWindow);
-        SDL_Quit();
-        abort();
+        return;
     }
 
     text = TextureManager::LoadText(textFont, "Press enter to continue!", { 0, 0, 0 });
@@ -135,29 +103,29 @@ Game::Game() {
     }
     else {
         std::cout << "Error loading title text: " << SDL_GetError() << '\n';
-        isRunning = false;
         return;
     }
 
     logo = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
     if (logo == nullptr) {
         std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
-        isRunning = false;
         return;
     }
 
     SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+
+    isRunning = true;
 }
 
 Game::~Game() {
+    Mix_HaltMusic();
+    Mix_FreeMusic(gameMusic);
+    Mix_CloseAudio();
+
     SDL_DestroyTexture(logo);
     SDL_DestroyTexture(text);
     TTF_CloseFont(textFont);
     TTF_Quit();
-
-    Mix_HaltMusic();
-    Mix_FreeMusic(gameMusic);
-    Mix_CloseAudio();
 
     SDL_DestroyRenderer(gameRenderer);
     SDL_DestroyWindow(gameWindow);
@@ -178,7 +146,9 @@ void Game::update() {
 }
 
 void Game::render() {
+    SDL_RenderClear(gameRenderer);
     renderFunctions.at(functionState)();
+    SDL_RenderPresent(gameRenderer);
 }
 
 void Game::saveData() {
