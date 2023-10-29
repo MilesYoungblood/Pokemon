@@ -4,8 +4,6 @@
 
 #pragma once
 
-// TODO add priority
-
 class WaterShuriken : public Move {
 private:
     const static int MAX_PP = 32;
@@ -88,5 +86,9 @@ public:
 
     [[nodiscard]] const char * getDescription() const override {
         return "The user hits the target with throwing stars two to five times in a row. This move always goes first.";
+    }
+
+    [[nodiscard]] bool isPriority() const override {
+        return true;
     }
 };

@@ -4,7 +4,6 @@
 
 #pragma once
 
-//TODO priority
 class QuickAttack : public Move {
 private:
     const static int MAX_PP = 48;
@@ -43,5 +42,9 @@ public:
 
     [[nodiscard]] const char * getDescription() const override {
         return "The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.";
+    }
+
+    [[nodiscard]] bool isPriority() const override {
+        return true;
     }
 };

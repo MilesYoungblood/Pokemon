@@ -17,7 +17,6 @@ void handleTitleScreenEvents() {
     switch (event.type) {
         case SDL_QUIT:
             isRunning = false;
-            SDL_DestroyTexture(logo);
             break;
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode) {

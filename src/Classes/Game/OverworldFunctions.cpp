@@ -260,8 +260,10 @@ void updateOverworld() {
             trainer = &(*currentMap)[i];
 
             if (player->hasVisionOf(trainer)) {
+                // FIXME does not take into account multiple pages
                 trainer->face(player);
                 print = not print;
+                canInteract = not print;
                 lockTrainer[i] = not lockTrainer[i];
                 canMove = not canMove;
                 wordCounter = 0;
@@ -275,7 +277,6 @@ void updateOverworld() {
     else if (player->canMoveForward(currentMap.get()) and (moveDirection.at(pDirection) or keepMovingDirection.at(pDirection))) {
         const Direction qDirection = oppositeDirection(pDirection);
 
-        Camera::shift(pDirection, SCROLL_SPEED);
         currentMap->updateMap(qDirection, SCROLL_SPEED);
         walkCounter += SCROLL_SPEED;
 

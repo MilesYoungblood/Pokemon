@@ -129,19 +129,11 @@ void Pokemon::setHP(const int newHP) {
 }
 
 void Pokemon::restoreHP(const int amount) {
-    this->currentHP += amount;
-
-    if (this->currentHP > this->maxHP) {
-        this->currentHP = this->maxHP;
-    }
+    this->currentHP = std::min(this->currentHP + amount, this->maxHP);
 }
 
 void Pokemon::takeDamage(const int amount) {
-    this->currentHP -= amount;
-
-    if (this->currentHP < 0) {
-        this->currentHP = 0;
-    }
+    this->currentHP = std::max(this->currentHP - amount, 0);
 }
 
 void Pokemon::resetStatMods() {

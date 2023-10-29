@@ -51,6 +51,42 @@ Game::Game() {
     // assign the TextureManager's renderer
     TextureManager::textureRenderer = gameRenderer;
 
+    // initialize true type font subsystems
+    if (TTF_Init() == 0) {
+        std::cout << "Initialized TTF subsystems!\n";
+    }
+    else {
+        std::cerr << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
+        return;
+    }
+
+    // set the font for the message box
+    textFont = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\fonts\PokemonGb-RAeo.ttf)").data(), FONT_SIZE);
+    if (textFont != nullptr) {
+        std::cout << "Created font!\n";
+    }
+    else {
+        std::cerr << "Error creating font: " << SDL_GetError() << '\n';
+        return;
+    }
+
+    // load the title image
+    logo = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
+    if (logo == nullptr) {
+        std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
+        return;
+    }
+
+    // load the text prompt
+    text = TextureManager::LoadText(textFont, "Press enter to continue!", { 0, 0, 0 });
+    if (text != nullptr) {
+        std::cout << "Loaded title text!\n";
+    }
+    else {
+        std::cout << "Error loading title text: " << SDL_GetError() << '\n';
+        return;
+    }
+
     // initialize audio
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == 0) {
         std::cout << "Default audio device opened!\n";
@@ -79,39 +115,6 @@ Game::Game() {
         return;
     }
 
-    // initialize true type font subsystems
-    if (TTF_Init() == 0) {
-        std::cout << "Initialized TTF subsystems!\n";
-    }
-    else {
-        std::cerr << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
-        return;
-    }
-
-    textFont = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\fonts\PokemonGb-RAeo.ttf)").data(), FONT_SIZE);
-    if (textFont != nullptr) {
-        std::cout << "Created font!\n";
-    }
-    else {
-        std::cerr << "Error creating font: " << SDL_GetError() << '\n';
-        return;
-    }
-
-    text = TextureManager::LoadText(textFont, "Press enter to continue!", { 0, 0, 0 });
-    if (text != nullptr) {
-        std::cout << "Loaded title text!\n";
-    }
-    else {
-        std::cout << "Error loading title text: " << SDL_GetError() << '\n';
-        return;
-    }
-
-    logo = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
-    if (logo == nullptr) {
-        std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
-        return;
-    }
-
     SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
     isRunning = true;
@@ -119,16 +122,44 @@ Game::Game() {
 
 Game::~Game() {
     Mix_HaltMusic();
+    Mix_HookMusicFinished([] -> void {});
     Mix_FreeMusic(gameMusic);
     Mix_CloseAudio();
 
-    SDL_DestroyTexture(logo);
     SDL_DestroyTexture(text);
+    if (strlen(SDL_GetError()) == 0) {
+        std::cout << "Texture destroyed!\n";
+    }
+    else {
+        std::cerr << "Unable to destroy texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
+    SDL_DestroyTexture(logo);
+    if (strlen(SDL_GetError()) == 0) {
+        std::cout << "Texture destroyed!\n";
+    }
+    else {
+        std::cerr << "Unable to destroy texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
     TTF_CloseFont(textFont);
     TTF_Quit();
 
     SDL_DestroyRenderer(gameRenderer);
+    if (strlen(SDL_GetError()) == 0) {
+        std::cout << "Rendered destroyed!\n";
+    }
+    else {
+        std::cerr << "Unable to destroy renderer: " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
     SDL_DestroyWindow(gameWindow);
+    if (strlen(SDL_GetError()) == 0) {
+        std::cout << "Window destroyed!\n";
+    }
+    else {
+        std::cerr << "Unable to destroy window: " << SDL_GetError() << '\n';
+    }
     SDL_Quit();
 
     std::cout << "Game cleaned!\n";

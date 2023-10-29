@@ -78,6 +78,8 @@ public:
 
     [[nodiscard]] virtual const char * getDescription() const = 0;
 
+    [[nodiscard]] virtual bool isPriority() const;
+
     explicit operator bool() const;
 
     friend std::ostream & operator<<(std::ostream &out, const Move &rhs);

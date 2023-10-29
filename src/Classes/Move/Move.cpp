@@ -45,6 +45,10 @@ int Move::getAccuracy() const {
     return 100;
 }
 
+bool Move::isPriority() const {
+    return false;
+}
+
 Move::operator bool() const {
     return this->pp > 0;
 }

@@ -1024,18 +1024,21 @@ void Battle::fight(const int userMove, bool &keepPlaying) {
         opponentMove = generateInteger(0, (*Battle::opponent)[0].numMoves() - 1);
     }
 
-
-    // if trainer is faster than opponent...
-    if ((*Battle::player)[0].isFasterThan((*Battle::opponent)[0])) {
+    // if the player is faster than the opponent or,
+    // assuming the opponent isn't using a priority move,
+    // the player is using a priority move...
+    if ((*Battle::player)[0].isFasterThan((*Battle::opponent)[0]) or (*Battle::player)[0][userMove].isPriority() and not (*Battle::opponent)[0][opponentMove].isPriority()) {
         PreStatus(userMove, opponentMove, true, keepPlaying);
         PostStatus(true, keepPlaying);
     }
-    // if opponent is faster than trainer...
-    else if ((*Battle::opponent)[0].isFasterThan((*Battle::player)[0])) {
+    // if the opponent is faster than the player or,
+    // assuming the player isn't using a priority move,
+    // the opponent is using a priority move...
+    else if ((*Battle::opponent)[0].isFasterThan((*Battle::player)[0]) or (*Battle::opponent)[0][opponentMove].isPriority() and not (*Battle::player)[0][userMove].isPriority()) {
         PreStatus(userMove, opponentMove, false, keepPlaying);
         PostStatus(false, keepPlaying);
     }
-    // if trainer and opponent rival in speed; choose randomly
+    // if trainer and opponent rival in speed or both or neither are using a priority move, choose randomly
     else {
         if (coinFlip()) {
             PreStatus(userMove, opponentMove, true, keepPlaying);
