@@ -3,10 +3,11 @@
 //
 
 #include "Game.h"
+#include <unordered_map>
 
 Game::Game() {
     // initialize subsystems
-    if (SDL_InitSubSystem(SDL_INIT_EVERYTHING) == 0) {
+    if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) == 0) {
         std::cout << "Subsystems initialized!\n";
     }
     else {
@@ -15,7 +16,8 @@ Game::Game() {
     }
 
     // create window
-    gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_WIDTH, WINDOW_HEIGHT, 0);
+    gameWindow = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                  WINDOW_WIDTH, WINDOW_HEIGHT, 0U);
     if (gameWindow != nullptr) {
         std::cout << "Window created!\n";
     }
@@ -23,6 +25,9 @@ Game::Game() {
         std::cerr << "Error creating window: " << SDL_GetError() << '\n';
         return;
     }
+
+    // initialize image subsystems
+    IMG_Init(IMG_INIT_PNG);
 
     // load window icon
     SDL_Surface *pokeball = IMG_Load(std::string_view(PROJECT_PATH + R"(\sprites\pokeball.png)").data());
@@ -121,6 +126,8 @@ Game::Game() {
 }
 
 Game::~Game() {
+    EventHandler::deleteInstance();
+
     Mix_HaltMusic();
     Mix_HookMusicFinished([] -> void {});
     Mix_FreeMusic(gameMusic);
@@ -145,6 +152,8 @@ Game::~Game() {
     TTF_CloseFont(textFont);
     TTF_Quit();
 
+    IMG_Quit();
+
     SDL_DestroyRenderer(gameRenderer);
     if (strlen(SDL_GetError()) == 0) {
         std::cout << "Rendered destroyed!\n";
@@ -168,6 +177,7 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
+    // TODO use SDL_WaitEvent() for overworld, and use multithreading for trainers
     SDL_PollEvent(&event);
     handleFunctions.at(functionState)();
 }
@@ -203,7 +213,9 @@ void Game::saveData() {
         }
     }
 
-    saveFile << '\n' << player->getNumItems(0) + player->getNumItems(1) + player->getNumItems(2) + player->getNumItems(3);
+    saveFile << '\n' << player->getNumItems(0) + player->getNumItems(1)
+                        + player->getNumItems(2) + player->getNumItems(3);
+
     for (int t = 0; t < 4; ++t) {
         const Item *item;
         for (int i = 0; i < player->getNumItems(t); ++i) {
@@ -221,11 +233,12 @@ void Game::saveData() {
                 saveFile << '\n' << map << ' ' << trainer << ' ' << (*currentMap)[trainer].partySize();
                 saveFile << (*currentMap)[trainer].getDirection();
             }
-            continue;
         }
-        for (int trainer = 0; trainer < maps.at(map)->numTrainers(); ++trainer) {
-            saveFile << '\n' << map << ' ' << trainer << ' ' << (*maps.at(map))[trainer].partySize();
-            saveFile << (*maps.at(map))[trainer].getDirection();
+        else {
+            for (int trainer = 0; trainer < maps.at(map)->numTrainers(); ++trainer) {
+                saveFile << '\n' << map << ' ' << trainer << ' ' << (*maps.at(map))[trainer].partySize();
+                saveFile << (*maps.at(map))[trainer].getDirection();
+            }
         }
     }
 

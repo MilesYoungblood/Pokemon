@@ -4,8 +4,6 @@
 
 #include "Trainer.h"
 
-#include <utility>
-
 Trainer::Trainer() : items(), numItems() {
     //FIXME change these to not be Hilbert
     this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
@@ -54,6 +52,15 @@ Trainer::~Trainer() {
 
 int Trainer::partySize() const {
     return this->numPokemon;
+}
+
+void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
+    if (this->numPokemon == Trainer::MAX_POKEMON) {
+        return;
+    }
+
+    this->party.push_back(std::move(toAdd));
+    ++this->numPokemon;
 }
 
 void Trainer::removePokemon(const int index) {

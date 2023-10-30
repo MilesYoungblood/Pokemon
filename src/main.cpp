@@ -5,6 +5,7 @@
 #define SDL_MAIN_HANDLED
 
 #include "Classes/Game/Game.h"
+#include "Namespaces/EventHandler.h"
 
 int main() {
     SDL_SetMainReady();

@@ -21,7 +21,7 @@ private:
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
     int vision{1};                                      // line of sight
-    Direction currentDirection{Direction::DOWN};       // numerical representation of which way the trainer is facing
+    Direction currentDirection{Direction::DOWN};        // numerical representation of which way the trainer is facing
 
     SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
     SDL_Texture *backModel{nullptr};                    // model of the entity when facing north

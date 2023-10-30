@@ -90,6 +90,7 @@ add_executable(PokemonBattle
         src/Classes/Game/OverworldFunctions.cpp
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
+        src/Namespaces/EventHandler.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)
@@ -98,5 +99,3 @@ target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll")
-
-#target_link_libraries(${PROJECT_NAME} Microsoft.GSL::GSL)

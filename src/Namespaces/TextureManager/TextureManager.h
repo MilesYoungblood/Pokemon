@@ -13,11 +13,7 @@ namespace TextureManager {
     inline SDL_Renderer *textureRenderer = nullptr;
 
     inline SDL_Texture *LoadTexture(std::string_view texture) {
-        SDL_Surface *temp = IMG_Load(texture.data());
-        SDL_Texture *text = SDL_CreateTextureFromSurface(textureRenderer, temp);
-        SDL_FreeSurface(temp);
-
-        return text;
+        return IMG_LoadTexture(textureRenderer, texture.data());
     }
 
     inline SDL_Texture *LoadText(TTF_Font *font, const char *text, SDL_Color fg) {

@@ -13,6 +13,7 @@
 #include "../../Namespaces/Factories/PokemonFactory.h"
 #include "../../Namespaces/Factories/ItemFactory.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
+#include "../../Namespaces/EventHandler.h"
 
 inline Direction oppositeDirection(const Direction direction) {
     switch (direction) {
@@ -30,15 +31,21 @@ inline Direction oppositeDirection(const Direction direction) {
 }
 
 void handleTitleScreenEvents();
+
 void updateTitleScreen();
+
 void renderTitleScreen();
 
 void handleOverworldEvents();
+
 void updateOverworld();
+
 void renderOverworld();
 
 void handleBattleEvents();
+
 void updateBattle();
+
 void renderBattle();
 
 inline constexpr static int FPS = 30;

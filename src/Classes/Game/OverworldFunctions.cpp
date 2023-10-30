@@ -10,15 +10,15 @@ int wordCounter = 0;
 constexpr static int BOX_WIDTH = TILE_SIZE * 7;
 constexpr static int BOX_HEIGHT = TILE_SIZE * 2;
 
-constexpr SDL_Rect textBox(
+const SDL_Rect textBox(
         WINDOW_WIDTH / 2 - BOX_WIDTH / 2,
         WINDOW_HEIGHT - BOX_HEIGHT,
         BOX_WIDTH,
         BOX_HEIGHT - TILE_SIZE / 2
 );
 
-constexpr static int BORDER_SIZE = textBox.h / (TILE_SIZE * 3 / 10);
-constexpr SDL_Rect border(
+const static int BORDER_SIZE = textBox.h / (TILE_SIZE * 3 / 10);
+const SDL_Rect border(
         textBox.x - BORDER_SIZE,
         textBox.y - BORDER_SIZE,
         textBox.w + BORDER_SIZE * 2,
