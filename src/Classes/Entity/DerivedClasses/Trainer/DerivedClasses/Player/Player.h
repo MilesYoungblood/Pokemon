@@ -9,7 +9,7 @@
 class Player : public Trainer {
 private:
     static Player *instancePtr;
-    static std::array<std::array<Pokemon *, 30>, 12> pc;
+    static std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> pc;
 
     Player(const char *name, int x, int y, Direction direction);
 
@@ -18,7 +18,7 @@ public:
 
     static void destroyPlayer();
 
-    static void addToPc(Pokemon *toAdd);
+    static void addToPc(std::unique_ptr<Pokemon> toAdd);
 
     explicit operator bool() const override;
 

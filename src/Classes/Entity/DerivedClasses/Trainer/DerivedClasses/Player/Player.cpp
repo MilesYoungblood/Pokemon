@@ -5,7 +5,7 @@
 #include "Player.h"
 
 Player *Player::instancePtr = nullptr;
-std::array<std::array<Pokemon *, 30>, 12> Player::pc;
+std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> Player::pc;
 
 Player::Player(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
     this->setFrontModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
@@ -30,11 +30,11 @@ void Player::destroyPlayer() {
     Player::instancePtr = nullptr;
 }
 
-void Player::addToPc(Pokemon *toAdd) {
+void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
     for (auto &box : Player::pc) {
         for (auto &pokemon : box) {
             if (pokemon == nullptr) {
-                pokemon = toAdd;
+                pokemon = std::move(toAdd);
             }
         }
     }
