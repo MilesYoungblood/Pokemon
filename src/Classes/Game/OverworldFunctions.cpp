@@ -114,17 +114,35 @@ void changeMap(const std::array<int, 3> &data) {
     });
 }
 
+SDL_Scancode getScancode(Direction direction) {
+    switch (direction) {
+        case Direction::UP:
+            return SDL_Scancode::SDL_SCANCODE_W;
+        case Direction::DOWN:
+            return SDL_Scancode::SDL_SCANCODE_S;
+        case Direction::LEFT:
+            return SDL_Scancode::SDL_SCANCODE_A;
+        case Direction::RIGHT:
+            return SDL_Scancode::SDL_SCANCODE_D;
+        default:
+            throw std::runtime_error("Unexpected error: lambda getScancode");
+    }
+};
+
 void checkForOpponents() {
     void (*resetVariables)() = [] -> void {
         keepMovingForward = false;
         walkCounter = 0;
     };
 
+    const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
+
     // resets movement variables if you are not inputting any directions
     if (not(KeyManager::getInstance()->getKey(SDL_SCANCODE_W) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_A) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_S) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_D))) {
+            KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) or span[SDL_SCANCODE_W] == 0 or
+        span[SDL_SCANCODE_A] == 0 or span[SDL_SCANCODE_S] == 0 or span[SDL_SCANCODE_D] == 0) {
         resetVariables();
     }
 
@@ -172,9 +190,9 @@ void updateTrainers() {
 }
 
 void updateOverworld() {
-    const Direction p_direction = player->getDirection();
-
     const std::array<int, 3> map_data = currentMap->isExitPointHere(player->getX(), player->getY());
+    const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
+
     if (map_data[2] != -1) {
         changeMap(map_data);
     }
@@ -182,7 +200,7 @@ void updateOverworld() {
         if (not player->isFacingNorth()) {
             player->faceNorth();
         }
-        else {
+        if (span[SDL_SCANCODE_W] == 1 and player->canMoveForward(currentMap)) {
             keepMovingForward = true;
         }
     }
@@ -190,7 +208,7 @@ void updateOverworld() {
         if (not player->isFacingWest()) {
             player->faceWest();
         }
-        else {
+        if (span[SDL_SCANCODE_A] == 1 and player->canMoveForward(currentMap)) {
             keepMovingForward = true;
         }
     }
@@ -198,7 +216,7 @@ void updateOverworld() {
         if (not player->isFacingSouth()) {
             player->faceSouth();
         }
-        else {
+        if (span[SDL_SCANCODE_S] == 1 and player->canMoveForward(currentMap)) {
             keepMovingForward = true;
         }
     }
@@ -206,7 +224,7 @@ void updateOverworld() {
         if (not player->isFacingEast()) {
             player->faceEast();
         }
-        else {
+        if (span[SDL_SCANCODE_D] == 1 and player->canMoveForward(currentMap)) {
             keepMovingForward = true;
         }
     }
@@ -240,39 +258,18 @@ void updateOverworld() {
         KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);
     }
 
-    SDL_Scancode(*getScancode)(Direction) = [](Direction direction) -> SDL_Scancode {
-        switch (direction) {
-            case Direction::UP:
-                return SDL_Scancode::SDL_SCANCODE_W;
-            case Direction::DOWN:
-                return SDL_Scancode::SDL_SCANCODE_S;
-            case Direction::LEFT:
-                return SDL_Scancode::SDL_SCANCODE_A;
-            case Direction::RIGHT:
-                return SDL_Scancode::SDL_SCANCODE_D;
-            default:
-                throw std::runtime_error("Unexpected error: lambda getScancode");
-        }
-    };
-
-    const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
-    if (span[getScancode(player->getDirection())] == 0 and not keepMovingForward) {
-        goto skip;
-    }
-    if (((span[getScancode(player->getDirection())] == 1 and player->canMoveForward(currentMap)) or player->canMoveForward(currentMap)) and keepMovingForward) {
-        const Direction q_direction = oppositeDirection(p_direction);
-
-        currentMap->update(q_direction, SCROLL_SPEED);
-        walkCounter += SCROLL_SPEED;
-
+    if (keepMovingForward) {
         if (walkCounter % TILE_SIZE == 0) {
             player->moveForward();
         }
+
+        currentMap->update(oppositeDirection(player->getDirection()), SCROLL_SPEED);
+        walkCounter += SCROLL_SPEED;
     }
-    skip:
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
+        keepMovingForward = false;
         checkForOpponents();
     }
 

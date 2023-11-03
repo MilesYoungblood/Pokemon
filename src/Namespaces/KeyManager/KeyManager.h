@@ -130,6 +130,13 @@ public:
         this->keyStates[SDL_SCANCODE_D].locked = true;
     }
 
+    void unlockWasd() {
+        this->keyStates[SDL_SCANCODE_W].locked = false;
+        this->keyStates[SDL_SCANCODE_A].locked = false;
+        this->keyStates[SDL_SCANCODE_S].locked = false;
+        this->keyStates[SDL_SCANCODE_D].locked = false;
+    }
+
     void unlockKey(SDL_Scancode key) {
         this->keyStates[key].locked = false;
 
