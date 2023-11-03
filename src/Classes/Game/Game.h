@@ -13,7 +13,8 @@
 #include "../../Namespaces/Factories/PokemonFactory.h"
 #include "../../Namespaces/Factories/ItemFactory.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
-#include "../../Namespaces/EventHandler.h"
+#include "../../Namespaces/KeyManager/KeyManager.h"
+#include "../../Namespaces/Stopwatch.h"
 
 inline Direction oppositeDirection(const Direction direction) {
     switch (direction) {
@@ -48,16 +49,18 @@ void updateBattle();
 
 void renderBattle();
 
-inline constexpr static int FPS = 30;
-inline constexpr static int FRAME_DELAY = 1000 / FPS;
+enum FunctionState {
+    TITLE_SCREEN, OVERWORLD, BATTLE
+};
 
-inline constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;      // height of the window
+inline const std::array<int, 2> FPS{ 30, 60 };                  // FPS is 30 during overworld, and 60 during battles
+inline int currentFps = FPS[0];
+
 inline constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;       // width of the window
+inline constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;      // height of the window
 inline constexpr static int SCROLL_SPEED = TILE_SIZE / 10;      // scroll speed
 
 inline constexpr static int FONT_SIZE = 20;                     // font size for message box text
-
-inline constexpr static int NUM_FUNCTION_STATES = 3;            // number of function states
 
 inline SDL_Window *gameWindow = nullptr;                        // global game window
 inline SDL_Renderer *gameRenderer = nullptr;                    // global game renderer
@@ -69,61 +72,57 @@ inline TTF_Font *textFont = nullptr;                            // global messag
 
 inline bool isRunning = false;                                  // determines whether the game is running
 
-inline bool canMove = true;                                     // determines whether the player can move
-
-inline bool canInteract = true;                                 // determines whether the player can pressedEnter
-
-inline std::array<bool, 4> moveDirection = {                    // flags that determine when the player attempts to move
-        false, false, false, false
-};
-
-inline std::array<bool, 4> keepMovingDirection = {              // ultimately, determine when the player stops moving
-        false, false, false, false
-};
-
-inline bool pressedEnter = false;                               // signals when the player is trying
-                                                                // to interact with something
-
 inline bool print = false;
 
-inline int walkCounter = 0;                                     // measures how many screen pixels the player has moved
+inline Player *player = nullptr;
 
 inline std::vector<int> walkCounters;                           // measures how many screen pixels a trainer has moved
 inline std::vector<bool> lockTrainer;                           // determines whether a trainer can move spontaneously
 
-inline Player *player = nullptr;
-
-inline std::array<std::unique_ptr<Map>, 3> maps;
+inline std::array<Map, 3> maps{
+        Map("Route 1", "TrainerBattle.mp3", 13, 10),
+        Map("Route 2", "RivalBattle.mp3", 21, 20),
+        Map("Route 3", "GymBattle.mp3", 21, 11)
+};
 
 inline int currentMapIndex;
-inline std::unique_ptr<Map> currentMap = nullptr;
+inline Map *currentMap = nullptr;
 
-// TODO eventually change to 0 to start at title screen
-inline int functionState = 0;                              // determines which set of functions to use
+inline FunctionState functionState = TITLE_SCREEN;              // determines which set of functions to use
 
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> handleFunctions = {
+inline const int NUM_FUNCTION_STATES = 3;
+
+inline const std::array<void (*)(), NUM_FUNCTION_STATES> HANDLE_FUNCTIONS{
         handleTitleScreenEvents, handleOverworldEvents, handleBattleEvents
 };
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> updateFunctions = {
+inline const std::array<void (*)(), NUM_FUNCTION_STATES> UPDATE_FUNCTIONS{
         updateTitleScreen, updateOverworld, updateBattle
 };
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> renderFunctions = {
+inline const std::array<void (*)(), NUM_FUNCTION_STATES> RENDER_FUNCTIONS{
         renderTitleScreen, renderOverworld, renderBattle
 };
 
 struct Game {
     Game();
+
     ~Game();
+
     Game(const Game &) = delete;
+
     Game(const Game &&) = delete;
-    Game & operator=(const Game &) = delete;
-    Game & operator=(const Game &&) = delete;
+
+    Game &operator=(const Game &) = delete;
+
+    Game &operator=(const Game &&) = delete;
 
     static void handleEvents();
+
     static void update();
+
     static void render();
 
     static void saveData();
+
     static void loadData();
 
     explicit operator bool() const;

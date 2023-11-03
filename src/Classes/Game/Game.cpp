@@ -3,12 +3,11 @@
 //
 
 #include "Game.h"
-#include <unordered_map>
 
 Game::Game() {
     // initialize subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) == 0) {
-        std::cout << "Subsystems initialized!\n";
+        std::cout << "Subsystems isInitialized!\n";
     }
     else {
         std::cerr << "Error initializing subsystems: " << SDL_GetError() << '\n';
@@ -53,8 +52,8 @@ Game::Game() {
         return;
     }
 
-    // assign the TextureManager's renderer
-    TextureManager::textureRenderer = gameRenderer;
+    // initialize TextureManager
+    TextureManager::getInstance()->init(gameRenderer);
 
     // initialize true type font subsystems
     if (TTF_Init() == 0) {
@@ -76,14 +75,14 @@ Game::Game() {
     }
 
     // load the title image
-    logo = TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
+    logo = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
     if (logo == nullptr) {
         std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
         return;
     }
 
     // load the text prompt
-    text = TextureManager::LoadText(textFont, "Press enter to continue!", { 0, 0, 0 });
+    text = TextureManager::getInstance()->loadText(textFont, "Press enter to continue!", { 0, 0, 0 });
     if (text != nullptr) {
         std::cout << "Loaded title text!\n";
     }
@@ -120,13 +119,18 @@ Game::Game() {
         return;
     }
 
+    // instantiate KeyManager
+    KeyManager::getInstance();
+
     SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
     isRunning = true;
 }
 
 Game::~Game() {
-    EventHandler::deleteInstance();
+    Camera::deleteInstance();
+    KeyManager::deleteInstance();
+    TextureManager::deleteInstance();
 
     Mix_HaltMusic();
     Mix_HookMusicFinished([] -> void {});
@@ -134,19 +138,19 @@ Game::~Game() {
     Mix_CloseAudio();
 
     SDL_DestroyTexture(text);
-    if (strlen(SDL_GetError()) == 0) {
+    if (strlen(SDL_GetError()) == 0ULL) {
         std::cout << "Texture destroyed!\n";
     }
     else {
-        std::cerr << "Unable to destroy texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        std::cerr << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyTexture(logo);
-    if (strlen(SDL_GetError()) == 0) {
+    if (strlen(SDL_GetError()) == 0ULL) {
         std::cout << "Texture destroyed!\n";
     }
     else {
-        std::cerr << "Unable to destroy texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        std::cerr << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     TTF_CloseFont(textFont);
@@ -155,7 +159,7 @@ Game::~Game() {
     IMG_Quit();
 
     SDL_DestroyRenderer(gameRenderer);
-    if (strlen(SDL_GetError()) == 0) {
+    if (strlen(SDL_GetError()) == 0ULL) {
         std::cout << "Rendered destroyed!\n";
     }
     else {
@@ -163,7 +167,7 @@ Game::~Game() {
         SDL_ClearError();
     }
     SDL_DestroyWindow(gameWindow);
-    if (strlen(SDL_GetError()) == 0) {
+    if (strlen(SDL_GetError()) == 0ULL) {
         std::cout << "Window destroyed!\n";
     }
     else {
@@ -177,18 +181,17 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    // TODO use SDL_WaitEvent() for overworld, and use multithreading for trainers
     SDL_PollEvent(&event);
-    handleFunctions.at(functionState)();
+    HANDLE_FUNCTIONS.at(functionState)();
 }
 
 void Game::update() {
-    updateFunctions.at(functionState)();
+    UPDATE_FUNCTIONS.at(functionState)();
 }
 
 void Game::render() {
     SDL_RenderClear(gameRenderer);
-    renderFunctions.at(functionState)();
+    RENDER_FUNCTIONS.at(functionState)();
     SDL_RenderPresent(gameRenderer);
 }
 
@@ -201,27 +204,44 @@ void Game::saveData() {
     saveFile << currentMapIndex;
     saveFile << '\n' << player->getX() << ' ' << player->getY() << ' ' << player->getDirection();
     saveFile << '\n' << player->partySize();
-
     for (int pokemon = 0; pokemon < player->partySize(); ++pokemon) {
         saveFile << '\n' << (*player)[pokemon].getID() << ' ';
 
-        const int numMoves = (*player)[pokemon].numMoves();
-        saveFile << numMoves << ' ';
+        const int num_moves = (*player)[pokemon].numMoves();
+        saveFile << num_moves << ' ';
 
-        for (int move = 0; move < numMoves; ++move) {
+        for (int move = 0; move < num_moves; ++move) {
             saveFile << (*player)[pokemon][move].getID() << ' ' << (*player)[pokemon][move].getPP() << ' ';
         }
     }
 
-    saveFile << '\n' << player->getNumItems(0) + player->getNumItems(1)
-                        + player->getNumItems(2) + player->getNumItems(3);
+    Item *item;
 
-    for (int t = 0; t < 4; ++t) {
-        const Item *item;
-        for (int i = 0; i < player->getNumItems(t); ++i) {
-            item = &player->getItem(t, i);
-            saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
-        }
+    const int num_restore_items = player->getNumItems<RestoreItem>();
+    const int num_status_items = player->getNumItems<StatusItem>();
+    const int num_poke_balls = player->getNumItems<PokeBall>();
+    const int num_battle_items = player->getNumItems<BattleItem>();
+
+    saveFile << '\n' << num_restore_items + num_status_items + num_poke_balls + num_battle_items;
+
+    for (int i = 0; i < num_restore_items; ++i) {
+        item = &player->getItem<RestoreItem>(i);
+        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+    }
+
+    for (int i = 0; i < num_status_items; ++i) {
+        item = &player->getItem<StatusItem>(i);
+        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+    }
+
+    for (int i = 0; i < num_poke_balls; ++i) {
+        item = &player->getItem<PokeBall>(i);
+        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+    }
+
+    for (int i = 0; i < num_battle_items; ++i) {
+        item = &player->getItem<BattleItem>(i);
+        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
     }
 
     for (int map = 0; map < maps.size(); ++map) {
@@ -235,9 +255,9 @@ void Game::saveData() {
             }
         }
         else {
-            for (int trainer = 0; trainer < maps.at(map)->numTrainers(); ++trainer) {
-                saveFile << '\n' << map << ' ' << trainer << ' ' << (*maps.at(map))[trainer].partySize();
-                saveFile << (*maps.at(map))[trainer].getDirection();
+            for (int trainer = 0; trainer < maps.at(map).numTrainers(); ++trainer) {
+                saveFile << '\n' << map << ' ' << trainer << ' ' << maps.at(map)[trainer].partySize();
+                saveFile << maps.at(map)[trainer].getDirection();
             }
         }
     }
@@ -255,53 +275,56 @@ void Game::loadData() {
         std::getline(saveFile, buffer);
         currentMapIndex = buffer[0] - '0';
 
-        // grab the player's playerX-coordinates
+        // grab the player's x-coordinates
         std::getline(saveFile, buffer, ' ');
-        const int playerX = std::stoi(buffer);
+        const int player_x = std::stoi(buffer);
 
-        // grab the player's playerY-coordinates
+        // grab the player's y-coordinates
         std::getline(saveFile, buffer, ' ');
-        const int playerY = std::stoi(buffer);
+        const int player_y = std::stoi(buffer);
 
         // grab the player's direction
         std::getline(saveFile, buffer);
 
-        player = Player::getPlayer(playerX, playerY, buffer[0] - '0');
+        //TODO load player name dynamically
+        player = Player::getPlayer("Hilbert", player_x, player_y, static_cast<Direction>(buffer[0] - '0'));
 
         // load the player's party size
         std::getline(saveFile, buffer);
-        const int partySize = buffer[0] - '0';
+        const int party_size = buffer[0] - '0';
 
         // load each Pokémon's data
-        for (int pokemon = 0; pokemon < partySize; ++pokemon) {
+        for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
             player->addPokemon(PokemonFactory::getPokemon(static_cast<PokemonID>(std::stoi(buffer))));
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
-            const int numMoves = buffer[0] - '0';
+            const int num_moves = buffer[0] - '0';
 
             // load each move for this Pokémon
-            for (int move = 0; move < numMoves; ++move) {
+            for (int move = 0; move < num_moves; ++move) {
                 std::getline(saveFile, buffer, ' ');
                 const int id = std::stoi(buffer);
 
                 std::getline(saveFile, buffer, ' ');
-                const int savedPP = std::stoi(buffer);
+                const int saved_pp = std::stoi(buffer);
 
-                (*player)[pokemon].addMove(MoveFactory::getMove(static_cast<MoveID>(id), savedPP));
+                (*player)[pokemon].addMove(MoveFactory::getMove(static_cast<MoveID>(id), saved_pp));
             }
 
             // necessary to grab the next line
             std::getline(saveFile, buffer);
         }
 
+        Trainer::init();
+
         // grab the total number of items in the player's bag
         std::getline(saveFile, buffer);
-        const int totalNumItems = std::stoi(buffer);
+        const int total_num_items = std::stoi(buffer);
 
         // load each item
-        for (int i = 0; i < totalNumItems; ++i) {
+        for (int i = 0; i < total_num_items; ++i) {
             std::getline(saveFile, buffer, ' ');
             const int item = std::stoi(buffer);
 
@@ -312,25 +335,56 @@ void Game::loadData() {
         }
 
         // initialize all maps
-        maps[0] = std::move(std::make_unique<Map>("Route 1", "TrainerBattle.mp3", 13, 10));
-        maps[0]->addTrainer(std::make_unique<Trainer>(7, 6, 1, 3));
-        maps[0]->addTrainer(std::make_unique<Trainer>(2, 4, 1, 3));
-        maps[0]->addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
-        maps[0]->addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-        maps[0]->addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+        Map::initTextures();
 
-        maps[1] = std::move(std::make_unique<Map>("Route 2", "RivalBattle.mp3", 21, 20));
-        maps[1]->addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
-        maps[1]->addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
-        maps[1]->addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
-        maps[1]->addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
+        maps[MapID::ROUTE_1][0].setAction([] -> void {
+            Trainer *trainer = &(*currentMap)[0];
+            switch (generateInteger(1, 100)) {
+                case 1:
+                    trainer->face(trainer);
 
-        maps[2] = std::move(std::make_unique<Map>("Route 3", "GymBattle.mp3", 21, 11));
-        maps[2]->addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
+                    if (trainer->hasVisionOf(player) and *trainer) {
+                        KeyManager::getInstance()->lockWasd();
+                        return;
+                    }
+                    break;
 
+                case 2:
+                    if (trainer->isFacingNorth() or trainer->isFacingSouth()) {
+                        coinFlip() ? trainer->faceEast() : trainer->faceWest();
+                    }
+                    else if (trainer->isFacingEast() or trainer->isFacingWest()) {
+                        coinFlip() ? trainer->faceNorth() : trainer->faceSouth();
+                    }
+
+                    if (trainer->hasVisionOf(player) and *trainer) {
+                        KeyManager::getInstance()->lockWasd();
+                        return;
+                    }
+                    break;
+            }
+        });
+        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
+        maps[MapID::ROUTE_1].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
+        maps[MapID::ROUTE_1].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
+        maps[MapID::ROUTE_1].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+
+        maps[MapID::ROUTE_2].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
+        maps[MapID::ROUTE_2].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+        maps[MapID::ROUTE_2].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
+        maps[MapID::ROUTE_2].addExitPoint({ 0, 9, MapID::ROUTE_3, 19, 4 });
+        maps[MapID::ROUTE_2].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+        maps[MapID::ROUTE_2].addExitPoint({ 0, 11, MapID::ROUTE_3, 19, 6 });
+
+        maps[MapID::ROUTE_3].addExitPoint({ 20, 4, MapID::ROUTE_2, 1, 9 });
+        maps[MapID::ROUTE_3].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
+        maps[MapID::ROUTE_3].addExitPoint({ 20, 6, MapID::ROUTE_2, 1, 11 });
+
+        std::stringstream ss;
         // load each trainer's data for every map
         while (std::getline(saveFile, buffer)) {
-            std::stringstream ss(buffer);
+            ss >> buffer;
 
             // grabs the map
             std::getline(ss, buffer, ' ');
@@ -345,40 +399,58 @@ void Game::loadData() {
             if (buffer[0] == '0') {
                 // deletes the Pokémon set if the trainer has been defeated
                 // FIXME change to adding Pokémon if not defeated
-                (*maps.at(map))[trainer].clearParty();
+                maps.at(map)[trainer].clearParty();
             }
 
-            (*maps.at(map))[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
+            maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
         }
 
-        currentMap = std::move(maps.at(currentMapIndex));
+        currentMap = &maps.at(currentMapIndex);
 
         saveFile.close();
     }
     else {
         currentMapIndex = 0;
-        currentMap = std::move(maps[0]);
+        currentMap = &maps.at(currentMapIndex);
+
+        Trainer::init();
+
+        // initialize all maps
+        Map::initTextures();
+
+        maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
+        maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
+        maps[0].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
+        maps[0].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
+        maps[0].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+
+        maps[1].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
+        maps[1].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+        maps[1].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
+        maps[1].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+
+        maps[2].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
 
         // default values for player
         player = Player::getPlayer();
 
         player->addPokemon<Greninja>();
-        (*player)[0].addMove(std::make_unique<WaterShuriken>());
-        (*player)[0].addMove(std::make_unique<DarkPulse>());
-        (*player)[0].addMove(std::make_unique<IceBeam>());
-        (*player)[0].addMove(std::make_unique<Extrasensory>());
+        (*player)[0].addMove<WaterShuriken>();
+        (*player)[0].addMove<DarkPulse>();
+        (*player)[0].addMove<IceBeam>();
+        (*player)[0].addMove<Extrasensory>();
 
         player->addPokemon<Charizard>();
-        (*player)[1].addMove(std::make_unique<Flamethrower>());
-        (*player)[1].addMove(std::make_unique<AirSlash>());
-        (*player)[1].addMove(std::make_unique<DragonPulse>());
-        (*player)[1].addMove(std::make_unique<SolarBeam>());
+        (*player)[1].addMove<Flamethrower>();
+        (*player)[1].addMove<AirSlash>();
+        (*player)[1].addMove<DragonPulse>();
+        (*player)[1].addMove<SolarBeam>();
 
         player->addPokemon<Hydreigon>();
-        (*player)[2].addMove(std::make_unique<DarkPulse>());
-        (*player)[2].addMove(std::make_unique<DragonPulse>());
-        (*player)[2].addMove(std::make_unique<Flamethrower>());
-        (*player)[2].addMove(std::make_unique<FocusBlast>());
+        (*player)[2].addMove<DarkPulse>();
+        (*player)[2].addMove<DragonPulse>();
+        (*player)[2].addMove<Flamethrower>();
+        (*player)[2].addMove<FocusBlast>();
 
         player->addItem(std::make_unique<Potion>(5));
         player->addItem(std::make_unique<SuperPotion>(5));

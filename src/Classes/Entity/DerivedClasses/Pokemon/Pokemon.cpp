@@ -5,24 +5,15 @@
 #include "Pokemon.h"
 
 Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
-    : name(name), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
+    : Entity(name, 0, 0), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
     this->types[0] = type;
     this->types[1] = Type::NONE;
 }
 
 Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
-    : name(name), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
+    : Entity(name, 0, 0), maxHP(hp), currentHP(hp), baseAttack(bAttack), baseDefense(bDefense), baseSpAttack(bSpAttack), baseSpDefense(bSpDefense), baseSpeed(bSpeed), level(level), catchRate(catchRate), types() {
     this->types[0] = type1;
     this->types[1] = type2;
-}
-
-Pokemon::~Pokemon() {
-    for (int i = 0; i < this->moveCounter; ++i) {
-        if (this->moveSet[i] != nullptr) {
-            std::cout << "\t\tDeleting " << this->name << "'s " << this->moveSet[i]->getName() << "!\n";
-            //delete this->moveSet[i];
-        }
-    }
 }
 
 void Pokemon::raiseStat(int &stat, const int amount) {
@@ -258,10 +249,6 @@ int Pokemon::getBaseSpeed() const {
     return this->baseSpeed * static_cast<int>(lround(getStatMod(this->speed)));
 }
 
-std::string Pokemon::getName() const {
-    return this->name;
-}
-
 Type Pokemon::getType(const bool type_1) const {
     return type_1 ? this->types[0] : this->types[1];
 }
@@ -358,11 +345,6 @@ Move & Pokemon::operator[](const int index) {
 
 const Move & Pokemon::operator[](const int index) const {
     return *this->moveSet[index];
-}
-
-std::ostream & operator<<(std::ostream &out, const Pokemon &pokemon) {
-    out << pokemon.name;
-    return out;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

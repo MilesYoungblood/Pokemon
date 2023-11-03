@@ -4,13 +4,23 @@
 
 #include "Pokeball.h"
 
-PokeBall::PokeBall(const char *name, const int quantity, const double catchRate) : Item(name, quantity), catchRate(catchRate) {}
+PokeBall::PokeBall(const int quantity) : Item(quantity) {}
 
-PokeBall::PokeBall(int n) : PokeBall("Poke Ball", n, 1.0) {}
+double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
+    return 1.0;
+}
 
-ItemType PokeBall::getType() const { return ItemType::POKE_BALL; }
+ItemType PokeBall::getType() const {
+    return ItemType::POKE_BALL;
+}
 
-ItemID PokeBall::getID() const { return ItemID::POKE_BALL; }
+ItemID PokeBall::getID() const {
+    return ItemID::POKE_BALL;
+}
+
+std::string PokeBall::getName() const {
+    return "Poke Ball";
+}
 
 void PokeBall::useMessage() {
     printMessage("You threw a");
@@ -22,21 +32,14 @@ void PokeBall::useMessage() {
     printMessage(' ' + this->getName() + "! ");
 }
 
-void PokeBall::restore(Pokemon &pokemon) {}
-
-void PokeBall::restore(Move &move) {}
-
-void PokeBall::restoreMessage(const Pokemon &pokemon) {}
-
-void PokeBall::restoreMessage(const Move &move) {}
-
-bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) {
+bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const {
     // using gen III-IV catch mechanics
 
     double a = 3 * pokemon.getMaxHp() - 2 * pokemon.getHP();
     a /= 3.0 * pokemon.getMaxHp();
     a *= pokemon.getCatchRate();
-    a *= this->catchRate;
+    //FIXME update
+    a *= this->getCatchRate(pokemon, Time::NIGHT, 1, false);
 
     auto statusCalc = [&pokemon] {
         switch (pokemon.getStatus()) {

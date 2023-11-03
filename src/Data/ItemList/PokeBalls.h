@@ -7,25 +7,69 @@
 #include "../../Classes/Item/DerivedClasses/Pokeball/Pokeball.h"
 
 struct GreatBall : public PokeBall {
-    explicit GreatBall(int n) : PokeBall("Great Ball", n, 1.5) {}
+    explicit GreatBall(int n) : PokeBall(n) {}
+
+    [[nodiscard]] double getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const override {
+        return 1.5;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::GREAT_BALL;
     }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Great Ball";
+    }
 };
 
 struct UltraBall : public PokeBall {
-    explicit UltraBall(int n) : PokeBall("Ultra Ball", n, 2.0) {}
+    explicit UltraBall(int n) : PokeBall(n) {}
+
+    [[nodiscard]] double getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const override {
+        return 2.0;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::ULTRA_BALL;
     }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Ultra Ball";
+    }
 };
 
 struct MasterBall : public PokeBall {
-    explicit MasterBall(int n) : PokeBall("Master Ball", n, 255.0) {}
+    explicit MasterBall(int n) : PokeBall(n) {}
+
+    [[nodiscard]] double getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const override {
+        return 255.0;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::MASTER_BALL;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Master Ball";
+    }
+};
+
+struct NetBall : public PokeBall {
+    explicit NetBall(int n) : PokeBall(n) {}
+
+    [[nodiscard]] double getCatchRate(const Pokemon &pokemon, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const override {
+        if (pokemon.getType(true) == Type::WATER or pokemon.getType(true) == Type::BUG or
+            pokemon.getType(false) == Type::WATER or pokemon.getType(false) == Type::BUG) {
+            return 3.5;
+        }
+        return 1.0;
+    }
+
+    [[nodiscard]] ItemID getID() const override {
+        return ItemID::NET_BALL;
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Net Ball";
     }
 };

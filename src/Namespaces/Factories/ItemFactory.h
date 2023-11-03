@@ -7,6 +7,12 @@
 #include "../../Data/ItemList.h"
 
 namespace ItemFactory {
+    template<typename I>
+    inline I *getItem(const int quantity) {
+        const std::shared_ptr<I> item = std::make_shared<I>(quantity);
+        return item.get();
+    }
+
     inline std::unique_ptr<Item> getItem(const ItemID id, const int quantity) {
         switch (id) {
             case ItemID::POTION:
@@ -35,6 +41,8 @@ namespace ItemFactory {
                 return std::make_unique<UltraBall>(quantity);
             case ItemID::MASTER_BALL:
                 return std::make_unique<MasterBall>(quantity);
+            case ItemID::NET_BALL:
+                return std::make_unique<NetBall>(quantity);
             case ItemID::X_ATTACK:
                 return std::make_unique<XAttack>(quantity);
             case ItemID::X_DEFENSE:

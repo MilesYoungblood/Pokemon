@@ -7,24 +7,24 @@
 static constexpr int NUM_TYPES = 18;
 
 static constexpr std::array<std::array<double, NUM_TYPES>, NUM_TYPES> TYPE_CHART = {
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5, 1.0 }, // normal
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0 }, // fire
-        std::array<double, NUM_TYPES> { 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // water
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // electric
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 1.0 }, // grass
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ice
-        std::array<double, NUM_TYPES> { 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0, 0.5 }, // fighting
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0, 2.0 }, // poison
-        std::array<double, NUM_TYPES> { 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0 }, // ground
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0 }, // flying
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5, 1.0 }, // psychic
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5, 0.5 }, // bug
-        std::array<double, NUM_TYPES> { 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0 }, // rock
-        std::array<double, NUM_TYPES> { 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // ghost
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.0 }, // dragon
-        std::array<double, NUM_TYPES> { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5 }, // dark
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0 }, // steel
-        std::array<double, NUM_TYPES> { 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0 }  // fairy
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5, 1.0 }, // normal
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0, 1.0 }, // fire
+        std::array<double, NUM_TYPES>{ 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // water
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0 }, // electric
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5, 1.0 }, // grass
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ice
+        std::array<double, NUM_TYPES>{ 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0, 0.5 }, // fighting
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0, 2.0 }, // poison
+        std::array<double, NUM_TYPES>{ 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0 }, // ground
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5, 1.0 }, // flying
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5, 1.0 }, // psychic
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5, 0.5 }, // bug
+        std::array<double, NUM_TYPES>{ 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0 }, // rock
+        std::array<double, NUM_TYPES>{ 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // ghost
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 0.0 }, // dragon
+        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5 }, // dark
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5, 2.0 }, // steel
+        std::array<double, NUM_TYPES>{ 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 0.5, 1.0 }  // fairy
 };
 
 Player *Battle::player = nullptr;
@@ -59,7 +59,7 @@ void Battle::displayChoices(const int arrow, bool &print) {
         printMessage("What will " + (*Battle::player)[0].getName() + " do?\n");
     }
     else {
-        std:: cout << "What will " << (*Battle::player)[0] << " do?\n";
+        std::cout << "What will " << (*Battle::player)[0].getName() << " do?\n";
     }
 
     arrow == 0 ? std::cout << "   ->   Fight\n" : std::cout << "\tFight\n";
@@ -74,7 +74,7 @@ void Battle::displayChoices(const int arrow, bool &print) {
 
 void Battle::displayPokemon(const int arrow, bool &print) {
     void (*printOut)(const char *, const int) = [](const char *string, const int index) -> void {
-        std::cout << string << (*Battle::player)[index] << std::string(15 - (*Battle::player)[index].getName().length(), ' ')
+        std::cout << string << (*Battle::player)[index].getName() << std::string(15 - (*Battle::player)[index].getName().length(), ' ')
                   << "(HP: " << (*Battle::player)[index].getHP() << std::string(3 - std::to_string((*Battle::player)[index].getHP()).length(), ' ')
                   << '/' << std::string(3 - std::to_string((*Battle::player)[index].getMaxHp()).length(), ' ') << (*Battle::player)[index].getMaxHp()
                   << ")\n";
@@ -104,7 +104,7 @@ void Battle::displayPokemon(const int arrow, bool &print) {
 
 void Battle::displayHPBar(const bool displayPokemon = true) {
     void (*printOut)(Trainer *) = [](Trainer *trainer) -> void {
-        std::cout << "| " << (*trainer)[0] << std::string(15 - (*trainer)[0].getName().length(), ' ')
+        std::cout << "| " << (*trainer)[0].getName() << std::string(15 - (*trainer)[0].getName().length(), ' ')
                   << "| HP: " << (*trainer)[0].getHP()
                   << std::string(3 - std::to_string((*trainer)[0].getHP()).length(), ' ')
                   << '/' << (*trainer)[0].getMaxHp()
@@ -154,10 +154,10 @@ void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
 }
 
 bool Battle::run() {
-    const int opponentSpeed = ((*Battle::opponent)[0].getBaseSpeed() / 4) % 256;
-    const int odds = (((*Battle::player)[0].getBaseSpeed() * 32) / opponentSpeed) + 30;
+    const int opponent_speed = ((*Battle::opponent)[0].getBaseSpeed() / 4) % 256;
+    const int odds = (((*Battle::player)[0].getBaseSpeed() * 32) / opponent_speed) + 30;
 
-    return opponentSpeed == 0 or odds > 255 or generateInteger(0, 255) < odds;
+    return opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds;
 }
 
 void Battle::runMessage(const bool runStatus) {
@@ -237,8 +237,8 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
 }
 
 void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) {
-    const auto printOut = [&pokemon](const char *string, int index) -> void {
-        std::cout << string << pokemon[index] << std::string(15 - pokemon[index].getName().length(), ' ')
+    const auto print_out = [&pokemon](const char *string, int index) -> void {
+        std::cout << string << pokemon[index].getName() << std::string(15 - pokemon[index].getName().length(), ' ')
                   << " (PP: " << pokemon[index].getPP() << std::string(2 - std::to_string(pokemon[index].getPP()).length(), ' ')
                   << '/' << std::string(2 - std::to_string(pokemon[index].getMaxPP()).length(), ' ') << pokemon[index].getMaxPP()
                   << ")\n";
@@ -253,10 +253,10 @@ void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) 
 
     for (int i = 0; i < pokemon.numMoves(); ++i) {
         if (arrow == i) {
-            printOut("   ->   ", i);
+            print_out("   ->   ", i);
         }
         else {
-            printOut("        ", i);
+            print_out("        ", i);
         }
     }
 
@@ -267,7 +267,7 @@ void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) 
 }
 
 void Battle::displayMoveSummary(const Move &move) {
-    std::cout << move << '\n';
+    std::cout << move.getName() << '\n';
     std::cout << "\tType:     " << getTypeAsString(static_cast<int>(move.getType())) << '\n';
     std::cout << "\tCategory: " << getCategoryAsString(static_cast<int>(move.getCategory())) << '\n';
     std::cout << "\tPower:    " << move.getPower() << '\n';
@@ -294,40 +294,40 @@ double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
 }
 
 double Battle::checkType(const Move &move, const Pokemon &pokemon) {
-    const int moveType = static_cast<int>(move.getType()) - 1;
-    const double type_1 = TYPE_CHART.at(moveType).at(static_cast<int>(pokemon.getType(true)) - 1);
+    const int move_type = static_cast<int>(move.getType()) - 1;
+    const double type_1 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(true)) - 1);
 
-    double type_2;
+    double type2;
     if (pokemon.getType(false) == Type::NONE) {
-        type_2 = 1.0;
+        type2 = 1.0;
     }
     else {
-        type_2 = TYPE_CHART.at(moveType).at(static_cast<int>(pokemon.getType(false)) - 1);
+        type2 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(false)) - 1);
     }
 
-    return type_1 * type_2;
+    return type_1 * type2;
 }
 
 int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
     int initialDamage = 0;
 
-    const int levelCalc = (2 * attackingPokemon.getLevel() / 5) + 2;
+    const int level_calc = (2 * attackingPokemon.getLevel() / 5) + 2;
     if (move.getCategory() == Category::PHYSICAL) {
         initialDamage = attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
     }
     else if (move.getCategory() == Category::SPECIAL) {
-        initialDamage = levelCalc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
+        initialDamage = level_calc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
     }
 
-    const int finalDamage = (initialDamage / 50) + 2;
+    const int final_damage = (initialDamage / 50) + 2;
     const std::pair<double, bool> c = criticalHit();
     crit = c.second;
 
     //FIXME recalculate damage
-    return static_cast<int>(finalDamage * stabCheck(attackingPokemon, move) * checkType(move, defendingPokemon) * c.first);
+    return static_cast<int>(final_damage * stabCheck(attackingPokemon, move) * checkType(move, defendingPokemon) * c.first);
 }
 
-void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
+void Battle::switchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
     Battle::displayHPBar();
     int toSwitch = 0;
 
@@ -344,9 +344,9 @@ void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
         // player attempts to run
         //FIXME does not take into account trainer battle
         if (toSwitch == 1) {
-            const bool runSuccess = run();
-            Battle::runMessage(runSuccess);
-            if (runSuccess) {
+            const bool run_success = run();
+            Battle::runMessage(run_success);
+            if (run_success) {
                 keepPlaying = false;
                 return;
             }
@@ -381,7 +381,7 @@ void Battle::SwitchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
     trainer->swapPokemon(0, toSwitch);
 }
 
-void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &switched, const bool isUserAttacking, bool &keepPlaying) {
+void Battle::action(Trainer *attacker, Trainer *defender, const int move, bool &switched, const bool isUserAttacking, bool &keepPlaying) {
     bool &skip = isUserAttacking ? Battle::skipOpponentTurn : Battle::skipPlayerTurn;
     bool crit = false;
     const int dmg = calculateDamage((*attacker)[0], (*defender)[0], (*attacker)[0][move], crit);
@@ -428,7 +428,7 @@ void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &
                     printMessage("Your opponent is about to send out " + (*Battle::opponent)[0].getName() + ".\n");
                 }
                 else {
-                    std::cout << "Your opponent is about to send out " << (*Battle::opponent)[0] << ".\n";
+                    std::cout << "Your opponent is about to send out " << (*Battle::opponent)[0].getName() << ".\n";
                 }
 
                 if (print) {
@@ -482,7 +482,7 @@ void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &
                 }
             }
             else {
-                Battle::SwitchOut(defender, true, keepPlaying);
+                Battle::switchOut(defender, true, keepPlaying);
             }
             switched = true;
         }
@@ -491,15 +491,15 @@ void Battle::Action(Trainer *attacker, Trainer *defender, const int move, bool &
 
 // This function commences attacking of each Pokémon and takes into account who is faster.
 // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
-void Battle::PreStatus(const int userMove, const int opponentMove, const bool isUserFaster, bool &keepPlaying) {
+void Battle::preStatus(const int userMove, const int opponentMove, const bool isUserFaster, bool &keepPlaying) {
     bool (*hasStatusCondition)(const Status) = [](const Status status) -> bool {
         return status == Status::PARALYSIS ? generateInteger(1, 4) == 1 : status == Status::FREEZE or status == Status::SLEEP;
     };
 
-    const auto userAction = [&userMove, &hasStatusCondition, &keepPlaying] -> void {
+    const auto user_action = [&userMove, &hasStatusCondition, &keepPlaying] -> void {
         if (userMove < (*Battle::player)[0].numMoves()) {
             if (not hasStatusCondition((*Battle::player)[0].getStatus())) {
-                Battle::Action(Battle::player, Battle::opponent, userMove, Battle::skipOpponentTurn, true, keepPlaying);
+                Battle::action(Battle::player, Battle::opponent, userMove, Battle::skipOpponentTurn, true, keepPlaying);
             }
             else {
                 inflictedMessage((*Battle::player)[0]);
@@ -507,9 +507,9 @@ void Battle::PreStatus(const int userMove, const int opponentMove, const bool is
         }
     };
 
-    const auto opponentAction = [&opponentMove, &hasStatusCondition, &keepPlaying] -> void {
+    const auto opponent_action = [&opponentMove, &hasStatusCondition, &keepPlaying] -> void {
         if (not hasStatusCondition((*Battle::opponent)[0].getStatus())) {
-            Battle::Action(Battle::opponent, Battle::player, opponentMove, Battle::skipPlayerTurn, false, keepPlaying);
+            Battle::action(Battle::opponent, Battle::player, opponentMove, Battle::skipPlayerTurn, false, keepPlaying);
         }
         else {
             inflictedMessage((*Battle::opponent)[0]);
@@ -517,20 +517,20 @@ void Battle::PreStatus(const int userMove, const int opponentMove, const bool is
     };
 
     if (isUserFaster) {
-        userAction();
+        user_action();
 
         if (not Battle::skipOpponentTurn and keepPlaying) {
-            opponentAction();
+            opponent_action();
         }
 
         Battle::skipOpponentTurn = false;
 
     }
     else {
-        opponentAction();
+        opponent_action();
 
         if (not Battle::skipPlayerTurn and keepPlaying) {
-            userAction();
+            user_action();
         }
 
         Battle::skipPlayerTurn = false;
@@ -539,7 +539,7 @@ void Battle::PreStatus(const int userMove, const int opponentMove, const bool is
 }
 
 // If a Pokémon is inflicted with a post-move status condition (burn, poison), it will take damage based on max HP.
-void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
+void Battle::postStatus(const bool isUserFaster, bool &keepPlaying) {
     if (not keepPlaying) {
         return;
     }
@@ -548,7 +548,7 @@ void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
         return status == Status::BURN or status == Status::POISON;
     };
 
-    auto PostStatus = [&keepPlaying](Trainer *trainer, bool isUser) {
+    auto postStatus = [&keepPlaying](Trainer *trainer, bool isUser) {
         (*trainer)[0].takeDamage(static_cast<int>(lround((*trainer)[0].getMaxHp() * 0.0625)));
         inflictedMessage((*trainer)[0]);
 
@@ -571,30 +571,30 @@ void Battle::PostStatus(const bool isUserFaster, bool &keepPlaying) {
             keepPlaying = false;
         }
         if ((*trainer)[0].isFainted()) {
-            isUser ? Battle::SwitchOut(trainer, true, keepPlaying) : Battle::SwitchOut(trainer, false, keepPlaying);
+            isUser ? Battle::switchOut(trainer, true, keepPlaying) : Battle::switchOut(trainer, false, keepPlaying);
         }
     };
 
     if (isUserFaster) {
         // if Pokémon is inflicted with a post-move status condition...
         if (hasStatusCondition((*Battle::player)[0].getStatus())) {
-            PostStatus(Battle::player, true);
+            postStatus(Battle::player, true);
         }
 
         // if Pokémon is inflicted with a post-move status condition...
         if (hasStatusCondition((*Battle::opponent)[0].getStatus())) {
-            PostStatus(Battle::opponent, false);
+            postStatus(Battle::opponent, false);
         }
     }
     else {
         // if Pokémon is inflicted with a post-move status condition...
         if (hasStatusCondition((*Battle::opponent)[0].getStatus())) {
-            PostStatus(Battle::opponent, false);
+            postStatus(Battle::opponent, false);
         }
 
         // if Pokémon is inflicted with a post-move status condition...
         if (hasStatusCondition((*Battle::player)[0].getStatus())) {
-            PostStatus(Battle::player, true);
+            postStatus(Battle::player, true);
         }
     }
 }
@@ -631,7 +631,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
     int userItem = 0;
     bool print = true;
 
-    const auto resetVariables = [&userType, &userItem, &print] -> void {
+    const auto reset_variables = [&userType, &userItem, &print] -> void {
         userType = 0;
         userItem = 0;
         print = true;
@@ -652,19 +652,18 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
         chooseRestoreItem:
             Battle::displayHPBar();
-            displayItems(Battle::player, userType, userItem, print);
+            displayItems<RestoreItem>(Battle::player, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(userType))) {
+            if (not chooseOption(userItem, Battle::player->getNumItems<RestoreItem>())) {
                 goto chooseRestoreItem;
             }
 
-            if (userItem == Battle::player->getNumItems(userType)) {
-                resetVariables();
+            if (userItem == Battle::player->getNumItems<RestoreItem>()) {
+                reset_variables();
                 goto chooseItemType;
             }
-
             // if trainer has at least 1 of the item selected...
-            else if (Battle::player->getItem(userType, userItem)) {
+            else if (Battle::player->getItem<RestoreItem>(userItem)) {
                 int pokemon = 0;
                 print = true;
 
@@ -677,7 +676,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 }
 
                 if (pokemon == Battle::player->partySize()) {
-                    resetVariables();
+                    reset_variables();
                     goto chooseRestoreItem;
                 }
                 // Pokémon's HP is already full
@@ -697,22 +696,22 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 // if Pokémon selected doesn't have full HP, but also isn't fainted...
                 else {
                     // if item selected restores HP...
-                    if (Battle::player->getItem(userType, userItem).getRestoreType() == RestoreType::HP) {
+                    if (Battle::player->getItem<RestoreItem>(userItem).isHp()) {
                         Battle::displayHPBar();
 
-                        Battle::player->getItem(userType, userItem).use();
-                        Battle::player->getItem(userType, userItem).useMessage();
+                        Battle::player->getItem<RestoreItem>(userItem).use();
+                        Battle::player->getItem<RestoreItem>(userItem).useMessage();
 
-                        Battle::player->getItem(userType, userItem).restore((*Battle::player)[pokemon]);
-                        Battle::player->getItem(userType, userItem).restoreMessage((*Battle::player)[pokemon]);
+                        Battle::player->getItem<RestoreItem>(userItem).restore((*Battle::player)[pokemon]);
+                        Battle::player->getItem<RestoreItem>(userItem).restoreMessage((*Battle::player)[pokemon]);
 
                         // automatically removes the item if it's quantity is now 0
-                        if (not Battle::player->getItem(userType, userItem)) {
+                        if (not Battle::player->getItem<RestoreItem>(userItem)) {
                             Battle::player->removeItem(userType, userItem);
                         }
                     }
                     // if item selected restores PP...
-                    else if (Battle::player->getItem(userType, userItem).getRestoreType() == RestoreType::PP) {
+                    else {
                         int move = 0;
                         print = true;
 
@@ -730,14 +729,15 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                         else {
                             Battle::displayHPBar();
 
-                            Battle::player->getItem(userType, userItem).use();
-                            Battle::player->getItem(userType, userItem).useMessage();
+                            Battle::player->getItem<RestoreItem>(userItem).use();
+                            Battle::player->getItem<RestoreItem>(userItem).useMessage();
 
-                            Battle::player->getItem(userType, userItem).restore((*Battle::player)[pokemon][move]);
-                            Battle::player->getItem(userType, userItem).restoreMessage((*Battle::player)[pokemon][move]);
+                            Battle::player->getItem<RestoreItem>(userItem).restore((*Battle::player)[pokemon][move]);
+                            Battle::player->getItem<RestoreItem>(userItem).restoreMessage(
+                                    (*Battle::player)[pokemon][move]);
 
                             // automatically removes the item if it's quantity is now 0
-                            if (not Battle::player->getItem(userType, userItem)) {
+                            if (not Battle::player->getItem<RestoreItem>(userItem)) {
                                 Battle::player->removeItem(userType, userItem);
                             }
                         }
@@ -751,19 +751,19 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
         chooseStatusItem:
             Battle::displayHPBar();
-            displayItems(Battle::player, userType, userItem, print);
+            displayItems<StatusItem>(Battle::player, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(userType))) {
+            if (not chooseOption(userItem, Battle::player->getNumItems<StatusItem>())) {
                 goto chooseStatusItem;
             }
 
-            if (userItem == Battle::player->getNumItems(userType)) {
-                resetVariables();
+            if (userItem == Battle::player->getNumItems<StatusItem>()) {
+                reset_variables();
                 goto chooseItemType;
             }
 
             // if trainer has at least 1 of the item selected...
-            else if (Battle::player->getItem(userType, userItem)) {
+            else if (Battle::player->getItem<StatusItem>(userItem)) {
                 int pokemon = 0;
                 print = true;
 
@@ -776,26 +776,26 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 }
 
                 if (pokemon == Battle::player->partySize()) {
-                    resetVariables();
+                    reset_variables();
                     goto chooseStatusItem;
                 }
 
                 // if Pokémon is not fainted...
-                else if (not (*Battle::player)[pokemon].isFainted()) {
+                else if (not(*Battle::player)[pokemon].isFainted()) {
                     // if Pokémon has status condition...
                     if ((*Battle::player)[pokemon].isAfflicted()) {
                         Battle::displayHPBar();
 
-                        Battle::player->getItem(userType, userItem).use();
-                        Battle::player->getItem(userType, userItem).useMessage();
+                        Battle::player->getItem<StatusItem>(userItem).use();
+                        Battle::player->getItem<StatusItem>(userItem).useMessage();
                         pressEnter();
 
-                        Battle::player->getItem(userType, userItem).restore((*Battle::player)[pokemon]);
-                        Battle::player->getItem(userType, userItem).restoreMessage((*Battle::player)[pokemon]);
+                        Battle::player->getItem<StatusItem>(userItem).restore((*Battle::player)[pokemon]);
+                        StatusItem::restoreMessage((*Battle::player)[pokemon]);
                         pressEnter();
 
                         // automatically removes the item if it's quantity is now 0
-                        if (not Battle::player->getItem(userType, userItem)) {
+                        if (not Battle::player->getItem<StatusItem>(userItem)) {
                             Battle::player->removeItem(userType, userItem);
                         }
                     }
@@ -803,11 +803,11 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                     else {
                         Battle::displayHPBar();
 
-                        Battle::player->getItem(userType, userItem).use();
-                        noEffectMessage(Battle::player->getItem(userType, userItem), (*Battle::player)[pokemon]);
+                        Battle::player->getItem<StatusItem>(userItem).use();
+                        noEffectMessage(Battle::player->getItem<StatusItem>(userItem), (*Battle::player)[pokemon]);
 
                         // automatically removes the item if it's quantity is now 0
-                        if (not Battle::player->getItem(userType, userItem)) {
+                        if (not Battle::player->getItem<StatusItem>(userItem)) {
                             Battle::player->removeItem(userType, userItem);
                         }
                     }
@@ -827,19 +827,19 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
         choosePokeball:
             Battle::displayHPBar();
-            displayItems(Battle::player, userType, userItem, print);
+            displayItems<PokeBall>(Battle::player, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(userType))) {
+            if (not chooseOption(userItem, Battle::player->getNumItems<PokeBall>())) {
                 goto choosePokeball;
             }
 
-            if (userItem == Battle::player->getNumItems(userType)) {
-                resetVariables();
+            if (userItem == Battle::player->getNumItems<PokeBall>()) {
+                reset_variables();
                 goto chooseItemType;
             }
 
             // if a trainer has at least one of the items selected...
-            else if (Battle::player->getItem(userType, userItem)) {
+            else if (Battle::player->getItem<PokeBall>(userItem)) {
                 if (isTrainerBattle) {
                     Battle::displayHPBar();
                     printMessage("You can't catch another trainer's Pokemon!");
@@ -848,16 +848,16 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 }
                 Battle::displayHPBar();
 
-                Battle::player->getItem(userType, userItem).use();
-                Battle::player->getItem(userType, userItem).useMessage();
+                Battle::player->getItem<PokeBall>(userItem).use();
+                Battle::player->getItem<PokeBall>(userItem).useMessage();
 
                 // automatically removes the item if it's quantity is now 0
-                if (not Battle::player->getItem(userType, userItem)) {
+                if (not Battle::player->getItem<PokeBall>(userItem)) {
                     Battle::player->removeItem(userType, userItem);
                 }
 
                 std::array<bool, 4> shakes{};
-                const bool caught = Battle::player->getItem(userType, userItem).catchPokemon((*Battle::opponent)[0], shakes);
+                const bool caught = Battle::player->getItem<PokeBall>(userItem).catchPokemon((*Battle::opponent)[0], shakes);
                 catchPokemonMessage((*Battle::opponent)[0], shakes);
                 if (caught) {
                     keepPlaying = false;
@@ -871,30 +871,30 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
         chooseBattleItem:
             Battle::displayHPBar();
-            displayItems(Battle::player, userType, userItem, print);
+            displayItems<BattleItem>(Battle::player, userItem, print);
 
-            if (not chooseOption(userItem, Battle::player->getNumItems(userType))) {
+            if (not chooseOption(userItem, Battle::player->getNumItems<BattleItem>())) {
                 goto chooseBattleItem;
             }
 
-            if (userItem == Battle::player->getNumItems(userType)) {
-                resetVariables();
+            if (userItem == Battle::player->getNumItems<BattleItem>()) {
+                reset_variables();
                 goto chooseItemType;
             }
 
             // if trainer has at least 1 of the item selected...
-            else if (Battle::player->getItem(userType, userItem)) {
+            else if (Battle::player->getItem<BattleItem>(userItem)) {
                 Battle::displayHPBar();
 
-                Battle::player->getItem(userType, userItem).use();
-                Battle::player->getItem(userType, userItem).useMessage();
+                Battle::player->getItem<BattleItem>(userItem).use();
+                Battle::player->getItem<BattleItem>(userItem).useMessage();
 
                 bool limitReached = false;
-                boostStat(&Battle::player->getItem(userType, userItem), (*Battle::player)[0], 2, limitReached);
-                boostMessage((*Battle::player)[0], Battle::player->getItem(userType, userItem).getStat(), 2, limitReached);
+                boostStat(Battle::player->getItem<BattleItem>(userItem), (*Battle::player)[0], 2, limitReached);
+                boostMessage((*Battle::player)[0], Battle::player->getItem<BattleItem>(userItem).getStat(), 2, limitReached);
 
                 // automatically removes the item if it's quantity is now 0
-                if (not Battle::player->getItem(userType, userItem)) {
+                if (not Battle::player->getItem<BattleItem>(userItem)) {
                     Battle::player->removeItem(userType, userItem);
                 }
             }
@@ -916,10 +916,10 @@ bool Battle::runAway(bool &skip, const bool canRun) {
     }
     //bool runAway = run();
     //FIXME commented out for testing purposes
-    const bool runAway = true;
-    Battle::runMessage(runAway);
+    const bool run_away = true;
+    Battle::runMessage(run_away);
 
-    return runAway;
+    return run_away;
 }
 
 void Battle::choosePokemon(bool &skip) {
@@ -1028,34 +1028,34 @@ void Battle::fight(const int userMove, bool &keepPlaying) {
     // assuming the opponent isn't using a priority move,
     // the player is using a priority move...
     if ((*Battle::player)[0].isFasterThan((*Battle::opponent)[0]) or (*Battle::player)[0][userMove].isPriority() and not (*Battle::opponent)[0][opponentMove].isPriority()) {
-        PreStatus(userMove, opponentMove, true, keepPlaying);
-        PostStatus(true, keepPlaying);
+        preStatus(userMove, opponentMove, true, keepPlaying);
+        postStatus(true, keepPlaying);
     }
     // if the opponent is faster than the player or,
     // assuming the player isn't using a priority move,
     // the opponent is using a priority move...
     else if ((*Battle::opponent)[0].isFasterThan((*Battle::player)[0]) or (*Battle::opponent)[0][opponentMove].isPriority() and not (*Battle::player)[0][userMove].isPriority()) {
-        PreStatus(userMove, opponentMove, false, keepPlaying);
-        PostStatus(false, keepPlaying);
+        preStatus(userMove, opponentMove, false, keepPlaying);
+        postStatus(false, keepPlaying);
     }
     // if trainer and opponent rival in speed or both or neither are using a priority move, choose randomly
     else {
         if (coinFlip()) {
-            PreStatus(userMove, opponentMove, true, keepPlaying);
-            PostStatus(true, keepPlaying);
+            preStatus(userMove, opponentMove, true, keepPlaying);
+            postStatus(true, keepPlaying);
         }
         else {
-            PreStatus(userMove, opponentMove, false, keepPlaying);
-            PostStatus(false, keepPlaying);
+            preStatus(userMove, opponentMove, false, keepPlaying);
+            postStatus(false, keepPlaying);
         }
     }
 
     ++Battle::turn;
 }
 
-Battle::Battle(Player *trainer_1, Trainer *trainer_2) {
-    Battle::player = trainer_1;
-    Battle::opponent = trainer_2;
+Battle::Battle(Player *trainer1, Trainer *trainer2) {
+    Battle::player = trainer1;
+    Battle::opponent = trainer2;
 
     Battle::engageBattle(false);
 }

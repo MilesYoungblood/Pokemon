@@ -7,20 +7,20 @@
 Player *Player::instancePtr = nullptr;
 std::array<std::array<Pokemon *, 30>, 12> Player::pc;
 
-Player::Player(int x, int y, int direction) : Trainer(x, y) {
-    this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
-    this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
-    this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
-    this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
+Player::Player(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
+    this->setFrontModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
+    this->setBackModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
+    this->setLeftModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
+    this->setRightModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
 
-    this->setDirection(static_cast<Direction>(direction));
+    this->setDirection(direction);
 
     std::cout << "Player created!\n\n";
 }
 
-Player * Player::getPlayer(int x, int y, int direction) {
+Player *Player::getPlayer(const char *name, int x, int y, Direction direction) {
     if (Player::instancePtr == nullptr) {
-        Player::instancePtr = new Player(x, y, direction);
+        Player::instancePtr = new Player(name, x, y, direction);
     }
     return Player::instancePtr;
 }
@@ -30,7 +30,7 @@ void Player::destroyPlayer() {
     Player::instancePtr = nullptr;
 }
 
-void Player::addToPC(Pokemon *toAdd) {
+void Player::addToPc(Pokemon *toAdd) {
     for (auto &box : Player::pc) {
         for (auto &pokemon : box) {
             if (pokemon == nullptr) {

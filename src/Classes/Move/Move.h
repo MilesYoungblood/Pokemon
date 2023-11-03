@@ -4,13 +4,15 @@
 
 #pragma once
 
-#include <iostream>
+#include <string>
 #include <random>
 #include <thread>
 
 #include "../../Functions/GeneralFunctions.h"
 
-enum class Category { PHYSICAL, SPECIAL, STATUS };
+enum class Category {
+    PHYSICAL, SPECIAL, STATUS
+};
 
 enum MoveID {
     AIR_SLASH,
@@ -46,20 +48,29 @@ private:
 
 public:
     explicit Move(int pp);
+
     Move(const Move &) = delete;
+
     Move(const Move &&) = delete;
-    Move & operator=(const Move &) = delete;
-    Move & operator=(const Move &&) = delete;
+
+    Move &operator=(const Move &) = delete;
+
+    Move &operator=(const Move &&) = delete;
+
     virtual ~Move() = default;
 
     [[nodiscard]] virtual int getDamage() const;
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
+
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
     void use();
+
     void setPP(int newPP);
+
     void fillToMax();
+
     [[nodiscard]] int getPP() const;
 
     [[nodiscard]] int getMaxPP() const;
@@ -76,11 +87,9 @@ public:
 
     [[nodiscard]] virtual std::string getName() const = 0;
 
-    [[nodiscard]] virtual const char * getDescription() const = 0;
+    [[nodiscard]] virtual const char *getDescription() const = 0;
 
     [[nodiscard]] virtual bool isPriority() const;
 
     explicit operator bool() const;
-
-    friend std::ostream & operator<<(std::ostream &out, const Move &rhs);
 };

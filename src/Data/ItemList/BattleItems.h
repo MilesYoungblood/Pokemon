@@ -7,7 +7,15 @@
 #include "../../Classes/Item/DerivedClasses/BattleItem/BattleItem.h"
 
 struct XAttack : public BattleItem {
-    explicit XAttack(int n) : BattleItem("X Attack", n, Stat::ATTACK) {}
+    explicit XAttack(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Attack";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::ATTACK;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_ATTACK;
@@ -15,7 +23,15 @@ struct XAttack : public BattleItem {
 };
 
 struct XDefense : public BattleItem {
-    explicit XDefense(int n) : BattleItem("X Defense", n, Stat::DEFENSE) {}
+    explicit XDefense(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Defense";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::DEFENSE;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_DEFENSE;
@@ -23,7 +39,15 @@ struct XDefense : public BattleItem {
 };
 
 struct XSpAttack : public BattleItem {
-    explicit XSpAttack(int n) : BattleItem("X Sp. Attack", n, Stat::SP_ATTACK) {}
+    explicit XSpAttack(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Sp. Attack";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::SP_ATTACK;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_SP_ATTACK;
@@ -31,7 +55,15 @@ struct XSpAttack : public BattleItem {
 };
 
 struct XSpDefense : public BattleItem {
-    explicit XSpDefense(int n) : BattleItem("X Sp. Defense", n, Stat::SP_DEFENSE) {}
+    explicit XSpDefense(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Sp. Defense";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::SP_DEFENSE;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_SP_DEFENSE;
@@ -39,7 +71,15 @@ struct XSpDefense : public BattleItem {
 };
 
 struct XSpeed : public BattleItem {
-    explicit XSpeed(int n) : BattleItem("X Speed", n, Stat::SPEED) {}
+    explicit XSpeed(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Speed";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::SPEED;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_SPEED;
@@ -47,7 +87,15 @@ struct XSpeed : public BattleItem {
 };
 
 struct XAccuracy : public BattleItem {
-    explicit XAccuracy(int n) : BattleItem("X Accuracy", n, Stat::ACCURACY) {}
+    explicit XAccuracy(int n) : BattleItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "X Accuracy";
+    }
+
+    [[nodiscard]] Stat getStat() const override {
+        return Stat::ACCURACY;
+    }
 
     [[nodiscard]] ItemID getID() const override {
         return ItemID::X_ACCURACY;

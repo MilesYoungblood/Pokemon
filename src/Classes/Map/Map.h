@@ -25,7 +25,8 @@ private:
 
     struct Tile {
         TileID id;
-        SDL_Rect dest;
+        int x;
+        int y;
     };
 
     struct ExitPoint {
@@ -36,12 +37,12 @@ private:
         const int newY;                             // the player's new y-coordinates
     };
 
-    const char *name{""};                               // name of the map
+    const char *name{ "" };                         // name of the map
 
-    const char *music{""};
+    const char *music{ "" };
 
-    int width{0};                                // width of the map
-    int height{0};                               // height of the map
+    int width{ 0 };                                 // width of the map
+    int height{ 0 };                                // height of the map
 
     static SDL_Texture *free;
     static SDL_Texture *obstruction;
@@ -61,30 +62,46 @@ private:
 
 public:
     Map() = default;
+
     Map(const char *name, const char *music, int width, int height);
+
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints);
+
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList);
+
     Map(const Map &) = delete;
+
     Map(const Map &&) = delete;
-    Map & operator=(const Map &) = delete;
-    Map & operator=(const Map &&) = delete;
+
+    Map &operator=(const Map &) = delete;
+
+    Map &operator=(const Map &&) = delete;
+
     ~Map();
+
+    static void initTextures();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
     void addExitPoint(const ExitPoint &exitPoint);
+
     [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    void addTrainer (std::unique_ptr<Trainer> toAdd);
-    [[nodiscard]] int numTrainers() const;
-    Trainer & operator[](int index);
-    const Trainer & operator[](int index) const;
+    void addTrainer(std::unique_ptr<Trainer> toAdd);
 
-    [[nodiscard]] const char * getMusic() const;
+    [[nodiscard]] int numTrainers() const;
+
+    Trainer &operator[](int index);
+
+    const Trainer &operator[](int index) const;
+
+    [[nodiscard]] const char *getMusic() const;
 
     void setObstruction(int x, int y);
 
-    void updateMap(Direction direction, int distance);
-    void renderMap();
+    void update(Direction direction, int distance);
+
+    void render();
+
     void resetMap();
 };

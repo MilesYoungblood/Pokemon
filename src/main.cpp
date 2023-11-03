@@ -5,13 +5,13 @@
 #define SDL_MAIN_HANDLED
 
 #include "Classes/Game/Game.h"
-#include "Namespaces/EventHandler.h"
 
 int main() {
     SDL_SetMainReady();
 
     Uint32 frameStart;
     Uint32 frameTime;
+    Uint32 frameDelay;
 
     const Game game;
 
@@ -23,9 +23,10 @@ int main() {
         Game::render();
 
         frameTime = SDL_GetTicks() - frameStart;
+        frameDelay = 1000 / currentFps;
 
-        if (FRAME_DELAY > frameTime) {
-            SDL_Delay(FRAME_DELAY - frameTime);
+        if (frameDelay > frameTime) {
+            SDL_Delay(frameDelay - frameTime);
         }
     }
 

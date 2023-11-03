@@ -7,19 +7,16 @@
 #include "../../Item.h"
 #include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
-class StatusItem : public Item {
-private:
-    const Status status;
+struct StatusItem : public Item {
+    explicit StatusItem(int quantity);
 
-public:
-    StatusItem(const char *name, int quantity, Status status);
+    [[nodiscard]] virtual Status getStatus() const = 0;
 
-    [[nodiscard]] Status getStatus() const override;
     [[nodiscard]] ItemType getType() const override;
 
-    void restore(Pokemon &pokemon) override;
-    void restore(Move &move) override;
-    void restoreMessage(const Pokemon &pokemon) override;
-    void restoreMessage(const Move &move) override;
-    bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) override;
+    [[nodiscard]] std::string getName() const override = 0;
+
+    void restore(Pokemon &pokemon);
+
+    static void restoreMessage(const Pokemon &pokemon);
 };

@@ -29,7 +29,8 @@ inline void displayBag(int arrow, bool &print) {
     print = false;
 }
 
-inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &print) {
+template<typename I>
+inline void displayItems(Trainer *trainer, int arrow, bool &print) {
     if (print) {
         printMessage("Choose an item:\n");
     }
@@ -38,20 +39,20 @@ inline void displayItems(const Trainer *trainer, int iType, int arrow, bool &pri
     }
 
     const int starting = 10 * (arrow / 10);
-    const int numItems = trainer->getNumItems(iType);
+    const int num_items = trainer->getNumItems<I>();
 
     int remaining = 10;
-    if (arrow >= 10 * (numItems / 10)) {
-        remaining = numItems % 10;
+    if (arrow >= 10 * (num_items / 10)) {
+        remaining = num_items % 10;
     }
 
     for (int i = starting; i < starting + remaining; ++i) {
-        const Item *item = &trainer->getItem(iType, i);
+        const I *item = &trainer->getItem<I>(i);
         arrow == i ? std::cout << "   ->   " : std::cout << '\t';
-        std::cout << *item << std::string(15 - item->getName().length(), ' ') << " x" << item->getQuantity() << '\n';
+        std::cout << item << std::string(15 - item->getName().length(), ' ') << " x" << item->getQuantity() << '\n';
     }
 
-    arrow == numItems ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
+    arrow == num_items ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";
     std::cout.flush();
 
     print = false;
@@ -93,8 +94,8 @@ inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> atte
     std::cout.flush();
 }
 
-inline void boostStat(const Item *itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
-    switch (itemToUse->getStat()) {
+inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
+    switch (itemToUse.getStat()) {
         case Stat::ATTACK:
             if (pokemonToBoost.getAttack() < 6) {
                 pokemonToBoost.raiseAttack(amountToBoost);

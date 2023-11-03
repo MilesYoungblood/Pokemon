@@ -5,7 +5,6 @@
 #pragma once
 
 #include <iostream>
-#include <filesystem>
 #include <vector>
 #include <random>
 #include <algorithm>
@@ -22,18 +21,18 @@ class [[maybe_unused]] SortClass {
 private:
     template <typename Comparable>
     static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
-        const size_t subArrayOne = mid - left + 1;
-        const size_t subArrayTwo = right - mid;
+        const size_t sub_array_one = mid - left + 1;
+        const size_t sub_array_two = right - mid;
 
         // Create temp arrays
-        std::vector<Comparable> leftArray(subArrayOne);
-        std::vector<Comparable> rightArray(subArrayTwo);
+        std::vector<Comparable> leftArray(sub_array_one);
+        std::vector<Comparable> rightArray(sub_array_two);
 
         // Copy data to temp arrays leftArray[] and rightArray[]
-        for (int i = 0; i < subArrayOne; ++i) {
+        for (int i = 0; i < sub_array_one; ++i) {
             leftArray[i] = array[left + i];
         }
-        for (int i = 0; i < subArrayTwo; ++i) {
+        for (int i = 0; i < sub_array_two; ++i) {
             rightArray[i] = array[mid + i + 1];
         }
 
@@ -42,7 +41,7 @@ private:
         size_t indexOfMergedArray = left;
 
         // Merge the temp arrays back into array[left.right]
-        while (indexOfSubArrayOne < subArrayOne and indexOfSubArrayTwo < subArrayTwo) {
+        while (indexOfSubArrayOne < sub_array_one and indexOfSubArrayTwo < sub_array_two) {
             if (leftArray[indexOfSubArrayOne]<= rightArray[indexOfSubArrayTwo]) {
                 array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
                 ++indexOfSubArrayOne;
@@ -56,7 +55,7 @@ private:
 
         // Copy the remaining elements of
         // the left array if there are any
-        while (indexOfSubArrayOne < subArrayOne) {
+        while (indexOfSubArrayOne < sub_array_one) {
             array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
             ++indexOfSubArrayOne;
             ++indexOfMergedArray;
@@ -64,7 +63,7 @@ private:
 
         // Copy the remaining elements of
         // right[] if there are any
-        while (indexOfSubArrayTwo < subArrayTwo) {
+        while (indexOfSubArrayTwo < sub_array_two) {
             array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
             ++indexOfSubArrayTwo;
             ++indexOfMergedArray;
@@ -90,7 +89,7 @@ public:
     }
 };
 
-inline const char * getCategoryAsString(int category) {
+inline const char *getCategoryAsString(int category) {
     switch (category) {
         case 0:
             return "physical";
@@ -106,7 +105,7 @@ inline const char * getCategoryAsString(int category) {
     }
 }
 
-inline const char * getTypeAsString(int type) {
+inline const char *getTypeAsString(int type) {
     switch (type) {
         case 1:
             return "normal";

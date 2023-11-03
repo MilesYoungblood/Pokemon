@@ -18,8 +18,12 @@ class Entity {
 private:
     std::vector<std::string> dialogue;
 
+    const char *name;
+
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
+    int screenX{0};                                     // x-coordinate on the screen
+    int screenY{0};                                     // y-coordinate on the screen
     int vision{1};                                      // line of sight
     Direction currentDirection{Direction::DOWN};        // numerical representation of which way the trainer is facing
 
@@ -30,16 +34,18 @@ private:
 
     SDL_Texture *currentModel{nullptr};
 
-    SDL_Rect destRect;
+    void (*action)();
 
 public:
-    Entity();
     Entity(int x, int y);
+    Entity(const char *name, int x, int y);
     Entity(const Entity &) = default;
     Entity(const Entity &&) = delete;
     Entity & operator=(const Entity &) = delete;
     Entity & operator=(const Entity &&) = delete;
     ~Entity();
+
+    [[nodiscard]] std::string getName() const;
 
     void setDialogue(const char *text);
     [[nodiscard]] std::vector<std::string> getDialogue() const;
@@ -70,9 +76,6 @@ public:
 
     void setVision(int newVision);
 
-    // these functions do NOT update the entity's internal coordinates
-    // these functions merely update where the entity appears on in the window
-    // these functions may later be incorporated into a camera rather than here
     void shiftUpOnMap(int distance);
     void shiftDownOnMap(int distance);
     void shiftLeftOnMap(int distance);
@@ -82,8 +85,9 @@ public:
     void shiftVertically(int distance);
 
     void shiftDirectionOnMap(Direction direction, int distance);
-    
-    [[nodiscard]] SDL_Rect getRect() const;
+
+    [[nodiscard]] int getScreenX() const;
+    [[nodiscard]] int getScreenY() const;
 
     void setFrontModel(SDL_Texture *newFrontModel);
     void setBackModel(SDL_Texture *newBackModel);
@@ -92,7 +96,11 @@ public:
 
     void setCurrentModel(SDL_Texture *newCurrentModel);
 
-    SDL_Texture * getFrontModel();
+    [[nodiscard]] SDL_Texture *getModel(Direction direction) const;
+
+    void setAction(void (*function)());
+
+    void act();
 
     void render();
 

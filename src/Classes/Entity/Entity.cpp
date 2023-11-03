@@ -4,9 +4,13 @@
 
 #include "Entity.h"
 
-Entity::Entity() : destRect({ 0, 0, TILE_SIZE, TILE_SIZE }) {}
+Entity::Entity(int x, int y) : name(), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
+    this->action = [] -> void {};
+}
 
-Entity::Entity(const int x, const int y) : x(x), y(y), destRect({ x * TILE_SIZE, y * TILE_SIZE, TILE_SIZE, TILE_SIZE }) {}
+Entity::Entity(const char *name, const int x, const int y) : name(name), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
+    this->action = [] -> void {};
+}
 
 Entity::~Entity() {
     SDL_DestroyTexture(this->frontModel);
@@ -15,10 +19,14 @@ Entity::~Entity() {
     SDL_DestroyTexture(this->rightModel);
 }
 
+std::string Entity::getName() const {
+    return this->name;
+}
+
 void Entity::setDialogue(const char *text) {
     std::stringstream ss(text);
 
-    const int CHARACTER_LIMIT = 30;
+    const int character_limit = 30;
     std::size_t letterCounter = 0;
     std::string buffer;
     std::string dest;
@@ -27,7 +35,7 @@ void Entity::setDialogue(const char *text) {
         letterCounter += buffer.length();
 
         // if the next word exceeds the limit
-        if (letterCounter >= CHARACTER_LIMIT) {
+        if (letterCounter >= character_limit) {
             this->dialogue.push_back(dest);
             letterCounter = buffer.length();
             dest = "";
@@ -48,8 +56,8 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->x = newX;
     this->y = newY;
 
-    this->destRect.x = this->x * TILE_SIZE;
-    this->destRect.y = this->y * TILE_SIZE;
+    this->screenX = this->x * TILE_SIZE;
+    this->screenY = this->y * TILE_SIZE;
 }
 
 int Entity::getX() const {
@@ -190,48 +198,52 @@ void Entity::setVision(int newVision) {
 }
 
 void Entity::shiftUpOnMap(const int distance) {
-    this->destRect.y -= distance;
+    this->screenY -= distance;
 }
 
 void Entity::shiftDownOnMap(const int distance) {
-    this->destRect.y += distance;
+    this->screenY += distance;
 }
 
 void Entity::shiftLeftOnMap(const int distance) {
-    this->destRect.x -= distance;
+    this->screenX -= distance;
 }
 
 void Entity::shiftRightOnMap(const int distance) {
-    this->destRect.x += distance;
+    this->screenX += distance;
 }
 
 void Entity::shiftHorizontally(int distance) {
-    this->destRect.x += distance;
+    this->screenX += distance;
 }
 
 void Entity::shiftVertically(int distance) {
-    this->destRect.y += distance;
+    this->screenY += distance;
 }
 
 void Entity::shiftDirectionOnMap(Direction direction, int distance) {
     switch (direction) {
         case Direction::UP:
-            this->destRect.y -= distance;
+            this->screenY -= distance;
             break;
         case Direction::RIGHT:
-            this->destRect.x += distance;
+            this->screenX += distance;
             break;
         case Direction::DOWN:
-            this->destRect.y += distance;
+            this->screenY += distance;
             break;
         case Direction::LEFT:
-            this->destRect.x -= distance;
+            this->screenX -= distance;
             break;
     }
 }
 
-SDL_Rect Entity::getRect() const {
-    return this->destRect;
+int Entity::getScreenX() const {
+    return this->screenX;
+}
+
+int Entity::getScreenY() const {
+    return this->screenY;
 }
 
 void Entity::setFrontModel(SDL_Texture *newFrontModel) {
@@ -254,15 +266,34 @@ void Entity::setCurrentModel(SDL_Texture *newCurrentModel) {
     this->currentModel = newCurrentModel;
 }
 
-SDL_Texture * Entity::getFrontModel() {
-    return this->frontModel;
+SDL_Texture * Entity::getModel(Direction direction) const {
+    switch (direction) {
+        case UP:
+            return this->backModel;
+        case DOWN:
+            return this->frontModel;
+        case LEFT:
+            return this->leftModel;
+        case RIGHT:
+            return this->rightModel;
+        default:
+            throw std::runtime_error("Unexpected error: function getModel");
+    }
+}
+
+void Entity::setAction(void (*function)()) {
+    this->action = function;
+}
+
+void Entity::act() {
+    this->action();
 }
 
 void Entity::render() {
-    TextureManager::Draw(this->currentModel, this->destRect);
+    TextureManager::getInstance()->draw(this->currentModel, { this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
 }
 
 void Entity::resetPos() {
-    this->destRect.x = this->x * TILE_SIZE;
-    this->destRect.y = this->y * TILE_SIZE;
+    this->screenX = this->x * TILE_SIZE;
+    this->screenY = this->y * TILE_SIZE;
 }

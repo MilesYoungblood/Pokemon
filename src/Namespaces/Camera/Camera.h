@@ -4,35 +4,70 @@
 
 #pragma once
 
-namespace Camera {
-    constexpr static int HEIGHT = TILE_SIZE * 7;     // height of the window
-    constexpr static int WIDTH = TILE_SIZE * 9;      // width of the window
+#include <iostream>
 
-    constexpr SDL_Rect r{ 0, 0, WIDTH, HEIGHT };
+class Camera {
+private:
+    inline static Camera *instancePtr = nullptr;
+
+    inline static bool isInitialized = false;
+
+    SDL_Rect view;
+
+    Camera() : view({ 0, 0, 0, 0 }) {}
+
+public:
+    static Camera *getInstance() {
+        if (Camera::instancePtr == nullptr) {
+            Camera::instancePtr = new Camera();
+            std::cout << "Camera instance created!\n";
+        }
+
+        return Camera::instancePtr;
+    }
+
+    static void deleteInstance() {
+        delete Camera::instancePtr;
+        Camera::instancePtr = nullptr;
+        Camera::isInitialized = false;
+
+        std::cout << "Camera instance deleted!\n";
+    }
+
+    void init(int w, int h) {
+        // only allow this function to be called once per instantiation of a Camera object
+        if (Camera::isInitialized) {
+            return;
+        }
+        this->view.w = w;
+        this->view.h = h;
+
+        Camera::isInitialized = true;
+    }
 
     // returns whether an entity is in view of the camera,
     // thus enabling the rendering of only the necessary objects
-    inline SDL_bool isInView(const SDL_Rect &rect) {
-        return SDL_HasIntersection(&rect, &r);
+    SDL_bool isInView(const SDL_Rect &rect) {
+        return SDL_HasIntersection(&rect, &this->view);
     }
 
     // finds the player's current position on the screen map,
     // then shifts everything, including the player, accordingly
-    inline void lockOnPlayer(Player *p, void (*instructions)(Direction, int)) {
+    void lockOnPlayer(Player *p, void (*instructions)(Direction, int)) const {
         // x-distance of the player from the center of the screen
-        const int xFromCenter = ((WIDTH - TILE_SIZE) / 2) - p->getX() * TILE_SIZE;
+        const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - p->getX() * TILE_SIZE;
         // y-distance of the player from the center of the screen
-        const int yFromCenter = ((HEIGHT - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;
+        const int y_from_center = ((this->view.h - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;
 
-        p->shiftHorizontally(xFromCenter);
-        p->shiftVertically(yFromCenter);
+        p->shiftHorizontally(x_from_center);
+        p->shiftVertically(y_from_center);
 
         // determines whether to shift left or right
-        const Direction xDirection = xFromCenter > 0 ? Direction::RIGHT : Direction::LEFT;
+        const Direction x_direction = x_from_center > 0 ? Direction::RIGHT : Direction::LEFT;
         // determines whether to shift up or down
-        const Direction yDirection = yFromCenter > 0 ? Direction::DOWN : Direction::UP;
+        const Direction y_direction = y_from_center > 0 ? Direction::DOWN : Direction::UP;
 
-        instructions(xDirection, xDirection == Direction::RIGHT ? xFromCenter : -xFromCenter);
-        instructions(yDirection, yDirection == Direction::DOWN ? yFromCenter : -yFromCenter);
+        instructions(x_direction, x_direction == Direction::RIGHT ? x_from_center : -x_from_center);
+        instructions(y_direction, y_direction == Direction::DOWN ? y_from_center : -y_from_center);
     }
-}
+};

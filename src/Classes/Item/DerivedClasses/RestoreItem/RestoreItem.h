@@ -6,21 +6,20 @@
 
 #include "../../Item.h"
 
-class RestoreItem : public Item {
-private:
-    const int amount;
-    const RestoreType restoreType;
+struct RestoreItem : public Item {
+    explicit RestoreItem(int quantity);
 
-public:
-    RestoreItem(const char *name, int quantity, int amount, RestoreType restoreType);
+    [[nodiscard]] virtual int getAmount() const = 0;
 
-    [[nodiscard]] int getAmount() const override;
-    [[nodiscard]] RestoreType getRestoreType() const override;
+    [[nodiscard]] virtual bool isHp() const = 0;
+
     [[nodiscard]] ItemType getType() const override;
 
-    void restore(Pokemon &pokemon) override;
-    void restore(Move &move) override;
-    void restoreMessage(const Pokemon &pokemon) override;
-    void restoreMessage(const Move &move) override;
-    bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) override;
+    void restore(Pokemon &pokemon);
+
+    void restore(Move &move);
+
+    void restoreMessage(const Pokemon &pokemon) const;
+
+    void restoreMessage(const Move &move) const;
 };

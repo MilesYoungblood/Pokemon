@@ -27,33 +27,42 @@ private:
     std::vector<std::unique_ptr<Pokemon>> party;
     std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
 
-    void (*action)();                                   //
+    static std::size_t getItemTypeId() {
+        static std::size_t lastId = 0ULL;
+        return lastId++;
+    }
+
+    template<typename I>
+    static std::size_t getItemTypeId() {
+        static const std::size_t type_id = getItemTypeId();
+        return type_id;
+    }
 
 public:
-    Trainer();
+    Trainer(const char *name, int x, int y);
 
-    Trainer(int x, int y);
+    Trainer(const char *name, int x, int y, int direction);
 
-    Trainer(int x, int y, int direction);
-
-    Trainer(int x, int y, int direction, int vision);
+    Trainer(const char *name, int x, int y, int direction, int vision);
 
     Trainer(const Trainer &) = delete;
 
     Trainer(const Trainer &&) = delete;
 
-    Trainer & operator=(const Trainer &) = delete;
+    Trainer &operator=(const Trainer &) = delete;
 
-    Trainer & operator=(const Trainer &&) = delete;
+    Trainer &operator=(const Trainer &&) = delete;
 
-    virtual ~Trainer();
+    virtual ~Trainer() = default;
+
+    static void init();
 
     [[nodiscard]] int partySize() const;
 
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
     template<typename P>
-    inline void addPokemon() {
+    void addPokemon() {
         try {
             if (this->numPokemon == Trainer::MAX_POKEMON) {
                 return;
@@ -63,7 +72,7 @@ public:
             ++this->numPokemon;
         }
         catch (const std::exception &exception) {
-            throw std::runtime_error(std::string("Error adding Pokemon: ") + exception.what());
+            throw std::runtime_error(std::string("Error adding Pokemon: ") + exception.what() + '\n');
         }
     }
 
@@ -73,11 +82,64 @@ public:
 
     void clearParty();
 
-    [[nodiscard]] int getNumItems(int type) const;
+    template<typename I>
+    [[nodiscard]] int getNumItems() const {
+        try {
+            return this->numItems.at(getItemTypeId<I>());
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Unable to retrieve item count: ") + e.what() + '\n');
+        }
+    }
 
-    [[nodiscard]] Item & getItem(int type, int item) const;
+    template<typename I>
+    I &getItem(int index) {
+        try {
+            Item *ptr = this->items.at(getItemTypeId<I>())[index].get();
+            return *static_cast<I *>(ptr);
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Unable to retrieve item: ") + e.what() + '\n');
+        }
+    }
+
+    template<typename I>
+    const I &getItem(int index) const {
+        try {
+            Item *ptr = this->items.at(getItemTypeId<I>())[index].get();
+            return *static_cast<I *>(ptr);
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Unable to retrieve item: ") + e.what() + '\n');
+        }
+    }
 
     void addItem(std::unique_ptr<Item> toAdd);
+
+    template<typename I>
+    void addItem(int quantity) {
+        try {
+            std::unique_ptr<I> item = std::make_unique<I>(quantity);
+            const int type = static_cast<int>(item->getType());
+            if (this->numItems.at(type) == Trainer::MAX_ITEMS) {
+                return;
+            }
+
+            for (int i = 0; i < this->numItems.at(type); ++i) {
+                // if item already exists within our inventory
+                if (item->getID() == this->items.at(type)[i]->getID()) {
+                    this->items.at(type)[i]->add();
+                }
+                return;
+            }
+
+            this->items.at(type).push_back(std::move(item));
+            ++this->numItems.at(type);
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
+        }
+    }
 
     void removeItem(int type, int index);
 
@@ -87,9 +149,9 @@ public:
 
     [[nodiscard]] int getFaintCount() const;
 
-    Pokemon & operator[](int spot);
+    Pokemon &operator[](int spot);
 
-    const Pokemon & operator[](int spot) const;
+    const Pokemon &operator[](int spot) const;
 
     virtual explicit operator bool() const;
 

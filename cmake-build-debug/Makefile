@@ -512,30 +512,6 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
-src/Data/Data.obj: src/Data/Data.cpp.obj
-.PHONY : src/Data/Data.obj
-
-# target to build an object file
-src/Data/Data.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.obj
-.PHONY : src/Data/Data.cpp.obj
-
-src/Data/Data.i: src/Data/Data.cpp.i
-.PHONY : src/Data/Data.i
-
-# target to preprocess a source file
-src/Data/Data.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.i
-.PHONY : src/Data/Data.cpp.i
-
-src/Data/Data.s: src/Data/Data.cpp.s
-.PHONY : src/Data/Data.s
-
-# target to generate assembly for a file
-src/Data/Data.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Data.cpp.s
-.PHONY : src/Data/Data.cpp.s
-
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -617,9 +593,6 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
-	@echo ... src/Data/Data.obj
-	@echo ... src/Data/Data.i
-	@echo ... src/Data/Data.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

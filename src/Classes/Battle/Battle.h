@@ -59,12 +59,12 @@ private:
 
     static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
 
-    static void SwitchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
+    static void switchOut(Trainer *trainer, const bool isUser, bool &keepPlaying);
 
-    static void Action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
+    static void action(Trainer *attacker, Trainer *defender, const int move, bool &switched, const bool isUserAttacking, bool &keepPlaying);
 
-    static void PreStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
-    static void PostStatus(bool isUserFaster, bool &keepPlaying);
+    static void preStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
+    static void postStatus(bool isUserFaster, bool &keepPlaying);
 
     static int chooseMove(bool &skip);
     static void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
@@ -75,5 +75,5 @@ private:
     static void engageBattle(bool isTrainer);
 
 public:
-    Battle(Player *trainer_1, Trainer *trainer_2);
+    Battle(Player *trainer1, Trainer *trainer2);
 };

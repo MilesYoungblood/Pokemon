@@ -4,50 +4,29 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer() : items(), numItems() {
+Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items(), numItems() {
     //FIXME change these to not be Hilbert
-    this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
-    this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
-    this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
-    this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
+    this->setFrontModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
+    this->setBackModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
+    this->setLeftModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
+    this->setRightModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
 
-    this->setCurrentModel(this->getFrontModel());
+    this->setCurrentModel(this->getModel(Direction::DOWN));
 }
 
-Trainer::Trainer(const int x, const int y) : Entity(x, y), items(), numItems() {
-    //FIXME change these to not be Hilbert
-    this->setFrontModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
-    this->setBackModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
-    this->setLeftModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
-    this->setRightModel(TextureManager::LoadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
-
-    this->setCurrentModel(this->getFrontModel());
-}
-
-Trainer::Trainer(const int x, const int y, const int direction) : Trainer(x, y) {
+Trainer::Trainer(const char *name, const int x, const int y, const int direction) : Trainer(name, x, y) {
     this->setDirection(static_cast<Direction>(direction));
 }
 
-Trainer::Trainer(const int x, const int y, const int direction, const int vision) : Trainer(x, y, direction) {
+Trainer::Trainer(const char *name, const int x, const int y, const int direction, const int vision) : Trainer(name, x, y, direction) {
     this->setVision(vision);
 }
 
-Trainer::~Trainer() {
-    std::cout << "Trainer destructor called!\n";
-    for (int i = 0; i < this->numPokemon; ++i) {
-        std::cout << "\tDeleting " << this->party[i]->getName() << "!\n";
-        //delete this->party[i];
-        //this->party[i] = nullptr;
-    }
-    std::cout << '\n';
-
-    for (int i = 0; i < Trainer::NUM_ITEM_TYPES; ++i) {
-        for (int j = 0; j < this->numItems.at(i); ++j) {
-            std::cout << "Deleting " << this->items.at(i)[j]->getName() << "!\n";
-            //delete this->items.at(i)[j];
-            //this->items.at(i)[j] = nullptr;
-        }
-    }
+void Trainer::init() {
+    Trainer::getItemTypeId<RestoreItem>();
+    Trainer::getItemTypeId<StatusItem>();
+    Trainer::getItemTypeId<PokeBall>();
+    Trainer::getItemTypeId<BattleItem>();
 }
 
 int Trainer::partySize() const {
@@ -68,7 +47,7 @@ void Trainer::removePokemon(const int index) {
         return;
     }
 
-    // decrement the faint count if the Pokémon we're removing is fainted
+    // decrement the faint counter if the Pokémon we're removing is fainted
     if (this->party[index]->isFainted()) {
         --this->numFainted;
     }
@@ -93,20 +72,17 @@ void Trainer::clearParty() {
     this->numPokemon = 0;
 }
 
-int Trainer::getNumItems(const int type) const {
-    if (type < 0 or 3 < type) {
-        throw std::runtime_error("Out of bounds: getNumItems");
-    }
-    return this->numItems.at(type);
-}
-
-Item & Trainer::getItem(const int type, const int item) const {
-    return *this->items.at(type)[item];
-}
-
 void Trainer::addItem(std::unique_ptr<Item> toAdd) {
     const int type = static_cast<int>(toAdd->getType());
     if (this->numItems.at(type) == Trainer::MAX_ITEMS) {
+        return;
+    }
+
+    for (int i = 0; i < this->numItems.at(type); ++i) {
+        // if item already exists within our inventory
+        if (toAdd->getID() == this->items.at(type)[i]->getID()) {
+            this->items.at(type)[i]->add();
+        }
         return;
     }
 
@@ -139,14 +115,14 @@ int Trainer::getFaintCount() const {
     return this->numFainted;
 }
 
-Pokemon & Trainer::operator[](const int spot) {
+Pokemon &Trainer::operator[](const int spot) {
     if (5 < spot or spot < 0) {
         throw std::runtime_error("Index out of bounds");
     }
     return *this->party[spot];
 }
 
-const Pokemon & Trainer::operator[](const int spot) const {
+const Pokemon &Trainer::operator[](const int spot) const {
     if (5 < spot or spot < 0) {
         throw std::runtime_error("Index out of bounds");
     }

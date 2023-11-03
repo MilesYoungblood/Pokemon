@@ -4,9 +4,9 @@
 
 #include "Game.h"
 
-const int extension_length = 4;
-std::string_view music_path;
-std::string_view song_name;
+const int EXTENSION_LENGTH = 4;
+std::string_view musicPath;
+std::string_view songName;
 
 Mix_Chunk *sound = nullptr;
 
@@ -48,29 +48,32 @@ void handleTitleScreenEvents() {
 
                     Game::loadData();
 
-                    music_path = currentMap->getMusic();
-                    song_name = music_path.substr(0, music_path.length() - extension_length);
+                    musicPath = currentMap->getMusic();
+                    songName = musicPath.substr(0, musicPath.length() - EXTENSION_LENGTH);
 
                     gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic()).data());
                     if (gameMusic != nullptr) {
-                        std::cout << "Loaded \"" << song_name << "\"!\n";
+                        std::cout << "Loaded \"" << songName << "\"!\n";
                     }
                     else {
-                        std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
+                        std::cerr << "Error loading \"" << songName << "\": " << SDL_GetError() << '\n';
                         isRunning = false;
                         return;
                     }
 
                     if (Mix_PlayMusic(gameMusic, -1) == 0) {
-                        std::cout << "Playing \"" << song_name << "\"!\n";
+                        std::cout << "Playing \"" << songName << "\"!\n";
                     }
                     else {
-                        std::cerr << "Unable to play \"" << song_name << "\": " << SDL_GetError() << '\n';
+                        std::cerr << "Unable to play \"" << songName << "\": " << SDL_GetError() << '\n';
                         isRunning = false;
                         return;
                     }
 
-                    Camera::lockOnPlayer(player, [](Direction direct, int dist) -> void { currentMap->updateMap(direct, dist); });
+                    Camera::getInstance()->init(WINDOW_WIDTH, WINDOW_HEIGHT);
+                    Camera::getInstance()->lockOnPlayer(player, [](Direction direct, int dist) -> void {
+                        currentMap->update(direct, dist);
+                    });
 
                     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
                     lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
@@ -79,7 +82,7 @@ void handleTitleScreenEvents() {
                     SDL_DestroyTexture(text);
                     SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
-                    functionState = 1;
+                    functionState = OVERWORLD;
 
                     break;
                 default:
@@ -98,10 +101,21 @@ void updateTitleScreen() {
     }
 }
 
+const SDL_Rect LOGO_RECT{
+        WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
+};
+
+const SDL_Rect MESSAGE_RECT{
+        WINDOW_WIDTH / 2 - 24 * FONT_SIZE / 2,
+        WINDOW_HEIGHT - TILE_SIZE * 2,
+        23 * FONT_SIZE,
+        FONT_SIZE
+};
+
 void renderTitleScreen() {
-    TextureManager::Draw(logo, { WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE });
+    TextureManager::getInstance()->draw(logo, LOGO_RECT);
 
     if (showPrompt) {
-        TextureManager::Draw(text, { WINDOW_WIDTH / 2 - 24 * FONT_SIZE / 2, WINDOW_HEIGHT - TILE_SIZE * 2, 23 * FONT_SIZE, FONT_SIZE });
+        TextureManager::getInstance()->draw(text, MESSAGE_RECT);
     }
 }

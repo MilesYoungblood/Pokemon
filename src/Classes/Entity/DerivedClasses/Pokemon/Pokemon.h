@@ -180,8 +180,6 @@ private:
     const static int MAX_NUM_MOVES = 4;
     const static int MAX_NUM_TYPES = 2;
 
-    const char *name;
-
     int maxHP;
     int currentHP{0};
     int attack{0};
@@ -219,13 +217,29 @@ public:
     Pokemon(const Pokemon &&) = delete;
     Pokemon & operator=(const Pokemon &) = delete;
     Pokemon & operator=(const Pokemon &&) = delete;
-    virtual ~Pokemon();
+    virtual ~Pokemon() = default;
 
     [[nodiscard]] virtual PokemonID getID() const;
 
     [[nodiscard]] int numMoves() const;
 
     void addMove(std::unique_ptr<Move> move);
+
+    template<typename M>
+    void addMove() {
+        try {
+            if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
+                return;
+            }
+
+            this->moveSet.push_back(std::make_unique<M>());
+            ++this->moveCounter;
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Error adding move: ") + e.what() + '\n');
+        }
+    }
+
     void deleteMove(int index);
     void setMoves(const std::initializer_list<Move *> &moves);
 
@@ -267,8 +281,6 @@ public:
     [[nodiscard]] int getBaseSpDefense() const;
     [[nodiscard]] int getBaseSpeed() const;
 
-    [[nodiscard]] std::string getName() const;
-
     [[nodiscard]] Type getType(bool type_1) const;
 
     void setStatus(Status newStatus);
@@ -289,6 +301,4 @@ public:
 
     Move & operator[](int index);
     const Move & operator[](int index) const;
-
-    friend std::ostream & operator<<(std::ostream &out, const Pokemon &pokemon);
 };

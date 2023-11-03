@@ -4,7 +4,29 @@
 
 #pragma once
 
+#include <unordered_map>
 #include "../Pokemon.h"
+
+struct PokemonData {
+    const char *name;
+    const Type type1;
+    const Type type2;
+    const int level;
+    const int hp;
+    const int attack;
+    const int defense;
+    const int spAttack;
+    const int spDefense;
+    const int speed;
+    const int catchRate;
+};
+
+inline const std::unordered_map<PokemonID, PokemonData> POKEMON_LOOKUP_TABLE{
+        { PokemonID::VICTINI,   { "Victini",   Type::PSYCHIC, Type::FIRE, 15, 100, 100, 100, 100, 100, 100, 3 }},
+        { PokemonID::SNIVY,     { "Snivy",     Type::GRASS,   Type::NONE, 1,  45,  45,  55,  45,  55,  63,  45 }},
+        { PokemonID::SERVINE,   { "Servine",   Type::GRASS,   Type::NONE, 17, 60,  60,  75,  60,  75,  83,  45 }},
+        { PokemonID::SERPERIOR, { "Serperior", Type::GRASS,   Type::NONE, 36, 75,  75,  95,  75,  95,  113, 45 }}
+};
 
 struct Venasaur : public Pokemon {
     Venasaur() : Pokemon("Venasaur", Type::GRASS, Type::POISON, 50, 80, 82, 83, 100, 100, 80, 45) {}
@@ -409,6 +431,7 @@ struct Sawk : public Pokemon {
 
 struct Hydreigon : public Pokemon {
     Hydreigon() : Pokemon("Hydreigon", Type::DARK, Type::DRAGON, 64, 92, 105, 90, 125, 90, 98, 45) {}
+
     Hydreigon(const std::initializer_list<Move*> &moves) : Hydreigon() {
         this->setMoves(moves);
     }
@@ -420,6 +443,7 @@ struct Hydreigon : public Pokemon {
 
 struct Greninja : public Pokemon {
     Greninja() : Pokemon("Greninja", Type::WATER, Type::DARK, 50, 72, 95, 67, 103, 71, 122, 45) {}
+
     Greninja(const std::initializer_list<Move*> &moves) : Greninja() {
         this->setMoves(moves);
     }

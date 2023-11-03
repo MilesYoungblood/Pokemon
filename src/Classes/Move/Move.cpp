@@ -52,8 +52,3 @@ bool Move::isPriority() const {
 Move::operator bool() const {
     return this->pp > 0;
 }
-
-std::ostream& operator<<(std::ostream &out, const Move &move) {
-    out << move.getName();
-    return out;
-}

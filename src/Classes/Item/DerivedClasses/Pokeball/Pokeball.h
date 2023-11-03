@@ -6,24 +6,18 @@
 
 #include "../../Item.h"
 
-class PokeBall : public Item {
-private:
-    const double catchRate;
-
-protected:
-    PokeBall(const char *name, int quantity, double catchRate);
-
-public:
+struct PokeBall : public Item {
     explicit PokeBall(int n);
 
+    [[nodiscard]] virtual double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
+
     [[nodiscard]] ItemType getType() const override;
+
     [[nodiscard]] ItemID getID() const override;
+
+    [[nodiscard]] std::string getName() const override;
 
     void useMessage() override;
 
-    void restore(Pokemon &pokemon) override;
-    void restore(Move &move) override;
-    void restoreMessage(const Pokemon &pokemon) override;
-    void restoreMessage(const Move &move) override;
-    bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) override;
+    bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
 };

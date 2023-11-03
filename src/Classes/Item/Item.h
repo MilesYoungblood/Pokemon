@@ -8,6 +8,10 @@
 
 #include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
+enum Time {
+    MORNING, DAY, NIGHT
+};
+
 enum class ItemType {
     RESTORE,
     STATUS,
@@ -31,6 +35,13 @@ enum class ItemID {
     GREAT_BALL,
     ULTRA_BALL,
     MASTER_BALL,
+    NET_BALL,
+    NEST_BALL,
+    TIMER_BALL,
+    PREMIER_BALL,
+    DUSK_BALL,
+    HEAL_BALL,
+    QUICK_BALL,
 
     X_ATTACK,
     X_DEFENSE,
@@ -40,45 +51,42 @@ enum class ItemID {
     X_ACCURACY
 };
 
-enum class RestoreType { NONE, HP, PP };
-enum class Stat { NONE, ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY };
+enum class Stat {
+    NONE, ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY
+};
 
 class Item {
 private:
-    const char *name{"N/A"};
-    int quantity{0};
+    int quantity{ 0 };
 
 public:
     Item() = default;
-    Item(const char *name, int n);
+
+    explicit Item(int n);
+
     Item(const Item &) = delete;
+
     Item(const Item &&) = delete;
-    Item & operator=(const Item &) = delete;
-    Item & operator=(const Item &&) = delete;
+
+    Item &operator=(const Item &) = delete;
+
+    Item &operator=(const Item &&) = delete;
+
     virtual ~Item() = default;
 
-    void setQuantity(int newQuantity);
     [[nodiscard]] int getQuantity() const;
 
     void use();
+
     virtual void useMessage();
 
-    [[nodiscard]] virtual int getAmount() const;
-    [[nodiscard]] virtual RestoreType getRestoreType() const;
-    [[nodiscard]] virtual Status getStatus() const;
-    [[nodiscard]] virtual Stat getStat() const;
+    void add();
+
+    [[nodiscard]] virtual std::string getName() const = 0;
+
     [[nodiscard]] virtual ItemID getID() const = 0;
+
     [[nodiscard]] virtual ItemType getType() const = 0;
 
-    virtual void restore(Pokemon &pokemon) = 0;
-    virtual void restore(Move &move) = 0;
-    virtual void restoreMessage(const Pokemon &pokemon) = 0;
-    virtual void restoreMessage(const Move &move) = 0;
-    virtual bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) = 0;
-
-    [[nodiscard]] std::string getName() const;
-
     explicit operator bool() const;
-
-    friend std::ostream & operator<<(std::ostream &out, const Item &rhs);
 };

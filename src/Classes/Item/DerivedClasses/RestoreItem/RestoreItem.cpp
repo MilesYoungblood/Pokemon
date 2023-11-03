@@ -4,33 +4,27 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(const char *name, const int quantity, const int amount, const RestoreType restoreType) : Item(name, quantity), amount(amount), restoreType(restoreType) {}
-
-int RestoreItem::getAmount() const { return this->amount; }
-
-RestoreType RestoreItem::getRestoreType() const { return this->restoreType; }
+RestoreItem::RestoreItem(const int quantity) : Item(quantity) {}
 
 ItemType RestoreItem::getType() const { return ItemType::RESTORE; }
 
 void RestoreItem::restore(Pokemon &pokemon) {
-    if (this->restoreType == RestoreType::HP) {
-        pokemon.restoreHP(this->amount);
+    if (this->isHp()) {
+        pokemon.restoreHP(this->getAmount());
     }
 }
 
 void RestoreItem::restore(Move &move) {
-    if (this->restoreType == RestoreType::PP) {
+    if (not this->isHp()) {
         //FIXME implement restorePP function in move
-        move.setPP(move.getPP() + this->amount);
+        move.setPP(move.getPP() + this->getAmount());
     }
 }
 
-void RestoreItem::restoreMessage(const Pokemon &pokemon) {
-    printMessage(pokemon.getName() + " recovered " + std::to_string(this->amount) + " HP!\n");
+void RestoreItem::restoreMessage(const Pokemon &pokemon) const {
+    printMessage(pokemon.getName() + " recovered " + std::to_string(this->getAmount()) + " HP!\n");
 }
 
-void RestoreItem::restoreMessage(const Move &move) {
-    printMessage(move.getName() + " recovered " + std::to_string(this->amount) + " PP!\n");
+void RestoreItem::restoreMessage(const Move &move) const {
+    printMessage(move.getName() + " recovered " + std::to_string(this->getAmount()) + " PP!\n");
 }
-
-bool RestoreItem::catchPokemon(const Pokemon & /*pokemon*/, std::array<bool, 4> & /*attempts*/) { return false; }

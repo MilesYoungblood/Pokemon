@@ -40,8 +40,6 @@ add_executable(PokemonBattle
         src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp
         src/Classes/Entity/DerivedClasses/Trainer/Trainer.h
         src/Functions/GeneralFunctions.h
-        src/Data/Data.cpp
-        src/Data/Data.h
         src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp
         src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h
         src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp
@@ -90,7 +88,8 @@ add_executable(PokemonBattle
         src/Classes/Game/OverworldFunctions.cpp
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
-        src/Namespaces/EventHandler.h
+        src/Namespaces/KeyManager/KeyManager.h
+        src/Namespaces/Stopwatch.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)
