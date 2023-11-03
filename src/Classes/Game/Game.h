@@ -92,13 +92,13 @@ inline FunctionState functionState = TITLE_SCREEN;              // determines wh
 
 inline const int NUM_FUNCTION_STATES = 3;
 
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> HANDLE_FUNCTIONS{
+inline const static std::array<void (*)(), NUM_FUNCTION_STATES> HANDLE_FUNCTIONS{
         handleTitleScreenEvents, handleOverworldEvents, handleBattleEvents
 };
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> UPDATE_FUNCTIONS{
+inline const static std::array<void (*)(), NUM_FUNCTION_STATES> UPDATE_FUNCTIONS{
         updateTitleScreen, updateOverworld, updateBattle
 };
-inline const std::array<void (*)(), NUM_FUNCTION_STATES> RENDER_FUNCTIONS{
+inline const static std::array<void (*)(), NUM_FUNCTION_STATES> RENDER_FUNCTIONS{
         renderTitleScreen, renderOverworld, renderBattle
 };
 

@@ -2,6 +2,7 @@
 // Created by Miles Youngblood on 10/24/2023.
 //
 
+#include <span>
 #include "Game.h"
 
 const static std::string STRING = "Pokemon White is the best Pokemon game of all time!";
@@ -12,29 +13,10 @@ namespace {
 
     bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
 
-    int width;
-    int height;
+    std::size_t interval = 0;
 
     Stopwatch timer;
 }
-
-constexpr static int BOX_WIDTH = TILE_SIZE * 7;
-constexpr static int BOX_HEIGHT = TILE_SIZE * 2;
-
-const static SDL_Rect TEXT_BOX{
-        WINDOW_WIDTH / 2 - BOX_WIDTH / 2,
-        WINDOW_HEIGHT - BOX_HEIGHT,
-        BOX_WIDTH,
-        BOX_HEIGHT - TILE_SIZE / 2
-};
-
-const static int BORDER_SIZE = TEXT_BOX.h / (TILE_SIZE * 3 / 10);
-const static SDL_Rect BORDER{
-        TEXT_BOX.x - BORDER_SIZE,
-        TEXT_BOX.y - BORDER_SIZE,
-        TEXT_BOX.w + BORDER_SIZE * 2,
-        TEXT_BOX.h + BORDER_SIZE * 2
-};
 
 void handleOverworldEvents() {
     switch (event.type) {
@@ -72,7 +54,7 @@ void handleOverworldEvents() {
                     break;
             }
             timer.stop();
-            std::cout << timer.getElapsedTime() << '\n';
+            interval = timer.getElapsedTime();
             timer.reset();
             break;
 
@@ -257,7 +239,27 @@ void updateOverworld() {
         }
         KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);
     }
-    if (player->canMoveForward(currentMap) and keepMovingForward) {
+
+    SDL_Scancode(*getScancode)(Direction) = [](Direction direction) -> SDL_Scancode {
+        switch (direction) {
+            case Direction::UP:
+                return SDL_Scancode::SDL_SCANCODE_W;
+            case Direction::DOWN:
+                return SDL_Scancode::SDL_SCANCODE_S;
+            case Direction::LEFT:
+                return SDL_Scancode::SDL_SCANCODE_A;
+            case Direction::RIGHT:
+                return SDL_Scancode::SDL_SCANCODE_D;
+            default:
+                throw std::runtime_error("Unexpected error: lambda getScancode");
+        }
+    };
+
+    const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
+    if (span[getScancode(player->getDirection())] == 0 and not keepMovingForward) {
+        goto skip;
+    }
+    if (((span[getScancode(player->getDirection())] == 1 and player->canMoveForward(currentMap)) or player->canMoveForward(currentMap)) and keepMovingForward) {
         const Direction q_direction = oppositeDirection(p_direction);
 
         currentMap->update(q_direction, SCROLL_SPEED);
@@ -267,6 +269,7 @@ void updateOverworld() {
             player->moveForward();
         }
     }
+    skip:
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
@@ -277,13 +280,34 @@ void updateOverworld() {
 }
 
 void renderTextBox() {
+    const static int box_width = TILE_SIZE * 7;
+    const static int box_height = TILE_SIZE * 2;
+
+    const static SDL_Rect text_box{
+            WINDOW_WIDTH / 2 - box_width / 2,
+            WINDOW_HEIGHT - box_height,
+            box_width,
+            box_height - TILE_SIZE / 2
+    };
+
+    const static int border_size = text_box.h / (TILE_SIZE * 3 / 10);
+    const static SDL_Rect border{
+            text_box.x - border_size,
+            text_box.y - border_size,
+            text_box.w + border_size * 2,
+            text_box.h + border_size * 2
+    };
+
     // first draw the border of the dialogue box
-    SDL_RenderFillRect(gameRenderer, &BORDER);
+    SDL_RenderFillRect(gameRenderer, &border);
     SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
     // then draw the inner dialogue box in front of the border
-    SDL_RenderFillRect(gameRenderer, &TEXT_BOX);
+    SDL_RenderFillRect(gameRenderer, &text_box);
     SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+
+    static int width;
+    static int height;
 
     // if the string has not yet completed concatenation
     if (STRING.length() >= wordCounter) {
@@ -294,7 +318,7 @@ void renderTextBox() {
         const std::string buffer = wordCounter > 0 ? STRING.substr(0, wordCounter) : " ";
 
         // recreate the texture
-        SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), { 0, 0, 0 }, TEXT_BOX.w);
+        SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), { 0, 0, 0 }, text_box.w);
         text = SDL_CreateTextureFromSurface(gameRenderer, temp);
 
         width = temp->w;
@@ -311,7 +335,7 @@ void renderTextBox() {
 
     // draw the current message to the renderer
     TextureManager::getInstance()->draw(text,
-                                        { TEXT_BOX.x + TILE_SIZE / 10, TEXT_BOX.y + TILE_SIZE / 10, width, height });
+                                        { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
 }
 
 void renderOverworld() {

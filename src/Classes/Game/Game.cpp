@@ -265,6 +265,73 @@ void Game::saveData() {
     saveFile.close();
 }
 
+void initializeGame() {
+    currentMapIndex = 0;
+    currentMap = &maps.at(currentMapIndex);
+
+    Trainer::init();
+
+    // initialize all maps
+    Map::initTextures();
+
+    maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
+    maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
+    maps[0].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
+    maps[0].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
+    maps[0].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+
+    maps[1].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
+    maps[1].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
+    maps[1].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
+    maps[1].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+
+    maps[2].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
+
+    // default values for player
+    player = Player::getPlayer();
+
+    player->addPokemon<Greninja>();
+    (*player)[0].addMove<WaterShuriken>();
+    (*player)[0].addMove<DarkPulse>();
+    (*player)[0].addMove<IceBeam>();
+    (*player)[0].addMove<Extrasensory>();
+
+    player->addPokemon<Charizard>();
+    (*player)[1].addMove<Flamethrower>();
+    (*player)[1].addMove<AirSlash>();
+    (*player)[1].addMove<DragonPulse>();
+    (*player)[1].addMove<SolarBeam>();
+
+    player->addPokemon<Hydreigon>();
+    (*player)[2].addMove<DarkPulse>();
+    (*player)[2].addMove<DragonPulse>();
+    (*player)[2].addMove<Flamethrower>();
+    (*player)[2].addMove<FocusBlast>();
+
+    player->addItem<Potion>(5);
+    player->addItem<SuperPotion>(5);
+    player->addItem<HyperPotion>(5);
+    player->addItem<Ether>(5);
+
+    player->addItem<ParalyzeHeal>(5);
+    player->addItem<BurnHeal>(5);
+    player->addItem<IceHeal>(5);
+    player->addItem<Antidote>(5);
+    player->addItem<Awakening>(5);
+
+    player->addItem<PokeBall>(5);
+    player->addItem<GreatBall>(5);
+    player->addItem<UltraBall>(5);
+    player->addItem<MasterBall>(1);
+
+    player->addItem<XAttack>(5);
+    player->addItem<XDefense>(5);
+    player->addItem<XSpAttack>(5);
+    player->addItem<XSpDefense>(5);
+    player->addItem<XSpeed>(5);
+    player->addItem<XAccuracy>(5);
+}
+
 void Game::loadData() {
     std::ifstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
 
@@ -410,70 +477,7 @@ void Game::loadData() {
         saveFile.close();
     }
     else {
-        currentMapIndex = 0;
-        currentMap = &maps.at(currentMapIndex);
-
-        Trainer::init();
-
-        // initialize all maps
-        Map::initTextures();
-
-        maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
-        maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
-        maps[0].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
-        maps[0].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-        maps[0].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
-
-        maps[1].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
-        maps[1].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
-        maps[1].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
-        maps[1].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
-
-        maps[2].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
-
-        // default values for player
-        player = Player::getPlayer();
-
-        player->addPokemon<Greninja>();
-        (*player)[0].addMove<WaterShuriken>();
-        (*player)[0].addMove<DarkPulse>();
-        (*player)[0].addMove<IceBeam>();
-        (*player)[0].addMove<Extrasensory>();
-
-        player->addPokemon<Charizard>();
-        (*player)[1].addMove<Flamethrower>();
-        (*player)[1].addMove<AirSlash>();
-        (*player)[1].addMove<DragonPulse>();
-        (*player)[1].addMove<SolarBeam>();
-
-        player->addPokemon<Hydreigon>();
-        (*player)[2].addMove<DarkPulse>();
-        (*player)[2].addMove<DragonPulse>();
-        (*player)[2].addMove<Flamethrower>();
-        (*player)[2].addMove<FocusBlast>();
-
-        player->addItem(std::make_unique<Potion>(5));
-        player->addItem(std::make_unique<SuperPotion>(5));
-        player->addItem(std::make_unique<HyperPotion>(5));
-        player->addItem(std::make_unique<Ether>(5));
-
-        player->addItem(std::make_unique<ParalyzeHeal>(5));
-        player->addItem(std::make_unique<BurnHeal>(5));
-        player->addItem(std::make_unique<IceHeal>(5));
-        player->addItem(std::make_unique<Antidote>(5));
-        player->addItem(std::make_unique<Awakening>(5));
-
-        player->addItem(std::make_unique<PokeBall>(5));
-        player->addItem(std::make_unique<GreatBall>(5));
-        player->addItem(std::make_unique<UltraBall>(5));
-        player->addItem(std::make_unique<MasterBall>(1));
-
-        player->addItem(std::make_unique<XAttack>(5));
-        player->addItem(std::make_unique<XDefense>(5));
-        player->addItem(std::make_unique<XSpAttack>(5));
-        player->addItem(std::make_unique<XSpDefense>(5));
-        player->addItem(std::make_unique<XSpeed>(5));
-        player->addItem(std::make_unique<XAccuracy>(5));
+        initializeGame();
     }
 }
 

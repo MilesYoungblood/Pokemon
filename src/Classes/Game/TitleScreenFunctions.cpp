@@ -4,13 +4,6 @@
 
 #include "Game.h"
 
-const int EXTENSION_LENGTH = 4;
-std::string_view musicPath;
-std::string_view songName;
-
-Mix_Chunk *sound = nullptr;
-
-int counter = 0;
 bool showPrompt = true;
 
 void handleTitleScreenEvents() {
@@ -23,7 +16,7 @@ void handleTitleScreenEvents() {
                 case SDL_SCANCODE_RETURN:
                     Mix_FreeMusic(gameMusic);
 
-                    sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\SFX\\selection.wav").data());
+                    static Mix_Chunk *sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\SFX\\selection.wav").data());
                     if (sound != nullptr) {
                         std::cout << "Loaded \"selection\"!\n";
                     }
@@ -48,24 +41,25 @@ void handleTitleScreenEvents() {
 
                     Game::loadData();
 
-                    musicPath = currentMap->getMusic();
-                    songName = musicPath.substr(0, musicPath.length() - EXTENSION_LENGTH);
+                    const static int extension_length = 4;
+                    const static std::string_view music_path = currentMap->getMusic();
+                    const static std::string_view song_name = music_path.substr(0, music_path.length() - extension_length);
 
                     gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic()).data());
                     if (gameMusic != nullptr) {
-                        std::cout << "Loaded \"" << songName << "\"!\n";
+                        std::cout << "Loaded \"" << song_name << "\"!\n";
                     }
                     else {
-                        std::cerr << "Error loading \"" << songName << "\": " << SDL_GetError() << '\n';
+                        std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
                         isRunning = false;
                         return;
                     }
 
                     if (Mix_PlayMusic(gameMusic, -1) == 0) {
-                        std::cout << "Playing \"" << songName << "\"!\n";
+                        std::cout << "Playing \"" << song_name << "\"!\n";
                     }
                     else {
-                        std::cerr << "Unable to play \"" << songName << "\": " << SDL_GetError() << '\n';
+                        std::cerr << "Unable to play \"" << song_name << "\": " << SDL_GetError() << '\n';
                         isRunning = false;
                         return;
                     }
@@ -86,36 +80,35 @@ void handleTitleScreenEvents() {
 
                     break;
                 default:
-                    return;
                     // TODO
+                    break;
             }
             break;
     }
 }
 
 void updateTitleScreen() {
-    ++counter;
-    if (counter == 30) {
+    static int counter = 0;
+    if (++counter == 30) {
         showPrompt = not showPrompt;
         counter = 0;
     }
 }
 
-const SDL_Rect LOGO_RECT{
-        WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
-};
-
-const SDL_Rect MESSAGE_RECT{
-        WINDOW_WIDTH / 2 - 24 * FONT_SIZE / 2,
-        WINDOW_HEIGHT - TILE_SIZE * 2,
-        23 * FONT_SIZE,
-        FONT_SIZE
-};
-
 void renderTitleScreen() {
-    TextureManager::getInstance()->draw(logo, LOGO_RECT);
+    const static SDL_Rect logo_rect{
+            WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
+    };
+    const static SDL_Rect message_rect{
+            WINDOW_WIDTH / 2 - 24 * FONT_SIZE / 2,
+            WINDOW_HEIGHT - TILE_SIZE * 2,
+            23 * FONT_SIZE,
+            FONT_SIZE
+    };
+
+    TextureManager::getInstance()->draw(logo, logo_rect);
 
     if (showPrompt) {
-        TextureManager::getInstance()->draw(text, MESSAGE_RECT);
+        TextureManager::getInstance()->draw(text, message_rect);
     }
 }

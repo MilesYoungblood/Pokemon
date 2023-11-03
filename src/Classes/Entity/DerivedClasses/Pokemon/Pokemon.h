@@ -9,7 +9,9 @@
 
 #include <array>
 
-enum class Status { NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP };
+enum class Status {
+    NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
+};
 
 enum PokemonID {
     VENASAUR,
@@ -181,14 +183,14 @@ private:
     const static int MAX_NUM_TYPES = 2;
 
     int maxHP;
-    int currentHP{0};
-    int attack{0};
-    int defense{0};
-    int spAttack{0};
-    int spDefense{0};
-    int speed{0};
-    int accuracy{0};
-    int evasiveness{0};
+    int currentHP{ 0 };
+    int attack{ 0 };
+    int defense{ 0 };
+    int spAttack{ 0 };
+    int spDefense{ 0 };
+    int speed{ 0 };
+    int accuracy{ 0 };
+    int evasiveness{ 0 };
 
     int baseAttack;
     int baseDefense;
@@ -201,22 +203,29 @@ private:
 
     std::vector<std::unique_ptr<Move>> moveSet;
     std::array<Type, Pokemon::MAX_NUM_TYPES> types;
-    Status status{Status::NONE};
-    
-    int moveCounter{0};
+    Status status{ Status::NONE };
+
+    int moveCounter{ 0 };
 
     static void raiseStat(int &stat, int amount);
+
     static void lowerStat(int &stat, int amount);
 
     static double getStatMod(int stat);
 
 public:
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
+
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
+
     Pokemon(const Pokemon &) = delete;
+
     Pokemon(const Pokemon &&) = delete;
-    Pokemon & operator=(const Pokemon &) = delete;
-    Pokemon & operator=(const Pokemon &&) = delete;
+
+    Pokemon &operator=(const Pokemon &) = delete;
+
+    Pokemon &operator=(const Pokemon &&) = delete;
+
     virtual ~Pokemon() = default;
 
     [[nodiscard]] virtual PokemonID getID() const;
@@ -241,64 +250,100 @@ public:
     }
 
     void deleteMove(int index);
+
     void setMoves(const std::initializer_list<Move *> &moves);
 
     void setHP(int newHP);
+
     void restoreHP(int newHP);
+
     void takeDamage(int amount);
 
     void resetStatMods();
 
     void raiseAttack(int amount);
+
     void raiseDefense(int amount);
+
     void raiseSpAttack(int amount);
+
     void raiseSpDefense(int amount);
+
     void raiseSpeed(int amount);
+
     void raiseAccuracy(int amount);
+
     void raiseEvasiveness(int amount);
 
     void lowerAttack(int amount);
+
     void lowerDefense(int amount);
+
     void lowerSpAttack(int amount);
+
     void lowerSpDefense(int amount);
+
     void lowerSpeed(int amount);
+
     void lowerAccuracy(int amount);
+
     void lowerEvasiveness(int amount);
 
     [[nodiscard]] int getHP() const;
+
     [[nodiscard]] int getAttack() const;
+
     [[nodiscard]] int getDefense() const;
+
     [[nodiscard]] int getSpAttack() const;
+
     [[nodiscard]] int getSpDefense() const;
+
     [[nodiscard]] int getSpeed() const;
+
     [[nodiscard]] int getAccuracy() const;
+
     [[nodiscard]] int getEvasiveness() const;
 
     [[nodiscard]] int getMaxHp() const;
+
     [[nodiscard]] int getBaseAttack() const;
+
     [[nodiscard]] int getBaseDefense() const;
+
     [[nodiscard]] int getBaseSpAttack() const;
+
     [[nodiscard]] int getBaseSpDefense() const;
+
     [[nodiscard]] int getBaseSpeed() const;
 
-    [[nodiscard]] Type getType(bool type_1) const;
+    [[nodiscard]] Type getType(bool type1) const;
 
     void setStatus(Status newStatus);
+
     [[nodiscard]] Status getStatus() const;
-    [[nodiscard]] const char * getStatusAsString() const;
+
+    [[nodiscard]] const char *getStatusAsString() const;
 
     [[nodiscard]] int getLevel() const;
+
     [[nodiscard]] int getCatchRate() const;
 
     [[nodiscard]] bool isFainted() const;
+
     [[nodiscard]] bool isFullHP() const;
+
     [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
+
     [[nodiscard]] bool isAfflicted() const;
+
     [[nodiscard]] bool canAttack() const;
 
     void hpEmptyMessage() const;
+
     void hpFullMessage() const;
 
-    Move & operator[](int index);
-    const Move & operator[](int index) const;
+    Move &operator[](int index);
+
+    const Move &operator[](int index) const;
 };
