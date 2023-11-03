@@ -193,6 +193,21 @@ void updateOverworld() {
     const std::array<int, 3> map_data = currentMap->isExitPointHere(player->getX(), player->getY());
     const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
 
+    Direction(*getDirection)(SDL_Scancode) = [](SDL_Scancode code) -> Direction {
+        switch (code) {
+            case SDL_Scancode::SDL_SCANCODE_W:
+                return Direction::UP;
+            case SDL_Scancode::SDL_SCANCODE_A:
+                return Direction::LEFT;
+            case SDL_Scancode::SDL_SCANCODE_S:
+                return Direction::DOWN;
+            case SDL_Scancode::SDL_SCANCODE_D:
+                return Direction::RIGHT;
+            default:
+                throw std::runtime_error("Incorrect parameter \"code\": Required Scancode W, A, S, or D");
+        }
+    };
+
     if (map_data[2] != -1) {
         changeMap(map_data);
     }
@@ -241,7 +256,8 @@ void updateOverworld() {
                 // FIXME does not take into account multiple pages
                 trainer->face(player);
                 print = not print;
-                if (not print) {
+                if (print) {
+                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);
                     KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
                 }
                 else {

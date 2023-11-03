@@ -5,6 +5,7 @@
 #pragma once
 
 #include <unordered_map>
+#include <span>
 
 // manages key-states
 class KeyManager {
@@ -183,6 +184,11 @@ public:
         }
 
         return state;
+    }
+
+    bool get(SDL_Scancode key) {
+        const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
+        return span[key] == 1 and not this->keyStates[key].locked;
     }
 
     // returns true if any of the keys are currently pressed
