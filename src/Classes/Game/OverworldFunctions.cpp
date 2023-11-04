@@ -13,8 +13,6 @@ namespace {
 
     bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
 
-    std::size_t interval = 0;
-
     Stopwatch timer;
 }
 
@@ -54,7 +52,6 @@ void handleOverworldEvents() {
                     break;
             }
             timer.stop();
-            interval = timer.getElapsedTime();
             timer.reset();
             break;
 
@@ -114,64 +111,62 @@ void changeMap(const std::array<int, 3> &data) {
     });
 }
 
-SDL_Scancode getScancode(Direction direction) {
-    switch (direction) {
-        case Direction::UP:
-            return SDL_Scancode::SDL_SCANCODE_W;
-        case Direction::DOWN:
-            return SDL_Scancode::SDL_SCANCODE_S;
-        case Direction::LEFT:
-            return SDL_Scancode::SDL_SCANCODE_A;
-        case Direction::RIGHT:
-            return SDL_Scancode::SDL_SCANCODE_D;
-        default:
-            throw std::runtime_error("Unexpected error: lambda getScancode");
-    }
-};
-
 void checkForOpponents() {
     void (*resetVariables)() = [] -> void {
         keepMovingForward = false;
         walkCounter = 0;
     };
 
-    const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
+    const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
 
     // resets movement variables if you are not inputting any directions
     if (not(KeyManager::getInstance()->getKey(SDL_SCANCODE_W) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_A) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_S) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) or span[SDL_SCANCODE_W] == 0 or
-        span[SDL_SCANCODE_A] == 0 or span[SDL_SCANCODE_S] == 0 or span[SDL_SCANCODE_D] == 0) {
+            KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) or span[SDL_SCANCODE_W] == 0 and
+        span[SDL_SCANCODE_A] == 0 and span[SDL_SCANCODE_S] == 0 and span[SDL_SCANCODE_D] == 0) {
         resetVariables();
     }
 
     Trainer *trainer;
 
+    static bool waitingForInput = false;
+    static bool on = true;
+
     // checks if the player is in LoS for any trainer
     for (int i = 0; i < currentMap->numTrainers(); ++i) {
         trainer = &(*currentMap)[i];
 
-        if (not lockTrainer[i] and trainer->hasVisionOf(player) and *trainer) {
+        // FIXME change on with trainer
+        if (trainer->hasVisionOf(player) and on) {
             resetVariables();
-            KeyManager::getInstance()->lockWasd();
             lockTrainer[i] = true;
 
-            if (trainer->isNextTo(player)) {
-                // TODO open dialogue, start battle
-                player->face(trainer);
-                print = true;
-                trainer->clearParty();
-                walkCounters[i] = 0;
-                functionState = FunctionState::BATTLE;
-            }
-            else {
+            if (not trainer->isNextTo(player)) {
                 trainer->shiftDirectionOnMap(trainer->getDirection(), SCROLL_SPEED);
                 walkCounters[i] += SCROLL_SPEED;
 
                 if (walkCounters[i] % TILE_SIZE == 0) {
                     trainer->moveForward();
                 }
+            }
+            else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN) and waitingForInput) {
+                waitingForInput = false;
+                //TODO this is where the battle will start
+            }
+            else if (not waitingForInput) {
+                player->face(trainer);
+                print = not print;
+                waitingForInput = print;
+                on = print;
+                if (print) {
+                    KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
+                }
+                lockTrainer[i] = print;
+                KeyManager::getInstance()->lockWasd();
+                wordCounter = 0;
+
+                SDL_DestroyTexture(text);
             }
             break;
         }
@@ -185,28 +180,38 @@ void updateTrainers() {
             continue;
         }
 
-        (*currentMap)[i].act();
+        Trainer *entity = &(*currentMap)[i];
+
+        switch (generateInteger(1, 100)) {
+            case 1:
+                entity->face(entity);
+
+                if (entity->hasVisionOf(player) and *entity) {
+                    KeyManager::getInstance()->lockWasd();
+                    return;
+                }
+                break;
+
+            case 2:
+                if (entity->isFacingNorth() or entity->isFacingSouth()) {
+                    coinFlip() ? entity->faceEast() : entity->faceWest();
+                }
+                else if (entity->isFacingEast() or entity->isFacingWest()) {
+                    coinFlip() ? entity->faceNorth() : entity->faceSouth();
+                }
+
+                if (entity->hasVisionOf(player) and *entity) {
+                    KeyManager::getInstance()->lockWasd();
+                    return;
+                }
+                break;
+        }
     }
 }
 
 void updateOverworld() {
     const std::array<int, 3> map_data = currentMap->isExitPointHere(player->getX(), player->getY());
     const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
-
-    Direction(*getDirection)(SDL_Scancode) = [](SDL_Scancode code) -> Direction {
-        switch (code) {
-            case SDL_Scancode::SDL_SCANCODE_W:
-                return Direction::UP;
-            case SDL_Scancode::SDL_SCANCODE_A:
-                return Direction::LEFT;
-            case SDL_Scancode::SDL_SCANCODE_S:
-                return Direction::DOWN;
-            case SDL_Scancode::SDL_SCANCODE_D:
-                return Direction::RIGHT;
-            default:
-                throw std::runtime_error("Incorrect parameter \"code\": Required Scancode W, A, S, or D");
-        }
-    };
 
     if (map_data[2] != -1) {
         changeMap(map_data);
@@ -244,20 +249,12 @@ void updateOverworld() {
         }
     }
     else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN)) {
-        Trainer *trainer;       // variable used to reduce the number of function calls
-
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            if (not KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN)) {
-                break;
-            }
-            trainer = &(*currentMap)[i];
-
-            if (player->hasVisionOf(trainer)) {
+            if (player->hasVisionOf(&(*currentMap)[i])) {
                 // FIXME does not take into account multiple pages
-                trainer->face(player);
+                (*currentMap)[i].face(player);
                 print = not print;
                 if (print) {
-                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);
                     KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
                 }
                 else {
@@ -269,6 +266,10 @@ void updateOverworld() {
 
                 SDL_DestroyTexture(text);
                 break;
+            }
+            // FIXME possibly get rid of second expression
+            if ((*currentMap)[i] and not print) {
+                //TODO this is where battle would hypothetically start
             }
         }
         KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);

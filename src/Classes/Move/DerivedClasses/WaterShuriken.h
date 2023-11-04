@@ -22,8 +22,8 @@ public:
     }
 
     [[nodiscard]] int getDamage() const override {
-        const int possibleHits = generateInteger(2, 5);
-        for (int i = 0; i < possibleHits; ++i) { // determines hits and misses
+        const int possible_hits = generateInteger(2, 5);
+        for (int i = 0; i < possible_hits; ++i) { // determines hits and misses
             if (generateInteger(1, 100) <= this->getAccuracy()) {
                 ++this->numHits;
             }
@@ -84,7 +84,7 @@ public:
         return "Water Shuriken";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user hits the target with throwing stars two to five times in a row. This move always goes first.";
     }
 

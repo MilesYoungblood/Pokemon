@@ -34,7 +34,7 @@ private:
 
     template<typename I>
     static std::size_t getItemTypeId() {
-        static const std::size_t type_id = getItemTypeId();
+        const static std::size_t type_id = getItemTypeId();
         return type_id;
     }
 
@@ -128,9 +128,9 @@ public:
             for (int i = 0; i < this->numItems.at(type); ++i) {
                 // if item already exists within our inventory
                 if (item->getID() == this->items.at(type)[i]->getID()) {
-                    this->items.at(type)[i]->add();
+                    this->items.at(type)[i]->add(quantity);
+                    return;
                 }
-                return;
             }
 
             this->items.at(type).push_back(std::move(item));
@@ -153,7 +153,7 @@ public:
 
     const Pokemon &operator[](int spot) const;
 
-    virtual explicit operator bool() const;
+    explicit operator bool() const override;
 
     [[nodiscard]] virtual bool canFight() const;
 };

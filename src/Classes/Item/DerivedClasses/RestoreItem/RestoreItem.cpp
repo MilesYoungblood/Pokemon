@@ -6,15 +6,17 @@
 
 RestoreItem::RestoreItem(const int quantity) : Item(quantity) {}
 
-ItemType RestoreItem::getType() const { return ItemType::RESTORE; }
+ItemType RestoreItem::getType() const {
+    return ItemType::RESTORE;
+}
 
-void RestoreItem::restore(Pokemon &pokemon) {
+void RestoreItem::restore(Pokemon &pokemon) const {
     if (this->isHp()) {
         pokemon.restoreHP(this->getAmount());
     }
 }
 
-void RestoreItem::restore(Move &move) {
+void RestoreItem::restore(Move &move) const {
     if (not this->isHp()) {
         //FIXME implement restorePP function in move
         move.setPP(move.getPP() + this->getAmount());

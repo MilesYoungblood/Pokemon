@@ -16,7 +16,7 @@ struct StatusItem : public Item {
 
     [[nodiscard]] std::string getName() const override = 0;
 
-    void restore(Pokemon &pokemon);
+    void restore(Pokemon &pokemon) const;
 
     static void restoreMessage(const Pokemon &pokemon);
 };

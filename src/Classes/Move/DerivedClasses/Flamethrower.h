@@ -93,7 +93,7 @@ public:
         return "Flamethrower";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The target is scorched with an intense blast of fire. It may also leave the target with a burn.";
     }
 };

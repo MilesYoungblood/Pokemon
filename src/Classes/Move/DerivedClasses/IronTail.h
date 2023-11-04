@@ -100,7 +100,7 @@ public:
         return "Iron Tail";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The target is slammed with a steel-hard tail. It may also lower the target’s Defense stat.";
     }
 };

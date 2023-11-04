@@ -97,6 +97,7 @@ public:
 
     // locks a key
     void lockKey(SDL_Scancode key) {
+        this->keyStates[key].state = false;
         this->keyStates[key].locked = true;
 
         // erases the key if did not exist in the map
@@ -109,6 +110,7 @@ public:
     // locks multiple keys
     void blockInput(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
         for (const SDL_Scancode key : keys) {
+            this->keyStates[key].state = false;
             this->keyStates[key].locked = true;
             // erases the key if did not exist in the map
             if (this->keyStates.size() > NUM_KEYS) {
@@ -118,6 +120,11 @@ public:
     }
 
     void toggleWasd() {
+        this->keyStates[SDL_SCANCODE_W].state = false;
+        this->keyStates[SDL_SCANCODE_A].state = false;
+        this->keyStates[SDL_SCANCODE_S].state = false;
+        this->keyStates[SDL_SCANCODE_D].state = false;
+
         this->keyStates[SDL_SCANCODE_W].locked = not this->keyStates[SDL_SCANCODE_W].locked;
         this->keyStates[SDL_SCANCODE_A].locked = not this->keyStates[SDL_SCANCODE_A].locked;
         this->keyStates[SDL_SCANCODE_S].locked = not this->keyStates[SDL_SCANCODE_S].locked;
@@ -125,6 +132,11 @@ public:
     }
 
     void lockWasd() {
+        this->keyStates[SDL_SCANCODE_W].state = false;
+        this->keyStates[SDL_SCANCODE_A].state = false;
+        this->keyStates[SDL_SCANCODE_S].state = false;
+        this->keyStates[SDL_SCANCODE_D].state = false;
+
         this->keyStates[SDL_SCANCODE_W].locked = true;
         this->keyStates[SDL_SCANCODE_A].locked = true;
         this->keyStates[SDL_SCANCODE_S].locked = true;
@@ -174,12 +186,22 @@ public:
         }
     }
 
+    bool isLocked(SDL_Scancode key) {
+        const bool locked = this->keyStates[key].locked;
+
+        if (this->keyStates.size() > KeyManager::NUM_KEYS) {
+            this->keyStates.erase(key);
+        }
+
+        return locked;
+    }
+
     // returns true is a key is currently pressed
     bool getKey(SDL_Scancode key) {
         const bool state = this->keyStates[key].state;
 
         // erases the key if did not exist in the map
-        if (this->keyStates.size() > NUM_KEYS) {
+        if (this->keyStates.size() > KeyManager::NUM_KEYS) {
             this->keyStates.erase(key);
         }
 

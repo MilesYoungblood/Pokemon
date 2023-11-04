@@ -7,11 +7,13 @@
 #include "../../Item.h"
 
 struct BattleItem : public Item {
-    explicit BattleItem(int quantity);
+    explicit BattleItem(int quantity) : Item(quantity) {}
 
     [[nodiscard]] virtual Stat getStat() const = 0;
 
     [[nodiscard]] ItemID getID() const override = 0;
 
-    [[nodiscard]] ItemType getType() const override;
+    [[nodiscard]] ItemType getType() const override {
+        return ItemType::BATTLE;
+    }
 };

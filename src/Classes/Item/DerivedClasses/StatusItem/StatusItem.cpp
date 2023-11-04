@@ -6,9 +6,11 @@
 
 StatusItem::StatusItem(const int quantity) : Item(quantity) {}
 
-ItemType StatusItem::getType() const { return ItemType::STATUS; }
+ItemType StatusItem::getType() const {
+    return ItemType::STATUS;
+}
 
-void StatusItem::restore(Pokemon &pokemon) {
+void StatusItem::restore(Pokemon &pokemon) const {
     if (this->getStatus() == pokemon.getStatus()) {
         pokemon.setStatus(Status::NONE);
     }

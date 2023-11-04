@@ -48,7 +48,7 @@ Game::Game() {
         std::cout << "Renderer created!\n";
     }
     else {
-        std::cerr << "Error creating textureRenderer: " << SDL_GetError() << '\n';
+        std::cerr << "Error creating renderer: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -196,9 +196,11 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
+    std::ofstream saveFile;
     if (not saveFile) {
-        throw std::runtime_error("Could not open file");
+        std::cerr << "Unable to open file\n";
+        isRunning = false;
+        return;
     }
 
     saveFile << currentMapIndex;
@@ -245,20 +247,9 @@ void Game::saveData() {
     }
 
     for (int map = 0; map < maps.size(); ++map) {
-        // moving the pointers takes it out of the array,
-        // therefore, maps.at(map) will be nullptr;
-        // we need to set currentMap's data manually
-        if (map == currentMapIndex) {
-            for (int trainer = 0; trainer < currentMap->numTrainers(); ++trainer) {
-                saveFile << '\n' << map << ' ' << trainer << ' ' << (*currentMap)[trainer].partySize();
-                saveFile << (*currentMap)[trainer].getDirection();
-            }
-        }
-        else {
-            for (int trainer = 0; trainer < maps.at(map).numTrainers(); ++trainer) {
-                saveFile << '\n' << map << ' ' << trainer << ' ' << maps.at(map)[trainer].partySize();
-                saveFile << maps.at(map)[trainer].getDirection();
-            }
+        for (int trainer = 0; trainer < maps.at(map).numTrainers(); ++trainer) {
+            saveFile << '\n' << map << ' ' << trainer << ' ' << maps.at(map)[trainer].partySize();
+            saveFile << maps.at(map)[trainer].getDirection();
         }
     }
 
@@ -269,13 +260,13 @@ void initializeGame() {
     currentMapIndex = 0;
     currentMap = &maps.at(currentMapIndex);
 
-    Trainer::init();
-
     // initialize all maps
     Map::initTextures();
 
-    maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
-    maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
+    maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
+    maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
+    maps[0][1].addPokemon<Serperior>();
+
     maps[0].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
     maps[0].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
     maps[0].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
@@ -332,8 +323,14 @@ void initializeGame() {
     player->addItem<XAccuracy>(5);
 }
 
+void loadGame() {
+
+}
+
 void Game::loadData() {
     std::ifstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
+
+    Trainer::init();
 
     if (saveFile) {
         std::string buffer;
@@ -384,8 +381,6 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
         }
 
-        Trainer::init();
-
         // grab the total number of items in the player's bag
         std::getline(saveFile, buffer);
         const int total_num_items = std::stoi(buffer);
@@ -404,35 +399,35 @@ void Game::loadData() {
         // initialize all maps
         Map::initTextures();
 
-        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, 1, 3));
-        maps[MapID::ROUTE_1][0].setAction([] -> void {
-            Trainer *trainer = &(*currentMap)[0];
+        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
+        maps[MapID::ROUTE_1][0].setAction([](Entity *entity) -> void {
             switch (generateInteger(1, 100)) {
                 case 1:
-                    trainer->face(trainer);
+                    entity->face(entity);
 
-                    if (trainer->hasVisionOf(player) and *trainer) {
+                    if (entity->hasVisionOf(player) and *entity) {
                         KeyManager::getInstance()->lockWasd();
                         return;
                     }
                     break;
 
                 case 2:
-                    if (trainer->isFacingNorth() or trainer->isFacingSouth()) {
-                        coinFlip() ? trainer->faceEast() : trainer->faceWest();
+                    if (entity->isFacingNorth() or entity->isFacingSouth()) {
+                        coinFlip() ? entity->faceEast() : entity->faceWest();
                     }
-                    else if (trainer->isFacingEast() or trainer->isFacingWest()) {
-                        coinFlip() ? trainer->faceNorth() : trainer->faceSouth();
+                    else if (entity->isFacingEast() or entity->isFacingWest()) {
+                        coinFlip() ? entity->faceNorth() : entity->faceSouth();
                     }
 
-                    if (trainer->hasVisionOf(player) and *trainer) {
+                    if (entity->hasVisionOf(player) and *entity) {
                         KeyManager::getInstance()->lockWasd();
                         return;
                     }
                     break;
             }
         });
-        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, 1, 3));
+        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
+        maps[MapID::ROUTE_1][1].addPokemon<Serperior>();
         maps[MapID::ROUTE_1].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
         maps[MapID::ROUTE_1].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
         maps[MapID::ROUTE_1].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });

@@ -93,7 +93,7 @@ public:
         return "Ice Beam";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The target is struck with an icy-cold beam of energy. It may also freeze the target solid.";
     }
 };

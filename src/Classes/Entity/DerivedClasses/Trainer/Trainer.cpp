@@ -82,8 +82,8 @@ void Trainer::addItem(std::unique_ptr<Item> toAdd) {
         // if item already exists within our inventory
         if (toAdd->getID() == this->items.at(type)[i]->getID()) {
             this->items.at(type)[i]->add();
+            return;
         }
-        return;
     }
 
     this->items.at(type).push_back(std::move(toAdd));

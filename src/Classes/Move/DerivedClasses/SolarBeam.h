@@ -41,7 +41,7 @@ public:
         return "Solar Beam";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.";
     }
 };

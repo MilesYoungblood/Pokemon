@@ -46,7 +46,6 @@ add_executable(PokemonBattle
         src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp
-        src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
         src/Classes/Move/DerivedClasses/WaterShuriken.h
         src/Classes/Move/DerivedClasses/VoltTackle.h

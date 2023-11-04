@@ -50,7 +50,7 @@ public:
         return "Aura Sphere";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user looses a blast of aura power from deep within its body at the target. This move is certain to hit.";
     }
 };

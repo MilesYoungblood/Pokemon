@@ -34,7 +34,7 @@ private:
 
     SDL_Texture *currentModel{nullptr};
 
-    void (*action)();
+    void (*action)(Entity *entity);
 
 public:
     Entity(int x, int y);
@@ -98,11 +98,13 @@ public:
 
     [[nodiscard]] SDL_Texture *getModel(Direction direction) const;
 
-    void setAction(void (*function)());
+    void setAction(void (*function)(Entity *entity));
 
-    void act();
+    void act(Entity *entity);
 
     void render();
 
     void resetPos();
+
+    virtual explicit operator bool() const;
 };

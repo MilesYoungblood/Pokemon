@@ -10,6 +10,10 @@ int Item::getQuantity() const {
     return this->quantity;
 }
 
+void Item::add(const int n) {
+    this->quantity += n;
+}
+
 void Item::use() {
     if (this->quantity > 0) {
         --this->quantity;
@@ -24,10 +28,6 @@ void Item::useMessage() {
     }
 
     printMessage(' ' + this->getName() + "! ");
-}
-
-void Item::add() {
-    ++this->quantity;
 }
 
 Item::operator bool() const {

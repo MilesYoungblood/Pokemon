@@ -5,11 +5,11 @@
 #include "Entity.h"
 
 Entity::Entity(int x, int y) : name(), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
-    this->action = [] -> void {};
+    this->action = [](Entity *) -> void {};
 }
 
 Entity::Entity(const char *name, const int x, const int y) : name(name), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
-    this->action = [] -> void {};
+    this->action = [](Entity *) -> void {};
 }
 
 Entity::~Entity() {
@@ -281,12 +281,12 @@ SDL_Texture * Entity::getModel(Direction direction) const {
     }
 }
 
-void Entity::setAction(void (*function)()) {
+void Entity::setAction(void (*function)(Entity *entity)) {
     this->action = function;
 }
 
-void Entity::act() {
-    this->action();
+void Entity::act(Entity *entity) {
+    this->action(entity);
 }
 
 void Entity::render() {
@@ -296,4 +296,8 @@ void Entity::render() {
 void Entity::resetPos() {
     this->screenX = this->x * TILE_SIZE;
     this->screenY = this->y * TILE_SIZE;
+}
+
+Entity::operator bool() const {
+    return false;
 }

@@ -6,9 +6,7 @@
 
 #include <fstream>
 #include <SDL.h>
-#include <SDL_image.h>
 #include <SDL_mixer.h>
-#include <SDL_ttf.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Namespaces/Factories/PokemonFactory.h"
 #include "../../Namespaces/Factories/ItemFactory.h"

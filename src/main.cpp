@@ -22,7 +22,7 @@ int main() {
         Game::update();
         Game::render();
 
-        frameTime = SDL_GetTicks() - frameStart;
+        frameTime = SDL_GetTicks64() - frameStart;
         frameDelay = 1000 / currentFps;
 
         if (frameDelay > frameTime) {

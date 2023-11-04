@@ -108,7 +108,7 @@ public:
         return "Volt Tackle";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user electrifies itself, then charges. It causes considerable damage to the user and may leave the target with paralysis.";
     }
 };

@@ -40,7 +40,7 @@ public:
         return "Quick Attack";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.";
     }
 

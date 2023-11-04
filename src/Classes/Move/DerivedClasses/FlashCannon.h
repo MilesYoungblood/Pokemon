@@ -95,7 +95,7 @@ public:
         return "Flash Cannon";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user gathers all its light energy and releases it at once. It may also lower the target’s Sp. Def stat.";
     }
 };

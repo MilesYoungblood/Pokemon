@@ -91,7 +91,7 @@ public:
         return "Extrasensory";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user attacks with an odd, unseeable power. It may also make the target flinch.";
     }
 };

@@ -17,7 +17,7 @@ private:
     Camera() : view({ 0, 0, 0, 0 }) {}
 
 public:
-    static Camera *getInstance() {
+    inline static Camera *getInstance() {
         if (Camera::instancePtr == nullptr) {
             Camera::instancePtr = new Camera();
             std::cout << "Camera instance created!\n";
@@ -26,7 +26,7 @@ public:
         return Camera::instancePtr;
     }
 
-    static void deleteInstance() {
+    inline static void deleteInstance() {
         delete Camera::instancePtr;
         Camera::instancePtr = nullptr;
         Camera::isInitialized = false;

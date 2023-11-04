@@ -103,7 +103,7 @@ public:
         return "Thunder";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.";
     }
 };

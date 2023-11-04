@@ -91,7 +91,7 @@ public:
         return "Air Slash";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user attacks with a blade of air that slices even the sky. It may also make the target flinch.";
     }
 };

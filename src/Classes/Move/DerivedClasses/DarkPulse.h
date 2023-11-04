@@ -87,7 +87,7 @@ public:
         return "Dark Pulse";
     }
 
-    [[nodiscard]] const char * getDescription() const override {
+    [[nodiscard]] const char *getDescription() const override {
         return "The user releases a horrible aura imbued with dark thoughts. It may also make the target flinch.";
     }
 };

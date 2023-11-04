@@ -58,11 +58,11 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
 
     a *= statusCalc();
     // Pokémon is automatically caught if a >= 255
-    if (a >= 255) {
+    if (a >= 255.0) {
         return true;
     }
 
-    const double b = 1048560 / sqrt(sqrt(16711680 / a));
+    const double b = 1048560.0 / sqrt(sqrt(16711680.0 / a));
     for (int i = 0; i < 4; ++i) {
         attempts.at(i) = generateInteger(0, 65535) < b;
     }

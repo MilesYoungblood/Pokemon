@@ -60,8 +60,6 @@ private:
     int quantity{ 0 };
 
 public:
-    Item() = default;
-
     explicit Item(int n);
 
     Item(const Item &) = delete;
@@ -76,11 +74,11 @@ public:
 
     [[nodiscard]] int getQuantity() const;
 
+    void add(int n = 1);
+
     void use();
 
     virtual void useMessage();
-
-    void add();
 
     [[nodiscard]] virtual std::string getName() const = 0;
 

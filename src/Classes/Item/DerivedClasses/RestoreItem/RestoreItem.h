@@ -15,9 +15,9 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] ItemType getType() const override;
 
-    void restore(Pokemon &pokemon);
+    void restore(Pokemon &pokemon) const;
 
-    void restore(Move &move);
+    void restore(Move &move) const;
 
     void restoreMessage(const Pokemon &pokemon) const;
 
