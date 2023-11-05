@@ -11,8 +11,8 @@
 #include "../../Namespaces/Factories/PokemonFactory.h"
 #include "../../Namespaces/Factories/ItemFactory.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
-#include "../../Namespaces/KeyManager/KeyManager.h"
-#include "../../Namespaces/Stopwatch.h"
+#include "../../Singletons/KeyManager/KeyManager.h"
+#include "../../Singletons/Stopwatch.h"
 
 inline Direction oppositeDirection(const Direction direction) {
     switch (direction) {
@@ -47,7 +47,7 @@ void updateBattle();
 
 void renderBattle();
 
-enum FunctionState {
+enum GameState {
     TITLE_SCREEN, OVERWORLD, BATTLE
 };
 
@@ -76,6 +76,7 @@ inline Player *player = nullptr;
 
 inline std::vector<int> walkCounters;                           // measures how many screen pixels a trainer has moved
 inline std::vector<bool> lockTrainer;                           // determines whether a trainer can move spontaneously
+inline std::vector<bool> keepLooping;
 
 inline std::array<Map, 3> maps{
         Map("Route 1", "TrainerBattle.mp3", 13, 10),
@@ -86,7 +87,7 @@ inline std::array<Map, 3> maps{
 inline int currentMapIndex;
 inline Map *currentMap = nullptr;
 
-inline FunctionState functionState = TITLE_SCREEN;              // determines which set of functions to use
+inline GameState gameState = TITLE_SCREEN;              // determines which set of functions to use
 
 inline const int NUM_FUNCTION_STATES = 3;
 

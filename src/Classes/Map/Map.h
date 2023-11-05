@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
-#include "../../Namespaces/Camera/Camera.h"
+#include "../../Singletons/Camera/Camera.h"
 
 enum MapID {
     ROUTE_1,

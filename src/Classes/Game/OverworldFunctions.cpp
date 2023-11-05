@@ -5,7 +5,6 @@
 #include <span>
 #include "Game.h"
 
-const static std::string STRING = "Pokemon White is the best Pokemon game of all time!";
 namespace {
     int wordCounter = 0;
 
@@ -20,7 +19,6 @@ void handleOverworldEvents() {
     switch (event.type) {
         case SDL_QUIT:
             timer.stop();
-            std::cout << timer.getElapsedTime() << '\n';
             Game::saveData();
             isRunning = false;
             break;
@@ -52,7 +50,6 @@ void handleOverworldEvents() {
                     break;
             }
             timer.stop();
-            timer.reset();
             break;
 
         default:
@@ -67,6 +64,12 @@ void changeMap(const std::array<int, 3> &data) {
     if (Mix_FadeOutMusic(2000) != 0) {
         std::cout << "Fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\"!\n";
     }
+    else {
+        std::cerr << "Error fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\":"
+                  << SDL_GetError() << '\n';
+        isRunning = false;
+        return;
+    }
 
     Mix_HookMusicFinished([] -> void {
         Mix_FreeMusic(gameMusic);
@@ -79,7 +82,7 @@ void changeMap(const std::array<int, 3> &data) {
             std::cout << "Loaded \"" << song_name << "\"!\n";
         }
         else {
-            std::cerr << "Error loading \"" << song_name << "\":" << SDL_GetError() << '\n';
+            std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
             isRunning = false;
             return;
         }
@@ -88,7 +91,7 @@ void changeMap(const std::array<int, 3> &data) {
             std::cout << "Playing \"" << song_name << "\"!\n";
         }
         else {
-            std::cerr << "Error playing \"" << song_name << "\":" << SDL_GetError() << '\n';
+            std::cerr << "Error playing \"" << song_name << "\": " << SDL_GetError() << '\n';
             isRunning = false;
             return;
         }
@@ -103,6 +106,7 @@ void changeMap(const std::array<int, 3> &data) {
     // resets the states of these variables for each trainer
     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
     lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
+    keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
     player->setCoordinates(data[0], data[1]);
 
@@ -117,28 +121,23 @@ void checkForOpponents() {
         walkCounter = 0;
     };
 
-    const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
-
     // resets movement variables if you are not inputting any directions
     if (not(KeyManager::getInstance()->getKey(SDL_SCANCODE_W) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_A) or
             KeyManager::getInstance()->getKey(SDL_SCANCODE_S) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) or span[SDL_SCANCODE_W] == 0 and
-        span[SDL_SCANCODE_A] == 0 and span[SDL_SCANCODE_S] == 0 and span[SDL_SCANCODE_D] == 0) {
+            KeyManager::getInstance()->getKey(SDL_SCANCODE_D))) {
         resetVariables();
     }
 
     Trainer *trainer;
 
-    static bool waitingForInput = false;
-    static bool on = true;
-
     // checks if the player is in LoS for any trainer
     for (int i = 0; i < currentMap->numTrainers(); ++i) {
         trainer = &(*currentMap)[i];
 
-        // FIXME change on with trainer
-        if (trainer->hasVisionOf(player) and on) {
+        if (*trainer and keepLooping[i] and trainer->hasVisionOf(player)) {
+            KeyManager::getInstance()->lockWasd();
+            KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
             resetVariables();
             lockTrainer[i] = true;
 
@@ -150,23 +149,11 @@ void checkForOpponents() {
                     trainer->moveForward();
                 }
             }
-            else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN) and waitingForInput) {
-                waitingForInput = false;
-                //TODO this is where the battle will start
-            }
-            else if (not waitingForInput) {
+            else {
                 player->face(trainer);
-                print = not print;
-                waitingForInput = print;
-                on = print;
-                if (print) {
-                    KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
-                }
-                lockTrainer[i] = print;
-                KeyManager::getInstance()->lockWasd();
+                print = true;
+                keepLooping[i] = false;
                 wordCounter = 0;
-
-                SDL_DestroyTexture(text);
             }
             break;
         }
@@ -185,11 +172,6 @@ void updateTrainers() {
         switch (generateInteger(1, 100)) {
             case 1:
                 entity->face(entity);
-
-                if (entity->hasVisionOf(player) and *entity) {
-                    KeyManager::getInstance()->lockWasd();
-                    return;
-                }
                 break;
 
             case 2:
@@ -198,11 +180,6 @@ void updateTrainers() {
                 }
                 else if (entity->isFacingEast() or entity->isFacingWest()) {
                     coinFlip() ? entity->faceNorth() : entity->faceSouth();
-                }
-
-                if (entity->hasVisionOf(player) and *entity) {
-                    KeyManager::getInstance()->lockWasd();
-                    return;
                 }
                 break;
         }
@@ -220,32 +197,36 @@ void updateOverworld() {
         if (not player->isFacingNorth()) {
             player->faceNorth();
         }
-        if (span[SDL_SCANCODE_W] == 1 and player->canMoveForward(currentMap)) {
+        if (span[SDL_SCANCODE_W] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
+            timer.reset();
         }
     }
     else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_A)) {
         if (not player->isFacingWest()) {
             player->faceWest();
         }
-        if (span[SDL_SCANCODE_A] == 1 and player->canMoveForward(currentMap)) {
+        if (span[SDL_SCANCODE_A] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
+            timer.reset();
         }
     }
     else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_S)) {
         if (not player->isFacingSouth()) {
             player->faceSouth();
         }
-        if (span[SDL_SCANCODE_S] == 1 and player->canMoveForward(currentMap)) {
+        if (span[SDL_SCANCODE_S] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
+            timer.reset();
         }
     }
     else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) {
         if (not player->isFacingEast()) {
             player->faceEast();
         }
-        if (span[SDL_SCANCODE_D] == 1 and player->canMoveForward(currentMap)) {
+        if (span[SDL_SCANCODE_D] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
+            timer.reset();
         }
     }
     else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN)) {
@@ -265,6 +246,13 @@ void updateOverworld() {
                 wordCounter = 0;
 
                 SDL_DestroyTexture(text);
+                if (strlen(SDL_GetError()) == 0ULL) {
+                    std::cout << "Texture destroyed!\n";
+                }
+                else {
+                    std::cerr << "Error destroying texture (texture may have already been deleted): "
+                              << SDL_GetError() << '\n';
+                }
                 break;
             }
             // FIXME possibly get rid of second expression
@@ -293,7 +281,7 @@ void updateOverworld() {
     updateTrainers();
 }
 
-void renderTextBox() {
+void renderTextBox(const char * /*message*/ = "") {
     const static int box_width = TILE_SIZE * 7;
     const static int box_height = TILE_SIZE * 2;
 
@@ -323,13 +311,15 @@ void renderTextBox() {
     static int width;
     static int height;
 
+    const std::string string = "Pokemon White is the best Pokemon game of all time!";
+
     // if the string has not yet completed concatenation
-    if (STRING.length() >= wordCounter) {
+    if (string.length() >= wordCounter) {
         //safe delete the current texture
         SDL_DestroyTexture(text);
 
         // buffer is required to store the substring
-        const std::string buffer = wordCounter > 0 ? STRING.substr(0, wordCounter) : " ";
+        const std::string buffer = wordCounter > 0 ? string.substr(0, wordCounter) : " ";
 
         // recreate the texture
         SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), { 0, 0, 0 }, text_box.w);
@@ -340,7 +330,7 @@ void renderTextBox() {
 
         SDL_FreeSurface(temp);
 
-        // increment the word elapsedTime
+        // increment the word counter
         ++wordCounter;
     }
     else {

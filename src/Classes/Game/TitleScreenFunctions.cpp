@@ -71,12 +71,13 @@ void handleTitleScreenEvents() {
 
                     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
                     lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
+                    keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
                     SDL_DestroyTexture(logo);
                     SDL_DestroyTexture(text);
                     SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
-                    functionState = OVERWORLD;
+                    gameState = OVERWORLD;
 
                     break;
                 default:

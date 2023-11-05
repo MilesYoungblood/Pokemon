@@ -47,7 +47,7 @@ public:
 
     // returns whether an entity is in view of the camera,
     // thus enabling the rendering of only the necessary objects
-    SDL_bool isInView(const SDL_Rect &rect) {
+    [[nodiscard]] SDL_bool isInView(const SDL_Rect &rect) const {
         return SDL_HasIntersection(&rect, &this->view);
     }
 

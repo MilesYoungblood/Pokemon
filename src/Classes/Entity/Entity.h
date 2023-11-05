@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Namespaces/TextureManager/TextureManager.h"
+#include "../../Singletons/TextureManager/TextureManager.h"
 #include <vector>
 #include <sstream>
 
@@ -43,7 +43,7 @@ public:
     Entity(const Entity &&) = delete;
     Entity & operator=(const Entity &) = delete;
     Entity & operator=(const Entity &&) = delete;
-    ~Entity();
+    virtual ~Entity();
 
     [[nodiscard]] std::string getName() const;
 

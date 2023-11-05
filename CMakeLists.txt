@@ -76,8 +76,8 @@ add_executable(PokemonBattle
         src/Classes/Move/DerivedClasses/DarkPulse.h
         src/Classes/Move/DerivedClasses/Extrasensory.h
         src/Classes/Move/DerivedClasses/AirSlash.h
-        src/Namespaces/TextureManager/TextureManager.h
-        src/Namespaces/Camera/Camera.h
+        src/Singletons/TextureManager/TextureManager.h
+        src/Singletons/Camera/Camera.h
         src/Namespaces/Factories/PokemonFactory.h
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h
         src/Classes/Move/MoveList.h
@@ -87,8 +87,9 @@ add_executable(PokemonBattle
         src/Classes/Game/OverworldFunctions.cpp
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
-        src/Namespaces/KeyManager/KeyManager.h
-        src/Namespaces/Stopwatch.h
+        src/Singletons/KeyManager/KeyManager.h
+        src/Singletons/Stopwatch.h
+        src/Singletons/TextRenderer/TextRenderer.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)

@@ -43,7 +43,7 @@ Game::Game() {
     SDL_FreeSurface(pokeball);
 
     // create renderer
-    gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0);
+    gameRenderer = SDL_CreateRenderer(gameWindow, -1, 0U);
     if (gameRenderer != nullptr) {
         std::cout << "Renderer created!\n";
     }
@@ -182,16 +182,16 @@ Game::~Game() {
 
 void Game::handleEvents() {
     SDL_PollEvent(&event);
-    HANDLE_FUNCTIONS.at(functionState)();
+    HANDLE_FUNCTIONS.at(gameState)();
 }
 
 void Game::update() {
-    UPDATE_FUNCTIONS.at(functionState)();
+    UPDATE_FUNCTIONS.at(gameState)();
 }
 
 void Game::render() {
     SDL_RenderClear(gameRenderer);
-    RENDER_FUNCTIONS.at(functionState)();
+    RENDER_FUNCTIONS.at(gameState)();
     SDL_RenderPresent(gameRenderer);
 }
 
@@ -400,32 +400,6 @@ void Game::loadData() {
         Map::initTextures();
 
         maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
-        maps[MapID::ROUTE_1][0].setAction([](Entity *entity) -> void {
-            switch (generateInteger(1, 100)) {
-                case 1:
-                    entity->face(entity);
-
-                    if (entity->hasVisionOf(player) and *entity) {
-                        KeyManager::getInstance()->lockWasd();
-                        return;
-                    }
-                    break;
-
-                case 2:
-                    if (entity->isFacingNorth() or entity->isFacingSouth()) {
-                        coinFlip() ? entity->faceEast() : entity->faceWest();
-                    }
-                    else if (entity->isFacingEast() or entity->isFacingWest()) {
-                        coinFlip() ? entity->faceNorth() : entity->faceSouth();
-                    }
-
-                    if (entity->hasVisionOf(player) and *entity) {
-                        KeyManager::getInstance()->lockWasd();
-                        return;
-                    }
-                    break;
-            }
-        });
         maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
         maps[MapID::ROUTE_1][1].addPokemon<Serperior>();
         maps[MapID::ROUTE_1].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
