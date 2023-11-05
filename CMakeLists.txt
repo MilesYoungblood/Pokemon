@@ -89,7 +89,6 @@ add_executable(PokemonBattle
         src/Classes/Game/TitleScreenFunctions.cpp
         src/Singletons/KeyManager/KeyManager.h
         src/Singletons/Stopwatch.h
-        src/Singletons/TextRenderer/TextRenderer.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)

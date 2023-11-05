@@ -209,8 +209,8 @@ public:
     }
 
     bool get(SDL_Scancode key) {
-        const std::span span(SDL_GetKeyboardState(nullptr), 248ULL);
-        return span[key] == 1 and not this->keyStates[key].locked;
+        const std::span keys(SDL_GetKeyboardState(nullptr), 248ULL);
+        return keys[key] == 1 and not this->keyStates[key].locked;
     }
 
     // returns true if any of the keys are currently pressed

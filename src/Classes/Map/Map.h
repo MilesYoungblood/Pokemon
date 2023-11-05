@@ -13,6 +13,21 @@ enum MapID {
     ROUTE_3
 };
 
+template<typename T>
+class IType {
+private:
+    T *p;
+
+public:
+    explicit IType(T *p) : p(p) {}
+
+    bool operator!=(IType rhs) const { return this->p != rhs.p; }
+
+    T &operator*() const { return *p; }
+
+    void operator++() { ++p; }
+};
+
 class Map {
 private:
     enum TileID {

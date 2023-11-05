@@ -87,9 +87,9 @@ inline std::array<Map, 3> maps{
 inline int currentMapIndex;
 inline Map *currentMap = nullptr;
 
-inline GameState gameState = TITLE_SCREEN;              // determines which set of functions to use
+inline GameState gameState = TITLE_SCREEN;                       // determines which set of functions to use
 
-inline const int NUM_FUNCTION_STATES = 3;
+inline constexpr int NUM_FUNCTION_STATES = 3;
 
 inline const static std::array<void (*)(), NUM_FUNCTION_STATES> HANDLE_FUNCTIONS{
         handleTitleScreenEvents, handleOverworldEvents, handleBattleEvents

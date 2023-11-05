@@ -178,7 +178,7 @@ void updateTrainers() {
                 if (entity->isFacingNorth() or entity->isFacingSouth()) {
                     coinFlip() ? entity->faceEast() : entity->faceWest();
                 }
-                else if (entity->isFacingEast() or entity->isFacingWest()) {
+                else {
                     coinFlip() ? entity->faceNorth() : entity->faceSouth();
                 }
                 break;
@@ -188,7 +188,6 @@ void updateTrainers() {
 
 void updateOverworld() {
     const std::array<int, 3> map_data = currentMap->isExitPointHere(player->getX(), player->getY());
-    const std::span span = std::span(SDL_GetKeyboardState(nullptr), 248ULL);
 
     if (map_data[2] != -1) {
         changeMap(map_data);
@@ -197,7 +196,7 @@ void updateOverworld() {
         if (not player->isFacingNorth()) {
             player->faceNorth();
         }
-        if (span[SDL_SCANCODE_W] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_W) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -206,7 +205,7 @@ void updateOverworld() {
         if (not player->isFacingWest()) {
             player->faceWest();
         }
-        if (span[SDL_SCANCODE_A] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_A) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -215,7 +214,7 @@ void updateOverworld() {
         if (not player->isFacingSouth()) {
             player->faceSouth();
         }
-        if (span[SDL_SCANCODE_S] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_S) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -224,7 +223,7 @@ void updateOverworld() {
         if (not player->isFacingEast()) {
             player->faceEast();
         }
-        if (span[SDL_SCANCODE_D] == 1 and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_D) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -237,12 +236,13 @@ void updateOverworld() {
                 print = not print;
                 if (print) {
                     KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance()->lockWasd();
                 }
                 else {
                     KeyManager::getInstance()->unlockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance()->unlockWasd();
                 }
-                lockTrainer[i] = not lockTrainer[i];
-                KeyManager::getInstance()->toggleWasd();
+                lockTrainer[i] = print;
                 wordCounter = 0;
 
                 SDL_DestroyTexture(text);
@@ -253,11 +253,12 @@ void updateOverworld() {
                     std::cerr << "Error destroying texture (texture may have already been deleted): "
                               << SDL_GetError() << '\n';
                 }
+
+                // FIXME possibly get rid of second expression
+                if ((*currentMap)[i] and not print) {
+                    //TODO this is where battle would start
+                }
                 break;
-            }
-            // FIXME possibly get rid of second expression
-            if ((*currentMap)[i] and not print) {
-                //TODO this is where battle would hypothetically start
             }
         }
         KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);

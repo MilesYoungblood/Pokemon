@@ -196,7 +196,7 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile;
+    std::ofstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
     if (not saveFile) {
         std::cerr << "Unable to open file\n";
         isRunning = false;
