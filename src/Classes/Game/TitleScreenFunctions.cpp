@@ -4,7 +4,9 @@
 
 #include "Game.h"
 
-bool showPrompt = true;
+namespace {
+    bool showPrompt = true;
+}
 
 void handleTitleScreenEvents() {
     switch (event.type) {
@@ -16,7 +18,7 @@ void handleTitleScreenEvents() {
                 case SDL_SCANCODE_RETURN:
                     Mix_FreeMusic(gameMusic);
 
-                    static Mix_Chunk *sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\SFX\\selection.wav").data());
+                    static Mix_Chunk *sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\sfx\\selection.wav").data());
                     if (sound != nullptr) {
                         std::cout << "Loaded \"selection\"!\n";
                     }
@@ -74,7 +76,23 @@ void handleTitleScreenEvents() {
                     keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
                     SDL_DestroyTexture(logo);
+                    if (strlen(SDL_GetError()) == 0) {
+                        std::cout << "Texture destroyed!\n";
+                    }
+                    else {
+                        std::cerr << "Error destroying texture: " << SDL_GetError() << '\n';
+                        SDL_ClearError();
+                        isRunning = false;
+                    }
                     SDL_DestroyTexture(text);
+                    if (strlen(SDL_GetError()) == 0) {
+                        std::cout << "Texture destroyed!\n";
+                    }
+                    else {
+                        std::cerr << "Error destroying texture: " << SDL_GetError() << '\n';
+                        SDL_ClearError();
+                        isRunning = false;
+                    }
                     SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
                     gameState = OVERWORLD;

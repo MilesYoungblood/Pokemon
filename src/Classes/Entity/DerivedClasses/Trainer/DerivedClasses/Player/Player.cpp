@@ -8,12 +8,19 @@ Player *Player::instancePtr = nullptr;
 std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> Player::pc;
 
 Player::Player(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
-    this->setFrontModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
-    this->setBackModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
-    this->setLeftModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
-    this->setRightModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
-
     this->setDirection(direction);
+    this->setUpAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetUp.png)"),
+            4, 1);
+    this->setDownAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetDown.png)"),
+            4, 1);
+    this->setLeftAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetLeft.png)"),
+            4, 1);
+    this->setRightAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetRight.png)"),
+            4, 1);
 
     std::cout << "Player created!\n\n";
 }

@@ -4,8 +4,11 @@
 
 #pragma once
 
-#include "../../Singletons/TextureManager/TextureManager.h"
+#include "../../Classes/Animation/Animation.h"
+#include <array>
+#include <utility>
 #include <vector>
+#include <memory>
 #include <sstream>
 
 inline const int TILE_SIZE = 80;
@@ -18,7 +21,7 @@ class Entity {
 private:
     std::vector<std::string> dialogue;
 
-    const char *name;
+    const char *name{""};
 
     int x{0};                                           // x-coordinate on map
     int y{0};                                           // y-coordinate on map
@@ -27,23 +30,18 @@ private:
     int vision{1};                                      // line of sight
     Direction currentDirection{Direction::DOWN};        // numerical representation of which way the trainer is facing
 
-    SDL_Texture *frontModel{nullptr};                   // model of the entity when facing south
-    SDL_Texture *backModel{nullptr};                    // model of the entity when facing north
-    SDL_Texture *leftModel{nullptr};                    // model of the entity when facing west
-    SDL_Texture *rightModel{nullptr};                   // model of the entity when facing east
-
-    SDL_Texture *currentModel{nullptr};
+    std::array<std::unique_ptr<Animation>, 4> animations;
 
     void (*action)(Entity *entity);
 
 public:
     Entity(int x, int y);
     Entity(const char *name, int x, int y);
-    Entity(const Entity &) = default;
+    Entity(const Entity &) = delete;
     Entity(const Entity &&) = delete;
     Entity & operator=(const Entity &) = delete;
     Entity & operator=(const Entity &&) = delete;
-    virtual ~Entity();
+    virtual ~Entity() = default;
 
     [[nodiscard]] std::string getName() const;
 
@@ -89,22 +87,48 @@ public:
     [[nodiscard]] int getScreenX() const;
     [[nodiscard]] int getScreenY() const;
 
-    void setFrontModel(SDL_Texture *newFrontModel);
-    void setBackModel(SDL_Texture *newBackModel);
-    void setLeftModel(SDL_Texture *newLeftModel);
-    void setRightModel(SDL_Texture  *newRightModel);
+    inline void setUpAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
+        this->animations[Direction::UP] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+    }
 
-    void setCurrentModel(SDL_Texture *newCurrentModel);
+    inline void setDownAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
+        this->animations[Direction::DOWN] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+    }
 
-    [[nodiscard]] SDL_Texture *getModel(Direction direction) const;
+    inline void setLeftAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
+        this->animations[Direction::LEFT] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+    }
 
-    void setAction(void (*function)(Entity *entity));
+    inline void setRightAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
+        this->animations[Direction::RIGHT] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+    }
 
-    void act(Entity *entity);
+    inline void setAction(void (*function)(Entity *entity)) {
+        this->action = function;
+    }
 
-    void render();
+    inline void act(Entity *entity) {
+        this->action(entity);
+    }
 
-    void resetPos();
+    inline void updateAnimation() {
+        this->animations.at(this->currentDirection)->update();
+    }
+
+    inline void render() {
+        // FIXME figure out why try/catch is needed and remove
+        try {
+            this->animations.at(this->currentDirection)->draw({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
+        }
+        catch (const std::exception &e) {
+            std::cout << "Error rendering animation: " << e.what() << '\n';
+        }
+    }
+
+    inline void resetPos() {
+        this->screenX = this->x * TILE_SIZE;
+        this->screenY = this->y * TILE_SIZE;
+    }
 
     virtual explicit operator bool() const;
 };

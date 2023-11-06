@@ -6,19 +6,26 @@
 
 Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items(), numItems() {
     //FIXME change these to not be Hilbert
-    this->setFrontModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_front.png)"));
-    this->setBackModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_back.png)"));
-    this->setLeftModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_left.png)"));
-    this->setRightModel(TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert_right.png)"));
-
-    this->setCurrentModel(this->getModel(Direction::DOWN));
+    this->setUpAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetUp.png)"),
+            4, 1);
+    this->setDownAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetDown.png)"),
+            4, 1);
+    this->setLeftAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetLeft.png)"),
+            4, 1);
+    this->setRightAnimation(
+            TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetRight.png)"),
+            4, 1);
 }
 
 Trainer::Trainer(const char *name, const int x, const int y, const int direction) : Trainer(name, x, y) {
     this->setDirection(static_cast<Direction>(direction));
 }
 
-Trainer::Trainer(const char *name, const int x, const int y, const int direction, const int vision) : Trainer(name, x, y, direction) {
+Trainer::Trainer(const char *name, const int x, const int y, const int direction, const int vision)
+        : Trainer(name, x, y, direction) {
     this->setVision(vision);
 }
 
@@ -51,11 +58,8 @@ void Trainer::removePokemon(const int index) {
     if (this->party[index]->isFainted()) {
         --this->numFainted;
     }
-    //delete this->party[index];
-    //this->party[index] = nullptr;
 
     this->party.erase(this->party.begin() + index);
-
     --this->numPokemon;
 }
 
@@ -95,11 +99,7 @@ void Trainer::removeItem(const int type, const int index) {
         throw std::runtime_error("Out of bounds: removeItem");
     }
 
-    //delete this->items.at(type)[index];
-    //this->items.at(type)[index] = nullptr;
-
     this->items.at(type).erase(this->items.at(type).begin() + index);
-
     --this->numItems.at(type);
 }
 

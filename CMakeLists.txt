@@ -4,13 +4,7 @@ project(PokemonBattle)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
-
-set(SDL2_PATH "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32")
-
-find_package(SDL2 REQUIRED)
-include_directories(${SDL2_INCLUDE_DIR})
-
+include_directories("C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2")
@@ -89,11 +83,12 @@ add_executable(PokemonBattle
         src/Classes/Game/TitleScreenFunctions.cpp
         src/Singletons/KeyManager/KeyManager.h
         src/Singletons/Stopwatch.h
+        src/Classes/Animation/Animation.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARY})
+target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll")

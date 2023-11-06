@@ -69,7 +69,12 @@ public:
         return texture;
     }
 
-    void draw(SDL_Texture *texture, SDL_Rect dest) {
+    void draw(SDL_Texture *texture, const SDL_Rect &dest) {
         SDL_RenderCopy(this->textureRenderer, texture, nullptr, &dest);
+    }
+
+    void drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int frame, int row) {
+        const SDL_Rect src{ dest.w * frame, dest.h * row, dest.w, dest.h };
+        SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
     }
 };

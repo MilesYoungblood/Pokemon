@@ -12,13 +12,6 @@ Entity::Entity(const char *name, const int x, const int y) : name(name), x(x), y
     this->action = [](Entity *) -> void {};
 }
 
-Entity::~Entity() {
-    SDL_DestroyTexture(this->frontModel);
-    SDL_DestroyTexture(this->backModel);
-    SDL_DestroyTexture(this->leftModel);
-    SDL_DestroyTexture(this->rightModel);
-}
-
 std::string Entity::getName() const {
     return this->name;
 }
@@ -87,41 +80,22 @@ void Entity::moveForward() {
 
 void Entity::faceNorth() {
     this->currentDirection = Direction::UP;
-    this->currentModel = this->backModel;
 }
 
 void Entity::faceEast() {
     this->currentDirection = Direction::RIGHT;
-    this->currentModel = this->rightModel;
 }
 
 void Entity::faceSouth() {
     this->currentDirection = Direction::DOWN;
-    this->currentModel = this->frontModel;
 }
 
 void Entity::faceWest() {
     this->currentDirection = Direction::LEFT;
-    this->currentModel = this->leftModel;
 }
 
 void Entity::setDirection(const Direction newDirection) {
     this->currentDirection = newDirection;
-
-    switch (this->currentDirection) {
-        case UP:
-            this->currentModel = this->backModel;
-            break;
-        case RIGHT:
-            this->currentModel = this->rightModel;
-            break;
-        case DOWN:
-            this->currentModel = this->frontModel;
-            break;
-        case LEFT:
-            this->currentModel = this->leftModel;
-            break;
-    }
 }
 
 Direction Entity::getDirection() const {
@@ -244,58 +218,6 @@ int Entity::getScreenX() const {
 
 int Entity::getScreenY() const {
     return this->screenY;
-}
-
-void Entity::setFrontModel(SDL_Texture *newFrontModel) {
-    this->frontModel = newFrontModel;
-}
-
-void Entity::setBackModel(SDL_Texture *newBackModel) {
-    this->backModel = newBackModel;
-}
-
-void Entity::setLeftModel(SDL_Texture *newLeftModel) {
-    this->leftModel = newLeftModel;
-}
-
-void Entity::setRightModel(SDL_Texture *newRightModel) {
-    this->rightModel = newRightModel;
-}
-
-void Entity::setCurrentModel(SDL_Texture *newCurrentModel) {
-    this->currentModel = newCurrentModel;
-}
-
-SDL_Texture * Entity::getModel(Direction direction) const {
-    switch (direction) {
-        case UP:
-            return this->backModel;
-        case DOWN:
-            return this->frontModel;
-        case LEFT:
-            return this->leftModel;
-        case RIGHT:
-            return this->rightModel;
-        default:
-            throw std::runtime_error("Unexpected error: function getModel");
-    }
-}
-
-void Entity::setAction(void (*function)(Entity *entity)) {
-    this->action = function;
-}
-
-void Entity::act(Entity *entity) {
-    this->action(entity);
-}
-
-void Entity::render() {
-    TextureManager::getInstance()->draw(this->currentModel, { this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
-}
-
-void Entity::resetPos() {
-    this->screenX = this->x * TILE_SIZE;
-    this->screenY = this->y * TILE_SIZE;
 }
 
 Entity::operator bool() const {

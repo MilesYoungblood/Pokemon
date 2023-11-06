@@ -106,7 +106,7 @@ void Map::initTextures() {
     // and if Maps are not already initialized
     if (not isInitialized and TextureManager::wasInitialized()) {
         Map::obstruction = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
-        Map::grass = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\grass.png)");
+        Map::grass = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
 
         isInitialized = true;
     }

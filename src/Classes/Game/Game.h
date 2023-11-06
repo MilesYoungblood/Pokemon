@@ -52,11 +52,11 @@ enum GameState {
 };
 
 inline const std::array<int, 2> FPS{ 30, 60 };                  // FPS is 30 during overworld, and 60 during battles
-inline int currentFps = FPS[0];
+inline int currentFps = FPS[1];
 
 inline constexpr static int WINDOW_WIDTH = TILE_SIZE * 9;       // width of the window
 inline constexpr static int WINDOW_HEIGHT = TILE_SIZE * 7;      // height of the window
-inline constexpr static int SCROLL_SPEED = TILE_SIZE / 10;      // scroll speed
+inline const static int SCROLL_SPEED = TILE_SIZE / 10 / (currentFps / 30);      // scroll speed
 
 inline constexpr static int FONT_SIZE = 20;                     // font size for message box text
 

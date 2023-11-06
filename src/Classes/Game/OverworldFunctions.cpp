@@ -6,7 +6,7 @@
 #include "Game.h"
 
 namespace {
-    int wordCounter = 0;
+    int letterCounter = 0;
 
     int walkCounter = 0;                                     // measures how many screen pixels the player has moved
 
@@ -116,7 +116,7 @@ void changeMap(const std::array<int, 3> &data) {
 }
 
 void checkForOpponents() {
-    void (*resetVariables)() = [] -> void {
+    static void (*resetVariables)() = [] -> void {
         keepMovingForward = false;
         walkCounter = 0;
     };
@@ -129,7 +129,7 @@ void checkForOpponents() {
         resetVariables();
     }
 
-    Trainer *trainer;
+    Trainer *trainer;       // variable to reduce the number of function calls
 
     // checks if the player is in LoS for any trainer
     for (int i = 0; i < currentMap->numTrainers(); ++i) {
@@ -145,6 +145,10 @@ void checkForOpponents() {
                 trainer->shiftDirectionOnMap(trainer->getDirection(), SCROLL_SPEED);
                 walkCounters[i] += SCROLL_SPEED;
 
+                if (walkCounters[i] % (TILE_SIZE / 2) == 0) {
+                    trainer->updateAnimation();
+                }
+
                 if (walkCounters[i] % TILE_SIZE == 0) {
                     trainer->moveForward();
                 }
@@ -153,7 +157,7 @@ void checkForOpponents() {
                 player->face(trainer);
                 print = true;
                 keepLooping[i] = false;
-                wordCounter = 0;
+                letterCounter = 0;
             }
             break;
         }
@@ -169,7 +173,7 @@ void updateTrainers() {
 
         Trainer *entity = &(*currentMap)[i];
 
-        switch (generateInteger(1, 100)) {
+        switch (generateInteger(1, 100 * currentFps / 30)) {
             case 1:
                 entity->face(entity);
                 break;
@@ -196,7 +200,8 @@ void updateOverworld() {
         if (not player->isFacingNorth()) {
             player->faceNorth();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_W) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_W) and player->canMoveForward(currentMap) and
+            timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -205,7 +210,8 @@ void updateOverworld() {
         if (not player->isFacingWest()) {
             player->faceWest();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_A) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_A) and player->canMoveForward(currentMap) and
+            timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -214,7 +220,8 @@ void updateOverworld() {
         if (not player->isFacingSouth()) {
             player->faceSouth();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_S) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_S) and player->canMoveForward(currentMap) and
+            timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -223,7 +230,8 @@ void updateOverworld() {
         if (not player->isFacingEast()) {
             player->faceEast();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_D) and player->canMoveForward(currentMap) and timer.getElapsedTime() >= 10) {
+        if (KeyManager::getInstance()->get(SDL_SCANCODE_D) and player->canMoveForward(currentMap) and
+            timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
@@ -243,7 +251,7 @@ void updateOverworld() {
                     KeyManager::getInstance()->unlockWasd();
                 }
                 lockTrainer[i] = print;
-                wordCounter = 0;
+                letterCounter = 0;
 
                 SDL_DestroyTexture(text);
                 if (strlen(SDL_GetError()) == 0ULL) {
@@ -265,6 +273,9 @@ void updateOverworld() {
     }
 
     if (keepMovingForward) {
+        if (walkCounter % (TILE_SIZE / 2) == 0) {
+            player->updateAnimation();
+        }
         if (walkCounter % TILE_SIZE == 0) {
             player->moveForward();
         }
@@ -275,17 +286,18 @@ void updateOverworld() {
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
-        keepMovingForward = false;
+        if (not player->canMoveForward(currentMap)) {
+            keepMovingForward = false;
+        }
         checkForOpponents();
     }
 
     updateTrainers();
 }
 
-void renderTextBox(const char * /*message*/ = "") {
+void renderTextBox(const std::string &message = "Pokemon White is the best Pokemon game of all time!") {
     const static int box_width = TILE_SIZE * 7;
     const static int box_height = TILE_SIZE * 2;
-
     const static SDL_Rect text_box{
             WINDOW_WIDTH / 2 - box_width / 2,
             WINDOW_HEIGHT - box_height,
@@ -312,29 +324,36 @@ void renderTextBox(const char * /*message*/ = "") {
     static int width;
     static int height;
 
-    const std::string string = "Pokemon White is the best Pokemon game of all time!";
-
     // if the string has not yet completed concatenation
-    if (string.length() >= wordCounter) {
+    if (message.length() >= letterCounter) {
         //safe delete the current texture
         SDL_DestroyTexture(text);
+        if (strlen(SDL_GetError()) == 0) {
+            std::cout << "Texture destroyed!\n";
+        }
+        else {
+            std::cerr << "Error destroying texture: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
 
         // buffer is required to store the substring
-        const std::string buffer = wordCounter > 0 ? string.substr(0, wordCounter) : " ";
+        const std::string buffer = letterCounter > 0 ? message.substr(0, letterCounter) : " ";
 
         // recreate the texture
         SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), { 0, 0, 0 }, text_box.w);
         text = SDL_CreateTextureFromSurface(gameRenderer, temp);
 
+        // save the width and height of the text just in case next iteration, this branch isn't executed
         width = temp->w;
         height = temp->h;
 
         SDL_FreeSurface(temp);
 
         // increment the word counter
-        ++wordCounter;
+        ++letterCounter;
     }
     else {
+        // unlocks Enter once the message has finished printing
         KeyManager::getInstance()->unlockKey(SDL_SCANCODE_RETURN);
     }
 
