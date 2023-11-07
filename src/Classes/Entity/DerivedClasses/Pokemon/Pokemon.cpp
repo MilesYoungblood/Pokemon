@@ -67,18 +67,14 @@ double Pokemon::getStatMod(const int stat) {
     }
 }
 
-PokemonID Pokemon::getID() const {
-    return static_cast<PokemonID>(300);
-}
-
 int Pokemon::numMoves() const { return this->moveCounter; }
 
-void Pokemon::addMove(std::unique_ptr<Move> move) {
+void Pokemon::addMove(std::unique_ptr<Move> toAdd) {
     if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
         return;
     }
 
-    this->moveSet.push_back(std::move(move));
+    this->moveSet.push_back(std::move(toAdd));
     ++this->moveCounter;
 }
 

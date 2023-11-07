@@ -11,9 +11,9 @@ struct PokeBall : public Item {
 
     [[nodiscard]] virtual double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
 
-    [[nodiscard]] ItemType getType() const override;
+    [[nodiscard]] Item::Class getType() const override;
 
-    [[nodiscard]] ItemID getID() const override;
+    [[nodiscard]] Item::ID getID() const override;
 
     [[nodiscard]] std::string getName() const override;
 

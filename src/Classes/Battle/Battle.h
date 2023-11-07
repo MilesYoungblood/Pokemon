@@ -9,30 +9,30 @@
 
 class Battle {
 private:
-    static Player *player;
-    static Trainer *opponent;
-    static size_t turn;
+    Player *player;
+    Trainer *opponent;
+    size_t turn;
 
-    static bool skipPlayerTurn;
-    static bool skipOpponentTurn;
+    bool skipPlayerTurn;
+    bool skipOpponentTurn;
 
     static void sendOutMessage(const Pokemon &pokemon, bool isPlayer);
 
     static void returnMessage(const Pokemon &pokemon);
 
-    static void introMessage();
+    void introMessage();
 
-    static void displayChoices(int arrow, bool &print);
+    void displayChoices(int arrow, bool &print);
 
-    static void displayPokemon(int arrow, bool &index);
+    void displayPokemon(int arrow, bool &index);
 
-    static void displayHPBar(bool displayPokemon);
+    void displayHpBar(bool displayPokemon);
 
     static void faintMessage(const Pokemon &pokemon);
 
     static void forcedSwitchPrompt(int arrow, bool &print);
 
-    static bool run();
+    bool run();
 
     static void runMessage(bool runStatus);
 
@@ -42,7 +42,7 @@ private:
 
     static void switchOutMessage(const Trainer *trainer, int pokemonSwitched);
 
-    static void inBattleMessage();
+    void inBattleMessage();
 
     static void winMessage();
 
@@ -64,26 +64,28 @@ private:
 
     static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
 
-    static void switchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
+    void switchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
 
-    static void action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
+    void action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
 
-    static void preStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
+    void preStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
 
-    static void postStatus(bool isUserFaster, bool &keepPlaying);
+    void postStatus(bool isUserFaster, bool &keepPlaying);
 
-    static int chooseMove(bool &skip);
+    int chooseMove(bool &skip);
 
-    static void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
+    void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
 
-    static bool runAway(bool &skip, bool canRun);
+    bool runAway(bool &skip, bool canRun);
 
-    static void choosePokemon(bool &skip);
+    void choosePokemon(bool &skip);
 
-    static void fight(int userMove, bool &keepPlaying);
+    void fight(int userMove, bool &keepPlaying);
 
-    static void engageBattle(bool isTrainer);
+    Battle(Player *trainer1, Trainer *trainer2);
 
 public:
-    Battle(Player *trainer1, Trainer *trainer2);
+    static Battle &getInstance(Player *trainer1, Trainer *trainer2);
+
+    void engageBattle(bool isTrainer);
 };

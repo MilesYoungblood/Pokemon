@@ -29,24 +29,24 @@ Map::Map(const char *name, const char *music, int width, int height)
         this->layout[i].resize(this->height);
 
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = { Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
+            this->layout[i][j] = { Map::Tile::ID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
         }
     }
 
     // set the top border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][0].id = Map::TileID::OBSTRUCTION;
+        this->layout[x][0].id = Map::Tile::ID::OBSTRUCTION;
     }
 
     // set the inner layer borders
     for (int y = 1; y < this->height; ++y) {
-        this->layout[0][y].id = Map::TileID::OBSTRUCTION;
-        this->layout[this->width - 1][y].id = Map::TileID::OBSTRUCTION;
+        this->layout[0][y].id = Map::Tile::ID::OBSTRUCTION;
+        this->layout[this->width - 1][y].id = Map::Tile::ID::OBSTRUCTION;
     }
 
     // set the bottom border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][this->height - 1].id = Map::TileID::OBSTRUCTION;
+        this->layout[x][this->height - 1].id = Map::Tile::ID::OBSTRUCTION;
     }
 }
 
@@ -58,29 +58,29 @@ Map::Map(const char *name, const char *music, int width, int height, const std::
         this->layout[i].resize(this->height);
 
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = { Map::TileID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
+            this->layout[i][j] = { Map::Tile::ID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
         }
     }
 
     // set the top border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][0].id = Map::TileID::OBSTRUCTION;
+        this->layout[x][0].id = Map::Tile::ID::OBSTRUCTION;
     }
 
     // set the inner layer borders
     for (int y = 1; y < this->height; ++y) {
-        this->layout[0][y].id = Map::TileID::OBSTRUCTION;
-        this->layout[this->width - 1][y].id = Map::TileID::OBSTRUCTION;
+        this->layout[0][y].id = Map::Tile::ID::OBSTRUCTION;
+        this->layout[this->width - 1][y].id = Map::Tile::ID::OBSTRUCTION;
     }
 
     // set the bottom border
     for (int x = 0; x < this->width; ++x) {
-        this->layout[x][this->height - 1].id = Map::TileID::OBSTRUCTION;
+        this->layout[x][this->height - 1].id = Map::Tile::ID::OBSTRUCTION;
     }
 
     // set any exit points
     for (const ExitPoint &exit_point : this->exitPoints) {
-        this->layout[exit_point.x][exit_point.y].id = Map::TileID::GRASS;
+        this->layout[exit_point.x][exit_point.y].id = Map::Tile::ID::GRASS;
     }
 }
 
@@ -91,6 +91,19 @@ Map::Map(const char *name, const char *music, const int width, const int height,
     for (int i = 0; i < this->trainers.size(); ++i) {
         this->trainers[i] = std::move(trainerList[i]);
     }
+}
+
+Map &Map::operator=(Map &&toMove) noexcept {
+    this->name = toMove.name;
+    this->music = toMove.music;
+    this->width = toMove.width;
+    this->height = toMove.height;
+    this->layout = std::move(toMove.layout);
+    this->trainers = std::move(toMove.trainers);
+    this->items = std::move(toMove.items);
+    this->exitPoints = std::move(toMove.exitPoints);
+
+    return *this;
 }
 
 Map::~Map() {
@@ -105,8 +118,8 @@ void Map::initTextures() {
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
     if (not isInitialized and TextureManager::wasInitialized()) {
-        Map::obstruction = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
-        Map::grass = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
+        Map::obstruction = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
+        Map::grass = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
 
         isInitialized = true;
     }
@@ -119,12 +132,12 @@ bool Map::isObstructionHere(const int x, const int y) const {
         return true;
     }
 
-    return this->layout[x][y].id == Map::TileID::OBSTRUCTION;
+    return this->layout[x][y].id == Map::Tile::ID::OBSTRUCTION;
 }
 
 void Map::addExitPoint(const ExitPoint &exitPoint) {
     this->exitPoints.push_back(exitPoint);
-    this->layout[exitPoint.x][exitPoint.y].id = Map::TileID::GRASS;
+    this->layout[exitPoint.x][exitPoint.y].id = Map::Tile::ID::GRASS;
 }
 
 // returns an array with the new x and y coordinates and the new map respectively,
@@ -163,7 +176,7 @@ const char *Map::getMusic() const {
 // places an obstruction at the passed coordinates
 void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
-        this->layout[x][y].id = Map::TileID::OBSTRUCTION;
+        this->layout[x][y].id = Map::Tile::ID::OBSTRUCTION;
     }
 }
 
@@ -216,18 +229,18 @@ void Map::render() {
         for (int column = 0; column < this->height; ++column) {
             sdlRect = { this->layout[row][column].x, this->layout[row][column].y, TILE_SIZE, TILE_SIZE };
             // prevents rendering tiles that aren't onscreen
-            if (Camera::getInstance()->isInView(sdlRect) != 0U) {
+            if (Camera::getInstance().isInView(sdlRect) != 0U) {
                 switch (this->layout[row][column].id) {
-                    case Map::TileID::FREE:
-                        TextureManager::getInstance()->draw(Map::free, sdlRect);
+                    case Map::Tile::ID::FREE:
+                        TextureManager::getInstance().draw(Map::free, sdlRect);
                         break;
 
-                    case Map::TileID::OBSTRUCTION:
-                        TextureManager::getInstance()->draw(Map::obstruction, sdlRect);
+                    case Map::Tile::ID::OBSTRUCTION:
+                        TextureManager::getInstance().draw(Map::obstruction, sdlRect);
                         break;
 
                     default:
-                        TextureManager::getInstance()->draw(Map::grass, sdlRect);
+                        TextureManager::getInstance().draw(Map::grass, sdlRect);
                         break;
                 }
             }
@@ -236,7 +249,7 @@ void Map::render() {
 
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         // prevents rendering trainers that aren't onscreen
-        if (Camera::getInstance()->isInView({ trainer->getScreenX(), trainer->getScreenY(), TILE_SIZE, TILE_SIZE }) != 0U) {
+        if (Camera::getInstance().isInView({ trainer->getScreenX(), trainer->getScreenY(), TILE_SIZE, TILE_SIZE }) != 0U) {
             trainer->render();
         }
     }

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Data/ItemList.h"
+#include "../../Classes/Item/ItemList.h"
 
 namespace ItemFactory {
     template<typename I>
@@ -13,47 +13,47 @@ namespace ItemFactory {
         return item.get();
     }
 
-    inline std::unique_ptr<Item> getItem(const ItemID id, const int quantity) {
+    inline std::unique_ptr<Item> getItem(const Item::ID id, const int quantity) {
         switch (id) {
-            case ItemID::POTION:
+            case Item::ID::POTION:
                 return std::make_unique<Potion>(quantity);
-            case ItemID::SUPER_POTION:
+            case Item::ID::SUPER_POTION:
                 return std::make_unique<SuperPotion>(quantity);
-            case ItemID::HYPER_POTION:
+            case Item::ID::HYPER_POTION:
                 return std::make_unique<HyperPotion>(quantity);
-            case ItemID::ETHER:
+            case Item::ID::ETHER:
                 return std::make_unique<Ether>(quantity);
-            case ItemID::ANTIDOTE:
+            case Item::ID::ANTIDOTE:
                 return std::make_unique<Antidote>(quantity);
-            case ItemID::AWAKENING:
+            case Item::ID::AWAKENING:
                 return std::make_unique<Awakening>(quantity);
-            case ItemID::BURN_HEAL:
+            case Item::ID::BURN_HEAL:
                 return std::make_unique<BurnHeal>(quantity);
-            case ItemID::ICE_HEAL:
+            case Item::ID::ICE_HEAL:
                 return std::make_unique<IceHeal>(quantity);
-            case ItemID::PARALYZE_HEAL:
+            case Item::ID::PARALYZE_HEAL:
                 return std::make_unique<ParalyzeHeal>(quantity);
-            case ItemID::POKE_BALL:
+            case Item::ID::POKE_BALL:
                 return std::make_unique<PokeBall>(quantity);
-            case ItemID::GREAT_BALL:
+            case Item::ID::GREAT_BALL:
                 return std::make_unique<GreatBall>(quantity);
-            case ItemID::ULTRA_BALL:
+            case Item::ID::ULTRA_BALL:
                 return std::make_unique<UltraBall>(quantity);
-            case ItemID::MASTER_BALL:
+            case Item::ID::MASTER_BALL:
                 return std::make_unique<MasterBall>(quantity);
-            case ItemID::NET_BALL:
+            case Item::ID::NET_BALL:
                 return std::make_unique<NetBall>(quantity);
-            case ItemID::X_ATTACK:
+            case Item::ID::X_ATTACK:
                 return std::make_unique<XAttack>(quantity);
-            case ItemID::X_DEFENSE:
+            case Item::ID::X_DEFENSE:
                 return std::make_unique<XDefense>(quantity);
-            case ItemID::X_SP_ATTACK:
+            case Item::ID::X_SP_ATTACK:
                 return std::make_unique<XSpAttack>(quantity);
-            case ItemID::X_SP_DEFENSE:
+            case Item::ID::X_SP_DEFENSE:
                 return std::make_unique<XSpDefense>(quantity);
-            case ItemID::X_SPEED:
+            case Item::ID::X_SPEED:
                 return std::make_unique<XSpeed>(quantity);
-            case ItemID::X_ACCURACY:
+            case Item::ID::X_ACCURACY:
                 return std::make_unique<XAccuracy>(quantity);
             default:
                 return nullptr;

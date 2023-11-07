@@ -20,8 +20,6 @@ private:
 
     std::unordered_map<SDL_Scancode, Data> keyStates;
 
-    inline static KeyManager *instancePtr = nullptr;
-
     KeyManager() {
         this->keyStates[SDL_SCANCODE_W] = { false, false };
         this->keyStates[SDL_SCANCODE_A] = { false, false };
@@ -32,19 +30,9 @@ private:
     }
 
 public:
-    static KeyManager *getInstance() {
-        if (KeyManager::instancePtr == nullptr) {
-            KeyManager::instancePtr = new KeyManager();
-            std::cout << "KeyManager instance created!\n";
-        }
-        return KeyManager::instancePtr;
-    }
-
-    static void deleteInstance() {
-        delete KeyManager::instancePtr;
-        KeyManager::instancePtr = nullptr;
-
-        std::cout << "KeyManager instance deleted!\n";
+    static KeyManager &getInstance() {
+        static KeyManager keyManager;
+        return keyManager;
     }
 
     // sets a key's state to down

@@ -75,12 +75,12 @@ public:
         return Type::DARK;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::SPECIAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::DARK_PULSE;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::DARK_PULSE;
     }
 
     [[nodiscard]] std::string getName() const override {

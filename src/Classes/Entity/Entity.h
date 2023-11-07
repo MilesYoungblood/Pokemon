@@ -13,7 +13,24 @@
 
 inline const int TILE_SIZE = 80;
 
-enum Direction { UP, DOWN, LEFT, RIGHT };
+enum Direction {
+    UP, DOWN, LEFT, RIGHT
+};
+
+inline Direction oppositeDirection(const Direction direction) {
+    switch (direction) {
+        case Direction::UP:
+            return Direction::DOWN;
+        case Direction::RIGHT:
+            return Direction::LEFT;
+        case Direction::DOWN:
+            return Direction::UP;
+        case Direction::LEFT:
+            return Direction::RIGHT;
+        default:
+            throw std::runtime_error("Unexpected error: function oppositeDirection");
+    }
+}
 
 class Map;
 
@@ -21,86 +38,116 @@ class Entity {
 private:
     std::vector<std::string> dialogue;
 
-    const char *name{""};
+    const char *name{ "" };
 
-    int x{0};                                           // x-coordinate on map
-    int y{0};                                           // y-coordinate on map
-    int screenX{0};                                     // x-coordinate on the screen
-    int screenY{0};                                     // y-coordinate on the screen
-    int vision{1};                                      // line of sight
-    Direction currentDirection{Direction::DOWN};        // numerical representation of which way the trainer is facing
+    int x{ 0 };                                           // x-coordinate on map
+    int y{ 0 };                                           // y-coordinate on map
+    int screenX{ 0 };                                     // x-coordinate on the screen
+    int screenY{ 0 };                                     // y-coordinate on the screen
+    int vision{ 1 };                                      // line of sight
+    Direction currentDirection{ Direction::DOWN };        // numerical representation of which way the trainer is facing
 
-    std::array<std::unique_ptr<Animation>, 4> animations;
+    std::array<Animation, 4> animations;
 
-    void (*action)(Entity *entity);
+    void (*action)(Entity *entity){ [](Entity *entity) -> void {} };
 
 public:
+    Entity() = default;
+
     Entity(int x, int y);
+
     Entity(const char *name, int x, int y);
+
     Entity(const Entity &) = delete;
-    Entity(const Entity &&) = delete;
-    Entity & operator=(const Entity &) = delete;
-    Entity & operator=(const Entity &&) = delete;
+
+    Entity(Entity &&) = delete;
+
+    Entity &operator=(const Entity &) = delete;
+
+    Entity &operator=(Entity &&) = delete;
+
     virtual ~Entity() = default;
+
+    inline void setName(const char *newName) {
+        this->name = newName;
+    }
 
     [[nodiscard]] std::string getName() const;
 
     void setDialogue(const char *text);
+
     [[nodiscard]] std::vector<std::string> getDialogue() const;
 
     void setCoordinates(int newX, int newY);
+
     [[nodiscard]] int getX() const;
+
     [[nodiscard]] int getY() const;
 
     void moveForward();
 
     void faceNorth();
+
     void faceEast();
+
     void faceSouth();
+
     void faceWest();
 
     void setDirection(Direction newDirection);
+
     [[nodiscard]] Direction getDirection() const;
 
     void face(const Entity *entity);
+
     [[nodiscard]] bool isFacingNorth() const;
+
     [[nodiscard]] bool isFacingEast() const;
+
     [[nodiscard]] bool isFacingSouth() const;
+
     [[nodiscard]] bool isFacingWest() const;
 
     bool canMoveForward(const Map *map) const;
+
     bool isNextTo(const Entity *entity) const;
+
     bool hasVisionOf(const Entity *entity) const;
 
     void setVision(int newVision);
 
     void shiftUpOnMap(int distance);
+
     void shiftDownOnMap(int distance);
+
     void shiftLeftOnMap(int distance);
+
     void shiftRightOnMap(int distance);
 
     void shiftHorizontally(int distance);
+
     void shiftVertically(int distance);
 
     void shiftDirectionOnMap(Direction direction, int distance);
 
     [[nodiscard]] int getScreenX() const;
+
     [[nodiscard]] int getScreenY() const;
 
     inline void setUpAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::UP] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+        this->animations[Direction::UP] = Animation(spriteSheet, numFrames, numRows);
     }
 
     inline void setDownAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::DOWN] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+        this->animations[Direction::DOWN] = Animation(spriteSheet, numFrames, numRows);
     }
 
     inline void setLeftAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::LEFT] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+        this->animations[Direction::LEFT] = Animation(spriteSheet, numFrames, numRows);
     }
 
     inline void setRightAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::RIGHT] = std::move(std::make_unique<Animation>(spriteSheet, numFrames, numRows));
+        this->animations[Direction::RIGHT] = Animation(spriteSheet, numFrames, numRows);
     }
 
     inline void setAction(void (*function)(Entity *entity)) {
@@ -112,13 +159,13 @@ public:
     }
 
     inline void updateAnimation() {
-        this->animations.at(this->currentDirection)->update();
+        this->animations.at(this->currentDirection).update();
     }
 
     inline void render() {
         // FIXME figure out why try/catch is needed and remove
         try {
-            this->animations.at(this->currentDirection)->draw({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
+            this->animations.at(this->currentDirection).draw({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
         }
         catch (const std::exception &e) {
             std::cout << "Error rendering animation: " << e.what() << '\n';

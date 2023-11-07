@@ -8,8 +8,6 @@
 
 class Camera {
 private:
-    inline static Camera *instancePtr = nullptr;
-
     inline static bool isInitialized = false;
 
     SDL_Rect view;
@@ -17,21 +15,9 @@ private:
     Camera() : view({ 0, 0, 0, 0 }) {}
 
 public:
-    inline static Camera *getInstance() {
-        if (Camera::instancePtr == nullptr) {
-            Camera::instancePtr = new Camera();
-            std::cout << "Camera instance created!\n";
-        }
-
-        return Camera::instancePtr;
-    }
-
-    inline static void deleteInstance() {
-        delete Camera::instancePtr;
-        Camera::instancePtr = nullptr;
-        Camera::isInitialized = false;
-
-        std::cout << "Camera instance deleted!\n";
+    inline static Camera &getInstance() {
+        static Camera camera;
+        return camera;
     }
 
     void init(int w, int h) {
@@ -53,14 +39,14 @@ public:
 
     // finds the player's current position on the screen map,
     // then shifts everything, including the player, accordingly
-    void lockOnPlayer(Player *p, void (*instructions)(Direction, int)) const {
+    void lockOnPlayer(Player &p, void (*instructions)(Direction, int)) const {
         // x-distance of the player from the center of the screen
-        const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - p->getX() * TILE_SIZE;
+        const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - p.getX() * TILE_SIZE;
         // y-distance of the player from the center of the screen
-        const int y_from_center = ((this->view.h - TILE_SIZE) / 2) - p->getY() * TILE_SIZE;
+        const int y_from_center = ((this->view.h - TILE_SIZE) / 2) - p.getY() * TILE_SIZE;
 
-        p->shiftHorizontally(x_from_center);
-        p->shiftVertically(y_from_center);
+        p.shiftHorizontally(x_from_center);
+        p.shiftVertically(y_from_center);
 
         // determines whether to shift left or right
         const Direction x_direction = x_from_center > 0 ? Direction::RIGHT : Direction::LEFT;

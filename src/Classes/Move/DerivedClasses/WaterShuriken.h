@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "../../../Classes/Entity/DerivedClasses/Pokemon/Pokemon.h"
+
 class WaterShuriken : public Move {
 private:
     const static int MAX_PP = 32;
@@ -72,12 +74,12 @@ public:
         return Type::WATER;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::SPECIAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::WATER_SHURIKEN;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::WATER_SHURIKEN;
     }
 
     [[nodiscard]] std::string getName() const override {

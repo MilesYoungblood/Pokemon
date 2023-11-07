@@ -10,28 +10,6 @@
 
 #include "../../Functions/GeneralFunctions.h"
 
-enum class Category {
-    PHYSICAL, SPECIAL, STATUS
-};
-
-enum MoveID {
-    AIR_SLASH,
-    AURA_SPHERE,
-    DARK_PULSE,
-    DRAGON_PULSE,
-    EXTRASENSORY,
-    FLAMETHROWER,
-    FLASH_CANNON,
-    FOCUS_BLAST,
-    ICE_BEAM,
-    IRON_TAIL,
-    QUICK_ATTACK,
-    SOLAR_BEAM,
-    THUNDER,
-    VOLT_TACKLE,
-    WATER_SHURIKEN
-};
-
 enum class Type {
     NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
     ICE, FIGHTING, POISON, GROUND, FLYING,
@@ -47,15 +25,37 @@ private:
     int maxPp;
 
 public:
+    enum ID {
+        AIR_SLASH,
+        AURA_SPHERE,
+        DARK_PULSE,
+        DRAGON_PULSE,
+        EXTRASENSORY,
+        FLAMETHROWER,
+        FLASH_CANNON,
+        FOCUS_BLAST,
+        ICE_BEAM,
+        IRON_TAIL,
+        QUICK_ATTACK,
+        SOLAR_BEAM,
+        THUNDER,
+        VOLT_TACKLE,
+        WATER_SHURIKEN
+    };
+
+    enum class Category {
+        PHYSICAL, SPECIAL, STATUS
+    };
+
     explicit Move(int pp);
 
     Move(const Move &) = delete;
 
-    Move(const Move &&) = delete;
+    Move(Move &&) = delete;
 
     Move &operator=(const Move &) = delete;
 
-    Move &operator=(const Move &&) = delete;
+    Move &operator=(Move &&) = delete;
 
     virtual ~Move() = default;
 
@@ -81,9 +81,9 @@ public:
 
     [[nodiscard]] virtual Type getType() const = 0;
 
-    [[nodiscard]] virtual Category getCategory() const = 0;
+    [[nodiscard]] virtual Move::Category getCategory() const = 0;
 
-    [[nodiscard]] virtual MoveID getID() const = 0;
+    [[nodiscard]] virtual Move::ID getID() const = 0;
 
     [[nodiscard]] virtual std::string getName() const = 0;
 

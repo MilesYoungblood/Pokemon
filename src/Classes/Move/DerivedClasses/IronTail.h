@@ -88,12 +88,12 @@ public:
         return Type::STEEL;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::PHYSICAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::PHYSICAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::IRON_TAIL;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::IRON_TAIL;
     }
 
     [[nodiscard]] std::string getName() const override {

@@ -83,12 +83,12 @@ public:
         return Type::STEEL;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::SPECIAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::FLASH_CANNON;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::FLASH_CANNON;
     }
 
     [[nodiscard]] std::string getName() const override {

@@ -11,9 +11,9 @@ struct BattleItem : public Item {
 
     [[nodiscard]] virtual Stat getStat() const = 0;
 
-    [[nodiscard]] ItemID getID() const override = 0;
+    [[nodiscard]] Item::ID getID() const override = 0;
 
-    [[nodiscard]] ItemType getType() const override {
-        return ItemType::BATTLE;
+    [[nodiscard]] Item::Class getType() const override {
+        return Item::Class::BATTLE;
     }
 };

@@ -39,6 +39,8 @@ private:
     }
 
 public:
+    Trainer() = default;
+
     Trainer(const char *name, int x, int y);
 
     Trainer(const char *name, int x, int y, int direction);
@@ -47,13 +49,13 @@ public:
 
     Trainer(const Trainer &) = delete;
 
-    Trainer(const Trainer &&) = delete;
+    Trainer(Trainer &&) = delete;
 
     Trainer &operator=(const Trainer &) = delete;
 
-    Trainer &operator=(const Trainer &&) = delete;
+    Trainer &operator=(Trainer &&) = delete;
 
-    virtual ~Trainer() = default;
+    ~Trainer() override = default;
 
     static void init();
 

@@ -28,12 +28,12 @@ public:
         return Type::NORMAL;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::PHYSICAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::PHYSICAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::QUICK_ATTACK;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::QUICK_ATTACK;
     }
 
     [[nodiscard]] std::string getName() const override {

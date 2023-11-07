@@ -28,23 +28,23 @@ void handleOverworldEvents() {
             if (keepMovingForward) {
                 return;
             }
-            KeyManager::getInstance()->keyDown(event.key.keysym.scancode);
+            KeyManager::getInstance().keyDown(event.key.keysym.scancode);
             timer.start();
             break;
 
         case SDL_KEYUP:
             switch (event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
-                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_W);
+                    KeyManager::getInstance().keyUp(SDL_SCANCODE_W);
                     break;
                 case SDL_SCANCODE_A:
-                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_A);
+                    KeyManager::getInstance().keyUp(SDL_SCANCODE_A);
                     break;
                 case SDL_SCANCODE_S:
-                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_S);
+                    KeyManager::getInstance().keyUp(SDL_SCANCODE_S);
                     break;
                 case SDL_SCANCODE_D:
-                    KeyManager::getInstance()->keyUp(SDL_SCANCODE_D);
+                    KeyManager::getInstance().keyUp(SDL_SCANCODE_D);
                     break;
                 default:
                     break;
@@ -67,6 +67,7 @@ void changeMap(const std::array<int, 3> &data) {
     else {
         std::cerr << "Error fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\":"
                   << SDL_GetError() << '\n';
+        SDL_ClearError();
         isRunning = false;
         return;
     }
@@ -83,6 +84,7 @@ void changeMap(const std::array<int, 3> &data) {
         }
         else {
             std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
+            SDL_ClearError();
             isRunning = false;
             return;
         }
@@ -92,6 +94,7 @@ void changeMap(const std::array<int, 3> &data) {
         }
         else {
             std::cerr << "Error playing \"" << song_name << "\": " << SDL_GetError() << '\n';
+            SDL_ClearError();
             isRunning = false;
             return;
         }
@@ -108,9 +111,9 @@ void changeMap(const std::array<int, 3> &data) {
     lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
     keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
-    player->setCoordinates(data[0], data[1]);
+    Player::getPlayer().setCoordinates(data[0], data[1]);
 
-    Camera::getInstance()->lockOnPlayer(player, [](Direction direct, int dist) -> void {
+    Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
         currentMap->update(direct, dist);
     });
 }
@@ -122,26 +125,33 @@ void checkForOpponents() {
     };
 
     // resets movement variables if you are not inputting any directions
-    if (not(KeyManager::getInstance()->getKey(SDL_SCANCODE_W) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_A) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_S) or
-            KeyManager::getInstance()->getKey(SDL_SCANCODE_D))) {
+    if (not(KeyManager::getInstance().getKey(SDL_SCANCODE_W) or
+            KeyManager::getInstance().getKey(SDL_SCANCODE_A) or
+            KeyManager::getInstance().getKey(SDL_SCANCODE_S) or
+            KeyManager::getInstance().getKey(SDL_SCANCODE_D))) {
         resetVariables();
     }
 
     Trainer *trainer;       // variable to reduce the number of function calls
 
+    static int waitCounter = 0;
+
     // checks if the player is in LoS for any trainer
     for (int i = 0; i < currentMap->numTrainers(); ++i) {
         trainer = &(*currentMap)[i];
 
-        if (*trainer and keepLooping[i] and trainer->hasVisionOf(player)) {
-            KeyManager::getInstance()->lockWasd();
-            KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
+        if (*trainer and keepLooping[i] and trainer->hasVisionOf(&Player::getPlayer())) {
+            KeyManager::getInstance().lockWasd();
+            KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
             resetVariables();
             lockTrainer[i] = true;
 
-            if (not trainer->isNextTo(player)) {
+            ++waitCounter;
+            if (waitCounter < 50 * (currentFps / 30)) {
+                continue;
+            }
+
+            if (not trainer->isNextTo(&Player::getPlayer())) {
                 trainer->shiftDirectionOnMap(trainer->getDirection(), SCROLL_SPEED);
                 walkCounters[i] += SCROLL_SPEED;
 
@@ -154,10 +164,12 @@ void checkForOpponents() {
                 }
             }
             else {
-                player->face(trainer);
+                Player::getPlayer().face(trainer);
                 print = true;
                 keepLooping[i] = false;
                 letterCounter = 0;
+
+                waitCounter = 0;
             }
             break;
         }
@@ -191,64 +203,59 @@ void updateTrainers() {
 }
 
 void updateOverworld() {
-    const std::array<int, 3> map_data = currentMap->isExitPointHere(player->getX(), player->getY());
-
-    if (map_data[2] != -1) {
-        changeMap(map_data);
-    }
-    else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_W)) {
-        if (not player->isFacingNorth()) {
-            player->faceNorth();
+    if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
+        if (not Player::getPlayer().isFacingNorth()) {
+            Player::getPlayer().faceNorth();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_W) and player->canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
     }
-    else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_A)) {
-        if (not player->isFacingWest()) {
-            player->faceWest();
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_A)) {
+        if (not Player::getPlayer().isFacingWest()) {
+            Player::getPlayer().faceWest();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_A) and player->canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
     }
-    else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_S)) {
-        if (not player->isFacingSouth()) {
-            player->faceSouth();
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_S)) {
+        if (not Player::getPlayer().isFacingSouth()) {
+            Player::getPlayer().faceSouth();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_S) and player->canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
     }
-    else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_D)) {
-        if (not player->isFacingEast()) {
-            player->faceEast();
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_D)) {
+        if (not Player::getPlayer().isFacingEast()) {
+            Player::getPlayer().faceEast();
         }
-        if (KeyManager::getInstance()->get(SDL_SCANCODE_D) and player->canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
     }
-    else if (KeyManager::getInstance()->getKey(SDL_SCANCODE_RETURN)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
         for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            if (player->hasVisionOf(&(*currentMap)[i])) {
+            if (Player::getPlayer().hasVisionOf(&(*currentMap)[i])) {
                 // FIXME does not take into account multiple pages
-                (*currentMap)[i].face(player);
+                (*currentMap)[i].face(&Player::getPlayer());
                 print = not print;
                 if (print) {
-                    KeyManager::getInstance()->lockKey(SDL_SCANCODE_RETURN);
-                    KeyManager::getInstance()->lockWasd();
+                    KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance().lockWasd();
                 }
                 else {
-                    KeyManager::getInstance()->unlockKey(SDL_SCANCODE_RETURN);
-                    KeyManager::getInstance()->unlockWasd();
+                    KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance().unlockWasd();
                 }
                 lockTrainer[i] = print;
                 letterCounter = 0;
@@ -260,6 +267,7 @@ void updateOverworld() {
                 else {
                     std::cerr << "Error destroying texture (texture may have already been deleted): "
                               << SDL_GetError() << '\n';
+                    SDL_ClearError();
                 }
 
                 // FIXME possibly get rid of second expression
@@ -269,27 +277,35 @@ void updateOverworld() {
                 break;
             }
         }
-        KeyManager::getInstance()->keyUp(SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().keyUp(SDL_SCANCODE_RETURN);
     }
 
+    const std::array<int, 3> map_data = currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
     if (keepMovingForward) {
         if (walkCounter % (TILE_SIZE / 2) == 0) {
-            player->updateAnimation();
+            Player::getPlayer().updateAnimation();
         }
         if (walkCounter % TILE_SIZE == 0) {
-            player->moveForward();
+            Player::getPlayer().moveForward();
+
+            if (map_data[2] != -1) {
+                changeMap(map_data);
+            }
         }
 
-        currentMap->update(oppositeDirection(player->getDirection()), SCROLL_SPEED);
+        currentMap->update(oppositeDirection(Player::getPlayer().getDirection()), SCROLL_SPEED);
         walkCounter += SCROLL_SPEED;
     }
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
-        if (not player->canMoveForward(currentMap)) {
+        if (not Player::getPlayer().canMoveForward(currentMap)) {
             keepMovingForward = false;
         }
         checkForOpponents();
+        if (map_data[2] != -1) {
+            changeMap(map_data);
+        }
     }
 
     updateTrainers();
@@ -354,17 +370,17 @@ void renderTextBox(const std::string &message = "Pokemon White is the best Pokem
     }
     else {
         // unlocks Enter once the message has finished printing
-        KeyManager::getInstance()->unlockKey(SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
     }
 
     // draw the current message to the renderer
-    TextureManager::getInstance()->draw(text,
+    TextureManager::getInstance().draw(text,
                                         { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
 }
 
 void renderOverworld() {
     currentMap->render();
-    player->render();
+    Player::getPlayer().render();
 
     if (print) {
         renderTextBox();

@@ -11,29 +11,16 @@
 // responsible for creating textures and drawing to the renderer
 class TextureManager {
 private:
-    SDL_Renderer *textureRenderer = nullptr;
+    SDL_Renderer *textureRenderer{ nullptr };
 
-    inline static TextureManager *instancePtr = nullptr;
-
-    inline static bool isInitialized = false;
+    inline static bool isInitialized{ false };
 
     TextureManager() = default;
 
 public:
-    static TextureManager *getInstance() {
-        if (TextureManager::instancePtr == nullptr) {
-            TextureManager::instancePtr = new TextureManager();
-            std::cout << "TextureManager instance created!\n";
-        }
-        return TextureManager::instancePtr;
-    }
-
-    static void deleteInstance() {
-        delete TextureManager::instancePtr;
-        TextureManager::instancePtr = nullptr;
-        TextureManager::isInitialized = false;
-
-        std::cout << "TextureManager instance deleted!\n";
+    static TextureManager &getInstance() {
+        static TextureManager textureManager;
+        return textureManager;
     }
 
     void init(SDL_Renderer *renderer) {

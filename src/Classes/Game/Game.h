@@ -12,22 +12,8 @@
 #include "../../Namespaces/Factories/ItemFactory.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
 #include "../../Singletons/KeyManager/KeyManager.h"
-#include "../../Singletons/Stopwatch.h"
-
-inline Direction oppositeDirection(const Direction direction) {
-    switch (direction) {
-        case Direction::UP:
-            return Direction::DOWN;
-        case Direction::RIGHT:
-            return Direction::LEFT;
-        case Direction::DOWN:
-            return Direction::UP;
-        case Direction::LEFT:
-            return Direction::RIGHT;
-        default:
-            throw std::runtime_error("Unexpected error: function oppositeDirection");
-    }
-}
+#include "../../Singletons/SoundPlayer/SoundPlayer.h"
+#include "../../Singletons/Stopwatch/Stopwatch.h"
 
 void handleTitleScreenEvents();
 
@@ -71,8 +57,6 @@ inline TTF_Font *textFont = nullptr;                            // global messag
 inline bool isRunning = false;                                  // determines whether the game is running
 
 inline bool print = false;
-
-inline Player *player = nullptr;
 
 inline std::vector<int> walkCounters;                           // measures how many screen pixels a trainer has moved
 inline std::vector<bool> lockTrainer;                           // determines whether a trainer can move spontaneously

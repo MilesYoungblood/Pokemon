@@ -12,7 +12,9 @@ struct StatusItem : public Item {
 
     [[nodiscard]] virtual Status getStatus() const = 0;
 
-    [[nodiscard]] ItemType getType() const override;
+    [[nodiscard]] Item::ID getID() const override = 0;
+
+    [[nodiscard]] Item::Class getType() const override;
 
     [[nodiscard]] std::string getName() const override = 0;
 

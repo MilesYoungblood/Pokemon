@@ -7,329 +7,319 @@
 #include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
-    inline std::unique_ptr<Pokemon> getPokemon(const PokemonID id) {
+    inline std::unique_ptr<Pokemon> getPokemon(const Pokemon::ID id) {
         switch (id) {
-            case VENASAUR:
-                return std::make_unique<Venasaur>();
-            case CHARIZARD:
-                return std::make_unique<Charizard>();
-            case PIKACHU:
-                return std::make_unique<Pikachu>();
-            case LUCARIO:
-                return std::make_unique<Lucario>();
-            case GRENINJA:
-                return std::make_unique<Greninja>();
-            case VICTINI:
+            case Pokemon::ID::VICTINI:
                 return std::make_unique<Victini>();
-            case SNIVY:
+            case Pokemon::ID::SNIVY:
                 return std::make_unique<Snivy>();
-            case SERVINE:
+            case Pokemon::ID::SERVINE:
                 return std::make_unique<Servine>();
-            case SERPERIOR:
+            case Pokemon::ID::SERPERIOR:
                 return std::make_unique<Serperior>();
-            case TEPIG:
+            case Pokemon::ID::TEPIG:
                 return std::make_unique<Tepig>();
-            case PIGNITE:
+            case Pokemon::ID::PIGNITE:
                 return std::make_unique<Pignite>();
-            case EMBOAR:
+            case Pokemon::ID::EMBOAR:
                 return std::make_unique<Emboar>();
-            case OSHAWOTT:
+            case Pokemon::ID::OSHAWOTT:
                 return std::make_unique<Oshawott>();
-            case DEWOTT:
+            case Pokemon::ID::DEWOTT:
                 return std::make_unique<Dewott>();
-            case SAMUROTT:
+            case Pokemon::ID::SAMUROTT:
                 return std::make_unique<Samurott>();
-            case PATRAT:
+            case Pokemon::ID::PATRAT:
                 return std::make_unique<Patrat>();
-            case WATCHOG:
+            case Pokemon::ID::WATCHOG:
                 return std::make_unique<Watchog>();
-            case LILLIPUP:
+            case Pokemon::ID::LILLIPUP:
                 return std::make_unique<Lillipup>();
-            case HERDIER:
+            case Pokemon::ID::HERDIER:
                 return std::make_unique<Herdier>();
-            case STOUTLAND:
+            case Pokemon::ID::STOUTLAND:
                 return std::make_unique<Stoutland>();
-            case PURRLOIN:
+            case Pokemon::ID::PURRLOIN:
                 return std::make_unique<Purrloin>();
-            case LIEPARD:
+            case Pokemon::ID::LIEPARD:
                 return std::make_unique<Liepard>();
-            case PANSAGE:
+            case Pokemon::ID::PANSAGE:
                 return std::make_unique<Pansage>();
-            case SIMISAGE:
+            case Pokemon::ID::SIMISAGE:
                 return std::make_unique<Simisage>();
-            case PANSEAR:
+            case Pokemon::ID::PANSEAR:
                 return std::make_unique<Pansear>();
-            case SIMISEAR:
+            case Pokemon::ID::SIMISEAR:
                 return std::make_unique<Simisear>();
-            case PANPOUR:
+            case Pokemon::ID::PANPOUR:
                 return std::make_unique<Panpour>();
-            case SIMIPOUR:
+            case Pokemon::ID::SIMIPOUR:
                 return std::make_unique<Simipour>();
-            case MUNNA:
+            case Pokemon::ID::MUNNA:
                 return std::make_unique<Munna>();
-            case MUSHARNA:
+            case Pokemon::ID::MUSHARNA:
                 return std::make_unique<Musharna>();
-            case PIDOVE:
+            case Pokemon::ID::PIDOVE:
                 return std::make_unique<Pidove>();
-            case TRANQUILL:
+            case Pokemon::ID::TRANQUILL:
                 return std::make_unique<Tranquill>();
-            case UNFEZANT:
+            case Pokemon::ID::UNFEZANT:
                 return std::make_unique<Unfezant>();
-            case BLITZLE:
+            case Pokemon::ID::BLITZLE:
                 return std::make_unique<Blitzle>();
-            case ZEBSTRIKA:
+            case Pokemon::ID::ZEBSTRIKA:
                 return std::make_unique<Zebstrika>();
-            case ROGGENROLA:
+            case Pokemon::ID::ROGGENROLA:
                 return std::make_unique<Roggenrola>();
-            case BOLDORE:
+            case Pokemon::ID::BOLDORE:
                 return std::make_unique<Boldore>();
-            case GIGALITH:
+            case Pokemon::ID::GIGALITH:
                 return std::make_unique<Gigalith>();
-            case WOOBAT:
+            case Pokemon::ID::WOOBAT:
                 return std::make_unique<Woobat>();
-            case SWOOBAT:
+            case Pokemon::ID::SWOOBAT:
                 return std::make_unique<Swoobat>();
-            case DRILBUR:
+            case Pokemon::ID::DRILBUR:
                 return std::make_unique<Drilbur>();
-            case EXCADRILL:
+            case Pokemon::ID::EXCADRILL:
                 return std::make_unique<Excadrill>();
-            case AUDINO:
+            case Pokemon::ID::AUDINO:
                 return std::make_unique<Audino>();
-            case TIMBURR:
+            case Pokemon::ID::TIMBURR:
                 return std::make_unique<Timburr>();
-            case GURDURR:
+            case Pokemon::ID::GURDURR:
                 return std::make_unique<Gurdurr>();
-            case CONKELDURR:
+            case Pokemon::ID::CONKELDURR:
                 return std::make_unique<Conkeldurr>();
-            case TYMPOLE:
+            case Pokemon::ID::TYMPOLE:
                 return std::make_unique<Tympole>();
-            case PALPITOAD:
+            case Pokemon::ID::PALPITOAD:
                 return std::make_unique<Palpitoad>();
-            case SEISMITOAD:
+            case Pokemon::ID::SEISMITOAD:
                 return std::make_unique<Seismitoad>();
-            case THROH:
+            case Pokemon::ID::THROH:
                 return std::make_unique<Throh>();
-            case SAWK:
+            case Pokemon::ID::SAWK:
                 return std::make_unique<Sawk>();
-            case SEWADDLE:
+            case Pokemon::ID::SEWADDLE:
                 break;
-            case SWADLOON:
+            case Pokemon::ID::SWADLOON:
                 break;
-            case LEAVANNY:
+            case Pokemon::ID::LEAVANNY:
                 break;
-            case VENIPEDE:
+            case Pokemon::ID::VENIPEDE:
                 break;
-            case WHIRLIPEDE:
+            case Pokemon::ID::WHIRLIPEDE:
                 break;
-            case SCOLIPEDE:
+            case Pokemon::ID::SCOLIPEDE:
                 break;
-            case COTTONEE:
+            case Pokemon::ID::COTTONEE:
                 break;
-            case WHIMSICOTT:
+            case Pokemon::ID::WHIMSICOTT:
                 break;
-            case PETILIL:
+            case Pokemon::ID::PETILIL:
                 break;
-            case LILLIGANT:
+            case Pokemon::ID::LILLIGANT:
                 break;
-            case BASCULIN:
+            case Pokemon::ID::BASCULIN:
                 break;
-            case SANDILE:
+            case Pokemon::ID::SANDILE:
                 break;
-            case KROKOROK:
+            case Pokemon::ID::KROKOROK:
                 break;
-            case KROOKODILE:
+            case Pokemon::ID::KROOKODILE:
                 break;
-            case DARUMAKA:
+            case Pokemon::ID::DARUMAKA:
                 break;
-            case DARMANITAN:
+            case Pokemon::ID::DARMANITAN:
                 break;
-            case MARACTUS:
+            case Pokemon::ID::MARACTUS:
                 break;
-            case DWEBBLE:
+            case Pokemon::ID::DWEBBLE:
                 break;
-            case CRUSTLE:
+            case Pokemon::ID::CRUSTLE:
                 break;
-            case SCRAGGY:
+            case Pokemon::ID::SCRAGGY:
                 break;
-            case SCRAFTY:
+            case Pokemon::ID::SCRAFTY:
                 break;
-            case SIGILYPH:
+            case Pokemon::ID::SIGILYPH:
                 break;
-            case YAMASK:
+            case Pokemon::ID::YAMASK:
                 break;
-            case COFAGRIGUS:
+            case Pokemon::ID::COFAGRIGUS:
                 break;
-            case TIRTOUGA:
+            case Pokemon::ID::TIRTOUGA:
                 break;
-            case CARRACOSTA:
+            case Pokemon::ID::CARRACOSTA:
                 break;
-            case ARCHEN:
+            case Pokemon::ID::ARCHEN:
                 break;
-            case ARCHEOPS:
+            case Pokemon::ID::ARCHEOPS:
                 break;
-            case TRUBBISH:
+            case Pokemon::ID::TRUBBISH:
                 break;
-            case GARBODOR:
+            case Pokemon::ID::GARBODOR:
                 break;
-            case ZORUA:
+            case Pokemon::ID::ZORUA:
                 break;
-            case ZOROARK:
+            case Pokemon::ID::ZOROARK:
                 break;
-            case MINCCINO:
+            case Pokemon::ID::MINCCINO:
                 break;
-            case CINCCINO:
+            case Pokemon::ID::CINCCINO:
                 break;
-            case GOTHITA:
+            case Pokemon::ID::GOTHITA:
                 break;
-            case GOTHORITA:
+            case Pokemon::ID::GOTHORITA:
                 break;
-            case GOTHITELLE:
+            case Pokemon::ID::GOTHITELLE:
                 break;
-            case SOLOSIS:
+            case Pokemon::ID::SOLOSIS:
                 break;
-            case DUOSION:
+            case Pokemon::ID::DUOSION:
                 break;
-            case REUNICLUS:
+            case Pokemon::ID::REUNICLUS:
                 break;
-            case DUCKLETT:
+            case Pokemon::ID::DUCKLETT:
                 break;
-            case SWANNA:
+            case Pokemon::ID::SWANNA:
                 break;
-            case VANILLITE:
+            case Pokemon::ID::VANILLITE:
                 break;
-            case VANILLISH:
+            case Pokemon::ID::VANILLISH:
                 break;
-            case VANILLUXE:
+            case Pokemon::ID::VANILLUXE:
                 break;
-            case DEERLING:
+            case Pokemon::ID::DEERLING:
                 break;
-            case SAWSBUCK:
+            case Pokemon::ID::SAWSBUCK:
                 break;
-            case EMOLGA:
+            case Pokemon::ID::EMOLGA:
                 break;
-            case KARRABLAST:
+            case Pokemon::ID::KARRABLAST:
                 break;
-            case ESCAVALIER:
+            case Pokemon::ID::ESCAVALIER:
                 break;
-            case FOONGUS:
+            case Pokemon::ID::FOONGUS:
                 break;
-            case AMOONGUSS:
+            case Pokemon::ID::AMOONGUSS:
                 break;
-            case FRILLISH:
+            case Pokemon::ID::FRILLISH:
                 break;
-            case JELLICENT:
+            case Pokemon::ID::JELLICENT:
                 break;
-            case ALOMONOLA:
+            case Pokemon::ID::ALOMONOLA:
                 break;
-            case JOLTIK:
+            case Pokemon::ID::JOLTIK:
                 break;
-            case GALVANTULA:
+            case Pokemon::ID::GALVANTULA:
                 break;
-            case FERROSEED:
+            case Pokemon::ID::FERROSEED:
                 break;
-            case FERROTHORN:
+            case Pokemon::ID::FERROTHORN:
                 break;
-            case KLINK:
+            case Pokemon::ID::KLINK:
                 break;
-            case KLANG:
+            case Pokemon::ID::KLANG:
                 break;
-            case KLINKLANG:
+            case Pokemon::ID::KLINKLANG:
                 break;
-            case TYNAMO:
+            case Pokemon::ID::TYNAMO:
                 break;
-            case EELEKTRIK:
+            case Pokemon::ID::EELEKTRIK:
                 break;
-            case ELEKTROSS:
+            case Pokemon::ID::ELEKTROSS:
                 break;
-            case ELGYEM:
+            case Pokemon::ID::ELGYEM:
                 break;
-            case BEHEEYEM:
+            case Pokemon::ID::BEHEEYEM:
                 break;
-            case LITWICK:
+            case Pokemon::ID::LITWICK:
                 break;
-            case LAMPENT:
+            case Pokemon::ID::LAMPENT:
                 break;
-            case CHANDELURE:
+            case Pokemon::ID::CHANDELURE:
                 break;
-            case AXEW:
+            case Pokemon::ID::AXEW:
                 break;
-            case FRAXURE:
+            case Pokemon::ID::FRAXURE:
                 break;
-            case HAXORUS:
+            case Pokemon::ID::HAXORUS:
                 break;
-            case CUBCHOO:
+            case Pokemon::ID::CUBCHOO:
                 break;
-            case BEARTIC:
+            case Pokemon::ID::BEARTIC:
                 break;
-            case CRYOGONAL:
+            case Pokemon::ID::CRYOGONAL:
                 break;
-            case SHELMET:
+            case Pokemon::ID::SHELMET:
                 break;
-            case ACCELGOR:
+            case Pokemon::ID::ACCELGOR:
                 break;
-            case STUNFISH:
+            case Pokemon::ID::STUNFISH:
                 break;
-            case MIENFOO:
+            case Pokemon::ID::MIENFOO:
                 break;
-            case MINESHAO:
+            case Pokemon::ID::MINESHAO:
                 break;
-            case DRUDDIGON:
+            case Pokemon::ID::DRUDDIGON:
                 break;
-            case GOLETT:
+            case Pokemon::ID::GOLETT:
                 break;
-            case GOLURK:
+            case Pokemon::ID::GOLURK:
                 break;
-            case PAWNIARD:
+            case Pokemon::ID::PAWNIARD:
                 break;
-            case BISHARP:
+            case Pokemon::ID::BISHARP:
                 break;
-            case BOUFFALANT:
+            case Pokemon::ID::BOUFFALANT:
                 break;
-            case RUFFLET:
+            case Pokemon::ID::RUFFLET:
                 break;
-            case BRAVIARY:
+            case Pokemon::ID::BRAVIARY:
                 break;
-            case VULLABY:
+            case Pokemon::ID::VULLABY:
                 break;
-            case MANDIBUZZ:
+            case Pokemon::ID::MANDIBUZZ:
                 break;
-            case HEATMOR:
+            case Pokemon::ID::HEATMOR:
                 break;
-            case DURANT:
+            case Pokemon::ID::DURANT:
                 break;
-            case DEINO:
+            case Pokemon::ID::DEINO:
                 break;
-            case ZWEILOUS:
+            case Pokemon::ID::ZWEILOUS:
                 break;
-            case HYDREIGON:
+            case Pokemon::ID::HYDREIGON:
                 return std::make_unique<Hydreigon>();
-            case LARVESTA:
+            case Pokemon::ID::LARVESTA:
                 break;
-            case VOLCARONA:
+            case Pokemon::ID::VOLCARONA:
                 break;
-            case COBALION:
+            case Pokemon::ID::COBALION:
                 break;
-            case TERRAKION:
+            case Pokemon::ID::TERRAKION:
                 break;
-            case VIRIZION:
+            case Pokemon::ID::VIRIZION:
                 break;
-            case TORNADUS:
+            case Pokemon::ID::TORNADUS:
                 break;
-            case THUNDURUS:
+            case Pokemon::ID::THUNDURUS:
                 break;
-            case RESHIRAM:
+            case Pokemon::ID::RESHIRAM:
                 break;
-            case ZEKROM:
+            case Pokemon::ID::ZEKROM:
                 break;
-            case LANDORUS:
+            case Pokemon::ID::LANDORUS:
                 break;
-            case KYUREM:
+            case Pokemon::ID::KYUREM:
                 break;
-            case KELDEO:
+            case Pokemon::ID::KELDEO:
                 break;
-            case MELOETTA:
+            case Pokemon::ID::MELOETTA:
                 break;
-            case GENESECT:
+            case Pokemon::ID::GENESECT:
                 break;
             default:
                 return nullptr;

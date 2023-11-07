@@ -10,12 +10,12 @@ double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  
     return 1.0;
 }
 
-ItemType PokeBall::getType() const {
-    return ItemType::POKE_BALL;
+Item::Class PokeBall::getType() const {
+    return Item::Class::POKE_BALL;
 }
 
-ItemID PokeBall::getID() const {
-    return ItemID::POKE_BALL;
+Item::ID PokeBall::getID() const {
+    return Item::ID::POKE_BALL;
 }
 
 std::string PokeBall::getName() const {

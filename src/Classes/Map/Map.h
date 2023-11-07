@@ -7,12 +7,6 @@
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Singletons/Camera/Camera.h"
 
-enum MapID {
-    ROUTE_1,
-    ROUTE_2,
-    ROUTE_3
-};
-
 template<typename T>
 class IType {
 private:
@@ -30,26 +24,25 @@ public:
 
 class Map {
 private:
-    enum TileID {
-        FREE,
-        OBSTRUCTION,
-        GRASS,
-        TALL_GRASS __attribute__((unused)),
-        WATER __attribute__((unused))
-    };
-
     struct Tile {
-        TileID id;
+        enum ID {
+            FREE,
+            OBSTRUCTION,
+            GRASS,
+            TALL_GRASS __attribute__((unused)),
+            WATER __attribute__((unused))
+        };
+        ID id;
         int x;
         int y;
     };
 
     struct ExitPoint {
-        const int x;                                // x-coordinate of the exit spot
-        const int y;                                // y-coordinate of the exit spot
-        const int newMap;                           // map that this exit point leads to
-        const int newX;                             // the player's new x-coordinates
-        const int newY;                             // the player's new y-coordinates
+        int x;                                // x-coordinate of the exit spot
+        int y;                                // y-coordinate of the exit spot
+        int newMap;                           // map that this exit point leads to
+        int newX;                             // the player's new x-coordinates
+        int newY;                             // the player's new y-coordinates
     };
 
     const char *name{ "" };                         // name of the map
@@ -76,6 +69,12 @@ private:
     [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
+    enum ID {
+        ROUTE_1,
+        ROUTE_2,
+        ROUTE_3
+    };
+
     Map() = default;
 
     Map(const char *name, const char *music, int width, int height);
@@ -84,13 +83,13 @@ public:
 
     Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList);
 
-    Map(const Map &) = delete;
+    Map(const Map &rhs) = delete;
 
-    Map(const Map &&) = delete;
+    Map(Map &&) = delete;
 
     Map &operator=(const Map &) = delete;
 
-    Map &operator=(const Map &&) = delete;
+    Map &operator=(Map &&) noexcept;
 
     ~Map();
 

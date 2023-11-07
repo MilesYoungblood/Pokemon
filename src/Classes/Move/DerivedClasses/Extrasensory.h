@@ -79,12 +79,12 @@ public:
         return Type::PSYCHIC;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::SPECIAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::EXTRASENSORY;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::EXTRASENSORY;
     }
 
     [[nodiscard]] std::string getName() const override {

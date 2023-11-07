@@ -81,12 +81,12 @@ public:
         return Type::FIRE;
     }
 
-    [[nodiscard]] Category getCategory() const override {
-        return Category::SPECIAL;
+    [[nodiscard]] Move::Category getCategory() const override {
+        return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] MoveID getID() const override {
-        return MoveID::FLAMETHROWER;
+    [[nodiscard]] Move::ID getID() const override {
+        return Move::ID::FLAMETHROWER;
     }
 
     [[nodiscard]] std::string getName() const override {

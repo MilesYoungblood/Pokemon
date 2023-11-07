@@ -18,28 +18,7 @@ void handleTitleScreenEvents() {
                 case SDL_SCANCODE_RETURN:
                     Mix_FreeMusic(gameMusic);
 
-                    static Mix_Chunk *sound = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\sfx\\selection.wav").data());
-                    if (sound != nullptr) {
-                        std::cout << "Loaded \"selection\"!\n";
-                    }
-                    else {
-                        std::cerr << "Unable to load \"selection\": " << SDL_GetError() << '\n';
-                        isRunning = false;
-                        return;
-                    }
-
-                    if (Mix_PlayChannel(-1, sound, 0) == 0) {
-                        std::cout << "Playing \"selection\"!\n";
-                    }
-                    else {
-                        std::cerr << "Unable to play \"selection\": " << SDL_GetError() << '\n';
-                        isRunning = false;
-                        return;
-                    }
-
-                    Mix_ChannelFinished([](int at) -> void {
-                        Mix_FreeChunk(Mix_GetChunk(at));
-                    });
+                    SoundPlayer::getInstance().playSound(SoundId::ACCEPT);
 
                     Game::loadData();
 
@@ -53,6 +32,7 @@ void handleTitleScreenEvents() {
                     }
                     else {
                         std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
+                        SDL_ClearError();
                         isRunning = false;
                         return;
                     }
@@ -62,12 +42,13 @@ void handleTitleScreenEvents() {
                     }
                     else {
                         std::cerr << "Unable to play \"" << song_name << "\": " << SDL_GetError() << '\n';
+                        SDL_ClearError();
                         isRunning = false;
                         return;
                     }
 
-                    Camera::getInstance()->init(WINDOW_WIDTH, WINDOW_HEIGHT);
-                    Camera::getInstance()->lockOnPlayer(player, [](Direction direct, int dist) -> void {
+                    Camera::getInstance().init(WINDOW_WIDTH, WINDOW_HEIGHT);
+                    Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
                         currentMap->update(direct, dist);
                     });
 
@@ -125,9 +106,9 @@ void renderTitleScreen() {
             FONT_SIZE
     };
 
-    TextureManager::getInstance()->draw(logo, logo_rect);
+    TextureManager::getInstance().draw(logo, logo_rect);
 
     if (showPrompt) {
-        TextureManager::getInstance()->draw(text, message_rect);
+        TextureManager::getInstance().draw(text, message_rect);
     }
 }

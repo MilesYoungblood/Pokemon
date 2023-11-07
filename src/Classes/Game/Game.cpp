@@ -53,7 +53,7 @@ Game::Game() {
     }
 
     // initialize TextureManager
-    TextureManager::getInstance()->init(gameRenderer);
+    TextureManager::getInstance().init(gameRenderer);
 
     // initialize true type font subsystems
     if (TTF_Init() == 0) {
@@ -75,14 +75,14 @@ Game::Game() {
     }
 
     // load the title image
-    logo = TextureManager::getInstance()->loadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
+    logo = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
     if (logo == nullptr) {
         std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
         return;
     }
 
     // load the text prompt
-    text = TextureManager::getInstance()->loadText(textFont, "Press enter to continue!", { 0, 0, 0 });
+    text = TextureManager::getInstance().loadText(textFont, "Press enter to continue!", { 0, 0, 0 });
     if (text != nullptr) {
         std::cout << "Loaded title text!\n";
     }
@@ -128,12 +128,8 @@ Game::Game() {
 }
 
 Game::~Game() {
-    Camera::deleteInstance();
-    KeyManager::deleteInstance();
-    TextureManager::deleteInstance();
-
     Mix_HaltMusic();
-    Mix_HookMusicFinished([] -> void {});
+    Mix_HookMusicFinished(nullptr);
     Mix_FreeMusic(gameMusic);
     Mix_CloseAudio();
 
@@ -176,8 +172,6 @@ Game::~Game() {
     SDL_Quit();
 
     std::cout << "Game cleaned!\n";
-
-    Player::destroyPlayer();
 }
 
 void Game::handleEvents() {
@@ -196,7 +190,7 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
+    std::ofstream saveFile(PROJECT_PATH + R"(\Data\SaveData.txt)");
     if (not saveFile) {
         std::cerr << "Unable to open file\n";
         isRunning = false;
@@ -204,45 +198,47 @@ void Game::saveData() {
     }
 
     saveFile << currentMapIndex;
-    saveFile << '\n' << player->getX() << ' ' << player->getY() << ' ' << player->getDirection();
-    saveFile << '\n' << player->partySize();
-    for (int pokemon = 0; pokemon < player->partySize(); ++pokemon) {
-        saveFile << '\n' << (*player)[pokemon].getID() << ' ';
+    saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
+             << Player::getPlayer().getDirection();
+    saveFile << '\n' << Player::getPlayer().partySize();
+    for (int pokemon = 0; pokemon < Player::getPlayer().partySize(); ++pokemon) {
+        saveFile << '\n' << Player::getPlayer()[pokemon].getID() << ' ';
 
-        const int num_moves = (*player)[pokemon].numMoves();
+        const int num_moves = Player::getPlayer()[pokemon].numMoves();
         saveFile << num_moves << ' ';
 
         for (int move = 0; move < num_moves; ++move) {
-            saveFile << (*player)[pokemon][move].getID() << ' ' << (*player)[pokemon][move].getPP() << ' ';
+            saveFile << Player::getPlayer()[pokemon][move].getID() << ' '
+                     << Player::getPlayer()[pokemon][move].getPP() << ' ';
         }
     }
 
     Item *item;
 
-    const int num_restore_items = player->getNumItems<RestoreItem>();
-    const int num_status_items = player->getNumItems<StatusItem>();
-    const int num_poke_balls = player->getNumItems<PokeBall>();
-    const int num_battle_items = player->getNumItems<BattleItem>();
+    const int num_restore_items = Player::getPlayer().getNumItems<RestoreItem>();
+    const int num_status_items = Player::getPlayer().getNumItems<StatusItem>();
+    const int num_poke_balls = Player::getPlayer().getNumItems<PokeBall>();
+    const int num_battle_items = Player::getPlayer().getNumItems<BattleItem>();
 
     saveFile << '\n' << num_restore_items + num_status_items + num_poke_balls + num_battle_items;
 
     for (int i = 0; i < num_restore_items; ++i) {
-        item = &player->getItem<RestoreItem>(i);
+        item = &Player::getPlayer().getItem<RestoreItem>(i);
         saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_status_items; ++i) {
-        item = &player->getItem<StatusItem>(i);
+        item = &Player::getPlayer().getItem<StatusItem>(i);
         saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_poke_balls; ++i) {
-        item = &player->getItem<PokeBall>(i);
+        item = &Player::getPlayer().getItem<PokeBall>(i);
         saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_battle_items; ++i) {
-        item = &player->getItem<BattleItem>(i);
+        item = &Player::getPlayer().getItem<BattleItem>(i);
         saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
     }
 
@@ -263,72 +259,68 @@ void initializeGame() {
     // initialize all maps
     Map::initTextures();
 
-    maps[0].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
-    maps[0].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
-    maps[0][1].addPokemon<Serperior>();
+    maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
+    maps[Map::ID::ROUTE_1][0].addPokemon<Samurott>();
+    maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
+    maps[Map::ID::ROUTE_1][1].addPokemon<Serperior>();
 
-    maps[0].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
-    maps[0].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-    maps[0].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+    maps[Map::ID::ROUTE_1].addExitPoint({ 5, 0, Map::ID::ROUTE_2, 9, 18 });
+    maps[Map::ID::ROUTE_1].addExitPoint({ 6, 0, Map::ID::ROUTE_2, 10, 18 });
+    maps[Map::ID::ROUTE_1].addExitPoint({ 7, 0, Map::ID::ROUTE_2, 11, 18 });
 
-    maps[1].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
-    maps[1].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
-    maps[1].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
-    maps[1].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
+    maps[Map::ID::ROUTE_2].addExitPoint({ 9, 19, Map::ID::ROUTE_1, 5, 1 });
+    maps[Map::ID::ROUTE_2].addExitPoint({ 10, 19, Map::ID::ROUTE_1, 6, 1 });
+    maps[Map::ID::ROUTE_2].addExitPoint({ 11, 19, Map::ID::ROUTE_1, 7, 1 });
+    maps[Map::ID::ROUTE_2].addExitPoint({ 0, 10, Map::ID::ROUTE_3, 19, 5 });
 
-    maps[2].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
+    maps[Map::ID::ROUTE_3].addExitPoint({ 20, 5, Map::ID::ROUTE_2, 1, 10 });
 
     // default values for player
-    player = Player::getPlayer();
+    Player::getPlayer().init("Hilbert", 6, 8, Direction::DOWN);
 
-    player->addPokemon<Greninja>();
-    (*player)[0].addMove<WaterShuriken>();
-    (*player)[0].addMove<DarkPulse>();
-    (*player)[0].addMove<IceBeam>();
-    (*player)[0].addMove<Extrasensory>();
+    Player::getPlayer().addPokemon<Emboar>();
 
-    player->addPokemon<Charizard>();
-    (*player)[1].addMove<Flamethrower>();
-    (*player)[1].addMove<AirSlash>();
-    (*player)[1].addMove<DragonPulse>();
-    (*player)[1].addMove<SolarBeam>();
+    Player::getPlayer().addPokemon<Zebstrika>();
+    Player::getPlayer()[1].addMove<VoltTackle>();
 
-    player->addPokemon<Hydreigon>();
-    (*player)[2].addMove<DarkPulse>();
-    (*player)[2].addMove<DragonPulse>();
-    (*player)[2].addMove<Flamethrower>();
-    (*player)[2].addMove<FocusBlast>();
+    Player::getPlayer().addPokemon<Excadrill>();
+    Player::getPlayer()[2].addMove<Flamethrower>();
+    Player::getPlayer()[2].addMove<AirSlash>();
+    Player::getPlayer()[2].addMove<DragonPulse>();
+    Player::getPlayer()[2].addMove<SolarBeam>();
 
-    player->addItem<Potion>(5);
-    player->addItem<SuperPotion>(5);
-    player->addItem<HyperPotion>(5);
-    player->addItem<Ether>(5);
+    Player::getPlayer().addPokemon<Hydreigon>();
+    Player::getPlayer()[3].addMove<DarkPulse>();
+    Player::getPlayer()[3].addMove<DragonPulse>();
+    Player::getPlayer()[3].addMove<Flamethrower>();
+    Player::getPlayer()[3].addMove<FocusBlast>();
 
-    player->addItem<ParalyzeHeal>(5);
-    player->addItem<BurnHeal>(5);
-    player->addItem<IceHeal>(5);
-    player->addItem<Antidote>(5);
-    player->addItem<Awakening>(5);
+    Player::getPlayer().addItem<Potion>(5);
+    Player::getPlayer().addItem<SuperPotion>(5);
+    Player::getPlayer().addItem<HyperPotion>(5);
+    Player::getPlayer().addItem<Ether>(5);
 
-    player->addItem<PokeBall>(5);
-    player->addItem<GreatBall>(5);
-    player->addItem<UltraBall>(5);
-    player->addItem<MasterBall>(1);
+    Player::getPlayer().addItem<ParalyzeHeal>(5);
+    Player::getPlayer().addItem<BurnHeal>(5);
+    Player::getPlayer().addItem<IceHeal>(5);
+    Player::getPlayer().addItem<Antidote>(5);
+    Player::getPlayer().addItem<Awakening>(5);
 
-    player->addItem<XAttack>(5);
-    player->addItem<XDefense>(5);
-    player->addItem<XSpAttack>(5);
-    player->addItem<XSpDefense>(5);
-    player->addItem<XSpeed>(5);
-    player->addItem<XAccuracy>(5);
-}
+    Player::getPlayer().addItem<PokeBall>(5);
+    Player::getPlayer().addItem<GreatBall>(5);
+    Player::getPlayer().addItem<UltraBall>(5);
+    Player::getPlayer().addItem<MasterBall>(1);
 
-void loadGame() {
-
+    Player::getPlayer().addItem<XAttack>(5);
+    Player::getPlayer().addItem<XDefense>(5);
+    Player::getPlayer().addItem<XSpAttack>(5);
+    Player::getPlayer().addItem<XSpDefense>(5);
+    Player::getPlayer().addItem<XSpeed>(5);
+    Player::getPlayer().addItem<XAccuracy>(5);
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(PROJECT_PATH + R"(\src\Data\SaveData.txt)");
+    std::ifstream saveFile(PROJECT_PATH + R"(\Data\SaveData.txt)");
 
     Trainer::init();
 
@@ -351,7 +343,7 @@ void Game::loadData() {
         std::getline(saveFile, buffer);
 
         //TODO load player name dynamically
-        player = Player::getPlayer("Hilbert", player_x, player_y, static_cast<Direction>(buffer[0] - '0'));
+        Player::getPlayer().init("Hilbert", player_x, player_y, static_cast<Direction>(buffer[0] - '0'));
 
         // load the player's party size
         std::getline(saveFile, buffer);
@@ -360,7 +352,7 @@ void Game::loadData() {
         // load each Pokémon's data
         for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
-            player->addPokemon(PokemonFactory::getPokemon(static_cast<PokemonID>(std::stoi(buffer))));
+            Player::getPlayer().addPokemon(PokemonFactory::getPokemon(static_cast<Pokemon::ID>(std::stoi(buffer))));
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
@@ -374,7 +366,7 @@ void Game::loadData() {
                 std::getline(saveFile, buffer, ' ');
                 const int saved_pp = std::stoi(buffer);
 
-                (*player)[pokemon].addMove(MoveFactory::getMove(static_cast<MoveID>(id), saved_pp));
+                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::ID>(id), saved_pp));
             }
 
             // necessary to grab the next line
@@ -393,29 +385,30 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            player->addItem(ItemFactory::getItem(static_cast<ItemID>(item), quantity));
+            Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::ID>(item), quantity));
         }
 
         // initialize all maps
         Map::initTextures();
 
-        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
-        maps[MapID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
-        maps[MapID::ROUTE_1][1].addPokemon<Serperior>();
-        maps[MapID::ROUTE_1].addExitPoint({ 5, 0, MapID::ROUTE_2, 9, 18 });
-        maps[MapID::ROUTE_1].addExitPoint({ 6, 0, MapID::ROUTE_2, 10, 18 });
-        maps[MapID::ROUTE_1].addExitPoint({ 7, 0, MapID::ROUTE_2, 11, 18 });
+        maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 7, 6, Direction::DOWN, 3));
+        maps[Map::ID::ROUTE_1][0].addPokemon<Samurott>();
+        maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 2, 4, Direction::DOWN, 3));
+        maps[Map::ID::ROUTE_1][1].addPokemon<Serperior>();
+        maps[Map::ID::ROUTE_1].addExitPoint({ 5, 0, Map::ID::ROUTE_2, 9, 18 });
+        maps[Map::ID::ROUTE_1].addExitPoint({ 6, 0, Map::ID::ROUTE_2, 10, 18 });
+        maps[Map::ID::ROUTE_1].addExitPoint({ 7, 0, Map::ID::ROUTE_2, 11, 18 });
 
-        maps[MapID::ROUTE_2].addExitPoint({ 9, 19, MapID::ROUTE_1, 5, 1 });
-        maps[MapID::ROUTE_2].addExitPoint({ 10, 19, MapID::ROUTE_1, 6, 1 });
-        maps[MapID::ROUTE_2].addExitPoint({ 11, 19, MapID::ROUTE_1, 7, 1 });
-        maps[MapID::ROUTE_2].addExitPoint({ 0, 9, MapID::ROUTE_3, 19, 4 });
-        maps[MapID::ROUTE_2].addExitPoint({ 0, 10, MapID::ROUTE_3, 19, 5 });
-        maps[MapID::ROUTE_2].addExitPoint({ 0, 11, MapID::ROUTE_3, 19, 6 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 9, 19, Map::ID::ROUTE_1, 5, 1 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 10, 19, Map::ID::ROUTE_1, 6, 1 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 11, 19, Map::ID::ROUTE_1, 7, 1 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 0, 9, Map::ID::ROUTE_3, 19, 4 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 0, 10, Map::ID::ROUTE_3, 19, 5 });
+        maps[Map::ID::ROUTE_2].addExitPoint({ 0, 11, Map::ID::ROUTE_3, 19, 6 });
 
-        maps[MapID::ROUTE_3].addExitPoint({ 20, 4, MapID::ROUTE_2, 1, 9 });
-        maps[MapID::ROUTE_3].addExitPoint({ 20, 5, MapID::ROUTE_2, 1, 10 });
-        maps[MapID::ROUTE_3].addExitPoint({ 20, 6, MapID::ROUTE_2, 1, 11 });
+        maps[Map::ID::ROUTE_3].addExitPoint({ 20, 4, Map::ID::ROUTE_2, 1, 9 });
+        maps[Map::ID::ROUTE_3].addExitPoint({ 20, 5, Map::ID::ROUTE_2, 1, 10 });
+        maps[Map::ID::ROUTE_3].addExitPoint({ 20, 6, Map::ID::ROUTE_2, 1, 11 });
 
         std::stringstream ss;
         // load each trainer's data for every map

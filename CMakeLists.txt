@@ -52,15 +52,15 @@ add_executable(PokemonBattle
         src/Classes/Move/DerivedClasses/IronTail.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
-        src/Data/ItemList.h
+        src/Classes/Item/ItemList.h
         src/Classes/Battle/Battle.h
         src/Classes/Battle/Battle.cpp
-        src/Data/ItemList/PokeBalls.h
-        src/Data/ItemList/StatusItems.h
-        src/Data/ItemList/RestoreItems.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PokeBalls.h
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/StatusItems.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Data/ItemList/BattleItems.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/BattleItems.h
         src/Classes/Game/Game.cpp
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
@@ -82,8 +82,9 @@ add_executable(PokemonBattle
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
         src/Singletons/KeyManager/KeyManager.h
-        src/Singletons/Stopwatch.h
+        src/Singletons/Stopwatch/Stopwatch.h
         src/Classes/Animation/Animation.h
+        src/Singletons/SoundPlayer/SoundPlayer.h
 )
 
 #add_dependencies(PokemonBattle ModuleCompilation)

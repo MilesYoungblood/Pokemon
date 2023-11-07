@@ -13,7 +13,9 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] virtual bool isHp() const = 0;
 
-    [[nodiscard]] ItemType getType() const override;
+    [[nodiscard]] Item::ID getID() const override = 0;
+
+    [[nodiscard]] Item::Class getType() const override;
 
     void restore(Pokemon &pokemon) const;
 

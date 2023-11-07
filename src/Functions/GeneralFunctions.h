@@ -168,7 +168,8 @@ inline const char *getTypeAsString(int type) {
 
 // returns true if character is a vowel
 inline bool isVowel(char ltr) {
-    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
+    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or
+           tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
 }
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
@@ -215,7 +216,10 @@ inline bool coinFlip() {
 }
 
 // returns a random integer from a range
-inline int generateInteger(const int from, const int to) {
+inline int generateInteger(int from, int to) {
+    if (from > to) {
+        std::swap(from, to);
+    }
     std::random_device rd;
     std::mt19937 mt(rd());
     std::uniform_int_distribution<int> dist(from, to);
@@ -226,7 +230,7 @@ inline int generateInteger(const int from, const int to) {
 // prints out a c-string and sleeps in between prints
 inline void printMessage(const char *message, const int interval = 25) {
     bool sleep = true;
-    const std::string_view str = message;
+    const std::string_view str(message);
 
     for (const char ltr : str) {
         if (sleep and (_kbhit() != 0)) {
