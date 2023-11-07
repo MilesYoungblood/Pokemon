@@ -13,7 +13,7 @@ class TextureManager {
 private:
     SDL_Renderer *textureRenderer{ nullptr };
 
-    inline static bool isInitialized{ false };
+    bool isInitialized{ false };
 
     TextureManager() = default;
 
@@ -25,15 +25,15 @@ public:
 
     void init(SDL_Renderer *renderer) {
         // only allow this function to be called once per instantiation of TextureManager object
-        if (TextureManager::isInitialized) {
+        if (this->isInitialized) {
             return;
         }
         this->textureRenderer = renderer;
-        TextureManager::isInitialized = true;
+        this->isInitialized = true;
     }
 
-    [[nodiscard]] static bool wasInitialized() {
-        return TextureManager::isInitialized;
+    [[nodiscard]] bool wasInitialized() const {
+        return this->isInitialized;
     }
 
     SDL_Texture *loadTexture(std::string_view texture) {

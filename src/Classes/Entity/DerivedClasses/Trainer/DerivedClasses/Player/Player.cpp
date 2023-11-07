@@ -4,10 +4,7 @@
 
 #include "Player.h"
 
-std::array<std::array<std::unique_ptr < Pokemon>, 30>, 12>
-Player::pc = std::array < std::array < std::unique_ptr < Pokemon >,
-30>, 12>({
-nullptr});
+std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> Player::pc = std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12>({ nullptr });
 
 Player::Player() {
     this->setUpAnimation(
@@ -22,8 +19,6 @@ Player::Player() {
     this->setRightAnimation(
             TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\Hilbert\HilbertSpriteSheetRight.png)"),
             4, 1);
-
-    std::cout << "Player created!\n\n";
 }
 
 Player &Player::getPlayer() {

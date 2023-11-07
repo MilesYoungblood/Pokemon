@@ -29,8 +29,8 @@ private:
             FREE,
             OBSTRUCTION,
             GRASS,
-            TALL_GRASS __attribute__((unused)),
-            WATER __attribute__((unused))
+            TALL_GRASS [[maybe_unused]],
+            WATER [[maybe_unused]]
         };
         ID id;
         int x;
@@ -113,7 +113,7 @@ public:
 
     void setObstruction(int x, int y);
 
-    void update(Direction direction, int distance);
+    void shift(Direction direction, int distance);
 
     void render();
 

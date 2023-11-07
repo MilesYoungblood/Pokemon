@@ -10,8 +10,6 @@ SDL_Texture *Map::grass = nullptr;
 SDL_Texture *Map::tallGrass = nullptr;
 SDL_Texture *Map::water = nullptr;
 
-bool isInitialized = false;
-
 bool Map::isTrainerHere(const int x, const int y) const {
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         if (trainer->getX() == x and trainer->getY() == y) {
@@ -115,9 +113,10 @@ Map::~Map() {
 }
 
 void Map::initTextures() {
+    static bool isInitialized = false;
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
-    if (not isInitialized and TextureManager::wasInitialized()) {
+    if (not isInitialized and TextureManager::getInstance().wasInitialized()) {
         Map::obstruction = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
         Map::grass = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
 
@@ -181,7 +180,7 @@ void Map::setObstruction(const int x, const int y) {
 }
 
 // shift the map and its trainers, according to a passed in flag
-void Map::update(Direction direction, int distance) {
+void Map::shift(Direction direction, int distance) {
     for (int row = 0; row < this->width; ++row) {
         for (int column = 0; column < this->height; ++column) {
             switch (direction) {

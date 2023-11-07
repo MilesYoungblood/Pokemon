@@ -114,7 +114,7 @@ void changeMap(const std::array<int, 3> &data) {
     Player::getPlayer().setCoordinates(data[0], data[1]);
 
     Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
-        currentMap->update(direct, dist);
+        currentMap->shift(direct, dist);
     });
 }
 
@@ -293,7 +293,7 @@ void updateOverworld() {
             }
         }
 
-        currentMap->update(oppositeDirection(Player::getPlayer().getDirection()), SCROLL_SPEED);
+        currentMap->shift(oppositeDirection(Player::getPlayer().getDirection()), SCROLL_SPEED);
         walkCounter += SCROLL_SPEED;
     }
 

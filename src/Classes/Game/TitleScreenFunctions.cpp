@@ -49,7 +49,7 @@ void handleTitleScreenEvents() {
 
                     Camera::getInstance().init(WINDOW_WIDTH, WINDOW_HEIGHT);
                     Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
-                        currentMap->update(direct, dist);
+                        currentMap->shift(direct, dist);
                     });
 
                     walkCounters = std::vector<int>(currentMap->numTrainers(), 0);

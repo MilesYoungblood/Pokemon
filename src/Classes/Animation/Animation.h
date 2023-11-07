@@ -17,31 +17,32 @@ private:
     SDL_Texture *spriteSheet{ nullptr };
 
 public:
-    Animation() = default;
+    inline static int count = 0;
 
-    explicit Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
+    Animation() {
+        ++Animation::count;
+    }
+
+    Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
             : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {
         std::cout << "Default constructor called for animation\n";
+        ++Animation::count;
     }
 
     Animation(const Animation &toCopy)
             : numFrames(toCopy.numFrames), numRows(toCopy.numRows), spriteSheet(toCopy.spriteSheet) {
         std::cout << "Copy constructor called for animation\n";
+        ++Animation::count;
     };
 
-    Animation(Animation &&toMove)
-
-    noexcept :
-            numFrames(toMove.numFrames),
-            numRows(toMove
-    .numRows),
-    spriteSheet(toMove
-    .spriteSheet) {
+    Animation(Animation &&toMove) noexcept
+            : numFrames(toMove.numFrames), numRows(toMove.numRows), spriteSheet(toMove .spriteSheet) {
         std::cout << "Move constructor called for animation\n";
     }
 
     Animation &operator=(const Animation &rhs) {
         std::cout << "Copy assignment operator called for animation\n";
+        ++Animation::count;
         if (this != &rhs) {
             this->numFrames = rhs.numFrames;
             this->numRows = rhs.numRows;
@@ -52,22 +53,20 @@ public:
         return *this;
     }
 
-    Animation &operator=(Animation &&rhs)
-
-    noexcept {
+    Animation &operator=(Animation &&rhs) noexcept {
         std::cout << "Move assignment operator called for animation\n";
-        if (this != &rhs) {
-            this->numFrames = rhs.numFrames;
-            this->numRows = rhs.numRows;
-            this->spriteSheet = rhs.spriteSheet;
-            rhs.spriteSheet = nullptr;
-        }
+        this->numFrames = rhs.numFrames;
+        this->numRows = rhs.numRows;
+        this->spriteSheet = rhs.spriteSheet;
+        rhs.spriteSheet = nullptr;
 
         return *this;
     }
 
     ~Animation() {
         std::cout << "Destructor called for animation\n";
+        --Animation::count;
+        std::cout << "Animation count: " << Animation::count << '\n';
         SDL_DestroyTexture(this->spriteSheet);
     }
 

@@ -8,8 +8,6 @@
 
 class Camera {
 private:
-    inline static bool isInitialized = false;
-
     SDL_Rect view;
 
     Camera() : view({ 0, 0, 0, 0 }) {}
@@ -21,14 +19,15 @@ public:
     }
 
     void init(int w, int h) {
-        // only allow this function to be called once per instantiation of a Camera object
-        if (Camera::isInitialized) {
+        static bool isInitialized = false;
+        // only allow this function to be called once
+        if (isInitialized) {
             return;
         }
         this->view.w = w;
         this->view.h = h;
 
-        Camera::isInitialized = true;
+        isInitialized = true;
     }
 
     // returns whether an entity is in view of the camera,

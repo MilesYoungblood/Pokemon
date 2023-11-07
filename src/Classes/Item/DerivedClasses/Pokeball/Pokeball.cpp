@@ -38,7 +38,7 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
     double a = 3 * pokemon.getMaxHp() - 2 * pokemon.getHP();
     a /= 3.0 * pokemon.getMaxHp();
     a *= pokemon.getCatchRate();
-    //FIXME update
+    //FIXME shift
     a *= this->getCatchRate(pokemon, Time::NIGHT, 1, false);
 
     auto statusCalc = [&pokemon] {
