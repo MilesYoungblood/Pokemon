@@ -4,14 +4,14 @@
 
 #include "Game.h"
 
-void handleBattleEvents() {
+void Game::handleBattleEvents() {
 
 }
 
-void updateBattle() {
+void Game::updateBattle() {
 
 }
 
-void renderBattle() {
+void Game::renderBattle() {
 
 }

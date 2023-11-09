@@ -136,32 +136,36 @@ bool Entity::isFacingWest() const {
 
 // returns true if this is right next to another entity, not necessarily facing
 bool Entity::isNextTo(const Entity *entity) const {
-    if (this->isFacingNorth()) {
+    if (this->currentDirection == Direction::UP) {
         return this->y == entity->y + 1 and this->x == entity->x;
     }
-    if (this->isFacingEast()) {
+    if (this->currentDirection == Direction::RIGHT) {
         return this->x == entity->x - 1 and this->y == entity->y;
     }
-    if (this->isFacingSouth()) {
+    if (this->currentDirection == Direction::DOWN) {
         return this->y == entity->y - 1 and this->x == entity->x;
     }
-    if (this->isFacingWest()) {
+    if (this->currentDirection == Direction::LEFT) {
         return this->x == entity->x + 1 and this->y == entity->y;
     }
     return false;
 }
 
 bool Entity::hasVisionOf(const Entity *entity) const {
-    if (this->isFacingNorth()) {
+    // cannot see oneself
+    if (this == entity) {
+        return false;
+    }
+    if (this->currentDirection == Direction::UP) {
         return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
     }
-    if (this->isFacingEast()) {
+    if (this->currentDirection == Direction::RIGHT) {
         return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
     }
-    if (this->isFacingSouth()) {
+    if (this->currentDirection == Direction::DOWN) {
         return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->vision;
     }
-    if (this->isFacingWest()) {
+    if (this->currentDirection == Direction::LEFT) {
         return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
     }
     return false;

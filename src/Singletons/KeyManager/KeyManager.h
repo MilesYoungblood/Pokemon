@@ -37,86 +37,30 @@ public:
 
     // sets a key's state to down
     void keyDown(SDL_Scancode key) {
-        if (not this->keyStates[key].locked) {
+        if (not this->keyStates.at(key).locked) {
             this->keyStates[key].state = true;
-        }
-        // erases the key if did not exist in the map
-        if (this->keyStates.size() > NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
-    }
-
-    // sets multiple key's states to down
-    void keyDown(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
-        for (const SDL_Scancode key : keys) {
-            if (not this->keyStates[key].locked) {
-                this->keyStates[key].state = true;
-            }
-            // erases the key if did not exist in the map
-            if (this->keyStates.size() > NUM_KEYS) {
-                this->keyStates.erase(key);
-            }
         }
     }
 
     // sets a key's state to up
     void keyUp(SDL_Scancode key) {
-        if (not this->keyStates[key].locked) {
+        if (not this->keyStates.at(key).locked) {
             this->keyStates[key].state = false;
-        }
-        // erases the key if did not exist in the map
-        if (this->keyStates.size() > NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
-    }
-
-    // sets multiple key's states to up
-    void keyUp(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
-        for (const SDL_Scancode key : keys) {
-            if (not this->keyStates[key].locked) {
-                this->keyStates[key].state = false;
-            }
-            // erases the key if did not exist in the map
-            if (this->keyStates.size() > NUM_KEYS) {
-                this->keyStates.erase(key);
-            }
         }
     }
 
     // locks a key
     void lockKey(SDL_Scancode key) {
-        this->keyStates[key].state = false;
-        this->keyStates[key].locked = true;
-
-        // erases the key if did not exist in the map
-        if (this->keyStates.size() > NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
-        std::cout << this->keyStates.size() << '\n';
+        this->keyStates.at(key).state = false;
+        this->keyStates.at(key).locked = true;
     }
 
     // locks multiple keys
     void blockInput(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
         for (const SDL_Scancode key : keys) {
-            this->keyStates[key].state = false;
-            this->keyStates[key].locked = true;
-            // erases the key if did not exist in the map
-            if (this->keyStates.size() > NUM_KEYS) {
-                this->keyStates.erase(key);
-            }
+            this->keyStates.at(key).state = false;
+            this->keyStates.at(key).locked = true;
         }
-    }
-
-    void toggleWasd() {
-        this->keyStates[SDL_SCANCODE_W].state = false;
-        this->keyStates[SDL_SCANCODE_A].state = false;
-        this->keyStates[SDL_SCANCODE_S].state = false;
-        this->keyStates[SDL_SCANCODE_D].state = false;
-
-        this->keyStates[SDL_SCANCODE_W].locked = not this->keyStates[SDL_SCANCODE_W].locked;
-        this->keyStates[SDL_SCANCODE_A].locked = not this->keyStates[SDL_SCANCODE_A].locked;
-        this->keyStates[SDL_SCANCODE_S].locked = not this->keyStates[SDL_SCANCODE_S].locked;
-        this->keyStates[SDL_SCANCODE_D].locked = not this->keyStates[SDL_SCANCODE_D].locked;
     }
 
     void lockWasd() {
@@ -139,23 +83,13 @@ public:
     }
 
     void unlockKey(SDL_Scancode key) {
-        this->keyStates[key].locked = false;
-
-        // erases the key if did not exist in the map
-        if (this->keyStates.size() > NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
+        this->keyStates.at(key).locked = false;
     }
 
     // unlocks multiple keys
     void enableInput(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
         for (const SDL_Scancode key : keys) {
-            this->keyStates[key].locked = false;
-
-            // erases the key if did not exist in the map
-            if (this->keyStates.size() > NUM_KEYS) {
-                this->keyStates.erase(key);
-            }
+            this->keyStates.at(key).locked = false;
         }
     }
 
@@ -175,25 +109,12 @@ public:
     }
 
     bool isLocked(SDL_Scancode key) {
-        const bool locked = this->keyStates[key].locked;
-
-        if (this->keyStates.size() > KeyManager::NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
-
-        return locked;
+        return this->keyStates.at(key).locked;
     }
 
     // returns true is a key is currently pressed
     bool getKey(SDL_Scancode key) {
-        const bool state = this->keyStates[key].state;
-
-        // erases the key if did not exist in the map
-        if (this->keyStates.size() > KeyManager::NUM_KEYS) {
-            this->keyStates.erase(key);
-        }
-
-        return state;
+        return this->keyStates.at(key).state;
     }
 
     bool get(SDL_Scancode key) {
@@ -204,15 +125,7 @@ public:
     // returns true if any of the keys are currently pressed
     bool getKeys(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {
         return std::ranges::any_of(keys.begin(), keys.end(), [this](SDL_Scancode key) -> bool {
-            if (this->keyStates[key].state) {
-                // erases the key if did not exist in the map
-                if (this->keyStates.size() > NUM_KEYS) {
-                    this->keyStates.erase(key);
-                }
-                else {
-                    return true;
-                }
-            }
+            return this->keyStates.at(key).state;
         });
     }
 };

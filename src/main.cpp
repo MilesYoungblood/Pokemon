@@ -13,17 +13,17 @@ int main() {
     Uint32 frameTime;
     Uint32 frameDelay;
 
-    const Game game;
+    Game::getInstance();
 
-    while (game) {
-        frameStart = SDL_GetTicks();
+    while (Game::getInstance()) {
+        frameStart = SDL_GetTicks64();
 
-        Game::handleEvents();
-        Game::update();
-        Game::render();
+        Game::getInstance().handleEvents();
+        Game::getInstance().update();
+        Game::getInstance().render();
 
         frameTime = SDL_GetTicks64() - frameStart;
-        frameDelay = 1000 / currentFps;
+        frameDelay = 1000 / Game::getFPS();
 
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);

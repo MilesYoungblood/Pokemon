@@ -3,6 +3,7 @@
 //
 
 #include <span>
+#include <queue>
 #include "Game.h"
 
 namespace {
@@ -12,15 +13,17 @@ namespace {
 
     bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
 
+    std::queue<SDL_Event> bufferedKeys;
+
     Stopwatch timer;
 }
 
-void handleOverworldEvents() {
-    switch (event.type) {
+void Game::handleOverworldEvents() {
+    switch (Game::event.type) {
         case SDL_QUIT:
             timer.stop();
             Game::saveData();
-            isRunning = false;
+            Game::isRunning = false;
             break;
 
         case SDL_KEYDOWN:
@@ -28,12 +31,12 @@ void handleOverworldEvents() {
             if (keepMovingForward) {
                 return;
             }
-            KeyManager::getInstance().keyDown(event.key.keysym.scancode);
+            KeyManager::getInstance().keyDown(Game::event.key.keysym.scancode);
             timer.start();
             break;
 
         case SDL_KEYUP:
-            switch (event.key.keysym.scancode) {
+            switch (Game::event.key.keysym.scancode) {
                 case SDL_SCANCODE_W:
                     KeyManager::getInstance().keyUp(SDL_SCANCODE_W);
                     break;
@@ -57,68 +60,68 @@ void handleOverworldEvents() {
     }
 }
 
-void changeMap(const std::array<int, 3> &data) {
+void Game::changeMap(const std::array<int, 3> &data) {
     const int extension_length = 4;
-    const std::string_view music_path(currentMap->getMusic());
+    const std::string_view music_path(Game::currentMap->getMusic());
 
     if (Mix_FadeOutMusic(2000) != 0) {
         std::cout << "Fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\"!\n";
     }
     else {
-        std::cerr << "Error fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\":"
+        std::cerr << "Error fading out \"" << music_path.substr(0, music_path.length() - extension_length) << "\": "
                   << SDL_GetError() << '\n';
         SDL_ClearError();
-        isRunning = false;
+        Game::isRunning = false;
         return;
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mix_FreeMusic(gameMusic);
+        Mix_FreeMusic(Game::music);
 
-        const std::string_view music_path(currentMap->getMusic());
-        const std::string_view song_name = music_path.substr(0, music_path.length() - extension_length);
+        const std::string_view music_path(Game::currentMap->getMusic());
+        const std::string_view song_name(music_path.substr(0, music_path.length() - extension_length));
 
-        gameMusic = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic()).data());
-        if (gameMusic != nullptr) {
+        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + Game::currentMap->getMusic()).data());
+        if (Game::music != nullptr) {
             std::cout << "Loaded \"" << song_name << "\"!\n";
         }
         else {
             std::cerr << "Error loading \"" << song_name << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            isRunning = false;
+            Game::isRunning = false;
             return;
         }
 
-        if (Mix_PlayMusic(gameMusic, -1) == 0) {
+        if (Mix_PlayMusic(Game::music, -1) == 0) {
             std::cout << "Playing \"" << song_name << "\"!\n";
         }
         else {
             std::cerr << "Error playing \"" << song_name << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            isRunning = false;
+            Game::isRunning = false;
             return;
         }
     });
 
-    currentMap->resetMap();
+    Game::currentMap->reset();
 
     // move the new map into the current map variable
-    currentMapIndex = data[2];
-    currentMap = &maps.at(currentMapIndex);
+    Game::currentMapIndex = data[2];
+    Game::currentMap = &Game::maps.at(Game::currentMapIndex);
 
     // resets the states of these variables for each trainer
-    walkCounters = std::vector<int>(currentMap->numTrainers(), 0);
-    lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
-    keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
+    distanceTraveled = std::vector<int>(Game::currentMap->numTrainers(), 0);
+    lockTrainer = std::vector<bool>(Game::currentMap->numTrainers(), false);
+    keepLooping = std::vector<bool>(Game::currentMap->numTrainers(), true);
 
     Player::getPlayer().setCoordinates(data[0], data[1]);
 
     Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
-        currentMap->shift(direct, dist);
+        Game::currentMap->shift(direct, dist);
     });
 }
 
-void checkForOpponents() {
+void Game::checkForOpponents() {
     static void (*resetVariables)() = [] -> void {
         keepMovingForward = false;
         walkCounter = 0;
@@ -137,8 +140,8 @@ void checkForOpponents() {
     static int waitCounter = 0;
 
     // checks if the player is in LoS for any trainer
-    for (int i = 0; i < currentMap->numTrainers(); ++i) {
-        trainer = &(*currentMap)[i];
+    for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
+        trainer = &(*Game::currentMap)[i];
 
         if (*trainer and keepLooping[i] and trainer->hasVisionOf(&Player::getPlayer())) {
             KeyManager::getInstance().lockWasd();
@@ -147,19 +150,19 @@ void checkForOpponents() {
             lockTrainer[i] = true;
 
             ++waitCounter;
-            if (waitCounter < 50 * (currentFps / 30)) {
+            if (waitCounter < 50 * (Game::currentFps / 30)) {
                 continue;
             }
 
             if (not trainer->isNextTo(&Player::getPlayer())) {
-                trainer->shiftDirectionOnMap(trainer->getDirection(), SCROLL_SPEED);
-                walkCounters[i] += SCROLL_SPEED;
+                trainer->shiftDirectionOnMap(trainer->getDirection(), Game::SCROLL_SPEED);
+                distanceTraveled[i] += Game::SCROLL_SPEED;
 
-                if (walkCounters[i] % (TILE_SIZE / 2) == 0) {
+                if (distanceTraveled[i] % (TILE_SIZE / 2) == 0) {
                     trainer->updateAnimation();
                 }
 
-                if (walkCounters[i] % TILE_SIZE == 0) {
+                if (distanceTraveled[i] % TILE_SIZE == 0) {
                     trainer->moveForward();
                 }
             }
@@ -176,16 +179,16 @@ void checkForOpponents() {
     }
 }
 
-void updateTrainers() {
-    for (int i = 0; i < currentMap->numTrainers(); ++i) {
+void Game::updateTrainers() {
+    for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
         // does not potentially make the trainer move spontaneously if true
         if (lockTrainer[i]) {
             continue;
         }
 
-        Trainer *entity = &(*currentMap)[i];
+        Trainer *entity = &(*Game::currentMap)[i];
 
-        switch (generateInteger(1, 100 * currentFps / 30)) {
+        switch (generateInteger(1, 100 * Game::currentFps / 30)) {
             case 1:
                 entity->face(entity);
                 break;
@@ -202,12 +205,12 @@ void updateTrainers() {
     }
 }
 
-void updateOverworld() {
+void Game::updateOverworld() {
     if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
         if (not Player::getPlayer().isFacingNorth()) {
             Player::getPlayer().faceNorth();
         }
-        if (KeyManager::getInstance().get(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(Game::currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
@@ -217,7 +220,7 @@ void updateOverworld() {
         if (not Player::getPlayer().isFacingWest()) {
             Player::getPlayer().faceWest();
         }
-        if (KeyManager::getInstance().get(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(Game::currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
@@ -227,7 +230,7 @@ void updateOverworld() {
         if (not Player::getPlayer().isFacingSouth()) {
             Player::getPlayer().faceSouth();
         }
-        if (KeyManager::getInstance().get(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(Game::currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
@@ -237,17 +240,17 @@ void updateOverworld() {
         if (not Player::getPlayer().isFacingEast()) {
             Player::getPlayer().faceEast();
         }
-        if (KeyManager::getInstance().get(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(currentMap) and
+        if (KeyManager::getInstance().get(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(Game::currentMap) and
             timer.getElapsedTime() >= 10) {
             keepMovingForward = true;
             timer.reset();
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
-        for (int i = 0; i < currentMap->numTrainers(); ++i) {
-            if (Player::getPlayer().hasVisionOf(&(*currentMap)[i])) {
+        for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
+            if (Player::getPlayer().hasVisionOf(&(*Game::currentMap)[i])) {
                 // FIXME does not take into account multiple pages
-                (*currentMap)[i].face(&Player::getPlayer());
+                (*Game::currentMap)[i].face(&Player::getPlayer());
                 print = not print;
                 if (print) {
                     KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
@@ -260,7 +263,7 @@ void updateOverworld() {
                 lockTrainer[i] = print;
                 letterCounter = 0;
 
-                SDL_DestroyTexture(text);
+                SDL_DestroyTexture(Game::text);
                 if (strlen(SDL_GetError()) == 0ULL) {
                     std::cout << "Texture destroyed!\n";
                 }
@@ -271,7 +274,7 @@ void updateOverworld() {
                 }
 
                 // FIXME possibly get rid of second expression
-                if ((*currentMap)[i] and not print) {
+                if ((*Game::currentMap)[i] and not print) {
                     //TODO this is where battle would start
                 }
                 break;
@@ -280,7 +283,7 @@ void updateOverworld() {
         KeyManager::getInstance().keyUp(SDL_SCANCODE_RETURN);
     }
 
-    const std::array<int, 3> map_data = currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
+    const std::array<int, 3> map_data = Game::currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
     if (keepMovingForward) {
         if (walkCounter % (TILE_SIZE / 2) == 0) {
             Player::getPlayer().updateAnimation();
@@ -289,34 +292,34 @@ void updateOverworld() {
             Player::getPlayer().moveForward();
 
             if (map_data[2] != -1) {
-                changeMap(map_data);
+                Game::changeMap(map_data);
             }
         }
 
-        currentMap->shift(oppositeDirection(Player::getPlayer().getDirection()), SCROLL_SPEED);
-        walkCounter += SCROLL_SPEED;
+        Game::currentMap->shift(oppositeDirection(Player::getPlayer().getDirection()), Game::SCROLL_SPEED);
+        walkCounter += Game::SCROLL_SPEED;
     }
 
     // if the player's sprite is on a tile...
     if (walkCounter % TILE_SIZE == 0) {
-        if (not Player::getPlayer().canMoveForward(currentMap)) {
+        if (not Player::getPlayer().canMoveForward(Game::currentMap)) {
             keepMovingForward = false;
         }
         checkForOpponents();
         if (map_data[2] != -1) {
-            changeMap(map_data);
+            Game::changeMap(map_data);
         }
     }
 
     updateTrainers();
 }
 
-void renderTextBox(const std::string &message = "Pokemon White is the best Pokemon game of all time!") {
+void Game::renderTextBox(const std::string &message = "Pokemon White is the best Pokemon game of all time!") {
     const static int box_width = TILE_SIZE * 7;
     const static int box_height = TILE_SIZE * 2;
     const static SDL_Rect text_box{
-            WINDOW_WIDTH / 2 - box_width / 2,
-            WINDOW_HEIGHT - box_height,
+            Game::WINDOW_WIDTH / 2 - box_width / 2,
+            Game::WINDOW_HEIGHT - box_height,
             box_width,
             box_height - TILE_SIZE / 2
     };
@@ -329,13 +332,13 @@ void renderTextBox(const std::string &message = "Pokemon White is the best Pokem
             text_box.h + border_size * 2
     };
 
-    // first draw the border of the dialogue box
-    SDL_RenderFillRect(gameRenderer, &border);
-    SDL_SetRenderDrawColor(gameRenderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    // first render the border of the dialogue box
+    SDL_RenderFillRect(Game::renderer, &border);
+    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-    // then draw the inner dialogue box in front of the border
-    SDL_RenderFillRect(gameRenderer, &text_box);
-    SDL_SetRenderDrawColor(gameRenderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    // then render the inner dialogue box in front of the border
+    SDL_RenderFillRect(Game::renderer, &text_box);
+    SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
     static int width;
     static int height;
@@ -343,7 +346,7 @@ void renderTextBox(const std::string &message = "Pokemon White is the best Pokem
     // if the string has not yet completed concatenation
     if (message.length() >= letterCounter) {
         //safe delete the current texture
-        SDL_DestroyTexture(text);
+        SDL_DestroyTexture(Game::text);
         if (strlen(SDL_GetError()) == 0) {
             std::cout << "Texture destroyed!\n";
         }
@@ -356,8 +359,8 @@ void renderTextBox(const std::string &message = "Pokemon White is the best Pokem
         const std::string buffer = letterCounter > 0 ? message.substr(0, letterCounter) : " ";
 
         // recreate the texture
-        SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(textFont, buffer.c_str(), { 0, 0, 0 }, text_box.w);
-        text = SDL_CreateTextureFromSurface(gameRenderer, temp);
+        SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(Game::font, buffer.c_str(), { 0, 0, 0 }, text_box.w);
+        text = SDL_CreateTextureFromSurface(Game::renderer, temp);
 
         // save the width and height of the text just in case next iteration, this branch isn't executed
         width = temp->w;
@@ -373,16 +376,16 @@ void renderTextBox(const std::string &message = "Pokemon White is the best Pokem
         KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
     }
 
-    // draw the current message to the renderer
-    TextureManager::getInstance().draw(text,
+    // render the current message to the renderer
+    TextureManager::getInstance().draw(Game::text,
                                         { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
 }
 
-void renderOverworld() {
-    currentMap->render();
+void Game::renderOverworld() {
+    Game::currentMap->render();
     Player::getPlayer().render();
 
     if (print) {
-        renderTextBox();
+        Game::renderTextBox();
     }
 }

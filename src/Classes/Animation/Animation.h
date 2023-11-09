@@ -17,22 +17,18 @@ private:
     SDL_Texture *spriteSheet{ nullptr };
 
 public:
-    inline static int count = 0;
-
     Animation() {
-        ++Animation::count;
+        std::cout << "Default constructor called for animation\n";
     }
 
     Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
             : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {
-        std::cout << "Default constructor called for animation\n";
-        ++Animation::count;
+        std::cout << "Overloaded constructor called for animation\n";
     }
 
     Animation(const Animation &toCopy)
             : numFrames(toCopy.numFrames), numRows(toCopy.numRows), spriteSheet(toCopy.spriteSheet) {
         std::cout << "Copy constructor called for animation\n";
-        ++Animation::count;
     };
 
     Animation(Animation &&toMove) noexcept
@@ -42,7 +38,6 @@ public:
 
     Animation &operator=(const Animation &rhs) {
         std::cout << "Copy assignment operator called for animation\n";
-        ++Animation::count;
         if (this != &rhs) {
             this->numFrames = rhs.numFrames;
             this->numRows = rhs.numRows;
@@ -65,8 +60,6 @@ public:
 
     ~Animation() {
         std::cout << "Destructor called for animation\n";
-        --Animation::count;
-        std::cout << "Animation count: " << Animation::count << '\n';
         SDL_DestroyTexture(this->spriteSheet);
     }
 
@@ -83,7 +76,7 @@ public:
         }
     }
 
-    inline void draw(const SDL_Rect &destRect) {
+    inline void render(const SDL_Rect &destRect) {
         TextureManager::getInstance().drawFrame(this->spriteSheet, destRect, this->currentFrame, this->currentRow);
     }
 };

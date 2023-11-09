@@ -165,7 +165,7 @@ public:
     inline void render() {
         // FIXME figure out why try/catch is needed and remove
         try {
-            this->animations.at(this->currentDirection).draw({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
+            this->animations.at(this->currentDirection).render({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
         }
         catch (const std::exception &e) {
             std::cout << "Error rendering animation: " << e.what() << '\n';

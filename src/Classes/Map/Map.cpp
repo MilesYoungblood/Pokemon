@@ -4,12 +4,6 @@
 
 #include "Map.h"
 
-SDL_Texture *Map::free = nullptr;
-SDL_Texture *Map::obstruction = nullptr;
-SDL_Texture *Map::grass = nullptr;
-SDL_Texture *Map::tallGrass = nullptr;
-SDL_Texture *Map::water = nullptr;
-
 bool Map::isTrainerHere(const int x, const int y) const {
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         if (trainer->getX() == x and trainer->getY() == y) {
@@ -32,62 +26,25 @@ Map::Map(const char *name, const char *music, int width, int height)
     }
 
     // set the top border
-    for (int x = 0; x < this->width; ++x) {
-        this->layout[x][0].id = Map::Tile::ID::OBSTRUCTION;
-    }
-
-    // set the inner layer borders
-    for (int y = 1; y < this->height; ++y) {
-        this->layout[0][y].id = Map::Tile::ID::OBSTRUCTION;
-        this->layout[this->width - 1][y].id = Map::Tile::ID::OBSTRUCTION;
-    }
-
-    // set the bottom border
-    for (int x = 0; x < this->width; ++x) {
-        this->layout[x][this->height - 1].id = Map::Tile::ID::OBSTRUCTION;
-    }
-}
-
-Map::Map(const char *name, const char *music, int width, int height, const std::vector<Map::ExitPoint> &exitPoints)
-        : name(name), music(music), width(width), height(height), exitPoints(exitPoints) {
-    // initialize the layout with grass
-    this->layout.resize(this->width);
-    for (int i = 0; i < this->width; ++i) {
-        this->layout[i].resize(this->height);
-
-        for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = { Map::Tile::ID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
+    for (int i = 0; i < 3; ++i) {
+        for (int x = 0; x < this->width; ++x) {
+            this->layout[x][i].id = Map::Tile::ID::OBSTRUCTION;
         }
     }
 
-    // set the top border
-    for (int x = 0; x < this->width; ++x) {
-        this->layout[x][0].id = Map::Tile::ID::OBSTRUCTION;
-    }
-
     // set the inner layer borders
-    for (int y = 1; y < this->height; ++y) {
-        this->layout[0][y].id = Map::Tile::ID::OBSTRUCTION;
-        this->layout[this->width - 1][y].id = Map::Tile::ID::OBSTRUCTION;
+    for (int i = 0; i < 4; ++i) {
+        for (int y = 1; y < this->height; ++y) {
+            this->layout[i][y].id = Map::Tile::ID::OBSTRUCTION;
+            this->layout[this->width - 1 - i][y].id = Map::Tile::ID::OBSTRUCTION;
+        }
     }
 
     // set the bottom border
-    for (int x = 0; x < this->width; ++x) {
-        this->layout[x][this->height - 1].id = Map::Tile::ID::OBSTRUCTION;
-    }
-
-    // set any exit points
-    for (const ExitPoint &exit_point : this->exitPoints) {
-        this->layout[exit_point.x][exit_point.y].id = Map::Tile::ID::GRASS;
-    }
-}
-
-//FIXME try not to copy vector parameter
-Map::Map(const char *name, const char *music, const int width, const int height, const std::vector<Map::ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList)
-        : Map(name, music, width, height, exitPoints) {
-    this->trainers.resize(trainerList.size());
-    for (int i = 0; i < this->trainers.size(); ++i) {
-        this->trainers[i] = std::move(trainerList[i]);
+    for (int i = 0; i < 3; ++i) {
+        for (int x = 0; x < this->width; ++x) {
+            this->layout[x][this->height - 1 - i].id = Map::Tile::ID::OBSTRUCTION;
+        }
     }
 }
 
@@ -105,19 +62,17 @@ Map &Map::operator=(Map &&toMove) noexcept {
 }
 
 Map::~Map() {
-    SDL_DestroyTexture(Map::free);
     SDL_DestroyTexture(Map::obstruction);
     SDL_DestroyTexture(Map::grass);
     SDL_DestroyTexture(Map::tallGrass);
-    SDL_DestroyTexture(Map::water);
 }
 
 void Map::initTextures() {
     static bool isInitialized = false;
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
-    if (not isInitialized and TextureManager::getInstance().wasInitialized()) {
-        Map::obstruction = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\pokeball.png)");
+    if (not isInitialized and TextureManager::getInstance()) {
+        Map::obstruction = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\tree.png)");
         Map::grass = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
 
         isInitialized = true;
@@ -230,16 +185,25 @@ void Map::render() {
             // prevents rendering tiles that aren't onscreen
             if (Camera::getInstance().isInView(sdlRect) != 0U) {
                 switch (this->layout[row][column].id) {
-                    case Map::Tile::ID::FREE:
-                        TextureManager::getInstance().draw(Map::free, sdlRect);
+                    case Map::Tile::ID::GRASS:
+                        TextureManager::getInstance().draw(Map::grass, sdlRect);
+                        break;
+
+                    case Map::Tile::ID::TALL_GRASS:
+                        TextureManager::getInstance().draw(Map::tallGrass, sdlRect);
                         break;
 
                     case Map::Tile::ID::OBSTRUCTION:
+                        TextureManager::getInstance().draw(Map::grass, sdlRect);
                         TextureManager::getInstance().draw(Map::obstruction, sdlRect);
                         break;
 
+                    case Map::Tile::ID::WATER:
+                        Map::water.update();
+                        Map::water.render(sdlRect);
+                        break;
+
                     default:
-                        TextureManager::getInstance().draw(Map::grass, sdlRect);
                         break;
                 }
             }
@@ -256,10 +220,10 @@ void Map::render() {
 
 // resets the previous map's tile positions
 // as well as the trainer's positions
-void Map::resetMap() {
-    for (int i = 0; i < this->width; ++i) {
-        for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = { this->layout[i][j].id, i * TILE_SIZE, j * TILE_SIZE };
+void Map::reset() {
+    for (int row = 0; row < this->width; ++row) {
+        for (int column = 0; column < this->height; ++column) {
+            this->layout[row][column] = { this->layout[row][column].id, row * TILE_SIZE, column * TILE_SIZE };
         }
     }
 

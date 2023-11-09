@@ -32,12 +32,8 @@ public:
         this->isInitialized = true;
     }
 
-    [[nodiscard]] bool wasInitialized() const {
-        return this->isInitialized;
-    }
-
-    SDL_Texture *loadTexture(std::string_view texture) {
-        return IMG_LoadTexture(this->textureRenderer, texture.data());
+    SDL_Texture *loadTexture(std::string_view path) {
+        return IMG_LoadTexture(this->textureRenderer, path.data());
     }
 
     SDL_Texture *loadText(TTF_Font *font, const char *text, SDL_Color fg) {
@@ -63,5 +59,9 @@ public:
     void drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int frame, int row) {
         const SDL_Rect src{ dest.w * frame, dest.h * row, dest.w, dest.h };
         SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
+    }
+
+    explicit operator bool() const {
+        return this->isInitialized;
     }
 };

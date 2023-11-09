@@ -7,30 +7,16 @@
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Singletons/Camera/Camera.h"
 
-template<typename T>
-class IType {
-private:
-    T *p;
-
-public:
-    explicit IType(T *p) : p(p) {}
-
-    bool operator!=(IType rhs) const { return this->p != rhs.p; }
-
-    T &operator*() const { return *p; }
-
-    void operator++() { ++p; }
-};
-
 class Map {
 private:
+    using Inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
+
     struct Tile {
         enum ID {
-            FREE,
-            OBSTRUCTION,
             GRASS,
-            TALL_GRASS [[maybe_unused]],
-            WATER [[maybe_unused]]
+            TALL_GRASS,
+            OBSTRUCTION,
+            WATER
         };
         ID id;
         int x;
@@ -52,17 +38,16 @@ private:
     int width{ 0 };                                 // width of the map
     int height{ 0 };                                // height of the map
 
-    static SDL_Texture *free;
-    static SDL_Texture *obstruction;
-    static SDL_Texture *grass;
-    static SDL_Texture *tallGrass;
-    static SDL_Texture *water;
+    inline static SDL_Texture *obstruction{ nullptr };
+    inline static SDL_Texture *grass{ nullptr };
+    inline static SDL_Texture *tallGrass{ nullptr };
+    inline static Animation water;
 
     std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
 
     std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
 
-    std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>> items;
+    Inventory items;
 
     std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
 
@@ -78,10 +63,6 @@ public:
     Map() = default;
 
     Map(const char *name, const char *music, int width, int height);
-
-    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints);
-
-    Map(const char *name, const char *music, int width, int height, const std::vector<ExitPoint> &exitPoints, std::vector<std::unique_ptr<Trainer>> &trainerList);
 
     Map(const Map &rhs) = delete;
 
@@ -117,5 +98,5 @@ public:
 
     void render();
 
-    void resetMap();
+    void reset();
 };
