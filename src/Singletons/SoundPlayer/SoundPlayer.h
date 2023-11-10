@@ -19,7 +19,7 @@ private:
             std::cout << '\"' << path << "\" loaded!\n";
         }
         else {
-            std::cerr << "Error loading sound: " << SDL_GetError() << '\n';
+            std::clog << "Error loading sound: " << SDL_GetError() << '\n';
             SDL_ClearError();
         }
     }

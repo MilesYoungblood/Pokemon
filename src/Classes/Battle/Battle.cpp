@@ -154,7 +154,7 @@ bool Battle::run() {
 }
 
 void Battle::runMessage(const bool runStatus) {
-    runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't get away!\n");
+    runStatus ? printMessage("Got away safely!\n") : printMessage("Couldn't getKey away!\n");
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 

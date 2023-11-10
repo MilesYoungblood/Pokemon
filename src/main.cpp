@@ -1,4 +1,4 @@
-#pragma clang diagnostic push
+#pragma clang diagnostic add
 #pragma ide diagnostic ignored "OCUnusedMacroInspection"
 
 

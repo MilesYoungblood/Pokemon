@@ -8,11 +8,11 @@
 
 class Animation {
 private:
-    int numFrames{ 0 };
-    int numRows{ 0 };
+    unsigned int numFrames{ 0U };
+    unsigned int numRows{ 0U };
 
-    int currentFrame{ 0 };
-    int currentRow{ 0 };
+    unsigned int currentFrame{ 0U };
+    unsigned int currentRow{ 0U };
 
     SDL_Texture *spriteSheet{ nullptr };
 
@@ -21,7 +21,7 @@ public:
         std::cout << "Default constructor called for animation\n";
     }
 
-    Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
+    Animation(SDL_Texture *spriteSheet, unsigned int numFrames, unsigned int numRows)
             : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {
         std::cout << "Overloaded constructor called for animation\n";
     }
@@ -67,11 +67,11 @@ public:
         ++this->currentFrame;
 
         if (this->currentFrame == this->numFrames) {
-            this->currentFrame = 0;
+            this->currentFrame = 0U;
 
             ++this->currentRow;
             if (this->currentRow == this->numRows) {
-                this->currentRow = 0;
+                this->currentRow = 0U;
             }
         }
     }

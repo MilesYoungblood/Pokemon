@@ -4,8 +4,10 @@
 
 #pragma once
 
+#include <iostream>
 #include <thread>
 
+template<typename Time>
 class Stopwatch {
 private:
     std::size_t elapsedTime{ 0ULL };
@@ -20,7 +22,7 @@ private:
             this->counter.detach();
         }
         catch (const std::exception &e) {
-            std::cerr << "Unable to detach thread (thread may have already been detached): " << e.what() << '\n';
+            std::clog << "Unable to detach thread: " << e.what() << '\n';
         }
     }
 
@@ -47,22 +49,14 @@ public:
 
         this->keepGoing = true;
         this->counter = std::thread([this] -> void {
-            while (true) {
-                if (not this->keepGoing) {
-                    return;
-                }
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
+            while (this->keepGoing) {
+                std::this_thread::sleep_for(Time(1));
                 ++this->elapsedTime;
             }
         });
     }
 
     void stop() {
-        // prevents executing stop if the timer is not going
-        if (not this->keepGoing) {
-            return;
-        }
-
         this->deactivate();
     }
 
@@ -70,7 +64,23 @@ public:
         this->elapsedTime = 0ULL;
     }
 
-    [[nodiscard]] std::size_t getElapsedTime() const {
-        return this->elapsedTime;
+    bool operator<(std::size_t rhs) const {
+        return this->elapsedTime < rhs;
+    }
+
+    bool operator<=(std::size_t rhs) const {
+        return this->elapsedTime <= rhs;
+    }
+
+    bool operator >(std::size_t rhs) const {
+        return this->elapsedTime > rhs;
+    }
+
+    bool operator >=(std::size_t rhs) const {
+        return this->elapsedTime >= rhs;
+    }
+
+    bool operator==(std::size_t rhs) const {
+        return this->elapsedTime == rhs;
     }
 };

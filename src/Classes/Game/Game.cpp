@@ -10,7 +10,7 @@ Game::Game() {
         std::cout << "Subsystems isInitialized!\n";
     }
     else {
-        std::cerr << "Error initializing subsystems: " << SDL_GetError() << '\n';
+        std::clog << "Error initializing subsystems: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -21,7 +21,7 @@ Game::Game() {
         std::cout << "Window created!\n";
     }
     else {
-        std::cerr << "Error creating window: " << SDL_GetError() << '\n';
+        std::clog << "Error creating window: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -34,7 +34,7 @@ Game::Game() {
         std::cout << "Icon loaded!\n";
     }
     else {
-        std::cerr << "Error loading icon: " << SDL_GetError() << '\n';
+        std::clog << "Error loading icon: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -48,7 +48,7 @@ Game::Game() {
         std::cout << "Renderer created!\n";
     }
     else {
-        std::cerr << "Error creating renderer: " << SDL_GetError() << '\n';
+        std::clog << "Error creating renderer: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -60,7 +60,7 @@ Game::Game() {
         std::cout << "Initialized TTF subsystems!\n";
     }
     else {
-        std::cerr << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
+        std::clog << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -70,7 +70,7 @@ Game::Game() {
         std::cout << "Created font!\n";
     }
     else {
-        std::cerr << "Error creating font: " << SDL_GetError() << '\n';
+        std::clog << "Error creating font: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -80,7 +80,7 @@ Game::Game() {
         std::cout << "Loaded logo!\n";
     }
     else {
-        std::cerr << "Error loading logo: " << SDL_GetError() << '\n';
+        std::clog << "Error loading logo: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -99,7 +99,7 @@ Game::Game() {
         std::cout << "Default audio device opened!\n";
     }
     else {
-        std::cerr << "Could not open the default audio device: " << SDL_GetError() << '\n';
+        std::clog << "Could not open the default audio device: " << SDL_GetError() << '\n';
         return;
     }
 
@@ -109,7 +109,7 @@ Game::Game() {
         std::cout << "Loaded \"TitleScreen\"!\n";
     }
     else {
-        std::cerr << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
+        std::clog << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
         return;
     }
 
@@ -118,7 +118,7 @@ Game::Game() {
         std::cout << "Playing \"TitleScreen\"!\n";
     }
     else {
-        std::cerr << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
+        std::clog << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
         return;
     }
 
@@ -146,7 +146,7 @@ Game::~Game() {
         std::cout << "Texture destroyed!\n";
     }
     else {
-        std::cerr << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyTexture(Game::logo);
@@ -154,7 +154,7 @@ Game::~Game() {
         std::cout << "Texture destroyed!\n";
     }
     else {
-        std::cerr << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
+        std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     TTF_CloseFont(Game::font);
@@ -167,7 +167,7 @@ Game::~Game() {
         std::cout << "Rendered destroyed!\n";
     }
     else {
-        std::cerr << "Unable to destroy renderer: " << SDL_GetError() << '\n';
+        std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyWindow(Game::window);
@@ -175,7 +175,7 @@ Game::~Game() {
         std::cout << "Window destroyed!\n";
     }
     else {
-        std::cerr << "Unable to destroy window: " << SDL_GetError() << '\n';
+        std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
     }
     SDL_Quit();
 
@@ -200,7 +200,7 @@ void Game::render() {
 void Game::saveData() {
     std::ofstream saveFile(PROJECT_PATH + R"(\Data\SaveData.txt)");
     if (not saveFile) {
-        std::cerr << "Unable to open \"SaveData.txt\"\n";
+        std::clog << "Unable to open \"SaveData.txt\"\n";
         isRunning = false;
         return;
     }

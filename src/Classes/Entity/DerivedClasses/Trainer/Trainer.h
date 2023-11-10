@@ -16,13 +16,13 @@ inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_p
 
 class Trainer : public Entity {
 private:
-    const static int MAX_POKEMON = 6;                   // max number of Pokémon per party
-    const static int MAX_ITEMS = 50;                    // max number of items per bag
-    const static int NUM_ITEM_TYPES = 4;                // number of types of items
+    const static int MAX_POKEMON = 6;                     // max number of Pokémon per party
+    const static int MAX_ITEMS = 50;                      // max number of items per bag
+    const static int NUM_ITEM_TYPES = 4;                  // number of types of items
 
-    int numFainted = 0;                                 // number of fainted Pokémon
-    int numPokemon = 0;                                 // current number of Pokémon in the party
-    std::array<int, Trainer::NUM_ITEM_TYPES> numItems;  // number of each type of item
+    int numFainted = 0;                                   // number of fainted Pokémon
+    int numPokemon = 0;                                   // current number of Pokémon in the party
+    std::array<int, Trainer::NUM_ITEM_TYPES> numItems{};  // number of each type of item
 
     std::vector<std::unique_ptr<Pokemon>> party;
     std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
@@ -108,7 +108,7 @@ public:
     template<typename I>
     const I &getItem(int index) const {
         try {
-            Item *ptr = this->items.at(getItemTypeId<I>())[index].get();
+            Item *ptr = this->items.at(getItemTypeId<I>())[index].getKey();
             return *static_cast<I *>(ptr);
         }
         catch (const std::exception &e) {

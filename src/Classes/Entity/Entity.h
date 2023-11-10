@@ -168,7 +168,7 @@ public:
             this->animations.at(this->currentDirection).render({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
         }
         catch (const std::exception &e) {
-            std::cout << "Error rendering animation: " << e.what() << '\n';
+            std::clog << "Error rendering animation: " << e.what() << '\n';
         }
     }
 

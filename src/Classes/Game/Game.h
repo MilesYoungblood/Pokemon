@@ -17,8 +17,8 @@
 
 inline bool print = false;
 
-inline std::vector<int> distanceTraveled;                           // measures how many screen pixels a trainer has moved
-inline std::vector<bool> lockTrainer;                           // determines whether a trainer can move spontaneously
+inline std::vector<int> pixelsTraveled;                           // measures how many screen pixels a trainer has moved
+inline std::vector<bool> lockTrainer;                               // determines whether a trainer can move spontaneously
 inline std::vector<bool> keepLooping;
 
 class Game {
@@ -26,19 +26,19 @@ private:
     constexpr static std::array<int, 2> FPS{ 30, 60 };
     inline static int currentFps{ FPS[1] };
 
-    constexpr static int WINDOW_WIDTH{ TILE_SIZE * 9 };         // width of the window
-    constexpr static int WINDOW_HEIGHT{ TILE_SIZE * 7 };        // height of the window
+    constexpr static int WINDOW_WIDTH{ TILE_SIZE * 9 };             // width of the window
+    constexpr static int WINDOW_HEIGHT{ TILE_SIZE * 7 };            // height of the window
     inline const static int SCROLL_SPEED{ TILE_SIZE / 10 / (Game::currentFps / 30) };
 
-    constexpr static int FONT_SIZE{ 20 };                       // font size for message box text
+    constexpr static int FONT_SIZE{ 20 };                           // font size for message box text
 
     enum State {
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
 
-    inline static State currentState{ State::TITLE_SCREEN };    // determines which set of functions to use
+    inline static State currentState{ Game::State::TITLE_SCREEN };  // determines which set of functions to use
 
-    inline static bool isRunning{ false };                      // determines whether the game is running
+    inline static bool isRunning{ false };                          // determines whether the game is running
 
     inline static SDL_Window *window{ nullptr };
     inline static SDL_Renderer *renderer{ nullptr };
@@ -61,9 +61,9 @@ private:
     };
 
     inline static std::array<Map, 3ULL> maps{
-            Map("Route 1", "TrainerBattle.mp3", 19, 14),
-            Map("Route 2", "RivalBattle.mp3", 27, 24),
-            Map("Route 3", "GymBattle.mp3", 27, 15)
+            Map("Route 1", "TrainerBattle", 19, 14),
+            Map("Route 2", "RivalBattle", 27, 24),
+            Map("Route 3", "GymBattle", 27, 15)
     };
 
     inline static int currentMapIndex;

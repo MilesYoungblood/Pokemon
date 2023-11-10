@@ -156,7 +156,7 @@ inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int 
 }
 
 inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoosted, bool limit) {
-    std::string string;
+    const char *string;
 
     switch (statBoosted) {
         case Stat::ATTACK:
