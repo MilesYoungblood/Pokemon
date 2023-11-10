@@ -12,12 +12,12 @@ class Stopwatch {
 private:
     std::size_t elapsedTime{ 0ULL };
 
-    bool keepGoing{ false };
+    bool active{ false };
 
     std::thread counter;
 
     void deactivate() {
-        this->keepGoing = false;
+        this->active = false;
         try {
             this->counter.detach();
         }
@@ -43,13 +43,13 @@ public:
 
     void start() {
         // prevents executing start if the timer is still going
-        if (this->keepGoing) {
+        if (this->active) {
             return;
         }
 
-        this->keepGoing = true;
+        this->active = true;
         this->counter = std::thread([this] -> void {
-            while (this->keepGoing) {
+            while (this->active) {
                 std::this_thread::sleep_for(Time(1));
                 ++this->elapsedTime;
             }

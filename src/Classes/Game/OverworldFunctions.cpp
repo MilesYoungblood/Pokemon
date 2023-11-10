@@ -260,8 +260,8 @@ void Game::updateOverworld() {
                 // FIXME possibly getKey rid of second expression
                 if ((*Game::currentMap)[i] and not print) {
                     //TODO this is where battle would start
-                    //Game::currentState = Game::State::BATTLE;
-                    //SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+                    Game::currentState = Game::State::BATTLE;
+                    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
                 }
                 timer.reset();
                 break;
