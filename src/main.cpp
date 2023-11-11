@@ -23,7 +23,7 @@ int main() {
         Game::getInstance().render();
 
         frameTime = SDL_GetTicks64() - frameStart;
-        frameDelay = 1000 / Game::getFPS();
+        frameDelay = 1000 / Game::getFps();
 
         if (frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);

@@ -17,13 +17,16 @@
 
 inline bool print = false;
 
-inline std::vector<int> pixelsTraveled;                           // measures how many screen pixels a trainer has moved
+inline std::vector<int> pixelsTraveled;                             // measures how many screen pixels a trainer has moved
 inline std::vector<bool> lockTrainer;                               // determines whether a trainer can move spontaneously
 inline std::vector<bool> keepLooping;
 
+inline int numPages = 1;
+inline int currentPage = 1;
+
 class Game {
 private:
-    constexpr static std::array<int, 2> FPS{ 30, 60 };
+    inline const static std::array<int, 2> FPS{ 30, 60 };
     inline static int currentFps{ FPS[1] };
 
     constexpr static int WINDOW_WIDTH{ TILE_SIZE * 9 };             // width of the window
@@ -61,9 +64,9 @@ private:
     };
 
     inline static std::array<Map, 3ULL> maps{
-            Map("Route 1", "TrainerBattle", 19, 14),
-            Map("Route 2", "RivalBattle", 27, 24),
-            Map("Route 3", "GymBattle", 27, 15)
+            Map("Route 1", "Route 1", 19, 14),
+            Map("Route 2", "Rival Battle", 27, 24),
+            Map("Route 3", "Gym Battle", 27, 15)
     };
 
     inline static int currentMapIndex;
@@ -101,7 +104,14 @@ private:
 
     static void loadData();
 
+    //FIXME move to TextureManager
+    static void renderTextWithOutline(const char *message, int x, int y, SDL_Color textColor);
+
+    //FIXME move to TextureManager
+    static void renderTextWithOutline(std::string_view message, int x, int y, SDL_Color textColor);
+
     Game();
+
 public:
     static Game &getInstance();
 
@@ -121,7 +131,7 @@ public:
 
     void render();
 
-    [[nodiscard]] static int getFPS();
+    [[nodiscard]] static int getFps();
 
     explicit operator bool() const;
 };

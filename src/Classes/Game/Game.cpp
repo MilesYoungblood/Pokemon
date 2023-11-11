@@ -16,7 +16,7 @@ Game::Game() {
 
     // create window
     Game::window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                  Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0U);
+                                    Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0U);
     if (Game::window != nullptr) {
         std::cout << "Window created!\n";
     }
@@ -26,7 +26,14 @@ Game::Game() {
     }
 
     // initialize image subsystems
-    IMG_Init(IMG_INIT_PNG);
+    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == IMG_InitFlags::IMG_INIT_PNG) {
+        std::cout << "Image subsystems initialized!\n";
+    }
+    else {
+        std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
+        SDL_ClearError();
+        return;
+    }
 
     // load window icon
     SDL_Surface *pokeball = IMG_Load(std::string_view(PROJECT_PATH + R"(\sprites\pokeball.png)").data());
@@ -104,21 +111,21 @@ Game::Game() {
     }
 
     // load title screen music
-    Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\music\TitleScreen.mp3)").data());
+    Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\music\Title Screen.mp3)").data());
     if (Game::music != nullptr) {
-        std::cout << "Loaded \"TitleScreen\"!\n";
+        std::cout << "Loaded \"Title Screen\"!\n";
     }
     else {
-        std::clog << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
+        std::clog << "Error loading \"Title Screen\": " << SDL_GetError() << '\n';
         return;
     }
 
     // play title screen music
     if (Mix_PlayMusic(Game::music, -1) == 0) {
-        std::cout << "Playing \"TitleScreen\"!\n";
+        std::cout << "Playing \"Title Screen\"!\n";
     }
     else {
-        std::clog << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
+        std::clog << "Error playing \"Title Screen\": " << SDL_GetError() << '\n';
         return;
     }
 
@@ -437,7 +444,7 @@ void Game::loadData() {
     }
 }
 
-int Game::getFPS() {
+int Game::getFps() {
     return Game::currentFps;
 }
 

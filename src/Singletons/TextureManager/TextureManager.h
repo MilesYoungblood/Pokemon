@@ -61,6 +61,24 @@ public:
         SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
     }
 
+    void drawRectWithOutline(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize) {
+        // draw the inner box
+        SDL_SetRenderDrawColor(this->textureRenderer, fg.r, fg.g, fg.b, fg.a);
+        SDL_RenderFillRect(this->textureRenderer, &dest);
+
+        SDL_Rect border{ dest.x - 1, dest.y - 1, dest.w + 2, dest.h + 2 };
+
+        // draw the border
+        SDL_SetRenderDrawColor(this->textureRenderer, bg.r, bg.g, bg.b, bg.a);
+        for (int i = 0; i < borderSize; ++i) {
+            SDL_RenderDrawRect(this->textureRenderer, &border);
+            --border.x;
+            --border.y;
+            border.w += 2;
+            border.h += 2;
+        }
+    }
+
     explicit operator bool() const {
         return this->isInitialized;
     }

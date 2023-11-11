@@ -2,7 +2,6 @@
 // Created by Miles Youngblood on 10/24/2023.
 //
 
-#include <span>
 #include "Game.h"
 
 namespace {
@@ -109,12 +108,19 @@ void Game::checkForOpponents() {
     Trainer *trainer;               // variable to reduce the number of function calls
 
     static int waitCounter = 0;     // makes a trainer that spotted the player stand still for a set amount of time
+    static bool freeMusic = true;
+    static bool haltMusic = true;
 
     // checks if the player is in LoS for any trainer
     for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
         trainer = &(*Game::currentMap)[i];
 
         if (*trainer and keepLooping[i] and trainer->hasVisionOf(&Player::getPlayer())) {
+            if (haltMusic) {
+                Mix_HaltMusic();
+                haltMusic = false;
+            }
+
             KeyManager::getInstance().lockWasd();
             KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
             resetVariables();
@@ -123,6 +129,33 @@ void Game::checkForOpponents() {
             ++waitCounter;
             if (waitCounter < 50 * (Game::currentFps / 30)) {
                 continue;
+            }
+
+            if (freeMusic) {
+                Mix_FreeMusic(Game::music);
+
+                Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\Gym Battle.mp3").data());
+                if (Game::music != nullptr) {
+                    std::cout << "Loaded \"Gym Battle\"!\n";
+                }
+                else {
+                    std::clog << "Error loading \"Gym Battle\": " << SDL_GetError() << '\n';
+                    SDL_ClearError();
+                    Game::isRunning = false;
+                    return;
+                }
+
+                if (Mix_PlayMusic(Game::music, -1) == 0) {
+                    std::cout << "Playing \"Gym Battle\"!\n";
+                }
+                else {
+                    std::clog << "Error playing \"Gym Battle\": " << SDL_GetError() << '\n';
+                    SDL_ClearError();
+                    Game::isRunning = false;
+                    return;
+                }
+
+                freeMusic = false;
             }
 
             if (not trainer->isNextTo(&Player::getPlayer())) {
@@ -144,6 +177,8 @@ void Game::checkForOpponents() {
                 letterCounter = 0;
 
                 waitCounter = 0;
+                freeMusic = true;
+                haltMusic = true;
             }
             break;
         }
@@ -190,8 +225,8 @@ void Game::updateOverworld() {
         if (not Player::getPlayer().isFacingNorth()) {
             Player::getPlayer().faceNorth();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(Game::currentMap) and
-            (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(Game::currentMap)
+            and (momentum or timer >= 10)) {
             startWalking();
         }
     }
@@ -199,8 +234,8 @@ void Game::updateOverworld() {
         if (not Player::getPlayer().isFacingWest()) {
             Player::getPlayer().faceWest();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(Game::currentMap) and
-            (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(Game::currentMap)
+            and (momentum or timer >= 10)) {
             startWalking();
         }
     }
@@ -208,8 +243,8 @@ void Game::updateOverworld() {
         if (not Player::getPlayer().isFacingSouth()) {
             Player::getPlayer().faceSouth();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(Game::currentMap) and
-            (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(Game::currentMap)
+            and (momentum or timer >= 10)) {
             startWalking();
         }
     }
@@ -217,22 +252,24 @@ void Game::updateOverworld() {
         if (not Player::getPlayer().isFacingEast()) {
             Player::getPlayer().faceEast();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(Game::currentMap) and
-            (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(Game::currentMap)
+            and (momentum or timer >= 10)) {
             startWalking();
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN) and not keepMovingForward) {
         for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
             if (Player::getPlayer().hasVisionOf(&(*Game::currentMap)[i])) {
-                // FIXME does not take into account multiple pages
+                // FIXME does not take into account multiple numPages
                 (*Game::currentMap)[i].face(&Player::getPlayer());
-                print = not print;
+                print = currentPage <= numPages;
                 if (print) {
                     KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
                     KeyManager::getInstance().lockWasd();
+                    ++currentPage;
                 }
                 else {
+                    currentPage = 0;
                     // re-lock the Enter key
                     KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
 
@@ -243,6 +280,34 @@ void Game::updateOverworld() {
                     });
                     coolDown.detach();
                     KeyManager::getInstance().unlockWasd();
+
+                    if ((*Game::currentMap)[i]) {
+                        Mix_FreeMusic(Game::music);
+
+                        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\Trainer Battle.mp3").data());
+                        if (Game::music != nullptr) {
+                            std::cout << "Loaded \"Trainer Battle\"!\n";
+                        }
+                        else {
+                            std::clog << "Error loading \"Trainer Battle\": " << SDL_GetError() << '\n';
+                            SDL_ClearError();
+                            Game::isRunning = false;
+                            return;
+                        }
+
+                        if (Mix_PlayMusic(Game::music, -1) == 0) {
+                            std::cout << "Playing \"Trainer Battle\"!\n";
+                        }
+                        else {
+                            std::clog << "Error playing \"Trainer Battle\": " << SDL_GetError() << '\n';
+                            SDL_ClearError();
+                            Game::isRunning = false;
+                            return;
+                        }
+
+                        Game::currentState = Game::State::BATTLE;
+                        SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+                    }
                 }
                 lockTrainer[i] = print;
                 letterCounter = 0;
@@ -257,12 +322,6 @@ void Game::updateOverworld() {
                     SDL_ClearError();
                 }
 
-                // FIXME possibly getKey rid of second expression
-                if ((*Game::currentMap)[i] and not print) {
-                    //TODO this is where battle would start
-                    Game::currentState = Game::State::BATTLE;
-                    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-                }
                 timer.reset();
                 break;
             }
@@ -363,7 +422,7 @@ void Game::renderTextBox(const std::string &message = "Pokemon White is the best
 
     // render the current message to the renderer
     TextureManager::getInstance().draw(Game::text,
-                                        { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
+                                       { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
 }
 
 void Game::renderOverworld() {
