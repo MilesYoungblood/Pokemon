@@ -7,16 +7,16 @@
 Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items(), numItems() {
     //FIXME change these to not be Hilbert
     this->setUpAnimation(
-            TextureManager::getInstance().loadTexture(R"(\assets\images\sprites\Hilbert\HilbertSpriteSheetUp.png)"),
+            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetUp.png)"),
             4, 1);
     this->setDownAnimation(
-            TextureManager::getInstance().loadTexture(R"(\assets\images\sprites\Hilbert\HilbertSpriteSheetDown.png)"),
+            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetDown.png)"),
             4, 1);
     this->setLeftAnimation(
-            TextureManager::getInstance().loadTexture(R"(\assets\images\sprites\Hilbert\HilbertSpriteSheetLeft.png)"),
+            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetLeft.png)"),
             4, 1);
     this->setRightAnimation(
-            TextureManager::getInstance().loadTexture(R"(\assets\images\sprites\Hilbert\HilbertSpriteSheetRight.png)"),
+            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetRight.png)"),
             4, 1);
 }
 
@@ -84,7 +84,7 @@ void Trainer::addItem(std::unique_ptr<Item> toAdd) {
 
     for (int i = 0; i < this->numItems.at(type); ++i) {
         // if item already exists within our inventory
-        if (toAdd->getID() == this->items.at(type)[i]->getID()) {
+        if (toAdd->getId() == this->items.at(type)[i]->getId()) {
             this->items.at(type)[i]->add();
             return;
         }

@@ -17,8 +17,8 @@ struct XAttack : public BattleItem {
         return Stat::ATTACK;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_ATTACK;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_ATTACK;
     }
 };
 
@@ -33,8 +33,8 @@ struct XDefense : public BattleItem {
         return Stat::DEFENSE;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_DEFENSE;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_DEFENSE;
     }
 };
 
@@ -49,8 +49,8 @@ struct XSpAttack : public BattleItem {
         return Stat::SP_ATTACK;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_SP_ATTACK;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_SP_ATTACK;
     }
 };
 
@@ -65,8 +65,8 @@ struct XSpDefense : public BattleItem {
         return Stat::SP_DEFENSE;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_SP_DEFENSE;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_SP_DEFENSE;
     }
 };
 
@@ -81,8 +81,8 @@ struct XSpeed : public BattleItem {
         return Stat::SPEED;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_SPEED;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_SPEED;
     }
 };
 
@@ -97,7 +97,7 @@ struct XAccuracy : public BattleItem {
         return Stat::ACCURACY;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::X_ACCURACY;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::X_ACCURACY;
     }
 };

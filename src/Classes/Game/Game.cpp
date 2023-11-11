@@ -68,7 +68,7 @@ Game::Game() {
     }
 
     // load the title image
-    Game::logo = TextureManager::getInstance().loadTexture(R"(\assets\images\PokemonLogo.png)");
+    Game::logo = TextureManager::getInstance().loadTexture("PokemonLogo.png");
     if (Game::logo == nullptr) {
         std::clog << "Error loading logo: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -202,22 +202,22 @@ void Game::saveData() {
 
     for (int i = 0; i < num_restore_items; ++i) {
         item = &Player::getPlayer().getItem<RestoreItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_status_items; ++i) {
         item = &Player::getPlayer().getItem<StatusItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_poke_balls; ++i) {
         item = &Player::getPlayer().getItem<PokeBall>(i);
-        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
     }
 
     for (int i = 0; i < num_battle_items; ++i) {
         item = &Player::getPlayer().getItem<BattleItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getID()) << ' ' << item->getQuantity();
+        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
     }
 
     for (int map = 0; map < Game::maps.size(); ++map) {
@@ -368,7 +368,7 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::ID>(item), quantity));
+            Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::Id>(item), quantity));
         }
 
         Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));

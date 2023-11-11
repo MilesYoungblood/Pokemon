@@ -41,7 +41,8 @@ public:
      * @return a pointer to an SDL_Texture, or nullptr on error
      */
     SDL_Texture *loadTexture(const char *path) {
-        return IMG_LoadTexture(this->textureRenderer, std::string_view(PROJECT_PATH + path).data());
+        return IMG_LoadTexture(this->textureRenderer,
+                               std::string_view(PROJECT_PATH + "\\assets\\images\\" + path).data());
     }
 
     /**
@@ -144,6 +145,7 @@ public:
      * @param text text to draw
      * @param x x position of the text (top left corner)
      * @param y y position of the text (top left corner)
+     * @param pt size of the border
      * @param fg text color
      * @param bg border color
      * @param font text font
@@ -195,6 +197,7 @@ public:
      * @param text text to draw
      * @param x x position of the text (top left corner)
      * @param y y position of the text (top left corner)
+     * @param pt size of the border
      * @param fg text color
      * @param bg border color
      * @param font text font

@@ -13,8 +13,8 @@ struct GreatBall : public PokeBall {
         return 1.5;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::GREAT_BALL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::GREAT_BALL;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -29,8 +29,8 @@ struct UltraBall : public PokeBall {
         return 2.0;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::ULTRA_BALL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::ULTRA_BALL;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -45,8 +45,8 @@ struct MasterBall : public PokeBall {
         return 255.0;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::MASTER_BALL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::MASTER_BALL;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -65,8 +65,8 @@ struct NetBall : public PokeBall {
         return 1.0;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::NET_BALL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::NET_BALL;
     }
 
     [[nodiscard]] std::string getName() const override {

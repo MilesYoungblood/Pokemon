@@ -13,8 +13,8 @@ struct Antidote : public StatusItem {
         return Status::POISON;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::ANTIDOTE;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::ANTIDOTE;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -29,8 +29,8 @@ struct Awakening : public StatusItem {
         return Status::SLEEP;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::AWAKENING;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::AWAKENING;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -45,8 +45,8 @@ struct BurnHeal : public StatusItem {
         return Status::BURN;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::BURN_HEAL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::BURN_HEAL;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -61,8 +61,8 @@ struct IceHeal : public StatusItem {
         return Status::FREEZE;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::ICE_HEAL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::ICE_HEAL;
     }
 
     [[nodiscard]] std::string getName() const override {
@@ -77,8 +77,8 @@ struct ParalyzeHeal : public StatusItem {
         return Status::PARALYSIS;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::PARALYZE_HEAL;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::PARALYZE_HEAL;
     }
 
     [[nodiscard]] std::string getName() const override {

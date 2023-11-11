@@ -13,7 +13,7 @@ struct PokeBall : public Item {
 
     [[nodiscard]] Item::Class getType() const override;
 
-    [[nodiscard]] Item::ID getID() const override;
+    [[nodiscard]] Item::Id getId() const override;
 
     [[nodiscard]] std::string getName() const override;
 

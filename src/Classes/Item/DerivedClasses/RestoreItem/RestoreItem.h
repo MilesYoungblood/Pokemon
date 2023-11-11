@@ -13,7 +13,7 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] virtual bool isHp() const = 0;
 
-    [[nodiscard]] Item::ID getID() const override = 0;
+    [[nodiscard]] Item::Id getId() const override = 0;
 
     [[nodiscard]] Item::Class getType() const override;
 

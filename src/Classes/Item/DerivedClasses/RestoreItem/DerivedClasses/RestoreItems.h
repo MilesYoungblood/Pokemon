@@ -21,8 +21,8 @@ struct Ether : public RestoreItem {
         return false;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::ETHER;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::ETHER;
     }
 };
 
@@ -41,8 +41,8 @@ struct Potion : public RestoreItem {
         return true;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::POTION;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::POTION;
     }
 };
 
@@ -61,8 +61,8 @@ struct SuperPotion : public RestoreItem {
         return true;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::SUPER_POTION;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::SUPER_POTION;
     }
 };
 
@@ -81,7 +81,7 @@ struct HyperPotion : public RestoreItem {
         return true;
     }
 
-    [[nodiscard]] Item::ID getID() const override {
-        return Item::ID::HYPER_POTION;
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::HYPER_POTION;
     }
 };

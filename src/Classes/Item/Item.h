@@ -82,7 +82,7 @@ public:
 
     [[nodiscard]] virtual std::string getName() const = 0;
 
-    [[nodiscard]] virtual ID getID() const = 0;
+    [[nodiscard]] virtual Id getId() const = 0;
 
     [[nodiscard]] virtual Class getType() const = 0;
 

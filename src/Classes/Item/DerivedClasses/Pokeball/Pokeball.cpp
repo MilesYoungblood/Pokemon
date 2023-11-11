@@ -14,8 +14,8 @@ Item::Class PokeBall::getType() const {
     return Item::Class::POKE_BALL;
 }
 
-Item::ID PokeBall::getID() const {
-    return Item::ID::POKE_BALL;
+Item::Id PokeBall::getId() const {
+    return Item::Id::POKE_BALL;
 }
 
 std::string PokeBall::getName() const {

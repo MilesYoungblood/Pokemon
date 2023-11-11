@@ -72,8 +72,8 @@ void Map::initTextures() {
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
     if (not isInitialized and TextureManager::getInstance()) {
-        Map::obstruction = TextureManager::getInstance().loadTexture(R"(\assets\images\terrain\tree.png)");
-        Map::grass = TextureManager::getInstance().loadTexture(R"(\assets\images\terrain\grass.png)");
+        Map::obstruction = TextureManager::getInstance().loadTexture("terrain\\tree.png");
+        Map::grass = TextureManager::getInstance().loadTexture("terrain\\grass.png");
 
         isInitialized = true;
     }
