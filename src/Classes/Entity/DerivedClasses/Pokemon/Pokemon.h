@@ -50,7 +50,7 @@ private:
     static double getStatMod(int stat);
 
 public:
-    enum ID {
+    enum Id {
         VICTINI, SNIVY, SERVINE, SERPERIOR, TEPIG, PIGNITE, EMBOAR, OSHAWOTT, DEWOTT, SAMUROTT, PATRAT, WATCHOG, LILLIPUP,
         HERDIER, STOUTLAND, PURRLOIN, LIEPARD, PANSAGE, SIMISAGE, PANSEAR, SIMISEAR, PANPOUR, SIMIPOUR, MUNNA, MUSHARNA,
         PIDOVE, TRANQUILL, UNFEZANT, BLITZLE, ZEBSTRIKA, ROGGENROLA, BOLDORE, GIGALITH, WOOBAT, SWOOBAT, DRILBUR, EXCADRILL,
@@ -81,7 +81,7 @@ public:
 
     ~Pokemon() override = default;
 
-    [[nodiscard]] virtual Pokemon::ID getID() const = 0;
+    [[nodiscard]] virtual Pokemon::Id getId() const = 0;
 
     [[nodiscard]] int numMoves() const;
 

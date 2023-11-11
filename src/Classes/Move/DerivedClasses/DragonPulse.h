@@ -32,8 +32,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::DRAGON_PULSE;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::DRAGON_PULSE;
     }
 
     [[nodiscard]] std::string getName() const override {

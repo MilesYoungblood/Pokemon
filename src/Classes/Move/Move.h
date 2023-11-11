@@ -25,7 +25,7 @@ private:
     int maxPp;
 
 public:
-    enum ID {
+    enum Id {
         AIR_SLASH,
         AURA_SPHERE,
         DARK_PULSE,
@@ -83,7 +83,7 @@ public:
 
     [[nodiscard]] virtual Move::Category getCategory() const = 0;
 
-    [[nodiscard]] virtual Move::ID getID() const = 0;
+    [[nodiscard]] virtual Move::Id getId() const = 0;
 
     [[nodiscard]] virtual std::string getName() const = 0;
 

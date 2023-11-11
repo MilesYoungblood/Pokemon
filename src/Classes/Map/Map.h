@@ -9,16 +9,16 @@
 
 class Map {
 private:
-    using Inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
+    using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
 
     struct Tile {
-        enum ID {
+        enum Id {
             GRASS,
             TALL_GRASS,
             OBSTRUCTION,
             WATER
         };
-        ID id;
+        Id id;
         int x;
         int y;
     };
@@ -47,14 +47,14 @@ private:
 
     std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
 
-    Inventory items;
+    inventory items;
 
     std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
 
     [[nodiscard]] bool isTrainerHere(int x, int y) const;
 
 public:
-    enum ID {
+    enum Id {
         ROUTE_1,
         ROUTE_2,
         ROUTE_3

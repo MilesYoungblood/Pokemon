@@ -85,8 +85,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::FLAMETHROWER;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::FLAMETHROWER;
     }
 
     [[nodiscard]] std::string getName() const override {

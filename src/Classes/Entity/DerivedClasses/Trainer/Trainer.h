@@ -4,15 +4,11 @@
 
 #pragma once
 
-#include <filesystem>
-
 #include "../Pokemon/Pokemon.h"
 #include "../../../Item/DerivedClasses/RestoreItem/RestoreItem.h"
 #include "../../../Item/DerivedClasses/StatusItem/StatusItem.h"
 #include "../../../Item/DerivedClasses/Pokeball/Pokeball.h"
 #include "../../../Item/DerivedClasses/BattleItem/BattleItem.h"
-
-inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_path().generic_string();
 
 class Trainer : public Entity {
 private:
@@ -129,7 +125,7 @@ public:
 
             for (int i = 0; i < this->numItems.at(type); ++i) {
                 // if item already exists within our inventory
-                if (item->getID() == this->items.at(type)[i]->getID()) {
+                if (item->getId() == this->items.at(type)[i]->getId()) {
                     this->items.at(type)[i]->add(quantity);
                     return;
                 }

@@ -21,29 +21,29 @@ Map::Map(const char *name, const char *music, int width, int height)
         this->layout[i].resize(this->height);
 
         for (int j = 0; j < this->height; ++j) {
-            this->layout[i][j] = { Map::Tile::ID::GRASS, i * TILE_SIZE, j * TILE_SIZE };
+            this->layout[i][j] = { Map::Tile::Id::GRASS, i * TILE_SIZE, j * TILE_SIZE };
         }
     }
 
     // set the top border
     for (int i = 0; i < 3; ++i) {
         for (int x = 0; x < this->width; ++x) {
-            this->layout[x][i].id = Map::Tile::ID::OBSTRUCTION;
+            this->layout[x][i].id = Map::Tile::Id::OBSTRUCTION;
         }
     }
 
     // set the inner layer borders
     for (int i = 0; i < 4; ++i) {
         for (int y = 1; y < this->height; ++y) {
-            this->layout[i][y].id = Map::Tile::ID::OBSTRUCTION;
-            this->layout[this->width - 1 - i][y].id = Map::Tile::ID::OBSTRUCTION;
+            this->layout[i][y].id = Map::Tile::Id::OBSTRUCTION;
+            this->layout[this->width - 1 - i][y].id = Map::Tile::Id::OBSTRUCTION;
         }
     }
 
     // set the bottom border
     for (int i = 0; i < 3; ++i) {
         for (int x = 0; x < this->width; ++x) {
-            this->layout[x][this->height - 1 - i].id = Map::Tile::ID::OBSTRUCTION;
+            this->layout[x][this->height - 1 - i].id = Map::Tile::Id::OBSTRUCTION;
         }
     }
 }
@@ -72,8 +72,8 @@ void Map::initTextures() {
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
     if (not isInitialized and TextureManager::getInstance()) {
-        Map::obstruction = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\tree.png)");
-        Map::grass = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\textures\grass.png)");
+        Map::obstruction = TextureManager::getInstance().loadTexture(R"(\assets\images\terrain\tree.png)");
+        Map::grass = TextureManager::getInstance().loadTexture(R"(\assets\images\terrain\grass.png)");
 
         isInitialized = true;
     }
@@ -86,12 +86,12 @@ bool Map::isObstructionHere(const int x, const int y) const {
         return true;
     }
 
-    return this->layout[x][y].id == Map::Tile::ID::OBSTRUCTION;
+    return this->layout[x][y].id == Map::Tile::Id::OBSTRUCTION;
 }
 
 void Map::addExitPoint(const ExitPoint &exitPoint) {
     this->exitPoints.push_back(exitPoint);
-    this->layout[exitPoint.x][exitPoint.y].id = Map::Tile::ID::GRASS;
+    this->layout[exitPoint.x][exitPoint.y].id = Map::Tile::Id::GRASS;
 }
 
 // returns an array with the new x and y coordinates and the new map respectively,
@@ -130,7 +130,7 @@ const char *Map::getMusic() const {
 // places an obstruction at the passed coordinates
 void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
-        this->layout[x][y].id = Map::Tile::ID::OBSTRUCTION;
+        this->layout[x][y].id = Map::Tile::Id::OBSTRUCTION;
     }
 }
 
@@ -185,20 +185,20 @@ void Map::render() {
             // prevents rendering tiles that aren't onscreen
             if (Camera::getInstance().isInView(sdlRect) != 0U) {
                 switch (this->layout[row][column].id) {
-                    case Map::Tile::ID::GRASS:
+                    case Map::Tile::Id::GRASS:
                         TextureManager::getInstance().draw(Map::grass, sdlRect);
                         break;
 
-                    case Map::Tile::ID::TALL_GRASS:
+                    case Map::Tile::Id::TALL_GRASS:
                         TextureManager::getInstance().draw(Map::tallGrass, sdlRect);
                         break;
 
-                    case Map::Tile::ID::OBSTRUCTION:
+                    case Map::Tile::Id::OBSTRUCTION:
                         TextureManager::getInstance().draw(Map::grass, sdlRect);
                         TextureManager::getInstance().draw(Map::obstruction, sdlRect);
                         break;
 
-                    case Map::Tile::ID::WATER:
+                    case Map::Tile::Id::WATER:
                         Map::water.update();
                         Map::water.render(sdlRect);
                         break;

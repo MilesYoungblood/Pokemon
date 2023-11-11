@@ -21,7 +21,7 @@ private:
     int quantity{ 0 };
 
 public:
-    enum class ID {
+    enum class Id {
         POTION,
         SUPER_POTION,
         HYPER_POTION,

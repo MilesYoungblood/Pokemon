@@ -87,8 +87,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::FLASH_CANNON;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::FLASH_CANNON;
     }
 
     [[nodiscard]] std::string getName() const override {

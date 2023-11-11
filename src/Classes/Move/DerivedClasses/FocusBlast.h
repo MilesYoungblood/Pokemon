@@ -96,8 +96,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::FOCUS_BLAST;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::FOCUS_BLAST;
     }
 
     [[nodiscard]] std::string getName() const override {

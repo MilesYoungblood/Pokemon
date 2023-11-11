@@ -12,22 +12,22 @@ namespace {
 }
 
 void Game::handleTitleScreenEvents() {
-    if (Game::event.type == SDL_QUIT) {
+    if (Game::event.type == SDL_EventType::SDL_QUIT) {
         Game::isRunning = false;
     }
 }
 
 void Game::updateTitleScreen() {
-    if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
         Mix_FreeMusic(Game::music);
 
         // re-lock the Enter key
-        KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
         });
         coolDown.detach();
 
@@ -38,22 +38,17 @@ void Game::updateTitleScreen() {
 
         Game::loadData();
 
-        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + currentMap->getMusic() + ".mp3").data());
-        if (Game::music != nullptr) {
-            std::cout << "Loaded \"" << currentMap->getMusic() << "\"!\n";
-        }
-        else {
+        Game::music = Mix_LoadMUS(
+                std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + currentMap->getMusic() + ".mp3").data());
+        if (Game::music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
             return;
         }
 
-        if (Mix_PlayMusic(Game::music, -1) == 0) {
-            std::cout << "Playing \"" << currentMap->getMusic() << "\"!\n";
-        }
-        else {
-            std::clog << "Unable to play \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
+        if (Mix_PlayMusic(Game::music, -1) == -1) {
+            std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
             return;
@@ -69,19 +64,13 @@ void Game::updateTitleScreen() {
         keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
         SDL_DestroyTexture(Game::logo);
-        if (strlen(SDL_GetError()) == 0ULL) {
-            std::cout << "Texture destroyed!\n";
-        }
-        else {
+        if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
         }
         SDL_DestroyTexture(Game::text);
-        if (strlen(SDL_GetError()) == 0ULL) {
-            std::cout << "Texture destroyed!\n";
-        }
-        else {
+        if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
@@ -113,5 +102,7 @@ void Game::renderTitleScreen() {
 
     if (showPrompt) {
         TextureManager::getInstance().draw(Game::text, message_rect);
+        //TextureManager::getInstance().drawBorderedText("Press Enter to start!", message_rect.x, message_rect.y,
+        //                                               { 255, 255, 255 }, { 0, 0, 0 }, Game::font);
     }
 }

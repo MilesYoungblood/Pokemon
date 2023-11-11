@@ -10,26 +10,6 @@ public:
         SELECTION, ACCEPT
     };
 
-private:
-    std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
-
-    void loadSound(SoundPlayer::SoundId id, const char *path) {
-        this->soundBoard[id] = Mix_LoadWAV(std::string_view(PROJECT_PATH + "\\sfx\\" + path + ".wav").data());
-        if (this->soundBoard.at(id) != nullptr) {
-            std::cout << '\"' << path << "\" loaded!\n";
-        }
-        else {
-            std::clog << "Error loading sound: " << SDL_GetError() << '\n';
-            SDL_ClearError();
-        }
-    }
-
-    SoundPlayer() {
-        this->loadSound(SoundPlayer::SoundId::SELECTION, "selection");
-        this->loadSound(SoundPlayer::SoundId::ACCEPT, "accept");
-    }
-
-public:
     static SoundPlayer &getInstance() {
         static SoundPlayer soundPlayer;
         return soundPlayer;
@@ -51,5 +31,22 @@ public:
     void playSound(SoundPlayer::SoundId id) {
         Mix_PlayChannel(-1, this->soundBoard.at(id), 0);
         Mix_ChannelFinished(nullptr);
+    }
+
+private:
+    std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
+
+    void loadSound(SoundPlayer::SoundId id, const char *name) {
+        this->soundBoard[id] = Mix_LoadWAV(
+                std::string_view(PROJECT_PATH + R"(\assets\audio\sfx\)" + name + ".wav").data());
+        if (this->soundBoard.at(id) == nullptr) {
+            std::clog << "Error loading sound: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
+    }
+
+    SoundPlayer() {
+        this->loadSound(SoundPlayer::SoundId::SELECTION, "selection");
+        this->loadSound(SoundPlayer::SoundId::ACCEPT, "accept");
     }
 };

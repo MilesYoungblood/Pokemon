@@ -92,8 +92,8 @@ public:
         return Move::Category::PHYSICAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::IRON_TAIL;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::IRON_TAIL;
     }
 
     [[nodiscard]] std::string getName() const override {

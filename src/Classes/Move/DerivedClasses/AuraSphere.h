@@ -42,8 +42,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::AURA_SPHERE;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::AURA_SPHERE;
     }
 
     [[nodiscard]] std::string getName() const override {

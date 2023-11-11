@@ -100,8 +100,8 @@ public:
         return Move::Category::PHYSICAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::VOLT_TACKLE;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::VOLT_TACKLE;
     }
 
     [[nodiscard]] std::string getName() const override {

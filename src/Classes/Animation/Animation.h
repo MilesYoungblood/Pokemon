@@ -8,48 +8,29 @@
 
 class Animation {
 private:
-    unsigned int numFrames{ 0U };
-    unsigned int numRows{ 0U };
+    int numFrames{ 0 };
+    int numRows{ 0 };
 
-    unsigned int currentFrame{ 0U };
-    unsigned int currentRow{ 0U };
+    int currentFrame{ 0 };
+    int currentRow{ 0 };
 
     SDL_Texture *spriteSheet{ nullptr };
 
 public:
-    Animation() {
-        std::cout << "Default constructor called for animation\n";
-    }
+    Animation() = default;
 
-    Animation(SDL_Texture *spriteSheet, unsigned int numFrames, unsigned int numRows)
-            : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {
-        std::cout << "Overloaded constructor called for animation\n";
-    }
+    Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
+            : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {}
 
-    Animation(const Animation &toCopy)
-            : numFrames(toCopy.numFrames), numRows(toCopy.numRows), spriteSheet(toCopy.spriteSheet) {
-        std::cout << "Copy constructor called for animation\n";
-    };
+    Animation(const Animation &) = delete;
 
-    Animation(Animation &&toMove) noexcept
-            : numFrames(toMove.numFrames), numRows(toMove.numRows), spriteSheet(toMove .spriteSheet) {
-        std::cout << "Move constructor called for animation\n";
-    }
+    Animation(Animation &&) = delete;
 
-    Animation &operator=(const Animation &rhs) {
-        std::cout << "Copy assignment operator called for animation\n";
-        if (this != &rhs) {
-            this->numFrames = rhs.numFrames;
-            this->numRows = rhs.numRows;
-            SDL_DestroyTexture(this->spriteSheet);
-            // TODO FIX
-        }
+    Animation &operator=(const Animation &) = delete;
 
-        return *this;
-    }
+    Animation &operator=(Animation &&rhs)
 
-    Animation &operator=(Animation &&rhs) noexcept {
-        std::cout << "Move assignment operator called for animation\n";
+    noexcept {
         this->numFrames = rhs.numFrames;
         this->numRows = rhs.numRows;
         this->spriteSheet = rhs.spriteSheet;
@@ -59,7 +40,6 @@ public:
     }
 
     ~Animation() {
-        std::cout << "Destructor called for animation\n";
         SDL_DestroyTexture(this->spriteSheet);
     }
 

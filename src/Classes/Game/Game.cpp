@@ -6,42 +6,33 @@
 
 Game::Game() {
     // initialize subsystems
-    if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) == 0) {
-        std::cout << "Subsystems isInitialized!\n";
-    }
-    else {
+    if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
         std::clog << "Error initializing subsystems: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // create window
     Game::window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
                                     Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0U);
-    if (Game::window != nullptr) {
-        std::cout << "Window created!\n";
-    }
-    else {
+    if (Game::window == nullptr) {
         std::clog << "Error creating window: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // initialize image subsystems
-    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == IMG_InitFlags::IMG_INIT_PNG) {
-        std::cout << "Image subsystems initialized!\n";
-    }
-    else {
+    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) != IMG_InitFlags::IMG_INIT_PNG) {
         std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // load window icon
-    SDL_Surface *pokeball = IMG_Load(std::string_view(PROJECT_PATH + R"(\sprites\pokeball.png)").data());
-    if (pokeball != nullptr) {
-        std::cout << "Icon loaded!\n";
-    }
-    else {
+    SDL_Surface *pokeball = IMG_Load(std::string_view(PROJECT_PATH + R"(\assets\images\pokeball.png)").data());
+    if (pokeball == nullptr) {
         std::clog << "Error loading icon: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
@@ -51,11 +42,9 @@ Game::Game() {
 
     // create renderer
     Game::renderer = SDL_CreateRenderer(Game::window, -1, 0U);
-    if (Game::renderer != nullptr) {
-        std::cout << "Renderer created!\n";
-    }
-    else {
+    if (Game::renderer == nullptr) {
         std::clog << "Error creating renderer: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
@@ -63,69 +52,56 @@ Game::Game() {
     TextureManager::getInstance().init(Game::renderer);
 
     // initialize true type font subsystems
-    if (TTF_Init() == 0) {
-        std::cout << "Initialized TTF subsystems!\n";
-    }
-    else {
+    if (TTF_Init() == -1) {
         std::clog << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // set the font for the message box
-    Game::font = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\fonts\PokemonGb-RAeo.ttf)").data(), Game::FONT_SIZE);
-    if (Game::font != nullptr) {
-        std::cout << "Created font!\n";
-    }
-    else {
+    Game::font = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\assets\fonts\PokemonGb-RAeo.ttf)").data(),
+                              Game::FONT_SIZE);
+    if (Game::font == nullptr) {
         std::clog << "Error creating font: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // load the title image
-    Game::logo = TextureManager::getInstance().loadTexture(PROJECT_PATH + R"(\sprites\Pokemon-Logo.png)");
-    if (Game::logo != nullptr) {
-        std::cout << "Loaded logo!\n";
-    }
-    else {
+    Game::logo = TextureManager::getInstance().loadTexture(R"(\assets\images\PokemonLogo.png)");
+    if (Game::logo == nullptr) {
         std::clog << "Error loading logo: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // load the text prompt
     Game::text = TextureManager::getInstance().loadText(Game::font, "Press enter to continue!", { 0, 0, 0 });
-    if (Game::text != nullptr) {
-        std::cout << "Loaded title text!\n";
-    }
-    else {
-        std::cout << "Error loading title text: " << SDL_GetError() << '\n';
+    if (Game::text == nullptr) {
+        std::clog << "Error loading title text: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // initialize audio
-    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == 0) {
-        std::cout << "Default audio device opened!\n";
-    }
-    else {
-        std::clog << "Could not open the default audio device: " << SDL_GetError() << '\n';
+    if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
+        std::clog << "Error opening the default audio device: " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // load title screen music
-    Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\music\Title Screen.mp3)").data());
-    if (Game::music != nullptr) {
-        std::cout << "Loaded \"Title Screen\"!\n";
-    }
-    else {
+    Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Title Screen.mp3)").data());
+    if (Game::music == nullptr) {
         std::clog << "Error loading \"Title Screen\": " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
     // play title screen music
-    if (Mix_PlayMusic(Game::music, -1) == 0) {
-        std::cout << "Playing \"Title Screen\"!\n";
-    }
-    else {
+    if (Mix_PlayMusic(Game::music, -1) == -1) {
         std::clog << "Error playing \"Title Screen\": " << SDL_GetError() << '\n';
+        SDL_ClearError();
         return;
     }
 
@@ -149,18 +125,12 @@ Game::~Game() {
     Mix_CloseAudio();
 
     SDL_DestroyTexture(Game::text);
-    if (strlen(SDL_GetError()) == 0ULL) {
-        std::cout << "Texture destroyed!\n";
-    }
-    else {
+    if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyTexture(Game::logo);
-    if (strlen(SDL_GetError()) == 0ULL) {
-        std::cout << "Texture destroyed!\n";
-    }
-    else {
+    if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
@@ -170,23 +140,16 @@ Game::~Game() {
     IMG_Quit();
 
     SDL_DestroyRenderer(Game::renderer);
-    if (strlen(SDL_GetError()) == 0ULL) {
-        std::cout << "Rendered destroyed!\n";
-    }
-    else {
+    if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyWindow(Game::window);
-    if (strlen(SDL_GetError()) == 0ULL) {
-        std::cout << "Window destroyed!\n";
-    }
-    else {
+    if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
+        SDL_ClearError();
     }
     SDL_Quit();
-
-    std::cout << "Game cleaned!\n";
 }
 
 void Game::handleEvents() {
@@ -205,7 +168,7 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile(PROJECT_PATH + R"(\Data\SaveData.txt)");
+    std::ofstream saveFile(PROJECT_PATH + R"(\documents\data\SaveData.txt)");
     if (not saveFile) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
         isRunning = false;
@@ -217,13 +180,13 @@ void Game::saveData() {
              << Player::getPlayer().getDirection();
     saveFile << '\n' << Player::getPlayer().partySize();
     for (int pokemon = 0; pokemon < Player::getPlayer().partySize(); ++pokemon) {
-        saveFile << '\n' << Player::getPlayer()[pokemon].getID() << ' ';
+        saveFile << '\n' << Player::getPlayer()[pokemon].getId() << ' ';
 
         const int num_moves = Player::getPlayer()[pokemon].numMoves();
         saveFile << num_moves << ' ';
 
         for (int move = 0; move < num_moves; ++move) {
-            saveFile << Player::getPlayer()[pokemon][move].getID() << ' '
+            saveFile << Player::getPlayer()[pokemon][move].getId() << ' '
                      << Player::getPlayer()[pokemon][move].getPP() << ' ';
         }
     }
@@ -271,10 +234,10 @@ void Game::initializeGame() {
     Game::currentMapIndex = 0;
     Game::currentMap = &Game::maps.at(Game::currentMapIndex);
 
-    Game::maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
-    Game::maps[Map::ID::ROUTE_1][0].addPokemon<Samurott>();
-    Game::maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
-    Game::maps[Map::ID::ROUTE_1][1].addPokemon<Serperior>();
+    Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
+    Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
+    Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
+    Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
 
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
@@ -321,25 +284,25 @@ void Game::initializeGame() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(PROJECT_PATH + R"(\Data\SaveData.txt)");
+    std::ifstream saveFile(PROJECT_PATH + R"(\documents\data\SaveData.txt)");
 
     // initialize all maps
     Map::initTextures();
 
-    Game::maps[Map::ID::ROUTE_1].addExitPoint({ 8, 2, Map::ID::ROUTE_2, 12, 20 });
-    Game::maps[Map::ID::ROUTE_1].addExitPoint({ 9, 2, Map::ID::ROUTE_2, 13, 20 });
-    Game::maps[Map::ID::ROUTE_1].addExitPoint({ 10, 2, Map::ID::ROUTE_2, 14, 20 });
+    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
+    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 9, 2, Map::Id::ROUTE_2, 13, 20 });
+    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 10, 2, Map::Id::ROUTE_2, 14, 20 });
 
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 12, 21, Map::ID::ROUTE_1, 8, 3 });
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 13, 21, Map::ID::ROUTE_1, 9, 3 });
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 14, 21, Map::ID::ROUTE_1, 10, 3 });
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 3, 11, Map::ID::ROUTE_3, 22, 6 });
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 3, 12, Map::ID::ROUTE_3, 22, 7 });
-    Game::maps[Map::ID::ROUTE_2].addExitPoint({ 3, 13, Map::ID::ROUTE_3, 22, 8 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 12, 21, Map::Id::ROUTE_1, 8, 3 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 13, 21, Map::Id::ROUTE_1, 9, 3 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 14, 21, Map::Id::ROUTE_1, 10, 3 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 11, Map::Id::ROUTE_3, 22, 6 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 12, Map::Id::ROUTE_3, 22, 7 });
+    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 13, Map::Id::ROUTE_3, 22, 8 });
 
-    Game::maps[Map::ID::ROUTE_3].addExitPoint({ 23, 6, Map::ID::ROUTE_2, 4, 11 });
-    Game::maps[Map::ID::ROUTE_3].addExitPoint({ 23, 7, Map::ID::ROUTE_2, 4, 12 });
-    Game::maps[Map::ID::ROUTE_3].addExitPoint({ 23, 8, Map::ID::ROUTE_2, 4, 13 });
+    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 6, Map::Id::ROUTE_2, 4, 11 });
+    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 7, Map::Id::ROUTE_2, 4, 12 });
+    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
 
     Trainer::init();
 
@@ -372,7 +335,7 @@ void Game::loadData() {
         // load each Pokémon's data
         for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
-            Player::getPlayer().addPokemon(PokemonFactory::getPokemon(static_cast<Pokemon::ID>(std::stoi(buffer))));
+            Player::getPlayer().addPokemon(PokemonFactory::getPokemon(static_cast<Pokemon::Id>(std::stoi(buffer))));
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
@@ -386,7 +349,7 @@ void Game::loadData() {
                 std::getline(saveFile, buffer, ' ');
                 const int saved_pp = std::stoi(buffer);
 
-                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::ID>(id), saved_pp));
+                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::Id>(id), saved_pp));
             }
 
             // necessary to grab the next line
@@ -408,10 +371,10 @@ void Game::loadData() {
             Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::ID>(item), quantity));
         }
 
-        Game::maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
-        Game::maps[Map::ID::ROUTE_1][0].addPokemon<Samurott>();
-        Game::maps[Map::ID::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
-        Game::maps[Map::ID::ROUTE_1][1].addPokemon<Serperior>();
+        Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
+        Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
+        Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
+        Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
 
         std::stringstream ss;
         // load each trainer's data for every map

@@ -5,7 +5,6 @@
 #pragma once
 
 #include <fstream>
-#include <SDL.h>
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Namespaces/Factories/PokemonFactory.h"
@@ -41,7 +40,7 @@ private:
 
     inline static State currentState{ Game::State::TITLE_SCREEN };  // determines which set of functions to use
 
-    inline static bool isRunning{ false };                          // determines whether the game is running
+    inline static bool isRunning{ false };                          // determines whether the gameRef is running
 
     inline static SDL_Window *window{ nullptr };
     inline static SDL_Renderer *renderer{ nullptr };
@@ -103,12 +102,6 @@ private:
     static void saveData();
 
     static void loadData();
-
-    //FIXME move to TextureManager
-    static void renderTextWithOutline(const char *message, int x, int y, SDL_Color textColor);
-
-    //FIXME move to TextureManager
-    static void renderTextWithOutline(std::string_view message, int x, int y, SDL_Color textColor);
 
     Game();
 

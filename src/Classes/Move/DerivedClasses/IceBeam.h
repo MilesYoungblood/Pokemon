@@ -85,8 +85,8 @@ public:
         return Move::Category::SPECIAL;
     }
 
-    [[nodiscard]] Move::ID getID() const override {
-        return Move::ID::ICE_BEAM;
+    [[nodiscard]] Move::Id getId() const override {
+        return Move::Id::ICE_BEAM;
     }
 
     [[nodiscard]] std::string getName() const override {

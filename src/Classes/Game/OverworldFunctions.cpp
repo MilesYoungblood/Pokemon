@@ -36,12 +36,8 @@ void Game::handleOverworldEvents() {
 }
 
 void Game::changeMap(const std::array<int, 3> &data) {
-    if (Mix_FadeOutMusic(2000) != 0) {
-        std::cout << "Fading out \"" << currentMap->getMusic() << "\"!\n";
-    }
-    else {
-        std::clog << "Error fading out \"" << currentMap->getMusic() << "\": "
-                  << SDL_GetError() << '\n';
+    if (Mix_FadeOutMusic(2000) == 0) {
+        std::clog << "Error fading out \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         Game::isRunning = false;
         return;
@@ -50,21 +46,15 @@ void Game::changeMap(const std::array<int, 3> &data) {
     Mix_HookMusicFinished([] -> void {
         Mix_FreeMusic(Game::music);
 
-        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\" + Game::currentMap->getMusic() + ".mp3").data());
-        if (Game::music != nullptr) {
-            std::cout << "Loaded \"" << currentMap->getMusic() << "\"!\n";
-        }
-        else {
+        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + Game::currentMap->getMusic() + ".mp3").data());
+        if (Game::music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
             return;
         }
 
-        if (Mix_PlayMusic(Game::music, -1) == 0) {
-            std::cout << "Playing \"" << currentMap->getMusic() << "\"!\n";
-        }
-        else {
+        if (Mix_PlayMusic(Game::music, -1) == -1) {
             std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::isRunning = false;
@@ -134,21 +124,15 @@ void Game::checkForOpponents() {
             if (freeMusic) {
                 Mix_FreeMusic(Game::music);
 
-                Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\Gym Battle.mp3").data());
-                if (Game::music != nullptr) {
-                    std::cout << "Loaded \"Gym Battle\"!\n";
-                }
-                else {
+                Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Gym Battle.mp3)").data());
+                if (Game::music == nullptr) {
                     std::clog << "Error loading \"Gym Battle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
                     Game::isRunning = false;
                     return;
                 }
 
-                if (Mix_PlayMusic(Game::music, -1) == 0) {
-                    std::cout << "Playing \"Gym Battle\"!\n";
-                }
-                else {
+                if (Mix_PlayMusic(Game::music, -1) == -1) {
                     std::clog << "Error playing \"Gym Battle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
                     Game::isRunning = false;
@@ -284,21 +268,15 @@ void Game::updateOverworld() {
                     if ((*Game::currentMap)[i]) {
                         Mix_FreeMusic(Game::music);
 
-                        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + "\\music\\Trainer Battle.mp3").data());
-                        if (Game::music != nullptr) {
-                            std::cout << "Loaded \"Trainer Battle\"!\n";
-                        }
-                        else {
+                        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Trainer Battle.mp3)").data());
+                        if (Game::music == nullptr) {
                             std::clog << "Error loading \"Trainer Battle\": " << SDL_GetError() << '\n';
                             SDL_ClearError();
                             Game::isRunning = false;
                             return;
                         }
 
-                        if (Mix_PlayMusic(Game::music, -1) == 0) {
-                            std::cout << "Playing \"Trainer Battle\"!\n";
-                        }
-                        else {
+                        if (Mix_PlayMusic(Game::music, -1) == -1) {
                             std::clog << "Error playing \"Trainer Battle\": " << SDL_GetError() << '\n';
                             SDL_ClearError();
                             Game::isRunning = false;
@@ -313,10 +291,7 @@ void Game::updateOverworld() {
                 letterCounter = 0;
 
                 SDL_DestroyTexture(Game::text);
-                if (strlen(SDL_GetError()) == 0ULL) {
-                    std::cout << "Texture destroyed!\n";
-                }
-                else {
+                if (strlen(SDL_GetError()) > 0ULL) {
                     std::clog << "Error destroying texture (texture may have already been deleted): "
                               << SDL_GetError() << '\n';
                     SDL_ClearError();
@@ -391,10 +366,7 @@ void Game::renderTextBox(const std::string &message = "Pokemon White is the best
     if (message.length() >= letterCounter) {
         //safe delete the current texture
         SDL_DestroyTexture(Game::text);
-        if (strlen(SDL_GetError()) == 0) {
-            std::cout << "Texture destroyed!\n";
-        }
-        else {
+        if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
         }
