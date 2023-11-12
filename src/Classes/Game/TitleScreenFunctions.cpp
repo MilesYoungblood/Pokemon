@@ -102,7 +102,5 @@ void Game::renderTitleScreen() {
 
     if (showPrompt) {
         TextureManager::getInstance().draw(Game::text, message_rect);
-        //TextureManager::getInstance().drawBorderedText("Press Enter to start!", message_rect.x, message_rect.y,
-        //                                               { 255, 255, 255 }, { 0, 0, 0 }, Game::font);
     }
 }

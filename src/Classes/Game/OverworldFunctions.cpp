@@ -46,7 +46,8 @@ void Game::changeMap(const std::array<int, 3> &data) {
     Mix_HookMusicFinished([] -> void {
         Mix_FreeMusic(Game::music);
 
-        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + Game::currentMap->getMusic() + ".mp3").data());
+        Game::music = Mix_LoadMUS(std::string_view(
+                PROJECT_PATH + R"(\assets\audio\music\)" + Game::currentMap->getMusic() + ".mp3").data());
         if (Game::music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
@@ -124,7 +125,8 @@ void Game::checkForOpponents() {
             if (freeMusic) {
                 Mix_FreeMusic(Game::music);
 
-                Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Gym Battle.mp3)").data());
+                Game::music = Mix_LoadMUS(
+                        std::string_view(PROJECT_PATH + R"(\assets\audio\music\Gym Battle.mp3)").data());
                 if (Game::music == nullptr) {
                     std::clog << "Error loading \"Gym Battle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();

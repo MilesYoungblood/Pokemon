@@ -36,12 +36,13 @@ public:
 private:
     std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
 
-    void loadSound(SoundPlayer::SoundId id, const char *name) {
-        this->soundBoard[id] = Mix_LoadWAV(
-                std::string_view(PROJECT_PATH + R"(\assets\audio\sfx\)" + name + ".wav").data());
+    void loadSound(const SoundPlayer::SoundId id, const char *name) {
+        this->soundBoard.insert(std::make_pair(id, Mix_LoadWAV(
+                std::string_view(PROJECT_PATH + R"(\assets\audio\sfx\)" + name + ".wav").data())));
         if (this->soundBoard.at(id) == nullptr) {
             std::clog << "Error loading sound: " << SDL_GetError() << '\n';
             SDL_ClearError();
+            std::terminate();
         }
     }
 

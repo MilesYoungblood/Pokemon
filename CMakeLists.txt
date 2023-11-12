@@ -8,19 +8,6 @@ include_directories("C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2")
-#include_directories("C:/libs/GSL-4.0.0/include/gsl")
-
-#find_package(Microsoft.GSL CONFIG)
-
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fmodules-ts")
-
-#add_custom_command(
-#        OUTPUT ${CMAKE_BINARY_DIR}/test.gcm
-#        COMMAND ${CMAKE_CXX_COMPILER} -std=c++20 -fmodules-ts ${CMAKE_CURRENT_SOURCE_DIR}/src/test.cppm -o ${CMAKE_BINARY_DIR}/test.gcm
-#        DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/test.cppm
-#)
-
-#add_custom_target(ModuleCompilation DEPENDS ${CMAKE_BINARY_DIR}/test.gcm)
 
 add_executable(PokemonBattle
         src/main.cpp
@@ -85,9 +72,16 @@ add_executable(PokemonBattle
         src/Singletons/Stopwatch/Stopwatch.h
         src/Classes/Animation/Animation.h
         src/Singletons/SoundPlayer/SoundPlayer.h
+        src/test.ixx
 )
 
-#add_dependencies(PokemonBattle ModuleCompilation)
+target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
+
+set_source_files_properties(src/test.ixx PROPERTIES
+        LANGUAGE CXX
+        LINKER_LANGUAGE CXX
+        COMPILE_FLAGS "-fmodules-ts"
+)
 
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")
