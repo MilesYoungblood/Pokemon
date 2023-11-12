@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <unordered_map>
 #include "../Pokemon.h"
 
 struct PokemonData {

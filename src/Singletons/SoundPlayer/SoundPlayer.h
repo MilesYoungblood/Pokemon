@@ -36,6 +36,9 @@ public:
 private:
     std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
 
+    /// Adds a sound to the soundboard.
+    /// \param id id of the sound
+    /// \param name name of the sound
     void loadSound(const SoundPlayer::SoundId id, const char *name) {
         this->soundBoard.insert(std::make_pair(id, Mix_LoadWAV(
                 std::string_view(PROJECT_PATH + R"(\assets\audio\sfx\)" + name + ".wav").data())));

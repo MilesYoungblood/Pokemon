@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include <fstream>
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Namespaces/Factories/PokemonFactory.h"

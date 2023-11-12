@@ -9,7 +9,7 @@ include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2")
 
-add_executable(PokemonBattle
+set(SOURCES
         src/main.cpp
         src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h
         src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp
@@ -72,16 +72,28 @@ add_executable(PokemonBattle
         src/Singletons/Stopwatch/Stopwatch.h
         src/Classes/Animation/Animation.h
         src/Singletons/SoundPlayer/SoundPlayer.h
-        src/test.ixx
+        #src/Classes/Move/Move.ixx
+        #src/Functions/GeneralFunctions.ixx
+        src/pch.h
 )
+
+add_executable(PokemonBattle ${SOURCES})
+
+target_precompile_headers(PokemonBattle PRIVATE src/pch.h)
 
 target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
 
-set_source_files_properties(src/test.ixx PROPERTIES
-        LANGUAGE CXX
-        LINKER_LANGUAGE CXX
-        COMPILE_FLAGS "-fmodules-ts"
-)
+#set_source_files_properties(src/Classes/Move/Move.ixx PROPERTIES
+#        LANGUAGE CXX
+#        LINKER_LANGUAGE CXX
+#        COMPILE_FLAGS "-fmodules-ts"
+#)
+
+#set_source_files_properties(src/Functions/GeneralFunctions.ixx PROPERTIES
+#        LANGUAGE CXX
+#        LINKER_LANGUAGE CXX
+#        COMPILE_FLAGS "-fmodules-ts"
+#)
 
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll")
 target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")

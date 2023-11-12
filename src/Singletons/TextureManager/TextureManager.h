@@ -6,8 +6,6 @@
 
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <iostream>
-#include <filesystem>
 
 // leads to the project directory
 inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_path().generic_string();

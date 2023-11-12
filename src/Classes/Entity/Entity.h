@@ -5,11 +5,6 @@
 #pragma once
 
 #include "../../Classes/Animation/Animation.h"
-#include <array>
-#include <utility>
-#include <vector>
-#include <memory>
-#include <sstream>
 
 inline const int TILE_SIZE = 80;
 

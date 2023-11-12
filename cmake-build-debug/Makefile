@@ -128,6 +128,21 @@ PokemonBattle/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/build
 .PHONY : PokemonBattle/fast
 
+# target to build an object file
+cmake_pch.hxx.gch:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
+.PHONY : cmake_pch.hxx.gch
+
+# target to preprocess a source file
+cmake_pch.hxx.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.i
+.PHONY : cmake_pch.hxx.i
+
+# target to generate assembly for a file
+cmake_pch.hxx.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.s
+.PHONY : cmake_pch.hxx.s
+
 src/Classes/Battle/Battle.obj: src/Classes/Battle/Battle.cpp.obj
 .PHONY : src/Classes/Battle/Battle.obj
 
@@ -344,30 +359,6 @@ src/Classes/Game/TitleScreenFunctions.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.s
 .PHONY : src/Classes/Game/TitleScreenFunctions.cpp.s
 
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj: src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj
-
-# target to build an object file
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.i: src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.i
-
-# target to preprocess a source file
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
-
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.s: src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.s
-
-# target to generate assembly for a file
-src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-.PHONY : src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-
 src/Classes/Item/DerivedClasses/Pokeball/Pokeball.obj: src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp.obj
 .PHONY : src/Classes/Item/DerivedClasses/Pokeball/Pokeball.obj
 
@@ -545,6 +536,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... PokemonBattle
+	@echo ... cmake_pch.hxx.gch
+	@echo ... cmake_pch.hxx.i
+	@echo ... cmake_pch.hxx.s
 	@echo ... src/Classes/Battle/Battle.obj
 	@echo ... src/Classes/Battle/Battle.i
 	@echo ... src/Classes/Battle/Battle.s
@@ -572,9 +566,6 @@ help:
 	@echo ... src/Classes/Game/TitleScreenFunctions.obj
 	@echo ... src/Classes/Game/TitleScreenFunctions.i
 	@echo ... src/Classes/Game/TitleScreenFunctions.s
-	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.obj
-	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.i
-	@echo ... src/Classes/Item/DerivedClasses/BattleItem/BattleItem.s
 	@echo ... src/Classes/Item/DerivedClasses/Pokeball/Pokeball.obj
 	@echo ... src/Classes/Item/DerivedClasses/Pokeball/Pokeball.i
 	@echo ... src/Classes/Item/DerivedClasses/Pokeball/Pokeball.s

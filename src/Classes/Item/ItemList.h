@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <unordered_map>
-
 #include "DerivedClasses/RestoreItem/DerivedClasses/RestoreItems.h"
 #include "DerivedClasses/StatusItem/DerivedClasses/StatusItems.h"
 #include "DerivedClasses/Pokeball/DerivedClasses/PokeBalls.h"

@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <iostream>
-
 class Camera {
 private:
     SDL_Rect view;
@@ -18,6 +16,9 @@ public:
         return camera;
     }
 
+    /// Initializes the Camera's view
+    /// \param w window width
+    /// \param h window height
     void init(int w, int h) {
         static bool isInitialized = false;
         // only allow this function to be called once
@@ -30,14 +31,18 @@ public:
         isInitialized = true;
     }
 
-    // returns whether an entity is in view of the camera,
-    // thus enabling the rendering of only the necessary objects
+    /// Determines whether a rectangle is in view of the camera,
+    /// thus enabling the rendering of only necessary objects.
+    /// \param rect the rectangle to check
+    /// \return SDL_True if the rectangle is in view, SDL_False otherwise
     [[nodiscard]] SDL_bool isInView(const SDL_Rect &rect) const {
         return SDL_HasIntersection(&rect, &this->view);
     }
 
-    // finds the player's current position on the screen map,
-    // then shifts everything, including the player, accordingly
+    /// Finds the player's current position on the screen,
+    /// then shifts everything, including the player, accordingly.
+    /// \param p the player
+    /// \param instructions a lambda that makes the map shift
     void lockOnPlayer(Player &p, void (*instructions)(Direction, int)) const {
         // x-distance of the player from the center of the screen
         const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - p.getX() * TILE_SIZE;

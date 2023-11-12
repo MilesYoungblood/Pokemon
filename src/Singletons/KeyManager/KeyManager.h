@@ -4,9 +4,6 @@
 
 #pragma once
 
-#include <unordered_map>
-#include <span>
-
 // manages key-states
 class KeyManager {
 private:

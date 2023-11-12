@@ -4,9 +4,6 @@
 
 #pragma once
 
-#include <iostream>
-#include <thread>
-
 template<typename Time>
 class Stopwatch {
 private:

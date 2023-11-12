@@ -7,8 +7,6 @@
 #include "../../Entity.h"
 #include "../../../Move/Move.h"
 
-#include <array>
-
 enum class Status {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
 };

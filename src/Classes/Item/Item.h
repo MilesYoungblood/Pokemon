@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include <iostream>
-
 #include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
 enum Time {
