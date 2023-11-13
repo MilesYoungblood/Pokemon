@@ -5,7 +5,7 @@
 #include "Game.h"
 
 void Game::handleBattleEvents() {
-    if (Game::event.type == SDL_QUIT) {
+    if (Game::event.type == SDL_EventType::SDL_QUIT) {
         Game::isRunning = false;
     }
 }

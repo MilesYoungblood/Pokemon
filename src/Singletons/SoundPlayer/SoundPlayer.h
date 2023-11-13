@@ -36,6 +36,11 @@ public:
 private:
     std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
 
+    SoundPlayer() {
+        this->loadSound(SoundPlayer::SoundId::SELECTION, "selection");
+        this->loadSound(SoundPlayer::SoundId::ACCEPT, "accept");
+    }
+
     /// Adds a sound to the soundboard.
     /// \param id id of the sound
     /// \param name name of the sound
@@ -47,10 +52,5 @@ private:
             SDL_ClearError();
             std::terminate();
         }
-    }
-
-    SoundPlayer() {
-        this->loadSound(SoundPlayer::SoundId::SELECTION, "selection");
-        this->loadSound(SoundPlayer::SoundId::ACCEPT, "accept");
     }
 };
