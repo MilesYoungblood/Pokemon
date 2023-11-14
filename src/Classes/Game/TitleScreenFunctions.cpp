@@ -34,28 +34,13 @@ void Game::updateTitleScreen() {
         flashSpeed = 10;
         showPrompt = false;
 
+        // FIXME make code following this execute based on MixChannelFinished callback
         SoundPlayer::getInstance().playSound(SoundPlayer::SoundId::SELECTION);
 
         Game::loadData();
 
-        Game::music = Mix_LoadMUS(
-                std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + currentMap->getMusic() + ".mp3").data());
-        if (Game::music == nullptr) {
-            std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
-            SDL_ClearError();
-            Game::isRunning = false;
-            return;
-        }
-
-        if (Mix_PlayMusic(Game::music, -1) == -1) {
-            std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
-            SDL_ClearError();
-            Game::isRunning = false;
-            return;
-        }
-
         Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
-        Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
+        Camera::getInstance().lockOnPlayer([](Direction direct, int dist) -> void {
             currentMap->shift(direct, dist);
         });
 
@@ -75,7 +60,24 @@ void Game::updateTitleScreen() {
             SDL_ClearError();
             Game::isRunning = false;
         }
+
         SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+
+        Game::music = Mix_LoadMUS(
+                std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + currentMap->getMusic() + ".mp3").data());
+        if (Game::music == nullptr) {
+            std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
+            SDL_ClearError();
+            Game::isRunning = false;
+            return;
+        }
+
+        if (Mix_PlayMusic(Game::music, -1) == -1) {
+            std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
+            SDL_ClearError();
+            Game::isRunning = false;
+            return;
+        }
 
         Game::currentState = Game::State::OVERWORLD;
     }

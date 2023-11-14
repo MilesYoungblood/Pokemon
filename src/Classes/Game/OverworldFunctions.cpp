@@ -76,7 +76,7 @@ void Game::changeMap(const std::array<int, 3> &data) {
 
     Player::getPlayer().setCoordinates(data[0], data[1]);
 
-    Camera::getInstance().lockOnPlayer(Player::getPlayer(), [](Direction direct, int dist) -> void {
+    Camera::getInstance().lockOnPlayer([](Direction direct, int dist) -> void {
         Game::currentMap->shift(direct, dist);
     });
 }
@@ -270,7 +270,8 @@ void Game::updateOverworld() {
                     if ((*Game::currentMap)[i]) {
                         Mix_FreeMusic(Game::music);
 
-                        Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Trainer Battle.mp3)").data());
+                        Game::music = Mix_LoadMUS(
+                                std::string_view(PROJECT_PATH + R"(\assets\audio\music\Trainer Battle.mp3)").data());
                         if (Game::music == nullptr) {
                             std::clog << "Error loading \"Trainer Battle\": " << SDL_GetError() << '\n';
                             SDL_ClearError();
@@ -326,7 +327,8 @@ void Game::updateOverworld() {
         keepMovingForward = false;
 
         checkForOpponents();
-        const std::array<int, 3> map_data = Game::currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
+        const std::array<int, 3> map_data = Game::currentMap->isExitPointHere(Player::getPlayer().getX(),
+                                                                              Player::getPlayer().getY());
         if (map_data[2] != -1) {
             Game::changeMap(map_data);
         }

@@ -43,14 +43,14 @@ public:
     /// then shifts everything, including the player, accordingly.
     /// \param p the player
     /// \param instructions a lambda that makes the map shift
-    void lockOnPlayer(Player &p, void (*instructions)(Direction, int)) const {
+    void lockOnPlayer(void (*instructions)(Direction, int)) const {
         // x-distance of the player from the center of the screen
-        const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - p.getX() * TILE_SIZE;
+        const int x_from_center = ((this->view.w - TILE_SIZE) / 2) - Player::getPlayer().getX() * TILE_SIZE;
         // y-distance of the player from the center of the screen
-        const int y_from_center = ((this->view.h - TILE_SIZE) / 2) - p.getY() * TILE_SIZE;
+        const int y_from_center = ((this->view.h - TILE_SIZE) / 2) - Player::getPlayer().getY() * TILE_SIZE;
 
-        p.shiftHorizontally(x_from_center);
-        p.shiftVertically(y_from_center);
+        Player::getPlayer().shiftHorizontally(x_from_center);
+        Player::getPlayer().shiftVertically(y_from_center);
 
         // determines whether to shift left or right
         const Direction x_direction = x_from_center > 0 ? Direction::RIGHT : Direction::LEFT;
