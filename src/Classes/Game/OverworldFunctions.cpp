@@ -17,16 +17,16 @@ namespace {
 
 void Game::handleOverworldEvents() {
     switch (Game::event.type) {
-        case SDL_QUIT:
+        case SDL_EventType::SDL_QUIT:
             Game::saveData();
             Game::isRunning = false;
             break;
 
-        case SDL_KEYDOWN:
+        case SDL_EventType::SDL_KEYDOWN:
             timer.start();
             break;
 
-        case SDL_KEYUP:
+        case SDL_EventType::SDL_KEYUP:
             timer.stop();
             break;
 
@@ -89,10 +89,10 @@ void Game::checkForOpponents() {
     };
 
     // resets movement variables if you are not inputting any directions
-    if (not(KeyManager::getInstance().getKey(SDL_SCANCODE_W) or
-            KeyManager::getInstance().getKey(SDL_SCANCODE_A) or
-            KeyManager::getInstance().getKey(SDL_SCANCODE_S) or
-            KeyManager::getInstance().getKey(SDL_SCANCODE_D))) {
+    if (not(KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) or
+            KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) or
+            KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S) or
+            KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D))) {
         resetVariables();
     }
 
@@ -113,7 +113,7 @@ void Game::checkForOpponents() {
             }
 
             KeyManager::getInstance().lockWasd();
-            KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
             resetVariables();
             lockTrainer[i] = true;
 
@@ -207,62 +207,62 @@ void Game::updateOverworld() {
         timer.reset();
     };
 
-    if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         if (not Player::getPlayer().isFacingNorth()) {
             Player::getPlayer().faceNorth();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_W) and Player::getPlayer().canMoveForward(Game::currentMap)
-            and (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) and
+            Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
             startWalking();
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_A)) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
         if (not Player::getPlayer().isFacingWest()) {
             Player::getPlayer().faceWest();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_A) and Player::getPlayer().canMoveForward(Game::currentMap)
-            and (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) and
+            Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
             startWalking();
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_S)) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
         if (not Player::getPlayer().isFacingSouth()) {
             Player::getPlayer().faceSouth();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_S) and Player::getPlayer().canMoveForward(Game::currentMap)
-            and (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S) and
+            Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
             startWalking();
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_D)) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         if (not Player::getPlayer().isFacingEast()) {
             Player::getPlayer().faceEast();
         }
-        if (KeyManager::getInstance().getKey(SDL_SCANCODE_D) and Player::getPlayer().canMoveForward(Game::currentMap)
-            and (momentum or timer >= 10)) {
+        if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D) and
+            Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
             startWalking();
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN) and not keepMovingForward) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and not keepMovingForward) {
         for (int i = 0; i < Game::currentMap->numTrainers(); ++i) {
             if (Player::getPlayer().hasVisionOf(&(*Game::currentMap)[i])) {
-                // FIXME does not take into account multiple numPages
+                // FIXME does not take into account multiple pages
                 (*Game::currentMap)[i].face(&Player::getPlayer());
                 print = currentPage <= numPages;
                 if (print) {
-                    KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
                     KeyManager::getInstance().lockWasd();
                     ++currentPage;
                 }
                 else {
                     currentPage = 0;
                     // re-lock the Enter key
-                    KeyManager::getInstance().lockKey(SDL_SCANCODE_RETURN);
+                    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
 
                     // sets a cool-down period before the Enter key can be registered again
                     std::thread coolDown([] -> void {
                         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                        KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
+                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
                     });
                     coolDown.detach();
                     KeyManager::getInstance().unlockWasd();
@@ -393,7 +393,7 @@ void Game::renderTextBox(const std::string &message = "Pokemon White is the best
     }
     else {
         // unlocks Enter once the message has finished printing
-        KeyManager::getInstance().unlockKey(SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
     }
 
     // render the current message to the renderer

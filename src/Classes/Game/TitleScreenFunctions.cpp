@@ -3,7 +3,6 @@
 //
 
 #include "Game.h"
-#include <future>
 
 namespace {
     bool showPrompt = true;
@@ -52,13 +51,11 @@ void Game::updateTitleScreen() {
         if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
-            Game::isRunning = false;
         }
         SDL_DestroyTexture(Game::text);
         if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
-            Game::isRunning = false;
         }
 
         SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
