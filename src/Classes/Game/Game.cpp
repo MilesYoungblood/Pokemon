@@ -234,9 +234,9 @@ void Game::initializeGame() {
     Game::currentMapIndex = 0;
     Game::currentMap = &Game::maps.at(Game::currentMapIndex);
 
-    Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
+    Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
     Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
-    Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
+    Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
     Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
 
     // default values for player
@@ -371,9 +371,9 @@ void Game::loadData() {
             Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::Id>(item), quantity));
         }
 
-        Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Cheren", 10, 8, Direction::DOWN, 3));
+        Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
         Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
-        Game::maps[Map::Id::ROUTE_1].addTrainer(std::make_unique<Trainer>("Bianca", 5, 6, Direction::DOWN, 3));
+        Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
         Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
 
         std::stringstream ss;

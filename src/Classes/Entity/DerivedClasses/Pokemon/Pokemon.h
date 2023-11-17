@@ -39,8 +39,6 @@ private:
     std::array<Type, Pokemon::MAX_NUM_TYPES> types;
     Status status{ Status::NONE };
 
-    int moveCounter{ 0 };
-
     static void raiseStat(int &stat, int amount);
 
     static void lowerStat(int &stat, int amount);
@@ -87,17 +85,11 @@ public:
 
     template<typename M>
     void addMove() {
-        try {
-            if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
-                return;
-            }
+        if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
+            return;
+        }
 
-            this->moveSet.push_back(std::make_unique<M>());
-            ++this->moveCounter;
-        }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Error adding move: ") + e.what() + '\n');
-        }
+        this->moveSet.push_back(std::make_unique<M>());
     }
 
     void deleteMove(int index);

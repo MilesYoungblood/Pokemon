@@ -112,8 +112,7 @@ void Game::checkForOpponents() {
                 haltMusic = false;
             }
 
-            KeyManager::getInstance().lockWasd();
-            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().blockInput();
             resetVariables();
             lockTrainer[i] = true;
 
@@ -250,8 +249,7 @@ void Game::updateOverworld() {
                 (*Game::currentMap)[i].face(&Player::getPlayer());
                 print = currentPage <= numPages;
                 if (print) {
-                    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-                    KeyManager::getInstance().lockWasd();
+                    KeyManager::getInstance().blockInput();
                     ++currentPage;
                 }
                 else {

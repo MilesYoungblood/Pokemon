@@ -700,7 +700,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                         // automatically removes the item if it's quantity is now 0
                         if (not this->player->getItem<RestoreItem>(userItem)) {
-                            this->player->removeItem(userType, userItem);
+                            this->player->removeItem<RestoreItem>(userItem);
                         }
                     }
                     // if item selected restores PP...
@@ -731,7 +731,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                             // automatically removes the item if it's quantity is now 0
                             if (not this->player->getItem<RestoreItem>(userItem)) {
-                                this->player->removeItem(userType, userItem);
+                                this->player->removeItem<RestoreItem>(userItem);
                             }
                         }
                     }
@@ -789,7 +789,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                         // automatically removes the item if it's quantity is now 0
                         if (not this->player->getItem<StatusItem>(userItem)) {
-                            this->player->removeItem(userType, userItem);
+                            this->player->removeItem<StatusItem>(userItem);
                         }
                     }
                     // Pokémon did not have a status condition
@@ -801,7 +801,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                         // automatically removes the item if it's quantity is now 0
                         if (not this->player->getItem<StatusItem>(userItem)) {
-                            this->player->removeItem(userType, userItem);
+                            this->player->removeItem<StatusItem>(userItem);
                         }
                     }
                 }
@@ -846,7 +846,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                 // automatically removes the item if it's quantity is now 0
                 if (not this->player->getItem<PokeBall>(userItem)) {
-                    this->player->removeItem(userType, userItem);
+                    this->player->removeItem<PokeBall>(userItem);
                 }
 
                 std::array<bool, 4> shakes{};
@@ -888,7 +888,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
 
                 // automatically removes the item if it's quantity is now 0
                 if (not this->player->getItem<BattleItem>(userItem)) {
-                    this->player->removeItem(userType, userItem);
+                    this->player->removeItem<BattleItem>(userItem);
                 }
             }
             break;

@@ -23,7 +23,7 @@ inline Direction oppositeDirection(const Direction direction) {
         case Direction::LEFT:
             return Direction::RIGHT;
         default:
-            throw std::runtime_error("Unexpected error: function oppositeDirection");
+            throw std::invalid_argument("Unexpected error: function oppositeDirection");
     }
 }
 
@@ -158,12 +158,12 @@ public:
     }
 
     inline void render() {
-        // FIXME figure out why try/catch is needed and remove
         try {
             this->animations.at(this->currentDirection).render({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
         }
-        catch (const std::exception &e) {
-            std::clog << "Error rendering animation: " << e.what() << '\n';
+        catch (const std::out_of_range &e) {
+            static int attempts = 1;
+            std::clog << "(Attempt " << attempts++ << ") Error rendering animation: " << e.what() << '\n';
         }
     }
 

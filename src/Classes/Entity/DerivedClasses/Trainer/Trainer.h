@@ -17,8 +17,6 @@ private:
     const static int NUM_ITEM_TYPES = 4;                  // number of types of items
 
     int numFainted = 0;                                   // number of fainted Pokémon
-    int numPokemon = 0;                                   // current number of Pokémon in the party
-    std::array<int, Trainer::NUM_ITEM_TYPES> numItems{};  // number of each type of item
 
     std::vector<std::unique_ptr<Pokemon>> party;
     std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
@@ -59,87 +57,78 @@ public:
 
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
-    template<typename P>
-    void addPokemon() {
-        try {
-            if (this->numPokemon == Trainer::MAX_POKEMON) {
-                return;
-            }
+    template<typename P, typename ...Params>
+    void addPokemon(Params ...params) {
+        if (this->party.size() == Trainer::MAX_POKEMON) {
+            return;
+        }
 
-            this->party.push_back(std::make_unique<P>());
-            ++this->numPokemon;
-        }
-        catch (const std::exception &exception) {
-            throw std::runtime_error(std::string("Error adding Pokemon: ") + exception.what() + '\n');
-        }
+        this->party.push_back(std::make_unique<P>(params...));
     }
 
     void removePokemon(int index);
 
-    void swapPokemon(int first, int second);
+    void swapPokemon(int a, int b);
 
     void clearParty();
 
     template<typename I>
     [[nodiscard]] int getNumItems() const {
         try {
-            return this->numItems.at(getItemTypeId<I>());
+            return static_cast<int>(this->items.at(Trainer::getItemTypeId<I>()).size());
         }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Unable to retrieve item count: ") + e.what() + '\n');
+        catch (const std::out_of_range &e) {
+            throw std::out_of_range(std::string("Unable to retrieve item count: ") + e.what() + '\n');
         }
     }
 
     template<typename I>
     I &getItem(int index) {
-        try {
-            Item *ptr = this->items.at(getItemTypeId<I>())[index].get();
-            return *static_cast<I *>(ptr);
-        }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Unable to retrieve item: ") + e.what() + '\n');
-        }
+        Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].get();
+        return *static_cast<I *>(ptr);
     }
 
     template<typename I>
     const I &getItem(int index) const {
-        try {
-            Item *ptr = this->items.at(getItemTypeId<I>())[index].getKey();
-            return *static_cast<I *>(ptr);
-        }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Unable to retrieve item: ") + e.what() + '\n');
-        }
+        Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].getKey();
+        return *static_cast<I *>(ptr);
     }
 
     void addItem(std::unique_ptr<Item> toAdd);
 
-    template<typename I>
-    void addItem(int quantity) {
+    template<typename I, typename ...Params>
+    void addItem(Params ...params) {
         try {
-            std::unique_ptr<I> item = std::make_unique<I>(quantity);
+            std::unique_ptr<I> item = std::make_unique<I>(params...);
             const int type = static_cast<int>(item->getType());
-            if (this->numItems.at(type) == Trainer::MAX_ITEMS) {
+            if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
                 return;
             }
 
-            for (int i = 0; i < this->numItems.at(type); ++i) {
+            for (const auto &i : this->items.at(type)) {
                 // if item already exists within our inventory
-                if (item->getId() == this->items.at(type)[i]->getId()) {
-                    this->items.at(type)[i]->add(quantity);
+                if (item->getId() == i->getId()) {
+                    i->add(params...);
                     return;
                 }
             }
 
             this->items.at(type).push_back(std::move(item));
-            ++this->numItems.at(type);
         }
         catch (const std::exception &e) {
             throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
         }
     }
 
-    void removeItem(int type, int index);
+    template<typename I>
+    void removeItem(int index) {
+        try {
+            this->items.at(Trainer::getItemTypeId<I>()).erase(this->items.at(Trainer::getItemTypeId<I>()).begin() + index);
+        }
+        catch (const std::out_of_range &e) {
+            throw std::out_of_range(std::string("Error removing item: ") + e.what() + '\n');
+        }
+    }
 
     void incFaintCount();
 
@@ -147,9 +136,9 @@ public:
 
     [[nodiscard]] int getFaintCount() const;
 
-    Pokemon &operator[](int spot);
+    Pokemon &operator[](int index);
 
-    const Pokemon &operator[](int spot) const;
+    const Pokemon &operator[](int index) const;
 
     explicit operator bool() const override;
 

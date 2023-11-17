@@ -12,7 +12,7 @@ private:
     using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
 
     struct Tile {
-        enum Id {
+        enum class Id {
             GRASS,
             TALL_GRASS,
             OBSTRUCTION,
@@ -24,19 +24,16 @@ private:
     };
 
     struct ExitPoint {
-        int x;                                // x-coordinate of the exit spot
-        int y;                                // y-coordinate of the exit spot
-        int newMap;                           // map that this exit point leads to
-        int newX;                             // the player's new x-coordinates
-        int newY;                             // the player's new y-coordinates
+        const int x;                                // x-coordinate of the exit spot
+        const int y;                                // y-coordinate of the exit spot
+        const int newMap;                           // map that this exit point leads to
+        const int newX;                             // the player's new x-coordinates
+        const int newY;                             // the player's new y-coordinates
     };
 
     const char *name{ "" };                         // name of the map
 
     const char *music{ "" };
-
-    int width{ 0 };                                 // width of the map
-    int height{ 0 };                                // height of the map
 
     inline static SDL_Texture *obstruction{ nullptr };
     inline static SDL_Texture *grass{ nullptr };
@@ -60,8 +57,6 @@ public:
         ROUTE_3
     };
 
-    Map() = default;
-
     Map(const char *name, const char *music, int width, int height);
 
     Map(const Map &rhs) = delete;
@@ -82,7 +77,10 @@ public:
 
     [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    void addTrainer(std::unique_ptr<Trainer> toAdd);
+    template<typename ...Params>
+    void addTrainer(Params ...params) {
+        this->trainers.push_back(std::move(std::make_unique<Trainer>(params...)));
+    }
 
     [[nodiscard]] int numTrainers() const;
 

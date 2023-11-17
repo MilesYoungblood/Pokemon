@@ -67,38 +67,32 @@ double Pokemon::getStatMod(const int stat) {
     }
 }
 
-int Pokemon::numMoves() const { return this->moveCounter; }
+int Pokemon::numMoves() const { return static_cast<int>(this->moveSet.size()); }
 
 void Pokemon::addMove(std::unique_ptr<Move> toAdd) {
-    if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
+    if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
         return;
     }
 
     this->moveSet.push_back(std::move(toAdd));
-    ++this->moveCounter;
 }
 
 void Pokemon::deleteMove(const int index) {
-    if (index < 0 or this->moveCounter - 1 < index ) {
-        return;
+    try {
+        this->moveSet.erase(this->moveSet.begin() + index);
     }
-
-    //delete this->moveSet[index];
-    //this->moveSet[index] = nullptr;
-
-    this->moveSet.erase(this->moveSet.begin() + index);
-    --this->moveCounter;
+    catch (const std::exception &e) {
+        throw std::runtime_error(std::string("Error deleting move: ") + e.what() + '\n');
+    }
 }
 
 void Pokemon::setMoves(const std::initializer_list<Move *> &moves) {
     for (Move *move : moves) {
-        if (this->moveCounter == Pokemon::MAX_NUM_MOVES) {
+        if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
             break;
         }
 
         //this->moveSet.push_back(move);
-        ++this->moveCounter;
-
     }
 }
 
@@ -319,12 +313,9 @@ bool Pokemon::isAfflicted() const {
 }
 
 bool Pokemon::canAttack() const {
-    for (int i = 0; i < this->moveCounter; ++i) {
-        if (this->moveSet[i] == nullptr) {
-            return false;
-        }
-    }
-    return true;
+    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(), [](const std::unique_ptr<Move> &move) -> bool {
+        return move == nullptr;
+    });
 }
 
 void Pokemon::hpEmptyMessage() const {
@@ -335,12 +326,22 @@ void Pokemon::hpFullMessage() const {
     printMessage(this->getName() + "'s HP is full!\n");
 }
 
-Move & Pokemon::operator[](const int index) {
-    return *this->moveSet[index];
+Move &Pokemon::operator[](const int index) {
+    try {
+        return *this->moveSet.at(index);
+    }
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
+    }
 }
 
-const Move & Pokemon::operator[](const int index) const {
-    return *this->moveSet[index];
+const Move &Pokemon::operator[](const int index) const {
+    try {
+        return *this->moveSet.at(index);
+    }
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

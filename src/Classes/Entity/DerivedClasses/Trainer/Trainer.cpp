@@ -4,7 +4,7 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items(), numItems() {
+Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items() {
     //FIXME change these to not be Hilbert
     this->setUpAnimation(
             TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetUp.png)"),
@@ -37,70 +37,61 @@ void Trainer::init() {
 }
 
 int Trainer::partySize() const {
-    return this->numPokemon;
+    return static_cast<int>(this->party.size());
 }
 
 void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
-    if (this->numPokemon == Trainer::MAX_POKEMON) {
+    if (this->party.size() == Trainer::MAX_POKEMON) {
         return;
     }
 
     this->party.push_back(std::move(toAdd));
-    ++this->numPokemon;
 }
 
 void Trainer::removePokemon(const int index) {
-    if (index < 0 or 5 < index) {
-        return;
-    }
+    try {
+        // decrement the faint counter if the Pokémon we're removing is fainted
+        if (this->party.at(index)->isFainted()) {
+            --this->numFainted;
+        }
 
-    // decrement the faint counter if the Pokémon we're removing is fainted
-    if (this->party[index]->isFainted()) {
-        --this->numFainted;
+        this->party.erase(this->party.begin() + index);
     }
-
-    this->party.erase(this->party.begin() + index);
-    --this->numPokemon;
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error removing Pokemon: ") + e.what() + '\n');
+    }
 }
 
-void Trainer::swapPokemon(const int first, const int second) {
-    std::unique_ptr<Pokemon> copy = std::move(this->party[first]);
-    this->party[first] = std::move(this->party[second]);
-    this->party[second] = std::move(copy);
+void Trainer::swapPokemon(const int a, const int b) {
+    try {
+        std::unique_ptr<Pokemon> copy = std::move(this->party.at(a));
+        this->party.at(a) = std::move(this->party.at(b));
+        this->party.at(b) = std::move(copy);
+    }
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error swapping Pokemon: ") + e.what() + '\n');
+    }
 }
 
 void Trainer::clearParty() {
-    for (int i = 0; i < this->numPokemon; ++i) {
-        this->party[i].reset();
-    }
-    this->numPokemon = 0;
+    this->party.clear();
 }
 
 void Trainer::addItem(std::unique_ptr<Item> toAdd) {
     const int type = static_cast<int>(toAdd->getType());
-    if (this->numItems.at(type) == Trainer::MAX_ITEMS) {
+    if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
         return;
     }
 
-    for (int i = 0; i < this->numItems.at(type); ++i) {
+    for (const auto &i : this->items.at(type)) {
         // if item already exists within our inventory
-        if (toAdd->getId() == this->items.at(type)[i]->getId()) {
-            this->items.at(type)[i]->add();
+        if (toAdd->getId() == i->getId()) {
+            i->add();
             return;
         }
     }
 
     this->items.at(type).push_back(std::move(toAdd));
-    ++this->numItems.at(type);
-}
-
-void Trainer::removeItem(const int type, const int index) {
-    if (type < 0 or 3 < type) {
-        throw std::runtime_error("Out of bounds: removeItem");
-    }
-
-    this->items.at(type).erase(this->items.at(type).begin() + index);
-    --this->numItems.at(type);
 }
 
 void Trainer::incFaintCount() {
@@ -115,24 +106,28 @@ int Trainer::getFaintCount() const {
     return this->numFainted;
 }
 
-Pokemon &Trainer::operator[](const int spot) {
-    if (5 < spot or spot < 0) {
-        throw std::runtime_error("Index out of bounds");
+Pokemon &Trainer::operator[](const int index) {
+    try {
+        return *this->party.at(index);
     }
-    return *this->party[spot];
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
+    }
 }
 
-const Pokemon &Trainer::operator[](const int spot) const {
-    if (5 < spot or spot < 0) {
-        throw std::runtime_error("Index out of bounds");
+const Pokemon &Trainer::operator[](const int index) const {
+    try {
+        return *this->party.at(index);
     }
-    return *this->party[spot];
+    catch (const std::out_of_range &e) {
+        throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
+    }
 }
 
 Trainer::operator bool() const {
-    return this->numPokemon > 0;
+    return not this->party.empty();
 }
 
 bool Trainer::canFight() const {
-    return this->numPokemon > 0;
+    return not this->party.empty();
 }
