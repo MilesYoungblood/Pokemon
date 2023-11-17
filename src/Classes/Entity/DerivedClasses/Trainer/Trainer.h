@@ -28,7 +28,7 @@ private:
 
     template<typename I>
     static std::size_t getItemTypeId() {
-        const static std::size_t type_id = getItemTypeId();
+        const static std::size_t type_id = Trainer::getItemTypeId();
         return type_id;
     }
 

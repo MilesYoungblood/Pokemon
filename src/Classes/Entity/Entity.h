@@ -129,20 +129,20 @@ public:
 
     [[nodiscard]] int getScreenY() const;
 
-    inline void setUpAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::UP] = Animation(spriteSheet, numFrames, numRows);
+    inline void setUpAnimation(const char *path, int numFrames, int numRows) {
+        this->animations[Direction::UP] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
     }
 
-    inline void setDownAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::DOWN] = Animation(spriteSheet, numFrames, numRows);
+    inline void setDownAnimation(const char *path, int numFrames, int numRows) {
+        this->animations[Direction::DOWN] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
     }
 
-    inline void setLeftAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::LEFT] = Animation(spriteSheet, numFrames, numRows);
+    inline void setLeftAnimation(const char *path, int numFrames, int numRows) {
+        this->animations[Direction::LEFT] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
     }
 
-    inline void setRightAnimation(SDL_Texture *spriteSheet, int numFrames, int numRows) {
-        this->animations[Direction::RIGHT] = Animation(spriteSheet, numFrames, numRows);
+    inline void setRightAnimation(const char *path, int numFrames, int numRows) {
+        this->animations[Direction::RIGHT] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
     }
 
     inline void setAction(void (*function)(Entity *entity)) {

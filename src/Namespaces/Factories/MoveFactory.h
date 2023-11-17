@@ -7,7 +7,7 @@
 #include "../../Classes/Move/MoveList.h"
 
 namespace MoveFactory {
-    inline std::unique_ptr<Move> getMove(const Move::Id id, const int pp = -1) {
+    inline std::unique_ptr<Move> getMove(Move::Id id, const int pp = -1) {
         switch (id) {
             case Move::Id::AIR_SLASH:
                 return std::make_unique<AirSlash>(pp);

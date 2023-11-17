@@ -4,21 +4,11 @@
 
 #include "Player.h"
 
-std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> Player::pc = std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12>({ nullptr });
-
 Player::Player() {
-    this->setUpAnimation(
-            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetUp.png)"),
-            4, 1);
-    this->setDownAnimation(
-            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetDown.png)"),
-            4, 1);
-    this->setLeftAnimation(
-            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetLeft.png)"),
-            4, 1);
-    this->setRightAnimation(
-            TextureManager::getInstance().loadTexture(R"(sprites\Hilbert\HilbertSpriteSheetRight.png)"),
-            4, 1);
+    this->setUpAnimation("sprites\\Hilbert\\HilbertSpriteSheetUp.png", 4, 1);
+    this->setDownAnimation("sprites\\Hilbert\\HilbertSpriteSheetDown.png", 4, 1);
+    this->setLeftAnimation("sprites\\Hilbert\\HilbertSpriteSheetLeft.png", 4, 1);
+    this->setRightAnimation("sprites\\Hilbert\\HilbertSpriteSheetRight.png", 4, 1);
 }
 
 Player &Player::getPlayer() {

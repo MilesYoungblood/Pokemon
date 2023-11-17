@@ -7,7 +7,7 @@
 #include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
-    inline std::unique_ptr<Pokemon> getPokemon(const Pokemon::Id id) {
+    inline std::unique_ptr<Pokemon> getPokemon(Pokemon::Id id) {
         switch (id) {
             case Pokemon::Id::VICTINI:
                 return std::make_unique<Victini>();

@@ -399,10 +399,6 @@ struct Sawk : public Pokemon {
 struct Hydreigon : public Pokemon {
     Hydreigon() : Pokemon("Hydreigon", Type::DARK, Type::DRAGON, 64, 92, 105, 90, 125, 90, 98, 45) {}
 
-    Hydreigon(const std::initializer_list<Move*> &moves) : Hydreigon() {
-        this->setMoves(moves);
-    }
-
     [[nodiscard]] Pokemon::Id getId() const override {
         return Pokemon::Id::HYDREIGON;
     }

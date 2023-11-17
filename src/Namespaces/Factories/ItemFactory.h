@@ -13,7 +13,7 @@ namespace ItemFactory {
         return item.get();
     }
 
-    inline std::unique_ptr<Item> getItem(const Item::Id id, const int quantity) {
+    inline std::unique_ptr<Item> getItem(Item::Id id, const int quantity) {
         switch (id) {
             case Item::Id::POTION:
                 return std::make_unique<Potion>(quantity);

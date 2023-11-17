@@ -17,21 +17,11 @@ Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int
 }
 
 void Pokemon::raiseStat(int &stat, const int amount) {
-    stat += amount;
-
-    // stat modifier cannot be higher than 6
-    if (stat > 6) {
-        stat = 6;
-    }
+    stat = std::min(stat + amount, 6);
 }
 
 void Pokemon::lowerStat(int &stat, const int amount) {
-    stat -= amount;
-
-    // stat modifier cannot be lower than -6
-    if (stat < -6) {
-        stat = -6;
-    }
+    stat = std::max(stat - amount, -6);
 }
 
 double Pokemon::getStatMod(const int stat) {
@@ -86,18 +76,8 @@ void Pokemon::deleteMove(const int index) {
     }
 }
 
-void Pokemon::setMoves(const std::initializer_list<Move *> &moves) {
-    for (Move *move : moves) {
-        if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
-            break;
-        }
-
-        //this->moveSet.push_back(move);
-    }
-}
-
-void Pokemon::setHP(const int newHP) {
-    this->currentHP = newHP;
+void Pokemon::setHP(const int amount) {
+    this->currentHP = amount;
 
     // HP cannot be set lower than 0
     if (this->currentHP < 0) {

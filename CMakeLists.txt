@@ -75,6 +75,12 @@ set(SOURCES
         #src/Classes/Move/Move.ixx
         #src/Functions/GeneralFunctions.ixx
         src/pch.h
+        src/Classes/GameComponent/GameComponent.h
+        src/Classes/GameObject/GameObject.h
+        src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.h
+        src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.h
+        src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
+        src/Classes/GameComponent/DerivedClasses/Components.h
 )
 
 add_executable(PokemonBattle ${SOURCES})

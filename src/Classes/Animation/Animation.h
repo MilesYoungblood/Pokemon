@@ -47,11 +47,11 @@ public:
         ++this->currentFrame;
 
         if (this->currentFrame == this->numFrames) {
-            this->currentFrame = 0U;
+            this->currentFrame = 0;
 
             ++this->currentRow;
             if (this->currentRow == this->numRows) {
-                this->currentRow = 0U;
+                this->currentRow = 0;
             }
         }
     }

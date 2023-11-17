@@ -8,7 +8,7 @@
 
 class Player : public Trainer {
 private:
-    static std::array<std::array<std::unique_ptr<Pokemon>, 30>, 12> pc;
+    inline static std::array<std::array<std::unique_ptr < Pokemon>, 30>, 12> pc;
 
     Player();
 
