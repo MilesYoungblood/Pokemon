@@ -7,6 +7,8 @@
 #include "../../Item.h"
 
 struct RestoreItem : public Item {
+    RestoreItem() = default;
+
     explicit RestoreItem(int quantity);
 
     [[nodiscard]] virtual int getAmount() const = 0;
@@ -15,7 +17,7 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] Item::Id getId() const override = 0;
 
-    [[nodiscard]] Item::Class getType() const override;
+    [[nodiscard]] Item::Class getClass() const override;
 
     void restore(Pokemon &pokemon) const;
 

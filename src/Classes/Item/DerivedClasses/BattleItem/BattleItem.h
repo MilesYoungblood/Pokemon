@@ -13,7 +13,7 @@ struct BattleItem : public Item {
 
     [[nodiscard]] Item::Id getId() const override = 0;
 
-    [[nodiscard]] Item::Class getType() const override {
+    [[nodiscard]] Item::Class getClass() const override {
         return Item::Class::BATTLE;
     }
 };

@@ -5,10 +5,7 @@
 #pragma once
 
 #include "../Pokemon/Pokemon.h"
-#include "../../../Item/DerivedClasses/RestoreItem/RestoreItem.h"
-#include "../../../Item/DerivedClasses/StatusItem/StatusItem.h"
-#include "../../../Item/DerivedClasses/Pokeball/Pokeball.h"
-#include "../../../Item/DerivedClasses/BattleItem/BattleItem.h"
+#include "../../../Item/ItemList.h"
 
 class Trainer : public Entity {
 private:
@@ -57,8 +54,8 @@ public:
 
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
-    template<typename P, typename ...Params>
-    void addPokemon(Params ...params) {
+    template<typename P, typename ...Args>
+    void addPokemon(Args ...params) {
         if (this->party.size() == Trainer::MAX_POKEMON) {
             return;
         }
@@ -90,30 +87,53 @@ public:
 
     template<typename I>
     const I &getItem(int index) const {
-        Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].getKey();
+        Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].get();
         return *static_cast<I *>(ptr);
     }
 
     void addItem(std::unique_ptr<Item> toAdd);
 
-    template<typename I, typename ...Params>
-    void addItem(Params ...params) {
+    template<typename I>
+    void addItem(const I &item) {
         try {
-            std::unique_ptr<I> item = std::make_unique<I>(params...);
-            const int type = static_cast<int>(item->getType());
-            if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
+            if (this->items.at(static_cast<std::size_t>(item.getClass())).size() == Trainer::MAX_ITEMS) {
                 return;
             }
 
-            for (const auto &i : this->items.at(type)) {
+            for (const auto &i : this->items.at(static_cast<std::size_t>(item.getClass()))) {
                 // if item already exists within our inventory
-                if (item->getId() == i->getId()) {
-                    i->add(params...);
+                if (i->getId() == item.getId()) {
+                    i->add(item.getQuantity());
                     return;
                 }
             }
 
-            this->items.at(type).push_back(std::move(item));
+            std::unique_ptr<Item> i = std::make_unique<I>(item.getQuantity());
+            this->items.at(static_cast<std::size_t>(item.getClass())).push_back(std::move(i));
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
+        }
+    }
+
+    template<typename I, typename ...Args>
+    void addItem(Args ...params) {
+        try {
+            std::unique_ptr<I> item = std::make_unique<I>(params...);
+
+            if (this->items.at(static_cast<std::size_t>(item->getClass())).size() == Trainer::MAX_ITEMS) {
+                return;
+            }
+
+            for (const auto &i : this->items.at(static_cast<std::size_t>(item->getClass()))) {
+                // if item already exists within our inventory
+                if (i->getId() == item->getId()) {
+                    i->add(item->getQuantity());
+                    return;
+                }
+            }
+
+            this->items.at(static_cast<std::size_t>(item->getClass())).push_back(std::move(item));
         }
         catch (const std::exception &e) {
             throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');

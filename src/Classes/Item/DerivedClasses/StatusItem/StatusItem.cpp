@@ -6,7 +6,7 @@
 
 StatusItem::StatusItem(const int quantity) : Item(quantity) {}
 
-Item::Class StatusItem::getType() const {
+Item::Class StatusItem::getClass() const {
     return Item::Class::STATUS;
 }
 

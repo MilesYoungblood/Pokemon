@@ -7,6 +7,8 @@
 #include "../RestoreItem.h"
 
 struct Ether : public RestoreItem {
+    Ether() = default;
+
     explicit Ether(int n) : RestoreItem(n) {}
 
     [[nodiscard]] std::string getName() const override {
@@ -47,6 +49,8 @@ struct Potion : public RestoreItem {
 };
 
 struct SuperPotion : public RestoreItem {
+    SuperPotion() = default;
+
     explicit SuperPotion(int n) : RestoreItem(n) {}
 
     [[nodiscard]] std::string getName() const override {
@@ -67,6 +71,8 @@ struct SuperPotion : public RestoreItem {
 };
 
 struct HyperPotion : public RestoreItem {
+    HyperPotion() = default;
+
     explicit HyperPotion(int n) : RestoreItem(n) {}
 
     [[nodiscard]] std::string getName() const override {

@@ -6,7 +6,7 @@
 
 RestoreItem::RestoreItem(const int quantity) : Item(quantity) {}
 
-Item::Class RestoreItem::getType() const {
+Item::Class RestoreItem::getClass() const {
     return Item::Class::RESTORE;
 }
 

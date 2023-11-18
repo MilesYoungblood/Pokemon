@@ -70,7 +70,7 @@ void Trainer::clearParty() {
 }
 
 void Trainer::addItem(std::unique_ptr<Item> toAdd) {
-    const int type = static_cast<int>(toAdd->getType());
+    const int type = static_cast<int>(toAdd->getClass());
     if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
         return;
     }

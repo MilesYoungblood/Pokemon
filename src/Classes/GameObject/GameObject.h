@@ -7,6 +7,7 @@
 #include <memory>
 #include <unordered_map>
 #include <iostream>
+#include <vector>
 #include "../GameComponent/DerivedClasses/Components.h"
 
 class GameObject {
@@ -45,6 +46,10 @@ public:
 
     template<typename C, typename ...Args>
     void addComponent(Args ...args) {
+        std::vector<std::unique_ptr<GameComponent>> comps;
+        if (this->components.contains(GameObject::getComponentId<C>())) {
+            comps.push_back(std::make_unique<C>(args...));
+        }
         this->components.insert(std::make_pair(GameObject::getComponentId<C>(), std::make_unique<C>(args...)));
     }
 

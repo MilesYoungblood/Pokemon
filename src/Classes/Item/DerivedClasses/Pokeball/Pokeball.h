@@ -11,7 +11,7 @@ struct PokeBall : public Item {
 
     [[nodiscard]] virtual double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
 
-    [[nodiscard]] Item::Class getType() const override;
+    [[nodiscard]] Item::Class getClass() const override;
 
     [[nodiscard]] Item::Id getId() const override;
 

@@ -6,6 +6,10 @@
 
 Item::Item(const int n) : quantity(n) {}
 
+void Item::setQuantity(int amount) {
+    this->quantity = amount;
+}
+
 int Item::getQuantity() const {
     return this->quantity;
 }

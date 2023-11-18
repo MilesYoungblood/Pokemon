@@ -58,17 +58,21 @@ public:
         BATTLE
     };
 
+    Item() = default;
+
     explicit Item(int n);
 
     Item(const Item &) = delete;
 
-    Item(Item &&) = delete;
+    Item(Item &&) noexcept = delete;
 
     Item &operator=(const Item &) = delete;
 
-    Item &operator=(Item &&) = delete;
+    Item &operator=(Item &&) noexcept = delete;
 
     virtual ~Item() = default;
+
+    void setQuantity(int amount);
 
     [[nodiscard]] int getQuantity() const;
 
@@ -82,7 +86,7 @@ public:
 
     [[nodiscard]] virtual Id getId() const = 0;
 
-    [[nodiscard]] virtual Class getType() const = 0;
+    [[nodiscard]] virtual Class getClass() const = 0;
 
     explicit operator bool() const;
 };

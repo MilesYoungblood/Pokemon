@@ -77,9 +77,9 @@ public:
 
     [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
 
-    template<typename ...Params>
-    void addTrainer(Params ...params) {
-        this->trainers.push_back(std::move(std::make_unique<Trainer>(params...)));
+    template<typename ...Args>
+    void addTrainer(Args ...args) {
+        this->trainers.push_back(std::move(std::make_unique<Trainer>(args...)));
     }
 
     [[nodiscard]] int numTrainers() const;

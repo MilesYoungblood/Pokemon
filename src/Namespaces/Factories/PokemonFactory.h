@@ -7,100 +7,101 @@
 #include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
-    inline std::unique_ptr<Pokemon> getPokemon(Pokemon::Id id) {
+    template<typename ...Args>
+    inline std::unique_ptr<Pokemon> getPokemon(Pokemon::Id id, Args ...args) {
         switch (id) {
             case Pokemon::Id::VICTINI:
-                return std::make_unique<Victini>();
+                return std::make_unique<Victini>(args...);
             case Pokemon::Id::SNIVY:
-                return std::make_unique<Snivy>();
+                return std::make_unique<Snivy>(args...);
             case Pokemon::Id::SERVINE:
-                return std::make_unique<Servine>();
+                return std::make_unique<Servine>(args...);
             case Pokemon::Id::SERPERIOR:
-                return std::make_unique<Serperior>();
+                return std::make_unique<Serperior>(args...);
             case Pokemon::Id::TEPIG:
-                return std::make_unique<Tepig>();
+                return std::make_unique<Tepig>(args...);
             case Pokemon::Id::PIGNITE:
-                return std::make_unique<Pignite>();
+                return std::make_unique<Pignite>(args...);
             case Pokemon::Id::EMBOAR:
-                return std::make_unique<Emboar>();
+                return std::make_unique<Emboar>(args...);
             case Pokemon::Id::OSHAWOTT:
-                return std::make_unique<Oshawott>();
+                return std::make_unique<Oshawott>(args...);
             case Pokemon::Id::DEWOTT:
-                return std::make_unique<Dewott>();
+                return std::make_unique<Dewott>(args...);
             case Pokemon::Id::SAMUROTT:
-                return std::make_unique<Samurott>();
+                return std::make_unique<Samurott>(args...);
             case Pokemon::Id::PATRAT:
-                return std::make_unique<Patrat>();
+                return std::make_unique<Patrat>(args...);
             case Pokemon::Id::WATCHOG:
-                return std::make_unique<Watchog>();
+                return std::make_unique<Watchog>(args...);
             case Pokemon::Id::LILLIPUP:
-                return std::make_unique<Lillipup>();
+                return std::make_unique<Lillipup>(args...);
             case Pokemon::Id::HERDIER:
-                return std::make_unique<Herdier>();
+                return std::make_unique<Herdier>(args...);
             case Pokemon::Id::STOUTLAND:
-                return std::make_unique<Stoutland>();
+                return std::make_unique<Stoutland>(args...);
             case Pokemon::Id::PURRLOIN:
-                return std::make_unique<Purrloin>();
+                return std::make_unique<Purrloin>(args...);
             case Pokemon::Id::LIEPARD:
-                return std::make_unique<Liepard>();
+                return std::make_unique<Liepard>(args...);
             case Pokemon::Id::PANSAGE:
-                return std::make_unique<Pansage>();
+                return std::make_unique<Pansage>(args...);
             case Pokemon::Id::SIMISAGE:
-                return std::make_unique<Simisage>();
+                return std::make_unique<Simisage>(args...);
             case Pokemon::Id::PANSEAR:
-                return std::make_unique<Pansear>();
+                return std::make_unique<Pansear>(args...);
             case Pokemon::Id::SIMISEAR:
-                return std::make_unique<Simisear>();
+                return std::make_unique<Simisear>(args...);
             case Pokemon::Id::PANPOUR:
-                return std::make_unique<Panpour>();
+                return std::make_unique<Panpour>(args...);
             case Pokemon::Id::SIMIPOUR:
-                return std::make_unique<Simipour>();
+                return std::make_unique<Simipour>(args...);
             case Pokemon::Id::MUNNA:
-                return std::make_unique<Munna>();
+                return std::make_unique<Munna>(args...);
             case Pokemon::Id::MUSHARNA:
-                return std::make_unique<Musharna>();
+                return std::make_unique<Musharna>(args...);
             case Pokemon::Id::PIDOVE:
-                return std::make_unique<Pidove>();
+                return std::make_unique<Pidove>(args...);
             case Pokemon::Id::TRANQUILL:
-                return std::make_unique<Tranquill>();
+                return std::make_unique<Tranquill>(args...);
             case Pokemon::Id::UNFEZANT:
-                return std::make_unique<Unfezant>();
+                return std::make_unique<Unfezant>(args...);
             case Pokemon::Id::BLITZLE:
-                return std::make_unique<Blitzle>();
+                return std::make_unique<Blitzle>(args...);
             case Pokemon::Id::ZEBSTRIKA:
-                return std::make_unique<Zebstrika>();
+                return std::make_unique<Zebstrika>(args...);
             case Pokemon::Id::ROGGENROLA:
-                return std::make_unique<Roggenrola>();
+                return std::make_unique<Roggenrola>(args...);
             case Pokemon::Id::BOLDORE:
-                return std::make_unique<Boldore>();
+                return std::make_unique<Boldore>(args...);
             case Pokemon::Id::GIGALITH:
-                return std::make_unique<Gigalith>();
+                return std::make_unique<Gigalith>(args...);
             case Pokemon::Id::WOOBAT:
-                return std::make_unique<Woobat>();
+                return std::make_unique<Woobat>(args...);
             case Pokemon::Id::SWOOBAT:
-                return std::make_unique<Swoobat>();
+                return std::make_unique<Swoobat>(args...);
             case Pokemon::Id::DRILBUR:
-                return std::make_unique<Drilbur>();
+                return std::make_unique<Drilbur>(args...);
             case Pokemon::Id::EXCADRILL:
-                return std::make_unique<Excadrill>();
+                return std::make_unique<Excadrill>(args...);
             case Pokemon::Id::AUDINO:
-                return std::make_unique<Audino>();
+                return std::make_unique<Audino>(args...);
             case Pokemon::Id::TIMBURR:
-                return std::make_unique<Timburr>();
+                return std::make_unique<Timburr>(args...);
             case Pokemon::Id::GURDURR:
-                return std::make_unique<Gurdurr>();
+                return std::make_unique<Gurdurr>(args...);
             case Pokemon::Id::CONKELDURR:
-                return std::make_unique<Conkeldurr>();
+                return std::make_unique<Conkeldurr>(args...);
             case Pokemon::Id::TYMPOLE:
-                return std::make_unique<Tympole>();
+                return std::make_unique<Tympole>(args...);
             case Pokemon::Id::PALPITOAD:
-                return std::make_unique<Palpitoad>();
+                return std::make_unique<Palpitoad>(args...);
             case Pokemon::Id::SEISMITOAD:
-                return std::make_unique<Seismitoad>();
+                return std::make_unique<Seismitoad>(args...);
             case Pokemon::Id::THROH:
-                return std::make_unique<Throh>();
+                return std::make_unique<Throh>(args...);
             case Pokemon::Id::SAWK:
-                return std::make_unique<Sawk>();
+                return std::make_unique<Sawk>(args...);
             case Pokemon::Id::SEWADDLE:
                 break;
             case Pokemon::Id::SWADLOON:
@@ -292,7 +293,7 @@ namespace PokemonFactory {
             case Pokemon::Id::ZWEILOUS:
                 break;
             case Pokemon::Id::HYDREIGON:
-                return std::make_unique<Hydreigon>();
+                return std::make_unique<Hydreigon>(args...);
             case Pokemon::Id::LARVESTA:
                 break;
             case Pokemon::Id::VOLCARONA:

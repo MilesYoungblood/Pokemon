@@ -10,7 +10,7 @@ double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  
     return 1.0;
 }
 
-Item::Class PokeBall::getType() const {
+Item::Class PokeBall::getClass() const {
     return Item::Class::POKE_BALL;
 }
 
