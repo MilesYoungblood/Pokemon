@@ -7,9 +7,6 @@
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 
-// leads to the project directory
-inline const std::string PROJECT_PATH = std::filesystem::current_path().parent_path().generic_string();
-
 // responsible for creating textures and drawing to the renderer
 class TextureManager {
 private:
@@ -34,15 +31,15 @@ public:
         this->isInitialized = true;
     }
 
-    /// Loads a texture.
+    /// \brief Loads a texture.
     /// \param path path of the image in the project
     /// \return a pointer to an SDL_Texture, or nullptr on error
     SDL_Texture *loadTexture(const char *path) {
         return IMG_LoadTexture(this->textureRenderer,
-                               std::string_view(PROJECT_PATH + R"(\assets\images\)" + path).data());
+                               std::string_view("../assets/images/" + std::string(path)).data());
     }
 
-    /// Loads a texture as a text.
+    /// \brief Loads a texture as a text.
     /// \param font font of text
     /// \param text text to load
     /// \param fg color of text
@@ -55,7 +52,7 @@ public:
         return texture;
     }
 
-    /// Loads a texture as a text.
+    /// \brief Loads a texture as a text.
     /// \param font font of text
     /// \param text text to load
     /// \param fg color of text
@@ -68,14 +65,14 @@ public:
         return texture;
     }
 
-    /// Draws a texture to the renderer.
+    /// \brief Draws a texture to the renderer.
     /// \param texture texture to be drawn
     /// \param dest destination on the screen
     void draw(SDL_Texture *texture, const SDL_Rect &dest) {
         SDL_RenderCopy(this->textureRenderer, texture, nullptr, &dest);
     }
 
-    /// Draws a frame of a sprite sheet to the renderer.
+    /// \brief Draws a frame of a sprite sheet to the renderer.
     /// \param texture texture to be drawn
     /// \param dest destination on the screen
     /// \param frame current frame
@@ -85,7 +82,7 @@ public:
         SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
     }
 
-    /// Draws an empty rectangle to the renderer.
+    /// \brief Draws an empty rectangle to the renderer.
     /// \param dest destination on the screen
     /// \param fg color of the lines
     /// \param pt border size
@@ -102,7 +99,7 @@ public:
         }
     }
 
-    /// Draws a filled rectangle with a border to the renderer.
+    /// \brief Draws a filled rectangle with a border to the renderer.
     /// \param dest destination on the screen
     /// \param fg inner color
     /// \param bg color of the lines
@@ -125,7 +122,7 @@ public:
         }
     }
 
-    /// Draws bordered text to the renderer.
+    /// \brief Draws bordered text to the renderer.
     /// \param text text to draw
     /// \param x x position of the text (top left corner)
     /// \param y y position of the text (top left corner)
@@ -175,7 +172,7 @@ public:
         SDL_FreeSurface(textSurface);
     }
 
-    /// Draws outlined text to the renderer.
+    /// \brief Draws outlined text to the renderer.
     /// \param text text to draw
     /// \param x x position of the text (top left corner)
     /// \param y y position of the text (top left corner)

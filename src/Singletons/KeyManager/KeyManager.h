@@ -26,20 +26,20 @@ public:
         return keyManager;
     }
 
-    /// Locks a key.
+    /// \brief Locks a key.
     /// \param key the key to lock.
     void lockKey(SDL_Scancode key) {
         this->locked.at(key) = true;
     }
 
-    /// Locks all keys inside the KeyManager.
+    /// \brief Locks all keys inside the KeyManager.
     void blockInput() {
         for (const std::pair<const SDL_Scancode, bool> &pair : this->locked) {
             this->locked[pair.first] = true;
         }
     }
 
-    /// Locks WASD keys.
+    /// \brief Locks WASD keys.
     void lockWasd() {
         this->locked[SDL_SCANCODE_W] = true;
         this->locked[SDL_SCANCODE_A] = true;
@@ -47,7 +47,7 @@ public:
         this->locked[SDL_SCANCODE_D] = true;
     }
 
-    /// Unlocks WASD keys.
+    /// \brief Unlocks WASD keys.
     void unlockWasd() {
         this->locked[SDL_SCANCODE_W] = false;
         this->locked[SDL_SCANCODE_A] = false;
@@ -55,20 +55,20 @@ public:
         this->locked[SDL_SCANCODE_D] = false;
     }
 
-    /// Unlocks a key.
+    /// \brief Unlocks a key.
     /// \param key the key to unlock
     void unlockKey(SDL_Scancode key) {
         this->locked.at(key) = false;
     }
 
-    /// Unlocks all keys inside the KeyManager.
+    /// \brief Unlocks all keys inside the KeyManager.
     void enableInput() {
         for (const std::pair<const SDL_Scancode, bool> &pair : this->locked) {
             this->locked.at(pair.first) = false;
         }
     }
 
-    /// Grabs the state of a key.
+    /// \brief Grabs the state of a key.
     /// \param direction direction that corresponds to a key
     /// \return true if the key is pressed and the key is not locked
     /// \throw std::invalid_argument by passing in an invalid direction
@@ -88,7 +88,7 @@ public:
         }
     }
 
-    /// Grabs the state of a key.
+    /// \brief Grabs the state of a key.
     /// \param key the key to check
     /// \return true if the key is pressed and the key is not locked
     bool getKey(SDL_Scancode key) {
@@ -96,7 +96,7 @@ public:
         return (key_states[key] != 0U) and not this->locked[key];
     }
 
-    /// Grabs the states of a set of keys.
+    /// \brief Grabs the states of a set of keys.
     /// \param keys list of keys to check
     /// \return true if any of the keys are pressed and that key is not locked
     bool getKeys(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys) {

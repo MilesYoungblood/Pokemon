@@ -11,40 +11,8 @@ enum class Status {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
 };
 
+/// \inherit Entity
 class Pokemon : public Entity {
-private:
-    const static int MAX_NUM_MOVES = 4;
-    const static int MAX_NUM_TYPES = 2;
-
-    int maxHP;
-    int currentHP{ 0 };
-    int attack{ 0 };
-    int defense{ 0 };
-    int spAttack{ 0 };
-    int spDefense{ 0 };
-    int speed{ 0 };
-    int accuracy{ 0 };
-    int evasiveness{ 0 };
-
-    int baseAttack;
-    int baseDefense;
-    int baseSpAttack;
-    int baseSpDefense;
-    int baseSpeed;
-    int level;
-
-    int catchRate;
-
-    std::vector<std::unique_ptr<Move>> moveSet;
-    std::array<Type, Pokemon::MAX_NUM_TYPES> types;
-    Status status{ Status::NONE };
-
-    static void raiseStat(int &stat, int amount);
-
-    static void lowerStat(int &stat, int amount);
-
-    static double getStatMod(int stat);
-
 public:
     enum Id {
         VICTINI,
@@ -205,17 +173,21 @@ public:
         GENESECT
     };
 
+    enum class Stat {
+        ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
+    };
+
     Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
 
     Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
 
     Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&) = delete;
+    Pokemon(Pokemon &&) noexcept = delete;
 
     Pokemon &operator=(const Pokemon &) = delete;
 
-    Pokemon &operator=(Pokemon &&) = delete;
+    Pokemon &operator=(Pokemon &&) noexcept = delete;
 
     ~Pokemon() override = default;
 
@@ -242,63 +214,19 @@ public:
 
     void takeDamage(int amount);
 
-    void resetStatMods();
-
-    void raiseAttack(int amount);
-
-    void raiseDefense(int amount);
-
-    void raiseSpAttack(int amount);
-
-    void raiseSpDefense(int amount);
-
-    void raiseSpeed(int amount);
-
-    void raiseAccuracy(int amount);
-
-    void raiseEvasiveness(int amount);
-
-    void lowerAttack(int amount);
-
-    void lowerDefense(int amount);
-
-    void lowerSpAttack(int amount);
-
-    void lowerSpDefense(int amount);
-
-    void lowerSpeed(int amount);
-
-    void lowerAccuracy(int amount);
-
-    void lowerEvasiveness(int amount);
-
     [[nodiscard]] int getHP() const;
-
-    [[nodiscard]] int getAttack() const;
-
-    [[nodiscard]] int getDefense() const;
-
-    [[nodiscard]] int getSpAttack() const;
-
-    [[nodiscard]] int getSpDefense() const;
-
-    [[nodiscard]] int getSpeed() const;
-
-    [[nodiscard]] int getAccuracy() const;
-
-    [[nodiscard]] int getEvasiveness() const;
 
     [[nodiscard]] int getMaxHp() const;
 
-    [[nodiscard]] int getBaseAttack() const;
+    void resetStatMods();
 
-    [[nodiscard]] int getBaseDefense() const;
+    void raiseStatMod(Pokemon::Stat stat, int amount);
 
-    [[nodiscard]] int getBaseSpAttack() const;
+    void lowerStatMod(Pokemon::Stat stat, int amount);
 
-    [[nodiscard]] int getBaseSpDefense() const;
+    [[nodiscard]] int getStatMod(Pokemon::Stat stat) const;
 
-    [[nodiscard]] int getBaseSpeed() const;
+    [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
 
     [[nodiscard]] Type getType(bool type1) const;
 
@@ -314,7 +242,7 @@ public:
 
     [[nodiscard]] bool isFainted() const;
 
-    [[nodiscard]] bool isFullHP() const;
+    [[nodiscard]] bool isFullHp() const;
 
     [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
 
@@ -329,4 +257,24 @@ public:
     Move &operator[](int index);
 
     const Move &operator[](int index) const;
+
+private:
+    const static int MAX_NUM_MOVES = 4;
+    const static int MAX_NUM_TYPES = 2;
+
+    int maxHp;
+    int currentHp{ 0 };
+
+    std::unordered_map<Pokemon::Stat, int> statModifiers;
+    std::unordered_map<Pokemon::Stat, int> baseStats;
+
+    int level;
+
+    int catchRate;
+
+    std::vector<std::unique_ptr<Move>> moveSet;
+    std::array<Type, Pokemon::MAX_NUM_TYPES> types;
+    Status status{ Status::NONE };
+
+    double getStat(Pokemon::Stat stat) const;
 };

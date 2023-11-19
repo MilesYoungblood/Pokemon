@@ -95,91 +95,37 @@ inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> atte
 }
 
 inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
-    switch (itemToUse.getStat()) {
-        case Stat::ATTACK:
-            if (pokemonToBoost.getAttack() < 6) {
-                pokemonToBoost.raiseAttack(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        case Stat::DEFENSE:
-            if (pokemonToBoost.getDefense() < 6) {
-                pokemonToBoost.raiseDefense(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        case Stat::SP_ATTACK:
-            if (pokemonToBoost.getSpAttack() < 6) {
-                pokemonToBoost.raiseSpAttack(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        case Stat::SP_DEFENSE:
-            if (pokemonToBoost.getSpDefense() < 6) {
-                pokemonToBoost.raiseSpDefense(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        case Stat::SPEED:
-            if (pokemonToBoost.getSpeed() < 6) {
-                pokemonToBoost.raiseSpeed(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        case Stat::ACCURACY:
-            if (pokemonToBoost.getAccuracy() < 6) {
-                pokemonToBoost.raiseAccuracy(amountToBoost);
-            }
-            else {
-                limitReached = true;
-            }
-            break;
-
-        default:
-            throw std::runtime_error("Unexpected error: function boostStat");
+    if (pokemonToBoost.getStatMod(itemToUse.getStat()) < 6) {
+        pokemonToBoost.raiseStatMod(itemToUse.getStat(), amountToBoost);
+        limitReached = true;
     }
 }
 
-inline void boostMessage(const Pokemon &pokemon, Stat statBoosted, int amountBoosted, bool limit) {
+inline void boostMessage(const Pokemon &pokemon, Pokemon::Stat statBoosted, int amountBoosted, bool limit) {
     const char *string;
 
     switch (statBoosted) {
-        case Stat::ATTACK:
+        case Pokemon::Stat::ATTACK:
             string = "attack";
             break;
 
-        case Stat::SP_ATTACK:
+        case Pokemon::Stat::SP_ATTACK:
             string = "special attack";
             break;
 
-        case Stat::DEFENSE:
+        case Pokemon::Stat::DEFENSE:
             string = "defense";
             break;
 
-        case Stat::SP_DEFENSE:
+        case Pokemon::Stat::SP_DEFENSE:
             string = "special defense";
             break;
 
-        case Stat::SPEED:
+        case Pokemon::Stat::SPEED:
             string = "speed";
             break;
 
-        case Stat::ACCURACY:
+        case Pokemon::Stat::ACCURACY:
             string = "accuracy";
             break;
 

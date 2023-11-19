@@ -45,31 +45,31 @@ public:
 
     explicit Move(int pp);
 
+    Move(int pp, int maxPp);
+
     Move(const Move &) = delete;
 
-    Move(Move &&) = delete;
+    Move(Move &&) noexcept = delete;
 
     Move &operator=(const Move &) = delete;
 
-    Move &operator=(Move &&) = delete;
+    Move &operator=(Move &&) noexcept = delete;
 
     virtual ~Move() = default;
+
+    void use();
+
+    void setPp(int newPp);
+
+    [[nodiscard]] int getPp() const;
+
+    [[nodiscard]] int getMaxPp() const;
 
     [[nodiscard]] virtual int getDamage() const;
 
     virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
 
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
-
-    void use();
-
-    void setPP(int newPP);
-
-    void fillToMax();
-
-    [[nodiscard]] int getPP() const;
-
-    [[nodiscard]] int getMaxPP() const;
 
     [[nodiscard]] virtual int getPower() const = 0;
 

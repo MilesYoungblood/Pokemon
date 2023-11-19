@@ -61,7 +61,7 @@ public:
 
     Map(const Map &rhs) = delete;
 
-    Map(Map &&) = delete;
+    Map(Map &&) noexcept = delete;
 
     Map &operator=(const Map &) = delete;
 
@@ -88,7 +88,7 @@ public:
 
     const Trainer &operator[](int index) const;
 
-    [[nodiscard]] const char *getMusic() const;
+    [[nodiscard]] std::string getMusic() const;
 
     void setObstruction(int x, int y);
 

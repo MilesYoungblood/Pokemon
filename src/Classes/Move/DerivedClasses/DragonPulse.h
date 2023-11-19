@@ -11,14 +11,7 @@ private:
 public:
     DragonPulse() : Move(10) {}
 
-    explicit DragonPulse(const int currentPP) : DragonPulse() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    DragonPulse(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     [[nodiscard]] int getPower() const override {
         return 90;

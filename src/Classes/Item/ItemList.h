@@ -97,14 +97,14 @@ inline const std::unordered_map<Item::Id, PokeBallData> POKE_BALLS{
 
 struct BattleItemData {
     const char *name;
-    const Stat stat;
+    const Pokemon::Stat stat;
 };
 
 inline const std::unordered_map<Item::Id, BattleItemData> BATTLE_ITEMS{
-        { Item::Id::X_ATTACK,     { "X Attack",      Stat::ATTACK }},
-        { Item::Id::X_DEFENSE,    { "X Defense",     Stat::DEFENSE }},
-        { Item::Id::X_SP_ATTACK,  { "X Sp. Attack",  Stat::SP_ATTACK }},
-        { Item::Id::X_SP_DEFENSE, { "X Sp. Defense", Stat::SP_DEFENSE }},
-        { Item::Id::X_SPEED,      { "X Speed",       Stat::SPEED }},
-        { Item::Id::X_ACCURACY,   { "X Accuracy",    Stat::ACCURACY }}
+        { Item::Id::X_ATTACK,     { "X Attack",      Pokemon::Stat::ATTACK }},
+        { Item::Id::X_DEFENSE,    { "X Defense",     Pokemon::Stat::DEFENSE }},
+        { Item::Id::X_SP_ATTACK,  { "X Sp. Attack",  Pokemon::Stat::SP_ATTACK }},
+        { Item::Id::X_SP_DEFENSE, { "X Sp. Defense", Pokemon::Stat::SP_DEFENSE }},
+        { Item::Id::X_SPEED,      { "X Speed",       Pokemon::Stat::SPEED }},
+        { Item::Id::X_ACCURACY,   { "X Accuracy",    Pokemon::Stat::ACCURACY }}
 };

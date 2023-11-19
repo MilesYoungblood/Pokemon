@@ -55,11 +55,11 @@ public:
 
     Entity(const Entity &) = delete;
 
-    Entity(Entity &&) = delete;
+    Entity(Entity &&) noexcept = delete;
 
     Entity &operator=(const Entity &) = delete;
 
-    Entity &operator=(Entity &&) = delete;
+    Entity &operator=(Entity &&) noexcept = delete;
 
     virtual ~Entity() = default;
 
@@ -130,19 +130,19 @@ public:
     [[nodiscard]] int getScreenY() const;
 
     inline void setUpAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::UP] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
+        this->animations[Direction::UP] = Animation(path, numFrames, numRows);
     }
 
     inline void setDownAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::DOWN] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
+        this->animations[Direction::DOWN] = Animation(path, numFrames, numRows);
     }
 
     inline void setLeftAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::LEFT] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
+        this->animations[Direction::LEFT] = Animation(path, numFrames, numRows);
     }
 
     inline void setRightAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::RIGHT] = Animation(TextureManager::getInstance().loadTexture(path), numFrames, numRows);
+        this->animations[Direction::RIGHT] = Animation(path, numFrames, numRows);
     }
 
     inline void setAction(void (*function)(Entity *entity)) {

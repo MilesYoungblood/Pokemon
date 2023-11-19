@@ -12,24 +12,17 @@ private:
 public:
     FocusBlast() : Move(5) {}
 
-    explicit FocusBlast(const int currentPP) : FocusBlast() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    FocusBlast(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
         if (damage > 0) {
             defendingPokemon.takeDamage(damage);
 
-            this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
+            this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getStatMod(Pokemon::Stat::SP_DEFENSE) > -6;
 
             if (this->loweredState) {
-                defendingPokemon.lowerSpDefense(1);
+                defendingPokemon.lowerStatMod(Pokemon::Stat::SP_DEFENSE, 1);
             }
         }
 

@@ -6,9 +6,9 @@
 
 class Camera {
 private:
-    SDL_Rect view;
+    SDL_Rect view{ 0, 0, 0, 0 };
 
-    Camera() : view({ 0, 0, 0, 0 }) {}
+    Camera() = default;
 
 public:
     inline static Camera &getInstance() {
@@ -16,7 +16,11 @@ public:
         return camera;
     }
 
-    /// Initializes the Camera's view
+    /// \brief Initializes the Camera's view
+    /// \details This function takes in the Game's width
+    /// and height as parameters and updates the Camera's
+    /// view. This design choice is so the Game window's
+    /// width and height remain consistent.
     /// \param w window width
     /// \param h window height
     void init(int w, int h) {
@@ -31,15 +35,17 @@ public:
         isInitialized = true;
     }
 
-    /// Determines whether a rectangle is in view of the camera,
-    /// thus enabling the rendering of only necessary objects.
+    /// \brief Determines whether a rectangle is in view of the camera
+    /// \details This function's purpose is to enable the rendering of only
+    /// necessary objects. It is useless to render objects that are not
+    /// onscreen, not to mention costly. This function eliminates this problem.
     /// \param rect the rectangle to check
-    /// \return SDL_True if the rectangle is in view, SDL_False otherwise
-    [[nodiscard]] SDL_bool isInView(const SDL_Rect &rect) const {
-        return SDL_HasIntersection(&rect, &this->view);
+    /// \return true if the rectangle is in view, false otherwise
+    [[nodiscard]] bool isInView(const SDL_Rect &rect) const {
+        return SDL_HasIntersection(&rect, &this->view) == SDL_bool::SDL_TRUE;
     }
 
-    /// Finds the player's current position on the screen,
+    /// \brief Finds the player's current position on the screen,
     /// then shifts everything, including the player, accordingly.
     /// \param p the player
     /// \param instructions a lambda that makes the map shift

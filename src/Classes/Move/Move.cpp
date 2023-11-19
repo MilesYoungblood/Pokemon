@@ -6,6 +6,8 @@
 
 Move::Move(const int pp) : pp(pp), maxPp(pp) {}
 
+Move::Move(const int pp, const int maxPp) : pp(pp), maxPp(maxPp) {}
+
 int Move::getDamage() const {
     return generateInteger(1, 100) <= this->getAccuracy() ? this->getPower() : -1;
 }
@@ -16,8 +18,8 @@ void Move::use() {
     }
 }
 
-void Move::setPP(const int newPP) {
-    this->pp = newPP;
+void Move::setPp(const int newPp) {
+    this->pp = newPp;
 
     // PP cannot be set lower than 0
     if (this->pp < 0) {
@@ -29,15 +31,11 @@ void Move::setPP(const int newPP) {
     }
 }
 
-void Move::fillToMax() {
-    this->pp = this->maxPp;
-}
-
-int Move::getPP() const {
+int Move::getPp() const {
     return this->pp;
 }
 
-int Move::getMaxPP() const {
+int Move::getMaxPp() const {
     return this->maxPp;
 }
 

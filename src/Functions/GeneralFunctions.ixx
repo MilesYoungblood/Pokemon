@@ -4,8 +4,6 @@
 
 export module GeneralFunctions;
 
-import <random>;
-
 // returns a random integer from a range
 export int generateInteger(int from, int to) {
     if (from > to) {

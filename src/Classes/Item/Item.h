@@ -10,10 +10,6 @@ enum Time {
     MORNING, DAY, NIGHT
 };
 
-enum class Stat {
-    NONE, ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY
-};
-
 class Item {
 private:
     int quantity{ 0 };

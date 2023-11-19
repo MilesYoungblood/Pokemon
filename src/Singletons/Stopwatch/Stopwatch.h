@@ -28,11 +28,11 @@ public:
 
     Stopwatch(const Stopwatch &) = delete;
 
-    Stopwatch(Stopwatch &&) = delete;
+    Stopwatch(Stopwatch &&) noexcept = delete;
 
     Stopwatch &operator=(const Stopwatch &) = delete;
 
-    Stopwatch &operator=(Stopwatch &&) = delete;
+    Stopwatch &operator=(Stopwatch &&) noexcept = delete;
 
     ~Stopwatch() {
         this->deactivate();

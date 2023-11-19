@@ -12,14 +12,7 @@ private:
 public:
     SolarBeam() : Move(10) {}
 
-    explicit SolarBeam(const int currentPP) : SolarBeam() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    SolarBeam(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     [[nodiscard]] int getPower() const override {
         return 120;

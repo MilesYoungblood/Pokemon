@@ -14,14 +14,7 @@ private:
 public:
     WaterShuriken() : Move(20) {}
 
-    explicit WaterShuriken(const int currentPP) : WaterShuriken() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    WaterShuriken(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     [[nodiscard]] int getDamage() const override {
         const int possible_hits = generateInteger(2, 5);

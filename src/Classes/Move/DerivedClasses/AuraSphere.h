@@ -11,14 +11,7 @@ private:
 public:
     AuraSphere() : Move(20) {}
 
-    explicit AuraSphere(const int currentPP) : AuraSphere() {
-        if (currentPP < 0) {
-            this->setPP(this->getMaxPP());
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    AuraSphere(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // if the calculation registers as a miss, force it as a hit

@@ -11,14 +11,7 @@ private:
 public:
     DarkPulse() : Move(15) {}
 
-    explicit DarkPulse(const int currentPP) : Move(currentPP) {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    DarkPulse(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses

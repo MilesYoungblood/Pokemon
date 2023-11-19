@@ -111,11 +111,11 @@ public:
 
     Game(const Game &) = delete;
 
-    Game(const Game &&) = delete;
+    Game(Game &&) noexcept = delete;
 
     Game &operator=(const Game &) = delete;
 
-    Game &operator=(const Game &&) = delete;
+    Game &operator=(Game &&) noexcept = delete;
 
     void handleEvents();
 

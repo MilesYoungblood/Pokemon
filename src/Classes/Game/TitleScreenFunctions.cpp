@@ -60,8 +60,7 @@ void Game::updateTitleScreen() {
 
         SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
-        Game::music = Mix_LoadMUS(
-                std::string_view(PROJECT_PATH + R"(\assets\audio\music\)" + currentMap->getMusic() + ".mp3").data());
+        Game::music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + currentMap->getMusic() + ".mp3").data());
         if (Game::music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();

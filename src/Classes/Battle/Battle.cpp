@@ -147,8 +147,8 @@ void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
 }
 
 bool Battle::run() {
-    const int opponent_speed = ((*this->opponent)[0].getBaseSpeed() / 4) % 256;
-    const int odds = (((*this->player)[0].getBaseSpeed() * 32) / opponent_speed) + 30;
+    const int opponent_speed = ((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256;
+    const int odds = (((*this->player)[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
 
     return opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds;
 }
@@ -232,8 +232,8 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
 void Battle::displayMoves(const Pokemon &pokemon, const int arrow, bool &print) {
     const auto print_out = [&pokemon](const char *string, int index) -> void {
         std::cout << string << pokemon[index].getName() << std::string(15 - pokemon[index].getName().length(), ' ')
-                  << " (PP: " << pokemon[index].getPP() << std::string(2 - std::to_string(pokemon[index].getPP()).length(), ' ')
-                  << '/' << std::string(2 - std::to_string(pokemon[index].getMaxPP()).length(), ' ') << pokemon[index].getMaxPP()
+                  << " (PP: " << pokemon[index].getPp() << std::string(2 - std::to_string(pokemon[index].getPp()).length(), ' ')
+                  << '/' << std::string(2 - std::to_string(pokemon[index].getMaxPp()).length(), ' ') << pokemon[index].getMaxPp()
                   << ")\n";
     };
 
@@ -265,7 +265,7 @@ void Battle::displayMoveSummary(const Move &move) {
     std::cout << "\tCategory: " << getCategoryAsString(static_cast<int>(move.getCategory())) << '\n';
     std::cout << "\tPower:    " << move.getPower() << '\n';
     std::cout << "\tAccuracy: " << move.getAccuracy() << '\n';
-    std::cout << "\tPP:       " << move.getPP() << '/' << move.getMaxPP() << '\n';
+    std::cout << "\tPP:       " << move.getPp() << '/' << move.getMaxPp() << '\n';
     std::cout << "\n\tCancel (ENTER)\n";
     std::cout.flush();
 }
@@ -306,10 +306,12 @@ int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defe
 
     const int level_calc = (2 * attackingPokemon.getLevel() / 5) + 2;
     if (move.getCategory() == Move::Category::PHYSICAL) {
-        initialDamage = attackingPokemon.getBaseAttack() * move.getDamage() / defendingPokemon.getBaseDefense();
+        initialDamage = attackingPokemon.getBaseStat(Pokemon::Stat::ATTACK) * move.getDamage() /
+                        defendingPokemon.getBaseStat(Pokemon::Stat::DEFENSE);
     }
     else if (move.getCategory() == Move::Category::SPECIAL) {
-        initialDamage = level_calc * attackingPokemon.getBaseSpAttack() * move.getDamage() / defendingPokemon.getBaseSpDefense();
+        initialDamage = level_calc * attackingPokemon.getStatMod(Pokemon::Stat::SP_ATTACK) * move.getDamage() /
+                        defendingPokemon.getBaseStat(Pokemon::Stat::SP_DEFENSE);
     }
 
     const int final_damage = (initialDamage / 50) + 2;
@@ -673,7 +675,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                     goto chooseRestoreItem;
                 }
                 // Pokémon's HP is already full
-                else if ((*this->player)[pokemon].isFullHP()) {
+                else if ((*this->player)[pokemon].isFullHp()) {
                     this->displayHpBar();
                     (*this->player)[pokemon].hpFullMessage();
                     pressEnter();

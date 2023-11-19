@@ -11,14 +11,7 @@ private:
 public:
     AirSlash() : Move(20) {}
 
-    explicit AirSlash(const int currentPP) : AirSlash() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    AirSlash(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses

@@ -12,14 +12,7 @@ private:
 public:
     IceBeam() : Move(10) {}
 
-    explicit IceBeam(const int currentPP) : IceBeam() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    IceBeam(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses

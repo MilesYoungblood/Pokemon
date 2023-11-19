@@ -17,11 +17,11 @@ public:
 
     SoundPlayer(const SoundPlayer &) = delete;
 
-    SoundPlayer(SoundPlayer &&) = delete;
+    SoundPlayer(SoundPlayer &&) noexcept = delete;
 
     SoundPlayer &operator=(const SoundPlayer &) = delete;
 
-    SoundPlayer &operator=(SoundPlayer &&) = delete;
+    SoundPlayer &operator=(SoundPlayer &&) noexcept = delete;
 
     ~SoundPlayer() {
         Mix_FreeChunk(this->soundBoard[SoundPlayer::SoundId::SELECTION]);
@@ -41,12 +41,12 @@ private:
         this->loadSound(SoundPlayer::SoundId::ACCEPT, "accept");
     }
 
-    /// Adds a sound to the soundboard.
+    /// \brief Adds a sound to the soundboard.
     /// \param id id of the sound
-    /// \param name name of the sound
-    void loadSound(const SoundPlayer::SoundId id, const char *name) {
+    /// \param path path of the sound
+    void loadSound(const SoundPlayer::SoundId id, const std::string &path) {
         this->soundBoard.insert(std::make_pair(id, Mix_LoadWAV(
-                std::string_view(PROJECT_PATH + R"(\assets\audio\sfx\)" + name + ".wav").data())));
+                std::string_view("../assets/audio/sfx/" + path + ".wav").data())));
         if (this->soundBoard.at(id) == nullptr) {
             std::clog << "Error loading sound: " << SDL_GetError() << '\n';
             SDL_ClearError();

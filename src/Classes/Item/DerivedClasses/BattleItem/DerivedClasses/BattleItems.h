@@ -13,8 +13,8 @@ struct XAttack : public BattleItem {
         return "X Attack";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::ATTACK;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::ATTACK;
     }
 
     [[nodiscard]] Item::Id getId() const override {
@@ -29,8 +29,8 @@ struct XDefense : public BattleItem {
         return "X Defense";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::DEFENSE;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::DEFENSE;
     }
 
     [[nodiscard]] Item::Id getId() const override {
@@ -45,8 +45,8 @@ struct XSpAttack : public BattleItem {
         return "X Sp. Attack";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::SP_ATTACK;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::SP_ATTACK;
     }
 
     [[nodiscard]] Item::Id getId() const override {
@@ -61,8 +61,8 @@ struct XSpDefense : public BattleItem {
         return "X Sp. Defense";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::SP_DEFENSE;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::SP_DEFENSE;
     }
 
     [[nodiscard]] Item::Id getId() const override {
@@ -77,8 +77,8 @@ struct XSpeed : public BattleItem {
         return "X Speed";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::SPEED;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::SPEED;
     }
 
     [[nodiscard]] Item::Id getId() const override {
@@ -93,8 +93,8 @@ struct XAccuracy : public BattleItem {
         return "X Accuracy";
     }
 
-    [[nodiscard]] Stat getStat() const override {
-        return Stat::ACCURACY;
+    [[nodiscard]] Pokemon::Stat getStat() const override {
+        return Pokemon::Stat::ACCURACY;
     }
 
     [[nodiscard]] Item::Id getId() const override {

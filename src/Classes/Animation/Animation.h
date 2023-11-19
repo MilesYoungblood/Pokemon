@@ -19,8 +19,8 @@ private:
 public:
     Animation() = default;
 
-    Animation(SDL_Texture *spriteSheet, int numFrames, int numRows)
-            : spriteSheet(spriteSheet), numFrames(numFrames), numRows(numRows) {}
+    Animation(const char *path, int numFrames, int numRows)
+            : spriteSheet(TextureManager::getInstance().loadTexture(path)), numFrames(numFrames), numRows(numRows) {}
 
     Animation(const Animation &) = delete;
 
@@ -28,9 +28,7 @@ public:
 
     Animation &operator=(const Animation &) = delete;
 
-    Animation &operator=(Animation &&rhs)
-
-    noexcept {
+    Animation &operator=(Animation &&rhs) noexcept {
         this->numFrames = rhs.numFrames;
         this->numRows = rhs.numRows;
         this->spriteSheet = rhs.spriteSheet;

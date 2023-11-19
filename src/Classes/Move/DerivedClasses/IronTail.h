@@ -12,14 +12,7 @@ private:
 public:
     IronTail() : Move(15) {}
 
-    explicit IronTail(const int currentPP) : IronTail() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    IronTail(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) override {
         // damage will be negative if the attack misses
@@ -27,11 +20,11 @@ public:
             defendingPokemon.takeDamage(damage);
 
             //FIXME redo calculations
-            this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getSpDefense() > -6;
+            this->loweredState = generateInteger(1, 10) == 1 and defendingPokemon.getStatMod(Pokemon::Stat::DEFENSE) > -6;
 
             //FIXME account for limit reached
             if (this->loweredState) {
-                defendingPokemon.lowerDefense(1);
+                defendingPokemon.lowerStatMod(Pokemon::Stat::DEFENSE, 1);
             }
         }
 

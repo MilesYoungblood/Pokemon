@@ -22,14 +22,14 @@ Game::Game() {
     }
 
     // initialize image subsystems
-    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) != IMG_InitFlags::IMG_INIT_PNG) {
+    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == 0) {
         std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // load window icon
-    SDL_Surface *pokeball = IMG_Load(std::string_view(PROJECT_PATH + R"(\assets\images\pokeball.png)").data());
+    SDL_Surface *pokeball = IMG_Load("../assets/images/pokeball.png");
     if (pokeball == nullptr) {
         std::clog << "Error loading icon: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -59,8 +59,7 @@ Game::Game() {
     }
 
     // set the font for the message box
-    Game::font = TTF_OpenFont(std::string_view(PROJECT_PATH + R"(\assets\fonts\PokemonGb-RAeo.ttf)").data(),
-                              Game::FONT_SIZE);
+    Game::font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", Game::FONT_SIZE);
     if (Game::font == nullptr) {
         std::clog << "Error creating font: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -91,7 +90,7 @@ Game::Game() {
     }
 
     // load title screen music
-    Game::music = Mix_LoadMUS(std::string_view(PROJECT_PATH + R"(\assets\audio\music\Title Screen.mp3)").data());
+    Game::music = Mix_LoadMUS("../assets/audio/music/Title Screen.mp3");
     if (Game::music == nullptr) {
         std::clog << "Error loading \"Title Screen\": " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -168,7 +167,7 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile(PROJECT_PATH + R"(\documents\data\SaveData.txt)");
+    std::ofstream saveFile("../documents/data/SaveData.txt");
     if (not saveFile) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
         isRunning = false;
@@ -187,7 +186,8 @@ void Game::saveData() {
 
         for (int move = 0; move < num_moves; ++move) {
             saveFile << Player::getPlayer()[pokemon][move].getId() << ' '
-                     << Player::getPlayer()[pokemon][move].getPP() << ' ';
+                     << Player::getPlayer()[pokemon][move].getPp() << ' '
+                     << Player::getPlayer()[pokemon][move].getMaxPp() << ' ';
         }
     }
 
@@ -231,7 +231,7 @@ void Game::saveData() {
 }
 
 void Game::initializeGame() {
-    Game::currentMapIndex = 0;
+    Game::currentMapIndex = Map::Id::ROUTE_1;
     Game::currentMap = &Game::maps.at(Game::currentMapIndex);
 
     Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
@@ -284,7 +284,7 @@ void Game::initializeGame() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile(PROJECT_PATH + R"(\documents\data\SaveData.txt)");
+    std::ifstream saveFile("../documents/data/SaveData.txt");
 
     // initialize all maps
     Map::initTextures();
@@ -349,7 +349,10 @@ void Game::loadData() {
                 std::getline(saveFile, buffer, ' ');
                 const int saved_pp = std::stoi(buffer);
 
-                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::Id>(id), saved_pp));
+                std::getline(saveFile, buffer, ' ');
+                const int max_pp = std::stoi(buffer);
+
+                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::Id>(id), saved_pp, max_pp));
             }
 
             // necessary to grab the next line

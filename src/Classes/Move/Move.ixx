@@ -4,8 +4,6 @@
 
 export module Move;
 
-import <string>;
-
 import GeneralFunctions;
 
 enum class Type {
@@ -15,7 +13,7 @@ enum class Type {
     DARK, STEEL, FAIRY
 };
 
-class P;
+//class P;
 
 export class M {
 private:
@@ -62,15 +60,15 @@ public:
 
     }
 
-    virtual void action(P &attackingPokemon, P &defendingPokemon, int damage, bool &skip) {}
+    //virtual void action(P &attackingPokemon, P &defendingPokemon, int damage, bool &skip) {}
 
-    virtual void actionMessage(const P &attackingPokemon, const P &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) {}
+    //virtual void actionMessage(const P &attackingPokemon, const P &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff) {}
 
     void use() {
         this->pp = std::max(this->pp - 1, 0);
     }
 
-    void setPP(int newPP) {
+    void setPp(int newPP) {
         this->pp = newPP;
 
         // PP cannot be set lower than 0
@@ -87,11 +85,11 @@ public:
         this->pp = this->maxPp;
     }
 
-    [[nodiscard]] int getPP() const {
+    [[nodiscard]] int getPp() const {
         return this->pp;
     }
 
-    [[nodiscard]] int getMaxPP() const {
+    [[nodiscard]] int getMaxPp() const {
         return this->maxPp;
     }
 

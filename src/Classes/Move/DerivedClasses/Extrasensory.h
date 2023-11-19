@@ -11,14 +11,7 @@ private:
 public:
     Extrasensory() : Move(30) {}
 
-    explicit Extrasensory(const int currentPP) : Extrasensory() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    Extrasensory(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     void action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool &skip) override {
         // damage will be negative if the attack misses

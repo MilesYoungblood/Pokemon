@@ -40,11 +40,11 @@ public:
 
     Trainer(const Trainer &) = delete;
 
-    Trainer(Trainer &&) = delete;
+    Trainer(Trainer &&) noexcept = delete;
 
     Trainer &operator=(const Trainer &) = delete;
 
-    Trainer &operator=(Trainer &&) = delete;
+    Trainer &operator=(Trainer &&) noexcept = delete;
 
     ~Trainer() override = default;
 
@@ -55,12 +55,12 @@ public:
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
     template<typename P, typename ...Args>
-    void addPokemon(Args ...params) {
+    void addPokemon(Args ...args) {
         if (this->party.size() == Trainer::MAX_POKEMON) {
             return;
         }
 
-        this->party.push_back(std::make_unique<P>(params...));
+        this->party.push_back(std::make_unique<P>(args...));
     }
 
     void removePokemon(int index);
@@ -117,27 +117,22 @@ public:
     }
 
     template<typename I, typename ...Args>
-    void addItem(Args ...params) {
-        try {
-            std::unique_ptr<I> item = std::make_unique<I>(params...);
+    void addItem(Args ...args) {
+        std::unique_ptr<I> item = std::make_unique<I>(args...);
 
-            if (this->items.at(static_cast<std::size_t>(item->getClass())).size() == Trainer::MAX_ITEMS) {
+        if (this->items.at(static_cast<std::size_t>(item->getClass())).size() == Trainer::MAX_ITEMS) {
+            return;
+        }
+
+        for (const auto &i : this->items.at(static_cast<std::size_t>(item->getClass()))) {
+            // if item already exists within our inventory
+            if (i->getId() == item->getId()) {
+                i->add(item->getQuantity());
                 return;
             }
-
-            for (const auto &i : this->items.at(static_cast<std::size_t>(item->getClass()))) {
-                // if item already exists within our inventory
-                if (i->getId() == item->getId()) {
-                    i->add(item->getQuantity());
-                    return;
-                }
-            }
-
-            this->items.at(static_cast<std::size_t>(item->getClass())).push_back(std::move(item));
         }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
-        }
+
+        this->items.at(static_cast<std::size_t>(item->getClass())).push_back(std::move(item));
     }
 
     template<typename I>

@@ -127,7 +127,7 @@ const Trainer &Map::operator[](const int index) const {
     }
 }
 
-const char *Map::getMusic() const {
+std::string Map::getMusic() const {
     return this->music;
 }
 
@@ -192,7 +192,7 @@ void Map::render() {
         for (auto &column : row) {
             sdlRect = { column.x, column.y, TILE_SIZE, TILE_SIZE };
             // prevents rendering tiles that aren't onscreen
-            if (Camera::getInstance().isInView(sdlRect) != 0U) {
+            if (Camera::getInstance().isInView(sdlRect)) {
                 switch (column.id) {
                     case Map::Tile::Id::GRASS:
                         TextureManager::getInstance().draw(Map::grass, sdlRect);
@@ -221,7 +221,7 @@ void Map::render() {
 
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         // prevents rendering trainers that aren't onscreen
-        if (Camera::getInstance().isInView({ trainer->getScreenX(), trainer->getScreenY(), TILE_SIZE, TILE_SIZE }) != 0U) {
+        if (Camera::getInstance().isInView({ trainer->getScreenX(), trainer->getScreenY(), TILE_SIZE, TILE_SIZE })) {
             trainer->render();
         }
     }

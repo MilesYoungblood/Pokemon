@@ -11,14 +11,7 @@ private:
 public:
     QuickAttack() : Move(30) {}
 
-    explicit QuickAttack(const int currentPP) : QuickAttack() {
-        if (currentPP < 0) {
-            this->fillToMax();
-        }
-        else {
-            this->setPP(currentPP);
-        }
-    }
+    QuickAttack(const int pp, const int maxPp) : Move(pp, maxPp) {}
 
     [[nodiscard]] int getPower() const override {
         return 40;

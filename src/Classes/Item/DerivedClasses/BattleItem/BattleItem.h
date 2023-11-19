@@ -9,7 +9,7 @@
 struct BattleItem : public Item {
     explicit BattleItem(int quantity) : Item(quantity) {}
 
-    [[nodiscard]] virtual Stat getStat() const = 0;
+    [[nodiscard]] virtual Pokemon::Stat getStat() const = 0;
 
     [[nodiscard]] Item::Id getId() const override = 0;
 
