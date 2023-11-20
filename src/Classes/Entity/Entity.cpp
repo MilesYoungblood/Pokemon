@@ -63,39 +63,23 @@ int Entity::getY() const {
 
 void Entity::moveForward() {
     switch (this->currentDirection) {
-        case UP:
+        case Direction::UP:
             --this->y;
             break;
-        case RIGHT:
+        case Direction::RIGHT:
             ++this->x;
             break;
-        case DOWN:
+        case Direction::DOWN:
             ++this->y;
             break;
-        case LEFT:
+        case Direction::LEFT:
             --this->x;
             break;
     }
 }
 
-void Entity::faceNorth() {
-    this->currentDirection = Direction::UP;
-}
-
-void Entity::faceEast() {
-    this->currentDirection = Direction::RIGHT;
-}
-
-void Entity::faceSouth() {
-    this->currentDirection = Direction::DOWN;
-}
-
-void Entity::faceWest() {
-    this->currentDirection = Direction::LEFT;
-}
-
-void Entity::setDirection(const Direction newDirection) {
-    this->currentDirection = newDirection;
+void Entity::setDirection(const Direction direction) {
+    this->currentDirection = direction;
 }
 
 Direction Entity::getDirection() const {
@@ -104,18 +88,7 @@ Direction Entity::getDirection() const {
 
 // makes this face the entity
 void Entity::face(const Entity *entity) {
-    if (entity->isFacingNorth()) {
-        this->faceSouth();
-    }
-    else if (entity->isFacingEast()) {
-        this->faceWest();
-    }
-    else if (entity->isFacingSouth()) {
-        this->faceNorth();
-    }
-    else if (entity->isFacingWest()) {
-        this->faceEast();
-    }
+    this->setDirection(oppositeDirection(entity->getDirection()));
 }
 
 bool Entity::isFacingNorth() const {

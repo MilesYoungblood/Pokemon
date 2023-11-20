@@ -90,16 +90,16 @@ Game::Game() {
     }
 
     // load title screen music
-    Game::music = Mix_LoadMUS("../assets/audio/music/Title Screen.mp3");
+    Game::music = Mix_LoadMUS("../assets/audio/music/TitleScreen.mp3");
     if (Game::music == nullptr) {
-        std::clog << "Error loading \"Title Screen\": " << SDL_GetError() << '\n';
+        std::clog << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // play title screen music
     if (Mix_PlayMusic(Game::music, -1) == -1) {
-        std::clog << "Error playing \"Title Screen\": " << SDL_GetError() << '\n';
+        std::clog << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
@@ -176,7 +176,7 @@ void Game::saveData() {
 
     saveFile << Game::currentMapIndex;
     saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
-             << Player::getPlayer().getDirection();
+             << static_cast<int>(Player::getPlayer().getDirection());
     saveFile << '\n' << Player::getPlayer().partySize();
     for (int pokemon = 0; pokemon < Player::getPlayer().partySize(); ++pokemon) {
         saveFile << '\n' << Player::getPlayer()[pokemon].getId() << ' ';
@@ -223,7 +223,7 @@ void Game::saveData() {
     for (int map = 0; map < Game::maps.size(); ++map) {
         for (int trainer = 0; trainer < Game::maps.at(map).numTrainers(); ++trainer) {
             saveFile << '\n' << map << ' ' << trainer << ' ' << Game::maps.at(map)[trainer].partySize();
-            saveFile << Game::maps.at(map)[trainer].getDirection();
+            saveFile << static_cast<int>(Game::maps.at(map)[trainer].getDirection());
         }
     }
 

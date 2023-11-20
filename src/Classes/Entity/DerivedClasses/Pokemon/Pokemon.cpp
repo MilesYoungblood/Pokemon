@@ -47,7 +47,7 @@ void Pokemon::deleteMove(const int index) {
     }
 }
 
-void Pokemon::setHP(const int amount) {
+void Pokemon::setHp(const int amount) {
     this->currentHp = amount;
 
     // HP cannot be set lower than 0
@@ -60,7 +60,7 @@ void Pokemon::setHP(const int amount) {
     }
 }
 
-void Pokemon::restoreHP(const int amount) {
+void Pokemon::restoreHp(const int amount) {
     this->currentHp = std::min(this->currentHp + amount, this->maxHp);
 }
 
@@ -68,7 +68,7 @@ void Pokemon::takeDamage(const int amount) {
     this->currentHp = std::max(this->currentHp - amount, 0);
 }
 
-int Pokemon::getHP() const {
+int Pokemon::getHp() const {
     return this->currentHp;
 }
 
@@ -219,8 +219,9 @@ bool Pokemon::isAfflicted() const {
 }
 
 bool Pokemon::canAttack() const {
-    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(), [](const std::unique_ptr<Move> &move) -> bool {
-        return move == nullptr;
+    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
+                               [](const std::unique_ptr<Move> &move) -> bool {
+        return not move.get();
     });
 }
 

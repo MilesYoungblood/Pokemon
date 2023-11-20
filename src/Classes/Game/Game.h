@@ -62,9 +62,9 @@ private:
     };
 
     inline static std::array<Map, 3ULL> maps{
-            Map("Route 1", "Route 1", 19, 14),
-            Map("Route 2", "Rival Battle", 27, 24),
-            Map("Route 3", "Gym Battle", 27, 15)
+            Map("Route 1", "Route1", 19, 14),
+            Map("Route 2", "RivalBattle", 27, 24),
+            Map("Route 3", "GymBattle", 27, 15)
     };
 
     inline static int currentMapIndex;

@@ -6,17 +6,17 @@
 
 Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items() {
     //FIXME change these to not be Hilbert
-    this->setUpAnimation("sprites\\Hilbert\\HilbertSpriteSheetUp.png", 4, 1);
-    this->setDownAnimation("sprites\\Hilbert\\HilbertSpriteSheetDown.png", 4, 1);
-    this->setLeftAnimation("sprites\\Hilbert\\HilbertSpriteSheetLeft.png", 4, 1);
-    this->setRightAnimation("sprites\\Hilbert\\HilbertSpriteSheetRight.png", 4, 1);
+    this->setAnimation(Direction::UP, "sprites\\Hilbert\\HilbertSpriteSheetUp.png", 4, 1);
+    this->setAnimation(Direction::DOWN, "sprites\\Hilbert\\HilbertSpriteSheetDown.png", 4, 1);
+    this->setAnimation(Direction::LEFT, "sprites\\Hilbert\\HilbertSpriteSheetLeft.png", 4, 1);
+    this->setAnimation(Direction::RIGHT, "sprites\\Hilbert\\HilbertSpriteSheetRight.png", 4, 1);
 }
 
-Trainer::Trainer(const char *name, const int x, const int y, const int direction) : Trainer(name, x, y) {
-    this->setDirection(static_cast<Direction>(direction));
+Trainer::Trainer(const char *name, const int x, const int y, const Direction direction) : Trainer(name, x, y) {
+    this->setDirection(direction);
 }
 
-Trainer::Trainer(const char *name, const int x, const int y, const int direction, const int vision)
+Trainer::Trainer(const char *name, const int x, const int y, const Direction direction, const int vision)
         : Trainer(name, x, y, direction) {
     this->setVision(vision);
 }

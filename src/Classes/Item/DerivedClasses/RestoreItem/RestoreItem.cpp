@@ -12,7 +12,7 @@ Item::Class RestoreItem::getClass() const {
 
 void RestoreItem::restore(Pokemon &pokemon) const {
     if (this->isHp()) {
-        pokemon.restoreHP(this->getAmount());
+        pokemon.restoreHp(this->getAmount());
     }
 }
 

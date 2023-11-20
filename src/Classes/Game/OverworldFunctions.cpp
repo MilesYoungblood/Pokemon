@@ -124,16 +124,16 @@ void Game::checkForOpponents() {
             if (freeMusic) {
                 Mix_FreeMusic(Game::music);
 
-                Game::music = Mix_LoadMUS("../assets/audio/music/Gym Battle.mp3");
+                Game::music = Mix_LoadMUS("../assets/audio/music/GymBattle.mp3");
                 if (Game::music == nullptr) {
-                    std::clog << "Error loading \"Gym Battle\": " << SDL_GetError() << '\n';
+                    std::clog << "Error loading \"GymBattle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
                     Game::isRunning = false;
                     return;
                 }
 
                 if (Mix_PlayMusic(Game::music, -1) == -1) {
-                    std::clog << "Error playing \"Gym Battle\": " << SDL_GetError() << '\n';
+                    std::clog << "Error playing \"GymBattle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
                     Game::isRunning = false;
                     return;
@@ -185,10 +185,10 @@ void Game::updateTrainers() {
 
             case 2:
                 if (entity->isFacingNorth() or entity->isFacingSouth()) {
-                    coinFlip() ? entity->faceEast() : entity->faceWest();
+                    coinFlip() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
                 }
                 else {
-                    coinFlip() ? entity->faceNorth() : entity->faceSouth();
+                    coinFlip() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
                 }
                 break;
         }
@@ -207,7 +207,7 @@ void Game::updateOverworld() {
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         if (not Player::getPlayer().isFacingNorth()) {
-            Player::getPlayer().faceNorth();
+            Player::getPlayer().setDirection(Direction::UP);
         }
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) and
             Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
@@ -216,7 +216,7 @@ void Game::updateOverworld() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
         if (not Player::getPlayer().isFacingWest()) {
-            Player::getPlayer().faceWest();
+            Player::getPlayer().setDirection(Direction::LEFT);
         }
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) and
             Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
@@ -225,7 +225,7 @@ void Game::updateOverworld() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
         if (not Player::getPlayer().isFacingSouth()) {
-            Player::getPlayer().faceSouth();
+            Player::getPlayer().setDirection(Direction::DOWN);
         }
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S) and
             Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
@@ -234,7 +234,7 @@ void Game::updateOverworld() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         if (not Player::getPlayer().isFacingEast()) {
-            Player::getPlayer().faceEast();
+            Player::getPlayer().setDirection(Direction::RIGHT);
         }
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D) and
             Player::getPlayer().canMoveForward(Game::currentMap) and (momentum or timer >= 10)) {
@@ -267,16 +267,16 @@ void Game::updateOverworld() {
                     if ((*Game::currentMap)[i]) {
                         Mix_FreeMusic(Game::music);
 
-                        Game::music = Mix_LoadMUS("../assets/audio/music/Trainer Battle.mp3");
+                        Game::music = Mix_LoadMUS("../assets/audio/music/TrainerBattle.mp3");
                         if (Game::music == nullptr) {
-                            std::clog << "Error loading \"Trainer Battle\": " << SDL_GetError() << '\n';
+                            std::clog << "Error loading \"TrainerBattle\": " << SDL_GetError() << '\n';
                             SDL_ClearError();
                             Game::isRunning = false;
                             return;
                         }
 
                         if (Mix_PlayMusic(Game::music, -1) == -1) {
-                            std::clog << "Error playing \"Trainer Battle\": " << SDL_GetError() << '\n';
+                            std::clog << "Error playing \"TrainerBattle\": " << SDL_GetError() << '\n';
                             SDL_ClearError();
                             Game::isRunning = false;
                             return;
@@ -344,20 +344,8 @@ void Game::renderTextBox(const std::string &message = "Pokemon White is the best
     };
 
     const static int border_size = text_box.h / (TILE_SIZE * 3 / 10);
-    const static SDL_Rect border{
-            text_box.x - border_size,
-            text_box.y - border_size,
-            text_box.w + border_size * 2,
-            text_box.h + border_size * 2
-    };
 
-    // first render the border of the dialogue box
-    SDL_RenderFillRect(Game::renderer, &border);
-    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-
-    // then render the inner dialogue box in front of the border
-    SDL_RenderFillRect(Game::renderer, &text_box);
-    SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    TextureManager::getInstance().drawRect(text_box, { 255, 255, 255 }, { 0, 0, 0 }, border_size);
 
     static int width;
     static int height;

@@ -34,9 +34,9 @@ public:
 
     Trainer(const char *name, int x, int y);
 
-    Trainer(const char *name, int x, int y, int direction);
+    Trainer(const char *name, int x, int y, Direction direction);
 
-    Trainer(const char *name, int x, int y, int direction, int vision);
+    Trainer(const char *name, int x, int y, Direction direction, int vision);
 
     Trainer(const Trainer &) = delete;
 

@@ -208,13 +208,13 @@ public:
 
     void deleteMove(int index);
 
-    void setHP(int amount);
+    void setHp(int amount);
 
-    void restoreHP(int amount);
+    void restoreHp(int amount);
 
     void takeDamage(int amount);
 
-    [[nodiscard]] int getHP() const;
+    [[nodiscard]] int getHp() const;
 
     [[nodiscard]] int getMaxHp() const;
 
@@ -259,8 +259,8 @@ public:
     const Move &operator[](int index) const;
 
 private:
-    const static int MAX_NUM_MOVES = 4;
-    const static int MAX_NUM_TYPES = 2;
+    const static int MAX_NUM_MOVES{ 4 };
+    const static int MAX_NUM_TYPES{ 2 };
 
     int maxHp;
     int currentHp{ 0 };

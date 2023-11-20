@@ -75,13 +75,13 @@ public:
     bool getKey(Direction direction) {
         const std::span key_states(SDL_GetKeyboardState(nullptr), 255ULL);
         switch (direction) {
-            case UP:
+            case Direction::UP:
                 return (key_states[SDL_SCANCODE_W] != 0U) and not this->locked[SDL_SCANCODE_W];
-            case DOWN:
+            case Direction::DOWN:
                 return (key_states[SDL_SCANCODE_S] != 0U) and not this->locked[SDL_SCANCODE_S];
-            case LEFT:
+            case Direction::LEFT:
                 return (key_states[SDL_SCANCODE_A] != 0U) and not this->locked[SDL_SCANCODE_A];
-            case RIGHT:
+            case Direction::RIGHT:
                 return (key_states[SDL_SCANCODE_D] != 0U) and not this->locked[SDL_SCANCODE_D];
             default:
                 throw std::invalid_argument("Unexpected error: function getKey");

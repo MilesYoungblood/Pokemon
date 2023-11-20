@@ -68,7 +68,8 @@ void Battle::displayChoices(const int arrow, bool &print) {
 void Battle::displayPokemon(const int arrow, bool &print) {
     auto printOut = [this](const char *string, const int index) -> void {
         std::cout << string << (*this->player)[index].getName() << std::string(15 - (*this->player)[index].getName().length(), ' ')
-                  << "(HP: " << (*this->player)[index].getHP() << std::string(3 - std::to_string((*this->player)[index].getHP()).length(), ' ')
+                  << "(HP: " << (*this->player)[index].getHp() << std::string(3 - std::to_string(
+                (*this->player)[index].getHp()).length(), ' ')
                   << '/' << std::string(3 - std::to_string((*this->player)[index].getMaxHp()).length(), ' ') << (*this->player)[index].getMaxHp()
                   << ")\n";
     };
@@ -98,8 +99,8 @@ void Battle::displayPokemon(const int arrow, bool &print) {
 void Battle::displayHpBar(const bool displayPokemon = true) {
     void (*printOut)(Trainer *) = [](Trainer *trainer) -> void {
         std::cout << "| " << (*trainer)[0].getName() << std::string(15 - (*trainer)[0].getName().length(), ' ')
-                  << "| HP: " << (*trainer)[0].getHP()
-                  << std::string(3 - std::to_string((*trainer)[0].getHP()).length(), ' ')
+                  << "| HP: " << (*trainer)[0].getHp()
+                  << std::string(3 - std::to_string((*trainer)[0].getHp()).length(), ' ')
                   << '/' << (*trainer)[0].getMaxHp()
                   << std::string(3 - std::to_string((*trainer)[0].getMaxHp()).length(), ' ')
                   << " |\n";

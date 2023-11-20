@@ -8,7 +8,7 @@
 
 inline const int TILE_SIZE = 80;
 
-enum Direction {
+enum class Direction {
     UP, DOWN, LEFT, RIGHT
 };
 
@@ -42,7 +42,7 @@ private:
     int vision{ 1 };                                      // line of sight
     Direction currentDirection{ Direction::DOWN };        // numerical representation of which way the trainer is facing
 
-    std::array<Animation, 4> animations;
+    std::unordered_map<Direction, Animation> animations;
 
     void (*action)(Entity *entity){ [](Entity *entity) -> void {} };
 
@@ -81,15 +81,7 @@ public:
 
     void moveForward();
 
-    void faceNorth();
-
-    void faceEast();
-
-    void faceSouth();
-
-    void faceWest();
-
-    void setDirection(Direction newDirection);
+    void setDirection(Direction direction);
 
     [[nodiscard]] Direction getDirection() const;
 
@@ -129,20 +121,8 @@ public:
 
     [[nodiscard]] int getScreenY() const;
 
-    inline void setUpAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::UP] = Animation(path, numFrames, numRows);
-    }
-
-    inline void setDownAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::DOWN] = Animation(path, numFrames, numRows);
-    }
-
-    inline void setLeftAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::LEFT] = Animation(path, numFrames, numRows);
-    }
-
-    inline void setRightAnimation(const char *path, int numFrames, int numRows) {
-        this->animations[Direction::RIGHT] = Animation(path, numFrames, numRows);
+    inline void setAnimation(const Direction direction, const char *path, int numFrames, int numRows) {
+        this->animations[direction] = Animation(path, numFrames, numRows);
     }
 
     inline void setAction(void (*function)(Entity *entity)) {
