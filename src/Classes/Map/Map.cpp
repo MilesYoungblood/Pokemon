@@ -48,6 +48,15 @@ Map::Map(const char *name, const char *music, int width, int height)
     }
 }
 
+Map::Map(Map &&toMove) noexcept {
+    this->name = toMove.name;
+    this->music = toMove.music;
+    this->layout = std::move(toMove.layout);
+    this->trainers = std::move(toMove.trainers);
+    this->items = std::move(toMove.items);
+    this->exitPoints = std::move(toMove.exitPoints);
+}
+
 Map &Map::operator=(Map &&toMove) noexcept {
     this->name = toMove.name;
     this->music = toMove.music;

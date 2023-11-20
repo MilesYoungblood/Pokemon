@@ -59,9 +59,9 @@ public:
 
     Map(const char *name, const char *music, int width, int height);
 
-    Map(const Map &rhs) = delete;
+    Map(const Map &toCopy) = delete;
 
-    Map(Map &&) noexcept = delete;
+    Map(Map &&toMove) noexcept;
 
     Map &operator=(const Map &) = delete;
 

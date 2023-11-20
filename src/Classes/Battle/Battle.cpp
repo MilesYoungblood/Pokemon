@@ -209,7 +209,7 @@ void Battle::loseMessage() {
 void Battle::inflictedMessage(const Pokemon &pokemon) {
     switch (pokemon.getStatus()) {
         case Status::BURN:
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * 0.0625))) + " damage from it's burn!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's burn!\n");
             break;
         case Status::PARALYSIS:
             printMessage(pokemon.getName() + " is paralyzed! It can't move!\n");
@@ -218,7 +218,7 @@ void Battle::inflictedMessage(const Pokemon &pokemon) {
             printMessage(pokemon.getName() + " is frozen solid!\n");
             break;
         case Status::POISON:
-            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(lround(pokemon.getMaxHp() * 0.0625))) + " damage from it's poisoning!\n");
+            printMessage(pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's poisoning!\n");
             break;
         case Status::SLEEP:
             printMessage(pokemon.getName() + " is fast asleep!\n");
@@ -545,7 +545,7 @@ void Battle::postStatus(const bool isUserFaster, bool &keepPlaying) {
     };
 
     auto postStatus = [this, &keepPlaying](Trainer *trainer, bool isUser) {
-        (*trainer)[0].takeDamage(static_cast<int>(lround((*trainer)[0].getMaxHp() * 0.0625)));
+        (*trainer)[0].takeDamage(static_cast<int>(std::round((*trainer)[0].getMaxHp() * 0.0625)));
         Battle::inflictedMessage((*trainer)[0]);
 
         if ((*trainer)[0].isFainted()) {

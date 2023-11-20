@@ -177,13 +177,15 @@ public:
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
 
-    Pokemon(const char *name, Type type, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
-
-    Pokemon(const char *name, Type type1, Type type2, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed, int catchRate);
+    Pokemon(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
 
     Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&) noexcept = delete;
+    Pokemon(Pokemon &&toMove) noexcept
+            : maxHp(toMove.maxHp), currentHp(toMove.currentHp), statModifiers(std::move(toMove.statModifiers)), baseStats(std::move(toMove.baseStats)),
+              level(toMove.level), moveSet(std::move(toMove.moveSet)), status(toMove.status) {
+        this->setName(toMove.getName().c_str());
+    }
 
     Pokemon &operator=(const Pokemon &) = delete;
 
@@ -191,7 +193,7 @@ public:
 
     ~Pokemon() override = default;
 
-    [[nodiscard]] virtual Pokemon::Id getId() const = 0;
+    [[nodiscard]] std::string getName() const override = 0;
 
     [[nodiscard]] int numMoves() const;
 
@@ -228,7 +230,7 @@ public:
 
     [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
 
-    [[nodiscard]] Type getType(bool type1) const;
+    [[nodiscard]] virtual Type getType(bool type1) const = 0;
 
     void setStatus(Status newStatus);
 
@@ -238,7 +240,9 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] int getCatchRate() const;
+    [[nodiscard]] virtual int getCatchRate() const = 0;
+
+    [[nodiscard]] virtual Pokemon::Id getId() const = 0;
 
     [[nodiscard]] bool isFainted() const;
 
@@ -260,7 +264,6 @@ public:
 
 private:
     const static int MAX_NUM_MOVES{ 4 };
-    const static int MAX_NUM_TYPES{ 2 };
 
     int maxHp;
     int currentHp{ 0 };
@@ -270,10 +273,7 @@ private:
 
     int level;
 
-    int catchRate;
-
     std::vector<std::unique_ptr<Move>> moveSet;
-    std::array<Type, Pokemon::MAX_NUM_TYPES> types;
     Status status{ Status::NONE };
 
     double getStat(Pokemon::Stat stat) const;

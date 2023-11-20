@@ -4,22 +4,8 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const char *name, const Type type, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
-    : Entity(name, 0, 0), maxHp(hp), currentHp(hp), level(level), catchRate(catchRate), types() {
-    this->types[0] = type;
-    this->types[1] = Type::NONE;
-
-    this->baseStats[Pokemon::Stat::ATTACK] = bAttack;
-    this->baseStats[Pokemon::Stat::DEFENSE] = bDefense;
-    this->baseStats[Pokemon::Stat::SP_ATTACK] = bSpAttack;
-    this->baseStats[Pokemon::Stat::SP_DEFENSE] = bSpDefense;
-    this->baseStats[Pokemon::Stat::SPEED] = bSpeed;
-}
-
-Pokemon::Pokemon(const char *name, const Type type1, const Type type2, const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed, const int catchRate)
-    : Entity(name, 0, 0), maxHp(hp), currentHp(hp), level(level), catchRate(catchRate), types() {
-    this->types[0] = type1;
-    this->types[1] = type2;
+Pokemon::Pokemon(const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed)
+    : Entity(0, 0), maxHp(hp), currentHp(hp), level(level) {
 
     this->baseStats[Pokemon::Stat::ATTACK] = bAttack;
     this->baseStats[Pokemon::Stat::DEFENSE] = bDefense;
@@ -145,10 +131,6 @@ int Pokemon::getBaseStat(Pokemon::Stat stat) const {
     }
 }
 
-Type Pokemon::getType(const bool type1) const {
-    return type1 ? this->types[0] : this->types[1];
-}
-
 void Pokemon::setStatus(const Status newStatus) {
     this->status = newStatus;
 
@@ -198,10 +180,6 @@ int Pokemon::getLevel() const {
     return this->level;
 }
 
-int Pokemon::getCatchRate() const {
-    return this->catchRate;
-}
-
 bool Pokemon::isFainted() const {
     return this->currentHp == 0;
 }
@@ -211,7 +189,7 @@ bool Pokemon::isFullHp() const {
 }
 
 bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
-    return this->baseStats.at(Pokemon::Stat::SPEED) > pokemon.getBaseStat(Pokemon::Stat::SPEED);
+    return this->baseStats.at(Pokemon::Stat::SPEED) > pokemon.baseStats.at(Pokemon::Stat::SPEED);
 }
 
 bool Pokemon::isAfflicted() const {
@@ -219,10 +197,7 @@ bool Pokemon::isAfflicted() const {
 }
 
 bool Pokemon::canAttack() const {
-    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
-                               [](const std::unique_ptr<Move> &move) -> bool {
-        return not move.get();
-    });
+    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),[](const std::unique_ptr<Move> &move) -> bool { return not move.operator bool(); });
 }
 
 void Pokemon::hpEmptyMessage() const {

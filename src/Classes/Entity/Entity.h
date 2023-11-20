@@ -67,7 +67,8 @@ public:
         this->name = newName;
     }
 
-    [[nodiscard]] std::string getName() const;
+    // TODO possibly make name become a component
+    [[nodiscard]] virtual std::string getName() const;
 
     void setDialogue(const char *text);
 
