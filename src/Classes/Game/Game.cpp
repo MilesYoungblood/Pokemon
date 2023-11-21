@@ -179,7 +179,7 @@ void Game::saveData() {
              << static_cast<int>(Player::getPlayer().getDirection());
     saveFile << '\n' << Player::getPlayer().partySize();
     for (int pokemon = 0; pokemon < Player::getPlayer().partySize(); ++pokemon) {
-        saveFile << '\n' << Player::getPlayer()[pokemon].getId() << ' ';
+        saveFile << '\n' << static_cast<int>(Player::getPlayer()[pokemon].getId()) << ' ';
 
         const int num_moves = Player::getPlayer()[pokemon].numMoves();
         saveFile << num_moves << ' ';

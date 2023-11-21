@@ -14,7 +14,13 @@ Pokemon::Pokemon(const int level, const int hp, const int bAttack, const int bDe
     this->baseStats[Pokemon::Stat::SPEED] = bSpeed;
 }
 
-int Pokemon::numMoves() const { return static_cast<int>(this->moveSet.size()); }
+Pokemon::Pokemon(Pokemon &&toMove) noexcept
+    : maxHp(toMove.maxHp), currentHp(toMove.currentHp), statModifiers(std::move(toMove.statModifiers)), baseStats(std::move(toMove.baseStats)),
+      level(toMove.level), moveSet(std::move(toMove.moveSet)), status(toMove.status) {}
+
+int Pokemon::numMoves() const {
+    return static_cast<int>(this->moveSet.size());
+}
 
 void Pokemon::addMove(std::unique_ptr<Move> toAdd) {
     if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
@@ -174,6 +180,10 @@ const char * Pokemon::getStatusAsString() const {
         default:
             throw std::runtime_error("Unexpected error: function getStatusAsString");
     }
+}
+
+void Pokemon::levelUp() {
+    ++this->level;
 }
 
 int Pokemon::getLevel() const {

@@ -14,7 +14,7 @@ enum class Status {
 /// \inherit Entity
 class Pokemon : public Entity {
 public:
-    enum Id {
+    enum class Id {
         VICTINI,
         SNIVY,
         SERVINE,
@@ -181,11 +181,7 @@ public:
 
     Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&toMove) noexcept
-            : maxHp(toMove.maxHp), currentHp(toMove.currentHp), statModifiers(std::move(toMove.statModifiers)), baseStats(std::move(toMove.baseStats)),
-              level(toMove.level), moveSet(std::move(toMove.moveSet)), status(toMove.status) {
-        this->setName(toMove.getName().c_str());
-    }
+    Pokemon(Pokemon &&toMove) noexcept;
 
     Pokemon &operator=(const Pokemon &) = delete;
 
@@ -237,6 +233,8 @@ public:
     [[nodiscard]] Status getStatus() const;
 
     [[nodiscard]] const char *getStatusAsString() const;
+
+    void levelUp();
 
     [[nodiscard]] int getLevel() const;
 
