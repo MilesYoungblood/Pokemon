@@ -20,6 +20,7 @@ public:
         SUPER_POTION,
         HYPER_POTION,
         ETHER,
+        MAX_ETHER,
 
         ANTIDOTE,
         AWAKENING,

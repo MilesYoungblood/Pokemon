@@ -12,10 +12,12 @@ int Move::getDamage() const {
     return generateInteger(1, 100) <= this->getAccuracy() ? this->getPower() : -1;
 }
 
+void Move::restore(int amount) {
+    this->pp = std::min(this->pp + amount, this->maxPp);
+}
+
 void Move::use() {
-    if (this->pp > 0) {
-        --this->pp;
-    }
+    this->pp = std::max(this->pp - 1, 0);
 }
 
 void Move::setPp(const int newPp) {
@@ -37,6 +39,10 @@ int Move::getPp() const {
 
 int Move::getMaxPp() const {
     return this->maxPp;
+}
+
+void Move::fillToMax() {
+    this->pp = maxPp;
 }
 
 int Move::getAccuracy() const {

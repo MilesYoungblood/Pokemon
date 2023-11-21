@@ -57,6 +57,8 @@ public:
 
     virtual ~Move() = default;
 
+    void restore(int amount);
+
     void use();
 
     void setPp(int newPp);
@@ -64,6 +66,8 @@ public:
     [[nodiscard]] int getPp() const;
 
     [[nodiscard]] int getMaxPp() const;
+
+    void fillToMax();
 
     [[nodiscard]] virtual int getDamage() const;
 

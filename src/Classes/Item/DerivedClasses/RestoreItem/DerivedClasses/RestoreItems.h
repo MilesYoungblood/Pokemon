@@ -6,28 +6,6 @@
 
 #include "../RestoreItem.h"
 
-struct Ether : public RestoreItem {
-    Ether() = default;
-
-    explicit Ether(int n) : RestoreItem(n) {}
-
-    [[nodiscard]] std::string getName() const override {
-        return "Ether";
-    }
-
-    [[nodiscard]] int getAmount() const override {
-        return 5;
-    }
-
-    [[nodiscard]] bool isHp() const override {
-        return false;
-    }
-
-    [[nodiscard]] Item::Id getId() const override {
-        return Item::Id::ETHER;
-    }
-};
-
 struct Potion : public RestoreItem {
     explicit Potion(int n) : RestoreItem(n) {};
 
@@ -89,5 +67,53 @@ struct HyperPotion : public RestoreItem {
 
     [[nodiscard]] Item::Id getId() const override {
         return Item::Id::HYPER_POTION;
+    }
+};
+
+struct Ether : public RestoreItem {
+    Ether() = default;
+
+    explicit Ether(int n) : RestoreItem(n) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Ether";
+    }
+
+    [[nodiscard]] int getAmount() const override {
+        return 5;
+    }
+
+    [[nodiscard]] bool isHp() const override {
+        return false;
+    }
+
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::ETHER;
+    }
+};
+
+struct MaxEther : public RestoreItem {
+    MaxEther() = default;
+
+    explicit MaxEther(int n) : RestoreItem(n) {}
+
+    void restore(Move &move) const override {
+        move.fillToMax();
+    }
+
+    [[nodiscard]] std::string getName() const override {
+        return "Max Ether";
+    }
+
+    [[nodiscard]] int getAmount() const override {
+        return std::numeric_limits<int>::max();
+    }
+
+    [[nodiscard]] bool isHp() const override {
+        return false;
+    }
+
+    [[nodiscard]] Item::Id getId() const override {
+        return Item::Id::MAX_ETHER;
     }
 };

@@ -103,17 +103,17 @@ namespace PokemonFactory {
             case Pokemon::Id::SAWK:
                 return std::make_unique<Sawk>(args...);
             case Pokemon::Id::SEWADDLE:
-                break;
+                return std::make_unique<Sewaddle>(args...);
             case Pokemon::Id::SWADLOON:
-                break;
+                return std::make_unique<Swadloon>(args...);
             case Pokemon::Id::LEAVANNY:
-                break;
+                return std::make_unique<Leavanny>(args...);
             case Pokemon::Id::VENIPEDE:
-                break;
+                return std::make_unique<Venipede>(args...);
             case Pokemon::Id::WHIRLIPEDE:
-                break;
+                return std::make_unique<Whirlipede>(args...);
             case Pokemon::Id::SCOLIPEDE:
-                break;
+                return std::make_unique<Scolipede>(args...);
             case Pokemon::Id::COTTONEE:
                 break;
             case Pokemon::Id::WHIMSICOTT:
@@ -289,9 +289,9 @@ namespace PokemonFactory {
             case Pokemon::Id::DURANT:
                 break;
             case Pokemon::Id::DEINO:
-                break;
+                return std::make_unique<Deino>(args...);
             case Pokemon::Id::ZWEILOUS:
-                break;
+                return std::make_unique<Zweilous>(args...);
             case Pokemon::Id::HYDREIGON:
                 return std::make_unique<Hydreigon>(args...);
             case Pokemon::Id::LARVESTA:
@@ -322,8 +322,6 @@ namespace PokemonFactory {
                 break;
             case Pokemon::Id::GENESECT:
                 break;
-            default:
-                return nullptr;
         }
         return nullptr;
     }

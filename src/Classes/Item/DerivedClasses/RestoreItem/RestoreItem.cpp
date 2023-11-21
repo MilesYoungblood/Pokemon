@@ -18,8 +18,7 @@ void RestoreItem::restore(Pokemon &pokemon) const {
 
 void RestoreItem::restore(Move &move) const {
     if (not this->isHp()) {
-        //FIXME implement restorePP function in move
-        move.setPp(move.getPp() + this->getAmount());
+        move.restore(this->getAmount());
     }
 }
 

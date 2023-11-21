@@ -7,75 +7,6 @@
 #include "../../Classes/Item/ItemList.h"
 
 namespace ItemFactory {
-    template<typename I, typename ...Args>
-    inline I getItem(Args ...args) {
-        Item *ptr = std::make_unique<I>(args...);
-        return *static_cast<I *>(ptr);
-    }
-
-    template<typename I, typename ...Args>
-    inline I getItem(Item::Id id, Args ...args) {
-        switch (id) {
-            case Item::Id::POTION:
-                return Potion(args...);
-            case Item::Id::SUPER_POTION:
-                return SuperPotion(args...);
-            case Item::Id::HYPER_POTION:
-                return HyperPotion(args...);
-            case Item::Id::ETHER:
-                return Ether(args...);
-            case Item::Id::ANTIDOTE:
-                return Antidote(args...);
-            case Item::Id::AWAKENING:
-                return Awakening(args...);
-            case Item::Id::BURN_HEAL:
-                return BurnHeal(args...);
-            case Item::Id::ICE_HEAL:
-                return IceHeal(args...);
-            case Item::Id::PARALYZE_HEAL:
-                return ParalyzeHeal(args...);
-            case Item::Id::POKE_BALL:
-                return PokeBall(args...);
-            case Item::Id::GREAT_BALL:
-                return GreatBall(args...);
-            case Item::Id::ULTRA_BALL:
-                return UltraBall(args...);
-            case Item::Id::MASTER_BALL:
-                return MasterBall(args...);
-            case Item::Id::NET_BALL:
-                return NetBall(args...);
-            case Item::Id::NEST_BALL:
-                return NetBall(args...);
-            case Item::Id::TIMER_BALL:
-                // TODO
-                break;
-            case Item::Id::PREMIER_BALL:
-                // TODO
-                break;
-            case Item::Id::DUSK_BALL:
-                // TODO
-                break;
-            case Item::Id::HEAL_BALL:
-                // TODO
-                break;
-            case Item::Id::QUICK_BALL:
-                // TODO
-                break;
-            case Item::Id::X_ATTACK:
-                return XAttack(args...);
-            case Item::Id::X_DEFENSE:
-                return XDefense(args...);
-            case Item::Id::X_SP_ATTACK:
-                return XSpAttack(args...);
-            case Item::Id::X_SP_DEFENSE:
-                return XSpDefense(args...);
-            case Item::Id::X_SPEED:
-                return XSpeed(args...);
-            case Item::Id::X_ACCURACY:
-                return XAccuracy(args...);
-        }
-    }
-
     template<typename ...Args>
     inline std::unique_ptr<Item> getItem(Item::Id id, Args ...args) {
         switch (id) {
@@ -87,6 +18,8 @@ namespace ItemFactory {
                 return std::make_unique<HyperPotion>(args...);
             case Item::Id::ETHER:
                 return std::make_unique<Ether>(args...);
+            case Item::Id::MAX_ETHER:
+                return std::make_unique<MaxEther>(args...);
             case Item::Id::ANTIDOTE:
                 return std::make_unique<Antidote>(args...);
             case Item::Id::AWAKENING:
@@ -107,6 +40,18 @@ namespace ItemFactory {
                 return std::make_unique<MasterBall>(args...);
             case Item::Id::NET_BALL:
                 return std::make_unique<NetBall>(args...);
+            case Item::Id::NEST_BALL:
+                return std::make_unique<NestBall>(args...);
+            case Item::Id::TIMER_BALL:
+                return std::make_unique<TimerBall>(args...);
+            case Item::Id::PREMIER_BALL:
+                return std::make_unique<PremierBall>(args...);
+            case Item::Id::DUSK_BALL:
+                return std::make_unique<DuskBall>(args...);
+            case Item::Id::HEAL_BALL:
+                return std::make_unique<HealBall>(args...);
+            case Item::Id::QUICK_BALL:
+                return std::make_unique<QuickBall>(args...);
             case Item::Id::X_ATTACK:
                 return std::make_unique<XAttack>(args...);
             case Item::Id::X_DEFENSE:

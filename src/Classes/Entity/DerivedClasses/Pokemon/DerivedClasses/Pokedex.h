@@ -6,31 +6,6 @@
 
 #include "../Pokemon.h"
 
-/*
-
-struct PokemonData {
-    const char *name;
-    const Type type1;
-    const Type type2;
-    const int level;
-    const int hp;
-    const int attack;
-    const int defense;
-    const int spAttack;
-    const int spDefense;
-    const int speed;
-    const int catchRate;
-};
-
-inline const std::unordered_map<Pokemon::Id, PokemonData> POKEMON_LOOKUP_TABLE{
-        { Pokemon::Id::VICTINI,   { "Victini",   Type::PSYCHIC, Type::FIRE, 15, 100, 100, 100, 100, 100, 100, 3 }},
-        { Pokemon::Id::SNIVY,     { "Snivy",     Type::GRASS,   Type::NONE, 1,  45,  45,  55,  45,  55,  63,  45 }},
-        { Pokemon::Id::SERVINE,   { "Servine",   Type::GRASS,   Type::NONE, 17, 60,  60,  75,  60,  75,  83,  45 }},
-        { Pokemon::Id::SERPERIOR, { "Serperior", Type::GRASS,   Type::NONE, 36, 75,  75,  95,  75,  95,  113, 45 }}
-};
-
- */
-
 struct Victini : public Pokemon {
     Victini() : Pokemon(15, 100, 100, 100, 100, 100, 100) {}
 
@@ -1041,7 +1016,6 @@ struct Seismitoad : public Pokemon {
     [[nodiscard]] Pokemon::Id getId() const override {
         return Pokemon::Id::SEISMITOAD;
     }
-
 };
 
 struct Throh : public Pokemon {
@@ -1087,6 +1061,190 @@ struct Sawk : public Pokemon {
 
     [[nodiscard]] Pokemon::Id getId() const override {
         return Pokemon::Id::SAWK;
+    }
+};
+
+struct Sewaddle : public Pokemon {
+    Sewaddle() : Pokemon(1, 45, 53, 70, 40, 60, 42) {}
+
+    Sewaddle(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Sewaddle";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::GRASS;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 255;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::SEWADDLE;
+    }
+};
+
+struct Swadloon : public Pokemon {
+    Swadloon() : Pokemon(20, 55, 63, 90, 50, 80, 42) {}
+
+    Swadloon(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Swadloon";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::GRASS;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 120;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::SWADLOON;
+    }
+};
+
+struct Leavanny : public Pokemon {
+    Leavanny() : Pokemon(20, 75, 103, 80, 70, 80, 92) {}
+
+    Leavanny(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Leavanny";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::GRASS;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 45;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::LEAVANNY;
+    }
+};
+
+struct Venipede : public Pokemon {
+    Venipede() : Pokemon(1, 30, 45, 59, 30, 39, 57) {}
+
+    Venipede(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Venipede";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::POISON;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 255;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::VENIPEDE;
+    }
+};
+
+struct Whirlipede : public Pokemon {
+    Whirlipede() : Pokemon(22, 40, 55, 99, 40, 79, 47) {}
+
+    Whirlipede(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Whirlipede";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::POISON;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 120;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::WHIRLIPEDE;
+    }
+};
+
+struct Scolipede : public Pokemon {
+    Scolipede() : Pokemon(30, 60, 100, 89, 55, 69, 112) {}
+
+    Scolipede(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Scolipede";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::BUG : Type::POISON;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 45;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::SCOLIPEDE;
+    }
+};
+
+struct Deino : public Pokemon {
+    Deino() : Pokemon(1, 52, 65, 50, 45, 50, 38) {}
+
+    Deino(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Deino";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::DARK : Type::DRAGON;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 45;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::DEINO;
+    }
+};
+
+struct Zweilous : public Pokemon {
+    Zweilous() : Pokemon(50, 52, 65, 50, 45, 60, 38) {}
+
+    Zweilous(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+            : Pokemon(level, hp, bAttack, bDefense, bSpAttack, bSpDefense, bSpeed) {}
+
+    [[nodiscard]] std::string getName() const override {
+        return "Zweilous";
+    }
+
+    [[nodiscard]] Type getType(bool type1) const override {
+        return type1 ? Type::DARK : Type::DRAGON;
+    }
+
+    [[nodiscard]] int getCatchRate() const override {
+        return 45;
+    }
+
+    [[nodiscard]] Pokemon::Id getId() const override {
+        return Pokemon::Id::ZWEILOUS;
     }
 };
 

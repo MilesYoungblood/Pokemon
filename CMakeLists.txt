@@ -89,7 +89,7 @@ add_executable(PokemonBattle ${SOURCES})
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h)
 
-target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
+#target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
 
 #set_source_files_properties(src/Classes/Move/Move.ixx PROPERTIES
 #        LANGUAGE CXX

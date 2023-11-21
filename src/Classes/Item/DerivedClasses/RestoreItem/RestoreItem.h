@@ -21,7 +21,7 @@ struct RestoreItem : public Item {
 
     void restore(Pokemon &pokemon) const;
 
-    void restore(Move &move) const;
+    virtual void restore(Move &move) const;
 
     void restoreMessage(const Pokemon &pokemon) const;
 
