@@ -167,7 +167,7 @@ void Game::render() {
 }
 
 void Game::saveData() {
-    std::ofstream saveFile("../documents/data/SaveData.txt");
+    std::ofstream saveFile("../docs/data/SaveData.txt");
     if (not saveFile) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
         isRunning = false;
@@ -284,7 +284,7 @@ void Game::initializeGame() {
 }
 
 void Game::loadData() {
-    std::ifstream saveFile("../documents/data/SaveData.txt");
+    std::ifstream saveFile("../docs/data/SaveData.txt");
 
     // initialize all maps
     Map::initTextures();
