@@ -295,33 +295,33 @@ namespace PokemonFactory {
             case Pokemon::Id::HYDREIGON:
                 return std::make_unique<Hydreigon>(args...);
             case Pokemon::Id::LARVESTA:
-                break;
+                return std::make_unique<Larvesta>(args...);
             case Pokemon::Id::VOLCARONA:
-                break;
+                return std::make_unique<Volcarona>(args...);
             case Pokemon::Id::COBALION:
-                break;
+                return std::make_unique<Cobalion>(args...);
             case Pokemon::Id::TERRAKION:
-                break;
+                return std::make_unique<Terrakion>(args...);
             case Pokemon::Id::VIRIZION:
-                break;
+                return std::make_unique<Virizion>(args...);
             case Pokemon::Id::TORNADUS:
-                break;
+                return std::make_unique<Tornadus>(args...);
             case Pokemon::Id::THUNDURUS:
-                break;
+                return std::make_unique<Thundurus>(args...);
             case Pokemon::Id::RESHIRAM:
-                break;
+                return std::make_unique<Reshiram>(args...);
             case Pokemon::Id::ZEKROM:
-                break;
+                return std::make_unique<Zekrom>(args...);
             case Pokemon::Id::LANDORUS:
-                break;
+                return std::make_unique<Landorus>(args...);
             case Pokemon::Id::KYUREM:
-                break;
+                return std::make_unique<Kyurem>(args...);
             case Pokemon::Id::KELDEO:
-                break;
+                return std::make_unique<Keldeo>(args...);
             case Pokemon::Id::MELOETTA:
-                break;
+                return std::make_unique<Meloetta>(args...);
             case Pokemon::Id::GENESECT:
-                break;
+                return std::make_unique<Genesect>(args...);
         }
         return nullptr;
     }
