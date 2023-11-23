@@ -119,29 +119,29 @@ namespace PokemonFactory {
             case Pokemon::Id::WHIMSICOTT:
                 break;
             case Pokemon::Id::PETILIL:
-                break;
+                return std::make_unique<Petilil>(args...);
             case Pokemon::Id::LILLIGANT:
-                break;
+                return std::make_unique<Lilligant>(args...);
             case Pokemon::Id::BASCULIN:
-                break;
+                return std::make_unique<Basculin>(args...);
             case Pokemon::Id::SANDILE:
-                break;
+                return std::make_unique<Sandile>(args...);
             case Pokemon::Id::KROKOROK:
-                break;
+                return std::make_unique<Krokorok>(args...);
             case Pokemon::Id::KROOKODILE:
-                break;
+                return std::make_unique<Krookodile>(args...);
             case Pokemon::Id::DARUMAKA:
-                break;
+                return std::make_unique<Darumaka>(args...);
             case Pokemon::Id::DARMANITAN:
-                break;
+                return std::make_unique<Darmanitan>(args...);
             case Pokemon::Id::MARACTUS:
-                break;
+                return std::make_unique<Maractus>(args...);
             case Pokemon::Id::DWEBBLE:
-                break;
+                return std::make_unique<Dwebble>(args...);
             case Pokemon::Id::CRUSTLE:
-                break;
+                return std::make_unique<Crustle>(args...);
             case Pokemon::Id::SCRAGGY:
-                break;
+                return std::make_unique<Scraggy>(args...);
             case Pokemon::Id::SCRAFTY:
                 break;
             case Pokemon::Id::SIGILYPH:
