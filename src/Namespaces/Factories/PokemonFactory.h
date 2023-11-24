@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
+#include "../../Classes/Entity/DerivedClasses/Pokemon/Pokedex.h"
 
 namespace PokemonFactory {
     template<typename ...Args>
@@ -115,9 +115,9 @@ namespace PokemonFactory {
             case Pokemon::Id::SCOLIPEDE:
                 return std::make_unique<Scolipede>(args...);
             case Pokemon::Id::COTTONEE:
-                break;
+                return std::make_unique<Cottonee>(args...);
             case Pokemon::Id::WHIMSICOTT:
-                break;
+                return std::make_unique<Whimsicott>(args...);
             case Pokemon::Id::PETILIL:
                 return std::make_unique<Petilil>(args...);
             case Pokemon::Id::LILLIGANT:
@@ -143,151 +143,151 @@ namespace PokemonFactory {
             case Pokemon::Id::SCRAGGY:
                 return std::make_unique<Scraggy>(args...);
             case Pokemon::Id::SCRAFTY:
-                break;
+                return std::make_unique<Scrafty>(args...);
             case Pokemon::Id::SIGILYPH:
-                break;
+                return std::make_unique<Sigilyph>(args...);
             case Pokemon::Id::YAMASK:
-                break;
+                return std::make_unique<Yamask>(args...);
             case Pokemon::Id::COFAGRIGUS:
-                break;
+                return std::make_unique<Cofagrigus>(args...);
             case Pokemon::Id::TIRTOUGA:
-                break;
+                return std::make_unique<Tirtouga>(args...);
             case Pokemon::Id::CARRACOSTA:
-                break;
+                return std::make_unique<Carracosta>(args...);
             case Pokemon::Id::ARCHEN:
-                break;
+                return std::make_unique<Archen>(args...);
             case Pokemon::Id::ARCHEOPS:
-                break;
+                return std::make_unique<Archeops>(args...);
             case Pokemon::Id::TRUBBISH:
-                break;
+                return std::make_unique<Trubbish>(args...);
             case Pokemon::Id::GARBODOR:
-                break;
+                return std::make_unique<Garbodor>(args...);
             case Pokemon::Id::ZORUA:
-                break;
+                return std::make_unique<Zorua>(args...);
             case Pokemon::Id::ZOROARK:
-                break;
+                return std::make_unique<Zoroark>(args...);
             case Pokemon::Id::MINCCINO:
-                break;
+                return std::make_unique<Minccino>(args...);
             case Pokemon::Id::CINCCINO:
-                break;
+                return std::make_unique<Cinccino>(args...);
             case Pokemon::Id::GOTHITA:
-                break;
+                return std::make_unique<Gothita>(args...);
             case Pokemon::Id::GOTHORITA:
-                break;
+                return std::make_unique<Gothorita>(args...);
             case Pokemon::Id::GOTHITELLE:
-                break;
+                return std::make_unique<Gothitelle>(args...);
             case Pokemon::Id::SOLOSIS:
-                break;
+                return std::make_unique<Solosis>(args...);
             case Pokemon::Id::DUOSION:
-                break;
+                return std::make_unique<Duosion>(args...);
             case Pokemon::Id::REUNICLUS:
-                break;
+                return std::make_unique<Reuniclus>(args...);
             case Pokemon::Id::DUCKLETT:
-                break;
+                return std::make_unique<Ducklett>(args...);
             case Pokemon::Id::SWANNA:
-                break;
+                return std::make_unique<Swanna>(args...);
             case Pokemon::Id::VANILLITE:
-                break;
+                return std::make_unique<Vanillite>(args...);
             case Pokemon::Id::VANILLISH:
-                break;
+                return std::make_unique<Vanillish>(args...);
             case Pokemon::Id::VANILLUXE:
-                break;
+                return std::make_unique<Vanilluxe>(args...);
             case Pokemon::Id::DEERLING:
-                break;
+                return std::make_unique<Deerling>(args...);
             case Pokemon::Id::SAWSBUCK:
-                break;
+                return std::make_unique<Sawsbuck>(args...);
             case Pokemon::Id::EMOLGA:
-                break;
+                return std::make_unique<Emolga>(args...);
             case Pokemon::Id::KARRABLAST:
-                break;
+                return std::make_unique<Karrablast>(args...);
             case Pokemon::Id::ESCAVALIER:
-                break;
+                return std::make_unique<Escavalier>(args...);
             case Pokemon::Id::FOONGUS:
-                break;
+                return std::make_unique<Foongus>(args...);
             case Pokemon::Id::AMOONGUSS:
-                break;
+                return std::make_unique<Amoonguss>(args...);
             case Pokemon::Id::FRILLISH:
-                break;
+                return std::make_unique<Frillish>(args...);
             case Pokemon::Id::JELLICENT:
-                break;
-            case Pokemon::Id::ALOMONOLA:
-                break;
+                return std::make_unique<Jellicent>(args...);
+            case Pokemon::Id::ALOMOMOLA:
+                return std::make_unique<Alomomola>(args...);
             case Pokemon::Id::JOLTIK:
-                break;
+                return std::make_unique<Joltik>(args...);
             case Pokemon::Id::GALVANTULA:
-                break;
+                return std::make_unique<Galvantula>(args...);
             case Pokemon::Id::FERROSEED:
-                break;
+                return std::make_unique<Ferroseed>(args...);
             case Pokemon::Id::FERROTHORN:
-                break;
+                return std::make_unique<Ferrothorn>(args...);
             case Pokemon::Id::KLINK:
-                break;
+                return std::make_unique<Klink>(args...);
             case Pokemon::Id::KLANG:
-                break;
+                return std::make_unique<Klang>(args...);
             case Pokemon::Id::KLINKLANG:
-                break;
+                return std::make_unique<Klinklang>(args...);
             case Pokemon::Id::TYNAMO:
-                break;
+                return std::make_unique<Tynamo>(args...);
             case Pokemon::Id::EELEKTRIK:
-                break;
-            case Pokemon::Id::ELEKTROSS:
-                break;
+                return std::make_unique<Eelektrik>(args...);
+            case Pokemon::Id::EELEKTROSS:
+                return std::make_unique<Eelektross>(args...);
             case Pokemon::Id::ELGYEM:
-                break;
+                return std::make_unique<Elgyem>(args...);
             case Pokemon::Id::BEHEEYEM:
-                break;
+                return std::make_unique<Beheeyem>(args...);
             case Pokemon::Id::LITWICK:
-                break;
+                return std::make_unique<Litwick>(args...);
             case Pokemon::Id::LAMPENT:
-                break;
+                return std::make_unique<Lampent>(args...);
             case Pokemon::Id::CHANDELURE:
-                break;
+                return std::make_unique<Chandelure>(args...);
             case Pokemon::Id::AXEW:
-                break;
+                return std::make_unique<Axew>(args...);
             case Pokemon::Id::FRAXURE:
-                break;
+                return std::make_unique<Fraxure>(args...);
             case Pokemon::Id::HAXORUS:
-                break;
+                return std::make_unique<Haxorus>(args...);
             case Pokemon::Id::CUBCHOO:
-                break;
+                return std::make_unique<Cubchoo>(args...);
             case Pokemon::Id::BEARTIC:
-                break;
+                return std::make_unique<Beartic>(args...);
             case Pokemon::Id::CRYOGONAL:
-                break;
+                return std::make_unique<Cryogonal>(args...);
             case Pokemon::Id::SHELMET:
-                break;
+                return std::make_unique<Shelmet>(args...);
             case Pokemon::Id::ACCELGOR:
-                break;
-            case Pokemon::Id::STUNFISH:
-                break;
+                return std::make_unique<Accelgor>(args...);
+            case Pokemon::Id::STUNFISK:
+                return std::make_unique<Stunfisk>(args...);
             case Pokemon::Id::MIENFOO:
-                break;
-            case Pokemon::Id::MINESHAO:
-                break;
+                return std::make_unique<Mienfoo>(args...);
+            case Pokemon::Id::MIENSHAO:
+                return std::make_unique<Mienshao>(args...);
             case Pokemon::Id::DRUDDIGON:
-                break;
+                return std::make_unique<Druddigon>(args...);
             case Pokemon::Id::GOLETT:
-                break;
+                return std::make_unique<Golett>(args...);
             case Pokemon::Id::GOLURK:
-                break;
+                return std::make_unique<Golurk>(args...);
             case Pokemon::Id::PAWNIARD:
-                break;
+                return std::make_unique<Pawniard>(args...);
             case Pokemon::Id::BISHARP:
-                break;
+                return std::make_unique<Bisharp>(args...);
             case Pokemon::Id::BOUFFALANT:
-                break;
+                return std::make_unique<Bouffalant>(args...);
             case Pokemon::Id::RUFFLET:
-                break;
+                return std::make_unique<Rufflet>(args...);
             case Pokemon::Id::BRAVIARY:
-                break;
+                return std::make_unique<Braviary>(args...);
             case Pokemon::Id::VULLABY:
-                break;
+                return std::make_unique<Vullaby>(args...);
             case Pokemon::Id::MANDIBUZZ:
-                break;
+                return std::make_unique<Mandibuzz>(args...);
             case Pokemon::Id::HEATMOR:
-                break;
+                return std::make_unique<Heatmor>(args...);
             case Pokemon::Id::DURANT:
-                break;
+                return std::make_unique<Durant>(args...);
             case Pokemon::Id::DEINO:
                 return std::make_unique<Deino>(args...);
             case Pokemon::Id::ZWEILOUS:
@@ -322,7 +322,8 @@ namespace PokemonFactory {
                 return std::make_unique<Meloetta>(args...);
             case Pokemon::Id::GENESECT:
                 return std::make_unique<Genesect>(args...);
+            default:
+                return nullptr;
         }
-        return nullptr;
     }
 }

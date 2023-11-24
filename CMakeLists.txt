@@ -62,7 +62,7 @@ set(SOURCES
         src/Singletons/TextureManager/TextureManager.h
         src/Singletons/Camera/Camera.h
         src/Namespaces/Factories/PokemonFactory.h
-        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h
+        src/Classes/Entity/DerivedClasses/Pokemon/Pokedex.h
         src/Classes/Move/MoveList.h
         src/Classes/Move/DerivedClasses/DragonPulse.h
         src/Classes/Move/DerivedClasses/QuickAttack.h
@@ -83,6 +83,78 @@ set(SOURCES
         src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
         src/Classes/GameComponent/DerivedClasses/Components.h
         src/pch.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Musharna.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pidove.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tranquill.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Unfezant.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Blitzle.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zebstrika.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Roggenrola.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Boldore.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Gigalith.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Woobat.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Swoobat.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Drilbur.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Excadrill.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Audino.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Timburr.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Gurdurr.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Conkeldurr.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tympole.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Palpitoad.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Seismitoad.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Throh.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sawk.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sewaddle.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Swadloon.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Leavanny.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Venipede.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Whirlipede.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scolipede.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cottonee.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Whimsicott.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Petilil.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lilligant.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Basculin.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sandile.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Krokorok.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Krookodile.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Darumaka.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Darmanitan.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Maractus.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dwebble.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Crustle.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scraggy.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scrafty.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sigilyph.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Yamask.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cofagrigus.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tirtouga.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Carracosta.h
 )
 
 add_executable(PokemonBattle ${SOURCES})

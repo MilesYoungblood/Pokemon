@@ -30,31 +30,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 88,
+				"line" : 160,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 106,
+				"line" : 178,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 107,
+				"line" : 179,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 108,
+				"line" : 180,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 109,
+				"line" : 181,
 				"parent" : 0
 			},
 			{
@@ -84,7 +84,7 @@
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 90,
+				"line" : 162,
 				"parent" : 0
 			}
 		]
@@ -335,14 +335,86 @@
 				66,
 				67,
 				68,
-				69
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141
 			]
 		},
 		{
 			"name" : "Precompile Header File",
 			"sourceIndexes" : 
 			[
-				70
+				142
 			]
 		}
 	],
@@ -619,7 +691,7 @@
 		},
 		{
 			"backtrace" : 1,
-			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h",
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/Pokedex.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -713,6 +785,366 @@
 		{
 			"backtrace" : 1,
 			"path" : "src/pch.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Musharna.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pidove.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tranquill.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Unfezant.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Blitzle.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zebstrika.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Roggenrola.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Boldore.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Gigalith.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Woobat.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Swoobat.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Drilbur.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Excadrill.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Audino.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Timburr.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Gurdurr.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Conkeldurr.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tympole.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Palpitoad.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Seismitoad.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Throh.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sawk.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sewaddle.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Swadloon.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Leavanny.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Venipede.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Whirlipede.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scolipede.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cottonee.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Whimsicott.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Petilil.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lilligant.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Basculin.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sandile.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Krokorok.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Krookodile.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Darumaka.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Darmanitan.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Maractus.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dwebble.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Crustle.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scraggy.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Scrafty.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Sigilyph.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Yamask.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cofagrigus.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tirtouga.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Carracosta.h",
 			"sourceGroupIndex" : 1
 		},
 		{

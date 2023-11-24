@@ -248,10 +248,10 @@ void Game::initializeGame() {
     Player::getPlayer()[1].addMove<VoltTackle>();
 
     Player::getPlayer().addPokemon<Excadrill>();
-    Player::getPlayer()[2].addMove<Flamethrower>();
-    Player::getPlayer()[2].addMove<AirSlash>();
-    Player::getPlayer()[2].addMove<DragonPulse>();
-    Player::getPlayer()[2].addMove<SolarBeam>();
+
+    Player::getPlayer().addPokemon<Carracosta>();
+
+    Player::getPlayer().addPokemon<Braviary>();
 
     Player::getPlayer().addPokemon<Hydreigon>();
     Player::getPlayer()[3].addMove<DarkPulse>();
