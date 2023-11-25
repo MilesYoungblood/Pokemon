@@ -6,11 +6,20 @@
 
 namespace {
     void init() {
-        pokemonLookupTable[Pokemon::Id::VICTINI].name = "Victini";
-        pokemonLookupTable[Pokemon::Id::VICTINI].type1 = Type::PSYCHIC;
-        pokemonLookupTable[Pokemon::Id::VICTINI].type2 = Type::FIRE;
-        pokemonLookupTable[Pokemon::Id::VICTINI].catchRate = 3;
+        pokemonLookupTable.insert({ Pokemon::Id::VICTINI, {
+                "Victini",
+                Type::PSYCHIC,
+                Type::FIRE,
+                100,
+                100,
+                100,
+                100,
+                100,
+                100,
+                15,
+                3
+        }});
     }
 
-    [[maybe_unused]] int invoke = (init(), 0);
+    [[maybe_unused]] bool invoke = (init(), true);
 }

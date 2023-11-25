@@ -1,8 +1,8 @@
 # ninja log v5
 4957	7522	7225590636402557	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golett/Golett.cpp.obj	38409d040f4dd5c
-1	247	7225746794186721	build.ninja	37b35cc5c74aaa4
+1	247	7225874393989881	build.ninja	37b35cc5c74aaa4
 4945	7523	7225590636412530	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Druddigon/Druddigon.cpp.obj	e393e1e1456e6af9
-13	3196	7225696387750773	CMakeFiles/PokemonBattle.dir/src/main.cpp.obj	fb72c9dc0bc34ca3
+12	3025	7225866781295735	CMakeFiles/PokemonBattle.dir/src/main.cpp.obj	fb72c9dc0bc34ca3
 20032	32609	7221628297434791	PokemonBattle.exe	db39075660a120d5
 38	4979	7225590610806940	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Chandelure/Chandelure.cpp.obj	e8ba4813fa5b4dab
 37	5365	7224693154308666	CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj	e6f5ba9a707bf51b
@@ -14,7 +14,7 @@
 72	4890	7225695631780483	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mandibuzz/Mandibuzz.cpp.obj	4252647174cd09de
 91	4905	7225695631915238	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Durant/Durant.cpp.obj	4d283c3ef9f44b7e
 14	2956	7222977767872372	CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj	6116ae2519b6052b
-22	14877	7225696504151035	CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj	9e1fdec54079fab0
+19	13585	7225866886492771	CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj	9e1fdec54079fab0
 71	4995	7225590611056276	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Shelmet/Shelmet.cpp.obj	384706dc9a26ead7
 32	4316	7224693143846631	CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj	45b6fcaba15e6b6f
 14	4628	7224693146868570	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp.obj	12b85086bd69dfd9
@@ -25,11 +25,11 @@
 4923	8600	7225695669360394	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Landorus/Landorus.cpp.obj	b11a94fc532a66b6
 60	4942	7224693150060133	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj	f064ded505bf89ea
 6	5078	7224693151446318	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp.obj	85c8c8bf7aecddd7
-17	3204	7225696387846832	CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj	f486f3e897e24b8
+16	3064	7225866781687209	CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj	f486f3e897e24b8
 4913	8577	7225695669069691	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Keldeo/Keldeo.cpp.obj	77069ed45665e9d3
 4905	8587	7225695669179445	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zekrom/Zekrom.cpp.obj	8620a2db6eef1893
-30	3695	7225696392759454	CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj	f122c9e759e678d6
-26	3740	7225696393160069	CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj	6c2f6d29ec585397
+26	3432	7225866785360365	CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj	f122c9e759e678d6
+22	3503	7225866786060209	CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj	6c2f6d29ec585397
 8	2359	7222805958675840	CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch	646322e563416e6c
 97	4849	7225695631580455	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zweilous/Zweilous.cpp.obj	b0785c663ee4bac5
 12731	32600	7224584441566479	C:/Users/Miles/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe	ec3273c69d0ab55
@@ -45,8 +45,8 @@
 4831	8586	7225695669169486	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Volcarona/Volcarona.cpp.obj	cce115c12564f927
 54	5000	7225590611136072	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Haxorus/Haxorus.cpp.obj	e8b407e9b76def57
 4874	8579	7225695669109591	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Meloetta/Meloetta.cpp.obj	d10504361606ae5b
-83	5004	7225590611185943	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienfoo/Mienfoo.cpp.obj	1d8f9715e16a6da7
 4850	8562	7225695668887801	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Larvesta/Larvesta.cpp.obj	c226d1e5342bb0da
+83	5004	7225590611185943	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienfoo/Mienfoo.cpp.obj	1d8f9715e16a6da7
 4890	8585	7225695669154510	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Kyurem/Kyurem.cpp.obj	8961bc171953b6ae
 33	5016	7225590611295642	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lampent/Lampent.cpp.obj	6d986e0d33afedef
 90	5066	7225590611759406	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stunfisk/Stunfisk.cpp.obj	2c94f894af25c97
@@ -58,8 +58,21 @@
 42	4881	7225695631705235	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pawniard/Pawniard.cpp.obj	c7829a4e3fddebc7
 33	4897	7225695631875351	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bisharp/Bisharp.cpp.obj	7819d0391fa61909
 38	4913	7225695632200293	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bouffalant/Bouffalant.cpp.obj	eff876d7a127b958
+30	2220	7225866773272404	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp.obj	b0b2bebe7d6d6266
 78	4930	7225695632405419	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Vullaby/Vullaby.cpp.obj	42b8bcdfe562a8de
 4867	8564	7225695668917726	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tornadus/Tornadus.cpp.obj	6ba46eee372d0f8c
+37	2200	7225866773077825	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp.obj	d90ef83225061b9a
 4931	8566	7225695668927691	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.cpp.obj	b99832e858f23844
 4859	8569	7225695668972735	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Terrakion/Terrakion.cpp.obj	427251b3c1072f76
 4898	8582	7225695669119588	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Thundurus/Thundurus.cpp.obj	8e07b5a68a2c1d1b
+33	2172	7225866772783399	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp.obj	b46c243e299414e2
+48	2450	7225892049095878	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.cpp.obj	28896dc38c1adc96
+44	2507	7225892049657907	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp.obj	b0b2bebe7d6d6266
+39	2529	7225892049887296	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.cpp.obj	1c00ed69cc38e8b5
+35	2561	7225892050196471	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp.obj	d90ef83225061b9a
+30	2621	7225892050815548	CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp.obj	b46c243e299414e2
+20	3329	7225892057863634	CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj	f486f3e897e24b8
+12	3371	7225892058292473	CMakeFiles/PokemonBattle.dir/src/main.cpp.obj	fb72c9dc0bc34ca3
+27	3724	7225892061783024	CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj	f122c9e759e678d6
+23	3796	7225892062521652	CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj	6c2f6d29ec585397
+16	14041	7225892164550189	CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj	9e1fdec54079fab0

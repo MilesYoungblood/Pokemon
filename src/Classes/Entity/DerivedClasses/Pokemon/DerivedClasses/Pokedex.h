@@ -7,10 +7,17 @@
 #include "../Pokemon.h"
 
 struct Data {
-    const char *name;
-    int catchRate;
-    Type type1;
-    Type type2;
+    const std::string name;
+    const Type type1;
+    const Type type2;
+    const int baseHp;
+    const int baseAttack;
+    const int baseDefense;
+    const int baseSpAttack;
+    const int baseSpDefense;
+    const int baseSpeed;
+    const int baseLevel;
+    const int catchRate;
 };
 
 inline std::unordered_map<Pokemon::Id, Data> pokemonLookupTable;

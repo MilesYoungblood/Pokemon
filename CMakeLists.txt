@@ -286,6 +286,10 @@ set(POKEMON
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.cpp
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.h
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.cpp
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON})
