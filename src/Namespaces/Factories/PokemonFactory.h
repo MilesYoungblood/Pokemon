@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Classes/Entity/DerivedClasses/Pokemon/Pokedex.h"
+#include "../../Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h"
 
 namespace PokemonFactory {
     template<typename ...Args>
