@@ -15,7 +15,7 @@ private:
 
     int numFainted = 0;                                   // number of fainted Pokémon
 
-    std::vector<std::unique_ptr<Pokemon>> party;
+    std::vector<Pokemon> party;
     std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
 
     static std::size_t getItemTypeId() {
@@ -52,15 +52,13 @@ public:
 
     [[nodiscard]] int partySize() const;
 
-    void addPokemon(std::unique_ptr<Pokemon> toAdd);
-
-    template<typename P, typename ...Args>
+    template<typename ...Args>
     void addPokemon(Args ...args) {
         if (this->party.size() == Trainer::MAX_POKEMON) {
             return;
         }
 
-        this->party.push_back(std::make_unique<P>(args...));
+        this->party.push_back(Pokemon(args...));
     }
 
     void removePokemon(int index);

@@ -235,25 +235,25 @@ void Game::initializeGame() {
     Game::currentMap = &Game::maps.at(Game::currentMapIndex);
 
     Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-    Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
+    Game::maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
     Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-    Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
+    Game::maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
 
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
 
-    Player::getPlayer().addPokemon<Emboar>();
+    Player::getPlayer().addPokemon(Pokemon::Id::EMBOAR);
 
-    Player::getPlayer().addPokemon<Zebstrika>();
+    Player::getPlayer().addPokemon(Pokemon::Id::ZEBSTRIKA);
     Player::getPlayer()[1].addMove<VoltTackle>();
 
-    Player::getPlayer().addPokemon<Excadrill>();
+    Player::getPlayer().addPokemon(Pokemon::Id::EXCADRILL);
 
-    Player::getPlayer().addPokemon<Carracosta>();
+    Player::getPlayer().addPokemon(Pokemon::Id::CARRACOSTA);
 
-    Player::getPlayer().addPokemon<Braviary>();
+    Player::getPlayer().addPokemon(Pokemon::Id::BRAVIARY);
 
-    Player::getPlayer().addPokemon<Hydreigon>();
+    Player::getPlayer().addPokemon(Pokemon::Id::HYDREIGON);
     Player::getPlayer()[3].addMove<DarkPulse>();
     Player::getPlayer()[3].addMove<DragonPulse>();
     Player::getPlayer()[3].addMove<Flamethrower>();
@@ -306,6 +306,25 @@ void Game::loadData() {
 
     Trainer::init();
 
+    Pokemon::init([](Pokemon::Id id) -> Pokemon::Data {
+        return {
+                pokemonLookupTable.at(id).name,
+                pokemonLookupTable.at(id).species,
+                pokemonLookupTable.at(id).type1,
+                pokemonLookupTable.at(id).type2,
+                pokemonLookupTable.at(id).height,
+                pokemonLookupTable.at(id).weight,
+                pokemonLookupTable.at(id).baseHp,
+                pokemonLookupTable.at(id).baseAttack,
+                pokemonLookupTable.at(id).baseDefense,
+                pokemonLookupTable.at(id).baseSpAttack,
+                pokemonLookupTable.at(id).baseSpDefense,
+                pokemonLookupTable.at(id).baseSpeed,
+                pokemonLookupTable.at(id).baseLevel,
+                pokemonLookupTable.at(id).catchRate
+        };
+    });
+
     if (saveFile) {
         std::string buffer;
 
@@ -335,7 +354,7 @@ void Game::loadData() {
         // load each Pokémon's data
         for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
-            Player::getPlayer().addPokemon(PokemonFactory::getPokemon(static_cast<Pokemon::Id>(std::stoi(buffer))));
+            Player::getPlayer().addPokemon(static_cast<Pokemon::Id>(std::stoi(buffer)));
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
@@ -375,9 +394,9 @@ void Game::loadData() {
         }
 
         Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-        Game::maps[Map::Id::ROUTE_1][0].addPokemon<Samurott>();
+        Game::maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
         Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-        Game::maps[Map::Id::ROUTE_1][1].addPokemon<Serperior>();
+        Game::maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
 
         std::stringstream ss;
         // load each trainer's data for every map

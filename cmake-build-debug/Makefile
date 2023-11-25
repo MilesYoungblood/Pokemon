@@ -503,6 +503,342 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
+src/Data/Pokemon/Dewott.obj: src/Data/Pokemon/Dewott.cpp.obj
+.PHONY : src/Data/Pokemon/Dewott.obj
+
+# target to build an object file
+src/Data/Pokemon/Dewott.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Dewott.cpp.obj
+.PHONY : src/Data/Pokemon/Dewott.cpp.obj
+
+src/Data/Pokemon/Dewott.i: src/Data/Pokemon/Dewott.cpp.i
+.PHONY : src/Data/Pokemon/Dewott.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Dewott.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Dewott.cpp.i
+.PHONY : src/Data/Pokemon/Dewott.cpp.i
+
+src/Data/Pokemon/Dewott.s: src/Data/Pokemon/Dewott.cpp.s
+.PHONY : src/Data/Pokemon/Dewott.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Dewott.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Dewott.cpp.s
+.PHONY : src/Data/Pokemon/Dewott.cpp.s
+
+src/Data/Pokemon/Emboar.obj: src/Data/Pokemon/Emboar.cpp.obj
+.PHONY : src/Data/Pokemon/Emboar.obj
+
+# target to build an object file
+src/Data/Pokemon/Emboar.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Emboar.cpp.obj
+.PHONY : src/Data/Pokemon/Emboar.cpp.obj
+
+src/Data/Pokemon/Emboar.i: src/Data/Pokemon/Emboar.cpp.i
+.PHONY : src/Data/Pokemon/Emboar.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Emboar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Emboar.cpp.i
+.PHONY : src/Data/Pokemon/Emboar.cpp.i
+
+src/Data/Pokemon/Emboar.s: src/Data/Pokemon/Emboar.cpp.s
+.PHONY : src/Data/Pokemon/Emboar.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Emboar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Emboar.cpp.s
+.PHONY : src/Data/Pokemon/Emboar.cpp.s
+
+src/Data/Pokemon/Lillipup.obj: src/Data/Pokemon/Lillipup.cpp.obj
+.PHONY : src/Data/Pokemon/Lillipup.obj
+
+# target to build an object file
+src/Data/Pokemon/Lillipup.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Lillipup.cpp.obj
+.PHONY : src/Data/Pokemon/Lillipup.cpp.obj
+
+src/Data/Pokemon/Lillipup.i: src/Data/Pokemon/Lillipup.cpp.i
+.PHONY : src/Data/Pokemon/Lillipup.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Lillipup.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Lillipup.cpp.i
+.PHONY : src/Data/Pokemon/Lillipup.cpp.i
+
+src/Data/Pokemon/Lillipup.s: src/Data/Pokemon/Lillipup.cpp.s
+.PHONY : src/Data/Pokemon/Lillipup.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Lillipup.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Lillipup.cpp.s
+.PHONY : src/Data/Pokemon/Lillipup.cpp.s
+
+src/Data/Pokemon/Oshawott.obj: src/Data/Pokemon/Oshawott.cpp.obj
+.PHONY : src/Data/Pokemon/Oshawott.obj
+
+# target to build an object file
+src/Data/Pokemon/Oshawott.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Oshawott.cpp.obj
+.PHONY : src/Data/Pokemon/Oshawott.cpp.obj
+
+src/Data/Pokemon/Oshawott.i: src/Data/Pokemon/Oshawott.cpp.i
+.PHONY : src/Data/Pokemon/Oshawott.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Oshawott.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Oshawott.cpp.i
+.PHONY : src/Data/Pokemon/Oshawott.cpp.i
+
+src/Data/Pokemon/Oshawott.s: src/Data/Pokemon/Oshawott.cpp.s
+.PHONY : src/Data/Pokemon/Oshawott.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Oshawott.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Oshawott.cpp.s
+.PHONY : src/Data/Pokemon/Oshawott.cpp.s
+
+src/Data/Pokemon/Patrat.obj: src/Data/Pokemon/Patrat.cpp.obj
+.PHONY : src/Data/Pokemon/Patrat.obj
+
+# target to build an object file
+src/Data/Pokemon/Patrat.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Patrat.cpp.obj
+.PHONY : src/Data/Pokemon/Patrat.cpp.obj
+
+src/Data/Pokemon/Patrat.i: src/Data/Pokemon/Patrat.cpp.i
+.PHONY : src/Data/Pokemon/Patrat.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Patrat.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Patrat.cpp.i
+.PHONY : src/Data/Pokemon/Patrat.cpp.i
+
+src/Data/Pokemon/Patrat.s: src/Data/Pokemon/Patrat.cpp.s
+.PHONY : src/Data/Pokemon/Patrat.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Patrat.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Patrat.cpp.s
+.PHONY : src/Data/Pokemon/Patrat.cpp.s
+
+src/Data/Pokemon/Pignite.obj: src/Data/Pokemon/Pignite.cpp.obj
+.PHONY : src/Data/Pokemon/Pignite.obj
+
+# target to build an object file
+src/Data/Pokemon/Pignite.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pignite.cpp.obj
+.PHONY : src/Data/Pokemon/Pignite.cpp.obj
+
+src/Data/Pokemon/Pignite.i: src/Data/Pokemon/Pignite.cpp.i
+.PHONY : src/Data/Pokemon/Pignite.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Pignite.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pignite.cpp.i
+.PHONY : src/Data/Pokemon/Pignite.cpp.i
+
+src/Data/Pokemon/Pignite.s: src/Data/Pokemon/Pignite.cpp.s
+.PHONY : src/Data/Pokemon/Pignite.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Pignite.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pignite.cpp.s
+.PHONY : src/Data/Pokemon/Pignite.cpp.s
+
+src/Data/Pokemon/Samurott.obj: src/Data/Pokemon/Samurott.cpp.obj
+.PHONY : src/Data/Pokemon/Samurott.obj
+
+# target to build an object file
+src/Data/Pokemon/Samurott.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Samurott.cpp.obj
+.PHONY : src/Data/Pokemon/Samurott.cpp.obj
+
+src/Data/Pokemon/Samurott.i: src/Data/Pokemon/Samurott.cpp.i
+.PHONY : src/Data/Pokemon/Samurott.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Samurott.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Samurott.cpp.i
+.PHONY : src/Data/Pokemon/Samurott.cpp.i
+
+src/Data/Pokemon/Samurott.s: src/Data/Pokemon/Samurott.cpp.s
+.PHONY : src/Data/Pokemon/Samurott.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Samurott.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Samurott.cpp.s
+.PHONY : src/Data/Pokemon/Samurott.cpp.s
+
+src/Data/Pokemon/Serperior.obj: src/Data/Pokemon/Serperior.cpp.obj
+.PHONY : src/Data/Pokemon/Serperior.obj
+
+# target to build an object file
+src/Data/Pokemon/Serperior.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Serperior.cpp.obj
+.PHONY : src/Data/Pokemon/Serperior.cpp.obj
+
+src/Data/Pokemon/Serperior.i: src/Data/Pokemon/Serperior.cpp.i
+.PHONY : src/Data/Pokemon/Serperior.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Serperior.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Serperior.cpp.i
+.PHONY : src/Data/Pokemon/Serperior.cpp.i
+
+src/Data/Pokemon/Serperior.s: src/Data/Pokemon/Serperior.cpp.s
+.PHONY : src/Data/Pokemon/Serperior.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Serperior.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Serperior.cpp.s
+.PHONY : src/Data/Pokemon/Serperior.cpp.s
+
+src/Data/Pokemon/Servine.obj: src/Data/Pokemon/Servine.cpp.obj
+.PHONY : src/Data/Pokemon/Servine.obj
+
+# target to build an object file
+src/Data/Pokemon/Servine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Servine.cpp.obj
+.PHONY : src/Data/Pokemon/Servine.cpp.obj
+
+src/Data/Pokemon/Servine.i: src/Data/Pokemon/Servine.cpp.i
+.PHONY : src/Data/Pokemon/Servine.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Servine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Servine.cpp.i
+.PHONY : src/Data/Pokemon/Servine.cpp.i
+
+src/Data/Pokemon/Servine.s: src/Data/Pokemon/Servine.cpp.s
+.PHONY : src/Data/Pokemon/Servine.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Servine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Servine.cpp.s
+.PHONY : src/Data/Pokemon/Servine.cpp.s
+
+src/Data/Pokemon/Snivy.obj: src/Data/Pokemon/Snivy.cpp.obj
+.PHONY : src/Data/Pokemon/Snivy.obj
+
+# target to build an object file
+src/Data/Pokemon/Snivy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Snivy.cpp.obj
+.PHONY : src/Data/Pokemon/Snivy.cpp.obj
+
+src/Data/Pokemon/Snivy.i: src/Data/Pokemon/Snivy.cpp.i
+.PHONY : src/Data/Pokemon/Snivy.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Snivy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Snivy.cpp.i
+.PHONY : src/Data/Pokemon/Snivy.cpp.i
+
+src/Data/Pokemon/Snivy.s: src/Data/Pokemon/Snivy.cpp.s
+.PHONY : src/Data/Pokemon/Snivy.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Snivy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Snivy.cpp.s
+.PHONY : src/Data/Pokemon/Snivy.cpp.s
+
+src/Data/Pokemon/Tepig.obj: src/Data/Pokemon/Tepig.cpp.obj
+.PHONY : src/Data/Pokemon/Tepig.obj
+
+# target to build an object file
+src/Data/Pokemon/Tepig.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tepig.cpp.obj
+.PHONY : src/Data/Pokemon/Tepig.cpp.obj
+
+src/Data/Pokemon/Tepig.i: src/Data/Pokemon/Tepig.cpp.i
+.PHONY : src/Data/Pokemon/Tepig.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Tepig.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tepig.cpp.i
+.PHONY : src/Data/Pokemon/Tepig.cpp.i
+
+src/Data/Pokemon/Tepig.s: src/Data/Pokemon/Tepig.cpp.s
+.PHONY : src/Data/Pokemon/Tepig.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Tepig.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tepig.cpp.s
+.PHONY : src/Data/Pokemon/Tepig.cpp.s
+
+src/Data/Pokemon/Victini.obj: src/Data/Pokemon/Victini.cpp.obj
+.PHONY : src/Data/Pokemon/Victini.obj
+
+# target to build an object file
+src/Data/Pokemon/Victini.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Victini.cpp.obj
+.PHONY : src/Data/Pokemon/Victini.cpp.obj
+
+src/Data/Pokemon/Victini.i: src/Data/Pokemon/Victini.cpp.i
+.PHONY : src/Data/Pokemon/Victini.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Victini.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Victini.cpp.i
+.PHONY : src/Data/Pokemon/Victini.cpp.i
+
+src/Data/Pokemon/Victini.s: src/Data/Pokemon/Victini.cpp.s
+.PHONY : src/Data/Pokemon/Victini.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Victini.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Victini.cpp.s
+.PHONY : src/Data/Pokemon/Victini.cpp.s
+
+src/Data/Pokemon/Watchog.obj: src/Data/Pokemon/Watchog.cpp.obj
+.PHONY : src/Data/Pokemon/Watchog.obj
+
+# target to build an object file
+src/Data/Pokemon/Watchog.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Watchog.cpp.obj
+.PHONY : src/Data/Pokemon/Watchog.cpp.obj
+
+src/Data/Pokemon/Watchog.i: src/Data/Pokemon/Watchog.cpp.i
+.PHONY : src/Data/Pokemon/Watchog.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Watchog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Watchog.cpp.i
+.PHONY : src/Data/Pokemon/Watchog.cpp.i
+
+src/Data/Pokemon/Watchog.s: src/Data/Pokemon/Watchog.cpp.s
+.PHONY : src/Data/Pokemon/Watchog.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Watchog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Watchog.cpp.s
+.PHONY : src/Data/Pokemon/Watchog.cpp.s
+
+src/Data/Pokemon/Zebstrika.obj: src/Data/Pokemon/Zebstrika.cpp.obj
+.PHONY : src/Data/Pokemon/Zebstrika.obj
+
+# target to build an object file
+src/Data/Pokemon/Zebstrika.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zebstrika.cpp.obj
+.PHONY : src/Data/Pokemon/Zebstrika.cpp.obj
+
+src/Data/Pokemon/Zebstrika.i: src/Data/Pokemon/Zebstrika.cpp.i
+.PHONY : src/Data/Pokemon/Zebstrika.i
+
+# target to preprocess a source file
+src/Data/Pokemon/Zebstrika.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zebstrika.cpp.i
+.PHONY : src/Data/Pokemon/Zebstrika.cpp.i
+
+src/Data/Pokemon/Zebstrika.s: src/Data/Pokemon/Zebstrika.cpp.s
+.PHONY : src/Data/Pokemon/Zebstrika.s
+
+# target to generate assembly for a file
+src/Data/Pokemon/Zebstrika.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zebstrika.cpp.s
+.PHONY : src/Data/Pokemon/Zebstrika.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -584,6 +920,48 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
+	@echo ... src/Data/Pokemon/Dewott.obj
+	@echo ... src/Data/Pokemon/Dewott.i
+	@echo ... src/Data/Pokemon/Dewott.s
+	@echo ... src/Data/Pokemon/Emboar.obj
+	@echo ... src/Data/Pokemon/Emboar.i
+	@echo ... src/Data/Pokemon/Emboar.s
+	@echo ... src/Data/Pokemon/Lillipup.obj
+	@echo ... src/Data/Pokemon/Lillipup.i
+	@echo ... src/Data/Pokemon/Lillipup.s
+	@echo ... src/Data/Pokemon/Oshawott.obj
+	@echo ... src/Data/Pokemon/Oshawott.i
+	@echo ... src/Data/Pokemon/Oshawott.s
+	@echo ... src/Data/Pokemon/Patrat.obj
+	@echo ... src/Data/Pokemon/Patrat.i
+	@echo ... src/Data/Pokemon/Patrat.s
+	@echo ... src/Data/Pokemon/Pignite.obj
+	@echo ... src/Data/Pokemon/Pignite.i
+	@echo ... src/Data/Pokemon/Pignite.s
+	@echo ... src/Data/Pokemon/Samurott.obj
+	@echo ... src/Data/Pokemon/Samurott.i
+	@echo ... src/Data/Pokemon/Samurott.s
+	@echo ... src/Data/Pokemon/Serperior.obj
+	@echo ... src/Data/Pokemon/Serperior.i
+	@echo ... src/Data/Pokemon/Serperior.s
+	@echo ... src/Data/Pokemon/Servine.obj
+	@echo ... src/Data/Pokemon/Servine.i
+	@echo ... src/Data/Pokemon/Servine.s
+	@echo ... src/Data/Pokemon/Snivy.obj
+	@echo ... src/Data/Pokemon/Snivy.i
+	@echo ... src/Data/Pokemon/Snivy.s
+	@echo ... src/Data/Pokemon/Tepig.obj
+	@echo ... src/Data/Pokemon/Tepig.i
+	@echo ... src/Data/Pokemon/Tepig.s
+	@echo ... src/Data/Pokemon/Victini.obj
+	@echo ... src/Data/Pokemon/Victini.i
+	@echo ... src/Data/Pokemon/Victini.s
+	@echo ... src/Data/Pokemon/Watchog.obj
+	@echo ... src/Data/Pokemon/Watchog.i
+	@echo ... src/Data/Pokemon/Watchog.s
+	@echo ... src/Data/Pokemon/Zebstrika.obj
+	@echo ... src/Data/Pokemon/Zebstrika.i
+	@echo ... src/Data/Pokemon/Zebstrika.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

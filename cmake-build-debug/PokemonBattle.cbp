@@ -18,8 +18,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="PokemonBattle">
-				<Option output="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/PokemonBattle.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug"/>
+				<Option output="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -44,8 +44,8 @@
 				</MakeCommands>
 			</Target>
 			<Target title="PokemonBattle/fast">
-				<Option output="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug/PokemonBattle.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake-build-debug"/>
+				<Option output="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/bin"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -103,9 +103,6 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Battle/Battle.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pokedex.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp">
@@ -267,6 +264,51 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/MoveList.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Dewott.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Emboar.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Lillipup.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Oshawott.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Patrat.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pignite.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pokedex.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Samurott.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Serperior.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Servine.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Snivy.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Tepig.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Victini.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Watchog.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Zebstrika.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
@@ -277,9 +319,6 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Namespaces/Factories/MoveFactory.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Namespaces/Factories/PokemonFactory.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Singletons/Camera/Camera.h">

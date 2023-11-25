@@ -177,7 +177,26 @@ public:
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
 
-    Pokemon(int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
+    struct Data {
+        std::string_view name;
+        std::string_view species;
+        const Type type1;
+        const Type type2;
+        const double height;
+        const double weight;
+        const int baseHp;
+        const int baseAttack;
+        const int baseDefense;
+        const int baseSpAttack;
+        const int baseSpDefense;
+        const int baseSpeed;
+        const int baseLevel;
+        const int catchRate;
+    };
+
+    explicit Pokemon(Pokemon::Id id);
+
+    Pokemon(Pokemon::Id id, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
 
     Pokemon(const Pokemon &) = delete;
 
@@ -185,11 +204,15 @@ public:
 
     Pokemon &operator=(const Pokemon &) = delete;
 
-    Pokemon &operator=(Pokemon &&) noexcept = delete;
+    Pokemon &operator=(Pokemon &&rhs) noexcept;
 
     ~Pokemon() override = default;
 
-    [[nodiscard]] std::string getName() const override = 0;
+    static void init(Pokemon::Data (*instructions)(Pokemon::Id id));
+
+    [[nodiscard]] std::string getName() const override {
+        return "";
+    }
 
     [[nodiscard]] int numMoves() const;
 
@@ -205,8 +228,6 @@ public:
     }
 
     void deleteMove(int index);
-
-    void setHp(int amount);
 
     void restoreHp(int amount);
 
@@ -226,7 +247,9 @@ public:
 
     [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
 
-    [[nodiscard]] virtual Type getType(bool type1) const = 0;
+    [[nodiscard]] virtual Type getType(bool type1) const {
+        return Type::NONE;
+    }
 
     void setStatus(Status newStatus);
 
@@ -238,9 +261,13 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] virtual int getCatchRate() const = 0;
+    [[nodiscard]] virtual int getCatchRate() const {
+        return 0;
+    }
 
-    [[nodiscard]] virtual Pokemon::Id getId() const = 0;
+    [[nodiscard]] virtual Pokemon::Id getId() const {
+        return Pokemon::Id::VICTINI;
+    }
 
     [[nodiscard]] bool isFainted() const;
 
@@ -261,10 +288,13 @@ public:
     const Move &operator[](int index) const;
 
 private:
+    inline static Pokemon::Data (*initialize)(Pokemon::Id id) = nullptr;
     const static int MAX_NUM_MOVES{ 4 };
 
+    Pokemon::Id id;
+
     int maxHp;
-    int currentHp{ 0 };
+    int currentHp;
 
     std::unordered_map<Pokemon::Stat, int> statModifiers;
     std::unordered_map<Pokemon::Stat, int> baseStats;

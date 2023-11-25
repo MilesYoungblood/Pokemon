@@ -6,7 +6,7 @@
 
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
-#include "../../Namespaces/Factories/PokemonFactory.h"
+#include "../../Data/Pokemon/Pokedex.h"
 #include "../../Namespaces/Factories/ItemFactory.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
 #include "../../Singletons/KeyManager/KeyManager.h"

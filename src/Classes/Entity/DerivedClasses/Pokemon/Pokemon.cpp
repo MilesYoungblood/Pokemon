@@ -4,19 +4,54 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const int level, const int hp, const int bAttack, const int bDefense, const int bSpAttack, const int bSpDefense, const int bSpeed)
-    : Entity(0, 0), maxHp(hp), currentHp(hp), level(level) {
+Pokemon::Pokemon(Pokemon::Id id) : id(id) {
+    if (Pokemon::initialize == nullptr) {
+        throw std::runtime_error("Initialization function is null");
+    }
 
-    this->baseStats[Pokemon::Stat::ATTACK] = bAttack;
-    this->baseStats[Pokemon::Stat::DEFENSE] = bDefense;
-    this->baseStats[Pokemon::Stat::SP_ATTACK] = bSpAttack;
-    this->baseStats[Pokemon::Stat::SP_DEFENSE] = bSpDefense;
-    this->baseStats[Pokemon::Stat::SPEED] = bSpeed;
+    const Pokemon::Data data = Pokemon::initialize(this->id);
+
+    this->maxHp = data.baseHp;
+    this->currentHp = data.baseHp;
+
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::ATTACK, data.baseAttack));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::DEFENSE, data.baseDefense));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, data.baseSpAttack));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_DEFENSE, data.baseSpDefense));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SPEED, data.baseSpeed));
+
+    this->level = data.baseLevel;
+}
+
+Pokemon::Pokemon(Pokemon::Id id, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed)
+        : Entity(0, 0), id(id), maxHp(hp), currentHp(hp), level(level) {
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::ATTACK, bAttack));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::DEFENSE, bDefense));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, bSpAttack));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_DEFENSE, bSpDefense));
+    this->baseStats.insert(std::make_pair(Pokemon::Stat::SPEED, bSpeed));
 }
 
 Pokemon::Pokemon(Pokemon &&toMove) noexcept
-    : maxHp(toMove.maxHp), currentHp(toMove.currentHp), statModifiers(std::move(toMove.statModifiers)), baseStats(std::move(toMove.baseStats)),
-      level(toMove.level), moveSet(std::move(toMove.moveSet)), status(toMove.status) {}
+        : id(toMove.id), maxHp(toMove.maxHp), currentHp(toMove.currentHp), statModifiers(std::move(toMove.statModifiers)),
+          baseStats(std::move(toMove.baseStats)), level(toMove.level), moveSet(std::move(toMove.moveSet)), status(toMove.status) {}
+
+Pokemon &Pokemon::operator=(Pokemon &&rhs) noexcept {
+    this->id = rhs.id;
+    this->maxHp = rhs.maxHp;
+    this->currentHp = rhs.currentHp;
+    this->statModifiers = std::move(rhs.statModifiers);
+    this->baseStats = std::move(rhs.baseStats);
+    this->level = rhs.level;
+    this->moveSet = std::move(rhs.moveSet);
+    this->status = rhs.status;
+
+    return *this;
+}
+
+void Pokemon::init(Pokemon::Data (*instructions)(Pokemon::Id id)) {
+    Pokemon::initialize = instructions;
+}
 
 int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
@@ -36,19 +71,6 @@ void Pokemon::deleteMove(const int index) {
     }
     catch (const std::exception &e) {
         throw std::runtime_error(std::string("Error deleting move: ") + e.what() + '\n');
-    }
-}
-
-void Pokemon::setHp(const int amount) {
-    this->currentHp = amount;
-
-    // HP cannot be set lower than 0
-    if (this->currentHp < 0) {
-        this->currentHp = 0;
-    }
-    // HP cannot be set higher than max HP
-    else if (this->currentHp > this->maxHp) {
-        this->currentHp = this->maxHp;
     }
 }
 
@@ -160,7 +182,7 @@ Status Pokemon::getStatus() const {
     return this->status;
 }
 
-const char * Pokemon::getStatusAsString() const {
+const char *Pokemon::getStatusAsString() const {
     switch (this->status) {
         case Status::PARALYSIS:
             return "paralysis";
