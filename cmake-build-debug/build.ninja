@@ -168,341 +168,236 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
   OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Game
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Litwick/Litwick.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Litwick/Litwick.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Litwick\Litwick.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Victini.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Victini.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Victini.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Litwick
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lampent/Lampent.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lampent/Lampent.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Lampent\Lampent.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Snivy.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Snivy.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Snivy.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Lampent
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Chandelure/Chandelure.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Chandelure/Chandelure.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Chandelure\Chandelure.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Servine.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Servine.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Servine.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Chandelure
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Axew/Axew.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Axew/Axew.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Axew\Axew.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Serperior.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Serperior.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Serperior.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Axew
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Fraxure/Fraxure.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Fraxure/Fraxure.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Fraxure\Fraxure.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tepig.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Tepig.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Tepig.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Fraxure
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Haxorus/Haxorus.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Haxorus/Haxorus.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Haxorus\Haxorus.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pignite.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pignite.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Pignite.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Haxorus
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cubchoo/Cubchoo.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cubchoo/Cubchoo.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cubchoo\Cubchoo.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Emboar.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Emboar.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Emboar.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cubchoo
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Beartic/Beartic.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Beartic/Beartic.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Beartic\Beartic.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Oshawott.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Oshawott.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Oshawott.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Beartic
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cryogonal/Cryogonal.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cryogonal/Cryogonal.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cryogonal\Cryogonal.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Dewott.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Dewott.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Dewott.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cryogonal
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Shelmet/Shelmet.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Shelmet/Shelmet.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Shelmet\Shelmet.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Samurott.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Samurott.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Samurott.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Shelmet
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Accelgor/Accelgor.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Accelgor/Accelgor.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Accelgor\Accelgor.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Patrat.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Patrat.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Patrat.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Accelgor
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stunfisk/Stunfisk.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stunfisk/Stunfisk.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Stunfisk\Stunfisk.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Watchog.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Watchog.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Watchog.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Stunfisk
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienfoo/Mienfoo.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienfoo/Mienfoo.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mienfoo\Mienfoo.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Lillipup.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Lillipup.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Lillipup.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mienfoo
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienshao/Mienshao.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienshao/Mienshao.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mienshao\Mienshao.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Herdier.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Herdier.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Herdier.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mienshao
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Druddigon/Druddigon.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Druddigon/Druddigon.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Druddigon\Druddigon.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Stoutland.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Stoutland.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Stoutland.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Druddigon
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golett/Golett.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golett/Golett.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Golett\Golett.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Purrloin.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Purrloin.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Purrloin.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Golett
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golurk/Golurk.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golurk/Golurk.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Golurk\Golurk.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Liepard.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Liepard.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Liepard.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Golurk
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pawniard/Pawniard.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pawniard/Pawniard.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Pawniard\Pawniard.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pansage.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pansage.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Pansage.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Pawniard
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bisharp/Bisharp.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bisharp/Bisharp.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Bisharp\Bisharp.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simisage.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Simisage.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Simisage.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Bisharp
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bouffalant/Bouffalant.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bouffalant/Bouffalant.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Bouffalant\Bouffalant.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pansear.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pansear.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Pansear.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Bouffalant
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Rufflet/Rufflet.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Rufflet/Rufflet.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Rufflet\Rufflet.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simisear.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Simisear.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Simisear.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Rufflet
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Braviary/Braviary.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Braviary/Braviary.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Braviary\Braviary.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Panpour.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Panpour.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Panpour.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Braviary
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Vullaby/Vullaby.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Vullaby/Vullaby.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Vullaby\Vullaby.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simipour.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Simipour.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Simipour.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Vullaby
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mandibuzz/Mandibuzz.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mandibuzz/Mandibuzz.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mandibuzz\Mandibuzz.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Munna.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Munna.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Munna.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Mandibuzz
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Heatmor/Heatmor.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Heatmor/Heatmor.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Heatmor\Heatmor.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Musharna.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Musharna.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Musharna.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Heatmor
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Durant/Durant.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Durant/Durant.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Durant\Durant.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pidove.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Pidove.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Pidove.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Durant
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Deino/Deino.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Deino/Deino.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Deino\Deino.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tranquill.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Tranquill.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Tranquill.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Deino
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zweilous/Zweilous.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zweilous/Zweilous.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Zweilous\Zweilous.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Unfezant.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Unfezant.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Unfezant.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Zweilous
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Hydreigon/Hydreigon.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Hydreigon/Hydreigon.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Hydreigon\Hydreigon.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Blitzle.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Blitzle.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Blitzle.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Hydreigon
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Larvesta/Larvesta.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Larvesta/Larvesta.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Larvesta\Larvesta.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zebstrika.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Zebstrika.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Zebstrika.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Larvesta
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Volcarona/Volcarona.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Volcarona/Volcarona.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Volcarona\Volcarona.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Roggenrola.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Roggenrola.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Roggenrola.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Volcarona
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cobalion/Cobalion.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cobalion/Cobalion.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cobalion\Cobalion.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Boldore.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Boldore.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Boldore.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Cobalion
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Terrakion/Terrakion.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Terrakion/Terrakion.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Terrakion\Terrakion.cpp.obj.d
+build CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Gigalith.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Data/Pokemon/Gigalith.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
+  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon\Gigalith.cpp.obj.d
   FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
   INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Terrakion
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Virizion/Virizion.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Virizion/Virizion.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Virizion\Virizion.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Virizion
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tornadus/Tornadus.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tornadus/Tornadus.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Tornadus\Tornadus.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Tornadus
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Thundurus/Thundurus.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Thundurus/Thundurus.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Thundurus\Thundurus.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Thundurus
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Reshiram/Reshiram.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Reshiram/Reshiram.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Reshiram\Reshiram.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Reshiram
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zekrom/Zekrom.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zekrom/Zekrom.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Zekrom\Zekrom.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Zekrom
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Landorus/Landorus.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Landorus/Landorus.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Landorus\Landorus.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Landorus
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Kyurem/Kyurem.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Kyurem/Kyurem.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Kyurem\Kyurem.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Kyurem
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Keldeo/Keldeo.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Keldeo/Keldeo.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Keldeo\Keldeo.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Keldeo
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Meloetta/Meloetta.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Meloetta/Meloetta.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Meloetta\Meloetta.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Meloetta
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Genesect\Genesect.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Genesect
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Victini.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Snivy.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Servine.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Serperior.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses
-
-build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.cpp.obj: CXX_COMPILER__PokemonBattle_unscanned_Debug C$:/Users/Miles/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.cpp | CMakeFiles/PokemonBattle.dir/cmake_pch.hxx CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch || cmake_object_order_depends_target_PokemonBattle
-  DEP_FILE = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses\Tepig.cpp.obj.d
-  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always -Winvalid-pch -include C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-  INCLUDES = -IC:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2 -IC:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2
-  OBJECT_DIR = CMakeFiles\PokemonBattle.dir
-  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Classes\Entity\DerivedClasses\Pokemon\DerivedClasses
+  OBJECT_FILE_DIR = CMakeFiles\PokemonBattle.dir\src\Data\Pokemon
 
 
 # =============================================================================
@@ -512,7 +407,7 @@ build CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Der
 #############################################
 # Link the executable C:\Users\Miles\Documents\GitHub\PokemonBattle\bin\PokemonBattle.exe
 
-build C$:/Users/Miles/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Litwick/Litwick.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lampent/Lampent.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Chandelure/Chandelure.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Axew/Axew.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Fraxure/Fraxure.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Haxorus/Haxorus.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cubchoo/Cubchoo.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Beartic/Beartic.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cryogonal/Cryogonal.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Shelmet/Shelmet.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Accelgor/Accelgor.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stunfisk/Stunfisk.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienfoo/Mienfoo.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mienshao/Mienshao.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Druddigon/Druddigon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golett/Golett.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Golurk/Golurk.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pawniard/Pawniard.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bisharp/Bisharp.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Bouffalant/Bouffalant.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Rufflet/Rufflet.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Braviary/Braviary.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Vullaby/Vullaby.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Mandibuzz/Mandibuzz.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Heatmor/Heatmor.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Durant/Durant.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Deino/Deino.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zweilous/Zweilous.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Hydreigon/Hydreigon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Larvesta/Larvesta.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Volcarona/Volcarona.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Cobalion/Cobalion.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Terrakion/Terrakion.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Virizion/Virizion.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tornadus/Tornadus.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Thundurus/Thundurus.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Reshiram/Reshiram.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Zekrom/Zekrom.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Landorus/Landorus.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Kyurem/Kyurem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Keldeo/Keldeo.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Meloetta/Meloetta.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Genesect/Genesect.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig.cpp.obj | C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll C$:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll C$:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll C$:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll
+build C$:/Users/Miles/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe: CXX_EXECUTABLE_LINKER__PokemonBattle_Debug CMakeFiles/PokemonBattle.dir/src/main.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Battle/Battle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/Game.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/OverworldFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/BattleFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Classes/Game/TitleScreenFunctions.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Victini.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Snivy.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Servine.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Serperior.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tepig.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pignite.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Emboar.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Oshawott.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Dewott.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Samurott.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Patrat.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Watchog.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Lillipup.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Herdier.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Stoutland.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Purrloin.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Liepard.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pansage.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simisage.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pansear.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simisear.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Panpour.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Simipour.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Munna.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Musharna.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Pidove.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Tranquill.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Unfezant.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Blitzle.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zebstrika.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Roggenrola.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Boldore.cpp.obj CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Gigalith.cpp.obj | C$:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll C$:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll C$:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll C$:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll
   FLAGS = -g
   LINK_LIBRARIES = C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll  C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll  C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll  C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\PokemonBattle.dir
@@ -521,7 +416,6 @@ build C$:/Users/Miles/Documents/GitHub/PokemonBattle/bin/PokemonBattle.exe: CXX_
   TARGET_FILE = C:\Users\Miles\Documents\GitHub\PokemonBattle\bin\PokemonBattle.exe
   TARGET_IMPLIB = libPokemonBattle.dll.a
   TARGET_PDB = PokemonBattle.exe.dbg
-  RSP_FILE = CMakeFiles\PokemonBattle.rsp
 
 
 #############################################

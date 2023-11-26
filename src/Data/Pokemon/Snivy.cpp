@@ -24,5 +24,5 @@ namespace {
         }});
     }
 
-    [[maybe_unused]] [[maybe_unused]] bool invoke = (init(), true);
+    [[maybe_unused]] bool invoke{ (init(), true) };
 }

@@ -95,10 +95,29 @@ set(POKEMON
         src/Data/Pokemon/Oshawott.cpp
         src/Data/Pokemon/Dewott.cpp
         src/Data/Pokemon/Samurott.cpp
-        src/Data/Pokemon/Zebstrika.cpp
         src/Data/Pokemon/Patrat.cpp
         src/Data/Pokemon/Watchog.cpp
         src/Data/Pokemon/Lillipup.cpp
+        src/Data/Pokemon/Herdier.cpp
+        src/Data/Pokemon/Stoutland.cpp
+        src/Data/Pokemon/Purrloin.cpp
+        src/Data/Pokemon/Liepard.cpp
+        src/Data/Pokemon/Pansage.cpp
+        src/Data/Pokemon/Simisage.cpp
+        src/Data/Pokemon/Pansear.cpp
+        src/Data/Pokemon/Simisear.cpp
+        src/Data/Pokemon/Panpour.cpp
+        src/Data/Pokemon/Simipour.cpp
+        src/Data/Pokemon/Munna.cpp
+        src/Data/Pokemon/Musharna.cpp
+        src/Data/Pokemon/Pidove.cpp
+        src/Data/Pokemon/Tranquill.cpp
+        src/Data/Pokemon/Unfezant.cpp
+        src/Data/Pokemon/Blitzle.cpp
+        src/Data/Pokemon/Zebstrika.cpp
+        src/Data/Pokemon/Roggenrola.cpp
+        src/Data/Pokemon/Boldore.cpp
+        src/Data/Pokemon/Gigalith.cpp
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON})

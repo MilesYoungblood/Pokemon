@@ -87,7 +87,7 @@ inline const std::unordered_map<Item::Id, PokeBallData> POKE_BALLS{
         { Item::Id::HEAL_BALL,    { "Heal Ball",    [](const Pokemon & /*pokemon*/, Time  /*time*/, bool  /*isCave*/, int  /*turn*/) -> double {
             return 1.0;
         }, [](Pokemon &pokemon) -> void {
-            pokemon.setHp(pokemon.getMaxHp());
+            pokemon.restoreHp(pokemon.getHp() - pokemon.getMaxHp());
         }}},
 
         { Item::Id::QUICK_BALL,   { "Quick Ball",   [](const Pokemon & /*pokemon*/, Time  /*time*/, bool  /*isCave*/, int turn) -> double {
