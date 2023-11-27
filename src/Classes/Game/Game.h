@@ -7,7 +7,7 @@
 #include <SDL_mixer.h>
 #include "../../Classes/Map/Map.h"
 #include "../../Data/Pokemon/Pokedex.h"
-#include "../../Namespaces/Factories/ItemFactory.h"
+#include "../../Data/Items/Items.h"
 #include "../../Namespaces/Factories/MoveFactory.h"
 #include "../../Singletons/KeyManager/KeyManager.h"
 #include "../../Singletons/SoundPlayer/SoundPlayer.h"

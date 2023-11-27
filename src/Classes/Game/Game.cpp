@@ -259,7 +259,7 @@ void Game::initializeGame() {
     Player::getPlayer()[3].addMove<Flamethrower>();
     Player::getPlayer()[3].addMove<FocusBlast>();
 
-    Player::getPlayer().addItem<Potion>(5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::POTION, 5);
     Player::getPlayer().addItem<SuperPotion>(5);
     Player::getPlayer().addItem<HyperPotion>(5);
     Player::getPlayer().addItem<Ether>(5);
@@ -390,7 +390,7 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem(ItemFactory::getItem(static_cast<Item::Id>(item), quantity));
+            Player::getPlayer().addItem(static_cast<Item::Id>(item), quantity);
         }
 
         Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);

@@ -6,9 +6,7 @@
 
 Item::Item(const int n) : quantity(n) {}
 
-void Item::setQuantity(int amount) {
-    this->quantity = amount;
-}
+Item::Item(const Item &toCopy) = default;
 
 int Item::getQuantity() const {
     return this->quantity;

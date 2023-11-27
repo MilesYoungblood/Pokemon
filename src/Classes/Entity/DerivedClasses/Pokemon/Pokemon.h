@@ -243,10 +243,6 @@ public:
 
     [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
 
-    [[nodiscard]] Type getType(bool type1) const {
-        return Type::NONE;
-    }
-
     void setStatus(Status newStatus);
 
     [[nodiscard]] Status getStatus() const;
@@ -256,10 +252,6 @@ public:
     void levelUp();
 
     [[nodiscard]] int getLevel() const;
-
-    [[nodiscard]] int getCatchRate() const {
-        return 0;
-    }
 
     [[nodiscard]] Pokemon::Id getId() const {
         return this->id;

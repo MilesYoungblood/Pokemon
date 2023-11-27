@@ -7,20 +7,31 @@
 #include "../../Item.h"
 #include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
-struct StatusItem : public Item {
-    StatusItem() = default;
+class StatusItem : public Item {
+public:
+    enum class Id {
+        ANTIDOTE,
+        AWAKENING,
+        BURN_HEAL,
+        ICE_HEAL,
+        PARALYZE_HEAL
+    };
 
-    explicit StatusItem(int quantity);
+    struct Data {
+        std::string_view name;
+        Status status;
+    };
 
-    [[nodiscard]] virtual Status getStatus() const = 0;
+    StatusItem(StatusItem::Id id, int quantity);
 
-    [[nodiscard]] Item::Id getId() const override = 0;
+    [[nodiscard]] StatusItem::Id getId() const;
 
     [[nodiscard]] Item::Class getClass() const override;
-
-    [[nodiscard]] std::string getName() const override = 0;
 
     void restore(Pokemon &pokemon) const;
 
     static void restoreMessage(const Pokemon &pokemon);
+
+private:
+    StatusItem::Id id;
 };

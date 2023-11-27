@@ -45,8 +45,8 @@ set(SOURCES
         src/Classes/Battle/Battle.h
         src/Classes/Battle/Battle.cpp
         src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PokeBalls.h
-        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/StatusItems.h
-        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/RestoreItems.h
+        src/Data/Items/StatusItems/StatusItems.h
+        src/Data/Items/RestoreItems/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
         src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/BattleItems.h
@@ -55,7 +55,6 @@ set(SOURCES
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
         src/Namespaces/Factories/MoveFactory.h
-        src/Namespaces/Factories/ItemFactory.h
         src/Classes/Move/DerivedClasses/DarkPulse.h
         src/Classes/Move/DerivedClasses/Extrasensory.h
         src/Classes/Move/DerivedClasses/AirSlash.h
@@ -243,7 +242,29 @@ set(POKEMON
         src/Data/Pokemon/Genesect.cpp
 )
 
-add_executable(PokemonBattle ${SOURCES} ${POKEMON})
+set(RESTORE_ITEMS
+        src/Data/Items/RestoreItems/Potion.cpp
+        src/Data/Items/RestoreItems/SuperPotion.cpp
+        src/Data/Items/RestoreItems/HyperPotion.cpp
+        src/Data/Items/RestoreItems/MaxPotion.cpp
+        src/Data/Items/RestoreItems/Ether.cpp
+        src/Data/Items/RestoreItems/MaxEther.cpp
+)
+
+set(STATUS_ITEMS
+        src/Data/Items/StatusItems/Antidote.cpp
+        src/Data/Items/StatusItems/Awakening.cpp
+        src/Data/Items/StatusItems/BurnHeal.cpp
+)
+
+set(ITEMS
+        ${RESTORE_ITEMS} ${STATUS_ITEMS}
+        src/Data/Items/StatusItems/IceHeal.cpp
+        src/Data/Items/StatusItems/ParalyzeHeal.cpp
+        src/Data/Items/Items.h
+)
+
+add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${ITEMS})
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h)
 

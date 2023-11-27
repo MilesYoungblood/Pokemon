@@ -4,7 +4,11 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(const int quantity) : Item(quantity) {}
+RestoreItem::RestoreItem(RestoreItem::Id id, int quantity) : Item(quantity), id(id) {}
+
+RestoreItem::Id RestoreItem::getId() const {
+    return this->id;
+}
 
 Item::Class RestoreItem::getClass() const {
     return Item::Class::RESTORE;

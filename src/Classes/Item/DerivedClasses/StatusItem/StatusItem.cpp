@@ -4,7 +4,11 @@
 
 #include "StatusItem.h"
 
-StatusItem::StatusItem(const int quantity) : Item(quantity) {}
+StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {}
+
+StatusItem::Id StatusItem::getId() const {
+    return this->id;
+}
 
 Item::Class StatusItem::getClass() const {
     return Item::Class::STATUS;

@@ -12,42 +12,9 @@ enum Time {
 
 class Item {
 private:
-    int quantity{ 0 };
+    int quantity;
 
 public:
-    enum class Id {
-        POTION,
-        SUPER_POTION,
-        HYPER_POTION,
-        ETHER,
-        MAX_ETHER,
-
-        ANTIDOTE,
-        AWAKENING,
-        BURN_HEAL,
-        ICE_HEAL,
-        PARALYZE_HEAL,
-
-        POKE_BALL,
-        GREAT_BALL,
-        ULTRA_BALL,
-        MASTER_BALL,
-        NET_BALL,
-        NEST_BALL,
-        TIMER_BALL,
-        PREMIER_BALL,
-        DUSK_BALL,
-        HEAL_BALL,
-        QUICK_BALL,
-
-        X_ATTACK,
-        X_DEFENSE,
-        X_SP_ATTACK,
-        X_SP_DEFENSE,
-        X_SPEED,
-        X_ACCURACY
-    };
-
     enum class Class {
         RESTORE,
         STATUS,
@@ -55,11 +22,9 @@ public:
         BATTLE
     };
 
-    Item() = default;
-
     explicit Item(int n);
 
-    Item(const Item &) = delete;
+    Item(const Item &);
 
     Item(Item &&) noexcept = delete;
 
@@ -69,8 +34,6 @@ public:
 
     virtual ~Item() = default;
 
-    void setQuantity(int amount);
-
     [[nodiscard]] int getQuantity() const;
 
     void add(int n = 1);
@@ -79,11 +42,7 @@ public:
 
     virtual void useMessage();
 
-    [[nodiscard]] virtual std::string getName() const = 0;
-
-    [[nodiscard]] virtual Id getId() const = 0;
-
-    [[nodiscard]] virtual Class getClass() const = 0;
+    [[nodiscard]] virtual Item::Class getClass() const = 0;
 
     explicit operator bool() const;
 };

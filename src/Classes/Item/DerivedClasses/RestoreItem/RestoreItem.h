@@ -6,16 +6,26 @@
 
 #include "../../Item.h"
 
-struct RestoreItem : public Item {
-    RestoreItem() = default;
+class RestoreItem : public Item {
+public:
+    enum class Id {
+        POTION,
+        SUPER_POTION,
+        HYPER_POTION,
+        MAX_POTION,
+        ETHER,
+        MAX_ETHER,
+    };
 
-    explicit RestoreItem(int quantity);
+    struct Data {
+        std::string_view name;
+        int amount;
+        bool isHp;
+    };
 
-    [[nodiscard]] virtual int getAmount() const = 0;
+    RestoreItem(RestoreItem::Id id, int quantity);
 
-    [[nodiscard]] virtual bool isHp() const = 0;
-
-    [[nodiscard]] Item::Id getId() const override = 0;
+    [[nodiscard]] RestoreItem::Id getId() const;
 
     [[nodiscard]] Item::Class getClass() const override;
 
@@ -26,4 +36,7 @@ struct RestoreItem : public Item {
     void restoreMessage(const Pokemon &pokemon) const;
 
     void restoreMessage(const Move &move) const;
+
+private:
+    RestoreItem::Id id;
 };

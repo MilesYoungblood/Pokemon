@@ -98,10 +98,12 @@ public:
                 return;
             }
 
-            for (const auto &i : this->items.at(static_cast<std::size_t>(item.getClass()))) {
+            for (int i = 0; i < this->items.at(static_cast<std::size_t>(item.getClass())).size(); ++i) {
                 // if item already exists within our inventory
-                if (i->getId() == item.getId()) {
-                    i->add(item.getQuantity());
+                Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[i].get();
+                const I itm = *dynamic_cast<I *>(ptr);
+                if (itm.getId() == item.getId()) {
+                    this->items.at(Trainer::getItemTypeId<I>())[i]->add(item.getQuantity());
                     return;
                 }
             }
@@ -122,10 +124,12 @@ public:
             return;
         }
 
-        for (const auto &i : this->items.at(static_cast<std::size_t>(item->getClass()))) {
+        for (int i = 0; i < this->items.at(static_cast<std::size_t>(item->getClass())).size(); ++i) {
             // if item already exists within our inventory
-            if (i->getId() == item->getId()) {
-                i->add(item->getQuantity());
+            Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[i].get();
+            const I itm = *dynamic_cast<I *>(ptr);
+            if (itm.getId() == item.getId()) {
+                this->items.at(Trainer::getItemTypeId<I>())[i]->add(item.getQuantity());
                 return;
             }
         }
