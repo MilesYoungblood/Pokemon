@@ -88,7 +88,12 @@ Direction Entity::getDirection() const {
 
 // makes this face the entity
 void Entity::face(const Entity *entity) {
-    this->setDirection(oppositeDirection(entity->getDirection()));
+    try {
+        this->setDirection(oppositeDirection(entity->getDirection()));
+    }
+    catch (const std::invalid_argument &e) {
+        std::clog << "Error facing entity: " << e.what() << '\n';
+    }
 }
 
 bool Entity::isFacingNorth() const {

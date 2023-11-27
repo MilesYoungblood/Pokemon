@@ -23,7 +23,7 @@ inline Direction oppositeDirection(const Direction direction) {
         case Direction::LEFT:
             return Direction::RIGHT;
         default:
-            throw std::invalid_argument("Unexpected error: function oppositeDirection");
+            throw std::invalid_argument(std::string("Invalid argument: " + std::to_string(static_cast<int>(direction)) + " was passed"));
     }
 }
 
@@ -44,7 +44,7 @@ private:
 
     std::unordered_map<Direction, Animation> animations;
 
-    void (*action)(Entity *entity){ [](Entity *entity) -> void {} };
+    void (*action)(Entity *entity){ [](Entity *entity) -> void {}};
 
 public:
     Entity() = default;

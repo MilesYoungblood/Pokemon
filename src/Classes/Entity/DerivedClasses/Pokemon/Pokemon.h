@@ -210,10 +210,6 @@ public:
 
     static void init(Pokemon::Data (*instructions)(Pokemon::Id id));
 
-    [[nodiscard]] std::string getName() const override {
-        return "";
-    }
-
     [[nodiscard]] int numMoves() const;
 
     void addMove(std::unique_ptr<Move> toAdd);
@@ -237,7 +233,7 @@ public:
 
     [[nodiscard]] int getMaxHp() const;
 
-    void resetStatMods();
+    void initStatMods();
 
     void raiseStatMod(Pokemon::Stat stat, int amount);
 
@@ -247,7 +243,7 @@ public:
 
     [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
 
-    [[nodiscard]] virtual Type getType(bool type1) const {
+    [[nodiscard]] Type getType(bool type1) const {
         return Type::NONE;
     }
 
@@ -261,12 +257,12 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] virtual int getCatchRate() const {
+    [[nodiscard]] int getCatchRate() const {
         return 0;
     }
 
-    [[nodiscard]] virtual Pokemon::Id getId() const {
-        return Pokemon::Id::VICTINI;
+    [[nodiscard]] Pokemon::Id getId() const {
+        return this->id;
     }
 
     [[nodiscard]] bool isFainted() const;
@@ -288,7 +284,8 @@ public:
     const Move &operator[](int index) const;
 
 private:
-    inline static Pokemon::Data (*initialize)(Pokemon::Id id) = nullptr;
+    inline static Pokemon::Data (*initialize)(Pokemon::Id id){ nullptr };
+
     const static int MAX_NUM_MOVES{ 4 };
 
     Pokemon::Id id;
@@ -296,8 +293,8 @@ private:
     int maxHp;
     int currentHp;
 
-    std::unordered_map<Pokemon::Stat, int> statModifiers;
     std::unordered_map<Pokemon::Stat, int> baseStats;
+    std::unordered_map<Pokemon::Stat, int> statModifiers;
 
     int level;
 

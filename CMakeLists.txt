@@ -9,7 +9,7 @@ include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
 include_directories("C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2")
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
 set(SOURCES
         src/main.cpp
@@ -118,6 +118,129 @@ set(POKEMON
         src/Data/Pokemon/Roggenrola.cpp
         src/Data/Pokemon/Boldore.cpp
         src/Data/Pokemon/Gigalith.cpp
+        src/Data/Pokemon/Woobat.cpp
+        src/Data/Pokemon/Swoobat.cpp
+        src/Data/Pokemon/Drilbur.cpp
+        src/Data/Pokemon/Excadrill.cpp
+        src/Data/Pokemon/Audino.cpp
+        src/Data/Pokemon/Timburr.cpp
+        src/Data/Pokemon/Gurdurr.cpp
+        src/Data/Pokemon/Conkeldurr.cpp
+        src/Data/Pokemon/Tympole.cpp
+        src/Data/Pokemon/Palpitoad.cpp
+        src/Data/Pokemon/Seismitoad.cpp
+        src/Data/Pokemon/Throh.cpp
+        src/Data/Pokemon/Sawk.cpp
+        src/Data/Pokemon/Sewaddle.cpp
+        src/Data/Pokemon/Swadloon.cpp
+        src/Data/Pokemon/Leavanny.cpp
+        src/Data/Pokemon/Venipede.cpp
+        src/Data/Pokemon/Whirlipede.cpp
+        src/Data/Pokemon/Scolipede.cpp
+        src/Data/Pokemon/Cottonee.cpp
+        src/Data/Pokemon/Whimsicott.cpp
+        src/Data/Pokemon/Petilil.cpp
+        src/Data/Pokemon/Lilligant.cpp
+        src/Data/Pokemon/Basculin.cpp
+        src/Data/Pokemon/Sandile.cpp
+        src/Data/Pokemon/Krokorok.cpp
+        src/Data/Pokemon/Krookodile.cpp
+        src/Data/Pokemon/Darumaka.cpp
+        src/Data/Pokemon/Darmanitan.cpp
+        src/Data/Pokemon/Maractus.cpp
+        src/Data/Pokemon/Dwebble.cpp
+        src/Data/Pokemon/Crustle.cpp
+        src/Data/Pokemon/Scraggy.cpp
+        src/Data/Pokemon/Scrafty.cpp
+        src/Data/Pokemon/Sigilyph.cpp
+        src/Data/Pokemon/Yamask.cpp
+        src/Data/Pokemon/Cofagrigus.cpp
+        src/Data/Pokemon/Tirtouga.cpp
+        src/Data/Pokemon/Carracosta.cpp
+        src/Data/Pokemon/Archen.cpp
+        src/Data/Pokemon/Archeops.cpp
+        src/Data/Pokemon/Trubbish.cpp
+        src/Data/Pokemon/Garbodor.cpp
+        src/Data/Pokemon/Zorua.cpp
+        src/Data/Pokemon/Zoroark.cpp
+        src/Data/Pokemon/Minccino.cpp
+        src/Data/Pokemon/Cinccino.cpp
+        src/Data/Pokemon/Gothita.cpp
+        src/Data/Pokemon/Gothorita.cpp
+        src/Data/Pokemon/Gothitelle.cpp
+        src/Data/Pokemon/Solosis.cpp
+        src/Data/Pokemon/Duosion.cpp
+        src/Data/Pokemon/Reuniclus.cpp
+        src/Data/Pokemon/Ducklett.cpp
+        src/Data/Pokemon/Swanna.cpp
+        src/Data/Pokemon/Vanillite.cpp
+        src/Data/Pokemon/Vanillish.cpp
+        src/Data/Pokemon/Vanilluxe.cpp
+        src/Data/Pokemon/Deerling.cpp
+        src/Data/Pokemon/Sawsbuck.cpp
+        src/Data/Pokemon/Emolga.cpp
+        src/Data/Pokemon/Karrablast.cpp
+        src/Data/Pokemon/Escavalier.cpp
+        src/Data/Pokemon/Foongus.cpp
+        src/Data/Pokemon/Amoonguss.cpp
+        src/Data/Pokemon/Frillish.cpp
+        src/Data/Pokemon/Jellicent.cpp
+        src/Data/Pokemon/Alomomola.cpp
+        src/Data/Pokemon/Joltik.cpp
+        src/Data/Pokemon/Galvantula.cpp
+        src/Data/Pokemon/Ferroseed.cpp
+        src/Data/Pokemon/Ferrothorn.cpp
+        src/Data/Pokemon/Klink.cpp
+        src/Data/Pokemon/Klang.cpp
+        src/Data/Pokemon/Klinklang.cpp
+        src/Data/Pokemon/Tynamo.cpp
+        src/Data/Pokemon/Eelektrik.cpp
+        src/Data/Pokemon/Eelektross.cpp
+        src/Data/Pokemon/Elgyem.cpp
+        src/Data/Pokemon/Beheeyem.cpp
+        src/Data/Pokemon/Litwick.cpp
+        src/Data/Pokemon/Lampent.cpp
+        src/Data/Pokemon/Chandelure.cpp
+        src/Data/Pokemon/Axew.cpp
+        src/Data/Pokemon/Fraxure.cpp
+        src/Data/Pokemon/Haxorus.cpp
+        src/Data/Pokemon/Cubchoo.cpp
+        src/Data/Pokemon/Beartic.cpp
+        src/Data/Pokemon/Cryogonal.cpp
+        src/Data/Pokemon/Shelmet.cpp
+        src/Data/Pokemon/Accelgor.cpp
+        src/Data/Pokemon/Stunfisk.cpp
+        src/Data/Pokemon/Mienfoo.cpp
+        src/Data/Pokemon/Mienshao.cpp
+        src/Data/Pokemon/Druddigon.cpp
+        src/Data/Pokemon/Golett.cpp
+        src/Data/Pokemon/Golurk.cpp
+        src/Data/Pokemon/Pawniard.cpp
+        src/Data/Pokemon/Bisharp.cpp
+        src/Data/Pokemon/Bouffalant.cpp
+        src/Data/Pokemon/Rufflet.cpp
+        src/Data/Pokemon/Braviary.cpp
+        src/Data/Pokemon/Vullaby.cpp
+        src/Data/Pokemon/Mandibuzz.cpp
+        src/Data/Pokemon/Heatmor.cpp
+        src/Data/Pokemon/Durant.cpp
+        src/Data/Pokemon/Deino.cpp
+        src/Data/Pokemon/Zweilous.cpp
+        src/Data/Pokemon/Hydreigon.cpp
+        src/Data/Pokemon/Larvesta.cpp
+        src/Data/Pokemon/Volcarona.cpp
+        src/Data/Pokemon/Cobalion.cpp
+        src/Data/Pokemon/Terrakion.cpp
+        src/Data/Pokemon/Virizion.cpp
+        src/Data/Pokemon/Tornadus.cpp
+        src/Data/Pokemon/Thundurus.cpp
+        src/Data/Pokemon/Reshiram.cpp
+        src/Data/Pokemon/Zekrom.cpp
+        src/Data/Pokemon/Landorus.cpp
+        src/Data/Pokemon/Kyurem.cpp
+        src/Data/Pokemon/Keldeo.cpp
+        src/Data/Pokemon/Meloetta.cpp
+        src/Data/Pokemon/Genesect.cpp
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON})

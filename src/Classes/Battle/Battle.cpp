@@ -403,7 +403,7 @@ void Battle::action(Trainer *attacker, Trainer *defender, const int move, bool &
             this->displayHpBar(false);
             if (isUserAttacking) {
                 for (int i = 0; i < this->player->partySize(); ++i) {
-                    (*this->player)[i].resetStatMods();
+                    (*this->player)[i].initStatMods();
                 }
                 this->winMessage();
             }
@@ -557,7 +557,7 @@ void Battle::postStatus(const bool isUserFaster, bool &keepPlaying) {
             this->displayHpBar(false);
             if (isUser) {
                 for (int i = 0; i < this->player->partySize(); ++i) {
-                    (*this->player)[i].resetStatMods();
+                    (*this->player)[i].initStatMods();
                 }
                 this->winMessage();
             }
@@ -1094,7 +1094,7 @@ void Battle::engageBattle(const bool isTrainer) {
                     if (this->runAway(cancel, not isTrainer)) {
                         this->opponent->clearParty();
                         for (int i = 0; i < this->player->partySize(); ++i) {
-                            (*this->player)[i].resetStatMods();
+                            (*this->player)[i].initStatMods();
                         }
                         return;
                     }
