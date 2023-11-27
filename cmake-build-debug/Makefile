@@ -503,6 +503,270 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
+src/Data/Items/RestoreItems/Ether.obj: src/Data/Items/RestoreItems/Ether.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/Ether.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/Ether.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Ether.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/Ether.cpp.obj
+
+src/Data/Items/RestoreItems/Ether.i: src/Data/Items/RestoreItems/Ether.cpp.i
+.PHONY : src/Data/Items/RestoreItems/Ether.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/Ether.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Ether.cpp.i
+.PHONY : src/Data/Items/RestoreItems/Ether.cpp.i
+
+src/Data/Items/RestoreItems/Ether.s: src/Data/Items/RestoreItems/Ether.cpp.s
+.PHONY : src/Data/Items/RestoreItems/Ether.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/Ether.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Ether.cpp.s
+.PHONY : src/Data/Items/RestoreItems/Ether.cpp.s
+
+src/Data/Items/RestoreItems/HyperPotion.obj: src/Data/Items/RestoreItems/HyperPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/HyperPotion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/HyperPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.cpp.obj
+
+src/Data/Items/RestoreItems/HyperPotion.i: src/Data/Items/RestoreItems/HyperPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/HyperPotion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/HyperPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.cpp.i
+
+src/Data/Items/RestoreItems/HyperPotion.s: src/Data/Items/RestoreItems/HyperPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/HyperPotion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/HyperPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/HyperPotion.cpp.s
+
+src/Data/Items/RestoreItems/MaxEther.obj: src/Data/Items/RestoreItems/MaxEther.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/MaxEther.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/MaxEther.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxEther.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/MaxEther.cpp.obj
+
+src/Data/Items/RestoreItems/MaxEther.i: src/Data/Items/RestoreItems/MaxEther.cpp.i
+.PHONY : src/Data/Items/RestoreItems/MaxEther.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/MaxEther.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxEther.cpp.i
+.PHONY : src/Data/Items/RestoreItems/MaxEther.cpp.i
+
+src/Data/Items/RestoreItems/MaxEther.s: src/Data/Items/RestoreItems/MaxEther.cpp.s
+.PHONY : src/Data/Items/RestoreItems/MaxEther.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/MaxEther.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxEther.cpp.s
+.PHONY : src/Data/Items/RestoreItems/MaxEther.cpp.s
+
+src/Data/Items/RestoreItems/MaxPotion.obj: src/Data/Items/RestoreItems/MaxPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/MaxPotion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.cpp.obj
+
+src/Data/Items/RestoreItems/MaxPotion.i: src/Data/Items/RestoreItems/MaxPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/MaxPotion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.cpp.i
+
+src/Data/Items/RestoreItems/MaxPotion.s: src/Data/Items/RestoreItems/MaxPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/MaxPotion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/MaxPotion.cpp.s
+
+src/Data/Items/RestoreItems/Potion.obj: src/Data/Items/RestoreItems/Potion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/Potion.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/Potion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Potion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/Potion.cpp.obj
+
+src/Data/Items/RestoreItems/Potion.i: src/Data/Items/RestoreItems/Potion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/Potion.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/Potion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Potion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/Potion.cpp.i
+
+src/Data/Items/RestoreItems/Potion.s: src/Data/Items/RestoreItems/Potion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/Potion.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/Potion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Potion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/Potion.cpp.s
+
+src/Data/Items/RestoreItems/SuperPotion.obj: src/Data/Items/RestoreItems/SuperPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.obj
+
+# target to build an object file
+src/Data/Items/RestoreItems/SuperPotion.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/SuperPotion.cpp.obj
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.cpp.obj
+
+src/Data/Items/RestoreItems/SuperPotion.i: src/Data/Items/RestoreItems/SuperPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.i
+
+# target to preprocess a source file
+src/Data/Items/RestoreItems/SuperPotion.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/SuperPotion.cpp.i
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.cpp.i
+
+src/Data/Items/RestoreItems/SuperPotion.s: src/Data/Items/RestoreItems/SuperPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.s
+
+# target to generate assembly for a file
+src/Data/Items/RestoreItems/SuperPotion.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/SuperPotion.cpp.s
+.PHONY : src/Data/Items/RestoreItems/SuperPotion.cpp.s
+
+src/Data/Items/StatusItems/Antidote.obj: src/Data/Items/StatusItems/Antidote.cpp.obj
+.PHONY : src/Data/Items/StatusItems/Antidote.obj
+
+# target to build an object file
+src/Data/Items/StatusItems/Antidote.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Antidote.cpp.obj
+.PHONY : src/Data/Items/StatusItems/Antidote.cpp.obj
+
+src/Data/Items/StatusItems/Antidote.i: src/Data/Items/StatusItems/Antidote.cpp.i
+.PHONY : src/Data/Items/StatusItems/Antidote.i
+
+# target to preprocess a source file
+src/Data/Items/StatusItems/Antidote.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Antidote.cpp.i
+.PHONY : src/Data/Items/StatusItems/Antidote.cpp.i
+
+src/Data/Items/StatusItems/Antidote.s: src/Data/Items/StatusItems/Antidote.cpp.s
+.PHONY : src/Data/Items/StatusItems/Antidote.s
+
+# target to generate assembly for a file
+src/Data/Items/StatusItems/Antidote.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Antidote.cpp.s
+.PHONY : src/Data/Items/StatusItems/Antidote.cpp.s
+
+src/Data/Items/StatusItems/Awakening.obj: src/Data/Items/StatusItems/Awakening.cpp.obj
+.PHONY : src/Data/Items/StatusItems/Awakening.obj
+
+# target to build an object file
+src/Data/Items/StatusItems/Awakening.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Awakening.cpp.obj
+.PHONY : src/Data/Items/StatusItems/Awakening.cpp.obj
+
+src/Data/Items/StatusItems/Awakening.i: src/Data/Items/StatusItems/Awakening.cpp.i
+.PHONY : src/Data/Items/StatusItems/Awakening.i
+
+# target to preprocess a source file
+src/Data/Items/StatusItems/Awakening.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Awakening.cpp.i
+.PHONY : src/Data/Items/StatusItems/Awakening.cpp.i
+
+src/Data/Items/StatusItems/Awakening.s: src/Data/Items/StatusItems/Awakening.cpp.s
+.PHONY : src/Data/Items/StatusItems/Awakening.s
+
+# target to generate assembly for a file
+src/Data/Items/StatusItems/Awakening.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Awakening.cpp.s
+.PHONY : src/Data/Items/StatusItems/Awakening.cpp.s
+
+src/Data/Items/StatusItems/BurnHeal.obj: src/Data/Items/StatusItems/BurnHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/BurnHeal.obj
+
+# target to build an object file
+src/Data/Items/StatusItems/BurnHeal.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/BurnHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/BurnHeal.cpp.obj
+
+src/Data/Items/StatusItems/BurnHeal.i: src/Data/Items/StatusItems/BurnHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/BurnHeal.i
+
+# target to preprocess a source file
+src/Data/Items/StatusItems/BurnHeal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/BurnHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/BurnHeal.cpp.i
+
+src/Data/Items/StatusItems/BurnHeal.s: src/Data/Items/StatusItems/BurnHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/BurnHeal.s
+
+# target to generate assembly for a file
+src/Data/Items/StatusItems/BurnHeal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/BurnHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/BurnHeal.cpp.s
+
+src/Data/Items/StatusItems/IceHeal.obj: src/Data/Items/StatusItems/IceHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/IceHeal.obj
+
+# target to build an object file
+src/Data/Items/StatusItems/IceHeal.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/IceHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/IceHeal.cpp.obj
+
+src/Data/Items/StatusItems/IceHeal.i: src/Data/Items/StatusItems/IceHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/IceHeal.i
+
+# target to preprocess a source file
+src/Data/Items/StatusItems/IceHeal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/IceHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/IceHeal.cpp.i
+
+src/Data/Items/StatusItems/IceHeal.s: src/Data/Items/StatusItems/IceHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/IceHeal.s
+
+# target to generate assembly for a file
+src/Data/Items/StatusItems/IceHeal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/IceHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/IceHeal.cpp.s
+
+src/Data/Items/StatusItems/ParalyzeHeal.obj: src/Data/Items/StatusItems/ParalyzeHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.obj
+
+# target to build an object file
+src/Data/Items/StatusItems/ParalyzeHeal.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/ParalyzeHeal.cpp.obj
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.cpp.obj
+
+src/Data/Items/StatusItems/ParalyzeHeal.i: src/Data/Items/StatusItems/ParalyzeHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.i
+
+# target to preprocess a source file
+src/Data/Items/StatusItems/ParalyzeHeal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/ParalyzeHeal.cpp.i
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.cpp.i
+
+src/Data/Items/StatusItems/ParalyzeHeal.s: src/Data/Items/StatusItems/ParalyzeHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.s
+
+# target to generate assembly for a file
+src/Data/Items/StatusItems/ParalyzeHeal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/ParalyzeHeal.cpp.s
+.PHONY : src/Data/Items/StatusItems/ParalyzeHeal.cpp.s
+
 src/Data/Pokemon/Accelgor.obj: src/Data/Pokemon/Accelgor.cpp.obj
 .PHONY : src/Data/Pokemon/Accelgor.obj
 
@@ -4328,6 +4592,39 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
+	@echo ... src/Data/Items/RestoreItems/Ether.obj
+	@echo ... src/Data/Items/RestoreItems/Ether.i
+	@echo ... src/Data/Items/RestoreItems/Ether.s
+	@echo ... src/Data/Items/RestoreItems/HyperPotion.obj
+	@echo ... src/Data/Items/RestoreItems/HyperPotion.i
+	@echo ... src/Data/Items/RestoreItems/HyperPotion.s
+	@echo ... src/Data/Items/RestoreItems/MaxEther.obj
+	@echo ... src/Data/Items/RestoreItems/MaxEther.i
+	@echo ... src/Data/Items/RestoreItems/MaxEther.s
+	@echo ... src/Data/Items/RestoreItems/MaxPotion.obj
+	@echo ... src/Data/Items/RestoreItems/MaxPotion.i
+	@echo ... src/Data/Items/RestoreItems/MaxPotion.s
+	@echo ... src/Data/Items/RestoreItems/Potion.obj
+	@echo ... src/Data/Items/RestoreItems/Potion.i
+	@echo ... src/Data/Items/RestoreItems/Potion.s
+	@echo ... src/Data/Items/RestoreItems/SuperPotion.obj
+	@echo ... src/Data/Items/RestoreItems/SuperPotion.i
+	@echo ... src/Data/Items/RestoreItems/SuperPotion.s
+	@echo ... src/Data/Items/StatusItems/Antidote.obj
+	@echo ... src/Data/Items/StatusItems/Antidote.i
+	@echo ... src/Data/Items/StatusItems/Antidote.s
+	@echo ... src/Data/Items/StatusItems/Awakening.obj
+	@echo ... src/Data/Items/StatusItems/Awakening.i
+	@echo ... src/Data/Items/StatusItems/Awakening.s
+	@echo ... src/Data/Items/StatusItems/BurnHeal.obj
+	@echo ... src/Data/Items/StatusItems/BurnHeal.i
+	@echo ... src/Data/Items/StatusItems/BurnHeal.s
+	@echo ... src/Data/Items/StatusItems/IceHeal.obj
+	@echo ... src/Data/Items/StatusItems/IceHeal.i
+	@echo ... src/Data/Items/StatusItems/IceHeal.s
+	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.obj
+	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.i
+	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.s
 	@echo ... src/Data/Pokemon/Accelgor.obj
 	@echo ... src/Data/Pokemon/Accelgor.i
 	@echo ... src/Data/Pokemon/Accelgor.s

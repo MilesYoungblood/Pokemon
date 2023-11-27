@@ -10,18 +10,20 @@
 #include <vector>
 #include "../GameComponent/DerivedClasses/Components.h"
 
+typedef int componentId;
+
 class GameObject {
 private:
-    std::unordered_map<std::size_t, std::unique_ptr<GameComponent>> components;
+    std::unordered_map<componentId , std::unique_ptr<GameComponent>> components;
 
-    static std::size_t getComponentId() {
-        static std::size_t lastId = 0ULL;
+    static componentId getComponentId() {
+        static componentId lastId = 0;
         return lastId++;
     }
 
     template<typename C>
-    static std::size_t getComponentId() {
-        const static std::size_t component_id = GameObject::getComponentId();
+    static componentId getComponentId() {
+        const static componentId component_id = GameObject::getComponentId();
         return component_id;
     }
 

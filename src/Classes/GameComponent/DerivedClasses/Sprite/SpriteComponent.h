@@ -29,7 +29,7 @@ public:
 
     SpriteComponent &operator=(SpriteComponent &&rhs) noexcept = delete;
 
-    SpriteComponent() override {
+    ~SpriteComponent() override {
         SDL_DestroyTexture(this->sprite);
     }
 
