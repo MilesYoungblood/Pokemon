@@ -21,7 +21,7 @@ private:
     int maxPp;
 
 public:
-    enum Id {
+    enum class Id {
         AIR_SLASH,
         AURA_SPHERE,
         DARK_PULSE,
@@ -60,8 +60,6 @@ public:
     void restore(int amount);
 
     void use();
-
-    void setPp(int newPp);
 
     [[nodiscard]] int getPp() const;
 

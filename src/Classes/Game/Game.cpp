@@ -109,7 +109,7 @@ Game::Game() {
 
     SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-    isRunning = true;
+    Game::isRunning = true;
 }
 
 Game &Game::getInstance() {
@@ -185,7 +185,7 @@ void Game::saveData() {
         saveFile << num_moves << ' ';
 
         for (int move = 0; move < num_moves; ++move) {
-            saveFile << Player::getPlayer()[pokemon][move].getId() << ' '
+            saveFile << static_cast<int>(Player::getPlayer()[pokemon][move].getId()) << ' '
                      << Player::getPlayer()[pokemon][move].getPp() << ' '
                      << Player::getPlayer()[pokemon][move].getMaxPp() << ' ';
         }

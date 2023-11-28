@@ -20,19 +20,6 @@ void Move::use() {
     this->pp = std::max(this->pp - 1, 0);
 }
 
-void Move::setPp(const int newPp) {
-    this->pp = newPp;
-
-    // PP cannot be set lower than 0
-    if (this->pp < 0) {
-        this->pp = 0;
-    }
-    // PP cannot be set higher than max PP
-    else if (this->pp > this->maxPp) {
-        this->pp = this->maxPp;
-    }
-}
-
 int Move::getPp() const {
     return this->pp;
 }
