@@ -5,7 +5,7 @@
 #include "Game.h"
 
 Game::Game() {
-    // initialize subsystems
+    // dataFunction subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
         std::clog << "Error initializing subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -21,7 +21,7 @@ Game::Game() {
         return;
     }
 
-    // initialize image subsystems
+    // dataFunction image subsystems
     if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == 0) {
         std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -48,10 +48,10 @@ Game::Game() {
         return;
     }
 
-    // initialize TextureManager
+    // dataFunction TextureManager
     TextureManager::getInstance().init(Game::renderer);
 
-    // initialize true type font subsystems
+    // dataFunction true type font subsystems
     if (TTF_Init() == -1) {
         std::clog << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -82,7 +82,7 @@ Game::Game() {
         return;
     }
 
-    // initialize audio
+    // dataFunction audio
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
         std::clog << "Error opening the default audio device: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -191,33 +191,41 @@ void Game::saveData() {
         }
     }
 
-    Item *item;
-
     const int num_restore_items = Player::getPlayer().getNumItems<RestoreItem>();
     const int num_status_items = Player::getPlayer().getNumItems<StatusItem>();
     const int num_poke_balls = Player::getPlayer().getNumItems<PokeBall>();
     const int num_battle_items = Player::getPlayer().getNumItems<BattleItem>();
 
-    saveFile << '\n' << num_restore_items + num_status_items + num_poke_balls + num_battle_items;
+    saveFile << '\n' << num_restore_items;
 
+    RestoreItem *restoreItem;
     for (int i = 0; i < num_restore_items; ++i) {
-        item = &Player::getPlayer().getItem<RestoreItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
+        restoreItem = &Player::getPlayer().getItem<RestoreItem>(i);
+        saveFile << '\n' << static_cast<int>(restoreItem->getId()) << ' ' << restoreItem->getQuantity();
     }
 
+    saveFile << '\n' << num_status_items;
+
+    StatusItem *statusItem;
     for (int i = 0; i < num_status_items; ++i) {
-        item = &Player::getPlayer().getItem<StatusItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
+        statusItem = &Player::getPlayer().getItem<StatusItem>(i);
+        saveFile << '\n' << static_cast<int>(statusItem->getId()) << ' ' << statusItem->getQuantity();
     }
 
+    saveFile << '\n' << num_poke_balls;
+
+    PokeBall *pokeBall;
     for (int i = 0; i < num_poke_balls; ++i) {
-        item = &Player::getPlayer().getItem<PokeBall>(i);
-        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
+        pokeBall = &Player::getPlayer().getItem<PokeBall>(i);
+        saveFile << '\n' << static_cast<int>(pokeBall->getId()) << ' ' << pokeBall->getQuantity();
     }
 
+    saveFile << '\n' << num_battle_items;
+
+    BattleItem *battleItem;
     for (int i = 0; i < num_battle_items; ++i) {
-        item = &Player::getPlayer().getItem<BattleItem>(i);
-        saveFile << '\n' << static_cast<int>(item->getId()) << ' ' << item->getQuantity();
+        battleItem = &Player::getPlayer().getItem<BattleItem>(i);
+        saveFile << '\n' << static_cast<int>(battleItem->getId()) << ' ' << battleItem->getQuantity();
     }
 
     for (int map = 0; map < Game::maps.size(); ++map) {
@@ -260,33 +268,35 @@ void Game::initializeGame() {
     Player::getPlayer()[3].addMove<FocusBlast>();
 
     Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::POTION, 5);
-    Player::getPlayer().addItem<SuperPotion>(5);
-    Player::getPlayer().addItem<HyperPotion>(5);
-    Player::getPlayer().addItem<Ether>(5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::SUPER_POTION, 5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::HYPER_POTION, 5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::MAX_POTION, 5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::ETHER, 5);
+    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::ETHER, 5);
 
-    Player::getPlayer().addItem<ParalyzeHeal>(5);
-    Player::getPlayer().addItem<BurnHeal>(5);
-    Player::getPlayer().addItem<IceHeal>(5);
-    Player::getPlayer().addItem<Antidote>(5);
-    Player::getPlayer().addItem<Awakening>(5);
+    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::PARALYZE_HEAL, 5);
+    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::BURN_HEAL, 5);
+    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::ICE_HEAL, 5);
+    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::ANTIDOTE, 5);
+    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::AWAKENING, 5);
 
-    Player::getPlayer().addItem<PokeBall>(5);
-    Player::getPlayer().addItem<GreatBall>(5);
-    Player::getPlayer().addItem<UltraBall>(5);
-    Player::getPlayer().addItem<MasterBall>(1);
+    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::POKE_BALL, 5);
+    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::GREAT_BALL, 5);
+    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::ULTRA_BALL, 5);
+    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::MASTER_BALL, 1);
 
-    Player::getPlayer().addItem<XAttack>(5);
-    Player::getPlayer().addItem<XDefense>(5);
-    Player::getPlayer().addItem<XSpAttack>(5);
-    Player::getPlayer().addItem<XSpDefense>(5);
-    Player::getPlayer().addItem<XSpeed>(5);
-    Player::getPlayer().addItem<XAccuracy>(5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_ATTACK, 5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_DEFENSE, 5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SP_ATTACK, 5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SP_DEFENSE, 5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SPEED, 5);
+    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_ACCURACY, 5);
 }
 
 void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    // initialize all maps
+    // dataFunction map class
     Map::initTextures();
 
     Game::maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
@@ -306,7 +316,7 @@ void Game::loadData() {
 
     Trainer::init();
 
-    Pokemon::init([](Pokemon::Id id) -> Pokemon::Data {
+    Pokemon::initData([](Pokemon::Id id) -> Pokemon::Data {
         return {
                 pokemonLookupTable.at(id).name,
                 pokemonLookupTable.at(id).species,
@@ -323,6 +333,49 @@ void Game::loadData() {
                 pokemonLookupTable.at(id).baseLevel,
                 pokemonLookupTable.at(id).catchRate
         };
+    });
+    Pokemon::initCatchRate([](Pokemon::Id id) -> int {
+        return pokemonLookupTable.at(id).catchRate;
+    });
+
+    // dataFunction RestoreItem class
+    RestoreItem::initName([](RestoreItem::Id id) -> std::string {
+        return std::string(restoreItems.at(id).name);
+    });
+
+    RestoreItem::initAmount([](RestoreItem::Id id) -> int {
+        return restoreItems.at(id).amount;
+    });
+
+    RestoreItem::initHp([](RestoreItem::Id id) -> bool {
+        return restoreItems.at(id).isHp;
+    });
+
+    // dataFunction StatusItem class
+    StatusItem::initName([](StatusItem::Id id) -> std::string {
+        return std::string(statusItems.at(id).name);
+    });
+
+    StatusItem::initStatus([](StatusItem::Id id) -> Status {
+        return statusItems.at(id).status;
+    });
+
+    // dataFunction PokeBall class
+    PokeBall::initName([](PokeBall::Id id) -> std::string {
+        return std::string(pokeBalls.at(id).name);
+    });
+
+    PokeBall::initCatchRate([](PokeBall::Id id, const Pokemon &pokemon, Time time, int turn, bool isCave) -> double {
+        return pokeBalls.at(id).catchRate(pokemon, time, turn, isCave);
+    });
+
+    PokeBall::initPostCatch([](PokeBall::Id id, Pokemon &pokemon) -> void {
+        pokeBalls.at(id).postCatch(pokemon);
+    });
+
+    // dataFunction BattleItem class
+    BattleItem::initName([](BattleItem::Id id) -> std::string {
+        return std::string(battleItems.at(id).name);
     });
 
     if (saveFile) {
@@ -378,19 +431,64 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
         }
 
-        // grab the total number of items in the player's bag
+        // grab the total number of restore items in the player's bag
         std::getline(saveFile, buffer);
-        const int total_num_items = std::stoi(buffer);
+        const int num_restore_items = std::stoi(buffer);
 
         // load each item
-        for (int i = 0; i < total_num_items; ++i) {
+        for (int i = 0; i < num_restore_items; ++i) {
             std::getline(saveFile, buffer, ' ');
-            const int item = std::stoi(buffer);
+            const auto item = static_cast<RestoreItem::Id>(std::stoi(buffer));
 
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem(static_cast<Item::Id>(item), quantity);
+            Player::getPlayer().addItem<RestoreItem>(item, quantity);
+        }
+
+        // grab the total number of status items in the player's bag
+        std::getline(saveFile, buffer);
+        const int num_status_items = std::stoi(buffer);
+
+        // load each item
+        for (int i = 0; i < num_status_items; ++i) {
+            std::getline(saveFile, buffer, ' ');
+            const auto item = static_cast<StatusItem::Id>(std::stoi(buffer));
+
+            std::getline(saveFile, buffer);
+            const int quantity = std::stoi(buffer);
+
+            Player::getPlayer().addItem<StatusItem>(item, quantity);
+        }
+
+        // grab the total number of restore items in the player's bag
+        std::getline(saveFile, buffer);
+        const int num_poke_balls = std::stoi(buffer);
+
+        // load each item
+        for (int i = 0; i < num_poke_balls; ++i) {
+            std::getline(saveFile, buffer, ' ');
+            const PokeBall::Id item = static_cast<PokeBall::Id>(std::stoi(buffer));
+
+            std::getline(saveFile, buffer);
+            const int quantity = std::stoi(buffer);
+
+            Player::getPlayer().addItem<PokeBall>(item, quantity);
+        }
+
+        // grab the total number of restore items in the player's bag
+        std::getline(saveFile, buffer);
+        const int num_battle_items = std::stoi(buffer);
+
+        // load each item
+        for (int i = 0; i < num_battle_items; ++i) {
+            std::getline(saveFile, buffer, ' ');
+            const auto item = static_cast<BattleItem::Id>(std::stoi(buffer));
+
+            std::getline(saveFile, buffer);
+            const int quantity = std::stoi(buffer);
+
+            Player::getPlayer().addItem<BattleItem>(item, quantity);
         }
 
         Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);

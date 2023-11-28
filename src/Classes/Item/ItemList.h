@@ -6,5 +6,5 @@
 
 #include "../../Data/Items/RestoreItems/RestoreItems.h"
 #include "../../Data/Items/StatusItems/StatusItems.h"
-#include "DerivedClasses/Pokeball/DerivedClasses/PokeBalls.h"
-#include "DerivedClasses/BattleItem/DerivedClasses/BattleItems.h"
+#include "../../Data/Items/PokeBalls/PokeBalls.h"
+#include "../../Data/Items/BattleItems/BattleItems.h"

@@ -4,7 +4,27 @@
 
 #include "StatusItem.h"
 
-StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {}
+StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {
+    if (StatusItem::nameFunction == nullptr or StatusItem::statusFunction == nullptr) {
+        throw std::runtime_error("Tried to construct a Status Item without initializing class\n");
+    }
+}
+
+void StatusItem::initName(std::string (*instructions)(StatusItem::Id)) {
+    StatusItem::nameFunction = instructions;
+}
+
+void StatusItem::initStatus(Status (*instructions)(StatusItem::Id)) {
+    StatusItem::statusFunction = instructions;
+}
+
+std::string StatusItem::getName() const {
+    return StatusItem::nameFunction(this->id);
+}
+
+Status StatusItem::getStatus() const {
+    return StatusItem::statusFunction(this->id);
+}
 
 StatusItem::Id StatusItem::getId() const {
     return this->id;

@@ -34,6 +34,8 @@ public:
 
     virtual ~Item() = default;
 
+    [[nodiscard]] virtual std::string getName() const = 0;
+
     [[nodiscard]] int getQuantity() const;
 
     void add(int n = 1);

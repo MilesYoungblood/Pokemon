@@ -15,7 +15,7 @@ bool Map::isTrainerHere(const int x, const int y) const {
 
 Map::Map(const char *name, const char *music, int width, int height)
         : name(name), music(music) {
-    // initialize the layout with grass
+    // dataFunction the layout with grass
     this->layout.resize(width);
     for (int i = 0; i < width; ++i) {
         this->layout[i].resize(height);

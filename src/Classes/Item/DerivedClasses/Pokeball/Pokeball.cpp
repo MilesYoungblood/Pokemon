@@ -4,22 +4,42 @@
 
 #include "Pokeball.h"
 
-PokeBall::PokeBall(const int quantity) : Item(quantity) {}
+PokeBall::PokeBall(PokeBall::Id id, int quantity) : Item(quantity), id(id) {
+    if (PokeBall::nameFunction == nullptr or PokeBall::catchRateFunction == nullptr or PokeBall::postCatchFunction == nullptr) {
+        throw std::runtime_error("Tried to construct Poke Ball without initializing class\n");
+    }
+}
 
-double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
-    return 1.0;
+void PokeBall::initName(std::string (*instructions)(PokeBall::Id)) {
+    PokeBall::nameFunction = instructions;
+}
+
+void PokeBall::initCatchRate(double (*instructions)(PokeBall::Id, const Pokemon &, Time, int, bool)) {
+    PokeBall::catchRateFunction = instructions;
+}
+
+void PokeBall::initPostCatch(void (*instructions)(PokeBall::Id, Pokemon &)) {
+    PokeBall::postCatchFunction = instructions;
+}
+
+double PokeBall::getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const {
+    return PokeBall::catchRateFunction(this->id, pokemon, time, turn, isCave);
+}
+
+void PokeBall::postCatch(Pokemon &pokemon) const {
+    PokeBall::postCatchFunction(this->id, pokemon);
+}
+
+PokeBall::Id PokeBall::getId() const {
+    return this->id;
 }
 
 Item::Class PokeBall::getClass() const {
     return Item::Class::POKE_BALL;
 }
 
-Item::Id PokeBall::getId() const {
-    return Item::Id::POKE_BALL;
-}
-
 std::string PokeBall::getName() const {
-    return "Poke Ball";
+    return PokeBall::nameFunction(this->id);
 }
 
 void PokeBall::useMessage() {

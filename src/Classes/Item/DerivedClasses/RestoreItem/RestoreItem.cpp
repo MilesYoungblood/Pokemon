@@ -4,7 +4,36 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(RestoreItem::Id id, int quantity) : Item(quantity), id(id) {}
+RestoreItem::RestoreItem(RestoreItem::Id id, int quantity) : Item(quantity), id(id) {
+    if (RestoreItem::nameFunction == nullptr or RestoreItem::amountFunction == nullptr or
+        RestoreItem::isHpFunction == nullptr) {
+        throw std::runtime_error("Tried constructing a Restore Item without initializing class\n");
+    }
+}
+
+void RestoreItem::initName(std::string (*instructions)(RestoreItem::Id)) {
+    RestoreItem::nameFunction = instructions;
+}
+
+void RestoreItem::initAmount(int (*instructions)(RestoreItem::Id)) {
+    RestoreItem::amountFunction = instructions;
+}
+
+void RestoreItem::initHp(bool (*instructions)(RestoreItem::Id)) {
+    RestoreItem::isHpFunction = instructions;
+}
+
+std::string RestoreItem::getName() const {
+    return RestoreItem::nameFunction(this->id);
+}
+
+int RestoreItem::getAmount() const {
+    return RestoreItem::amountFunction(this->id);
+}
+
+bool RestoreItem::isHp() const {
+    return RestoreItem::isHpFunction(this->id);
+}
 
 RestoreItem::Id RestoreItem::getId() const {
     return this->id;

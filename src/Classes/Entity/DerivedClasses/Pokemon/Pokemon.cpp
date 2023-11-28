@@ -5,11 +5,11 @@
 #include "Pokemon.h"
 
 Pokemon::Pokemon(Pokemon::Id id) : id(id) {
-    if (Pokemon::initialize == nullptr) {
+    if (Pokemon::dataFunction == nullptr) {
         throw std::runtime_error("Initialization function is null");
     }
 
-    const Pokemon::Data data = Pokemon::initialize(this->id);
+    const Pokemon::Data data = Pokemon::dataFunction(this->id);
 
     this->setName(data.name.data());
 
@@ -67,15 +67,30 @@ Pokemon &Pokemon::operator=(Pokemon &&rhs) noexcept {
     return *this;
 }
 
-void Pokemon::init(Pokemon::Data (*instructions)(Pokemon::Id id)) {
+void Pokemon::initData(Pokemon::Data (*instructions)(Pokemon::Id id)) {
     static bool initialized = false;
 
     if (initialized) {
         return;
     }
 
-    Pokemon::initialize = instructions;
+    Pokemon::dataFunction = instructions;
     initialized = true;
+}
+
+void Pokemon::initCatchRate(int (*instructions)(Pokemon::Id)) {
+    static bool initialized = false;
+
+    if (initialized) {
+        return;
+    }
+
+    Pokemon::catchRateFunction = instructions;
+    initialized = true;
+}
+
+Type Pokemon::getType(bool type1) const {
+    return type1 ? Pokemon::dataFunction(this->id).type1 : Pokemon::dataFunction(this->id).type2;
 }
 
 int Pokemon::numMoves() const {
@@ -236,6 +251,14 @@ void Pokemon::levelUp() {
 
 int Pokemon::getLevel() const {
     return this->level;
+}
+
+int Pokemon::getCatchRate() const {
+    return Pokemon::catchRateFunction(this->id);
+}
+
+Pokemon::Id Pokemon::getId() const {
+    return this->id;
 }
 
 bool Pokemon::isFainted() const {

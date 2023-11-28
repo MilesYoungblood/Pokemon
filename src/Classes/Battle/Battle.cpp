@@ -284,19 +284,19 @@ std::pair<double, bool> Battle::criticalHit() {
 
 // returns 1.5 if move is a STAB move, and 1.0 otherwise
 double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
-    return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
+    return pokemonLookupTable.at(pokemon.getId()).type1 == move.getType() or pokemonLookupTable.at(pokemon.getId()).type2 == move.getType() ? 1.5 : 1.0;
 }
 
 double Battle::checkType(const Move &move, const Pokemon &pokemon) {
     const int move_type = static_cast<int>(move.getType()) - 1;
-    const double type_1 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(true)) - 1);
+    const double type_1 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemonLookupTable.at(pokemon.getId()).type1) - 1);
 
     double type2;
-    if (pokemon.getType(false) == Type::NONE) {
+    if (pokemonLookupTable.at(pokemon.getId()).type2 == Type::NONE) {
         type2 = 1.0;
     }
     else {
-        type2 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(false)) - 1);
+        type2 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemonLookupTable.at(pokemon.getId()).type2) - 1);
     }
 
     return type_1 * type2;
@@ -692,7 +692,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle, bool &keepPlayin
                 // if Pokémon selected doesn't have full HP, but also isn't fainted...
                 else {
                     // if item selected restores HP...
-                    if (this->player->getItem<RestoreItem>(userItem).isHp()) {
+                    if (restoreItems.at(this->player->getItem<RestoreItem>(userItem).getId()).isHp) {
                         this->displayHpBar();
 
                         this->player->getItem<RestoreItem>(userItem).use();

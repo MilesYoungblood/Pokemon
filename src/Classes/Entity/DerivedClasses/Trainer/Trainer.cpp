@@ -61,23 +61,6 @@ void Trainer::clearParty() {
     this->party.clear();
 }
 
-void Trainer::addItem(std::unique_ptr<Item> toAdd) {
-    const int type = static_cast<int>(toAdd->getClass());
-    if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
-        return;
-    }
-
-    for (const auto &i : this->items.at(type)) {
-        // if item already exists within our inventory
-        if (toAdd->getId() == i->getId()) {
-            i->add();
-            return;
-        }
-    }
-
-    this->items.at(type).push_back(std::move(toAdd));
-}
-
 void Trainer::incFaintCount() {
     ++this->numFainted;
 }

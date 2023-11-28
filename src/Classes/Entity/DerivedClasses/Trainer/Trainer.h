@@ -89,7 +89,25 @@ public:
         return *static_cast<I *>(ptr);
     }
 
-    void addItem(std::unique_ptr<Item> toAdd);
+    template<typename I>
+    void addItem(std::unique_ptr<I> toAdd) {
+        const auto type = Trainer::getItemTypeId<I>();
+        if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
+            return;
+        }
+
+        for (int i = 0; i < this->items.at(type).size(); ++i) {
+            // if item already exists within our inventory
+            Item *ptr = this->items.at(type)[i].get();
+            const I item = *static_cast<I *>(ptr);
+            if (toAdd->getId() == item.getId()) {
+                this->items.at(type)[i]->add();
+                return;
+            }
+        }
+
+        this->items.at(type).push_back(std::move(toAdd));
+    }
 
     template<typename I>
     void addItem(const I &item) {
@@ -128,13 +146,13 @@ public:
             // if item already exists within our inventory
             Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[i].get();
             const I itm = *dynamic_cast<I *>(ptr);
-            if (itm.getId() == item.getId()) {
-                this->items.at(Trainer::getItemTypeId<I>())[i]->add(item.getQuantity());
+            if (itm.getId() == item->getId()) {
+                this->items.at(Trainer::getItemTypeId<I>())[i]->add(item->getQuantity());
                 return;
             }
         }
-
-        this->items.at(static_cast<std::size_t>(item->getClass())).push_back(std::move(item));
+        const auto index = static_cast<const size_t>(item->getClass());
+        this->items.at(index).push_back(std::move(item));
     }
 
     template<typename I>

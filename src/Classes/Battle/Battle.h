@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "../../Data/Pokemon/Pokedex.h"
+#include "../../Data/Items/Items.h"
 #include "../../Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Functions/ItemFunctions.h"
 

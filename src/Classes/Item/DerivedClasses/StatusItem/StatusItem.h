@@ -24,6 +24,14 @@ public:
 
     StatusItem(StatusItem::Id id, int quantity);
 
+    static void initName(std::string (*instructions)(StatusItem::Id));
+
+    static void initStatus(Status (*instructions)(StatusItem::Id));
+
+    [[nodiscard]] std::string getName() const override;
+
+    [[nodiscard]] Status getStatus() const;
+
     [[nodiscard]] StatusItem::Id getId() const;
 
     [[nodiscard]] Item::Class getClass() const override;
@@ -34,4 +42,8 @@ public:
 
 private:
     StatusItem::Id id;
+
+    inline static std::string (*nameFunction)(StatusItem::Id){ nullptr };
+
+    inline static Status (*statusFunction)(StatusItem::Id){ nullptr };
 };

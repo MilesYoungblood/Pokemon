@@ -44,12 +44,12 @@ set(SOURCES
         src/Classes/Item/ItemList.h
         src/Classes/Battle/Battle.h
         src/Classes/Battle/Battle.cpp
-        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PokeBalls.h
+        src/Data/Items/PokeBalls/PokeBalls.h
         src/Data/Items/StatusItems/StatusItems.h
         src/Data/Items/RestoreItems/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/BattleItems.h
+        src/Data/Items/BattleItems/BattleItems.h
         src/Classes/Game/Game.cpp
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
@@ -255,12 +255,38 @@ set(STATUS_ITEMS
         src/Data/Items/StatusItems/Antidote.cpp
         src/Data/Items/StatusItems/Awakening.cpp
         src/Data/Items/StatusItems/BurnHeal.cpp
+        src/Data/Items/StatusItems/IceHeal.cpp
+        src/Data/Items/StatusItems/ParalyzeHeal.cpp
+)
+
+set(POKE_BALLS
+        src/Data/Items/PokeBalls/PokeBall.cpp
+        src/Data/Items/PokeBalls/GreatBall.cpp
+        src/Data/Items/PokeBalls/UltraBall.cpp
+        src/Data/Items/PokeBalls/MasterBall.cpp
+        src/Data/Items/PokeBalls/NetBall.cpp
+        src/Data/Items/PokeBalls/NestBall.cpp
+        src/Data/Items/PokeBalls/TimerBall.cpp
+        src/Data/Items/PokeBalls/PremierBall.cpp
+        src/Data/Items/PokeBalls/DuskBall.cpp
+        src/Data/Items/PokeBalls/HealBall.cpp
+        src/Data/Items/PokeBalls/QuickBall.cpp
+)
+
+set(BATTLE_ITEMS
+        src/Data/Items/BattleItems/XAttack.cpp
+        src/Data/Items/BattleItems/XDefense.cpp
+        src/Data/Items/BattleItems/XSpAttack.cpp
+        src/Data/Items/BattleItems/XSpDefense.cpp
+        src/Data/Items/BattleItems/XSpeed.cpp
+        src/Data/Items/BattleItems/XAccuracy.cpp
 )
 
 set(ITEMS
-        ${RESTORE_ITEMS} ${STATUS_ITEMS}
-        src/Data/Items/StatusItems/IceHeal.cpp
-        src/Data/Items/StatusItems/ParalyzeHeal.cpp
+        ${RESTORE_ITEMS}
+        ${STATUS_ITEMS}
+        ${POKE_BALLS}
+        ${BATTLE_ITEMS}
         src/Data/Items/Items.h
 )
 

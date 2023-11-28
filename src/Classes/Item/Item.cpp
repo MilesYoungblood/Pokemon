@@ -4,7 +4,7 @@
 
 #include "Item.h"
 
-Item::Item(const int n) : quantity(n) {}
+Item::Item(int n) : quantity(n) {}
 
 Item::Item(const Item &toCopy) = default;
 
