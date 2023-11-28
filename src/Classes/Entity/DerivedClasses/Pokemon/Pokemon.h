@@ -210,8 +210,6 @@ public:
 
     static void initData(Pokemon::Data (*instructions)(Pokemon::Id id));
 
-    static void initCatchRate(int (*instructions)(Pokemon::Id id));
-
     [[nodiscard]] Type getType(bool type1) const;
 
     [[nodiscard]] int numMoves() const;
@@ -280,8 +278,6 @@ public:
     const Move &operator[](int index) const;
 
 private:
-    inline static int (*catchRateFunction)(Pokemon::Id){ nullptr };
-
     inline static Pokemon::Data (*dataFunction)(Pokemon::Id id){ nullptr };
 
     const static int MAX_NUM_MOVES{ 4 };

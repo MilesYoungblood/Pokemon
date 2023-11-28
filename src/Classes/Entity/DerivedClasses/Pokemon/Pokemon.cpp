@@ -78,17 +78,6 @@ void Pokemon::initData(Pokemon::Data (*instructions)(Pokemon::Id id)) {
     initialized = true;
 }
 
-void Pokemon::initCatchRate(int (*instructions)(Pokemon::Id)) {
-    static bool initialized = false;
-
-    if (initialized) {
-        return;
-    }
-
-    Pokemon::catchRateFunction = instructions;
-    initialized = true;
-}
-
 Type Pokemon::getType(bool type1) const {
     return type1 ? Pokemon::dataFunction(this->id).type1 : Pokemon::dataFunction(this->id).type2;
 }
@@ -254,7 +243,7 @@ int Pokemon::getLevel() const {
 }
 
 int Pokemon::getCatchRate() const {
-    return Pokemon::catchRateFunction(this->id);
+    return Pokemon::dataFunction(this->id).catchRate;
 }
 
 Pokemon::Id Pokemon::getId() const {

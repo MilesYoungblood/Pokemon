@@ -334,11 +334,8 @@ void Game::loadData() {
                 pokemonLookupTable.at(id).catchRate
         };
     });
-    Pokemon::initCatchRate([](Pokemon::Id id) -> int {
-        return pokemonLookupTable.at(id).catchRate;
-    });
 
-    // dataFunction RestoreItem class
+    // initialize RestoreItem class
     RestoreItem::initName([](RestoreItem::Id id) -> std::string {
         return std::string(restoreItems.at(id).name);
     });
@@ -351,7 +348,7 @@ void Game::loadData() {
         return restoreItems.at(id).isHp;
     });
 
-    // dataFunction StatusItem class
+    // initialize StatusItem class
     StatusItem::initName([](StatusItem::Id id) -> std::string {
         return std::string(statusItems.at(id).name);
     });
@@ -360,7 +357,7 @@ void Game::loadData() {
         return statusItems.at(id).status;
     });
 
-    // dataFunction PokeBall class
+    // initialize PokeBall class
     PokeBall::initName([](PokeBall::Id id) -> std::string {
         return std::string(pokeBalls.at(id).name);
     });
@@ -373,7 +370,7 @@ void Game::loadData() {
         pokeBalls.at(id).postCatch(pokemon);
     });
 
-    // dataFunction BattleItem class
+    // initialize BattleItem class
     BattleItem::initName([](BattleItem::Id id) -> std::string {
         return std::string(battleItems.at(id).name);
     });
