@@ -54,14 +54,12 @@ set(SOURCES
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
-        src/Namespaces/Factories/MoveFactory.h
         src/Classes/Move/DerivedClasses/DarkPulse.h
         src/Classes/Move/DerivedClasses/Extrasensory.h
-        src/Classes/Move/DerivedClasses/AirSlash.h
         src/Singletons/TextureManager/TextureManager.h
         src/Singletons/Camera/Camera.h
         src/Data/Pokemon/Pokedex.h
-        src/Classes/Move/MoveList.h
+        src/Data/Moves/MoveList.h
         src/Classes/Move/DerivedClasses/DragonPulse.h
         src/Classes/Move/DerivedClasses/QuickAttack.h
         src/Classes/Move/DerivedClasses/SolarBeam.h
@@ -243,6 +241,10 @@ set(POKEMON
         src/Data/Pokemon/Genesect.cpp
 )
 
+set(MOVES
+
+)
+
 set(RESTORE_ITEMS
         src/Data/Items/RestoreItems/Potion.cpp
         src/Data/Items/RestoreItems/SuperPotion.cpp
@@ -292,9 +294,11 @@ set(ITEMS
         src/Singletons/Camera/Camera.cpp
         src/Singletons/KeyManager/KeyManager.cpp
         src/Singletons/SoundPlayer/SoundPlayer.cpp
+        src/Data/Moves/AirSlash.cpp
+        src/Data/Moves/AuraSphere.cpp
 )
 
-add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${ITEMS})
+add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ITEMS})
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h)
 

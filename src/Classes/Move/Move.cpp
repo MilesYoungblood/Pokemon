@@ -4,12 +4,38 @@
 
 #include "Move.h"
 
-Move::Move(const int pp) : pp(pp), maxPp(pp) {}
+Move::Move(Move::Id id) : id(id), pp(0), maxPp(0) {
+    if (Move::dataFunction == nullptr) {
+        throw std::runtime_error("Tried to construct Move without initializing class\n");
+    }
+}
 
-Move::Move(const int pp, const int maxPp) : pp(pp), maxPp(maxPp) {}
+Move::Move(Move::Id id, int pp, int maxPp) : id(id), pp(pp), maxPp(maxPp) {
+    if (Move::dataFunction == nullptr) {
+        throw std::runtime_error("Tried to construct Move without initializing class\n");
+    }
+}
 
 int Move::getDamage() const {
     return generateInteger(1, 100) <= this->getAccuracy() ? this->getPower() : -1;
+}
+
+Move::Move(Move &&toMove) noexcept {
+    this->id = std::move(toMove.id);
+    this->pp = std::move(toMove.pp);
+    this->maxPp = std::move(toMove.maxPp);
+}
+
+Move &Move::operator=(Move &&rhs) noexcept {
+    this->id = std::move(rhs.id);
+    this->pp = std::move(rhs.pp);
+    this->maxPp = std::move(rhs.maxPp);
+
+    return *this;
+}
+
+void Move::initData(Move::Data (*instructions)(Move::Id)) {
+    Move::dataFunction = instructions;
 }
 
 void Move::restore(int amount) {
@@ -32,12 +58,36 @@ void Move::fillToMax() {
     this->pp = maxPp;
 }
 
+std::string Move::getName() const {
+    return std::string(Move::dataFunction(this->id).name);
+}
+
+const char *Move::getDescription() const {
+    return Move::dataFunction(this->id).description.data();
+}
+
+int Move::getPower() const {
+    return Move::dataFunction(this->id).power;
+}
+
 int Move::getAccuracy() const {
-    return 100;
+    return Move::dataFunction(this->id).accuracy;
+}
+
+Type Move::getType() const {
+    return Move::dataFunction(this->id).type;
+}
+
+Move::Category Move::getCategory() const {
+    return Move::dataFunction(this->id).category;
 }
 
 bool Move::isPriority() const {
-    return false;
+    return Move::dataFunction(this->id).priority;
+}
+
+Move::Id Move::getId() const {
+    return this->id;
 }
 
 Move::operator bool() const {

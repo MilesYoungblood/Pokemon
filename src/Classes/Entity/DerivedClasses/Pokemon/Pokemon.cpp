@@ -6,7 +6,7 @@
 
 Pokemon::Pokemon(Pokemon::Id id) : id(id) {
     if (Pokemon::dataFunction == nullptr) {
-        throw std::runtime_error("Initialization function is null");
+        throw std::runtime_error("Tried to construct a Pokemon without initializing class");
     }
 
     const Pokemon::Data data = Pokemon::dataFunction(this->id);
@@ -84,14 +84,6 @@ Type Pokemon::getType(bool type1) const {
 
 int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
-}
-
-void Pokemon::addMove(std::unique_ptr<Move> toAdd) {
-    if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
-        return;
-    }
-
-    this->moveSet.push_back(std::move(toAdd));
 }
 
 void Pokemon::deleteMove(const int index) {
@@ -267,7 +259,8 @@ bool Pokemon::isAfflicted() const {
 }
 
 bool Pokemon::canAttack() const {
-    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),[](const std::unique_ptr<Move> &move) -> bool { return not move.operator bool(); });
+    return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
+                               [](const Move &move) -> bool { return not move; });
 }
 
 void Pokemon::hpEmptyMessage() const {
@@ -280,7 +273,7 @@ void Pokemon::hpFullMessage() const {
 
 Move &Pokemon::operator[](const int index) {
     try {
-        return *this->moveSet.at(index);
+        return this->moveSet.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
@@ -289,7 +282,7 @@ Move &Pokemon::operator[](const int index) {
 
 const Move &Pokemon::operator[](const int index) const {
     try {
-        return *this->moveSet.at(index);
+        return this->moveSet.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');

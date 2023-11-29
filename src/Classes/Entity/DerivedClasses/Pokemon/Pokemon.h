@@ -214,15 +214,13 @@ public:
 
     [[nodiscard]] int numMoves() const;
 
-    void addMove(std::unique_ptr<Move> toAdd);
-
-    template<typename M>
-    void addMove() {
+    template<typename ...Args>
+    void addMove(Args ...args) {
         if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
             return;
         }
 
-        this->moveSet.push_back(std::make_unique<M>());
+        this->moveSet.push_back(Move(args...));
     }
 
     void deleteMove(int index);
@@ -292,7 +290,7 @@ private:
 
     int level;
 
-    std::vector<std::unique_ptr<Move>> moveSet;
+    std::vector<Move> moveSet;
     Status status{ Status::NONE };
 
     double getStat(Pokemon::Stat stat) const;

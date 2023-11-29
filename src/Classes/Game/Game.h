@@ -8,7 +8,7 @@
 #include "../../Classes/Map/Map.h"
 #include "../../Data/Pokemon/Pokedex.h"
 #include "../../Data/Items/Items.h"
-#include "../../Namespaces/Factories/MoveFactory.h"
+#include "../../Data/Moves/MoveList.h"
 #include "../../Singletons/KeyManager/KeyManager.h"
 #include "../../Singletons/SoundPlayer/SoundPlayer.h"
 #include "../../Singletons/Stopwatch/Stopwatch.h"

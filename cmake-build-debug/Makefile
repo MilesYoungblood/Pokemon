@@ -1175,6 +1175,54 @@ src/Data/Items/StatusItems/ParalyzeHeal.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/ParalyzeHeal.cpp.s
 .PHONY : src/Data/Items/StatusItems/ParalyzeHeal.cpp.s
 
+src/Data/Moves/AirSlash.obj: src/Data/Moves/AirSlash.cpp.obj
+.PHONY : src/Data/Moves/AirSlash.obj
+
+# target to build an object file
+src/Data/Moves/AirSlash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AirSlash.cpp.obj
+.PHONY : src/Data/Moves/AirSlash.cpp.obj
+
+src/Data/Moves/AirSlash.i: src/Data/Moves/AirSlash.cpp.i
+.PHONY : src/Data/Moves/AirSlash.i
+
+# target to preprocess a source file
+src/Data/Moves/AirSlash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AirSlash.cpp.i
+.PHONY : src/Data/Moves/AirSlash.cpp.i
+
+src/Data/Moves/AirSlash.s: src/Data/Moves/AirSlash.cpp.s
+.PHONY : src/Data/Moves/AirSlash.s
+
+# target to generate assembly for a file
+src/Data/Moves/AirSlash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AirSlash.cpp.s
+.PHONY : src/Data/Moves/AirSlash.cpp.s
+
+src/Data/Moves/AuraSphere.obj: src/Data/Moves/AuraSphere.cpp.obj
+.PHONY : src/Data/Moves/AuraSphere.obj
+
+# target to build an object file
+src/Data/Moves/AuraSphere.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AuraSphere.cpp.obj
+.PHONY : src/Data/Moves/AuraSphere.cpp.obj
+
+src/Data/Moves/AuraSphere.i: src/Data/Moves/AuraSphere.cpp.i
+.PHONY : src/Data/Moves/AuraSphere.i
+
+# target to preprocess a source file
+src/Data/Moves/AuraSphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AuraSphere.cpp.i
+.PHONY : src/Data/Moves/AuraSphere.cpp.i
+
+src/Data/Moves/AuraSphere.s: src/Data/Moves/AuraSphere.cpp.s
+.PHONY : src/Data/Moves/AuraSphere.s
+
+# target to generate assembly for a file
+src/Data/Moves/AuraSphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Moves/AuraSphere.cpp.s
+.PHONY : src/Data/Moves/AuraSphere.cpp.s
+
 src/Data/Pokemon/Accelgor.obj: src/Data/Pokemon/Accelgor.cpp.obj
 .PHONY : src/Data/Pokemon/Accelgor.obj
 
@@ -4919,6 +4967,102 @@ src/Data/Pokemon/Zweilous.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Data/Pokemon/Zweilous.cpp.s
 .PHONY : src/Data/Pokemon/Zweilous.cpp.s
 
+src/Singletons/Camera/Camera.obj: src/Singletons/Camera/Camera.cpp.obj
+.PHONY : src/Singletons/Camera/Camera.obj
+
+# target to build an object file
+src/Singletons/Camera/Camera.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/Camera/Camera.cpp.obj
+.PHONY : src/Singletons/Camera/Camera.cpp.obj
+
+src/Singletons/Camera/Camera.i: src/Singletons/Camera/Camera.cpp.i
+.PHONY : src/Singletons/Camera/Camera.i
+
+# target to preprocess a source file
+src/Singletons/Camera/Camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/Camera/Camera.cpp.i
+.PHONY : src/Singletons/Camera/Camera.cpp.i
+
+src/Singletons/Camera/Camera.s: src/Singletons/Camera/Camera.cpp.s
+.PHONY : src/Singletons/Camera/Camera.s
+
+# target to generate assembly for a file
+src/Singletons/Camera/Camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/Camera/Camera.cpp.s
+.PHONY : src/Singletons/Camera/Camera.cpp.s
+
+src/Singletons/KeyManager/KeyManager.obj: src/Singletons/KeyManager/KeyManager.cpp.obj
+.PHONY : src/Singletons/KeyManager/KeyManager.obj
+
+# target to build an object file
+src/Singletons/KeyManager/KeyManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/KeyManager/KeyManager.cpp.obj
+.PHONY : src/Singletons/KeyManager/KeyManager.cpp.obj
+
+src/Singletons/KeyManager/KeyManager.i: src/Singletons/KeyManager/KeyManager.cpp.i
+.PHONY : src/Singletons/KeyManager/KeyManager.i
+
+# target to preprocess a source file
+src/Singletons/KeyManager/KeyManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/KeyManager/KeyManager.cpp.i
+.PHONY : src/Singletons/KeyManager/KeyManager.cpp.i
+
+src/Singletons/KeyManager/KeyManager.s: src/Singletons/KeyManager/KeyManager.cpp.s
+.PHONY : src/Singletons/KeyManager/KeyManager.s
+
+# target to generate assembly for a file
+src/Singletons/KeyManager/KeyManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/KeyManager/KeyManager.cpp.s
+.PHONY : src/Singletons/KeyManager/KeyManager.cpp.s
+
+src/Singletons/SoundPlayer/SoundPlayer.obj: src/Singletons/SoundPlayer/SoundPlayer.cpp.obj
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.obj
+
+# target to build an object file
+src/Singletons/SoundPlayer/SoundPlayer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/SoundPlayer/SoundPlayer.cpp.obj
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.cpp.obj
+
+src/Singletons/SoundPlayer/SoundPlayer.i: src/Singletons/SoundPlayer/SoundPlayer.cpp.i
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.i
+
+# target to preprocess a source file
+src/Singletons/SoundPlayer/SoundPlayer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/SoundPlayer/SoundPlayer.cpp.i
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.cpp.i
+
+src/Singletons/SoundPlayer/SoundPlayer.s: src/Singletons/SoundPlayer/SoundPlayer.cpp.s
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.s
+
+# target to generate assembly for a file
+src/Singletons/SoundPlayer/SoundPlayer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/SoundPlayer/SoundPlayer.cpp.s
+.PHONY : src/Singletons/SoundPlayer/SoundPlayer.cpp.s
+
+src/Singletons/TextureManager/TextureManager.obj: src/Singletons/TextureManager/TextureManager.cpp.obj
+.PHONY : src/Singletons/TextureManager/TextureManager.obj
+
+# target to build an object file
+src/Singletons/TextureManager/TextureManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/TextureManager/TextureManager.cpp.obj
+.PHONY : src/Singletons/TextureManager/TextureManager.cpp.obj
+
+src/Singletons/TextureManager/TextureManager.i: src/Singletons/TextureManager/TextureManager.cpp.i
+.PHONY : src/Singletons/TextureManager/TextureManager.i
+
+# target to preprocess a source file
+src/Singletons/TextureManager/TextureManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/TextureManager/TextureManager.cpp.i
+.PHONY : src/Singletons/TextureManager/TextureManager.cpp.i
+
+src/Singletons/TextureManager/TextureManager.s: src/Singletons/TextureManager/TextureManager.cpp.s
+.PHONY : src/Singletons/TextureManager/TextureManager.s
+
+# target to generate assembly for a file
+src/Singletons/TextureManager/TextureManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Singletons/TextureManager/TextureManager.cpp.s
+.PHONY : src/Singletons/TextureManager/TextureManager.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -5084,6 +5228,12 @@ help:
 	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.obj
 	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.i
 	@echo ... src/Data/Items/StatusItems/ParalyzeHeal.s
+	@echo ... src/Data/Moves/AirSlash.obj
+	@echo ... src/Data/Moves/AirSlash.i
+	@echo ... src/Data/Moves/AirSlash.s
+	@echo ... src/Data/Moves/AuraSphere.obj
+	@echo ... src/Data/Moves/AuraSphere.i
+	@echo ... src/Data/Moves/AuraSphere.s
 	@echo ... src/Data/Pokemon/Accelgor.obj
 	@echo ... src/Data/Pokemon/Accelgor.i
 	@echo ... src/Data/Pokemon/Accelgor.s
@@ -5552,6 +5702,18 @@ help:
 	@echo ... src/Data/Pokemon/Zweilous.obj
 	@echo ... src/Data/Pokemon/Zweilous.i
 	@echo ... src/Data/Pokemon/Zweilous.s
+	@echo ... src/Singletons/Camera/Camera.obj
+	@echo ... src/Singletons/Camera/Camera.i
+	@echo ... src/Singletons/Camera/Camera.s
+	@echo ... src/Singletons/KeyManager/KeyManager.obj
+	@echo ... src/Singletons/KeyManager/KeyManager.i
+	@echo ... src/Singletons/KeyManager/KeyManager.s
+	@echo ... src/Singletons/SoundPlayer/SoundPlayer.obj
+	@echo ... src/Singletons/SoundPlayer/SoundPlayer.i
+	@echo ... src/Singletons/SoundPlayer/SoundPlayer.s
+	@echo ... src/Singletons/TextureManager/TextureManager.obj
+	@echo ... src/Singletons/TextureManager/TextureManager.i
+	@echo ... src/Singletons/TextureManager/TextureManager.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

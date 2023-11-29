@@ -253,7 +253,7 @@ void Game::initializeGame() {
     Player::getPlayer().addPokemon(Pokemon::Id::EMBOAR);
 
     Player::getPlayer().addPokemon(Pokemon::Id::ZEBSTRIKA);
-    Player::getPlayer()[1].addMove<VoltTackle>();
+    Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
 
     Player::getPlayer().addPokemon(Pokemon::Id::EXCADRILL);
 
@@ -262,10 +262,10 @@ void Game::initializeGame() {
     Player::getPlayer().addPokemon(Pokemon::Id::BRAVIARY);
 
     Player::getPlayer().addPokemon(Pokemon::Id::HYDREIGON);
-    Player::getPlayer()[3].addMove<DarkPulse>();
-    Player::getPlayer()[3].addMove<DragonPulse>();
-    Player::getPlayer()[3].addMove<Flamethrower>();
-    Player::getPlayer()[3].addMove<FocusBlast>();
+    Player::getPlayer()[3].addMove(Move::Id::DARK_PULSE);
+    Player::getPlayer()[3].addMove(Move::Id::DRAGON_PULSE);
+    Player::getPlayer()[3].addMove(Move::Id::FLAMETHROWER);
+    Player::getPlayer()[3].addMove(Move::Id::FOCUS_BLAST);
 
     Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::POTION, 5);
     Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::SUPER_POTION, 5);
@@ -332,6 +332,19 @@ void Game::loadData() {
                 pokemonLookupTable.at(id).baseSpeed,
                 pokemonLookupTable.at(id).baseLevel,
                 pokemonLookupTable.at(id).catchRate
+        };
+    });
+
+    Move::initData([](Move::Id id) -> Move::Data {
+        return {
+                moveLookupTable.at(id).name,
+                moveLookupTable.at(id).description,
+                moveLookupTable.at(id).power,
+                moveLookupTable.at(id).accuracy,
+                moveLookupTable.at(id).type,
+                moveLookupTable.at(id).category,
+                moveLookupTable.at(id).priority,
+                moveLookupTable.at(id).sureHit
         };
     });
 
@@ -421,7 +434,7 @@ void Game::loadData() {
                 std::getline(saveFile, buffer, ' ');
                 const int max_pp = std::stoi(buffer);
 
-                Player::getPlayer()[pokemon].addMove(MoveFactory::getMove(static_cast<Move::Id>(id), saved_pp, max_pp));
+                Player::getPlayer()[pokemon].addMove(static_cast<Move::Id>(id), saved_pp, max_pp);
             }
 
             // necessary to grab the next line

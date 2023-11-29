@@ -16,10 +16,6 @@ enum class Type {
 class Pokemon;
 
 class Move {
-private:
-    int pp;
-    int maxPp;
-
 public:
     enum class Id {
         AIR_SLASH,
@@ -43,19 +39,32 @@ public:
         PHYSICAL, SPECIAL, STATUS
     };
 
-    explicit Move(int pp);
+    struct Data {
+        std::string_view name;
+        std::string_view description;
+        int power;
+        int accuracy;
+        Type type;
+        Move::Category category;
+        bool priority;
+        bool sureHit;
+    };
 
-    Move(int pp, int maxPp);
+    explicit Move(Move::Id id);
+
+    Move(Move::Id id, int pp, int maxPp);
 
     Move(const Move &) = delete;
 
-    Move(Move &&) noexcept = delete;
+    Move(Move &&) noexcept;
 
     Move &operator=(const Move &) = delete;
 
-    Move &operator=(Move &&) noexcept = delete;
+    Move &operator=(Move &&rhs) noexcept;
 
     virtual ~Move() = default;
+
+    static void initData(Move::Data (*instructions)(Move::Id));
 
     void restore(int amount);
 
@@ -73,21 +82,28 @@ public:
 
     virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
 
-    [[nodiscard]] virtual int getPower() const = 0;
+    [[nodiscard]] std::string getName() const;
 
-    [[nodiscard]] virtual int getAccuracy() const;
+    [[nodiscard]] const char *getDescription() const;
 
-    [[nodiscard]] virtual Type getType() const = 0;
+    [[nodiscard]] int getPower() const;
 
-    [[nodiscard]] virtual Move::Category getCategory() const = 0;
+    [[nodiscard]] int getAccuracy() const;
 
-    [[nodiscard]] virtual Move::Id getId() const = 0;
+    [[nodiscard]] Type getType() const;
 
-    [[nodiscard]] virtual std::string getName() const = 0;
+    [[nodiscard]] Move::Category getCategory() const;
 
-    [[nodiscard]] virtual const char *getDescription() const = 0;
+    [[nodiscard]] Move::Id getId() const;
 
-    [[nodiscard]] virtual bool isPriority() const;
+    [[nodiscard]] bool isPriority() const;
 
     explicit operator bool() const;
+
+private:
+    Move::Id id;
+    int pp;
+    int maxPp;
+
+    inline static Move::Data (*dataFunction)(Move::Id){ nullptr };
 };
