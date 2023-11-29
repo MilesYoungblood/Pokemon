@@ -14,6 +14,57 @@ enum Keys {
 
 class [[maybe_unused]] SortClass {
 private:
+    template <typename Comparable, std::size_t size>
+    static void merge(std::array<Comparable, size> &array, const size_t left, const size_t mid, const size_t right) {
+        const size_t sub_array_one = mid - left + 1;
+        const size_t sub_array_two = right - mid;
+
+        // Create temp arrays
+        std::vector<Comparable> leftArray(sub_array_one);
+        std::vector<Comparable> rightArray(sub_array_two);
+
+        // Copy data to temp arrays leftArray[] and rightArray[]
+        for (int i = 0; i < sub_array_one; ++i) {
+            leftArray[i] = array[left + i];
+        }
+        for (int i = 0; i < sub_array_two; ++i) {
+            rightArray[i] = array[mid + i + 1];
+        }
+
+        size_t indexOfSubArrayOne = 0;
+        size_t indexOfSubArrayTwo = 0;
+        size_t indexOfMergedArray = left;
+
+        // Merge the temp arrays back into array[left.right]
+        while (indexOfSubArrayOne < sub_array_one and indexOfSubArrayTwo < sub_array_two) {
+            if (leftArray[indexOfSubArrayOne] <= rightArray[indexOfSubArrayTwo]) {
+                array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+                ++indexOfSubArrayOne;
+            }
+            else {
+                array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+                ++indexOfSubArrayTwo;
+            }
+            ++indexOfMergedArray;
+        }
+
+        // Copy the remaining elements of
+        // the left array if there are any
+        while (indexOfSubArrayOne < sub_array_one) {
+            array[indexOfMergedArray] = leftArray[indexOfSubArrayOne];
+            ++indexOfSubArrayOne;
+            ++indexOfMergedArray;
+        }
+
+        // Copy the remaining elements of
+        // right[] if there are any
+        while (indexOfSubArrayTwo < sub_array_two) {
+            array[indexOfMergedArray] = rightArray[indexOfSubArrayTwo];
+            ++indexOfSubArrayTwo;
+            ++indexOfMergedArray;
+        }
+    }
+
     template <typename Comparable>
     static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
         const size_t sub_array_one = mid - left + 1;
@@ -67,8 +118,8 @@ private:
 
     // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
-    template <typename Comparable>
-    static void mergeSort(std::vector<Comparable> &array, const size_t left, const size_t right) {
+    template <typename Comparable, std::size_t size>
+    static void mergeSort(std::array<Comparable, size> &array, const size_t left, const size_t right) {
         if (left < right) {
             const size_t mid = left + (right - left) / 2;
             mergeSort(array, left, mid);
@@ -77,10 +128,29 @@ private:
         }
     }
 
+    // begin is for left index and the end is right index
+    // of the sub-array of arr to be sorted
+    template <typename Comparable>
+    static void mergeSort(std::vector<Comparable> &vector, const size_t left, const size_t right) {
+        if (left < right) {
+            const size_t mid = left + (right - left) / 2;
+            mergeSort(vector, left, mid);
+            mergeSort(vector, mid + 1, right);
+            merge(vector, left, mid, right);
+        }
+    }
+
 public:
+    SortClass() = delete;
+
+    template<typename Comparable, std::size_t size>
+    static void mergeSort(std::array<Comparable, size> &array) {
+        SortClass::mergeSort(array, 0ULL, array.size());
+    }
+
     template<typename Comparable>
-    static void mergeSort(std::vector<Comparable> &array) {
-        mergeSort(array, 0, array.size());
+    static void mergeSort(std::vector<Comparable> &vector) {
+        SortClass::mergeSort(vector, 0ULL, vector.size());
     }
 };
 

@@ -81,6 +81,7 @@ set(SOURCES
         src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
         src/Classes/GameComponent/DerivedClasses/Components.h
         src/pch.h
+        src/Singletons/TextureManager/TextureManager.cpp
 )
 
 set(POKEMON
@@ -288,6 +289,9 @@ set(ITEMS
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
         src/Data/Items/Items.h
+        src/Singletons/Camera/Camera.cpp
+        src/Singletons/KeyManager/KeyManager.cpp
+        src/Singletons/SoundPlayer/SoundPlayer.cpp
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${ITEMS})

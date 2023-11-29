@@ -24,7 +24,7 @@ public:
 
     explicit Item(int n);
 
-    Item(const Item &);
+    Item(const Item &toCopy);
 
     Item(Item &&) noexcept = delete;
 
