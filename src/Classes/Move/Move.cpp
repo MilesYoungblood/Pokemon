@@ -20,22 +20,25 @@ int Move::getDamage() const {
     return generateInteger(1, 100) <= this->getAccuracy() ? this->getPower() : -1;
 }
 
-Move::Move(Move &&toMove) noexcept {
-    this->id = std::move(toMove.id);
-    this->pp = std::move(toMove.pp);
-    this->maxPp = std::move(toMove.maxPp);
-}
+Move::Move(Move &&toMove) noexcept : id(toMove.id), pp(toMove.pp), maxPp(toMove.maxPp) {}
 
 Move &Move::operator=(Move &&rhs) noexcept {
-    this->id = std::move(rhs.id);
-    this->pp = std::move(rhs.pp);
-    this->maxPp = std::move(rhs.maxPp);
+    this->id = rhs.id;
+    this->pp = rhs.pp;
+    this->maxPp = rhs.maxPp;
 
     return *this;
 }
 
 void Move::initData(Move::Data (*instructions)(Move::Id)) {
+    static bool initialized = false;
+
+    if (initialized) {
+        return;
+    }
+
     Move::dataFunction = instructions;
+    initialized = true;
 }
 
 void Move::restore(int amount) {

@@ -10,11 +10,11 @@
 #include <vector>
 #include "../GameComponent/DerivedClasses/Components.h"
 
-typedef int componentId;
-
 class GameObject {
 private:
-    std::unordered_map<componentId , std::unique_ptr<GameComponent>> components;
+    using componentId = int;
+
+    std::unordered_map<componentId, std::unique_ptr<GameComponent>> components;
 
     static componentId getComponentId() {
         static componentId lastId = 0;
@@ -29,9 +29,17 @@ private:
 
 public:
     static void init() {
+        static bool initialized = false;
+
+        if (initialized) {
+            return;
+        }
+
         GameObject::getComponentId<PositionComponent>();
         GameObject::getComponentId<SpriteComponent>();
         GameObject::getComponentId<ResourceComponent>();
+
+        initialized = true;
     }
 
     void update() {
@@ -48,11 +56,9 @@ public:
 
     template<typename C, typename ...Args>
     void addComponent(Args ...args) {
-        std::vector<std::unique_ptr<GameComponent>> comps;
-        if (this->components.contains(GameObject::getComponentId<C>())) {
-            comps.push_back(std::make_unique<C>(args...));
+        if (not this->components.contains(GameObject::getComponentId<C>())) {
+            this->components.insert(std::make_pair(GameObject::getComponentId<C>(), std::make_unique<C>(args...)));
         }
-        this->components.insert(std::make_pair(GameObject::getComponentId<C>(), std::make_unique<C>(args...)));
     }
 
     template<typename C>
@@ -69,7 +75,7 @@ public:
     C &getComponent() {
         try {
             GameComponent *ptr = this->components.at(GameObject::getComponentId<C>()).get();
-            return *static_cast<C *>(ptr);
+            return *dynamic_cast<C *>(ptr);
         }
         catch (const std::exception &e) {
             throw std::runtime_error(

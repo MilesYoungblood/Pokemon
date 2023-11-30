@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "../Move.h"
+
 class AuraSphere : public Move {
 private:
     const static int MAX_PP = 32;

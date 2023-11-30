@@ -57,7 +57,9 @@ set(SOURCES
         src/Classes/Move/DerivedClasses/DarkPulse.h
         src/Classes/Move/DerivedClasses/Extrasensory.h
         src/Singletons/TextureManager/TextureManager.h
+        src/Singletons/TextureManager/TextureManager.cpp
         src/Singletons/Camera/Camera.h
+        src/Singletons/Camera/Camera.cpp
         src/Data/Pokemon/Pokedex.h
         src/Data/Moves/MoveList.h
         src/Classes/Move/DerivedClasses/DragonPulse.h
@@ -67,9 +69,12 @@ set(SOURCES
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
         src/Singletons/KeyManager/KeyManager.h
+        src/Singletons/KeyManager/KeyManager.cpp
         src/Singletons/Stopwatch/Stopwatch.h
         src/Classes/Animation/Animation.h
+        src/Classes/Animation/Animation.cpp
         src/Singletons/SoundPlayer/SoundPlayer.h
+        src/Singletons/SoundPlayer/SoundPlayer.cpp
         #src/Classes/Move/Move.ixx
         #src/Functions/GeneralFunctions.ixx
         src/Classes/GameComponent/GameComponent.h
@@ -79,7 +84,6 @@ set(SOURCES
         src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
         src/Classes/GameComponent/DerivedClasses/Components.h
         src/pch.h
-        src/Singletons/TextureManager/TextureManager.cpp
 )
 
 set(POKEMON
@@ -242,7 +246,8 @@ set(POKEMON
 )
 
 set(MOVES
-
+        src/Data/Moves/AirSlash.cpp
+        src/Data/Moves/AuraSphere.cpp
 )
 
 set(RESTORE_ITEMS
@@ -291,11 +296,6 @@ set(ITEMS
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
         src/Data/Items/Items.h
-        src/Singletons/Camera/Camera.cpp
-        src/Singletons/KeyManager/KeyManager.cpp
-        src/Singletons/SoundPlayer/SoundPlayer.cpp
-        src/Data/Moves/AirSlash.cpp
-        src/Data/Moves/AuraSphere.cpp
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ITEMS})

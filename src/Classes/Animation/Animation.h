@@ -19,8 +19,7 @@ private:
 public:
     Animation() = default;
 
-    Animation(const char *path, int numFrames, int numRows)
-            : spriteSheet(TextureManager::getInstance().loadTexture(path)), numFrames(numFrames), numRows(numRows) {}
+    Animation(const char *path, int numFrames, int numRows);
 
     Animation(const Animation &) = delete;
 
@@ -28,33 +27,11 @@ public:
 
     Animation &operator=(const Animation &) = delete;
 
-    Animation &operator=(Animation &&rhs) noexcept {
-        this->numFrames = rhs.numFrames;
-        this->numRows = rhs.numRows;
-        this->spriteSheet = rhs.spriteSheet;
-        rhs.spriteSheet = nullptr;
+    Animation &operator=(Animation &&rhs) noexcept;
 
-        return *this;
-    }
+    ~Animation();
 
-    ~Animation() {
-        SDL_DestroyTexture(this->spriteSheet);
-    }
+    void update();
 
-    inline void update() {
-        ++this->currentFrame;
-
-        if (this->currentFrame == this->numFrames) {
-            this->currentFrame = 0;
-
-            ++this->currentRow;
-            if (this->currentRow == this->numRows) {
-                this->currentRow = 0;
-            }
-        }
-    }
-
-    inline void render(const SDL_Rect &destRect) {
-        TextureManager::getInstance().drawFrame(this->spriteSheet, destRect, this->currentFrame, this->currentRow);
-    }
+    void render(const SDL_Rect &destRect);
 };

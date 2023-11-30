@@ -38,7 +38,7 @@ public:
 
     [[nodiscard]] int getQuantity() const;
 
-    void add(int n = 1);
+    void add(int n);
 
     void use();
 
