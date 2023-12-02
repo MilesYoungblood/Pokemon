@@ -19,17 +19,13 @@ public:
 
     struct Data {
         std::string_view name;
-        int amount;
-        bool isHp;
+        const int amount;
+        const bool isHp;
     };
 
     RestoreItem(RestoreItem::Id id, int quantity);
 
-    static void initName(std::string (*instructions)(RestoreItem::Id));
-
-    static void initAmount(int (*instructions)(RestoreItem::Id));
-
-    static void initHp(bool (*instructions)(RestoreItem::Id));
+    static void init(RestoreItem::Data (*instructions)(RestoreItem::Id));
 
     [[nodiscard]] std::string getName() const override;
 
@@ -52,9 +48,5 @@ public:
 private:
     RestoreItem::Id id;
 
-    inline static std::string (*nameFunction)(RestoreItem::Id){ nullptr };
-
-    inline static int (*amountFunction)(RestoreItem::Id){ nullptr };
-
-    inline static bool (*isHpFunction)(RestoreItem::Id){ nullptr };
+    inline static RestoreItem::Data (*dataFunction)(RestoreItem::Id){ nullptr };
 };

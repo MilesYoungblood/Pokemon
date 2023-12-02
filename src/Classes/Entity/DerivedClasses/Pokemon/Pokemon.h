@@ -210,8 +210,6 @@ public:
 
     static void initData(Pokemon::Data (*instructions)(Pokemon::Id id));
 
-    [[nodiscard]] Type getType(bool type1) const;
-
     [[nodiscard]] int numMoves() const;
 
     template<typename ...Args>
@@ -253,7 +251,17 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] int getCatchRate() const;
+    std::string getName() const override = 0;
+
+    virtual std::string getSpecies() const = 0;
+
+    virtual Type getType(bool type1) const = 0;
+
+    virtual double getHeight() const = 0;
+
+    virtual double getWeight() const = 0;
+
+    virtual int getCatchRate() const = 0;
 
     [[nodiscard]] Pokemon::Id getId() const;
 
@@ -295,3 +303,5 @@ private:
 
     double getStat(Pokemon::Stat stat) const;
 };
+
+inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> typeMap;

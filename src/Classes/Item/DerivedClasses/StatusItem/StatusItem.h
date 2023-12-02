@@ -19,14 +19,12 @@ public:
 
     struct Data {
         std::string_view name;
-        Status status;
+        const Status status;
     };
 
     StatusItem(StatusItem::Id id, int quantity);
 
-    static void initName(std::string (*instructions)(StatusItem::Id));
-
-    static void initStatus(Status (*instructions)(StatusItem::Id));
+    static void init(StatusItem::Data (*instructions)(StatusItem::Id));
 
     [[nodiscard]] std::string getName() const override;
 
@@ -43,7 +41,5 @@ public:
 private:
     StatusItem::Id id;
 
-    inline static std::string (*nameFunction)(StatusItem::Id){ nullptr };
-
-    inline static Status (*statusFunction)(StatusItem::Id){ nullptr };
+    inline static StatusItem::Data (*dataFunction)(StatusItem::Id){ nullptr };
 };

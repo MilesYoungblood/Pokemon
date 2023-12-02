@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <span>
 #include <thread>
+#include <typeindex>
+#include <functional>
 #include <algorithm>
 #include <memory>
 #include <random>

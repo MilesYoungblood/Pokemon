@@ -78,10 +78,6 @@ void Pokemon::initData(Pokemon::Data (*instructions)(Pokemon::Id id)) {
     initialized = true;
 }
 
-Type Pokemon::getType(bool type1) const {
-    return type1 ? Pokemon::dataFunction(this->id).type1 : Pokemon::dataFunction(this->id).type2;
-}
-
 int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
 }
@@ -232,10 +228,6 @@ void Pokemon::levelUp() {
 
 int Pokemon::getLevel() const {
     return this->level;
-}
-
-int Pokemon::getCatchRate() const {
-    return Pokemon::dataFunction(this->id).catchRate;
 }
 
 Pokemon::Id Pokemon::getId() const {

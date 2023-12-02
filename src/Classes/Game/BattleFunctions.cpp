@@ -5,8 +5,8 @@
 #include "Game.h"
 
 void Game::handleBattleEvents() {
-    if (Game::event.type == SDL_EventType::SDL_QUIT) {
-        Game::isRunning = false;
+    if (this->event.type == SDL_EventType::SDL_QUIT) {
+        this->isRunning = false;
     }
 }
 
@@ -22,7 +22,7 @@ void Game::renderBattle() {
     const static int box_height = TILE_SIZE * 2;
     const static SDL_Rect text_box{
             box_width / (TILE_SIZE / 10) / 2,
-            Game::WINDOW_HEIGHT - box_height,
+            this->WINDOW_HEIGHT - box_height,
             box_width / 2,
             box_height - TILE_SIZE / 2
     };
@@ -42,10 +42,10 @@ void Game::renderBattle() {
     TextureManager::getInstance().drawRect(button, { 0, 0, 255 }, { 0, 0, 0 }, border_size);
 
     // draw text
-    TTF_SizeUTF8(Game::font, "Run", &width, &height);
+    TTF_SizeUTF8(this->font, "Run", &width, &height);
     TextureManager::getInstance().drawBorderedText("Run", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, { 255, 255, 255 },
-                                                   { 0, 0, 0 }, Game::font);
+                                                   { 0, 0, 0 }, this->font);
 
     // BAG
     // update button position
@@ -54,10 +54,10 @@ void Game::renderBattle() {
     TextureManager::getInstance().drawRect(button, { 255, 255, 0 }, { 0, 0, 0 }, border_size);
 
     // draw text
-    TTF_SizeUTF8(Game::font, "Bag", &width, &height);
+    TTF_SizeUTF8(this->font, "Bag", &width, &height);
     TextureManager::getInstance().drawBorderedText("Bag", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, { 255, 255, 255 },
-                                                   { 0, 0, 0 }, Game::font);
+                                                   { 0, 0, 0 }, this->font);
 
     // FIGHT
     // update button position
@@ -65,10 +65,10 @@ void Game::renderBattle() {
 
     TextureManager::getInstance().drawRect(button, { 255, 0, 0 }, { 0, 0, 0 }, border_size);
 
-    TTF_SizeUTF8(Game::font, "Fight", &width, &height);
+    TTF_SizeUTF8(this->font, "Fight", &width, &height);
     TextureManager::getInstance().drawBorderedText("Fight", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, { 255, 255, 255 },
-                                                   { 0, 0, 0 }, Game::font);
+                                                   { 0, 0, 0 }, this->font);
 
     // POKEMON
     // update button position
@@ -76,10 +76,10 @@ void Game::renderBattle() {
 
     TextureManager::getInstance().drawRect(button, { 0, 255, 0 }, { 0, 0, 0 }, border_size);
 
-    TTF_SizeUTF8(Game::font, "Pokemon", &width, &height);
+    TTF_SizeUTF8(this->font, "Pokemon", &width, &height);
     TextureManager::getInstance().drawBorderedText("Pokemon", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, { 255, 255, 255 },
-                                                   { 0, 0, 0 }, Game::font);
+                                                   { 0, 0, 0 }, this->font);
 
-    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 }

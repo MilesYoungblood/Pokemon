@@ -19,43 +19,23 @@ public:
 
     struct Data {
         std::string_view name;
-        Pokemon::Stat stat;
+        const Pokemon::Stat stat;
     };
 
-    BattleItem(BattleItem::Id id, int quantity) : Item(quantity), id(id) {
-        if (BattleItem::nameFunction == nullptr) {
-            throw std::runtime_error("Tried constructing a Battle Item without initializing class\n");
-        }
-    }
+    BattleItem(BattleItem::Id id, int quantity);
 
-    static void initName(std::string (*instructions)(BattleItem::Id)) {
-        BattleItem::nameFunction = instructions;
-    }
+    static void init(BattleItem::Data (*instructions)(BattleItem::Id));
 
-    static void initStat(Pokemon::Stat (*instructions)(BattleItem::Id)) {
-        BattleItem::statFunction = instructions;
-    }
+    [[nodiscard]] std::string getName() const override;
 
-    [[nodiscard]] std::string getName() const override {
-        return BattleItem::nameFunction(this->id);
-    }
+    [[nodiscard]] Pokemon::Stat getStat() const;
 
-    [[nodiscard]] Pokemon::Stat getStat() const {
-        return BattleItem::statFunction(this->id);
-    }
+    [[nodiscard]] BattleItem::Id getId() const;
 
-    [[nodiscard]] BattleItem::Id getId() const {
-        return this->id;
-    }
-
-    [[nodiscard]] Item::Class getClass() const override {
-        return Item::Class::BATTLE;
-    }
+    [[nodiscard]] Item::Class getClass() const override;
 
 private:
     BattleItem::Id id;
 
-    inline static std::string (*nameFunction)(BattleItem::Id){ nullptr };
-
-    inline static Pokemon::Stat (*statFunction)(BattleItem::Id){ nullptr };
+    inline static BattleItem::Data (*dataFunction)(BattleItem::Id){ nullptr };
 };

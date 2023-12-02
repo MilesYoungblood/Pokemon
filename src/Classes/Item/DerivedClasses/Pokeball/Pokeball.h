@@ -32,11 +32,9 @@ public:
 
     PokeBall(PokeBall::Id id, int n);
 
-    static void initName(std::string (*instructions)(PokeBall::Id));
+    static void init(PokeBall::Data (*instructions)(PokeBall::Id));
 
-    static void initCatchRate(double (*instructions)(PokeBall::Id, const Pokemon &pokemon, Time time, int turn, bool isCave));
-
-    static void initPostCatch(void (*instructions)(PokeBall::Id, Pokemon &pokemon));
+    [[nodiscard]] std::string getName() const override;
 
     [[nodiscard]] double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
 
@@ -46,8 +44,6 @@ public:
 
     [[nodiscard]] Item::Class getClass() const override;
 
-    [[nodiscard]] std::string getName() const override;
-
     void useMessage() override;
 
     bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
@@ -55,9 +51,5 @@ public:
 private:
     PokeBall::Id id;
 
-    inline static std::string (*nameFunction)(PokeBall::Id){ nullptr };
-
-    inline static double (*catchRateFunction)(PokeBall::Id, const Pokemon &pokemon, Time time, int turn, bool isCave){ nullptr };
-
-    inline static void (*postCatchFunction)(PokeBall::Id, Pokemon &pokemon){ nullptr };
+    inline static PokeBall::Data (*dataFunction)(PokeBall::Id){ nullptr };
 };

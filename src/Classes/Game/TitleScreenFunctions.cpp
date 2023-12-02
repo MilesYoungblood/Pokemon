@@ -11,14 +11,14 @@ namespace {
 }
 
 void Game::handleTitleScreenEvents() {
-    if (Game::event.type == SDL_EventType::SDL_QUIT) {
-        Game::isRunning = false;
+    if (this->event.type == SDL_EventType::SDL_QUIT) {
+        this->isRunning = false;
     }
 }
 
 void Game::updateTitleScreen() {
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
-        Mix_FreeMusic(Game::music);
+        Mix_FreeMusic(this->music);
 
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
@@ -36,46 +36,46 @@ void Game::updateTitleScreen() {
         // FIXME make code following this execute based on MixChannelFinished callback
         SoundPlayer::getInstance().playSound(SoundPlayer::SoundId::SELECTION);
 
-        Game::loadData();
+        this->loadData();
 
-        Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
+        Camera::getInstance().init(this->WINDOW_WIDTH, this->WINDOW_HEIGHT);
         Camera::getInstance().lockOnPlayer([](Direction direct, int dist) -> void {
-            currentMap->shift(direct, dist);
+            Game::getInstance().currentMap->shift(direct, dist);
         });
 
         pixelsTraveled = std::vector<int>(currentMap->numTrainers(), 0);
         lockTrainer = std::vector<bool>(currentMap->numTrainers(), false);
         keepLooping = std::vector<bool>(currentMap->numTrainers(), true);
 
-        SDL_DestroyTexture(Game::logo);
+        SDL_DestroyTexture(this->logo);
         if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
         }
-        SDL_DestroyTexture(Game::text);
+        SDL_DestroyTexture(this->text);
         if (strlen(SDL_GetError()) > 0ULL) {
             std::clog << "Error destroying texture: " << SDL_GetError() << '\n';
             SDL_ClearError();
         }
 
-        SDL_SetRenderDrawColor(Game::renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+        SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
-        Game::music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + currentMap->getMusic() + ".mp3").data());
-        if (Game::music == nullptr) {
+        this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + currentMap->getMusic() + ".mp3").data());
+        if (this->music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            Game::isRunning = false;
+            this->isRunning = false;
             return;
         }
 
-        if (Mix_PlayMusic(Game::music, -1) == -1) {
+        if (Mix_PlayMusic(this->music, -1) == -1) {
             std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            Game::isRunning = false;
+            this->isRunning = false;
             return;
         }
 
-        Game::currentState = Game::State::OVERWORLD;
+        this->currentState = Game::State::OVERWORLD;
     }
 
     static int counter = 0;
@@ -87,18 +87,18 @@ void Game::updateTitleScreen() {
 
 void Game::renderTitleScreen() {
     const SDL_Rect logo_rect{
-            Game::WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
+            this->WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
     };
     const SDL_Rect message_rect{
-            Game::WINDOW_WIDTH / 2 - 24 * Game::FONT_SIZE / 2,
-            Game::WINDOW_HEIGHT - TILE_SIZE * 2,
-            23 * Game::FONT_SIZE,
-            Game::FONT_SIZE
+            this->WINDOW_WIDTH / 2 - 24 * this->FONT_SIZE / 2,
+            this->WINDOW_HEIGHT - TILE_SIZE * 2,
+            23 * this->FONT_SIZE,
+            this->FONT_SIZE
     };
 
-    TextureManager::getInstance().draw(Game::logo, logo_rect);
+    TextureManager::getInstance().draw(this->logo, logo_rect);
 
     if (showPrompt) {
-        TextureManager::getInstance().draw(Game::text, message_rect);
+        TextureManager::getInstance().draw(this->text, message_rect);
     }
 }

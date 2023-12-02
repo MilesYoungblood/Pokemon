@@ -13,9 +13,9 @@ Game::Game() {
     }
 
     // create window
-    Game::window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                    Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0U);
-    if (Game::window == nullptr) {
+    this->window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+                                    this->WINDOW_WIDTH, this->WINDOW_HEIGHT, 0U);
+    if (this->window == nullptr) {
         std::clog << "Error creating window: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
@@ -37,19 +37,19 @@ Game::Game() {
     }
 
     // set the window icon
-    SDL_SetWindowIcon(Game::window, pokeball);
+    SDL_SetWindowIcon(this->window, pokeball);
     SDL_FreeSurface(pokeball);
 
     // create renderer
-    Game::renderer = SDL_CreateRenderer(Game::window, -1, 0U);
-    if (Game::renderer == nullptr) {
+    this->renderer = SDL_CreateRenderer(this->window, -1, 0U);
+    if (this->renderer == nullptr) {
         std::clog << "Error creating renderer: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // dataFunction TextureManager
-    TextureManager::getInstance().init(Game::renderer);
+    TextureManager::getInstance().init(this->renderer);
 
     // dataFunction true type font subsystems
     if (TTF_Init() == -1) {
@@ -59,24 +59,24 @@ Game::Game() {
     }
 
     // set the font for the message box
-    Game::font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", Game::FONT_SIZE);
-    if (Game::font == nullptr) {
+    this->font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", this->FONT_SIZE);
+    if (this->font == nullptr) {
         std::clog << "Error creating font: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // load the title image
-    Game::logo = TextureManager::getInstance().loadTexture("PokemonLogo.png");
-    if (Game::logo == nullptr) {
+    this->logo = TextureManager::getInstance().loadTexture("PokemonLogo.png");
+    if (this->logo == nullptr) {
         std::clog << "Error loading logo: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // load the text prompt
-    Game::text = TextureManager::getInstance().loadText(Game::font, "Press enter to continue!", { 0, 0, 0 });
-    if (Game::text == nullptr) {
+    this->text = TextureManager::getInstance().loadText(this->font, "Press enter to continue!", { 0, 0, 0 });
+    if (this->text == nullptr) {
         std::clog << "Error loading title text: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
@@ -90,15 +90,15 @@ Game::Game() {
     }
 
     // load title screen music
-    Game::music = Mix_LoadMUS("../assets/audio/music/TitleScreen.mp3");
-    if (Game::music == nullptr) {
+    this->music = Mix_LoadMUS("../assets/audio/music/TitleScreen.mp3");
+    if (this->music == nullptr) {
         std::clog << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
     }
 
     // play title screen music
-    if (Mix_PlayMusic(Game::music, -1) == -1) {
+    if (Mix_PlayMusic(this->music, -1) == -1) {
         std::clog << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
@@ -107,9 +107,9 @@ Game::Game() {
     // instantiate KeyManager
     KeyManager::getInstance();
 
-    SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-    Game::isRunning = true;
+    this->isRunning = true;
 }
 
 Game &Game::getInstance() {
@@ -120,30 +120,30 @@ Game &Game::getInstance() {
 Game::~Game() {
     Mix_HaltMusic();
     Mix_HookMusicFinished(nullptr);
-    Mix_FreeMusic(Game::music);
+    Mix_FreeMusic(this->music);
     Mix_CloseAudio();
 
-    SDL_DestroyTexture(Game::text);
+    SDL_DestroyTexture(this->text);
     if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
-    SDL_DestroyTexture(Game::logo);
+    SDL_DestroyTexture(this->logo);
     if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
-    TTF_CloseFont(Game::font);
+    TTF_CloseFont(this->font);
     TTF_Quit();
 
     IMG_Quit();
 
-    SDL_DestroyRenderer(Game::renderer);
+    SDL_DestroyRenderer(this->renderer);
     if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
-    SDL_DestroyWindow(Game::window);
+    SDL_DestroyWindow(this->window);
     if (strlen(SDL_GetError()) > 0ULL) {
         std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -152,18 +152,18 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    SDL_PollEvent(&Game::event);
-    this->HANDLE_FUNCTIONS.at(Game::currentState)();
+    SDL_PollEvent(&this->event);
+    this->HANDLE_FUNCTIONS.at(this->currentState)();
 }
 
 void Game::update() {
-    this->UPDATE_FUNCTIONS.at(Game::currentState)();
+    this->UPDATE_FUNCTIONS.at(this->currentState)();
 }
 
 void Game::render() {
-    SDL_RenderClear(Game::renderer);
-    this->RENDER_FUNCTIONS.at(Game::currentState)();
-    SDL_RenderPresent(Game::renderer);
+    SDL_RenderClear(this->renderer);
+    this->RENDER_FUNCTIONS.at(this->currentState)();
+    SDL_RenderPresent(this->renderer);
 }
 
 void Game::saveData() {
@@ -174,7 +174,7 @@ void Game::saveData() {
         return;
     }
 
-    saveFile << Game::currentMapIndex;
+    saveFile << this->currentMapIndex;
     saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
              << static_cast<int>(Player::getPlayer().getDirection());
     saveFile << '\n' << Player::getPlayer().partySize();
@@ -228,10 +228,10 @@ void Game::saveData() {
         saveFile << '\n' << static_cast<int>(battleItem->getId()) << ' ' << battleItem->getQuantity();
     }
 
-    for (int map = 0; map < Game::maps.size(); ++map) {
-        for (int trainer = 0; trainer < Game::maps.at(map).numTrainers(); ++trainer) {
-            saveFile << '\n' << map << ' ' << trainer << ' ' << Game::maps.at(map)[trainer].partySize();
-            saveFile << static_cast<int>(Game::maps.at(map)[trainer].getDirection());
+    for (int map = 0; map < this->maps.size(); ++map) {
+        for (int trainer = 0; trainer < this->maps.at(map).numTrainers(); ++trainer) {
+            saveFile << '\n' << map << ' ' << trainer << ' ' << this->maps.at(map)[trainer].partySize();
+            saveFile << static_cast<int>(this->maps.at(map)[trainer].getDirection());
         }
     }
 
@@ -239,13 +239,13 @@ void Game::saveData() {
 }
 
 void Game::initializeGame() {
-    Game::currentMapIndex = Map::Id::ROUTE_1;
-    Game::currentMap = &Game::maps.at(Game::currentMapIndex);
+    this->currentMapIndex = Map::Id::ROUTE_1;
+    this->currentMap = &this->maps.at(this->currentMapIndex);
 
-    Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-    Game::maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
-    Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-    Game::maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
+    this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
+    this->maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
+    this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+    this->maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
 
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
@@ -299,20 +299,20 @@ void Game::loadData() {
     // dataFunction map class
     Map::initTextures();
 
-    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
-    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 9, 2, Map::Id::ROUTE_2, 13, 20 });
-    Game::maps[Map::Id::ROUTE_1].addExitPoint({ 10, 2, Map::Id::ROUTE_2, 14, 20 });
+    this->maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
+    this->maps[Map::Id::ROUTE_1].addExitPoint({ 9, 2, Map::Id::ROUTE_2, 13, 20 });
+    this->maps[Map::Id::ROUTE_1].addExitPoint({ 10, 2, Map::Id::ROUTE_2, 14, 20 });
 
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 12, 21, Map::Id::ROUTE_1, 8, 3 });
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 13, 21, Map::Id::ROUTE_1, 9, 3 });
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 14, 21, Map::Id::ROUTE_1, 10, 3 });
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 11, Map::Id::ROUTE_3, 22, 6 });
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 12, Map::Id::ROUTE_3, 22, 7 });
-    Game::maps[Map::Id::ROUTE_2].addExitPoint({ 3, 13, Map::Id::ROUTE_3, 22, 8 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 12, 21, Map::Id::ROUTE_1, 8, 3 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 13, 21, Map::Id::ROUTE_1, 9, 3 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 14, 21, Map::Id::ROUTE_1, 10, 3 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 11, Map::Id::ROUTE_3, 22, 6 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 12, Map::Id::ROUTE_3, 22, 7 });
+    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 13, Map::Id::ROUTE_3, 22, 8 });
 
-    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 6, Map::Id::ROUTE_2, 4, 11 });
-    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 7, Map::Id::ROUTE_2, 4, 12 });
-    Game::maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
+    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 6, Map::Id::ROUTE_2, 4, 11 });
+    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 7, Map::Id::ROUTE_2, 4, 12 });
+    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
 
     Trainer::init();
 
@@ -349,43 +349,37 @@ void Game::loadData() {
     });
 
     // initialize RestoreItem class
-    RestoreItem::initName([](RestoreItem::Id id) -> std::string {
-        return std::string(restoreItems.at(id).name);
-    });
-
-    RestoreItem::initAmount([](RestoreItem::Id id) -> int {
-        return restoreItems.at(id).amount;
-    });
-
-    RestoreItem::initHp([](RestoreItem::Id id) -> bool {
-        return restoreItems.at(id).isHp;
+    RestoreItem::init([](RestoreItem::Id id) -> RestoreItem::Data {
+        return {
+                restoreItems.at(id).name,
+                restoreItems.at(id).amount,
+                restoreItems.at(id).isHp
+        };
     });
 
     // initialize StatusItem class
-    StatusItem::initName([](StatusItem::Id id) -> std::string {
-        return std::string(statusItems.at(id).name);
-    });
-
-    StatusItem::initStatus([](StatusItem::Id id) -> Status {
-        return statusItems.at(id).status;
+    StatusItem::init([](StatusItem::Id id) -> StatusItem::Data {
+        return {
+                statusItems.at(id).name,
+                statusItems.at(id).status
+        };
     });
 
     // initialize PokeBall class
-    PokeBall::initName([](PokeBall::Id id) -> std::string {
-        return std::string(pokeBalls.at(id).name);
-    });
-
-    PokeBall::initCatchRate([](PokeBall::Id id, const Pokemon &pokemon, Time time, int turn, bool isCave) -> double {
-        return pokeBalls.at(id).catchRate(pokemon, time, turn, isCave);
-    });
-
-    PokeBall::initPostCatch([](PokeBall::Id id, Pokemon &pokemon) -> void {
-        pokeBalls.at(id).postCatch(pokemon);
+    PokeBall::init([](PokeBall::Id id) -> PokeBall::Data {
+        return {
+                pokeBalls.at(id).name,
+                pokeBalls.at(id).catchRate,
+                pokeBalls.at(id).postCatch
+        };
     });
 
     // initialize BattleItem class
-    BattleItem::initName([](BattleItem::Id id) -> std::string {
-        return std::string(battleItems.at(id).name);
+    BattleItem::init([](BattleItem::Id id) -> BattleItem::Data {
+        return {
+                battleItems.at(id).name,
+                battleItems.at(id).stat
+        };
     });
 
     if (saveFile) {
@@ -393,8 +387,8 @@ void Game::loadData() {
 
         // load the current map
         std::getline(saveFile, buffer);
-        Game::currentMapIndex = buffer[0] - '0';
-        Game::currentMap = &Game::maps.at(Game::currentMapIndex);
+        this->currentMapIndex = buffer[0] - '0';
+        this->currentMap = &this->maps.at(this->currentMapIndex);
 
         // grab the player's x-coordinates
         std::getline(saveFile, buffer, ' ');
@@ -478,7 +472,7 @@ void Game::loadData() {
         // load each item
         for (int i = 0; i < num_poke_balls; ++i) {
             std::getline(saveFile, buffer, ' ');
-            const PokeBall::Id item = static_cast<PokeBall::Id>(std::stoi(buffer));
+            const auto item = static_cast<PokeBall::Id>(std::stoi(buffer));
 
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
@@ -501,10 +495,10 @@ void Game::loadData() {
             Player::getPlayer().addItem<BattleItem>(item, quantity);
         }
 
-        Game::maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-        Game::maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
-        Game::maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-        Game::maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
+        this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
+        this->maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
+        this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+        this->maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
 
         std::stringstream ss;
         // load each trainer's data for every map
@@ -524,23 +518,23 @@ void Game::loadData() {
             if (buffer[0] == '0') {
                 // deletes the Pokémon set if the trainer has been defeated
                 // FIXME change to adding Pokémon if not defeated
-                Game::maps.at(map)[trainer].clearParty();
+                this->maps.at(map)[trainer].clearParty();
             }
 
-            Game::maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
+            this->maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
         }
 
         saveFile.close();
     }
     else {
-        Game::initializeGame();
+        this->initializeGame();
     }
 }
 
-int Game::getFps() {
-    return Game::currentFps;
+int Game::getFps() const {
+    return this->currentFps;
 }
 
 Game::operator bool() const {
-    return Game::isRunning;
+    return this->isRunning;
 }

@@ -30,6 +30,7 @@ set(SOURCES
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
+        src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
         src/Classes/Move/DerivedClasses/WaterShuriken.h
         src/Classes/Move/DerivedClasses/VoltTackle.h
         src/Classes/Move/DerivedClasses/IceBeam.h
@@ -243,6 +244,8 @@ set(POKEMON
         src/Data/Pokemon/Keldeo.cpp
         src/Data/Pokemon/Meloetta.cpp
         src/Data/Pokemon/Genesect.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.h
 )
 
 set(MOVES
