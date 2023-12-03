@@ -12,7 +12,7 @@ enum Keys {
     ENTER = 13
 };
 
-class [[maybe_unused]] SortClass {
+class [[maybe_unused]] Sort {
 private:
     template <typename Comparable, std::size_t size>
     static void merge(std::array<Comparable, size> &array, const size_t left, const size_t mid, const size_t right) {
@@ -141,16 +141,16 @@ private:
     }
 
 public:
-    SortClass() = delete;
+    Sort() = delete;
 
     template<typename Comparable, std::size_t size>
     static void mergeSort(std::array<Comparable, size> &array) {
-        SortClass::mergeSort(array, 0ULL, array.size());
+        Sort::mergeSort(array, 0ULL, array.size());
     }
 
     template<typename Comparable>
     static void mergeSort(std::vector<Comparable> &vector) {
-        SortClass::mergeSort(vector, 0ULL, vector.size());
+        Sort::mergeSort(vector, 0ULL, vector.size());
     }
 };
 
@@ -276,6 +276,14 @@ inline bool coinFlip() {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::binomial_distribution<int> dist;
+
+    return dist(mt) == 1;
+}
+
+inline bool binomial(double prob) {
+    std::random_device rd;
+    std::mt19937 mt(rd());
+    std::binomial_distribution<int> dist(1, prob / 100.0);
 
     return dist(mt) == 1;
 }

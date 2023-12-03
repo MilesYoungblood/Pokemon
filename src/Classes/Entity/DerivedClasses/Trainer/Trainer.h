@@ -15,7 +15,7 @@ private:
 
     int numFainted = 0;                                   // number of fainted Pokémon
 
-    std::vector<Pokemon> party;
+    std::vector<std::unique_ptr<Pokemon>> party;
     std::array<std::vector<std::unique_ptr<Item>>, Trainer::NUM_ITEM_TYPES> items;
 
     static std::size_t getItemTypeId() {
@@ -52,14 +52,16 @@ public:
 
     [[nodiscard]] int partySize() const;
 
-    template<typename ...Args>
+    template<typename P, typename ...Args>
     void addPokemon(Args ...args) {
         if (this->party.size() == Trainer::MAX_POKEMON) {
             return;
         }
 
-        this->party.push_back(Pokemon(args...));
+        this->party.push_back(std::unique_ptr<P>(args...));
     }
+
+    void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
     void removePokemon(int index);
 
@@ -80,13 +82,13 @@ public:
     template<typename I>
     I &getItem(int index) {
         Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].get();
-        return *static_cast<I *>(ptr);
+        return *dynamic_cast<I *>(ptr);
     }
 
     template<typename I>
     const I &getItem(int index) const {
         Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[index].get();
-        return *static_cast<I *>(ptr);
+        return *dynamic_cast<I *>(ptr);
     }
 
     template<typename I>
@@ -99,7 +101,7 @@ public:
         for (int i = 0; i < this->items.at(type).size(); ++i) {
             // if item already exists within our inventory
             Item *ptr = this->items.at(type)[i].get();
-            const I item = *static_cast<I *>(ptr);
+            const I item = *dynamic_cast<I *>(ptr);
             if (toAdd->getId() == item.getId()) {
                 this->items.at(type)[i]->add();
                 return;

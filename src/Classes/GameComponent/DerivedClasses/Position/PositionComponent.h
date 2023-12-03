@@ -8,11 +8,11 @@
 
 class PositionComponent : public GameComponent {
 private:
-    int x{ 0 };
-    int y{ 0 };
+    int x;
+    int y;
 
 public:
-    PositionComponent() = default;
+    PositionComponent(int x, int y) : x(x), y(y) {}
 
     void translateX(int amount) {
         this->x += amount;

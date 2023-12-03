@@ -86,7 +86,7 @@ public:
 
 inline void foo() {
     GameObject gameObject;
-    gameObject.addComponent<PositionComponent>();
+    gameObject.addComponent<PositionComponent>(0, 0);
     gameObject.getComponent<PositionComponent>().translateX(6);
     gameObject.getComponent<PositionComponent>().translateY(6);
     std::cout << gameObject.getComponent<PositionComponent>().getX() << '\n';

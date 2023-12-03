@@ -5,7 +5,7 @@
 #include "Game.h"
 
 Game::Game() {
-    // dataFunction subsystems
+    // initialize subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
         std::clog << "Error initializing subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -21,7 +21,7 @@ Game::Game() {
         return;
     }
 
-    // dataFunction image subsystems
+    // initialize image subsystems
     if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == 0) {
         std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -48,10 +48,10 @@ Game::Game() {
         return;
     }
 
-    // dataFunction TextureManager
+    // initialize TextureManager
     TextureManager::getInstance().init(this->renderer);
 
-    // dataFunction true type font subsystems
+    // initialize true type font subsystems
     if (TTF_Init() == -1) {
         std::clog << "Error initializing TTF subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -82,7 +82,7 @@ Game::Game() {
         return;
     }
 
-    // dataFunction audio
+    // initialize audio
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
         std::clog << "Error opening the default audio device: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -153,16 +153,16 @@ Game::~Game() {
 
 void Game::handleEvents() {
     SDL_PollEvent(&this->event);
-    this->HANDLE_FUNCTIONS.at(this->currentState)();
+    this->HANDLE_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
 }
 
 void Game::update() {
-    this->UPDATE_FUNCTIONS.at(this->currentState)();
+    this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
 }
 
 void Game::render() {
     SDL_RenderClear(this->renderer);
-    this->RENDER_FUNCTIONS.at(this->currentState)();
+    this->RENDER_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
     SDL_RenderPresent(this->renderer);
 }
 
@@ -243,25 +243,25 @@ void Game::initializeGame() {
     this->currentMap = &this->maps.at(this->currentMapIndex);
 
     this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-    this->maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
+    this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonLookupTable.at(Pokemon::Id::SAMUROTT)());
     this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-    this->maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
+    this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonLookupTable.at(Pokemon::Id::SERPERIOR)());
 
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
 
-    Player::getPlayer().addPokemon(Pokemon::Id::EMBOAR);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::EMBOAR)());
 
-    Player::getPlayer().addPokemon(Pokemon::Id::ZEBSTRIKA);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::ZEBSTRIKA)());
     Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
 
-    Player::getPlayer().addPokemon(Pokemon::Id::EXCADRILL);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::EXCADRILL)());
 
-    Player::getPlayer().addPokemon(Pokemon::Id::CARRACOSTA);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::CARRACOSTA)());
 
-    Player::getPlayer().addPokemon(Pokemon::Id::BRAVIARY);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::BRAVIARY)());
 
-    Player::getPlayer().addPokemon(Pokemon::Id::HYDREIGON);
+    Player::getPlayer().addPokemon(pokemonLookupTable.at(Pokemon::Id::HYDREIGON)());
     Player::getPlayer()[3].addMove(Move::Id::DARK_PULSE);
     Player::getPlayer()[3].addMove(Move::Id::DRAGON_PULSE);
     Player::getPlayer()[3].addMove(Move::Id::FLAMETHROWER);
@@ -296,7 +296,7 @@ void Game::initializeGame() {
 void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    // dataFunction map class
+    // initialize map class
     Map::initTextures();
 
     this->maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
@@ -315,25 +315,6 @@ void Game::loadData() {
     this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
 
     Trainer::init();
-
-    Pokemon::initData([](Pokemon::Id id) -> Pokemon::Data {
-        return {
-                pokemonLookupTable.at(id).name,
-                pokemonLookupTable.at(id).species,
-                pokemonLookupTable.at(id).type1,
-                pokemonLookupTable.at(id).type2,
-                pokemonLookupTable.at(id).height,
-                pokemonLookupTable.at(id).weight,
-                pokemonLookupTable.at(id).baseHp,
-                pokemonLookupTable.at(id).baseAttack,
-                pokemonLookupTable.at(id).baseDefense,
-                pokemonLookupTable.at(id).baseSpAttack,
-                pokemonLookupTable.at(id).baseSpDefense,
-                pokemonLookupTable.at(id).baseSpeed,
-                pokemonLookupTable.at(id).baseLevel,
-                pokemonLookupTable.at(id).catchRate
-        };
-    });
 
     Move::initData([](Move::Id id) -> Move::Data {
         return {
@@ -387,7 +368,7 @@ void Game::loadData() {
 
         // load the current map
         std::getline(saveFile, buffer);
-        this->currentMapIndex = buffer[0] - '0';
+        this->currentMapIndex = static_cast<Map::Id>(buffer[0] - '0');
         this->currentMap = &this->maps.at(this->currentMapIndex);
 
         // grab the player's x-coordinates
@@ -411,7 +392,7 @@ void Game::loadData() {
         // load each Pokémon's data
         for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
-            Player::getPlayer().addPokemon(static_cast<Pokemon::Id>(std::stoi(buffer)));
+            Player::getPlayer().addPokemon(pokemonLookupTable.at(static_cast<Pokemon::Id>(std::stoi(buffer)))());
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
@@ -496,9 +477,9 @@ void Game::loadData() {
         }
 
         this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-        this->maps[Map::Id::ROUTE_1][0].addPokemon(Pokemon::Id::SAMUROTT);
+        this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonLookupTable.at(Pokemon::Id::SAMUROTT)());
         this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-        this->maps[Map::Id::ROUTE_1][1].addPokemon(Pokemon::Id::SERPERIOR);
+        this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonLookupTable.at(Pokemon::Id::SERPERIOR)());
 
         std::stringstream ss;
         // load each trainer's data for every map
@@ -507,7 +488,7 @@ void Game::loadData() {
 
             // grabs the map
             std::getline(ss, buffer, ' ');
-            const int map = std::stoi(buffer);
+            const Map::Id map = static_cast<Map::Id>(std::stoi(buffer));
 
             // grabs the trainer
             std::getline(ss, buffer, ' ');

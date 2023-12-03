@@ -4,14 +4,12 @@
 
 #pragma once
 
-#include <SDL_mixer.h>
-#include "../../Classes/Map/Map.h"
-#include "../../Data/Pokemon/Pokedex.h"
+#include "../Map/Map.h"
 #include "../../Data/Items/Items.h"
 #include "../../Data/Moves/MoveList.h"
-#include "../../Singletons/KeyManager/KeyManager.h"
-#include "../../Singletons/SoundPlayer/SoundPlayer.h"
-#include "../../Singletons/Stopwatch/Stopwatch.h"
+#include "../KeyManager/KeyManager.h"
+#include "../SoundPlayer/SoundPlayer.h"
+#include "../Stopwatch/Stopwatch.h"
 
 inline bool print = false;
 
@@ -27,19 +25,19 @@ private:
     const std::array<int, 2> FPS{ 30, 60 };
     int currentFps{ FPS[1] };
 
-    const int WINDOW_WIDTH{ TILE_SIZE * 9 };                            // width of the window
-    const int WINDOW_HEIGHT{ TILE_SIZE * 7 };                           // height of the window
-    const int SCROLL_SPEED{ TILE_SIZE / 10 / (Game::currentFps / 30) }; // scroll speed
+    const int WINDOW_WIDTH{ Constants::TILE_SIZE * 9 };                            // width of the window
+    const int WINDOW_HEIGHT{ Constants::TILE_SIZE * 7 };                           // height of the window
+    const int SCROLL_SPEED{ Constants::TILE_SIZE / 10 / (Game::currentFps / 30) }; // scroll speed
 
     const int FONT_SIZE{ 20 };                                          // font size for message box text
 
-    enum State {
+    enum class State {
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
 
-    State currentState{ Game::State::TITLE_SCREEN };                    // determines which set of functions to use
+    Game::State currentState{ Game::State::TITLE_SCREEN };              // determines which set of functions to use
 
-    bool isRunning{ false };                                            // determines whether the gameRef is running
+    bool isRunning{ false };                                            // determines whether the game is running
 
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
@@ -102,7 +100,7 @@ private:
 
     void renderTextBox(const std::string &message);
 
-    void changeMap(const std::array<int, 3> &data);
+    void changeMap(const std::tuple<int, int, Map::Id> &data);
 
     void saveData();
 

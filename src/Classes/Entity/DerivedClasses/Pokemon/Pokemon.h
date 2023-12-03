@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../../../AutoThread/AutoThread.h"
 #include "../../Entity.h"
 #include "../../../Move/Move.h"
 
@@ -173,42 +174,27 @@ public:
         GENESECT
     };
 
+    enum class Gender {
+        MALE, FEMALE, GENDERLESS
+    };
+
     enum class Stat {
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
 
-    struct Data {
-        std::string_view name;
-        std::string_view species;
-        const Type type1;
-        const Type type2;
-        const double height;
-        const double weight;
-        const int baseHp;
-        const int baseAttack;
-        const int baseDefense;
-        const int baseSpAttack;
-        const int baseSpDefense;
-        const int baseSpeed;
-        const int baseLevel;
-        const int catchRate;
-    };
+    Pokemon(int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
-    explicit Pokemon(Pokemon::Id id);
-
-    Pokemon(Pokemon::Id id, int level, int hp, int bAttack, int bDefense, int bSpAttack, int bSpDefense, int bSpeed);
+    Pokemon(double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
     Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&toMove) noexcept;
+    Pokemon(Pokemon &&) noexcept = delete;
 
     Pokemon &operator=(const Pokemon &) = delete;
 
-    Pokemon &operator=(Pokemon &&rhs) noexcept;
+    Pokemon &operator=(Pokemon &&) noexcept = delete;
 
     ~Pokemon() override = default;
-
-    static void initData(Pokemon::Data (*instructions)(Pokemon::Id id));
 
     [[nodiscard]] int numMoves() const;
 
@@ -239,7 +225,7 @@ public:
 
     [[nodiscard]] int getStatMod(Pokemon::Stat stat) const;
 
-    [[nodiscard]] int getBaseStat(Pokemon::Stat stat) const;
+    [[nodiscard]] double getBaseStat(Pokemon::Stat stat) const;
 
     void setStatus(Status newStatus);
 
@@ -255,6 +241,10 @@ public:
 
     virtual std::string getSpecies() const = 0;
 
+    void setGender(Pokemon::Gender newGender);
+
+    Pokemon::Gender getGender() const;
+
     virtual Type getType(bool type1) const = 0;
 
     virtual double getHeight() const = 0;
@@ -263,7 +253,7 @@ public:
 
     virtual int getCatchRate() const = 0;
 
-    [[nodiscard]] Pokemon::Id getId() const;
+    virtual Pokemon::Id getId() const = 0;
 
     [[nodiscard]] bool isFainted() const;
 
@@ -284,24 +274,21 @@ public:
     const Move &operator[](int index) const;
 
 private:
-    inline static Pokemon::Data (*dataFunction)(Pokemon::Id id){ nullptr };
-
     const static int MAX_NUM_MOVES{ 4 };
-
-    Pokemon::Id id;
 
     int maxHp;
     int currentHp;
 
-    std::unordered_map<Pokemon::Stat, int> baseStats;
+    std::unordered_map<Pokemon::Stat, double> baseStats;
     std::unordered_map<Pokemon::Stat, int> statModifiers;
 
     int level;
 
     std::vector<Move> moveSet;
+    Pokemon::Gender gender;
     Status status{ Status::NONE };
 
     double getStat(Pokemon::Stat stat) const;
 };
 
-inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> typeMap;
+inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> pokemonLookupTable;

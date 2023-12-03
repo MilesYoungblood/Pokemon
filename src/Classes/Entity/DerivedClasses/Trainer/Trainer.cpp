@@ -32,10 +32,23 @@ int Trainer::partySize() const {
     return static_cast<int>(this->party.size());
 }
 
+void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
+    if (this->party.size() == Trainer::MAX_POKEMON) {
+        return;
+    }
+
+    try {
+        this->party.push_back(std::move(toAdd));
+    }
+    catch (const std::exception &e) {
+        throw std::runtime_error(std::string("Error adding Pokemon: ") + e.what() + '\n');
+    }
+}
+
 void Trainer::removePokemon(const int index) {
     try {
         // decrement the faint counter if the Pokémon we're removing is fainted
-        if (this->party.at(index).isFainted()) {
+        if (this->party.at(index)->isFainted()) {
             --this->numFainted;
         }
 
@@ -48,7 +61,7 @@ void Trainer::removePokemon(const int index) {
 
 void Trainer::swapPokemon(const int a, const int b) {
     try {
-        Pokemon copy = std::move(this->party.at(a));
+        std::unique_ptr<Pokemon> copy = std::move(this->party.at(a));
         this->party.at(a) = std::move(this->party.at(b));
         this->party.at(b) = std::move(copy);
     }
@@ -75,7 +88,7 @@ int Trainer::getFaintCount() const {
 
 Pokemon &Trainer::operator[](const int index) {
     try {
-        return this->party.at(index);
+        return *this->party.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
@@ -84,7 +97,7 @@ Pokemon &Trainer::operator[](const int index) {
 
 const Pokemon &Trainer::operator[](const int index) const {
     try {
-        return this->party.at(index);
+        return *this->party.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');

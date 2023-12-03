@@ -18,25 +18,26 @@ void Game::renderBattle() {
     int width;      // stores the text width
     int height;     // stores the text height
 
-    const static int box_width = TILE_SIZE * 7;
-    const static int box_height = TILE_SIZE * 2;
+    const static int box_width = Constants::TILE_SIZE * 7;
+    const static int box_height = Constants::TILE_SIZE * 2;
     const static SDL_Rect text_box{
-            box_width / (TILE_SIZE / 10) / 2,
+            box_width / (Constants::TILE_SIZE / 10) / 2,
             this->WINDOW_HEIGHT - box_height,
             box_width / 2,
-            box_height - TILE_SIZE / 2
+            box_height - Constants::TILE_SIZE / 2
     };
 
-    TextureManager::getInstance().drawRect(text_box, { 0, 0, 0 }, text_box.h / (TILE_SIZE * 3 / 10));
+    TextureManager::getInstance().drawRect(text_box, { 0, 0, 0 }, text_box.h / (Constants::TILE_SIZE * 3 / 10));
 
     SDL_Rect button{
-            WINDOW_WIDTH - TILE_SIZE / 10 - WINDOW_WIDTH / 4 + TILE_SIZE / 5,
-            WINDOW_HEIGHT - TILE_SIZE / 2 - TILE_SIZE / 2,
-            WINDOW_WIDTH / 4 - TILE_SIZE / 2,
-            TILE_SIZE / 2
+            WINDOW_WIDTH - Constants::TILE_SIZE / 10 - WINDOW_WIDTH / 4 + Constants::TILE_SIZE / 5,
+            WINDOW_HEIGHT - Constants::TILE_SIZE / 2 - Constants::TILE_SIZE / 2,
+            WINDOW_WIDTH / 4 - Constants::TILE_SIZE / 2,
+            Constants::TILE_SIZE / 2
     };
 
-    const int border_size = (WINDOW_WIDTH / 2 - (TILE_SIZE * 2 - TILE_SIZE / 2)) / (TILE_SIZE * 3 / 10) / 5;
+    const int border_size = (WINDOW_WIDTH / 2 - (Constants::TILE_SIZE * 2 - Constants::TILE_SIZE / 2)) /
+                            (Constants::TILE_SIZE * 3 / 10) / 5;
 
     // RUN
     TextureManager::getInstance().drawRect(button, { 0, 0, 255 }, { 0, 0, 0 }, border_size);
@@ -72,7 +73,7 @@ void Game::renderBattle() {
 
     // POKEMON
     // update button position
-    button.y = WINDOW_HEIGHT - TILE_SIZE / 2 - TILE_SIZE / 2;
+    button.y = WINDOW_HEIGHT - Constants::TILE_SIZE / 2 - Constants::TILE_SIZE / 2;
 
     TextureManager::getInstance().drawRect(button, { 0, 255, 0 }, { 0, 0, 0 }, border_size);
 

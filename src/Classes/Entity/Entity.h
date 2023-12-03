@@ -4,15 +4,13 @@
 
 #pragma once
 
-#include "../../Classes/Animation/Animation.h"
-
-inline const int TILE_SIZE = 80;
+#include "../Animation/Animation.h"
 
 enum class Direction {
     UP, DOWN, LEFT, RIGHT
 };
 
-inline Direction oppositeDirection(const Direction direction) {
+inline Direction oppositeDirection(Direction direction) {
     switch (direction) {
         case Direction::UP:
             return Direction::DOWN;
@@ -44,7 +42,7 @@ private:
 
     std::unordered_map<Direction, Animation> animations;
 
-    void (*action)(Entity *entity){ [](Entity *entity) -> void {}};
+    void (*action)(Entity *){ nullptr };
 
 public:
     Entity() = default;
@@ -63,11 +61,8 @@ public:
 
     virtual ~Entity() = default;
 
-    inline void setName(const char *newName) {
-        this->name = newName;
-    }
+    void setName(const char *newName);
 
-    // TODO possibly make name become a component
     [[nodiscard]] virtual std::string getName() const;
 
     void setDialogue(const char *text);
@@ -122,36 +117,17 @@ public:
 
     [[nodiscard]] int getScreenY() const;
 
-    inline void setAnimation(const Direction direction, const char *path, int numFrames, int numRows) {
-        this->animations[direction] = Animation(path, numFrames, numRows);
-    }
+    void setAnimation(const Direction direction, const char *path, int numFrames, int numRows);
 
-    inline void setAction(void (*function)(Entity *entity)) {
-        this->action = function;
-    }
+    void setAction(void (*function)(Entity *entity));
 
-    inline void act(Entity *entity) {
-        this->action(entity);
-    }
+    void act();
 
-    inline void updateAnimation() {
-        this->animations.at(this->currentDirection).update();
-    }
+    void updateAnimation();
 
-    inline void render() {
-        try {
-            this->animations.at(this->currentDirection).render({ this->screenX, this->screenY, TILE_SIZE, TILE_SIZE });
-        }
-        catch (const std::out_of_range &e) {
-            static int attempts = 1;
-            std::clog << "(Attempt " << attempts++ << ") Error rendering animation: " << e.what() << '\n';
-        }
-    }
+    void render();
 
-    inline void resetPos() {
-        this->screenX = this->x * TILE_SIZE;
-        this->screenY = this->y * TILE_SIZE;
-    }
+    void resetPos();
 
     virtual explicit operator bool() const;
 };

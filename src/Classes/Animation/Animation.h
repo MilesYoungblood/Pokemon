@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Singletons/TextureManager/TextureManager.h"
+#include "../TextureManager/TextureManager.h"
 
 class Animation {
 private:

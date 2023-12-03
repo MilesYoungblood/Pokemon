@@ -5,56 +5,22 @@
 #pragma once
 
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
-#include "../../Singletons/Camera/Camera.h"
+#include "../Camera/Camera.h"
 
 class Map {
-private:
-    using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
-
-    struct Tile {
-        enum class Id {
-            GRASS,
-            TALL_GRASS,
-            OBSTRUCTION,
-            WATER
-        };
-        Id id;
-        int x;
-        int y;
-    };
-
-    struct ExitPoint {
-        const int x;                                // x-coordinate of the exit spot
-        const int y;                                // y-coordinate of the exit spot
-        const int newMap;                           // map that this exit point leads to
-        const int newX;                             // the player's new x-coordinates
-        const int newY;                             // the player's new y-coordinates
-    };
-
-    const char *name{ "" };                         // name of the map
-
-    const char *music{ "" };
-
-    inline static SDL_Texture *obstruction{ nullptr };
-    inline static SDL_Texture *grass{ nullptr };
-    inline static SDL_Texture *tallGrass{ nullptr };
-    inline static Animation water;
-
-    std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
-
-    std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
-
-    inventory items;
-
-    std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
-
-    [[nodiscard]] bool isTrainerHere(int x, int y) const;
-
 public:
     enum Id {
         ROUTE_1,
         ROUTE_2,
         ROUTE_3
+    };
+
+    struct ExitPoint {
+        const int x;                                // x-coordinate of the exit spot
+        const int y;                                // y-coordinate of the exit spot
+        const Map::Id newMap;                       // map that this exit point leads to
+        const int newX;                             // the player's new x-coordinates
+        const int newY;                             // the player's new y-coordinates
     };
 
     Map(const char *name, const char *music, int width, int height);
@@ -75,7 +41,7 @@ public:
 
     void addExitPoint(const ExitPoint &exitPoint);
 
-    [[nodiscard]] std::array<int, 3> isExitPointHere(int x, int y) const;
+    [[nodiscard]] std::any isExitPointHere(int x, int y) const;
 
     template<typename ...Args>
     void addTrainer(Args ...args) {
@@ -97,4 +63,38 @@ public:
     void render();
 
     void reset();
+
+private:
+    using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
+
+    struct Tile {
+        enum class Id {
+            GRASS,
+            TALL_GRASS,
+            OBSTRUCTION,
+            WATER
+        };
+        Id id;
+        int x;
+        int y;
+    };
+
+    const char *name{ "" };                         // name of the map
+
+    const char *music{ "" };
+
+    inline static SDL_Texture *obstruction{ nullptr };
+    inline static SDL_Texture *grass{ nullptr };
+    inline static SDL_Texture *tallGrass{ nullptr };
+    inline static Animation water;
+
+    std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
+
+    std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
+
+    inventory items;
+
+    std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
+
+    [[nodiscard]] bool isTrainerHere(int x, int y) const;
 };

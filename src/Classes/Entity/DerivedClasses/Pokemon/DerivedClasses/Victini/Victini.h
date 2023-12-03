@@ -3,6 +3,7 @@
 //
 
 #pragma once
+#pragma once
 
 #include "../../Pokemon.h"
 
@@ -20,13 +21,13 @@ struct Victini : public Pokemon {
     double getWeight() const override;
 
     int getCatchRate() const override;
+
+    Pokemon::Id getId() const override;
 };
 
 namespace {
-    inline void initialize() {
-        typeMap.insert(std::make_pair(Pokemon::Id::VICTINI,
-                                      [] -> std::unique_ptr <Pokemon> { return std::make_unique<Victini>(); }));
-    }
-
-    [[maybe_unused]] inline bool foo{ (initialize(), true) };
+    inline AutoThread init([] -> void {
+        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::VICTINI,
+                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Victini>(); }));
+    });
 }

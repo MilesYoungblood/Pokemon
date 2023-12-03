@@ -4,12 +4,14 @@
 
 #include "Entity.h"
 
-Entity::Entity(int x, int y) : name(), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
-    this->action = [](Entity *) -> void {};
-}
+Entity::Entity(int x, int y)
+        : x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
 
-Entity::Entity(const char *name, const int x, const int y) : name(name), x(x), y(y), screenX(x * TILE_SIZE), screenY(y * TILE_SIZE) {
-    this->action = [](Entity *) -> void {};
+Entity::Entity(const char *name, int x, int y)
+        : name(name), x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
+
+void Entity::setName(const char *newName) {
+    this->name = newName;
 }
 
 std::string Entity::getName() const {
@@ -33,7 +35,7 @@ void Entity::setDialogue(const char *text) {
             letterCounter = buffer.length();
             dest = "";
         }
-        dest += buffer + ' ';
+        dest.append(buffer + ' ');
     }
     if (not dest.empty()) {
         this->dialogue.push_back(dest);
@@ -49,8 +51,8 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->x = newX;
     this->y = newY;
 
-    this->screenX = this->x * TILE_SIZE;
-    this->screenY = this->y * TILE_SIZE;
+    this->screenX = this->x * Constants::TILE_SIZE;
+    this->screenY = this->y * Constants::TILE_SIZE;
 }
 
 int Entity::getX() const {
@@ -200,6 +202,38 @@ int Entity::getScreenX() const {
 
 int Entity::getScreenY() const {
     return this->screenY;
+}
+
+void Entity::setAnimation(const Direction direction, const char *path, int numFrames, int numRows) {
+    this->animations[direction] = Animation(path, numFrames, numRows);
+}
+
+void Entity::setAction(void (*function)(Entity *)) {
+    this->action = function;
+}
+
+void Entity::act() {
+    this->action(this);
+}
+
+void Entity::updateAnimation() {
+    this->animations.at(this->currentDirection).update();
+}
+
+void Entity::render() {
+    try {
+        this->animations.at(this->currentDirection).render(
+                { this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE });
+    }
+    catch (const std::out_of_range &e) {
+        static int attempts = 1;
+        std::clog << "(Attempt " << attempts++ << ") Error rendering animation: " << e.what() << '\n';
+    }
+}
+
+void Entity::resetPos() {
+    this->screenX = this->x * Constants::TILE_SIZE;
+    this->screenY = this->y * Constants::TILE_SIZE;
 }
 
 Entity::operator bool() const {

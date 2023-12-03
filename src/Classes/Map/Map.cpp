@@ -21,7 +21,7 @@ Map::Map(const char *name, const char *music, int width, int height)
         this->layout[i].resize(height);
 
         for (int j = 0; j < height; ++j) {
-            this->layout[i][j] = { Map::Tile::Id::GRASS, i * TILE_SIZE, j * TILE_SIZE };
+            this->layout[i][j] = { Map::Tile::Id::GRASS, i * Constants::TILE_SIZE, j * Constants::TILE_SIZE };
         }
     }
 
@@ -48,14 +48,9 @@ Map::Map(const char *name, const char *music, int width, int height)
     }
 }
 
-Map::Map(Map &&toMove) noexcept {
-    this->name = toMove.name;
-    this->music = toMove.music;
-    this->layout = std::move(toMove.layout);
-    this->trainers = std::move(toMove.trainers);
-    this->items = std::move(toMove.items);
-    this->exitPoints = std::move(toMove.exitPoints);
-}
+Map::Map(Map &&toMove) noexcept
+        : name(toMove.name), music(toMove.music), layout(std::move(toMove.layout)), trainers(std::move(toMove.trainers)),
+          items(std::move(toMove.items)), exitPoints(std::move(toMove.exitPoints)) {}
 
 Map &Map::operator=(Map &&toMove) noexcept {
     this->name = toMove.name;
@@ -103,13 +98,13 @@ void Map::addExitPoint(const ExitPoint &exitPoint) {
 
 // returns an array with the new x and y coordinates and the new map respectively,
 // if no exit point is here, returns filler coordinates with the third element being -1
-std::array<int, 3> Map::isExitPointHere(const int x, const int y) const {
+std::any Map::isExitPointHere(const int x, const int y) const {
     for (const ExitPoint &exit_point : this->exitPoints) {
         if (exit_point.x == x and exit_point.y == y) {
-            return { exit_point.newX, exit_point.newY, exit_point.newMap };
+            return std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap);
         }
     }
-    return { 0, 0, -1 };
+    return false;
 }
 
 // returns the number of NPCs
@@ -199,7 +194,7 @@ void Map::render() {
     SDL_Rect sdlRect;
     for (auto &row : this->layout) {
         for (auto &column : row) {
-            sdlRect = { column.x, column.y, TILE_SIZE, TILE_SIZE };
+            sdlRect = { column.x, column.y, Constants::TILE_SIZE, Constants::TILE_SIZE };
             // prevents rendering tiles that aren't onscreen
             if (Camera::getInstance().isInView(sdlRect)) {
                 switch (column.id) {
@@ -230,7 +225,8 @@ void Map::render() {
 
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         // prevents rendering trainers that aren't onscreen
-        if (Camera::getInstance().isInView({ trainer->getScreenX(), trainer->getScreenY(), TILE_SIZE, TILE_SIZE })) {
+        if (Camera::getInstance().isInView(
+                { trainer->getScreenX(), trainer->getScreenY(), Constants::TILE_SIZE, Constants::TILE_SIZE })) {
             trainer->render();
         }
     }
@@ -241,7 +237,8 @@ void Map::render() {
 void Map::reset() {
     for (int row = 0; row < this->layout.size(); ++row) {
         for (int column = 0; column < this->layout[row].size(); ++column) {
-            this->layout[row][column] = { this->layout[row][column].id, row * TILE_SIZE, column * TILE_SIZE };
+            this->layout[row][column] = { this->layout[row][column].id, row * Constants::TILE_SIZE,
+                                          column * Constants::TILE_SIZE };
         }
     }
 

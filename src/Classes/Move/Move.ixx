@@ -6,13 +6,6 @@ export module Move;
 
 import GeneralFunctions;
 
-enum class Type {
-    NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
-    ICE, FIGHTING, POISON, GROUND, FLYING,
-    PSYCHIC, BUG, ROCK, GHOST, DRAGON,
-    DARK, STEEL, FAIRY
-};
-
 //class P;
 
 export class M {
@@ -21,6 +14,13 @@ private:
     int maxPp;
 
 public:
+    enum class Type {
+        NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
+        ICE, FIGHTING, POISON, GROUND, FLYING,
+        PSYCHIC, BUG, ROCK, GHOST, DRAGON,
+        DARK, STEEL, FAIRY
+    };
+
     enum Id {
         AIR_SLASH,
         AURA_SPHERE,
@@ -68,8 +68,8 @@ public:
         this->pp = std::max(this->pp - 1, 0);
     }
 
-    void setPp(int newPP) {
-        this->pp = newPP;
+    void setPp(int newPp) {
+        this->pp = newPp;
 
         // PP cannot be set lower than 0
         if (this->pp < 0) {
@@ -115,5 +115,32 @@ public:
 
     explicit operator bool() const {
         return this->pp > 0;
+    }
+};
+
+export struct W : public M {
+    explicit W(int pp) : M(pp) {}
+    int getPower() const override {
+        return 10;
+    }
+
+    M::Type getType() const override {
+        return M::Type::NONE;
+    }
+
+    M::Category getCategory() const override {
+        return M::Category::SPECIAL;
+    }
+
+    std::string getName() const override {
+        return "W";
+    }
+
+    const char *getDescription() const override {
+        return "e";
+    }
+
+    M::Id getId() const override {
+        return M::Id::AIR_SLASH;
     }
 };

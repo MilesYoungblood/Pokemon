@@ -24,11 +24,10 @@ void Game::updateTitleScreen() {
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again
-        std::thread coolDown([] -> void {
+        AutoThread::run([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
         });
-        coolDown.detach();
 
         flashSpeed = 10;
         showPrompt = false;
@@ -87,11 +86,11 @@ void Game::updateTitleScreen() {
 
 void Game::renderTitleScreen() {
     const SDL_Rect logo_rect{
-            this->WINDOW_WIDTH / 2 - 8 * TILE_SIZE / 2, 0, 8 * TILE_SIZE, 5 * TILE_SIZE
+            this->WINDOW_WIDTH / 2 - 8 * Constants::TILE_SIZE / 2, 0, 8 * Constants::TILE_SIZE, 5 * Constants::TILE_SIZE
     };
     const SDL_Rect message_rect{
             this->WINDOW_WIDTH / 2 - 24 * this->FONT_SIZE / 2,
-            this->WINDOW_HEIGHT - TILE_SIZE * 2,
+            this->WINDOW_HEIGHT - Constants::TILE_SIZE * 2,
             23 * this->FONT_SIZE,
             this->FONT_SIZE
     };

@@ -4,7 +4,7 @@
 
 #include "Victini.h"
 
-Victini::Victini() : Pokemon(Pokemon::Id::VICTINI, 15, 100, 100, 100, 100, 100, 100) {}
+Victini::Victini() : Pokemon(15, 100, 100, 100, 100, 100, 100) {}
 
 std::string Victini::getName() const {
     return "Victini";
@@ -28,4 +28,8 @@ double Victini::getWeight() const {
 
 int Victini::getCatchRate() const {
     return 3;
+}
+
+Pokemon::Id Victini::getId() const {
+    return Pokemon::Id::VICTINI;
 }

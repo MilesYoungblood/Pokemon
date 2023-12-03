@@ -35,7 +35,7 @@ void Game::handleOverworldEvents() {
     }
 }
 
-void Game::changeMap(const std::array<int, 3> &data) {
+void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
         std::clog << "Error fading out \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -68,7 +68,7 @@ void Game::changeMap(const std::array<int, 3> &data) {
     this->currentMap->reset();
 
     // move the new map into the current map variable
-    this->currentMapIndex = data[2];
+    this->currentMapIndex = std::get<2>(data);
     this->currentMap = &this->maps.at(this->currentMapIndex);
 
     // resets the states of these variables for each trainer
@@ -76,7 +76,7 @@ void Game::changeMap(const std::array<int, 3> &data) {
     lockTrainer = std::vector<bool>(this->currentMap->numTrainers(), false);
     keepLooping = std::vector<bool>(this->currentMap->numTrainers(), true);
 
-    Player::getPlayer().setCoordinates(data[0], data[1]);
+    Player::getPlayer().setCoordinates(std::get<0>(data), std::get<0>(data));
 
     Camera::getInstance().lockOnPlayer([](Direction direct, int dist) -> void {
         Game::getInstance().currentMap->shift(direct, dist);
@@ -148,11 +148,11 @@ void Game::checkForOpponents() {
                 trainer->shiftDirectionOnMap(trainer->getDirection(), this->SCROLL_SPEED);
                 pixelsTraveled[i] += this->SCROLL_SPEED;
 
-                if (pixelsTraveled[i] % (TILE_SIZE / 2) == 0) {
+                if (pixelsTraveled[i] % (Constants::TILE_SIZE / 2) == 0) {
                     trainer->updateAnimation();
                 }
 
-                if (pixelsTraveled[i] % TILE_SIZE == 0) {
+                if (pixelsTraveled[i] % Constants::TILE_SIZE == 0) {
                     trainer->moveForward();
                 }
             }
@@ -259,11 +259,10 @@ void Game::updateOverworld() {
                     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
 
                     // sets a cool-down period before the Enter key can be registered again
-                    std::thread coolDown([] -> void {
+                    AutoThread::run([] -> void {
                         std::this_thread::sleep_for(std::chrono::milliseconds(500));
                         KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
                     });
-                    coolDown.detach();
                     KeyManager::getInstance().unlockWasd();
 
                     if ((*this->currentMap)[i]) {
@@ -305,10 +304,10 @@ void Game::updateOverworld() {
     }
 
     if (keepMovingForward) {
-        if (walkCounter % (TILE_SIZE / 2) == 0) {
+        if (walkCounter % (Constants::TILE_SIZE / 2) == 0) {
             Player::getPlayer().updateAnimation();
         }
-        if (walkCounter % TILE_SIZE == 0) {
+        if (walkCounter % Constants::TILE_SIZE == 0) {
             Player::getPlayer().moveForward();
         }
 
@@ -317,7 +316,7 @@ void Game::updateOverworld() {
     }
 
     // if the player's sprite is on a tile...
-    if (walkCounter % TILE_SIZE == 0) {
+    if (walkCounter % Constants::TILE_SIZE == 0) {
         if (not print) {
             KeyManager::getInstance().unlockWasd();
         }
@@ -325,10 +324,16 @@ void Game::updateOverworld() {
         keepMovingForward = false;
 
         checkForOpponents();
-        const std::array<int, 3> map_data = this->currentMap->isExitPointHere(Player::getPlayer().getX(),
-                                                                              Player::getPlayer().getY());
-        if (map_data[2] != -1) {
-            this->changeMap(map_data);
+        const std::any map_data = this->currentMap->isExitPointHere(Player::getPlayer().getX(),
+                                                                    Player::getPlayer().getY());
+        if (map_data.type() == typeid(std::tuple<int, int, Map::Id>)) {
+            try {
+                this->changeMap(std::any_cast<std::tuple<int, int, Map::Id>>(map_data));
+            }
+            catch (const std::bad_any_cast &e) {
+                throw std::runtime_error(
+                        std::string("Error casting std::any to std::tuple<int, int, Map::Id>: ") + e.what() + '\n');
+            }
         }
     }
 
@@ -336,16 +341,16 @@ void Game::updateOverworld() {
 }
 
 void Game::renderTextBox(const std::string &message = "Pokemon White is the best Pokemon game of all time!") {
-    const static int box_width = TILE_SIZE * 7;
-    const static int box_height = TILE_SIZE * 2;
+    const static int box_width = Constants::TILE_SIZE * 7;
+    const static int box_height = Constants::TILE_SIZE * 2;
     const static SDL_Rect text_box{
             this->WINDOW_WIDTH / 2 - box_width / 2,
             this->WINDOW_HEIGHT - box_height,
             box_width,
-            box_height - TILE_SIZE / 2
+            box_height - Constants::TILE_SIZE / 2
     };
 
-    const static int border_size = text_box.h / (TILE_SIZE * 3 / 10);
+    const static int border_size{ text_box.h / (Constants::TILE_SIZE * 3 / 10) };
 
     TextureManager::getInstance().drawRect(text_box, { 255, 255, 255 }, { 0, 0, 0 }, border_size);
 
@@ -384,7 +389,7 @@ void Game::renderTextBox(const std::string &message = "Pokemon White is the best
 
     // render the current message to the renderer
     TextureManager::getInstance().draw(this->text,
-                                       { text_box.x + TILE_SIZE / 10, text_box.y + TILE_SIZE / 10, width, height });
+                                       { text_box.x + Constants::TILE_SIZE / 10, text_box.y + Constants::TILE_SIZE / 10, width, height });
 }
 
 void Game::renderOverworld() {

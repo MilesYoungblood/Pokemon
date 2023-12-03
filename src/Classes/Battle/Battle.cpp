@@ -148,8 +148,8 @@ void Battle::forcedSwitchPrompt(const int arrow, bool &print) {
 }
 
 bool Battle::run() {
-    const int opponent_speed = ((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256;
-    const int odds = (((*this->player)[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
+    const int opponent_speed{ static_cast<int>((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256 };
+    const int odds{ static_cast<int>(((*this->player)[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30 };
 
     return opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds;
 }
@@ -284,26 +284,26 @@ std::pair<double, bool> Battle::criticalHit() {
 
 // returns 1.5 if move is a STAB move, and 1.0 otherwise
 double Battle::stabCheck(const Pokemon &pokemon, const Move &move) {
-    return pokemonLookupTable.at(pokemon.getId()).type1 == move.getType() or pokemonLookupTable.at(pokemon.getId()).type2 == move.getType() ? 1.5 : 1.0;
+    return pokemon.getType(true) == move.getType() or pokemon.getType(false) == move.getType() ? 1.5 : 1.0;
 }
 
 double Battle::checkType(const Move &move, const Pokemon &pokemon) {
     const int move_type = static_cast<int>(move.getType()) - 1;
-    const double type_1 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemonLookupTable.at(pokemon.getId()).type1) - 1);
+    const double type_1 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(true)) - 1);
 
     double type2;
-    if (pokemonLookupTable.at(pokemon.getId()).type2 == Type::NONE) {
+    if (pokemon.getType(false) == Type::NONE) {
         type2 = 1.0;
     }
     else {
-        type2 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemonLookupTable.at(pokemon.getId()).type2) - 1);
+        type2 = TYPE_CHART.at(move_type).at(static_cast<int>(pokemon.getType(false)) - 1);
     }
 
     return type_1 * type2;
 }
 
 int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit) {
-    int initialDamage = 0;
+    double initialDamage = 0;
 
     const int level_calc = (2 * attackingPokemon.getLevel() / 5) + 2;
     if (move.getCategory() == Move::Category::PHYSICAL) {
@@ -315,12 +315,13 @@ int Battle::calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defe
                         defendingPokemon.getBaseStat(Pokemon::Stat::SP_DEFENSE);
     }
 
-    const int final_damage = (initialDamage / 50) + 2;
+    const double final_damage = (initialDamage / 50) + 2;
     const std::pair<double, bool> c = Battle::criticalHit();
     crit = c.second;
 
     //FIXME recalculate damage
-    return static_cast<int>(final_damage * Battle::stabCheck(attackingPokemon, move) * Battle::checkType(move, defendingPokemon) * c.first);
+    return static_cast<int>(final_damage * Battle::stabCheck(attackingPokemon, move) *
+                            Battle::checkType(move, defendingPokemon) * c.first);
 }
 
 void Battle::switchOut(Trainer *trainer, const bool isUser, bool &keepPlaying) {
