@@ -2,6 +2,7 @@
 // Created by Miles on 10/1/2023.
 //
 
+#include "../Map/Map.h"
 #include "Entity.h"
 
 Entity::Entity(int x, int y)
@@ -114,6 +115,21 @@ bool Entity::isFacingWest() const {
     return this->currentDirection == Direction::LEFT;
 }
 
+bool Entity::canMoveForward(const Map *map) const {
+    switch (this->currentDirection) {
+        case Direction::UP:
+            return not map->isObstructionHere(this->x, this->y - 1);
+        case Direction::RIGHT:
+            return not map->isObstructionHere(this->x + 1, this->y);
+        case Direction::DOWN:
+            return not map->isObstructionHere(this->x, this->y + 1);
+        case Direction::LEFT:
+            return not map->isObstructionHere(this->x - 1, this->y);
+        default:
+            throw std::runtime_error("Unexpected error: function canMoveForward");
+    }
+}
+
 // returns true if this is right next to another entity, not necessarily facing
 bool Entity::isNextTo(const Entity *entity) const {
     if (this->currentDirection == Direction::UP) {
@@ -204,7 +220,7 @@ int Entity::getScreenY() const {
     return this->screenY;
 }
 
-void Entity::setAnimation(const Direction direction, const char *path, int numFrames, int numRows) {
+void Entity::setAnimation(Direction direction, const char *path, int numFrames, int numRows) {
     this->animations[direction] = Animation(path, numFrames, numRows);
 }
 

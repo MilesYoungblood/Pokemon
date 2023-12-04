@@ -27,7 +27,7 @@ struct Victini : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::VICTINI,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Victini>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::VICTINI,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Victini>(); }));
     });
 }

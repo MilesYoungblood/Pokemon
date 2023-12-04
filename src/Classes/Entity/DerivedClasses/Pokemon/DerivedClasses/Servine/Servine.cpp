@@ -4,7 +4,7 @@
 
 #include "Servine.h"
 
-Servine::Servine() : Pokemon(87.5, 17, 60, 60, 75, 60, 75, 83) {}
+Servine::Servine() : Pokemon(Ability::Id::OVERGROW, 87.5, 17, 60, 60, 75, 60, 75, 83) {}
 
 std::string Servine::getName() const {
     return "Servine";

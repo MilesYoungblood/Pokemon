@@ -7,6 +7,10 @@
 #include <conio.h>
 #include <windows.h>
 
+#ifdef SYNCHRONIZE
+#undef SYNCHRONIZE
+#endif
+
 enum Keys {
     ESC = 27,
     ENTER = 13
@@ -280,7 +284,7 @@ inline bool coinFlip() {
     return dist(mt) == 1;
 }
 
-inline bool binomial(double prob) {
+inline bool binomial(double prob = 50.0) {
     std::random_device rd;
     std::mt19937 mt(rd());
     std::binomial_distribution<int> dist(1, prob / 100.0);
@@ -298,52 +302,4 @@ inline int generateInteger(int from, int to) {
     std::uniform_int_distribution<int> dist(from, to);
 
     return dist(mt);
-}
-
-// prints out a c-string and sleeps in between prints
-inline void printMessage(const char *message, const int interval = 25) {
-    bool sleep = true;
-    const std::string_view str(message);
-
-    for (const char ltr : str) {
-        if (sleep and (_kbhit() != 0)) {
-            if (static_cast<char>(_getch()) == Keys::ENTER) {
-                sleep = false;
-            }
-        }
-        std::cout << ltr;
-        if (sleep) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-        }
-    }
-}
-
-// prints out a string and sleeps in between prints
-inline void printMessage(std::string_view message, const int interval = 25) {
-    bool sleep = true;
-    for (const char ltr : message) {
-        if (sleep and (_kbhit() != 0)) {
-            if (static_cast<char>(_getch()) == Keys::ENTER) {
-                sleep = false;
-            }
-        }
-        std::cout << ltr;
-        if (sleep) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(interval));
-        }
-    }
-}
-
-// prints out a character then sleeps
-inline void printMessage(const char message) {
-    std::cout << message;
-    std::this_thread::sleep_for(std::chrono::milliseconds(25));
-}
-
-inline void pressEnter() {
-    while (true) {
-        if (static_cast<char>(_getch()) == Keys::ENTER) {
-            return;
-        }
-    }
 }

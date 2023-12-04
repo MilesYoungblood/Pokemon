@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "Components.h"
-
 #include "Position/PositionComponent.h"
 #include "Resource/ResourceComponent.h"
 #include "Sprite/SpriteComponent.h"

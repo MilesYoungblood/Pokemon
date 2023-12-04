@@ -26,7 +26,7 @@ struct Stoutland : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::STOUTLAND,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Stoutland>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::STOUTLAND,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Stoutland>(); }));
     });
 }

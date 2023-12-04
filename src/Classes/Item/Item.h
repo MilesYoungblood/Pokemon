@@ -42,7 +42,7 @@ public:
 
     void use();
 
-    virtual void useMessage();
+    [[nodiscard]] virtual std::string useMessage() const;
 
     [[nodiscard]] virtual Item::Class getClass() const = 0;
 

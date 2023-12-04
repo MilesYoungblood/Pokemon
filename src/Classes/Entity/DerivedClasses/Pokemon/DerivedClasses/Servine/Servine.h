@@ -26,7 +26,7 @@ struct Servine : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::SERVINE,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Servine>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::SERVINE,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Servine>(); }));
     });
 }

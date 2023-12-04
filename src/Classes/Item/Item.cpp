@@ -22,14 +22,15 @@ void Item::use() {
     }
 }
 
-void Item::useMessage() {
-    printMessage("You used a");
+std::string Item::useMessage() const {
+    std::string message{ "You used a" };
 
     if (isVowel(this->getName()[0])) {
-        printMessage('n');
+        message += 'n';
     }
 
-    printMessage(' ' + this->getName() + "! ");
+    message.append(' ' + this->getName() + '!');
+    return message;
 }
 
 Item::operator bool() const {

@@ -12,26 +12,15 @@ private:
     int y;
 
 public:
-    PositionComponent(int x, int y) : x(x), y(y) {}
+    PositionComponent(int x, int y);
 
-    void translateX(int amount) {
-        this->x += amount;
-    }
+    void translateX(int amount);
 
-    void translateY(int amount) {
-        this->y += amount;
-    }
+    void translateY(int amount);
 
-    void setPosition(int newX, int newY) {
-        this->x = newX;
-        this->y = newY;
-    }
+    void setPosition(int newX, int newY);
 
-    [[nodiscard]] int getX() const {
-        return this->x;
-    }
+    [[nodiscard]] int getX() const;
 
-    [[nodiscard]] int getY() const {
-        return this->y;
-    }
+    [[nodiscard]] int getY() const;
 };

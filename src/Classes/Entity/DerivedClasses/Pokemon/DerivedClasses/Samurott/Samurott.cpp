@@ -4,7 +4,7 @@
 
 #include "Samurott.h"
 
-Samurott::Samurott() : Pokemon(87.5, 36, 95, 100, 85, 108, 70, 70) {}
+Samurott::Samurott() : Pokemon(Ability::Id::TORRENT, 87.5, 36, 95, 100, 85, 108, 70, 70) {}
 
 std::string Samurott::getName() const {
     return "Samurott";

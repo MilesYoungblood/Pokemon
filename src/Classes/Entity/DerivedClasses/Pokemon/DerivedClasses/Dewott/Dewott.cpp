@@ -4,7 +4,7 @@
 
 #include "Dewott.h"
 
-Dewott::Dewott() : Pokemon(87.5, 17, 75, 75, 60, 83, 60, 60) {}
+Dewott::Dewott() : Pokemon(Ability::Id::TORRENT, 87.5, 17, 75, 75, 60, 83, 60, 60) {}
 
 std::string Dewott::getName() const {
     return "Dewott";

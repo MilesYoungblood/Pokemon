@@ -4,7 +4,7 @@
 
 #include "Oshawott.h"
 
-Oshawott::Oshawott() : Pokemon(87.5, 1, 55, 55, 45, 63, 45, 45) {}
+Oshawott::Oshawott() : Pokemon(Ability::Id::TORRENT, 87.5, 1, 55, 55, 45, 63, 45, 45) {}
 
 std::string Oshawott::getName() const {
     return "Oshawott";

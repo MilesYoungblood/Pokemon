@@ -26,7 +26,7 @@ struct Oshawott : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::OSHAWOTT,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Oshawott>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::OSHAWOTT,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Oshawott>(); }));
     });
 }

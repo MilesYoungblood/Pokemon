@@ -4,7 +4,7 @@
 
 #include "Snivy.h"
 
-Snivy::Snivy() : Pokemon(87.5, 1, 45, 45, 55, 45, 55, 63) {}
+Snivy::Snivy() : Pokemon(Ability::Id::OVERGROW, 87.5, 1, 45, 45, 55, 45, 55, 63) {}
 
 std::string Snivy::getName() const {
     return "Snivy";

@@ -46,10 +46,10 @@ void RestoreItem::restore(Move &move) const {
     }
 }
 
-void RestoreItem::restoreMessage(const Pokemon &pokemon) const {
-    printMessage(pokemon.getName() + " recovered " + std::to_string(this->getAmount()) + " HP!\n");
+std::string RestoreItem::restoreMessage(const Pokemon &pokemon) const {
+    return pokemon.getName() + " recovered " + std::to_string(this->getAmount()) + " HP!";
 }
 
-void RestoreItem::restoreMessage(const Move &move) const {
-    printMessage(move.getName() + " recovered " + std::to_string(this->getAmount()) + " PP!\n");
+std::string RestoreItem::restoreMessage(const Move &move) const {
+    return move.getName() + "recovered " + std::to_string(this->getAmount()) + " PP!";
 }

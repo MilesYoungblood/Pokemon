@@ -4,7 +4,7 @@
 
 #include "Victini.h"
 
-Victini::Victini() : Pokemon(15, 100, 100, 100, 100, 100, 100) {}
+Victini::Victini() : Pokemon(Ability::Id::VICTORY_STAR, 15, 100, 100, 100, 100, 100, 100) {}
 
 std::string Victini::getName() const {
     return "Victini";

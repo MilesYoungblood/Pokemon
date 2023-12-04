@@ -4,7 +4,8 @@
 
 #include "Liepard.h"
 
-Liepard::Liepard() : Pokemon(0.5, 20, 41, 50, 37, 50, 37, 66) {}
+Liepard::Liepard() : Pokemon(binomial() ? Ability::Id::LIMBER : Ability::Id::UNBURDEN, 0.5, 20, 41,
+                             50, 37, 50, 37, 66) {}
 
 std::string Liepard::getName() const {
     return "Liepard";

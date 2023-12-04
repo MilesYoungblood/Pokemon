@@ -4,7 +4,7 @@
 
 #include "Serperior.h"
 
-Serperior::Serperior() : Pokemon(87.5, 36, 75, 75, 95, 75, 96, 113) {}
+Serperior::Serperior() : Pokemon(Ability::Id::OVERGROW, 87.5, 36, 75, 75, 95, 75, 96, 113) {}
 
 std::string Serperior::getName() const {
     return "Serperior";

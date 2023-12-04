@@ -4,12 +4,20 @@ project(PokemonBattle)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories("C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/include/SDL2")
-include_directories("C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/include/SDL2")
-include_directories("C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/include/SDL2")
-include_directories("C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/include/SDL2")
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL)
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_image)
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_mixer)
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_ttf)
 
-#set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+    message("64-bit system detected")
+    # Add 64-bit specific configurations, libraries, etc.
+elseif (CMAKE_SIZEOF_VOID_P EQUAL 4)
+    message("32-bit system detected")
+    # Add 32-bit specific configurations, libraries, etc.
+else ()
+    message(FATAL_ERROR "Unsupported architecture")
+endif ()
 
 set(SOURCES
         src/main.cpp
@@ -31,14 +39,9 @@ set(SOURCES
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
-        src/Classes/Move/DerivedClasses/WaterShuriken.h
         src/Classes/Move/DerivedClasses/VoltTackle.h
         src/Classes/Move/DerivedClasses/IceBeam.h
-        src/Classes/Move/DerivedClasses/Flamethrower.h
-        src/Classes/Move/DerivedClasses/AuraSphere.h
-        src/Classes/Move/DerivedClasses/FlashCannon.h
         src/Classes/Move/DerivedClasses/Thunder.h
-        src/Classes/Move/DerivedClasses/FocusBlast.h
         src/Classes/Move/DerivedClasses/IronTail.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
@@ -55,14 +58,10 @@ set(SOURCES
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
-        src/Classes/Move/DerivedClasses/DarkPulse.h
-        src/Classes/Move/DerivedClasses/Extrasensory.h
         src/Classes/TextureManager/TextureManager.h
         src/Classes/TextureManager/TextureManager.cpp
         src/Classes/Camera/Camera.h
         src/Classes/Camera/Camera.cpp
-        src/Data/Moves/MoveList.h
-        src/Classes/Move/DerivedClasses/DragonPulse.h
         src/Classes/Move/DerivedClasses/QuickAttack.h
         src/Classes/Move/DerivedClasses/SolarBeam.h
         src/Classes/Game/OverworldFunctions.cpp
@@ -75,17 +74,22 @@ set(SOURCES
         src/Classes/Animation/Animation.cpp
         src/Classes/SoundPlayer/SoundPlayer.h
         src/Classes/SoundPlayer/SoundPlayer.cpp
-        #src/Classes/Move/Move.ixx
-        #src/Functions/GeneralFunctions.ixx
-        src/Classes/GameComponent/GameComponent.h
+        src/Classes/GameObject/GameObject.cpp
         src/Classes/GameObject/GameObject.h
+        src/Classes/GameComponent/GameComponent.h
+        src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp
         src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.h
+        src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp
         src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.h
+        src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp
         src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
         src/Classes/GameComponent/DerivedClasses/Components.h
         src/pch.h
+        src/constants.h
+        src/constants.cpp
         src/Classes/AutoThread/AutoThread.h
-        src/Classes/Invoker/Invoker.h
+        src/Classes/Ability/Ability.cpp
+        src/Classes/Ability/Ability.h
 )
 
 set(POKEMON
@@ -126,8 +130,29 @@ set(POKEMON
 )
 
 set(MOVES
-        src/Data/Moves/AirSlash.cpp
-        src/Data/Moves/AuraSphere.cpp
+        src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp
+        src/Classes/Move/DerivedClasses/AirSlash/AirSlash.h
+        src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp
+        src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.h
+        src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp
+        src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.h
+        src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp
+        src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.h
+        src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp
+        src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.h
+        src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp
+        src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.h
+        src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp
+        src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h
+        src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp
+        src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h
+)
+
+set(ABILITIES
+        src/Classes/Ability/DerivedClasses/Blaze/Blaze.cpp
+        src/Classes/Ability/DerivedClasses/Blaze/Blaze.h
+        src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp
+        src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.h
 )
 
 set(RESTORE_ITEMS
@@ -176,11 +201,9 @@ set(ITEMS
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
         src/Data/Items/Items.h
-        src/constants.h
-        src/constants.cpp
 )
 
-add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ITEMS})
+add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ABILITIES} ${ITEMS})
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/constants.h)
 
@@ -198,7 +221,7 @@ target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/constants.h)
 #        COMPILE_FLAGS "-fmodules-ts"
 #)
 
-target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2-2.28.4/x86_64-w64-mingw32/bin/SDL2.dll")
-target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_image-2.6.3/x86_64-w64-mingw32/bin/SDL2_image.dll")
-target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_mixer-2.6.3/x86_64-w64-mingw32/bin/SDL2_mixer.dll")
-target_link_libraries(${PROJECT_NAME} "C:/libs/SDL2_ttf-2.20.2/x86_64-w64-mingw32/bin/SDL2_ttf.dll")
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_image.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_mixer.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_ttf.dll)

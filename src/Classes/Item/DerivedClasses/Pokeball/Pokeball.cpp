@@ -34,14 +34,15 @@ Item::Class PokeBall::getClass() const {
     return Item::Class::POKE_BALL;
 }
 
-void PokeBall::useMessage() {
-    printMessage("You threw a");
+std::string PokeBall::useMessage() const {
+    std::string message{ "You threw a" };
 
     if (isVowel(this->getName()[0])) {
-        printMessage('n');
+        message += 'n';
     }
 
-    printMessage(' ' + this->getName() + "! ");
+    message.append(' ' + this->getName() + '!');
+    return message;
 }
 
 bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const {

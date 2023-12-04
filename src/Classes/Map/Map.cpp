@@ -69,7 +69,7 @@ Map::~Map() {
     SDL_DestroyTexture(Map::tallGrass);
 }
 
-void Map::initTextures() {
+void Map::init() {
     static bool isInitialized = false;
     // only allow calls to this function if the TextureManager is initialized,
     // and if Maps are not already initialized
@@ -244,20 +244,5 @@ void Map::reset() {
 
     for (auto &trainer : this->trainers) {
         trainer->resetPos();
-    }
-}
-
-bool Entity::canMoveForward(const Map *map) const {
-    switch (this->currentDirection) {
-        case Direction::UP:
-            return not map->isObstructionHere(this->x, this->y - 1);
-        case Direction::RIGHT:
-            return not map->isObstructionHere(this->x + 1, this->y);
-        case Direction::DOWN:
-            return not map->isObstructionHere(this->x, this->y + 1);
-        case Direction::LEFT:
-            return not map->isObstructionHere(this->x - 1, this->y);
-        default:
-            throw std::runtime_error("Unexpected error: function canMoveForward");
     }
 }

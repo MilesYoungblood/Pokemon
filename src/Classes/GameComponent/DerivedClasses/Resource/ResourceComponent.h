@@ -5,37 +5,25 @@
 #pragma once
 
 #include "../../GameComponent.h"
-#include <algorithm>
 
 class ResourceComponent : public GameComponent {
 private:
-    int currentAmount{ 0 };
-    int maxAmount{ 0 };
+    int currentAmount;
+    int maxAmount;
+    const int TRUE_MAX_AMOUNT;
 
 public:
-    explicit ResourceComponent(int amount) : currentAmount(amount), maxAmount(amount) {}
+    ResourceComponent(int amount, int max);
 
-    void increment(int amount) {
-        this->currentAmount = std::min(this->currentAmount + amount, this->maxAmount);
-    }
+    void increment(int amount);
 
-    void decrement(int amount) {
-        this->currentAmount = std::max(this->currentAmount - amount, 0);
-    }
+    void decrement(int amount);
 
-    [[nodiscard]] int getCurrentAmount() const {
-        return this->currentAmount;
-    }
+    [[nodiscard]] int getCurrentAmount() const;
 
-    [[nodiscard]] int getMaxAmount() const {
-        return this->maxAmount;
-    }
+    [[nodiscard]] int getMaxAmount() const;
 
-    void increaseMax(int amount) {
-        this->maxAmount += amount;
-    }
+    void increaseMax(int amount);
 
-    void restore() {
-        this->currentAmount = this->maxAmount;
-    }
+    void restore();
 };

@@ -35,7 +35,7 @@ public:
 
     ~Map();
 
-    static void initTextures();
+    static void init();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 

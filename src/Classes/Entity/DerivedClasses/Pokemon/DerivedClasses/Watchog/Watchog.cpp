@@ -4,7 +4,8 @@
 
 #include "Watchog.h"
 
-Watchog::Watchog() : Pokemon(0.5, 20, 60, 85, 69, 60, 69, 77) {}
+Watchog::Watchog() : Pokemon(binomial() ? Ability::Id::ILLUMINATE : Ability::Id::KEEN_EYE, 0.5, 20,
+                             60, 85, 69, 60, 69, 77) {}
 
 std::string Watchog::getName() const {
     return "Watchog";

@@ -26,7 +26,7 @@ struct Pignite : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::PIGNITE,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Pignite>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::PIGNITE,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Pignite>(); }));
     });
 }

@@ -4,13 +4,14 @@
 
 #pragma once
 
+#include "../AutoThread/AutoThread.h"
 #include "../../Functions/GeneralFunctions.h"
 
 enum class Type {
     NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
     ICE, FIGHTING, POISON, GROUND, FLYING,
     PSYCHIC, BUG, ROCK, GHOST, DRAGON,
-    DARK, STEEL, FAIRY
+    DARK, STEEL
 };
 
 class Pokemon;
@@ -31,8 +32,7 @@ public:
         QUICK_ATTACK,
         SOLAR_BEAM,
         THUNDER,
-        VOLT_TACKLE,
-        WATER_SHURIKEN
+        VOLT_TACKLE
     };
 
     enum class Category {
@@ -50,21 +50,23 @@ public:
         bool sureHit;
     };
 
-    explicit Move(Move::Id id);
+    explicit Move(int pp);
 
-    Move(Move::Id id, int pp, int maxPp);
+    Move(int pp, int maxPp);
 
     Move(const Move &) = delete;
 
-    Move(Move &&) noexcept;
+    Move(Move &&) noexcept = delete;
 
     Move &operator=(const Move &) = delete;
 
-    Move &operator=(Move &&rhs) noexcept;
+    Move &operator=(Move &&rhs) noexcept = delete;
 
     virtual ~Move() = default;
 
-    static void initData(Move::Data (*instructions)(Move::Id));
+    void setPp(int amount);
+
+    void setMaxPp(int amount);
 
     void restore(int amount);
 
@@ -78,32 +80,57 @@ public:
 
     [[nodiscard]] virtual int getDamage() const;
 
-    virtual void action(Pokemon &attackingPokemon, Pokemon &defendingPokemon, int damage, bool &skip);
+    virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 
-    virtual void actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, int damage, bool skipTurn, bool criticalHit, double typeEff);
+    [[nodiscard]] virtual std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const;
 
-    [[nodiscard]] std::string getName() const;
+    [[nodiscard]] virtual std::string getName() const = 0;
 
-    [[nodiscard]] const char *getDescription() const;
+    [[nodiscard]] virtual const char *getDescription() const = 0;
 
-    [[nodiscard]] int getPower() const;
+    [[nodiscard]] virtual int getPower() const = 0;
 
-    [[nodiscard]] int getAccuracy() const;
+    [[nodiscard]] virtual int getAccuracy() const;
 
-    [[nodiscard]] Type getType() const;
+    [[nodiscard]] virtual double getCritRatio() const;
 
-    [[nodiscard]] Move::Category getCategory() const;
+    [[nodiscard]] virtual Type getType() const = 0;
 
-    [[nodiscard]] Move::Id getId() const;
+    [[nodiscard]] virtual Move::Category getCategory() const = 0;
 
-    [[nodiscard]] bool isPriority() const;
+    [[nodiscard]] virtual Move::Id getId() const = 0;
+
+    [[nodiscard]] virtual bool isPriority() const;
 
     explicit operator bool() const;
 
+protected:
+    void resetFlags();
+
+    void setDamageFlag(int amount);
+
+    [[nodiscard]] int getDamageFlag() const;
+
+    void setEffFlag(double amount);
+
+    [[nodiscard]] double getEffFlag() const;
+
+    void setCritFlag(double amount);
+
+    [[nodiscard]] double getCritFlag() const;
+
+    void calculateDamage(const Pokemon &attacker, const Pokemon &defender);
+
 private:
-    Move::Id id;
+
+    [[nodiscard]] double checkType(const Pokemon &pokemon) const;
+
     int pp;
     int maxPp;
 
-    inline static Move::Data (*dataFunction)(Move::Id){ nullptr };
+    int damageFlag{ 0 };
+    double effFlag{ 0.0 };
+    double critFlag{ 0.0 };
 };
+
+inline std::unordered_map<Move::Id, std::unique_ptr<Move>(*)()> moveMap;

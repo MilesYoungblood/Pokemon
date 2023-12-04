@@ -4,10 +4,6 @@
 
 #pragma once
 
-#include <memory>
-#include <unordered_map>
-#include <iostream>
-#include <vector>
 #include "../GameComponent/DerivedClasses/Components.h"
 
 class GameObject {
@@ -16,10 +12,7 @@ private:
 
     std::unordered_map<componentId, std::unique_ptr<GameComponent>> components;
 
-    static componentId getComponentId() {
-        static componentId lastId = 0;
-        return lastId++;
-    }
+    static componentId getComponentId();
 
     template<typename C>
     static componentId getComponentId() {
@@ -28,31 +21,7 @@ private:
     }
 
 public:
-    static void init() {
-        static bool initialized = false;
-
-        if (initialized) {
-            return;
-        }
-
-        GameObject::getComponentId<PositionComponent>();
-        GameObject::getComponentId<SpriteComponent>();
-        GameObject::getComponentId<ResourceComponent>();
-
-        initialized = true;
-    }
-
-    void update() {
-        for (auto &component : this->components) {
-            component.second->update();
-        }
-    }
-
-    void render() {
-        for (auto &component : this->components) {
-            component.second->render();
-        }
-    }
+    static void init();
 
     template<typename C, typename ...Args>
     void addComponent(Args ...args) {
@@ -91,10 +60,10 @@ inline void foo() {
     gameObject.getComponent<PositionComponent>().translateY(6);
     std::cout << gameObject.getComponent<PositionComponent>().getX() << '\n';
 
-    gameObject.addComponent<SpriteComponent>("sprites\\Hilbert\\HilbertSpriteSheetDown.png", 5, 1);
+    gameObject.addComponent<SpriteComponent>("sprites/Hilbert/HilbertSpriteSheetDown.png", 4, 1);
     gameObject.getComponent<SpriteComponent>().update();
 
-    gameObject.addComponent<ResourceComponent>(100);
+    gameObject.addComponent<ResourceComponent>(100, 500);
     gameObject.getComponent<ResourceComponent>().decrement(10);
     std::cout << gameObject.getComponent<ResourceComponent>().getCurrentAmount() << '\n';
 }

@@ -26,7 +26,7 @@ struct Watchog : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::WATCHOG,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Watchog>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::WATCHOG,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Watchog>(); }));
     });
 }

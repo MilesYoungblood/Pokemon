@@ -7,17 +7,11 @@
 #include "../Classes/Entity/DerivedClasses/Trainer/Trainer.h"
 
 inline void failMessage() {
-    printMessage("But it failed!\n");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::cout << "But it failed!\n";
 }
 
 inline void displayBag(int arrow, bool &print) {
-    if (print) {
-        printMessage("Choose an option:\n");
-    }
-    else {
-        std::cout << "Choose an option:\n";
-    }
+    std::cout << "Choose an option:\n";
 
     arrow == 0 ? std::cout << "   ->   HP/PP restore\n" : std::cout << "\tHP/PP restore\n";
     arrow == 1 ? std::cout << "   ->   Status restore\n" : std::cout << "\tStatus restore\n";
@@ -31,12 +25,7 @@ inline void displayBag(int arrow, bool &print) {
 
 template<typename I>
 inline void displayItems(Trainer *trainer, int arrow, bool &print) {
-    if (print) {
-        printMessage("Choose an item:\n");
-    }
-    else {
-        std::cout << "Choose an item:\n";
-    }
+    std::cout << "Choose an item:\n";
 
     const int starting = 10 * (arrow / 10);
     const int num_items = trainer->getNumItems<I>();
@@ -60,35 +49,35 @@ inline void displayItems(Trainer *trainer, int arrow, bool &print) {
 
 inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> attempts) {
     if (attempts[0]) {
-        printMessage("1...");
+        std::cout << "1...";
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         if (attempts[1]) {
-            printMessage("2...");
+            std::cout << "2...";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             if (attempts[2]) {
-                printMessage("3...");
+                std::cout << "3...";
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 if (attempts[3]) {
-                    printMessage("Gotcha! " + pokemon.getName() + " was caught!\n");
+                    std::cout << "Gotcha! " + pokemon.getName() + " was caught!\n";
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
                 else {
-                    printMessage("Almost had it!\n");
+                    std::cout << "Almost had it!\n";
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                 }
             }
             else {
-                printMessage("No! " + pokemon.getName() + " escaped!\n");
+                std::cout << "No! " + pokemon.getName() + " escaped!\n";
                 std::this_thread::sleep_for(std::chrono::milliseconds(1000));
             }
         }
         else {
-            printMessage(pokemon.getName() + " failed to be caught!\n");
+            std::cout << pokemon.getName() + " failed to be caught!\n";
             std::this_thread::sleep_for(std::chrono::milliseconds(1000));
         }
     }
     else {
-        printMessage("Not even close!\n");
+        std::cout << "Not even close!\n";
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     std::cout.flush();
@@ -134,24 +123,24 @@ inline void boostMessage(const Pokemon &pokemon, Pokemon::Stat statBoosted, int 
     }
 
     if (not limit) {
-        printMessage(pokemon.getName() + "'s " + string + " rose");
+        std::cout << pokemon.getName() + "'s " + string + " rose";
         if (amountBoosted == 2) {
-            printMessage(" sharply");
+            std::cout << " sharply";
         }
         else if (amountBoosted > 2) {
-            printMessage(" drastically");
+            std::cout << " drastically";
         }
 
-        printMessage("!\n");
+        std::cout << "!\n";
     }
     else {
-        printMessage(pokemon.getName() + "'s " + string + " can't go any higher!\n");
+        std::cout << pokemon.getName() + "'s " + string + " can't go any higher!\n";
     }
 
     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 }
 
 inline void noEffectMessage(const Item &item, const Pokemon &pokemon) {
-    printMessage(item.getName() + " had no effect on " + pokemon.getName() + ".\n");
+    std::cout << item.getName() + " had no effect on " + pokemon.getName() + ".\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

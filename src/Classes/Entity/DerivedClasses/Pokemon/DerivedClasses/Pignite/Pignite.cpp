@@ -4,7 +4,7 @@
 
 #include "Pignite.h"
 
-Pignite::Pignite() : Pokemon(87.5, 17, 90, 93, 55, 70, 55, 55) {}
+Pignite::Pignite() : Pokemon(Ability::Id::BLAZE, 87.5, 17, 90, 93, 55, 70, 55, 55) {}
 
 std::string Pignite::getName() const {
     return "Pignite";

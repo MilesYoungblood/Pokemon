@@ -4,7 +4,7 @@
 
 #include "Emboar.h"
 
-Emboar::Emboar() : Pokemon(87.5, 36, 110, 123, 65, 100, 65, 65) {}
+Emboar::Emboar() : Pokemon(Ability::Id::BLAZE, 87.5, 36, 110, 123, 65, 100, 65, 65) {}
 
 std::string Emboar::getName() const {
     return "Emboar";

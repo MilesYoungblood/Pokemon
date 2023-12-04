@@ -26,7 +26,7 @@ struct Purrloin : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::PURRLOIN,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Purrloin>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::PURRLOIN,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Purrloin>(); }));
     });
 }

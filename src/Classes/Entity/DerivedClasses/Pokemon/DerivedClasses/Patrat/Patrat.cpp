@@ -4,7 +4,8 @@
 
 #include "Patrat.h"
 
-Patrat::Patrat() : Pokemon(0.5, 1, 45, 55, 39, 35, 39, 42) {}
+Patrat::Patrat() : Pokemon(binomial() ? Ability::Id::RUN_AWAY : Ability::Id::KEEN_EYE, 0.5, 1,
+                           45, 55, 39, 35, 39, 42) {}
 
 std::string Patrat::getName() const {
     return "Patrat";

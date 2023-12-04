@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "../../../AutoThread/AutoThread.h"
 #include "../../Entity.h"
 #include "../../../Move/Move.h"
+#include "../../../Ability/Ability.h"
 
 enum class Status {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
@@ -182,9 +182,9 @@ public:
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
 
-    Pokemon(int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
+    Pokemon(Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
-    Pokemon(double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
+    Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
     Pokemon(const Pokemon &) = delete;
 
@@ -198,16 +198,11 @@ public:
 
     [[nodiscard]] int numMoves() const;
 
-    template<typename ...Args>
-    void addMove(Args ...args) {
-        if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
-            return;
-        }
-
-        this->moveSet.push_back(Move(args...));
-    }
+    void addMove(std::unique_ptr<Move> toAdd);
 
     void deleteMove(int index);
+
+    void tryActivateAbility(int battleFlag, Pokemon &opponent, bool isAttacking);
 
     void restoreHp(int amount);
 
@@ -265,9 +260,9 @@ public:
 
     [[nodiscard]] bool canAttack() const;
 
-    void hpEmptyMessage() const;
+    [[nodiscard]] std::string hpEmptyMessage() const;
 
-    void hpFullMessage() const;
+    [[nodiscard]] std::string hpFullMessage() const;
 
     Move &operator[](int index);
 
@@ -284,11 +279,13 @@ private:
 
     int level;
 
-    std::vector<Move> moveSet;
+    std::vector<std::unique_ptr<Move>> moveSet;
+    std::unique_ptr<Ability> ability;
+
     Pokemon::Gender gender;
     Status status{ Status::NONE };
 
     double getStat(Pokemon::Stat stat) const;
 };
 
-inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> pokemonLookupTable;
+inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> pokemonMap;

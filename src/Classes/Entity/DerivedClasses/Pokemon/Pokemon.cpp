@@ -4,8 +4,16 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(int level, int hp, double attack, double defense, double spAttack, double spDefense,
+Pokemon::Pokemon(Ability::Id aId, int level, int hp, double attack, double defense, double spAttack, double spDefense,
                  double speed) : maxHp(hp), currentHp(hp), level(level), gender(Pokemon::Gender::GENDERLESS) {
+    try {
+        this->ability = abilityMap.at(aId)();
+    }
+    catch (const std::exception &e) {
+        std::clog << "Error adding Ability: " << e.what() << '\n';
+        this->ability = nullptr;
+    }
+
     this->baseStats.insert(std::make_pair(Pokemon::Stat::ATTACK, attack));
     this->baseStats.insert(std::make_pair(Pokemon::Stat::DEFENSE, defense));
     this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, spAttack));
@@ -21,10 +29,18 @@ Pokemon::Pokemon(int level, int hp, double attack, double defense, double spAtta
     this->statModifiers.insert(std::make_pair(Pokemon::Stat::EVASIVENESS, 0));
 }
 
-Pokemon::Pokemon(double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense,
-                 double speed)
+Pokemon::Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack,
+                 double spDefense, double speed)
         : maxHp(hp), currentHp(hp), level(level),
           gender(binomial(pMale) ? Pokemon::Gender::MALE : Pokemon::Gender::FEMALE) {
+    try {
+        this->ability = abilityMap.at(ability)();
+    }
+    catch (const std::exception &e) {
+        std::clog << "Error adding Ability: " << e.what() << '\n';
+        this->ability = nullptr;
+    }
+
     this->baseStats.insert(std::make_pair(Pokemon::Stat::ATTACK, attack));
     this->baseStats.insert(std::make_pair(Pokemon::Stat::DEFENSE, defense));
     this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, spAttack));
@@ -44,12 +60,32 @@ int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
 }
 
+void Pokemon::addMove(std::unique_ptr<Move> toAdd) {
+    if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
+        return;
+    }
+
+    this->moveSet.push_back(std::move(toAdd));
+}
+
 void Pokemon::deleteMove(const int index) {
     try {
         this->moveSet.erase(this->moveSet.begin() + index);
     }
     catch (const std::exception &e) {
         throw std::runtime_error(std::string("Error deleting move: ") + e.what() + '\n');
+    }
+}
+
+void Pokemon::tryActivateAbility(int battleFlag, Pokemon &opponent, bool isAttacking) {
+    // only activate the ability of the battle battleFlag and corresponding ability battleFlag match
+    if (this->ability->getFlag() == battleFlag) {
+        if (isAttacking) {
+            this->ability->action(*this, opponent);
+        }
+        else {
+            this->ability->action(opponent, *this);
+        }
     }
 }
 
@@ -218,20 +254,20 @@ bool Pokemon::isAfflicted() const {
 
 bool Pokemon::canAttack() const {
     return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
-                               [](const Move &move) -> bool { return not move; });
+                               [](const std::unique_ptr<Move> &move) -> bool { return not *move; });
 }
 
-void Pokemon::hpEmptyMessage() const {
-    printMessage(this->getName() + "'s HP is empty!\n");
+std::string Pokemon::hpEmptyMessage() const {
+    return this->getName() + "'s HP is empty!";
 }
 
-void Pokemon::hpFullMessage() const {
-    printMessage(this->getName() + "'s HP is full!\n");
+std::string Pokemon::hpFullMessage() const {
+    return this->getName() + "'s HP is full!";
 }
 
 Move &Pokemon::operator[](const int index) {
     try {
-        return this->moveSet.at(index);
+        return *this->moveSet.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
@@ -240,61 +276,9 @@ Move &Pokemon::operator[](const int index) {
 
 const Move &Pokemon::operator[](const int index) const {
     try {
-        return this->moveSet.at(index);
+        return *this->moveSet.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
     }
-}
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void Move::action(Pokemon & /*attackingPokemon*/, Pokemon &defendingPokemon, int damage, bool & /*skip*/) {
-    // damage will be negative if the attack misses
-    if (damage > 0) {
-        defendingPokemon.takeDamage(damage);
-    }
-
-    --this->pp;
-}
-
-void Move::actionMessage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const int damage, const bool  /*skipTurn*/, const bool criticalHit, const double typeEff) {
-    printMessage(attackingPokemon.getName() + " used " + this->getName() + "! ");
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    // damage will be negative if the attack misses
-    if (damage > 0) {
-        if (typeEff == 0.0) {
-            printMessage("It doesn't affect " + defendingPokemon.getName() + "...\n");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        }
-        else if (typeEff >= 2.0) {
-            printMessage(this->getName() + " did " + std::to_string(damage) + " damage! ");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            printMessage("It's super effective!\n");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            if (criticalHit) {
-                printMessage("A critical hit! ");
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            }
-        }
-        else if (typeEff <= 0.5) {
-            printMessage(this->getName() + " did " + std::to_string(damage) + " damage! ");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            printMessage("It's not very effective...\n");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            if (criticalHit) {
-                printMessage("A critical hit! ");
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-            }
-        }
-        else {
-            printMessage(this->getName() + " did " + std::to_string(damage) + " damage!\n");
-            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        }
-    }
-    else {
-        printMessage(defendingPokemon.getName() + " avoided the attack!\n");
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
-    std::cout.flush();
 }

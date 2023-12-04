@@ -5,7 +5,7 @@
 #include "StatusItem.h"
 
 StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {
-    if (StatusItem::dataFunction) {
+    if (StatusItem::dataFunction == nullptr) {
         throw std::runtime_error("Tried to construct a Status Item without initializing class\n");
     }
 }
@@ -36,11 +36,11 @@ void StatusItem::restore(Pokemon &pokemon) const {
     }
 }
 
-void StatusItem::restoreMessage(const Pokemon &pokemon) {
+std::string StatusItem::restoreMessage(const Pokemon &pokemon) const {
     if (pokemon.getStatus() == Status::NONE) {
-        printMessage(pokemon.getName() + " recovered from " + pokemon.getStatusAsString() + "!\n");
+        return pokemon.getName() + " recovered from " + pokemon.getStatusAsString() + '!';
     }
     else {
-        printMessage("But it failed!\n");
+        return "But it failed!";
     }
 }

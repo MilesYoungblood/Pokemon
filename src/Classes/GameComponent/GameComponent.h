@@ -17,8 +17,4 @@ public:
     GameComponent &operator=(GameComponent &&) = delete;
 
     virtual ~GameComponent() = default;
-
-    virtual void update() {};
-
-    virtual void render() {};
 };

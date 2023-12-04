@@ -26,7 +26,7 @@ struct Serperior : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::SERPERIOR,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Serperior>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::SERPERIOR,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Serperior>(); }));
     });
 }

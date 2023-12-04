@@ -36,7 +36,7 @@ public:
 
     void restore(Pokemon &pokemon) const;
 
-    static void restoreMessage(const Pokemon &pokemon);
+    [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
 
 private:
     StatusItem::Id id;

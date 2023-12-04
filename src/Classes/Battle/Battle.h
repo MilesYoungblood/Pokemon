@@ -17,6 +17,8 @@ private:
     bool skipPlayerTurn;
     bool skipOpponentTurn;
 
+    bool isRunning{ true };
+
     static void sendOutMessage(const Pokemon &pokemon, bool isPlayer);
 
     static void returnMessage(const Pokemon &pokemon);
@@ -57,35 +59,29 @@ private:
 
     static void attackErrorMessage();
 
-    static std::pair<double, bool> criticalHit();
+    void switchOut(Trainer *trainer, bool isUser);
 
-    static double stabCheck(const Pokemon &pokemon, const Move &move);
+    void action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking);
 
-    static double checkType(const Move &move, const Pokemon &pokemon);
+    void preStatus(int skipTurn, int opponentMove, bool isUserFaster);
 
-    static int calculateDamage(const Pokemon &attackingPokemon, const Pokemon &defendingPokemon, const Move &move, bool &crit);
-
-    void switchOut(Trainer *trainer, bool isUser, bool &keepPlaying);
-
-    void action(Trainer *attacker, Trainer *defender, int move, bool &switched, bool isUserAttacking, bool &keepPlaying);
-
-    void preStatus(int skipTurn, int opponentMove, bool isUserFaster, bool &keepPlaying);
-
-    void postStatus(bool isUserFaster, bool &keepPlaying);
+    void postStatus(bool isUserFaster);
 
     int chooseMove(bool &skip);
 
-    void chooseItem(bool &skip, bool isTrainerBattle, bool &keepPlaying);
+    void chooseItem(bool &skip, bool isTrainerBattle);
 
     bool runAway(bool &skip, bool canRun);
 
     void choosePokemon(bool &skip);
 
-    void fight(int userMove, bool &keepPlaying);
+    void fight(int userMove);
 
     Battle(Player *trainer1, Trainer *trainer2);
 
 public:
+    enum class Flag {};
+
     static Battle &getInstance(Player *trainer1, Trainer *trainer2);
 
     void engageBattle(bool isTrainer);

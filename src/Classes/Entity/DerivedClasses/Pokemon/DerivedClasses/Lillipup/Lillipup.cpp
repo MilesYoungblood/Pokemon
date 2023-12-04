@@ -4,7 +4,8 @@
 
 #include "Lillipup.h"
 
-Lillipup::Lillipup() : Pokemon(0.5, 1, 45, 60, 45, 25, 45, 55) {}
+Lillipup::Lillipup() : Pokemon(binomial() ? Ability::Id::VITAL_SPIRIT : Ability::Id::PICKUP, 0.5, 1,
+                               45, 60, 45, 25, 45, 55) {}
 
 std::string Lillipup::getName() const {
     return "Lillipup";

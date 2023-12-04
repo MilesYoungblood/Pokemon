@@ -44,7 +44,7 @@ public:
 
     [[nodiscard]] Item::Class getClass() const override;
 
-    void useMessage() override;
+    [[nodiscard]] std::string useMessage() const override;
 
     bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
 

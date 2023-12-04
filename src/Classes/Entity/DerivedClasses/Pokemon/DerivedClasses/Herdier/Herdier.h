@@ -26,7 +26,7 @@ struct Herdier : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
-        pokemonLookupTable.insert(std::make_pair(Pokemon::Id::HERDIER,
-                                                 [] -> std::unique_ptr<Pokemon> { return std::make_unique<Herdier>(); }));
+        pokemonMap.insert(std::make_pair(Pokemon::Id::HERDIER,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Herdier>(); }));
     });
 }

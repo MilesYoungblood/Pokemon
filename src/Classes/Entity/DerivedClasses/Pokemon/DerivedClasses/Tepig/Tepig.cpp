@@ -4,7 +4,7 @@
 
 #include "Tepig.h"
 
-Tepig::Tepig() : Pokemon(87.5, 1, 65, 63, 45, 45, 45, 45) {}
+Tepig::Tepig() : Pokemon(Ability::Id::BLAZE, 87.5, 1, 65, 63, 45, 45, 45, 45) {}
 
 std::string Tepig::getName() const {
     return "Tepig";

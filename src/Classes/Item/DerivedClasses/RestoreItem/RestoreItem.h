@@ -41,9 +41,9 @@ public:
 
     virtual void restore(Move &move) const;
 
-    void restoreMessage(const Pokemon &pokemon) const;
+    [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
 
-    void restoreMessage(const Move &move) const;
+    [[nodiscard]] std::string restoreMessage(const Move &move) const;
 
 private:
     RestoreItem::Id id;

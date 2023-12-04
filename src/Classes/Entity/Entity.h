@@ -10,6 +10,21 @@ enum class Direction {
     UP, DOWN, LEFT, RIGHT
 };
 
+inline std::ostream &operator<<(std::ostream &os, Direction direction) {
+    os << static_cast<int>(direction);
+    return os;
+}
+
+inline Direction &operator>>(std::ostream &os, Direction &rhs) {
+    os >> rhs;
+    return rhs;
+}
+
+inline Direction operator>>(std::ostream &os, int rhs) {
+    os >> rhs;
+    return static_cast<Direction>(rhs);
+}
+
 inline Direction oppositeDirection(Direction direction) {
     switch (direction) {
         case Direction::UP:
@@ -117,7 +132,7 @@ public:
 
     [[nodiscard]] int getScreenY() const;
 
-    void setAnimation(const Direction direction, const char *path, int numFrames, int numRows);
+    void setAnimation(Direction direction, const char *path, int numFrames, int numRows);
 
     void setAction(void (*function)(Entity *entity));
 

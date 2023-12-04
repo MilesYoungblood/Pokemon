@@ -1,3 +1,0 @@
-C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/PokemonBattle.dir
-C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Miles/Documents/GitHub/PokemonBattle/cmake-build-debug/CMakeFiles/rebuild_cache.dir
