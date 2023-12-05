@@ -7,7 +7,7 @@
 /// \brief A struct that opens a thread and automatically detaches it
 struct AutoThread {
     template<typename F, typename ...Args>
-    AutoThread(F f, Args ...args) {
+    explicit AutoThread(F f, Args ...args) {
         std::thread thread(f, args...);
         thread.detach();
     }
@@ -25,4 +25,6 @@ struct AutoThread {
     AutoThread &operator=(const AutoThread &) = delete;
 
     AutoThread &operator=(AutoThread &&) noexcept = delete;
+
+    ~AutoThread() = default;
 };
