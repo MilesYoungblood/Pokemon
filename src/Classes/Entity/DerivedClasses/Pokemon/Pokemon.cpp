@@ -4,35 +4,8 @@
 
 #include "Pokemon.h"
 
-Pokemon::Pokemon(Ability::Id aId, int level, int hp, double attack, double defense, double spAttack, double spDefense,
-                 double speed) : maxHp(hp), currentHp(hp), level(level), gender(Pokemon::Gender::GENDERLESS) {
-    try {
-        this->ability = abilityMap.at(aId)();
-    }
-    catch (const std::exception &e) {
-        std::clog << "Error adding Ability: " << e.what() << '\n';
-        this->ability = nullptr;
-    }
-
-    this->baseStats.insert(std::make_pair(Pokemon::Stat::ATTACK, attack));
-    this->baseStats.insert(std::make_pair(Pokemon::Stat::DEFENSE, defense));
-    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, spAttack));
-    this->baseStats.insert(std::make_pair(Pokemon::Stat::SP_DEFENSE, spDefense));
-    this->baseStats.insert(std::make_pair(Pokemon::Stat::SPEED, speed));
-
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::ATTACK, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::DEFENSE, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::SP_ATTACK, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::SP_DEFENSE, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::SPEED, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::ACCURACY, 0));
-    this->statModifiers.insert(std::make_pair(Pokemon::Stat::EVASIVENESS, 0));
-}
-
-Pokemon::Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack,
-                 double spDefense, double speed)
-        : maxHp(hp), currentHp(hp), level(level),
-          gender(binomial(pMale) ? Pokemon::Gender::MALE : Pokemon::Gender::FEMALE) {
+Pokemon::Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense,
+                 double spAttack, double spDefense, double speed) : gender(gender), maxHp(hp), currentHp(hp), level(level) {
     try {
         this->ability = abilityMap.at(ability)();
     }
@@ -55,6 +28,13 @@ Pokemon::Pokemon(Ability::Id ability, double pMale, int level, int hp, double at
     this->statModifiers.insert(std::make_pair(Pokemon::Stat::ACCURACY, 0));
     this->statModifiers.insert(std::make_pair(Pokemon::Stat::EVASIVENESS, 0));
 }
+
+Pokemon::Pokemon(Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed) : Pokemon(Pokemon::Gender::GENDERLESS, ability, level, hp, attack, defense, spAttack, spDefense, speed) {}
+
+Pokemon::Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack,
+                 double spDefense, double speed)
+        : Pokemon(binomial(pMale) ? Pokemon::Gender::MALE : Pokemon::Gender::FEMALE, ability, level, hp, attack,
+                  defense, spAttack, spDefense, speed) {}
 
 int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
@@ -156,7 +136,7 @@ double Pokemon::getStat(const Pokemon::Stat stat) const {
     }
 }
 
-int Pokemon::getStatMod(const Pokemon::Stat stat) const {
+int Pokemon::getStatMod(Pokemon::Stat stat) const {
     try {
         return this->statModifiers.at(stat);
     }
@@ -170,49 +150,48 @@ double Pokemon::getBaseStat(Pokemon::Stat stat) const {
         return std::round(this->baseStats.at(stat) * this->getStat(stat));
     }
     catch (const std::exception &e) {
-        std::clog << "Error accessing Pokemon stat: " << e.what() << static_cast<int>(stat) << '\n';
-        std::terminate();
+        throw std::runtime_error(std::string("Error accessing stat: ") + e.what() + '\n');
     }
 }
 
-void Pokemon::setStatus(const Status newStatus) {
+void Pokemon::setStatus(StatusCondition newStatus) {
     this->status = newStatus;
 
-    if (this->status == Status::NONE) {
-        if (newStatus == Status::BURN) {
+    if (this->status == StatusCondition::NONE) {
+        if (newStatus == StatusCondition::BURN) {
             this->baseStats[Pokemon::Stat::ATTACK] *= 2.0;
         }
-        else if (newStatus == Status::PARALYSIS) {
+        else if (newStatus == StatusCondition::PARALYSIS) {
             this->baseStats[Pokemon::Stat::SPEED] *= 2.0;
         }
     }
-    else if (this->status == Status::BURN) {
+    else if (this->status == StatusCondition::BURN) {
         this->baseStats[Pokemon::Stat::ATTACK] /= 2.0;
     }
-    else if (this->status == Status::PARALYSIS) {
+    else if (this->status == StatusCondition::PARALYSIS) {
         this->baseStats[Pokemon::Stat::SPEED] /= 2.0;
     }
 }
 
-Status Pokemon::getStatus() const {
+StatusCondition Pokemon::getStatus() const {
     return this->status;
 }
 
 const char *Pokemon::getStatusAsString() const {
     switch (this->status) {
-        case Status::PARALYSIS:
+        case StatusCondition::PARALYSIS:
             return "paralysis";
 
-        case Status::BURN:
+        case StatusCondition::BURN:
             return "burn";
 
-        case Status::FREEZE:
+        case StatusCondition::FREEZE:
             return "freezing";
 
-        case Status::POISON:
+        case StatusCondition::POISON:
             return "poisoning";
 
-        case Status::SLEEP:
+        case StatusCondition::SLEEP:
             return "slumber";
 
         default:
@@ -221,7 +200,7 @@ const char *Pokemon::getStatusAsString() const {
 }
 
 void Pokemon::levelUp() {
-    ++this->level;
+    this->level = std::min(this->level + 1, 100);
 }
 
 int Pokemon::getLevel() const {
@@ -249,7 +228,7 @@ bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
 }
 
 bool Pokemon::isAfflicted() const {
-    return this->status != Status::NONE;
+    return this->status != StatusCondition::NONE;
 }
 
 bool Pokemon::canAttack() const {

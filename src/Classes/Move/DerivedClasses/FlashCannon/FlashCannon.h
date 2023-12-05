@@ -8,7 +8,7 @@
 
 class FlashCannon : public Move {
 private:
-    const static int MAX_PP{ 16 };
+    static const int MAX_PP{ 16 };
     bool loweredFlag{ false };
 
 public:

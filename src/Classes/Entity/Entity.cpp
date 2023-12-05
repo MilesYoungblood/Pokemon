@@ -34,7 +34,7 @@ void Entity::setDialogue(const char *text) {
         if (letterCounter >= character_limit) {
             this->dialogue.push_back(dest);
             letterCounter = buffer.length();
-            dest = "";
+            dest.clear();
         }
         dest.append(buffer + ' ');
     }

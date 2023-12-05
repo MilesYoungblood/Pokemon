@@ -8,7 +8,7 @@
 
 class FocusBlast : public Move {
 private:
-    const static int MAX_PP{ 8 };
+    static const int MAX_PP{ 8 };
     bool loweredFlag{ false };
 
 public:
@@ -33,3 +33,10 @@ public:
 
     [[nodiscard]] Move::Id getId() const override;
 };
+
+namespace {
+    inline AutoThread init([] -> void {
+        moveMap.insert(std::make_pair(Move::Id::FOCUS_BLAST,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<FocusBlast>(); }));
+    });
+}

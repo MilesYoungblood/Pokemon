@@ -16,16 +16,17 @@ void Flamethrower::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/)
     if (this->getDamageFlag() > 0) {
         defender.takeDamage(this->getDamageFlag());
 
-        this->burnFlag = binomial(10.0) and defender.getStatus() == Status::NONE;
+        this->burnFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
         if (this->burnFlag) {
-            defender.setStatus(Status::BURN);
+            defender.setStatus(StatusCondition::BURN);
         }
     }
 
     this->use();
 }
 
-std::queue<std::string> Flamethrower::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
+std::queue<std::string> Flamethrower::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                     bool  /*skip*/) const {
     std::queue<std::string> messages{{ attacker.getName() + " used Flamethrower!" }};
 
     if (this->getDamageFlag() > 0) {
@@ -36,7 +37,7 @@ std::queue<std::string> Flamethrower::actionMessage(const Pokemon &attacker, con
         else if (this->getEffFlag() <= 0.5) {
             messages.emplace("It's not very effective...");
         }
-        if (this->getCritFlag()) {
+        if (this->getCritFlag() == 2.0) {
             messages.emplace("A critical hit!");
         }
         if (this->burnFlag) {

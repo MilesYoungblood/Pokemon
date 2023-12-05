@@ -8,7 +8,7 @@ namespace {
     void init() {
         statusItems.insert({ StatusItem::Id::AWAKENING, {
                 "Awakening",
-                Status::SLEEP,
+                StatusCondition::SLEEP,
         }});
     }
 

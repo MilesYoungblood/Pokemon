@@ -26,7 +26,8 @@ void FocusBlast::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->use();
 }
 
-std::queue<std::string> FocusBlast::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
+std::queue<std::string> FocusBlast::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                   bool  /*skip*/) const {
     std::queue<std::string> messages{{ attacker.getName() + " used Focus Blast!" }};
 
     if (this->getDamageFlag() > 0) {
@@ -41,7 +42,7 @@ std::queue<std::string> FocusBlast::actionMessage(const Pokemon &attacker, const
             else if (this->getEffFlag() <= 0.5) {
                 messages.emplace("It's not very effective...");
             }
-            if (this->getCritFlag()) {
+            if (this->getCritFlag() == 2.0) {
                 messages.emplace("A critical hit!");
             }
             if (this->loweredFlag) {

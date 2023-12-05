@@ -8,7 +8,7 @@ namespace {
     void init() {
         statusItems.insert({ StatusItem::Id::ICE_HEAL, {
                 "Ice Heal",
-                Status::FREEZE,
+                StatusCondition::FREEZE,
         }});
     }
 

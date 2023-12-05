@@ -39,10 +39,6 @@ set(SOURCES
         src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
-        src/Classes/Move/DerivedClasses/VoltTackle.h
-        src/Classes/Move/DerivedClasses/IceBeam.h
-        src/Classes/Move/DerivedClasses/Thunder.h
-        src/Classes/Move/DerivedClasses/IronTail.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
         src/Classes/Item/ItemList.h
@@ -62,8 +58,6 @@ set(SOURCES
         src/Classes/TextureManager/TextureManager.cpp
         src/Classes/Camera/Camera.h
         src/Classes/Camera/Camera.cpp
-        src/Classes/Move/DerivedClasses/QuickAttack.h
-        src/Classes/Move/DerivedClasses/SolarBeam.h
         src/Classes/Game/OverworldFunctions.cpp
         src/Classes/Game/BattleFunctions.cpp
         src/Classes/Game/TitleScreenFunctions.cpp
@@ -90,6 +84,8 @@ set(SOURCES
         src/Classes/AutoThread/AutoThread.h
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
+        src/Classes/Timer/Timer.cpp
+        src/Classes/Timer/Timer.h
 )
 
 set(POKEMON
@@ -146,6 +142,18 @@ set(MOVES
         src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h
         src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp
         src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h
+        src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp
+        src/Classes/Move/DerivedClasses/IceBeam/IceBeam.h
+        src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp
+        src/Classes/Move/DerivedClasses/IronTail/IronTail.h
+        src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp
+        src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.h
+        src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp
+        src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.h
+        src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp
+        src/Classes/Move/DerivedClasses/Thunder/Thunder.h
+        src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp
+        src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.h
 )
 
 set(ABILITIES

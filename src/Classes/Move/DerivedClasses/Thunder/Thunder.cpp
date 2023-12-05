@@ -1,0 +1,85 @@
+//
+// Created by Miles Youngblood on 12/4/2023.
+//
+
+#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "Thunder.h"
+
+Thunder::Thunder() : Move(10) {}
+
+void Thunder::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
+    this->resetFlags();
+    this->paralysisFlag = false;
+
+    this->calculateDamage(attacker, defender);
+    // damage will be negative if the attack misses
+    if (this->getDamageFlag() > 0) {
+        defender.takeDamage(this->getDamageFlag());
+
+        this->paralysisFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
+        if (this->paralysisFlag) {
+            defender.setStatus(StatusCondition::PARALYSIS);
+        }
+    }
+
+    this->use();
+}
+
+std::queue<std::string> Thunder::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                bool  /*skip*/) const {
+    std::queue<std::string> messages{{ attacker.getName() + " used Thunder!" }};
+
+    if (this->getDamageFlag() > 0) {
+        if (this->getEffFlag() == 0.0) {
+            messages.emplace("It doesn't affect " + defender.getName() + "...");
+        }
+        else {
+            messages.emplace("Thunder did " + std::to_string(this->getDamageFlag()) + " damage!");
+            if (this->getEffFlag() >= 2.0) {
+                messages.emplace("It's super effective!");
+            }
+            else if (this->getEffFlag() <= 0.5) {
+                messages.emplace("It's not very effective...");
+            }
+            if (this->getCritFlag() == 2.0) {
+                messages.emplace("A critical hit!");
+            }
+            if (this->paralysisFlag) {
+                messages.emplace(defender.getName() + " was paralyzed!");
+            }
+        }
+    }
+    else {
+        messages.emplace(defender.getName() + " avoided the attack!");
+    }
+
+    return messages;
+}
+
+std::string Thunder::getName() const {
+    return "Thunder";
+}
+
+const char *Thunder::getDescription() const {
+    return "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.";
+}
+
+int Thunder::getPower() const {
+    return 120;
+}
+
+int Thunder::getAccuracy() const {
+    return 70;
+}
+
+Type Thunder::getType() const {
+    return Type::ELECTRIC;
+}
+
+Move::Category Thunder::getCategory() const {
+    return Move::Category::SPECIAL;
+}
+
+Move::Id Thunder::getId() const {
+    return Move::Id::THUNDER;
+}

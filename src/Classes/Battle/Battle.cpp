@@ -207,19 +207,19 @@ void Battle::loseMessage() {
 
 void Battle::inflictedMessage(const Pokemon &pokemon) {
     switch (pokemon.getStatus()) {
-        case Status::BURN:
+        case StatusCondition::BURN:
             std::cout << pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's burn!\n";
             break;
-        case Status::PARALYSIS:
+        case StatusCondition::PARALYSIS:
             std::cout << pokemon.getName() + " is paralyzed! It can't move!\n";
             break;
-        case Status::FREEZE:
+        case StatusCondition::FREEZE:
             std::cout << pokemon.getName() + " is frozen solid!\n";
             break;
-        case Status::POISON:
+        case StatusCondition::POISON:
             std::cout << pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's poisoning!\n";
             break;
-        case Status::SLEEP:
+        case StatusCondition::SLEEP:
             std::cout << pokemon.getName() + " is fast asleep!\n";
             break;
         default:
@@ -441,8 +441,8 @@ void Battle::action(Trainer *attacker, Trainer *defender, const int move, bool &
 // This function commences attacking of each Pokémon and takes into account who is faster.
 // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
 void Battle::preStatus(const int userMove, const int opponentMove, const bool isUserFaster) {
-    bool (*hasStatusCondition)(const Status) = [](const Status status) -> bool {
-        return status == Status::PARALYSIS ? generateInteger(1, 4) == 1 : status == Status::FREEZE or status == Status::SLEEP;
+    bool (*hasStatusCondition)(const StatusCondition) = [](const StatusCondition status) -> bool {
+        return status == StatusCondition::PARALYSIS ? generateInteger(1, 4) == 1 : status == StatusCondition::FREEZE or status == StatusCondition::SLEEP;
     };
 
     const auto user_action = [this, &userMove, &hasStatusCondition] -> void {
@@ -493,8 +493,8 @@ void Battle::postStatus(const bool isUserFaster) {
         return;
     }
 
-    bool (*hasStatusCondition)(Status) = [](Status status) -> bool {
-        return status == Status::BURN or status == Status::POISON;
+    bool (*hasStatusCondition)(StatusCondition) = [](StatusCondition status) -> bool {
+        return status == StatusCondition::BURN or status == StatusCondition::POISON;
     };
 
     auto postStatus = [this](Trainer *trainer, bool isUser) {
@@ -988,7 +988,7 @@ void Battle::fight(const int userMove) {
     }
     // if trainer and opponent rival in speed or both or neither are using a priority move, choose randomly
     else {
-        if (coinFlip()) {
+        if (binomial()) {
             this->preStatus(userMove, opponentMove, true);
             this->postStatus(true);
         }
@@ -1001,8 +1001,8 @@ void Battle::fight(const int userMove) {
     ++this->turn;
 }
 
-Battle::Battle(Player *trainer1, Trainer *trainer2) : player(trainer1), opponent(trainer2), turn(0ULL),
-                                                      skipPlayerTurn(false), skipOpponentTurn(false) {}
+Battle::Battle(Player *trainer1, Trainer *trainer2)
+        : player(trainer1), opponent(trainer2), turn(0ULL), skipPlayerTurn(false), skipOpponentTurn(false) {}
 
 Battle &Battle::getInstance(Player *trainer1, Trainer *trainer2) {
     static Battle battle(trainer1, trainer2);

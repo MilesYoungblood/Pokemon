@@ -8,7 +8,7 @@
 #include "../../../Move/Move.h"
 #include "../../../Ability/Ability.h"
 
-enum class Status {
+enum class StatusCondition {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
 };
 
@@ -222,9 +222,9 @@ public:
 
     [[nodiscard]] double getBaseStat(Pokemon::Stat stat) const;
 
-    void setStatus(Status newStatus);
+    void setStatus(StatusCondition newStatus);
 
-    [[nodiscard]] Status getStatus() const;
+    [[nodiscard]] StatusCondition getStatus() const;
 
     [[nodiscard]] const char *getStatusAsString() const;
 
@@ -269,6 +269,8 @@ public:
     const Move &operator[](int index) const;
 
 private:
+    Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
+
     const static int MAX_NUM_MOVES{ 4 };
 
     int maxHp;
@@ -283,7 +285,7 @@ private:
     std::unique_ptr<Ability> ability;
 
     Pokemon::Gender gender;
-    Status status{ Status::NONE };
+    StatusCondition status{ StatusCondition::NONE };
 
     double getStat(Pokemon::Stat stat) const;
 };

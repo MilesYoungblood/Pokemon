@@ -6,7 +6,7 @@
 
 StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {
     if (StatusItem::dataFunction == nullptr) {
-        throw std::runtime_error("Tried to construct a Status Item without initializing class\n");
+        throw std::runtime_error("Tried to construct a StatusCondition Item without initializing class\n");
     }
 }
 
@@ -18,7 +18,7 @@ std::string StatusItem::getName() const {
     return std::string(StatusItem::dataFunction(this->id).name);
 }
 
-Status StatusItem::getStatus() const {
+StatusCondition StatusItem::getStatus() const {
     return StatusItem::dataFunction(this->id).status;
 }
 
@@ -32,12 +32,12 @@ Item::Class StatusItem::getClass() const {
 
 void StatusItem::restore(Pokemon &pokemon) const {
     if (this->getStatus() == pokemon.getStatus()) {
-        pokemon.setStatus(Status::NONE);
+        pokemon.setStatus(StatusCondition::NONE);
     }
 }
 
 std::string StatusItem::restoreMessage(const Pokemon &pokemon) const {
-    if (pokemon.getStatus() == Status::NONE) {
+    if (pokemon.getStatus() == StatusCondition::NONE) {
         return pokemon.getName() + " recovered from " + pokemon.getStatusAsString() + '!';
     }
     else {

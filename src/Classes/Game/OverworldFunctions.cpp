@@ -4,16 +4,14 @@
 
 #include "Game.h"
 
-namespace {
-    int letterCounter = 0;
+int letterCounter = 0;
 
-    int walkCounter = 0;                                     // measures how many screen pixels the player has moved
+int walkCounter = 0;                                     // measures how many screen pixels the player has moved
 
-    bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
-    bool momentum = false;                                   // denotes whether the player is still moving
+bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
+bool momentum = false;                                   // denotes whether the player is still moving
 
-    Stopwatch<std::chrono::milliseconds> timer;
-}
+Stopwatch<std::chrono::milliseconds> timer;
 
 void Game::handleOverworldEvents() {
     switch (this->event.type) {
@@ -76,7 +74,7 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     lockTrainer = std::vector<bool>(this->currentMap->numTrainers(), false);
     keepLooping = std::vector<bool>(this->currentMap->numTrainers(), true);
 
-    Player::getPlayer().setCoordinates(std::get<0>(data), std::get<0>(data));
+    Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
 
     Camera::getInstance().lockOnPlayer([](Direction direct, int dist) -> void {
         Game::getInstance().currentMap->shift(direct, dist);
@@ -187,10 +185,10 @@ void Game::updateTrainers() const {
 
             case 2:
                 if (entity->isFacingNorth() or entity->isFacingSouth()) {
-                    coinFlip() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
+                    binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
                 }
                 else {
-                    coinFlip() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
+                    binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
                 }
                 break;
         }
@@ -324,16 +322,9 @@ void Game::updateOverworld() {
         keepMovingForward = false;
 
         checkForOpponents();
-        const std::any map_data = this->currentMap->isExitPointHere(Player::getPlayer().getX(),
-                                                                    Player::getPlayer().getY());
-        if (map_data.type() == typeid(std::tuple<int, int, Map::Id>)) {
-            try {
-                this->changeMap(std::any_cast<std::tuple<int, int, Map::Id>>(map_data));
-            }
-            catch (const std::bad_any_cast &e) {
-                throw std::runtime_error(
-                        std::string("Error casting std::any to std::tuple<int, int, Map::Id>: ") + e.what() + '\n');
-            }
+        const auto map_data = this->currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
+        if (map_data) {
+            this->changeMap(map_data.value());
         }
     }
 

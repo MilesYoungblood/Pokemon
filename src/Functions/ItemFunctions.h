@@ -14,7 +14,7 @@ inline void displayBag(int arrow, bool &print) {
     std::cout << "Choose an option:\n";
 
     arrow == 0 ? std::cout << "   ->   HP/PP restore\n" : std::cout << "\tHP/PP restore\n";
-    arrow == 1 ? std::cout << "   ->   Status restore\n" : std::cout << "\tStatus restore\n";
+    arrow == 1 ? std::cout << "   ->   StatusCondition restore\n" : std::cout << "\tStatusCondition restore\n";
     arrow == 2 ? std::cout << "   ->   Poke Balls\n" : std::cout << "\tPoke Balls\n";
     arrow == 3 ? std::cout << "   ->   Battle Items\n" : std::cout << "\tBattle Items\n";
     arrow == 4 ? std::cout << "\n   ->   Cancel\n" : std::cout << "\n\tCancel\n";

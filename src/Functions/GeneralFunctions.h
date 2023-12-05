@@ -276,14 +276,6 @@ inline bool chooseOption(int &option, const int upper) {
     }
 }
 
-inline bool coinFlip() {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::binomial_distribution<int> dist;
-
-    return dist(mt) == 1;
-}
-
 inline bool binomial(double prob = 50.0) {
     std::random_device rd;
     std::mt19937 mt(rd());
@@ -302,4 +294,45 @@ inline int generateInteger(int from, int to) {
     std::uniform_int_distribution<int> dist(from, to);
 
     return dist(mt);
+}
+
+template<typename T>
+concept EnumType = std::is_enum_v<T>;
+
+template<EnumType T>
+inline std::string operator+(const std::string &lhs, T &rhs) {
+    using underlyingType = std::underlying_type_t<T>;
+    return lhs + std::to_string(static_cast<underlyingType>(rhs));
+}
+
+template<EnumType T>
+inline std::string operator+=(std::string &lhs, T &rhs) {
+    using underlyingType = std::underlying_type_t<T>;
+    lhs += std::to_string(static_cast<underlyingType>(rhs));
+    return lhs;
+}
+
+template<typename T>
+concept IntType = std::is_integral_v<T> and not std::is_same_v<T, char>;
+
+template<IntType T>
+inline std::string operator+(const std::string &lhs, T &&rhs) {
+    return lhs + std::to_string(std::forward<T>(rhs));
+}
+
+template<IntType T>
+inline std::string operator+=(std::string &lhs, T &&rhs) {
+    lhs += std::to_string(std::forward<T>(rhs));
+    return lhs;
+}
+
+template<IntType T>
+inline std::string operator+(const std::string &lhs, T &rhs) {
+    return lhs + std::to_string(rhs);
+}
+
+template<IntType T>
+inline std::string operator+=(std::string &lhs, T &rhs) {
+    lhs += std::to_string(rhs);
+    return lhs;
 }

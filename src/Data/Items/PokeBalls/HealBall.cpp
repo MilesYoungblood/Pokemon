@@ -13,7 +13,7 @@ namespace {
                 },
                 [](Pokemon &pokemon) -> void {
                     pokemon.restoreHp(pokemon.getMaxHp() - pokemon.getHp());
-                    pokemon.setStatus(Status::NONE);
+                    pokemon.setStatus(StatusCondition::NONE);
                 }
         }});
     }

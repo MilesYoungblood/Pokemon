@@ -41,7 +41,7 @@ public:
 
     void addExitPoint(const ExitPoint &exitPoint);
 
-    [[nodiscard]] std::any isExitPointHere(int x, int y) const;
+    [[nodiscard]] std::optional<std::tuple<int, int, Map::Id>> isExitPointHere(int x, int y) const;
 
     template<typename ...Args>
     void addTrainer(Args ...args) {
@@ -79,9 +79,9 @@ private:
         int y;
     };
 
-    const char *name{ "" };                         // name of the map
+    const char *name;                               // name of the map
 
-    const char *music{ "" };
+    const char *music;
 
     inline static SDL_Texture *obstruction{ nullptr };
     inline static SDL_Texture *grass{ nullptr };

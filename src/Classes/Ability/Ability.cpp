@@ -11,3 +11,5 @@ std::queue<std::string> Ability::actionMessage(const Pokemon &attacker, const Po
 bool Ability::isBattle() const {
     return true;
 }
+
+std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;

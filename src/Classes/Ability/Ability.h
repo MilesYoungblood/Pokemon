@@ -63,4 +63,4 @@ struct Ability {
     [[nodiscard]] virtual bool isBattle() const;
 };
 
-inline std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;
+extern std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;

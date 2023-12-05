@@ -19,7 +19,7 @@ public:
 
     struct Data {
         std::string_view name;
-        const Status status;
+        const StatusCondition status;
     };
 
     StatusItem(StatusItem::Id id, int quantity);
@@ -28,7 +28,7 @@ public:
 
     [[nodiscard]] std::string getName() const override;
 
-    [[nodiscard]] Status getStatus() const;
+    [[nodiscard]] StatusCondition getStatus() const;
 
     [[nodiscard]] StatusItem::Id getId() const;
 

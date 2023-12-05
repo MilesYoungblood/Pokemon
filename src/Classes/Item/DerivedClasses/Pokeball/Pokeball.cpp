@@ -56,12 +56,12 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
 
     auto statusCalc = [&pokemon] {
         switch (pokemon.getStatus()) {
-            case Status::SLEEP:
+            case StatusCondition::SLEEP:
                 return 2.0;
 
-            case Status::PARALYSIS:
-            case Status::POISON:
-            case Status::BURN:
+            case StatusCondition::PARALYSIS:
+            case StatusCondition::POISON:
+            case StatusCondition::BURN:
                 return 1.5;
 
             default:

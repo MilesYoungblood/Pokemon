@@ -1343,6 +1343,150 @@ src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
 .PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
 
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
+
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
+
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
+
+src/Classes/Move/DerivedClasses/IronTail/IronTail.obj: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
+
+src/Classes/Move/DerivedClasses/IronTail/IronTail.i: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
+
+src/Classes/Move/DerivedClasses/IronTail/IronTail.s: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
+
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
+
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
+
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
+
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
+
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
+
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
+
+src/Classes/Move/DerivedClasses/Thunder/Thunder.obj: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
+
+src/Classes/Move/DerivedClasses/Thunder/Thunder.i: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
+
+src/Classes/Move/DerivedClasses/Thunder/Thunder.s: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
+
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
+
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
+
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
+
 src/Classes/Move/Move.obj: src/Classes/Move/Move.cpp.obj
 .PHONY : src/Classes/Move/Move.obj
 
@@ -1414,6 +1558,30 @@ src/Classes/TextureManager/TextureManager.s: src/Classes/TextureManager/TextureM
 src/Classes/TextureManager/TextureManager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/TextureManager/TextureManager.cpp.s
 .PHONY : src/Classes/TextureManager/TextureManager.cpp.s
+
+src/Classes/Timer/Timer.obj: src/Classes/Timer/Timer.cpp.obj
+.PHONY : src/Classes/Timer/Timer.obj
+
+# target to build an object file
+src/Classes/Timer/Timer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Timer/Timer.cpp.obj
+.PHONY : src/Classes/Timer/Timer.cpp.obj
+
+src/Classes/Timer/Timer.i: src/Classes/Timer/Timer.cpp.i
+.PHONY : src/Classes/Timer/Timer.i
+
+# target to preprocess a source file
+src/Classes/Timer/Timer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Timer/Timer.cpp.i
+.PHONY : src/Classes/Timer/Timer.cpp.i
+
+src/Classes/Timer/Timer.s: src/Classes/Timer/Timer.cpp.s
+.PHONY : src/Classes/Timer/Timer.s
+
+# target to generate assembly for a file
+src/Classes/Timer/Timer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Timer/Timer.cpp.s
+.PHONY : src/Classes/Timer/Timer.cpp.s
 
 src/Data/Items/BattleItems/XAccuracy.obj: src/Data/Items/BattleItems/XAccuracy.cpp.obj
 .PHONY : src/Data/Items/BattleItems/XAccuracy.obj
@@ -2297,6 +2465,24 @@ help:
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.obj
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.i
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.s
+	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
+	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i
+	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s
+	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.obj
+	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.i
+	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.s
+	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj
+	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i
+	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s
+	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj
+	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i
+	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s
+	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.obj
+	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.i
+	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.s
+	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj
+	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i
+	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
@@ -2306,6 +2492,9 @@ help:
 	@echo ... src/Classes/TextureManager/TextureManager.obj
 	@echo ... src/Classes/TextureManager/TextureManager.i
 	@echo ... src/Classes/TextureManager/TextureManager.s
+	@echo ... src/Classes/Timer/Timer.obj
+	@echo ... src/Classes/Timer/Timer.i
+	@echo ... src/Classes/Timer/Timer.s
 	@echo ... src/Data/Items/BattleItems/XAccuracy.obj
 	@echo ... src/Data/Items/BattleItems/XAccuracy.i
 	@echo ... src/Data/Items/BattleItems/XAccuracy.s

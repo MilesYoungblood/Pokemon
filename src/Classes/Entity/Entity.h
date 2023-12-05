@@ -10,19 +10,16 @@ enum class Direction {
     UP, DOWN, LEFT, RIGHT
 };
 
-inline std::ostream &operator<<(std::ostream &os, Direction direction) {
-    os << static_cast<int>(direction);
-    return os;
+inline std::ostream &operator<<(std::ostream &ostream, Direction direction) {
+    ostream << static_cast<int>(direction);
+    return ostream;
 }
 
-inline Direction &operator>>(std::ostream &os, Direction &rhs) {
-    os >> rhs;
-    return rhs;
-}
-
-inline Direction operator>>(std::ostream &os, int rhs) {
-    os >> rhs;
-    return static_cast<Direction>(rhs);
+inline std::istream &operator>>(std::istream& istream, Direction &direction) {
+    std::string buffer;
+    istream >> buffer;
+    direction = static_cast<Direction>(std::stoi(buffer));
+    return istream;
 }
 
 inline Direction oppositeDirection(Direction direction) {

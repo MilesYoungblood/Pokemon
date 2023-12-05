@@ -8,7 +8,7 @@ namespace {
     void init() {
         statusItems.insert({ StatusItem::Id::PARALYZE_HEAL, {
                 "Paralyze Heal",
-                Status::PARALYSIS,
+                StatusCondition::PARALYSIS,
         }});
     }
 

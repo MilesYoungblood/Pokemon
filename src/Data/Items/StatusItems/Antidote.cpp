@@ -8,7 +8,7 @@ namespace {
     void init() {
         statusItems.insert({ StatusItem::Id::ANTIDOTE, {
                 "Antidote",
-                Status::POISON,
+                StatusCondition::POISON,
         }});
     }
 

@@ -8,7 +8,7 @@ namespace {
     void init() {
         statusItems.insert({ StatusItem::Id::BURN_HEAL, {
                 "Burn Heal",
-                Status::BURN,
+                StatusCondition::BURN,
         }});
     }
 

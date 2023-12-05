@@ -10,14 +10,14 @@
 #include "../SoundPlayer/SoundPlayer.h"
 #include "../Stopwatch/Stopwatch.h"
 
-inline bool print = false;
+extern bool print;
 
-inline std::vector<int> pixelsTraveled;                                 // measures how many screen pixels a trainer has moved
-inline std::vector<bool> lockTrainer;                                   // determines whether a trainer can move spontaneously
-inline std::vector<bool> keepLooping;
+extern std::vector<int> pixelsTraveled;                                 // measures how many screen pixels a trainer has moved
+extern std::vector<bool> lockTrainer;                                   // determines whether a trainer can move spontaneously
+extern std::vector<bool> keepLooping;
 
-inline int numPages = 1;
-inline int currentPage = 1;
+extern int numPages;
+extern int currentPage;
 
 class Game {
 private:

@@ -96,15 +96,15 @@ void Map::addExitPoint(const ExitPoint &exitPoint) {
     this->layout[exitPoint.x][exitPoint.y].id = Map::Tile::Id::GRASS;
 }
 
-// returns an array with the new x and y coordinates and the new map respectively,
-// if no exit point is here, returns filler coordinates with the third element being -1
-std::any Map::isExitPointHere(const int x, const int y) const {
+// returns a tuple containing the new coordinates and new map respectively if an exit point is present,
+// or nothing otherwise
+std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(const int x, const int y) const {
     for (const ExitPoint &exit_point : this->exitPoints) {
         if (exit_point.x == x and exit_point.y == y) {
-            return std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap);
+            return std::make_optional<>(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
         }
     }
-    return false;
+    return std::nullopt;
 }
 
 // returns the number of NPCs

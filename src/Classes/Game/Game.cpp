@@ -4,6 +4,15 @@
 
 #include "Game.h"
 
+bool print = false;
+
+std::vector<int> pixelsTraveled;
+std::vector<bool> lockTrainer;
+std::vector<bool> keepLooping;
+
+int numPages = 1;
+int currentPage = 1;
+
 Game::Game() {
     // initialize subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
