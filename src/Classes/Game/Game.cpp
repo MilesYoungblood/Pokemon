@@ -486,7 +486,7 @@ void Game::loadData() {
 
             // grabs the map
             std::getline(ss, buffer, ' ');
-            const Map::Id map = static_cast<Map::Id>(std::stoi(buffer));
+            const auto map = static_cast<Map::Id>(std::stoi(buffer));
 
             // grabs the trainer
             std::getline(ss, buffer, ' ');

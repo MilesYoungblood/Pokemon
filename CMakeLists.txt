@@ -84,8 +84,6 @@ set(SOURCES
         src/Classes/AutoThread/AutoThread.h
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
-        src/Classes/Timer/Timer.cpp
-        src/Classes/Timer/Timer.h
 )
 
 set(POKEMON
