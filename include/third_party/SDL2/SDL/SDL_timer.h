@@ -147,17 +147,17 @@ extern DECLSPEC Uint64 SDLCALL SDL_GetPerformanceFrequency(void);
 extern DECLSPEC void SDLCALL SDL_Delay(Uint32 ms);
 
 /**
- * Function prototype for the timer callback function.
+ * Function prototype for the keyDelay callback function.
  *
- * The callback function is passed the current timer interval and returns
- * the next timer interval. If the returned value is the same as the one
+ * The callback function is passed the current keyDelay interval and returns
+ * the next keyDelay interval. If the returned value is the same as the one
  * passed in, the periodic alarm continues, otherwise a new alarm is
  * scheduled. If the callback returns 0, the periodic alarm is cancelled.
  */
 typedef Uint32 (SDLCALL * SDL_TimerCallback) (Uint32 interval, void *param);
 
 /**
- * Definition of the timer ID type.
+ * Definition of the keyDelay ID type.
  */
 typedef int SDL_TimerID;
 
@@ -166,27 +166,27 @@ typedef int SDL_TimerID;
  *
  * If you use this function, you must pass `SDL_INIT_TIMER` to SDL_Init().
  *
- * The callback function is passed the current timer interval and the user
+ * The callback function is passed the current keyDelay interval and the user
  * supplied parameter from the SDL_AddTimer() call and should return the next
- * timer interval. If the value returned from the callback is 0, the timer is
+ * keyDelay interval. If the value returned from the callback is 0, the keyDelay is
  * canceled.
  *
  * The callback is run on a separate thread.
  *
  * Timers take into account the amount of time it took to execute the
  * callback. For example, if the callback took 250 ms to execute and returned
- * 1000 (ms), the timer would only wait another 750 ms before its next
+ * 1000 (ms), the keyDelay would only wait another 750 ms before its next
  * iteration.
  *
  * Timing may be inexact due to OS scheduling. Be sure to note the current
  * time with SDL_GetTicks() or SDL_GetPerformanceCounter() in case your
  * callback needs to adjust for variances.
  *
- * \param interval the timer delay, in milliseconds, passed to `callback`
+ * \param interval the keyDelay delay, in milliseconds, passed to `callback`
  * \param callback the SDL_TimerCallback function to call when the specified
  *                 `interval` elapses
  * \param param a pointer that is passed to `callback`
- * \returns a timer ID or 0 if an error occurs; call SDL_GetError() for more
+ * \returns a keyDelay ID or 0 if an error occurs; call SDL_GetError() for more
  *          information.
  *
  * \since This function is available since SDL 2.0.0.
@@ -198,10 +198,10 @@ extern DECLSPEC SDL_TimerID SDLCALL SDL_AddTimer(Uint32 interval,
                                                  void *param);
 
 /**
- * Remove a timer created with SDL_AddTimer().
+ * Remove a keyDelay created with SDL_AddTimer().
  *
- * \param id the ID of the timer to remove
- * \returns SDL_TRUE if the timer is removed or SDL_FALSE if the timer wasn't
+ * \param id the ID of the keyDelay to remove
+ * \returns SDL_TRUE if the keyDelay is removed or SDL_FALSE if the keyDelay wasn't
  *          found.
  *
  * \since This function is available since SDL 2.0.0.

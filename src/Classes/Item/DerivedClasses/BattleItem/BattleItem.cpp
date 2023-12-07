@@ -4,26 +4,51 @@
 
 #include "BattleItem.h"
 
-BattleItem::BattleItem(BattleItem::Id id, int quantity) : Item(quantity), id(id) {
-    if (BattleItem::dataFunction == nullptr) {
-        throw std::runtime_error("Tried constructing a Battle Item without initializing class\n");
+BattleItem::BattleItem(int quantity) : Item(quantity) {}
+
+void BattleItem::boost(Pokemon &pokemon, int amount, bool &limit) const {
+    if (pokemon.getStatMod(this->getStat()) < 6) {
+        pokemon.raiseStatMod(this->getStat(), amount);
+        limit = true;
     }
 }
 
-void BattleItem::init(BattleItem::Data (*instructions)(BattleItem::Id)) {
-    BattleItem::dataFunction = instructions;
-}
+std::string BattleItem::boostMessage(const Pokemon &pokemon, int amount, bool limit) const {
+    const char *(*getStatAsString)(Pokemon::Stat) = [](Pokemon::Stat stat) -> const char * {
+        switch (stat) {
+            case Pokemon::Stat::ATTACK:
+                return "attack";
+            case Pokemon::Stat::DEFENSE:
+                return "defense";
+            case Pokemon::Stat::SP_ATTACK:
+                return "special attack";
+            case Pokemon::Stat::SP_DEFENSE:
+                return "special defense";
+            case Pokemon::Stat::SPEED:
+                return "speed";
+            case Pokemon::Stat::ACCURACY:
+                return "accuracy";
+            default:
+                throw std::runtime_error("Unexpected error: function boostMessage");
+        }
+    };
 
-std::string BattleItem::getName() const {
-    return std::string(BattleItem::dataFunction(this->id).name);
-}
+    std::string message{ pokemon.getName() + "'s " + getStatAsString(this->getStat()) };
+    if (not limit) {
+        message.append(" rose");
+        if (amount == 2) {
+            message.append(" sharply");
+        }
+        else if (amount > 2) {
+            message.append(" drastically");
+        }
+        message += '!';
+    }
+    else {
+        message.append(" cant go any higher!");
+    }
 
-Pokemon::Stat BattleItem::getStat() const {
-    return BattleItem::dataFunction(this->id).stat;
-}
-
-BattleItem::Id BattleItem::getId() const {
-    return this->id;
+    return message;
 }
 
 Item::Class BattleItem::getClass() const {

@@ -2,6 +2,7 @@
 // Created by Miles on 11/28/2023.
 //
 
+#include "../Map/Map.h"
 #include "Camera.h"
 
 Camera &Camera::getInstance() {
@@ -24,7 +25,7 @@ bool Camera::isInView(const SDL_Rect &rect) const {
     return SDL_HasIntersection(&rect, &this->view) == SDL_bool::SDL_TRUE;
 }
 
-void Camera::lockOnPlayer(void (*instructions)(Direction, int)) const {
+void Camera::lockOnPlayer(Map *map) const {
     // x-distance of the player from the center of the screen
     const int x_from_center{
             ((this->view.w - Constants::TILE_SIZE) / 2) - Player::getPlayer().getX() * Constants::TILE_SIZE };
@@ -40,6 +41,6 @@ void Camera::lockOnPlayer(void (*instructions)(Direction, int)) const {
     // determines whether to shift up or down
     const Direction y_direction{ y_from_center > 0 ? Direction::DOWN : Direction::UP };
 
-    instructions(x_direction, x_direction == Direction::RIGHT ? x_from_center : -x_from_center);
-    instructions(y_direction, y_direction == Direction::DOWN ? y_from_center : -y_from_center);
+    map->shift(x_direction, x_direction == Direction::RIGHT ? x_from_center : -x_from_center);
+    map->shift(y_direction, y_direction == Direction::DOWN ? y_from_center : -y_from_center);
 }

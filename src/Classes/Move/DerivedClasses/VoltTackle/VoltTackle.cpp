@@ -7,7 +7,7 @@
 
 VoltTackle::VoltTackle() : Move(15) {}
 
-void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
+void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->resetFlags();
     this->paralysisFlag = false;
 
@@ -15,14 +15,14 @@ void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
         defender.takeDamage(this->getDamageFlag());
-        attacker.takeDamage(static_cast<int>(lround(this->getDamageFlag() / 3.0)));
+        attacker.takeDamage(static_cast<int>(std::round(this->getDamageFlag() / 3.0)));
 
         //FIXME faint Pokemon if necessary
         if (attacker.isFainted()) {
             // TODO trigger switch out back at the battle
         }
 
-        this->paralysisFlag = generateInteger(1, 10) == 1 and defender.getStatus() == StatusCondition::NONE;
+        this->paralysisFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
         if (this->paralysisFlag) {
             defender.setStatus(StatusCondition::PARALYSIS);
         }
@@ -53,8 +53,8 @@ std::queue<std::string> VoltTackle::actionMessage(const Pokemon &attacker, const
             if (this->paralysisFlag) {
                 messages.emplace(defender.getName() + " was paralyzed!");
             }
-            messages.emplace(
-                    attacker.getName() + " took " + static_cast<int>(lround(this->getDamageFlag() / 3.0)) + " damage!");
+            messages.emplace(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 3.0)) +
+                             " damage!");
 
             if (attacker.isFainted()) {
                 messages.emplace(attacker.getName() + " fainted!");

@@ -215,6 +215,18 @@ Pokemon::Gender Pokemon::getGender() const {
     return this->gender;
 }
 
+void Pokemon::setAbility(std::unique_ptr<Ability> newAbility) {
+    this->ability = std::move(newAbility);
+}
+
+Ability &Pokemon::getAbility() {
+    return *this->ability;
+}
+
+const Ability &Pokemon::getAbility() const {
+    return *this->ability;
+}
+
 bool Pokemon::isFainted() const {
     return this->currentHp == 0;
 }
@@ -260,4 +272,12 @@ const Move &Pokemon::operator[](const int index) const {
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
     }
+}
+
+std::vector<std::unique_ptr<Move>>::iterator Pokemon::begin() {
+    return this->moveSet.begin();
+}
+
+std::vector<std::unique_ptr<Move>>::iterator Pokemon::end() {
+    return this->moveSet.end();
 }

@@ -4,30 +4,24 @@
 
 #include "Pokeball.h"
 
-PokeBall::PokeBall(PokeBall::Id id, int quantity) : Item(quantity), id(id) {
-    if (PokeBall::dataFunction == nullptr) {
-        throw std::runtime_error("Tried to construct Poke Ball without initializing class\n");
-    }
-}
-
-void PokeBall::init(PokeBall::Data (*instructions)(PokeBall::Id)) {
-    PokeBall::dataFunction = instructions;
-}
+PokeBall::PokeBall(int quantity) : Item(quantity) {}
 
 std::string PokeBall::getName() const {
-    return std::string(PokeBall::dataFunction(this->id).name);
+    return "Poke Ball";
 }
 
-double PokeBall::getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const {
-    return PokeBall::dataFunction(this->id).catchRate(pokemon, time, turn, isCave);
+std::string PokeBall::getEffect() const {
+    return "A device for catching wild Pokemon. It is thrown like a ball at the target. It is designed as a capsule system.";
 }
 
-void PokeBall::postCatch(Pokemon &pokemon) const {
-    PokeBall::dataFunction(this->id).postCatch(pokemon);
+double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
+    return 1.0;
 }
+
+void PokeBall::postCatch(Pokemon &pokemon) const {}
 
 PokeBall::Id PokeBall::getId() const {
-    return this->id;
+    return PokeBall::Id::POKE_BALL;
 }
 
 Item::Class PokeBall::getClass() const {
@@ -81,4 +75,12 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
     }
 
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];
+}
+
+namespace {
+    AutoThread init([] -> void {
+        pokeBalls.insert(std::make_pair(PokeBall::Id::POKE_BALL, [](int n) -> std::unique_ptr<PokeBall> {
+            return std::make_unique<PokeBall>(n);
+        }));
+    });
 }

@@ -66,7 +66,11 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Ability/Ability.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Timer/Timer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/TextBox/TextBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/GraphicsManager/GraphicsManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
@@ -134,59 +138,57 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Potion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/SuperPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/HyperPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/Ether.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/RestoreItems/MaxEther.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Antidote.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/Awakening.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/BurnHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/IceHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/StatusItems/ParalyzeHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/PokeBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/GreatBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/UltraBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/MasterBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/NetBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/NestBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/TimerBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/PremierBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/DuskBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/HealBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/PokeBalls/QuickBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XDefense.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XSpAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XSpDefense.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XSpeed.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Data/Items/BattleItems/XAccuracy.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 

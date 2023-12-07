@@ -7,8 +7,7 @@
 #include "../../Item.h"
 #include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
-class StatusItem : public Item {
-public:
+struct StatusItem : public Item {
     enum class Id {
         ANTIDOTE,
         AWAKENING,
@@ -17,29 +16,21 @@ public:
         PARALYZE_HEAL
     };
 
-    struct Data {
-        std::string_view name;
-        const StatusCondition status;
-    };
+    explicit StatusItem(int quantity);
 
-    StatusItem(StatusItem::Id id, int quantity);
+    [[nodiscard]] std::string getName() const override = 0;
 
-    static void init(StatusItem::Data (*instructions)(StatusItem::Id));
+    [[nodiscard]] std::string getEffect() const override = 0;
 
-    [[nodiscard]] std::string getName() const override;
+    [[nodiscard]] virtual StatusCondition getStatus() const = 0;
 
-    [[nodiscard]] StatusCondition getStatus() const;
-
-    [[nodiscard]] StatusItem::Id getId() const;
+    [[nodiscard]] virtual StatusItem::Id getId() const = 0;
 
     [[nodiscard]] Item::Class getClass() const override;
 
     void restore(Pokemon &pokemon) const;
 
     [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
-
-private:
-    StatusItem::Id id;
-
-    inline static StatusItem::Data (*dataFunction)(StatusItem::Id){ nullptr };
 };
+
+inline std::unordered_map<StatusItem::Id, std::unique_ptr<StatusItem>(*)(int)> statusItems;

@@ -36,6 +36,8 @@ public:
 
     [[nodiscard]] virtual std::string getName() const = 0;
 
+    [[nodiscard]] virtual std::string getEffect() const = 0;
+
     [[nodiscard]] int getQuantity() const;
 
     void add(int n);

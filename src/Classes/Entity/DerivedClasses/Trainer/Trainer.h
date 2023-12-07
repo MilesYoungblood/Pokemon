@@ -52,15 +52,6 @@ public:
 
     [[nodiscard]] int partySize() const;
 
-    template<typename P, typename ...Args>
-    void addPokemon(Args ...args) {
-        if (this->party.size() == Trainer::MAX_POKEMON) {
-            return;
-        }
-
-        this->party.push_back(std::unique_ptr<P>(args...));
-    }
-
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
     void removePokemon(int index);
@@ -91,70 +82,29 @@ public:
         return *dynamic_cast<I *>(ptr);
     }
 
-    template<typename I>
-    void addItem(std::unique_ptr<I> toAdd) {
-        const auto type = Trainer::getItemTypeId<I>();
-        if (this->items.at(type).size() == Trainer::MAX_ITEMS) {
-            return;
-        }
-
-        for (int i = 0; i < this->items.at(type).size(); ++i) {
-            // if item already exists within our inventory
-            Item *ptr = this->items.at(type)[i].get();
-            const I item = *dynamic_cast<I *>(ptr);
-            if (toAdd->getId() == item.getId()) {
-                this->items.at(type)[i]->add();
-                return;
-            }
-        }
-
-        this->items.at(type).push_back(std::move(toAdd));
-    }
-
-    template<typename I>
-    void addItem(const I &item) {
+    template<typename C, typename I>
+    void addItem(std::unique_ptr<I> item) {
         try {
-            if (this->items.at(static_cast<std::size_t>(item.getClass())).size() == Trainer::MAX_ITEMS) {
+            if (this->items.at(static_cast<std::size_t>(item->getClass())).size() == Trainer::MAX_ITEMS) {
                 return;
             }
 
-            for (int i = 0; i < this->items.at(static_cast<std::size_t>(item.getClass())).size(); ++i) {
+            for (int i = 0; i < this->items.at(static_cast<std::size_t>(item->getClass())).size(); ++i) {
                 // if item already exists within our inventory
-                Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[i].get();
-                const I itm = *dynamic_cast<I *>(ptr);
-                if (itm.getId() == item.getId()) {
-                    this->items.at(Trainer::getItemTypeId<I>())[i]->add(item.getQuantity());
+                Item *ptr = this->items.at(static_cast<std::size_t>(item->getClass())).at(i).get();
+                const C *itm = dynamic_cast<C *>(ptr);
+
+                if (item->getId() == itm->getId()) {
+                    this->items.at(Trainer::getItemTypeId<C>())[i]->add(item->getQuantity());
                     return;
                 }
             }
 
-            std::unique_ptr<Item> i = std::make_unique<I>(item.getQuantity());
-            this->items.at(static_cast<std::size_t>(item.getClass())).push_back(std::move(i));
+            this->items.at(static_cast<std::size_t>(item->getClass())).push_back(std::move(item));
         }
         catch (const std::exception &e) {
             throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
         }
-    }
-
-    template<typename I, typename ...Args>
-    void addItem(Args ...args) {
-        std::unique_ptr<I> item = std::make_unique<I>(args...);
-
-        if (this->items.at(static_cast<std::size_t>(item->getClass())).size() == Trainer::MAX_ITEMS) {
-            return;
-        }
-
-        for (int i = 0; i < this->items.at(static_cast<std::size_t>(item->getClass())).size(); ++i) {
-            // if item already exists within our inventory
-            Item *ptr = this->items.at(Trainer::getItemTypeId<I>())[i].get();
-            const I itm = *dynamic_cast<I *>(ptr);
-            if (itm.getId() == item->getId()) {
-                this->items.at(Trainer::getItemTypeId<I>())[i]->add(item->getQuantity());
-                return;
-            }
-        }
-        const auto index = static_cast<const size_t>(item->getClass());
-        this->items.at(index).push_back(std::move(item));
     }
 
     template<typename I>
@@ -176,6 +126,10 @@ public:
     Pokemon &operator[](int index);
 
     const Pokemon &operator[](int index) const;
+
+    std::vector<std::unique_ptr<Pokemon>>::iterator begin();
+
+    std::vector<std::unique_ptr<Pokemon>>::iterator end();
 
     explicit operator bool() const override;
 

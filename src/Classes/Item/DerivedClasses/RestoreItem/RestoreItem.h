@@ -6,8 +6,7 @@
 
 #include "../../Item.h"
 
-class RestoreItem : public Item {
-public:
+struct RestoreItem : public Item {
     enum class Id {
         POTION,
         SUPER_POTION,
@@ -17,23 +16,15 @@ public:
         MAX_ETHER,
     };
 
-    struct Data {
-        std::string_view name;
-        const int amount;
-        const bool isHp;
-    };
+    explicit RestoreItem(int quantity);
 
-    RestoreItem(RestoreItem::Id id, int quantity);
+    [[nodiscard]] std::string getName() const override = 0;
 
-    static void init(RestoreItem::Data (*instructions)(RestoreItem::Id));
+    [[nodiscard]] virtual int getAmount() const = 0;
 
-    [[nodiscard]] std::string getName() const override;
+    [[nodiscard]] virtual bool isHp() const = 0;
 
-    [[nodiscard]] int getAmount() const;
-
-    [[nodiscard]] bool isHp() const;
-
-    [[nodiscard]] RestoreItem::Id getId() const;
+    [[nodiscard]] virtual RestoreItem::Id getId() const = 0;
 
     [[nodiscard]] Item::Class getClass() const override;
 
@@ -44,9 +35,6 @@ public:
     [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
 
     [[nodiscard]] std::string restoreMessage(const Move &move) const;
-
-private:
-    RestoreItem::Id id;
-
-    inline static RestoreItem::Data (*dataFunction)(RestoreItem::Id){ nullptr };
 };
+
+inline std::unordered_map<RestoreItem::Id, std::unique_ptr<RestoreItem>(*)(int)> restoreItems;

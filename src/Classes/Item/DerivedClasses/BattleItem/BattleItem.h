@@ -6,8 +6,7 @@
 
 #include "../../Item.h"
 
-class BattleItem : public Item {
-public:
+struct BattleItem : public Item {
     enum class Id {
         X_ATTACK,
         X_DEFENSE,
@@ -17,25 +16,21 @@ public:
         X_ACCURACY
     };
 
-    struct Data {
-        std::string_view name;
-        const Pokemon::Stat stat;
-    };
+    explicit BattleItem(int quantity);
 
-    BattleItem(BattleItem::Id id, int quantity);
+    void boost(Pokemon &pokemon, int amount, bool &limit) const;
 
-    static void init(BattleItem::Data (*instructions)(BattleItem::Id));
+    [[nodiscard]] std::string boostMessage(const Pokemon &pokemon, int amount, bool limit) const;
 
-    [[nodiscard]] std::string getName() const override;
+    [[nodiscard]] std::string getName() const override = 0;
 
-    [[nodiscard]] Pokemon::Stat getStat() const;
+    [[nodiscard]] std::string getEffect() const override = 0;
 
-    [[nodiscard]] BattleItem::Id getId() const;
+    [[nodiscard]] virtual Pokemon::Stat getStat() const = 0;
+
+    [[nodiscard]] virtual BattleItem::Id getId() const = 0;
 
     [[nodiscard]] Item::Class getClass() const override;
-
-private:
-    BattleItem::Id id;
-
-    inline static BattleItem::Data (*dataFunction)(BattleItem::Id){ nullptr };
 };
+
+inline std::unordered_map<BattleItem::Id, std::unique_ptr<BattleItem>(*)(int)> battleItems;

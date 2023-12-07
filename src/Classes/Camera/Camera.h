@@ -6,6 +6,8 @@
 
 #include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 
+class Map;
+
 class Camera {
 private:
     SDL_Rect view{ 0, 0, 0, 0 };
@@ -35,5 +37,5 @@ public:
     /// \brief Finds the player's current position on the screen,
     /// then shifts everything, including the player, accordingly.
     /// \param instructions a lambda that makes the map shift
-    void lockOnPlayer(void (*instructions)(Direction, int)) const;
+    void lockOnPlayer(Map *map) const;
 };

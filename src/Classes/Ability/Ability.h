@@ -60,7 +60,9 @@ struct Ability {
 
     [[nodiscard]] virtual int getFlag() const = 0;
 
+    [[nodiscard]] virtual Ability::Id getId() const = 0;
+
     [[nodiscard]] virtual bool isBattle() const;
 };
 
-extern std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;
+inline std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;

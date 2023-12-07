@@ -55,9 +55,7 @@ void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 }
 
 std::queue<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
-    std::queue<std::string> messages;
-
-    messages.emplace(attacker.getName() + " used " + this->getName() + '!');
+    std::queue<std::string> messages{{ attacker.getName() + " used " + this->getName() + '!' }};
 
     if (this->damageFlag > 0) {
         if (this->effFlag == 0.0) {
@@ -145,7 +143,7 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
     const double final_damage = initialDamage / 50 + 2;
     const double stab = this->getType() == attacker.getType(true) or this->getType() == attacker.getType(false) ? 1.5 : 1.0;
 
-    this->effFlag = Move::checkType(attacker);
+    this->effFlag = this->checkType(attacker);
     this->critFlag = binomial(this->getCritRatio()) ? 2.0 : 1.0;
 
     //FIXME recalculate damage

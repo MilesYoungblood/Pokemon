@@ -43,6 +43,12 @@ void Entity::setDialogue(const char *text) {
     }
 }
 
+void Entity::setDialogue(const std::vector<std::string> &text) {
+    for (const auto &i : text) {
+        this->dialogue.push_back(i);
+    }
+}
+
 std::vector<std::string> Entity::getDialogue() const {
     return this->dialogue;
 }
@@ -97,6 +103,10 @@ void Entity::face(const Entity *entity) {
     catch (const std::invalid_argument &e) {
         std::clog << "Error facing entity: " << e.what() << '\n';
     }
+}
+
+bool Entity::isFacing(Direction direction) const {
+    return this->currentDirection == direction;
 }
 
 bool Entity::isFacingNorth() const {
@@ -228,8 +238,23 @@ void Entity::setAction(void (*function)(Entity *)) {
     this->action = function;
 }
 
+void Entity::lock() {
+    this->isLocked = true;
+}
+
+void Entity::unlock() {
+    this->isLocked = false;
+}
+
 void Entity::act() {
-    this->action(this);
+    if (not this->isLocked) {
+        try {
+            this->action(this);
+        }
+        catch (const std::exception &e) {
+            std::clog << "Error performing action: " << e.what() << '\n';
+        }
+    }
 }
 
 void Entity::updateAnimation() {

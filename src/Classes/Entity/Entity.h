@@ -10,18 +10,6 @@ enum class Direction {
     UP, DOWN, LEFT, RIGHT
 };
 
-inline std::ostream &operator<<(std::ostream &ostream, Direction direction) {
-    ostream << static_cast<int>(direction);
-    return ostream;
-}
-
-inline std::istream &operator>>(std::istream& istream, Direction &direction) {
-    std::string buffer;
-    istream >> buffer;
-    direction = static_cast<Direction>(std::stoi(buffer));
-    return istream;
-}
-
 inline Direction oppositeDirection(Direction direction) {
     switch (direction) {
         case Direction::UP:
@@ -33,7 +21,7 @@ inline Direction oppositeDirection(Direction direction) {
         case Direction::LEFT:
             return Direction::RIGHT;
         default:
-            throw std::invalid_argument(std::string("Invalid argument: " + std::to_string(static_cast<int>(direction)) + " was passed"));
+            throw std::invalid_argument(std::string("Invalid argument: " + std::to_string(static_cast<int>(direction))) + " was passed");
     }
 }
 
@@ -55,6 +43,7 @@ private:
     std::unordered_map<Direction, Animation> animations;
 
     void (*action)(Entity *){ nullptr };
+    bool isLocked{ false };
 
 public:
     Entity() = default;
@@ -79,6 +68,8 @@ public:
 
     void setDialogue(const char *text);
 
+    void setDialogue(const std::vector<std::string> &text);
+
     [[nodiscard]] std::vector<std::string> getDialogue() const;
 
     void setCoordinates(int newX, int newY);
@@ -94,6 +85,8 @@ public:
     [[nodiscard]] Direction getDirection() const;
 
     void face(const Entity *entity);
+
+    [[nodiscard]] bool isFacing(Direction direction) const;
 
     [[nodiscard]] bool isFacingNorth() const;
 
@@ -132,6 +125,10 @@ public:
     void setAnimation(Direction direction, const char *path, int numFrames, int numRows);
 
     void setAction(void (*function)(Entity *entity));
+
+    void lock();
+
+    void unlock();
 
     void act();
 

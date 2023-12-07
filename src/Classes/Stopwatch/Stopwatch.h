@@ -19,7 +19,7 @@ private:
             this->active = false;
         }
         catch (const std::exception &e) {
-            std::clog << "Unable to detach thread: " << e.what() << '\n';
+            std::clog << "Error deactivating stopwatch: " << e.what() << '\n';
         }
     }
 
@@ -39,7 +39,7 @@ public:
     }
 
     void start() {
-        // prevents executing start if the timer is still going
+        // prevents executing start if the keyDelay is still going
         if (this->active) {
             return;
         }

@@ -18,9 +18,9 @@ void Game::renderBattle() {
     int width;      // stores the text width
     int height;     // stores the text height
 
-    const static int box_width = Constants::TILE_SIZE * 7;
-    const static int box_height = Constants::TILE_SIZE * 2;
-    const static SDL_Rect text_box{
+    static const int box_width = Constants::TILE_SIZE * 7;
+    static const int box_height = Constants::TILE_SIZE * 2;
+    static const SDL_Rect text_box{
             box_width / (Constants::TILE_SIZE / 10) / 2,
             this->WINDOW_HEIGHT - box_height,
             box_width / 2,

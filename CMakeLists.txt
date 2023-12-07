@@ -11,10 +11,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_ttf)
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     message("64-bit system detected")
-    # Add 64-bit specific configurations, libraries, etc.
 elseif (CMAKE_SIZEOF_VOID_P EQUAL 4)
     message("32-bit system detected")
-    # Add 32-bit specific configurations, libraries, etc.
 else ()
     message(FATAL_ERROR "Unsupported architecture")
 endif ()
@@ -44,12 +42,8 @@ set(SOURCES
         src/Classes/Item/ItemList.h
         src/Classes/Battle/Battle.h
         src/Classes/Battle/Battle.cpp
-        src/Data/Items/PokeBalls/PokeBalls.h
-        src/Data/Items/StatusItems/StatusItems.h
-        src/Data/Items/RestoreItems/RestoreItems.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Data/Items/BattleItems/BattleItems.h
         src/Classes/Game/Game.cpp
         src/Classes/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
@@ -84,6 +78,12 @@ set(SOURCES
         src/Classes/AutoThread/AutoThread.h
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
+        src/Classes/TextBox/TextBox.cpp
+        src/Classes/TextBox/TextBox.h
+        src/Classes/GraphicsManager/GraphicsManager.cpp
+        src/Classes/GraphicsManager/GraphicsManager.h
+        src/Classes/Graphic/Graphic.cpp
+        src/Classes/Graphic/Graphic.h
 )
 
 set(POKEMON
@@ -162,43 +162,69 @@ set(ABILITIES
 )
 
 set(RESTORE_ITEMS
-        src/Data/Items/RestoreItems/Potion.cpp
-        src/Data/Items/RestoreItems/SuperPotion.cpp
-        src/Data/Items/RestoreItems/HyperPotion.cpp
-        src/Data/Items/RestoreItems/MaxPotion.cpp
-        src/Data/Items/RestoreItems/Ether.cpp
-        src/Data/Items/RestoreItems/MaxEther.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.h
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp
+        src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.h
 )
 
 set(STATUS_ITEMS
-        src/Data/Items/StatusItems/Antidote.cpp
-        src/Data/Items/StatusItems/Awakening.cpp
-        src/Data/Items/StatusItems/BurnHeal.cpp
-        src/Data/Items/StatusItems/IceHeal.cpp
-        src/Data/Items/StatusItems/ParalyzeHeal.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.h
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.h
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp
+        src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.h
 )
 
 set(POKE_BALLS
-        src/Data/Items/PokeBalls/PokeBall.cpp
-        src/Data/Items/PokeBalls/GreatBall.cpp
-        src/Data/Items/PokeBalls/UltraBall.cpp
-        src/Data/Items/PokeBalls/MasterBall.cpp
-        src/Data/Items/PokeBalls/NetBall.cpp
-        src/Data/Items/PokeBalls/NestBall.cpp
-        src/Data/Items/PokeBalls/TimerBall.cpp
-        src/Data/Items/PokeBalls/PremierBall.cpp
-        src/Data/Items/PokeBalls/DuskBall.cpp
-        src/Data/Items/PokeBalls/HealBall.cpp
-        src/Data/Items/PokeBalls/QuickBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.h
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp
+        src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.h
 )
 
 set(BATTLE_ITEMS
-        src/Data/Items/BattleItems/XAttack.cpp
-        src/Data/Items/BattleItems/XDefense.cpp
-        src/Data/Items/BattleItems/XSpAttack.cpp
-        src/Data/Items/BattleItems/XSpDefense.cpp
-        src/Data/Items/BattleItems/XSpeed.cpp
-        src/Data/Items/BattleItems/XAccuracy.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.h
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp
+        src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.h
 )
 
 set(ITEMS
@@ -206,7 +232,6 @@ set(ITEMS
         ${STATUS_ITEMS}
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
-        src/Data/Items/Items.h
 )
 
 add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ABILITIES} ${ITEMS})

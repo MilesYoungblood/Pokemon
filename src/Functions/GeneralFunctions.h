@@ -4,17 +4,9 @@
 
 #pragma once
 
-#include <conio.h>
-#include <windows.h>
-
 #ifdef SYNCHRONIZE
 #undef SYNCHRONIZE
 #endif
-
-enum Keys {
-    ESC = 27,
-    ENTER = 13
-};
 
 class [[maybe_unused]] Sort {
 private:
@@ -243,9 +235,21 @@ inline bool isVowel(char ltr) {
 
 // returns true once the user has pressed enter and false if the user chooses up (w) or down (s)
 inline bool chooseOption(int &option, const int upper) {
+    bool canPress = true;
+
+    std::function<void()> f = [&canPress] -> void {
+        AutoThread::run([&canPress] -> void {
+            canPress = false;
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            canPress = true;
+        });
+    };
+
     while (true) {
-        switch (static_cast<char>(getch())) {
-            case 'w':
+        const std::span key_states(SDL_GetKeyboardState(nullptr), 255ULL);
+        if (canPress) {
+            if (key_states[SDL_SCANCODE_W] == 1U) {
+                f();
                 if (option - 1 >= 0) {
                     --option;
                     return false;
@@ -253,8 +257,9 @@ inline bool chooseOption(int &option, const int upper) {
                 else {
                     continue;
                 }
-
-            case 's':
+            }
+            else if (key_states[SDL_SCANCODE_S] == 1U) {
+                f();
                 if (option + 1 <= upper) {
                     ++option;
                     return false;
@@ -262,16 +267,14 @@ inline bool chooseOption(int &option, const int upper) {
                 else {
                     continue;
                 }
-
-            case Keys::ENTER:
+            }
+            else if (key_states[SDL_SCANCODE_RETURN] == 1U) {
                 return true;
-
-            case Keys::ESC:
+            }
+            else if (key_states[SDL_SCANCODE_ESCAPE] == 1U) {
                 option = upper;
                 return true;
-
-            default:
-                continue;
+            }
         }
     }
 }
@@ -310,6 +313,23 @@ inline std::string operator+=(std::string &lhs, T &rhs) {
     using underlyingType = std::underlying_type_t<T>;
     lhs += std::to_string(static_cast<underlyingType>(rhs));
     return lhs;
+}
+
+template<EnumType T>
+inline std::ostream &operator<<(std::ostream &ostream, T rhs) {
+    using underlyingType = std::underlying_type_t<T>;
+    ostream << static_cast<underlyingType>(rhs);
+    return ostream;
+}
+
+template<EnumType T>
+inline std::istream &operator>>(std::istream &istream, T &rhs) {
+    std::string buffer;
+    istream >> buffer;
+
+    using underlyingType = std::underlying_type_t<T>;
+    rhs = static_cast<underlyingType>(std::stoi(buffer));
+    return istream;
 }
 
 template<typename T>

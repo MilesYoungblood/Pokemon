@@ -122,7 +122,6 @@ protected:
     void calculateDamage(const Pokemon &attacker, const Pokemon &defender);
 
 private:
-
     [[nodiscard]] double checkType(const Pokemon &pokemon) const;
 
     int pp;

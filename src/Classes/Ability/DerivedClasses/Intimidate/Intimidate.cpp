@@ -16,3 +16,14 @@ std::queue<std::string> Intimidate::actionMessage(const Pokemon & /*attacker*/, 
 int Intimidate::getFlag() const {
     return -1;
 }
+
+Ability::Id Intimidate::getId() const {
+    return Ability::Id::INTIMIDATE;
+}
+
+namespace {
+    AutoThread init([] -> void {
+        abilityMap.insert(std::make_pair(Ability::Id::INTIMIDATE,
+                                         [] -> std::unique_ptr<Ability> { return std::make_unique<Intimidate>(); }));
+    });
+}

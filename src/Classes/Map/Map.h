@@ -54,6 +54,10 @@ public:
 
     const Trainer &operator[](int index) const;
 
+    std::vector<std::unique_ptr<Trainer>>::iterator begin();
+
+    std::vector<std::unique_ptr<Trainer>>::iterator end();
+
     [[nodiscard]] std::string getMusic() const;
 
     void setObstruction(int x, int y);

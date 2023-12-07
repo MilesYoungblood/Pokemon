@@ -4,14 +4,8 @@
 
 #include "Game.h"
 
-bool print = false;
-
-std::vector<int> pixelsTraveled;
-std::vector<bool> lockTrainer;
-std::vector<bool> keepLooping;
-
-int numPages = 1;
-int currentPage = 1;
+std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;
+std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
 
 Game::Game() {
     // initialize subsystems
@@ -116,6 +110,9 @@ Game::Game() {
     // instantiate KeyManager
     KeyManager::getInstance();
 
+    // initialize TextBox
+    TextBox::init(this->renderer, this->font);
+
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
     this->isRunning = true;
@@ -185,18 +182,24 @@ void Game::saveData() {
 
     saveFile << this->currentMapIndex;
     saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
-             << static_cast<int>(Player::getPlayer().getDirection());
+             << Player::getPlayer().getDirection();
     saveFile << '\n' << Player::getPlayer().partySize();
-    for (int pokemon = 0; pokemon < Player::getPlayer().partySize(); ++pokemon) {
-        saveFile << '\n' << static_cast<int>(Player::getPlayer()[pokemon].getId()) << ' ';
+    for (auto &pokemon : Player::getPlayer()) {
+        saveFile << '\n' << pokemon->getId() << ' ';
+        saveFile << '\n' << pokemon->getGender() << ' ';
+        // TODO eventually remove try-catch
+        try {
+            saveFile << '\n' << pokemon->getAbility().getId() << ' ';
+        }
+        catch (const std::exception &e) {
+            std::clog << "Error writing ability to file: " << e.what() << '\n';
+        }
 
-        const int num_moves = Player::getPlayer()[pokemon].numMoves();
+        const int num_moves = pokemon->numMoves();
         saveFile << num_moves << ' ';
 
-        for (int move = 0; move < num_moves; ++move) {
-            saveFile << static_cast<int>(Player::getPlayer()[pokemon][move].getId()) << ' '
-                     << Player::getPlayer()[pokemon][move].getPp() << ' '
-                     << Player::getPlayer()[pokemon][move].getMaxPp() << ' ';
+        for (auto &move : *pokemon) {
+            saveFile << move->getId() << ' ' << move->getPp() << ' ' << move->getMaxPp() << ' ';
         }
     }
 
@@ -240,26 +243,51 @@ void Game::saveData() {
     for (int map = 0; map < this->maps.size(); ++map) {
         for (int trainer = 0; trainer < this->maps.at(map).numTrainers(); ++trainer) {
             saveFile << '\n' << map << ' ' << trainer << ' ' << this->maps.at(map)[trainer].partySize();
-            saveFile << this->maps.at(map)[trainer].getDirection();
+            saveFile << static_cast<int>(this->maps.at(map)[trainer].getDirection());
         }
     }
 
     saveFile.close();
 }
 
+void defaultAction(Entity *entity) {
+    switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
+        case 1:
+            entity->face(entity);
+            break;
+
+        case 2:
+            if (entity->isFacingNorth() or entity->isFacingSouth()) {
+                binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
+            }
+            else {
+                binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
+            }
+            break;
+    }
+};
+
 void Game::initializeGame() {
     this->currentMapIndex = Map::Id::ROUTE_1;
     this->currentMap = &this->maps.at(this->currentMapIndex);
 
     this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
+    this->maps[Map::Id::ROUTE_1][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
+    this->maps[Map::Id::ROUTE_1][0].setAction(defaultAction);
     this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
     this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+    this->maps[Map::Id::ROUTE_1][1].setDialogue({
+                                                        "Hmm... you look pretty tough...",
+                                                        "This calls for a battle!",
+                                                        "Prepare yourself!"
+                                                });
+    this->maps[Map::Id::ROUTE_1][1].setAction(defaultAction);
     this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
 
-    Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
+    //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::ZEBSTRIKA)());
     //Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
@@ -276,30 +304,30 @@ void Game::initializeGame() {
     //Player::getPlayer()[3].addMove(Move::Id::FLAMETHROWER);
     //Player::getPlayer()[3].addMove(Move::Id::FOCUS_BLAST);
 
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::POTION, 5);
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::SUPER_POTION, 5);
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::HYPER_POTION, 5);
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::MAX_POTION, 5);
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::ETHER, 5);
-    Player::getPlayer().addItem<RestoreItem>(RestoreItem::Id::ETHER, 5);
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::POTION)(5));
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::SUPER_POTION)(5));
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::HYPER_POTION)(5));
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::MAX_POTION)(5));
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::ETHER)(5));
+    Player::getPlayer().addItem<RestoreItem>(restoreItems.at(RestoreItem::Id::MAX_ETHER)(5));
 
-    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::PARALYZE_HEAL, 5);
-    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::BURN_HEAL, 5);
-    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::ICE_HEAL, 5);
-    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::ANTIDOTE, 5);
-    Player::getPlayer().addItem<StatusItem>(StatusItem::Id::AWAKENING, 5);
+    Player::getPlayer().addItem<StatusItem>(statusItems.at(StatusItem::Id::AWAKENING)(5));
+    Player::getPlayer().addItem<StatusItem>(statusItems.at(StatusItem::Id::ANTIDOTE)(5));
+    Player::getPlayer().addItem<StatusItem>(statusItems.at(StatusItem::Id::BURN_HEAL)(5));
+    Player::getPlayer().addItem<StatusItem>(statusItems.at(StatusItem::Id::ICE_HEAL)(5));
+    Player::getPlayer().addItem<StatusItem>(statusItems.at(StatusItem::Id::PARALYZE_HEAL)(5));
 
-    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::POKE_BALL, 5);
-    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::GREAT_BALL, 5);
-    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::ULTRA_BALL, 5);
-    Player::getPlayer().addItem<PokeBall>(PokeBall::Id::MASTER_BALL, 1);
+    Player::getPlayer().addItem<PokeBall>(pokeBalls.at(PokeBall::Id::POKE_BALL)(5));
+    Player::getPlayer().addItem<PokeBall>(pokeBalls.at(PokeBall::Id::GREAT_BALL)(5));
+    Player::getPlayer().addItem<PokeBall>(pokeBalls.at(PokeBall::Id::ULTRA_BALL)(5));
+    Player::getPlayer().addItem<PokeBall>(pokeBalls.at(PokeBall::Id::MASTER_BALL)(1));
 
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_ATTACK, 5);
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_DEFENSE, 5);
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SP_ATTACK, 5);
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SP_DEFENSE, 5);
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_SPEED, 5);
-    Player::getPlayer().addItem<BattleItem>(BattleItem::Id::X_ACCURACY, 5);
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_ATTACK)(5));
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_DEFENSE)(5));
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SP_ATTACK)(5));
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SP_DEFENSE)(5));
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SPEED)(5));
+    Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_ACCURACY)(5));
 }
 
 void Game::loadData() {
@@ -324,40 +352,6 @@ void Game::loadData() {
     this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
 
     Trainer::init();
-
-    // initialize RestoreItem class
-    RestoreItem::init([](RestoreItem::Id id) -> RestoreItem::Data {
-        return {
-                restoreItems.at(id).name,
-                restoreItems.at(id).amount,
-                restoreItems.at(id).isHp
-        };
-    });
-
-    // initialize StatusItem class
-    StatusItem::init([](StatusItem::Id id) -> StatusItem::Data {
-        return {
-                statusItems.at(id).name,
-                statusItems.at(id).status
-        };
-    });
-
-    // initialize PokeBall class
-    PokeBall::init([](PokeBall::Id id) -> PokeBall::Data {
-        return {
-                pokeBalls.at(id).name,
-                pokeBalls.at(id).catchRate,
-                pokeBalls.at(id).postCatch
-        };
-    });
-
-    // initialize BattleItem class
-    BattleItem::init([](BattleItem::Id id) -> BattleItem::Data {
-        return {
-                battleItems.at(id).name,
-                battleItems.at(id).stat
-        };
-    });
 
     if (saveFile) {
         std::string buffer;
@@ -389,6 +383,21 @@ void Game::loadData() {
         for (int pokemon = 0; pokemon < party_size; ++pokemon) {
             std::getline(saveFile, buffer, ' ');
             Player::getPlayer().addPokemon(pokemonMap.at(static_cast<Pokemon::Id>(std::stoi(buffer)))());
+
+            // sets the Pokémon's gender
+            std::getline(saveFile, buffer, ' ');
+            Player::getPlayer()[pokemon].setGender(static_cast<Pokemon::Gender>(std::stoi(buffer)));
+
+            // sets the Pokémon's ability
+            std::getline(saveFile, buffer, ' ');
+            // TODO eventually remove try-catch
+            try {
+                Player::getPlayer()[pokemon].setAbility(abilityMap.at(static_cast<Ability::Id>(std::stoi(buffer)))());
+            }
+            catch (const std::exception &e) {
+                std::clog << "Error adding Ability: " << e.what() << '\n';
+                Player::getPlayer()[pokemon].setAbility(nullptr);
+            }
 
             // grabs the number of moves for this Pokémon
             std::getline(saveFile, buffer, ' ');
@@ -426,7 +435,7 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem<RestoreItem>(item, quantity);
+            Player::getPlayer().addItem<RestoreItem>(restoreItems.at(item)(quantity));
         }
 
         // grab the total number of status items in the player's bag
@@ -441,7 +450,7 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem<StatusItem>(item, quantity);
+            Player::getPlayer().addItem<StatusItem>(statusItems.at(item)(quantity));
         }
 
         // grab the total number of restore items in the player's bag
@@ -456,7 +465,7 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem<PokeBall>(item, quantity);
+            Player::getPlayer().addItem<PokeBall>(pokeBalls.at(item)(quantity));
         }
 
         // grab the total number of restore items in the player's bag
@@ -471,22 +480,30 @@ void Game::loadData() {
             std::getline(saveFile, buffer);
             const int quantity = std::stoi(buffer);
 
-            Player::getPlayer().addItem<BattleItem>(item, quantity);
+            Player::getPlayer().addItem<BattleItem>(battleItems.at(item)(quantity));
         }
 
         this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
+        this->maps[Map::Id::ROUTE_1][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
+        this->maps[Map::Id::ROUTE_1][0].setAction(defaultAction);
         this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
         this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+        this->maps[Map::Id::ROUTE_1][1].setDialogue({
+                                                            "Hmm... you look pretty tough...",
+                                                            "This calls for a battle!",
+                                                            "Prepare yourself!"
+                                                    });
+        this->maps[Map::Id::ROUTE_1][1].setAction(defaultAction);
         this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
         std::stringstream ss;
         // load each trainer's data for every map
         while (std::getline(saveFile, buffer)) {
-            ss >> buffer;
+            ss << buffer;
 
             // grabs the map
             std::getline(ss, buffer, ' ');
-            const auto map = static_cast<Map::Id>(std::stoi(buffer));
+            const int map = std::stoi(buffer);
 
             // grabs the trainer
             std::getline(ss, buffer, ' ');
@@ -501,6 +518,10 @@ void Game::loadData() {
             }
 
             this->maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
+
+            // Clear the string stream and reset its state
+            ss.str().clear();
+            ss.clear();
         }
 
         saveFile.close();

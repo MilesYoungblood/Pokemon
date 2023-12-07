@@ -6,8 +6,7 @@
 
 #include "../../Item.h"
 
-class PokeBall : public Item {
-public:
+struct PokeBall : public Item {
     enum class Id {
         POKE_BALL,
         GREAT_BALL,
@@ -22,34 +21,23 @@ public:
         QUICK_BALL
     };
 
-    struct Data {
-        std::string_view name;
-
-        double (*catchRate)(const Pokemon &pokemon, Time time, int turn, bool isCave);
-
-        void (*postCatch)(Pokemon &pokemon);
-    };
-
-    PokeBall(PokeBall::Id id, int n);
-
-    static void init(PokeBall::Data (*instructions)(PokeBall::Id));
+    explicit PokeBall(int n);
 
     [[nodiscard]] std::string getName() const override;
 
-    [[nodiscard]] double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
+    [[nodiscard]] std::string getEffect() const override;
 
-    void postCatch(Pokemon &pokemon) const;
+    [[nodiscard]] virtual double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const;
 
-    [[nodiscard]] PokeBall::Id getId() const;
+    virtual void postCatch(Pokemon &pokemon) const;
+
+    [[nodiscard]] virtual PokeBall::Id getId() const;
 
     [[nodiscard]] Item::Class getClass() const override;
 
     [[nodiscard]] std::string useMessage() const override;
 
     bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
-
-private:
-    PokeBall::Id id;
-
-    inline static PokeBall::Data (*dataFunction)(PokeBall::Id){ nullptr };
 };
+
+inline std::unordered_map<PokeBall::Id, std::unique_ptr<PokeBall>(*)(int)> pokeBalls;

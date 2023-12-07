@@ -83,63 +83,6 @@ inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> atte
     std::cout.flush();
 }
 
-inline void boostStat(const BattleItem &itemToUse, Pokemon &pokemonToBoost, int amountToBoost, bool &limitReached) {
-    if (pokemonToBoost.getStatMod(itemToUse.getStat()) < 6) {
-        pokemonToBoost.raiseStatMod(itemToUse.getStat(), amountToBoost);
-        limitReached = true;
-    }
-}
-
-inline void boostMessage(const Pokemon &pokemon, Pokemon::Stat statBoosted, int amountBoosted, bool limit) {
-    const char *string;
-
-    switch (statBoosted) {
-        case Pokemon::Stat::ATTACK:
-            string = "attack";
-            break;
-
-        case Pokemon::Stat::SP_ATTACK:
-            string = "special attack";
-            break;
-
-        case Pokemon::Stat::DEFENSE:
-            string = "defense";
-            break;
-
-        case Pokemon::Stat::SP_DEFENSE:
-            string = "special defense";
-            break;
-
-        case Pokemon::Stat::SPEED:
-            string = "speed";
-            break;
-
-        case Pokemon::Stat::ACCURACY:
-            string = "accuracy";
-            break;
-
-        default:
-            throw std::runtime_error("Unexpected error: function boostMessage");
-    }
-
-    if (not limit) {
-        std::cout << pokemon.getName() + "'s " + string + " rose";
-        if (amountBoosted == 2) {
-            std::cout << " sharply";
-        }
-        else if (amountBoosted > 2) {
-            std::cout << " drastically";
-        }
-
-        std::cout << "!\n";
-    }
-    else {
-        std::cout << pokemon.getName() + "'s " + string + " can't go any higher!\n";
-    }
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-}
-
 inline void noEffectMessage(const Item &item, const Pokemon &pokemon) {
     std::cout << item.getName() + " had no effect on " + pokemon.getName() + ".\n";
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));

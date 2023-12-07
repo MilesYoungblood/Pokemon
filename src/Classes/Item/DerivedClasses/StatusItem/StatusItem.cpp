@@ -4,27 +4,7 @@
 
 #include "StatusItem.h"
 
-StatusItem::StatusItem(StatusItem::Id id, int quantity) : Item(quantity), id(id) {
-    if (StatusItem::dataFunction == nullptr) {
-        throw std::runtime_error("Tried to construct a StatusCondition Item without initializing class\n");
-    }
-}
-
-void StatusItem::init(StatusItem::Data (*instructions)(StatusItem::Id)) {
-    StatusItem::dataFunction = instructions;
-}
-
-std::string StatusItem::getName() const {
-    return std::string(StatusItem::dataFunction(this->id).name);
-}
-
-StatusCondition StatusItem::getStatus() const {
-    return StatusItem::dataFunction(this->id).status;
-}
-
-StatusItem::Id StatusItem::getId() const {
-    return this->id;
-}
+StatusItem::StatusItem(int quantity) : Item(quantity) {}
 
 Item::Class StatusItem::getClass() const {
     return Item::Class::STATUS;

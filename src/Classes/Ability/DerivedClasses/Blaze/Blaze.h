@@ -7,16 +7,9 @@
 #include "../../Ability.h"
 
 struct Blaze : public Ability {
-    void action(Pokemon &attacker, Pokemon &defender) override {
-        // TODO to be done in move class specifically; make power a field
-    }
+    void action(Pokemon &attacker, Pokemon &defender) override;
 
-    [[nodiscard]] int getFlag() const override {
-        return -1;
-    }
+    [[nodiscard]] int getFlag() const override;
+
+    [[nodiscard]] Ability::Id getId() const override;
 };
-
-inline AutoThread init([] -> void {
-    abilityMap.insert(
-            std::make_pair(Ability::Id::BLAZE, [] -> std::unique_ptr<Ability> { return std::make_unique<Blaze>(); }));
-});

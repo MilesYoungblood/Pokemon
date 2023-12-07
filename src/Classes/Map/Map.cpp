@@ -107,7 +107,6 @@ std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(const int x, c
     return std::nullopt;
 }
 
-// returns the number of NPCs
 int Map::numTrainers() const {
     return static_cast<int>(this->trainers.size());
 }
@@ -129,6 +128,14 @@ const Trainer &Map::operator[](const int index) const {
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing trainers: ") + e.what() + '\n');
     }
+}
+
+std::vector<std::unique_ptr<Trainer>>::iterator Map::begin() {
+    return this->trainers.begin();
+}
+
+std::vector<std::unique_ptr<Trainer>>::iterator Map::end() {
+    return this->trainers.end();
 }
 
 std::string Map::getMusic() const {

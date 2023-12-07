@@ -240,6 +240,12 @@ public:
 
     Pokemon::Gender getGender() const;
 
+    void setAbility(std::unique_ptr<Ability> newAbility);
+
+    Ability &getAbility();
+
+    const Ability &getAbility() const;
+
     virtual Type getType(bool type1) const = 0;
 
     virtual double getHeight() const = 0;
@@ -267,6 +273,10 @@ public:
     Move &operator[](int index);
 
     const Move &operator[](int index) const;
+
+    std::vector<std::unique_ptr<Move>>::iterator begin();
+
+    std::vector<std::unique_ptr<Move>>::iterator end();
 
 private:
     Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);

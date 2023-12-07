@@ -41,7 +41,7 @@ void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
         this->party.push_back(std::move(toAdd));
     }
     catch (const std::exception &e) {
-        throw std::runtime_error(std::string("Error adding Pokemon: ") + e.what() + '\n');
+        std::clog << "Error adding Pokemon: " << e.what() << '\n';
     }
 }
 
@@ -102,6 +102,14 @@ const Pokemon &Trainer::operator[](const int index) const {
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
     }
+}
+
+std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::begin() {
+    return this->party.begin();
+}
+
+std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
+    return this->party.end();
 }
 
 Trainer::operator bool() const {

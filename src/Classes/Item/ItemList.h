@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Data/Items/RestoreItems/RestoreItems.h"
-#include "../../Data/Items/StatusItems/StatusItems.h"
-#include "../../Data/Items/PokeBalls/PokeBalls.h"
-#include "../../Data/Items/BattleItems/BattleItems.h"
+#include "DerivedClasses/RestoreItem/RestoreItem.h"
+#include "DerivedClasses/StatusItem/StatusItem.h"
+#include "DerivedClasses/Pokeball/Pokeball.h"
+#include "DerivedClasses/BattleItem/BattleItem.h"

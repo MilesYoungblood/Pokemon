@@ -112,7 +112,7 @@ extern "C" {
  *
  * `flags` may be any of the following OR'd together:
  *
- * - `SDL_INIT_TIMER`: timer subsystem
+ * - `SDL_INIT_TIMER`: keyDelay subsystem
  * - `SDL_INIT_AUDIO`: audio subsystem
  * - `SDL_INIT_VIDEO`: video subsystem; automatically initializes the events
  *   subsystem

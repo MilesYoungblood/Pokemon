@@ -6,10 +6,6 @@
 
 class SoundPlayer {
 public:
-    enum class SoundId {
-        SELECTION, ACCEPT
-    };
-
     static SoundPlayer &getInstance();
 
     SoundPlayer(const SoundPlayer &) = delete;
@@ -22,15 +18,18 @@ public:
 
     ~SoundPlayer();
 
-    void playSound(SoundPlayer::SoundId id);
+    void playSound(const char *name);
+
+    void setFinishedCallback(void (*f)(int));
 
 private:
-    std::unordered_map<SoundPlayer::SoundId, Mix_Chunk *> soundBoard;
+    std::unordered_map<std::string, Mix_Chunk *> soundBoard;
+
+    void (*finishedPlaying)(int){ nullptr };
 
     SoundPlayer();
 
     /// \brief Adds a sound to the soundboard.
-    /// \param id id of the sound
-    /// \param path path of the sound
-    void loadSound(const SoundPlayer::SoundId id, const std::string &path);
+    /// \name name of the sound
+    void loadSound(const char *name);
 };

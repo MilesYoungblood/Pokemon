@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Data/Items/Items.h"
+#include "../../Classes/Item/ItemList.h"
 #include "../../Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Functions/ItemFunctions.h"
 

@@ -4,28 +4,6 @@
 
 #include "Battle.h"
 
-static constexpr int NUM_TYPES = 17;
-
-static constexpr std::array<std::array<double, NUM_TYPES>, NUM_TYPES> TYPE_CHART = {
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5 }, // normal
-        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0 }, // fire
-        std::array<double, NUM_TYPES>{ 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // water
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0 }, // electric
-        std::array<double, NUM_TYPES>{ 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5 }, // grass
-        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // ice
-        std::array<double, NUM_TYPES>{ 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0 }, // fighting
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0 }, // poison
-        std::array<double, NUM_TYPES>{ 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0 }, // ground
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5 }, // flying
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5 }, // psychic
-        std::array<double, NUM_TYPES>{ 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5 }, // bug
-        std::array<double, NUM_TYPES>{ 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5 }, // rock
-        std::array<double, NUM_TYPES>{ 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ghost
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // dragon
-        std::array<double, NUM_TYPES>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // dark
-        std::array<double, NUM_TYPES>{ 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5 }, // steel
-};
-
 void Battle::sendOutMessage(const Pokemon &pokemon, const bool isPlayer) {
     if (isPlayer) {
         std::cout << "Go " + pokemon.getName() + "!\n";
@@ -442,7 +420,7 @@ void Battle::action(Trainer *attacker, Trainer *defender, const int move, bool &
 // If a Pokémon is inflicted by a pre-attack status condition (paralysis, sleep, frozen), it cannot attack.
 void Battle::preStatus(const int userMove, const int opponentMove, const bool isUserFaster) {
     bool (*hasStatusCondition)(const StatusCondition) = [](const StatusCondition status) -> bool {
-        return status == StatusCondition::PARALYSIS ? generateInteger(1, 4) == 1 : status == StatusCondition::FREEZE or status == StatusCondition::SLEEP;
+        return status == StatusCondition::PARALYSIS ? binomial(25.0) : status == StatusCondition::FREEZE or status == StatusCondition::SLEEP;
     };
 
     const auto user_action = [this, &userMove, &hasStatusCondition] -> void {
@@ -644,7 +622,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle) {
                 // if Pokémon selected doesn't have full HP, but also isn't fainted...
                 else {
                     // if item selected restores HP...
-                    if (restoreItems.at(this->player->getItem<RestoreItem>(userItem).getId()).isHp) {
+                    if (this->player->getItem<RestoreItem>(userItem).isHp()) {
                         this->displayHpBar();
 
                         this->player->getItem<RestoreItem>(userItem).use();
@@ -838,8 +816,8 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle) {
                 this->player->getItem<BattleItem>(userItem).useMessage();
 
                 bool limitReached = false;
-                boostStat(this->player->getItem<BattleItem>(userItem), (*this->player)[0], 2, limitReached);
-                boostMessage((*this->player)[0], this->player->getItem<BattleItem>(userItem).getStat(), 2, limitReached);
+                this->player->getItem<BattleItem>(userItem).boost((*this->player)[0], 2, limitReached);
+                this->player->getItem<BattleItem>(userItem).boostMessage((*this->player)[0], 2, limitReached);
 
                 // automatically removes the item if it's quantity is now 0
                 if (not this->player->getItem<BattleItem>(userItem)) {

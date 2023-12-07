@@ -15,11 +15,7 @@ private:
 public:
     static Player &getPlayer();
 
-    inline void init(const char *name, int x, int y, Direction direction) {
-        this->setName(name);
-        this->setCoordinates(x, y);
-        this->setDirection(direction);
-    }
+    void init(const char *name, int x, int y, Direction direction);
 
     static void addToPc(std::unique_ptr<Pokemon> toAdd);
 

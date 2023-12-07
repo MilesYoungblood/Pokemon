@@ -5,19 +5,13 @@
 #pragma once
 
 #include "../Map/Map.h"
-#include "../../Data/Items/Items.h"
 #include "../KeyManager/KeyManager.h"
 #include "../SoundPlayer/SoundPlayer.h"
 #include "../Stopwatch/Stopwatch.h"
+#include "../TextBox/TextBox.h"
 
-extern bool print;
-
-extern std::vector<int> pixelsTraveled;                                 // measures how many screen pixels a trainer has moved
-extern std::vector<bool> lockTrainer;                                   // determines whether a trainer can move spontaneously
-extern std::vector<bool> keepLooping;
-
-extern int numPages;
-extern int currentPage;
+extern std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;           // measures how many screen pixels a trainer has moved
+extern std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
 
 class Game {
 private:
@@ -46,22 +40,24 @@ private:
     SDL_Texture *logo{ nullptr };
     TTF_Font *font{ nullptr };
 
+    std::optional<TextBox> textBox{ std::nullopt };
+
     const std::array<std::function<void()>, 3ULL> HANDLE_FUNCTIONS{
-            [this]() -> void { this->handleTitleScreenEvents(); },
-            [this]() -> void { this->handleOverworldEvents(); },
-            [this]() -> void { this->handleBattleEvents(); }
+            [this] -> void { this->handleTitleScreenEvents(); },
+            [this] -> void { this->handleOverworldEvents(); },
+            [this] -> void { this->handleBattleEvents(); }
     };
 
     const std::array<std::function<void()>, 3ULL> UPDATE_FUNCTIONS{
-            [this]() -> void { this->updateTitleScreen(); },
-            [this]() -> void { this->updateOverworld(); },
-            [this]() -> void { this->updateBattle(); }
+            [this] -> void { this->updateTitleScreen(); },
+            [this] -> void { this->updateOverworld(); },
+            [this] -> void { this->updateBattle(); }
     };
 
     const std::array<std::function<void()>, 3ULL> RENDER_FUNCTIONS{
-            [this]() -> void { this->renderTitleScreen(); },
-            [this]() -> void { this->renderOverworld(); },
-            [this]() -> void { this->renderBattle(); }
+            [this] -> void { this->renderTitleScreen(); },
+            [this] -> void { this->renderOverworld(); },
+            [this] -> void { this->renderBattle(); }
     };
 
     std::array<Map, 3ULL> maps{
@@ -93,11 +89,9 @@ private:
 
     void initializeGame();
 
-    void updateTrainers() const;
+    void createTextBox(const std::vector<std::string> &messages);
 
     void checkForOpponents();
-
-    void renderTextBox(const std::string &message);
 
     void changeMap(const std::tuple<int, int, Map::Id> &data);
 
