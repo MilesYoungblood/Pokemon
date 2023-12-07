@@ -79,6 +79,7 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokeBallMutex);
         pokeBalls.insert(std::make_pair(PokeBall::Id::POKE_BALL, [](int n) -> std::unique_ptr<PokeBall> {
             return std::make_unique<PokeBall>(n);
         }));

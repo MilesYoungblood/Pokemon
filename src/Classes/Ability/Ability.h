@@ -65,4 +65,5 @@ struct Ability {
     [[nodiscard]] virtual bool isBattle() const;
 };
 
+inline std::mutex abilityMutex;
 inline std::unordered_map<Ability::Id, std::unique_ptr<Ability>(*)()> abilityMap;

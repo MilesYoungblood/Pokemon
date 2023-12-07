@@ -24,6 +24,7 @@ StatusItem::Id Awakening::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
         statusItems.insert(std::make_pair(StatusItem::Id::AWAKENING, [](int n) -> std::unique_ptr<StatusItem> {
             return std::make_unique<Awakening>(n);
         }));

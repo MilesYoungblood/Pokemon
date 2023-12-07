@@ -40,4 +40,5 @@ struct PokeBall : public Item {
     bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
 };
 
+inline std::mutex pokeBallMutex;
 inline std::unordered_map<PokeBall::Id, std::unique_ptr<PokeBall>(*)(int)> pokeBalls;

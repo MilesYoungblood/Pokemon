@@ -300,4 +300,5 @@ private:
     double getStat(Pokemon::Stat stat) const;
 };
 
+inline std::mutex pokemonMutex;
 inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> pokemonMap;

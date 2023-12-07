@@ -24,6 +24,7 @@ BattleItem::Id XAccuracy::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(battleItemMutex);
         battleItems.insert(std::make_pair(BattleItem::Id::X_ACCURACY, [](int n) -> std::unique_ptr<BattleItem> {
             return std::make_unique<XAccuracy>(n);
         }));

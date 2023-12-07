@@ -25,6 +25,7 @@ PokeBall::Id HealBall::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokeBallMutex);
         pokeBalls.insert(std::make_pair(PokeBall::Id::HEAL_BALL, [](int n) -> std::unique_ptr<PokeBall> {
             return std::make_unique<HealBall>(n);
         }));

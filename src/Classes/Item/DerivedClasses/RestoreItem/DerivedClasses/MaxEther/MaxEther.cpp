@@ -28,6 +28,7 @@ RestoreItem::Id MaxEther::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
         restoreItems.insert(std::make_pair(RestoreItem::Id::MAX_ETHER, [](int n) -> std::unique_ptr<RestoreItem> {
             return std::make_unique<MaxEther>(n);
         }));

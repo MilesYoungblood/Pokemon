@@ -16,8 +16,8 @@ public:
 
     void action(Pokemon &attacker, Pokemon &defender, bool &skip) override;
 
-    std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                           bool skip) const override;
+    [[nodiscard]] std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                         bool skip) const override;
 
     [[nodiscard]] std::string getName() const override;
 
@@ -34,6 +34,7 @@ public:
 
 namespace {
     inline AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::VOLT_TACKLE,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<VoltTackle>(); }));
     });

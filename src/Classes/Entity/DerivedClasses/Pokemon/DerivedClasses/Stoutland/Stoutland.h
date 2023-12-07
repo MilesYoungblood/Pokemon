@@ -26,6 +26,7 @@ struct Stoutland : public Pokemon {
 
 namespace {
     inline AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
         pokemonMap.insert(std::make_pair(Pokemon::Id::STOUTLAND,
                                          [] -> std::unique_ptr<Pokemon> { return std::make_unique<Stoutland>(); }));
     });

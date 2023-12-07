@@ -132,4 +132,5 @@ private:
     double critFlag{ 0.0 };
 };
 
+inline std::mutex moveMutex;
 inline std::unordered_map<Move::Id, std::unique_ptr<Move>(*)()> moveMap;

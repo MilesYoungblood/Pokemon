@@ -18,6 +18,7 @@ Ability::Id Blaze::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(abilityMutex);
         abilityMap.insert(
                 std::make_pair(Ability::Id::BLAZE,
                                [] -> std::unique_ptr<Ability> { return std::make_unique<Blaze>(); }));

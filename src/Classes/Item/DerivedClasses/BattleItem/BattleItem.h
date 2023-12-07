@@ -33,4 +33,5 @@ struct BattleItem : public Item {
     [[nodiscard]] Item::Class getClass() const override;
 };
 
+inline std::mutex battleItemMutex;
 inline std::unordered_map<BattleItem::Id, std::unique_ptr<BattleItem>(*)(int)> battleItems;

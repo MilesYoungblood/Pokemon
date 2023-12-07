@@ -28,6 +28,7 @@ RestoreItem::Id MaxPotion::getId() const {
 
 namespace {
     AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
         restoreItems.insert(std::make_pair(RestoreItem::Id::MAX_POTION, [](int n) -> std::unique_ptr<RestoreItem> {
             return std::make_unique<MaxPotion>(n);
         }));

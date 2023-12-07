@@ -33,7 +33,8 @@ public:
 
 namespace {
     inline AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::EXTRASENSORY,
-                                              [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); }));
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); }));
     });
 }

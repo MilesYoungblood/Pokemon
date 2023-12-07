@@ -33,4 +33,5 @@ struct StatusItem : public Item {
     [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
 };
 
+inline std::mutex statusItemMutex;
 inline std::unordered_map<StatusItem::Id, std::unique_ptr<StatusItem>(*)(int)> statusItems;

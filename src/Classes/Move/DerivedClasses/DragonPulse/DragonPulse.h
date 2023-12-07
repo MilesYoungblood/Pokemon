@@ -28,7 +28,8 @@ public:
 
 namespace {
     inline AutoThread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::DRAGON_PULSE,
-                                              [] -> std::unique_ptr<Move> { return std::make_unique<DragonPulse>(); }));
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<DragonPulse>(); }));
     });
 }

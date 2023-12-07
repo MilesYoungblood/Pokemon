@@ -37,4 +37,5 @@ struct RestoreItem : public Item {
     [[nodiscard]] std::string restoreMessage(const Move &move) const;
 };
 
+inline std::mutex restoreItemMutex;
 inline std::unordered_map<RestoreItem::Id, std::unique_ptr<RestoreItem>(*)(int)> restoreItems;
