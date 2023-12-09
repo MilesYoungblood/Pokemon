@@ -75,7 +75,6 @@ set(SOURCES
         src/pch.h
         src/constants.h
         src/constants.cpp
-        src/Classes/AutoThread/AutoThread.h
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
         src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp
