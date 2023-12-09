@@ -87,6 +87,8 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Button/Button.cpp
         src/Classes/Graphic/DerivedClasses/Button/Button.h
         src/Classes/Graphic/DerivedClasses/Graphics.h
+        src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp
+        src/Classes/Graphic/DerivedClasses/Visual/Visual.h
 )
 
 set(POKEMON

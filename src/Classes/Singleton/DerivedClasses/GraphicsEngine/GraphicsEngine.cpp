@@ -6,6 +6,7 @@
 
 GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(Button).hash_code()];
+    this->graphics[typeid(Visual).hash_code()];
     this->graphics[typeid(TextBox).hash_code()];
 }
 

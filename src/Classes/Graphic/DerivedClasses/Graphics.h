@@ -6,3 +6,4 @@
 
 #include "TextBox/TextBox.h"
 #include "Button/Button.h"
+#include "Visual/Visual.h"
