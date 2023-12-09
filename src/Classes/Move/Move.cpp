@@ -103,24 +103,12 @@ void Move::resetFlags() {
     this->critFlag = 0.0;
 }
 
-void Move::setDamageFlag(int amount) {
-    this->damageFlag = amount;
-}
-
 int Move::getDamageFlag() const {
     return this->damageFlag;
 }
 
-void Move::setEffFlag(double amount) {
-    this->effFlag = amount;
-}
-
 double Move::getEffFlag() const {
     return this->effFlag;
-}
-
-void Move::setCritFlag(double amount) {
-    this->critFlag = amount;
 }
 
 double Move::getCritFlag() const {

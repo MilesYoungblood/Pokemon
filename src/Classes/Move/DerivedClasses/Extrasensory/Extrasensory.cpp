@@ -21,7 +21,8 @@ void Extrasensory::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     skip = binomial(10.0);
 }
 
-std::queue<std::string> Extrasensory::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
+std::queue<std::string> Extrasensory::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                     bool skip) const {
     std::queue<std::string> messages{{ attacker.getName() + " used Extrasensory!" }};
 
     if (this->getDamageFlag() > 0) {
@@ -73,4 +74,12 @@ Move::Category Extrasensory::getCategory() const {
 
 Move::Id Extrasensory::getId() const {
     return Move::Id::EXTRASENSORY;
+}
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::EXTRASENSORY,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); }));
+    });
 }

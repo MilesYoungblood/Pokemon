@@ -74,3 +74,11 @@ Move::Category IceBeam::getCategory() const {
 Move::Id IceBeam::getId() const {
     return Move::Id::ICE_BEAM;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::ICE_BEAM,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<IceBeam>(); }));
+    });
+}

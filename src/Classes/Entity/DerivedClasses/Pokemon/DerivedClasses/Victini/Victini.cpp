@@ -33,3 +33,11 @@ int Victini::getCatchRate() const {
 Pokemon::Id Victini::getId() const {
     return Pokemon::Id::VICTINI;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::VICTINI,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Victini>(); }));
+    });
+}

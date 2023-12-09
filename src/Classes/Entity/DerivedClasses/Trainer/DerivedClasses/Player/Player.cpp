@@ -23,17 +23,13 @@ void Player::init(const char *name, int x, int y, Direction direction) {
 }
 
 void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
-    for (auto &box : Player::pc) {
+    for (auto &box : this->pc) {
         for (auto &pokemon : box) {
             if (pokemon == nullptr) {
                 pokemon = std::move(toAdd);
             }
         }
     }
-}
-
-Player::operator bool() const {
-    return this->getFaintCount() < this->partySize();
 }
 
 bool Player::canFight() const {

@@ -34,3 +34,11 @@ int Liepard::getCatchRate() const {
 Pokemon::Id Liepard::getId() const {
     return Pokemon::Id::LIEPARD;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::LIEPARD,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Liepard>(); }));
+    });
+}

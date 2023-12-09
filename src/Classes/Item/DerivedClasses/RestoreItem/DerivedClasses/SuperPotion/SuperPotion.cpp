@@ -27,7 +27,7 @@ RestoreItem::Id SuperPotion::getId() const {
 }
 
 namespace {
-    AutoThread init([] -> void {
+    std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
         restoreItems.insert(std::make_pair(RestoreItem::Id::SUPER_POTION, [](int n) -> std::unique_ptr<RestoreItem> {
             return std::make_unique<SuperPotion>(n);

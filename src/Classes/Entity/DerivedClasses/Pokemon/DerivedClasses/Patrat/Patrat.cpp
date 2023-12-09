@@ -34,3 +34,11 @@ int Patrat::getCatchRate() const {
 Pokemon::Id Patrat::getId() const {
     return Pokemon::Id::PATRAT;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::PATRAT,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Patrat>(); }));
+    });
+}

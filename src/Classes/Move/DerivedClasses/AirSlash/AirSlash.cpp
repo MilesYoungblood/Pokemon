@@ -73,3 +73,11 @@ Move::Category AirSlash::getCategory() const {
 Move::Id AirSlash::getId() const {
     return Move::Id::AIR_SLASH;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::AIR_SLASH,
+                                      [] -> std::unique_ptr <Move> { return std::make_unique<AirSlash>(); }));
+    });
+}

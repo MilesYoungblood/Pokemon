@@ -34,3 +34,11 @@ int Watchog::getCatchRate() const {
 Pokemon::Id Watchog::getId() const {
     return Pokemon::Id::WATCHOG;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::WATCHOG,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Watchog>(); }));
+    });
+}

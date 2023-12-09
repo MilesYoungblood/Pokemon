@@ -34,3 +34,10 @@ Pokemon::Id Emboar::getId() const {
     return Pokemon::Id::EMBOAR;
 }
 
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::EMBOAR,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Emboar>(); }));
+    });
+}

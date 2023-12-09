@@ -23,7 +23,7 @@ BattleItem::Id XSpAttack::getId() const {
 }
 
 namespace {
-    AutoThread init([] -> void {
+    std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(battleItemMutex);
         battleItems.insert(std::make_pair(BattleItem::Id::X_SP_ATTACK, [](int n) -> std::unique_ptr<BattleItem> {
             return std::make_unique<XSpAttack>(n);

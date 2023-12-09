@@ -69,3 +69,11 @@ Move::Category DarkPulse::getCategory() const {
 Move::Id DarkPulse::getId() const {
     return Move::Id::DARK_PULSE;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::DARK_PULSE,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<DarkPulse>(); }));
+    });
+}

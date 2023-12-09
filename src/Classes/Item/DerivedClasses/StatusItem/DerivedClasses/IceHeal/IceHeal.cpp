@@ -23,7 +23,7 @@ StatusItem::Id IceHeal::getId() const {
 }
 
 namespace {
-    AutoThread init([] -> void {
+    std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
         statusItems.insert(std::make_pair(StatusItem::Id::ICE_HEAL, [](int n) -> std::unique_ptr<StatusItem> {
             return std::make_unique<IceHeal>(n);

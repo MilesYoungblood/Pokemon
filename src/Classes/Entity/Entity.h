@@ -138,5 +138,5 @@ public:
 
     void resetPos();
 
-    virtual explicit operator bool() const;
+    [[nodiscard]] virtual bool canFight() const;
 };

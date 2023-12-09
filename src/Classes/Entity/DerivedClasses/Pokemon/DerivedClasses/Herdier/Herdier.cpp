@@ -34,3 +34,11 @@ int Herdier::getCatchRate() const {
 Pokemon::Id Herdier::getId() const {
     return Pokemon::Id::HERDIER;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::HERDIER,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Herdier>(); }));
+    });
+}

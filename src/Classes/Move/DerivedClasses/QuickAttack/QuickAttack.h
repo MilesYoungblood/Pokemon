@@ -29,11 +29,3 @@ public:
         return true;
     }
 };
-
-namespace {
-    inline AutoThread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::IRON_TAIL,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<QuickAttack>(); }));
-    });
-}

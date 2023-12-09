@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../TextureManager/TextureManager.h"
+#include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../../GameComponent.h"
 
 class SpriteComponent : public GameComponent {

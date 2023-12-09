@@ -8,7 +8,7 @@
 
 class Player : public Trainer {
 private:
-    inline static std::array<std::array<std::unique_ptr < Pokemon>, 30>, 12> pc;
+    std::array<std::array<std::unique_ptr < Pokemon>, 30>, 12> pc;
 
     Player();
 
@@ -17,9 +17,7 @@ public:
 
     void init(const char *name, int x, int y, Direction direction);
 
-    static void addToPc(std::unique_ptr<Pokemon> toAdd);
-
-    explicit operator bool() const override;
+    void addToPc(std::unique_ptr<Pokemon> toAdd);
 
     [[nodiscard]] bool canFight() const override;
 };

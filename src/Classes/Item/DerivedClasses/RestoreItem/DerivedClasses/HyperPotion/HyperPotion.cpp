@@ -27,7 +27,7 @@ RestoreItem::Id HyperPotion::getId() const {
 }
 
 namespace {
-    AutoThread init([] -> void {
+    std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
         restoreItems.insert(std::make_pair(RestoreItem::Id::HYPER_POTION, [](int n) -> std::unique_ptr<RestoreItem> {
             return std::make_unique<HyperPotion>(n);

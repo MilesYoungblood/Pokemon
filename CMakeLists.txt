@@ -40,28 +40,28 @@ set(SOURCES
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
         src/Classes/Item/ItemList.h
-        src/Classes/Battle/Battle.h
-        src/Classes/Battle/Battle.cpp
+        src/Classes/Singleton/DerivedClasses/Battle/Battle.h
+        src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Classes/Game/Game.cpp
-        src/Classes/Game/Game.h
+        src/Classes/Singleton/DerivedClasses/Game/Game.cpp
+        src/Classes/Singleton/DerivedClasses/Game/Game.h
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
         src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
-        src/Classes/TextureManager/TextureManager.h
-        src/Classes/TextureManager/TextureManager.cpp
-        src/Classes/Camera/Camera.h
-        src/Classes/Camera/Camera.cpp
-        src/Classes/Game/OverworldFunctions.cpp
-        src/Classes/Game/BattleFunctions.cpp
-        src/Classes/Game/TitleScreenFunctions.cpp
-        src/Classes/KeyManager/KeyManager.h
-        src/Classes/KeyManager/KeyManager.cpp
+        src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
+        src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp
+        src/Classes/Singleton/DerivedClasses/Camera/Camera.h
+        src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp
+        src/Classes/Singleton/DerivedClasses/Game/OverworldFunctions.cpp
+        src/Classes/Singleton/DerivedClasses/Game/BattleFunctions.cpp
+        src/Classes/Singleton/DerivedClasses/Game/TitleScreenFunctions.cpp
+        src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
+        src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
         src/Classes/Stopwatch/Stopwatch.h
         src/Classes/Animation/Animation.h
         src/Classes/Animation/Animation.cpp
-        src/Classes/SoundPlayer/SoundPlayer.h
-        src/Classes/SoundPlayer/SoundPlayer.cpp
+        src/Classes/Singleton/DerivedClasses/SoundPlayer/SoundPlayer.h
+        src/Classes/Singleton/DerivedClasses/SoundPlayer/SoundPlayer.cpp
         src/Classes/GameObject/GameObject.cpp
         src/Classes/GameObject/GameObject.h
         src/Classes/GameComponent/GameComponent.h
@@ -78,12 +78,16 @@ set(SOURCES
         src/Classes/AutoThread/AutoThread.h
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
-        src/Classes/TextBox/TextBox.cpp
-        src/Classes/TextBox/TextBox.h
-        src/Classes/GraphicsManager/GraphicsManager.cpp
-        src/Classes/GraphicsManager/GraphicsManager.h
+        src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp
+        src/Classes/Graphic/DerivedClasses/TextBox/TextBox.h
+        src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
+        src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
         src/Classes/Graphic/Graphic.cpp
         src/Classes/Graphic/Graphic.h
+        src/Classes/Singleton/Singleton.h
+        src/Classes/Graphic/DerivedClasses/Button/Button.cpp
+        src/Classes/Graphic/DerivedClasses/Button/Button.h
+        src/Classes/Graphic/DerivedClasses/Graphics.h
 )
 
 set(POKEMON

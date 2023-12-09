@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "../AutoThread/AutoThread.h"
-
 class Pokemon;
 
 struct Ability {

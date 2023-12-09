@@ -47,7 +47,7 @@ inline void displayItems(Trainer *trainer, int arrow, bool &print) {
     print = false;
 }
 
-inline void catchPokemonMessage(const Pokemon &pokemon, std::array<bool, 4> attempts) {
+inline void catchPokemonMessage(const Pokemon &pokemon, const std::array<bool, 4> &attempts) {
     if (attempts[0]) {
         std::cout << "1...";
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));

@@ -27,11 +27,3 @@ public:
 
     [[nodiscard]] Move::Id getId() const override;
 };
-
-namespace {
-    inline AutoThread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::AURA_SPHERE,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<AuraSphere>(); }));
-    });
-}

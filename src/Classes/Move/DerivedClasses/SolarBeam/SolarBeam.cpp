@@ -29,3 +29,11 @@ Move::Category SolarBeam::getCategory() const {
 Move::Id SolarBeam::getId() const {
     return Move::Id::SOLAR_BEAM;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::SOLAR_BEAM,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<SolarBeam>(); }));
+    });
+}

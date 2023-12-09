@@ -23,11 +23,3 @@ struct Serperior : public Pokemon {
 
     Pokemon::Id getId() const override;
 };
-
-namespace {
-    inline AutoThread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
-        pokemonMap.insert(std::make_pair(Pokemon::Id::SERPERIOR,
-                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Serperior>(); }));
-    });
-}

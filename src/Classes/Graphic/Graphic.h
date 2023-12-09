@@ -4,20 +4,30 @@
 
 #pragma once
 
+#include "../Singleton/DerivedClasses/TextureManager/TextureManager.h"
+
 class Graphic {
 private:
+    bool active{ true };
 
 public:
+    Graphic() = default;
+
+    Graphic(const Graphic &) = default;
+
+    Graphic(Graphic &&) noexcept = default;
+
+    Graphic &operator=(const Graphic &) = default;
+
+    Graphic &operator=(Graphic &&) noexcept = default;
+
     virtual ~Graphic() = default;
 
-    virtual void render() {};
-};
+    virtual void update() = 0;
 
-class Button : public Graphic {
-public:
-    Button(SDL_Color fg, SDL_Color bg) {}
+    virtual void render() const = 0;
 
-    void onClick() {}
+    void deactivate();
 
-    void onHover() {}
+    [[nodiscard]] bool isActive() const;
 };

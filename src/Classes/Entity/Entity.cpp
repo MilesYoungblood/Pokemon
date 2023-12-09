@@ -277,6 +277,6 @@ void Entity::resetPos() {
     this->screenY = this->y * Constants::TILE_SIZE;
 }
 
-Entity::operator bool() const {
+bool Entity::canFight() const {
     return false;
 }

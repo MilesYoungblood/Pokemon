@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../AutoThread/AutoThread.h"
 #include "../../Functions/GeneralFunctions.h"
 
 enum class Type {
@@ -107,15 +106,9 @@ public:
 protected:
     void resetFlags();
 
-    void setDamageFlag(int amount);
-
     [[nodiscard]] int getDamageFlag() const;
 
-    void setEffFlag(double amount);
-
     [[nodiscard]] double getEffFlag() const;
-
-    void setCritFlag(double amount);
 
     [[nodiscard]] double getCritFlag() const;
 

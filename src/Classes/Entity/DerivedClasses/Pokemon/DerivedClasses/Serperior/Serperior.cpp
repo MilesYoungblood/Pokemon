@@ -33,3 +33,11 @@ int Serperior::getCatchRate() const {
 Pokemon::Id Serperior::getId() const {
     return Pokemon::Id::SERPERIOR;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::SERPERIOR,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Serperior>(); }));
+    });
+}

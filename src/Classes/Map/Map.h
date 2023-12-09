@@ -4,8 +4,7 @@
 
 #pragma once
 
-#include "../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
-#include "../Camera/Camera.h"
+#include "../Singleton/DerivedClasses/Camera/Camera.h"
 
 class Map {
 public:

@@ -34,3 +34,11 @@ int Stoutland::getCatchRate() const {
 Pokemon::Id Stoutland::getId() const {
     return Pokemon::Id::STOUTLAND;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::STOUTLAND,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Stoutland>(); }));
+    });
+}

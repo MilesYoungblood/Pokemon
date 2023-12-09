@@ -112,10 +112,6 @@ std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
     return this->party.end();
 }
 
-Trainer::operator bool() const {
-    return not this->party.empty();
-}
-
 bool Trainer::canFight() const {
     return not this->party.empty();
 }

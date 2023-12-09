@@ -3,3 +3,11 @@
 //
 
 #include "Graphic.h"
+
+void Graphic::deactivate() {
+    this->active = false;
+}
+
+bool Graphic::isActive() const {
+    return this->active;
+}

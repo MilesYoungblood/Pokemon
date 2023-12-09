@@ -81,3 +81,11 @@ Move::Category IronTail::getCategory() const {
 Move::Id IronTail::getId() const {
     return Move::Id::IRON_TAIL;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        moveMap.insert(std::make_pair(Move::Id::IRON_TAIL,
+                                      [] -> std::unique_ptr<Move> { return std::make_unique<IronTail>(); }));
+    });
+}

@@ -33,3 +33,11 @@ int Pignite::getCatchRate() const {
 Pokemon::Id Pignite::getId() const {
     return Pokemon::Id::PIGNITE;
 }
+
+namespace {
+    std::jthread init([] -> void {
+        const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
+        pokemonMap.insert(std::make_pair(Pokemon::Id::PIGNITE,
+                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Pignite>(); }));
+    });
+}

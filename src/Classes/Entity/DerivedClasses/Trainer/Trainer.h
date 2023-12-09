@@ -9,9 +9,9 @@
 
 class Trainer : public Entity {
 private:
-    const static int MAX_POKEMON = 6;                     // max number of Pokémon per party
-    const static int MAX_ITEMS = 50;                      // max number of items per bag
-    const static int NUM_ITEM_TYPES = 4;                  // number of types of items
+    static const int MAX_POKEMON = 6;                     // max number of Pokémon per party
+    static const int MAX_ITEMS = 50;                      // max number of items per bag
+    static const int NUM_ITEM_TYPES = 4;                  // number of types of items
 
     int numFainted = 0;                                   // number of fainted Pokémon
 
@@ -25,7 +25,7 @@ private:
 
     template<typename I>
     static std::size_t getItemTypeId() {
-        const static std::size_t type_id = Trainer::getItemTypeId();
+        static const std::size_t type_id = Trainer::getItemTypeId();
         return type_id;
     }
 
@@ -131,7 +131,5 @@ public:
 
     std::vector<std::unique_ptr<Pokemon>>::iterator end();
 
-    explicit operator bool() const override;
-
-    [[nodiscard]] virtual bool canFight() const;
+    [[nodiscard]] bool canFight() const override;
 };

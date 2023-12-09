@@ -238,11 +238,12 @@ inline bool chooseOption(int &option, const int upper) {
     bool canPress = true;
 
     std::function<void()> f = [&canPress] -> void {
-        AutoThread::run([&canPress] -> void {
+        std::thread run([&canPress] -> void {
             canPress = false;
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
             canPress = true;
         });
+        run.detach();
     };
 
     while (true) {
@@ -299,60 +300,60 @@ inline int generateInteger(int from, int to) {
     return dist(mt);
 }
 
-template<typename T>
-concept EnumType = std::is_enum_v<T>;
+template<typename G>
+concept EnumType = std::is_enum_v<G>;
 
-template<EnumType T>
-inline std::string operator+(const std::string &lhs, T &rhs) {
-    using underlyingType = std::underlying_type_t<T>;
+template<EnumType G>
+inline std::string operator+(const std::string &lhs, G &rhs) {
+    using underlyingType = std::underlying_type_t<G>;
     return lhs + std::to_string(static_cast<underlyingType>(rhs));
 }
 
-template<EnumType T>
-inline std::string operator+=(std::string &lhs, T &rhs) {
-    using underlyingType = std::underlying_type_t<T>;
+template<EnumType G>
+inline std::string operator+=(std::string &lhs, G &rhs) {
+    using underlyingType = std::underlying_type_t<G>;
     lhs += std::to_string(static_cast<underlyingType>(rhs));
     return lhs;
 }
 
-template<EnumType T>
-inline std::ostream &operator<<(std::ostream &ostream, T rhs) {
-    using underlyingType = std::underlying_type_t<T>;
+template<EnumType G>
+inline std::ostream &operator<<(std::ostream &ostream, G rhs) {
+    using underlyingType = std::underlying_type_t<G>;
     ostream << static_cast<underlyingType>(rhs);
     return ostream;
 }
 
-template<EnumType T>
-inline std::istream &operator>>(std::istream &istream, T &rhs) {
+template<EnumType G>
+inline std::istream &operator>>(std::istream &istream, G &rhs) {
     std::string buffer;
     istream >> buffer;
 
-    using underlyingType = std::underlying_type_t<T>;
+    using underlyingType = std::underlying_type_t<G>;
     rhs = static_cast<underlyingType>(std::stoi(buffer));
     return istream;
 }
 
-template<typename T>
-concept IntType = std::is_integral_v<T> and not std::is_same_v<T, char>;
+template<typename G>
+concept IntType = std::is_integral_v<G> and not std::is_same_v<G, char>;
 
-template<IntType T>
-inline std::string operator+(const std::string &lhs, T &&rhs) {
-    return lhs + std::to_string(std::forward<T>(rhs));
+template<IntType G>
+inline std::string operator+(const std::string &lhs, G &&rhs) {
+    return lhs + std::to_string(std::forward<G>(rhs));
 }
 
-template<IntType T>
-inline std::string operator+=(std::string &lhs, T &&rhs) {
-    lhs += std::to_string(std::forward<T>(rhs));
+template<IntType G>
+inline std::string operator+=(std::string &lhs, G &&rhs) {
+    lhs += std::to_string(std::forward<G>(rhs));
     return lhs;
 }
 
-template<IntType T>
-inline std::string operator+(const std::string &lhs, T &rhs) {
+template<IntType G>
+inline std::string operator+(const std::string &lhs, G &rhs) {
     return lhs + std::to_string(rhs);
 }
 
-template<IntType T>
-inline std::string operator+=(std::string &lhs, T &rhs) {
+template<IntType G>
+inline std::string operator+=(std::string &lhs, G &rhs) {
     lhs += std::to_string(rhs);
     return lhs;
 }
