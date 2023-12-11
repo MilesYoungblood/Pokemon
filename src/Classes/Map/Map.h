@@ -80,14 +80,11 @@ private:
 
     inline static Animation water;
 
-    using firstgid = int;
     using tile = int;
-    using textures = std::unordered_map<tile, SDL_Texture *>;
-    inline static std::map<firstgid, textures> textureMap;
+    inline static std::unordered_map<tile, SDL_Texture *> textureMap;
 
     using data = struct {
         int id;
-        int bucket;
         int x;
         int y;
     };

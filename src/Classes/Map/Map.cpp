@@ -41,13 +41,20 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
     }
 
     int width = mapElement->IntAttribute("width");
+    if (width == 0) {
+        std::clog << "Invalid TMX file format: missing \"width\" attribute\n";
+        return;
+    }
     int height = mapElement->IntAttribute("height");
+    if (height == 0) {
+        std::clog << "Invalid TMX file format: missing \"height\" attribute\n";
+        return;
+    }
 
     this->collision = std::vector<std::vector<bool>>(height, std::vector<bool>(width, false));
-    using sources = std::unordered_map<tile, std::string>;
 
-    std::map<firstgid, sources> sourceMap;                // container for image sources
-    std::map<firstgid, tinyxml2::XMLDocument> documents;  // container for tsx files
+    // will be used to universally convert id's from the file into a shared path
+    std::unordered_map<int, std::string> pathMap;
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     for (tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
@@ -58,23 +65,88 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
             return;
         }
 
-        const std::string src = tilesetElement->Attribute("source");
+        std::string src = tilesetElement->Attribute("source");
         if (src.empty()) {
             std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
             return;
         }
 
-        Map::textureMap[firstGidAttribute];
-        sourceMap[firstGidAttribute];
-        documents[firstGidAttribute];
-        if (documents[firstGidAttribute].LoadFile(std::string("../assets/Tiled/Tilemaps/" + src).c_str()) !=
-            tinyxml2::XML_SUCCESS) {
-            std::clog << "Error loading TMX file \"" << src << "\": " << documents[firstGidAttribute].ErrorStr()
-                      << '\n';
+        tinyxml2::XMLDocument document;
+        if (document.LoadFile(std::string("../assets/Tiled/Tilesets/" + src).c_str()) != tinyxml2::XML_SUCCESS) {
+            std::clog << "Error loading TSX file \"" << src << "\": " << document.ErrorStr() << '\n';
             return;
         }
+
+        tinyxml2::XMLElement *tsElement = document.FirstChildElement("tileset");
+        if (tsElement == nullptr) {
+            std::clog << "Invalid TSX file format: missing \"tileset\" element\n";
+            return;
+        }
+        tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
+        // FIXME make this not necessary for Grass.tsx
+        if (gridElement == nullptr) {
+            for (int id = 0; id < 9; ++id) {
+                tinyxml2::XMLElement *imageElement = tsElement->FirstChildElement("image");
+                if (imageElement == nullptr) {
+                    std::clog << "Invalid TSX file format: missing \"image\" element\n";
+                    return;
+                }
+                std::string sourceAttribute = imageElement->Attribute("source");
+                if (sourceAttribute.empty()) {
+                    std::clog << "Invalid TSX file format: missing \"source\" attribute\n";
+                    return;
+                }
+                if (Map::textureMap[firstGidAttribute + id] == nullptr) {
+                    const std::string substr = "../../images/";
+
+                    std::size_t pos = sourceAttribute.find(substr);
+                    if (pos != std::string::npos) {
+                        sourceAttribute.erase(pos, substr.length());
+                    }
+
+                    Map::textureMap[firstGidAttribute + id] = TextureManager::getInstance().loadTexture(sourceAttribute);
+                    if (Map::textureMap[firstGidAttribute + id] == nullptr) {
+                        std::clog << "Error loading texture\n";
+                    }
+                }
+            }
+        }
+        else {
+            for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
+                 tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
+                int id = tileElement->IntAttribute("id", -1);
+                if (id == -1) {
+                    std::clog << "Invalid TSX file format: missing \"id\" attribute\n";
+                    return;
+                }
+
+                if (Map::textureMap[firstGidAttribute + id] == nullptr) {
+                    tinyxml2::XMLElement *imageElement = tileElement->FirstChildElement("image");
+                    if (imageElement == nullptr) {
+                        std::clog << "Invalid TSX file format: missing \"image\" element\n";
+                        return;
+                    }
+
+                    std::string sourceAttribute = imageElement->Attribute("source");
+                    if (sourceAttribute.empty()) {
+                        std::clog << "Invalid TSX file format: missing \"source\" attribute\n";
+                        return;
+                    }
+                    const std::string substr = "../../images/";
+
+                    std::size_t pos = sourceAttribute.find(substr);
+                    if (pos != std::string::npos) {
+                        sourceAttribute.erase(pos, substr.length());
+                    }
+
+                    Map::textureMap[firstGidAttribute + id] = TextureManager::getInstance().loadTexture(sourceAttribute);
+                    if (Map::textureMap[firstGidAttribute + id] == nullptr) {
+                        std::clog << "Error loading texture\n";
+                    }
+                }
+            }
+        }
     }
-    sourceMap[std::numeric_limits<int>::max()];
 
     tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
     if (layerElement == nullptr) {
@@ -106,94 +178,8 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
-
-                if (value == 0) {
-                    continue;
-                }
-                bool loop = true;
-                // iterate through the sourceMap, and attempt to find where the value should be in between
-                for (auto it = sourceMap.begin(); it != sourceMap.end(); ++it) {
-                    if (not loop) {
-                        break;
-                    }
-                    // if the map value is in between firstgid and the firstgid after, add
-                    // the data into the corresponding slot in the map
-                    if (it->first <= value and value < std::next(it)->first) {
-                        layer[row][col].bucket = it->first;
-                        // if the sourceMap does not contain the value,
-                        // begin reading from the document,
-                        // and add the source to the map
-                        if (not sourceMap.at(it->first).contains(value)) {
-                            sourceMap.at(it->first)[value];
-                            tinyxml2::XMLElement *tilesetElement = documents.at(it->first).FirstChildElement("tileset");
-                            if (tilesetElement == nullptr) {
-                                std::clog << "Invalid TMX file format: missing \"tileset\" element\n";
-                                return;
-                            }
-                            tinyxml2::XMLElement *gridElement = tilesetElement->FirstChildElement("grid");
-                            // FIXME make this not necessary for Grass.tsx
-                            if (gridElement == nullptr) {
-                                tinyxml2::XMLElement *imageElement = tilesetElement->FirstChildElement("image");
-                                if (imageElement == nullptr) {
-                                    std::clog << "Invalid TMX file format: missing \"image\" element\n";
-                                    return;
-                                }
-                                const char *sourceAttribute = imageElement->Attribute("source");
-                                if (sourceAttribute == nullptr) {
-                                    std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
-                                    return;
-                                }
-                                sourceMap.at(it->first).at(value) = sourceAttribute;
-                            }
-                            else {
-                                for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
-                                     tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
-                                    const char *id = tileElement->Attribute("id");
-                                    if (id == nullptr) {
-                                        std::clog << "Invalid TMX file format: missing \"id\" attribute\n";
-                                        return;
-                                    }
-                                    // if true, we've found the tile
-                                    // subtracting by it->first is getting offset of the id
-                                    if (std::stoi(id) == value - it->first) {
-                                        tinyxml2::XMLElement *imageElement = tileElement->FirstChildElement("image");
-                                        if (imageElement == nullptr) {
-                                            std::clog << "Invalid TMX file format: missing \"image\" element\n";
-                                            return;
-                                        }
-
-                                        const char *sourceAttribute = imageElement->Attribute("source");
-                                        if (sourceAttribute == nullptr) {
-                                            std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
-                                            return;
-                                        }
-                                        sourceMap.at(it->first).at(value) = sourceAttribute;
-                                    }
-                                }
-                            }
-                        }
-
-                        if (not Map::textureMap.at(it->first).contains(value)) {
-                            std::string temp = sourceMap.at(it->first)[value];
-                            const std::string substr = "../../images/";
-
-                            std::size_t pos = temp.find(substr);
-                            if (pos != std::string::npos) {
-                                temp.erase(pos, substr.length());
-                            }
-
-                            Map::textureMap.at(it->first)[value] = TextureManager::getInstance().loadTexture(temp);
-                            if (Map::textureMap.at(it->first).at(value) == nullptr) {
-                                std::clog << "Error loading texture\n";
-                            }
-                        }
-
-                        loop = false;
-                    }
-                }
             }
         }
-
 
         layerElement = layerElement->NextSiblingElement("layer");
         this->layout.push_back(layer);
@@ -228,10 +214,8 @@ Map::~Map() {
     if (Map::instanceCounter > 1) {
         return;
     }
-    for (auto &mapping : Map::textureMap) {
-        for (auto &texture : mapping.second) {
-            SDL_DestroyTexture(texture.second);
-        }
+    for (auto &texture : Map::textureMap) {
+        SDL_DestroyTexture(texture.second);
     }
     Map::textureMap.clear();
 }
@@ -372,17 +356,23 @@ void Map::render() const {
                 sdlRect.x = col.x;
                 sdlRect.y = col.y;
                 // prevents rendering tiles that aren't onscreen
-                if (Camera::getInstance().isInView(sdlRect) and col.bucket > 0) {
-                    TextureManager::getInstance().draw(Map::textureMap.at(col.bucket).at(col.id), sdlRect);
+                if (Camera::getInstance().isInView(sdlRect) and col.id > 0) {
+                    try {
+                        TextureManager::getInstance().draw(Map::textureMap.at(col.id), sdlRect);
+                    }
+                    catch (const std::exception &e) {
+                        std::clog << "Error: " << e.what() << ' ' << col.id << '\n';
+                    }
                 }
             }
         }
     }
 
     for (const auto &trainer : this->trainers) {
+        sdlRect.x = trainer->getScreenX();
+        sdlRect.y = trainer->getScreenY();
         // prevents rendering trainers that aren't onscreen
-        if (Camera::getInstance().isInView(
-                { trainer->getScreenX(), trainer->getScreenY(), Constants::TILE_SIZE, Constants::TILE_SIZE })) {
+        if (Camera::getInstance().isInView(sdlRect)) {
             trainer->render();
         }
     }
