@@ -12,8 +12,8 @@ void TextureManager::init(SDL_Renderer *renderer) {
     }
 }
 
-SDL_Texture *TextureManager::loadTexture(const char *path) {
-    return IMG_LoadTexture(this->textureRenderer, std::string_view("../assets/images/" + std::string(path)).data());
+SDL_Texture *TextureManager::loadTexture(const std::string &path) {
+    return IMG_LoadTexture(this->textureRenderer, std::string_view("../assets/images/" + path).data());
 }
 
 SDL_Texture *TextureManager::loadText(TTF_Font *font, const char *text, SDL_Color fg) {

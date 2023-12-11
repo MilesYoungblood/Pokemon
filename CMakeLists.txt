@@ -4,6 +4,10 @@ project(PokemonBattle)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+include_directories(C:/libs/GSL-4.0.0/include)
+
+include_directories(C:/libs/tinyxml2-master)
+
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_image)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_mixer)
@@ -261,3 +265,5 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_image.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_mixer.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_ttf.dll)
+
+target_link_libraries(${PROJECT_NAME} C:/libs/tinyxml2-master/tinyxml2.cpp)

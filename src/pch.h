@@ -2,8 +2,6 @@
 // Created by Miles Youngblood on 11/12/2023.
 //
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "OCUnusedMacroInspection"
 #pragma once
 
 // STL headers
@@ -13,6 +11,7 @@
 #include <array>
 #include <vector>
 #include <queue>
+#include <map>
 #include <unordered_map>
 #include <span>
 #include <thread>
@@ -23,7 +22,12 @@
 #include <random>
 
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "OCUnusedMacroInspection"
+
 #define SDL_MAIN_HANDLED
+
+#pragma clang diagnostic pop
 
 // SDL headers
 #include <SDL.h>
@@ -31,4 +35,12 @@
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
-#pragma clang diagnostic pop
+
+// GSL headers
+
+#include <gsl/gsl>
+
+
+// TinyXML headers
+
+#include <tinyxml2.h>

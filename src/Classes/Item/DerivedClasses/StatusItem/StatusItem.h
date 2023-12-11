@@ -8,7 +8,7 @@
 #include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
 struct StatusItem : public Item {
-    enum class Id {
+    enum class Id : Uint8 {
         ANTIDOTE,
         AWAKENING,
         BURN_HEAL,

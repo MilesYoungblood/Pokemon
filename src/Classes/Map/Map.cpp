@@ -13,49 +13,209 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
-Map::Map(const char *name, const char *music, int width, int height)
-        : name(name), music(music) {
-    // dataFunction the layout with grass
-    this->layout.resize(width);
-    for (int i = 0; i < width; ++i) {
-        this->layout[i].resize(height);
+Map::Map() {
+    ++Map::instanceCounter;
+}
 
-        for (int j = 0; j < height; ++j) {
-            this->layout[i][j] = { Map::Tile::Id::GRASS, i * Constants::TILE_SIZE, j * Constants::TILE_SIZE };
-        }
+Map::Map(const std::string &path, const char *music) : name(path.c_str()), music(music) {
+    tinyxml2::XMLDocument doc;
+    if (doc.LoadFile(std::string("../assets/Tiled/Tilemaps/" + path + ".tmx").c_str()) != tinyxml2::XML_SUCCESS) {
+        std::clog << "Error loading TMX file \"" << path << "\": " << doc.ErrorStr() << '\n';
+        return;
     }
 
-    // set the top border
-    for (int i = 0; i < 3; ++i) {
-        for (auto &x : this->layout) {
-            x[i].id = Map::Tile::Id::OBSTRUCTION;
-        }
+    /*
+    tinyxml2::XMLElement *xmlElement = doc.FirstChildElement("xml");
+    if (xmlElement == nullptr) {
+        std::clog << "Invalid TMX file format: missing 'xml' element.\n";
+        return;
     }
 
-    // set the inner layer borders
-    for (int i = 0; i < 4; ++i) {
-        for (int y = 1; y < this->layout[i].size(); ++y) {
-            this->layout[i][y].id = Map::Tile::Id::OBSTRUCTION;
-            this->layout[this->layout.size() - 1 - i][y].id = Map::Tile::Id::OBSTRUCTION;
-        }
+    tinyxml2::XMLElement *mapElement = xmlElement->FirstChildElement("map");
+     */
+
+    tinyxml2::XMLElement *mapElement = doc.FirstChildElement("map");
+    if (mapElement == nullptr) {
+        std::clog << "Invalid TMX file format: missing 'map' element.\n";
+        return;
     }
 
-    // set the bottom border
-    for (int i = 0; i < 3; ++i) {
-        for (auto &x : this->layout) {
-            x[x.size() - 1 - i].id = Map::Tile::Id::OBSTRUCTION;
+    int width = mapElement->IntAttribute("width");
+    int height = mapElement->IntAttribute("height");
+
+    this->collision = std::vector<std::vector<bool>>(height, std::vector<bool>(width, false));
+    using sources = std::unordered_map<tile, std::string>;
+
+    std::map<firstgid, sources> sourceMap;                // container for image sources
+    std::map<firstgid, tinyxml2::XMLDocument> documents;  // container for tsx files
+
+    // populate the maps with keys being the firstgid, and open each tsx file in the map
+    for (tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
+         tilesetElement != nullptr; tilesetElement = tilesetElement->NextSiblingElement("tileset")) {
+        int firstGidAttribute = tilesetElement->IntAttribute("firstgid");
+        if (firstGidAttribute == 0) {
+            std::clog << "Invalid TMX file format: missing \"firstgid\" attribute\n";
+            return;
+        }
+
+        const std::string src = tilesetElement->Attribute("source");
+        if (src.empty()) {
+            std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
+            return;
+        }
+
+        Map::textureMap[firstGidAttribute];
+        sourceMap[firstGidAttribute];
+        documents[firstGidAttribute];
+        if (documents[firstGidAttribute].LoadFile(std::string("../assets/Tiled/Tilemaps/" + src).c_str()) !=
+            tinyxml2::XML_SUCCESS) {
+            std::clog << "Error loading TMX file \"" << src << "\": " << documents[firstGidAttribute].ErrorStr()
+                      << '\n';
+            return;
         }
     }
+    sourceMap[std::numeric_limits<int>::max()];
+
+    tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
+    if (layerElement == nullptr) {
+        std::clog << "Invalid TMX file format: missing \"layer\" element\n";
+        return;
+    }
+
+    while (layerElement != nullptr) {
+        tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
+        if (dataElement == nullptr) {
+            std::clog << "Invalid TMX file format: missing \"data\" element\n";
+            return;
+        }
+
+        const char *csvData = dataElement->GetText();
+        if (csvData == nullptr) {
+            std::clog << "Invalid TMX file format: missing csv data\n";
+            return;
+        }
+
+        std::istringstream ss(csvData);
+        layer layer(height, std::vector<data>(width));
+        int value;
+        for (int row = 0; row < height; ++row) {
+            for (int col = 0; col < width and ss >> value; ++col) {
+                layer[row][col].id = value;
+                layer[row][col].x = col * Constants::TILE_SIZE;
+                layer[row][col].y = row * Constants::TILE_SIZE;
+                if (ss.peek() == ',') {
+                    ss.ignore();
+                }
+
+                if (value == 0) {
+                    continue;
+                }
+                bool loop = true;
+                // iterate through the sourceMap, and attempt to find where the value should be in between
+                for (auto it = sourceMap.begin(); it != sourceMap.end(); ++it) {
+                    if (not loop) {
+                        break;
+                    }
+                    // if the map value is in between firstgid and the firstgid after, add
+                    // the data into the corresponding slot in the map
+                    if (it->first <= value and value < std::next(it)->first) {
+                        layer[row][col].bucket = it->first;
+                        // if the sourceMap does not contain the value,
+                        // begin reading from the document,
+                        // and add the source to the map
+                        if (not sourceMap.at(it->first).contains(value)) {
+                            sourceMap.at(it->first)[value];
+                            tinyxml2::XMLElement *tilesetElement = documents.at(it->first).FirstChildElement("tileset");
+                            if (tilesetElement == nullptr) {
+                                std::clog << "Invalid TMX file format: missing \"tileset\" element\n";
+                                return;
+                            }
+                            tinyxml2::XMLElement *gridElement = tilesetElement->FirstChildElement("grid");
+                            // FIXME make this not necessary for Grass.tsx
+                            if (gridElement == nullptr) {
+                                tinyxml2::XMLElement *imageElement = tilesetElement->FirstChildElement("image");
+                                if (imageElement == nullptr) {
+                                    std::clog << "Invalid TMX file format: missing \"image\" element\n";
+                                    return;
+                                }
+                                const char *sourceAttribute = imageElement->Attribute("source");
+                                if (sourceAttribute == nullptr) {
+                                    std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
+                                    return;
+                                }
+                                sourceMap.at(it->first).at(value) = sourceAttribute;
+                            }
+                            else {
+                                for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
+                                     tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
+                                    const char *id = tileElement->Attribute("id");
+                                    if (id == nullptr) {
+                                        std::clog << "Invalid TMX file format: missing \"id\" attribute\n";
+                                        return;
+                                    }
+                                    // if true, we've found the tile
+                                    // subtracting by it->first is getting offset of the id
+                                    if (std::stoi(id) == value - it->first) {
+                                        tinyxml2::XMLElement *imageElement = tileElement->FirstChildElement("image");
+                                        if (imageElement == nullptr) {
+                                            std::clog << "Invalid TMX file format: missing \"image\" element\n";
+                                            return;
+                                        }
+
+                                        const char *sourceAttribute = imageElement->Attribute("source");
+                                        if (sourceAttribute == nullptr) {
+                                            std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
+                                            return;
+                                        }
+                                        sourceMap.at(it->first).at(value) = sourceAttribute;
+                                    }
+                                }
+                            }
+                        }
+
+                        if (not Map::textureMap.at(it->first).contains(value)) {
+                            std::string temp = sourceMap.at(it->first)[value];
+                            const std::string substr = "../../images/";
+
+                            std::size_t pos = temp.find(substr);
+                            if (pos != std::string::npos) {
+                                temp.erase(pos, substr.length());
+                            }
+
+                            Map::textureMap.at(it->first)[value] = TextureManager::getInstance().loadTexture(temp);
+                            if (Map::textureMap.at(it->first).at(value) == nullptr) {
+                                std::clog << "Error loading texture\n";
+                            }
+                        }
+
+                        loop = false;
+                    }
+                }
+            }
+        }
+
+
+        layerElement = layerElement->NextSiblingElement("layer");
+        this->layout.push_back(layer);
+    }
+    ++Map::instanceCounter;
+}
+
+Map::Map(const char *name, const char *music, int width, int height) : name(name), music(music) {
+    ++Map::instanceCounter;
+    this->layout = std::vector<layer>(2, layer(height, std::vector<data>(width, { 1, 0, 0 })));
+    this->collision = std::vector<std::vector<bool>>(height, std::vector<bool>(width, false));
 }
 
 Map::Map(Map &&toMove) noexcept
-        : name(toMove.name), music(toMove.music), layout(std::move(toMove.layout)), trainers(std::move(toMove.trainers)),
-          items(std::move(toMove.items)), exitPoints(std::move(toMove.exitPoints)) {}
+        : name(toMove.name), music(toMove.music), layout(std::move(toMove.layout)), collision(std::move(toMove.collision)),
+          trainers(std::move(toMove.trainers)), items(std::move(toMove.items)), exitPoints(std::move(toMove.exitPoints)) {}
 
 Map &Map::operator=(Map &&toMove) noexcept {
     this->name = toMove.name;
     this->music = toMove.music;
     this->layout = std::move(toMove.layout);
+    this->collision = std::move(toMove.collision);
     this->trainers = std::move(toMove.trainers);
     this->items = std::move(toMove.items);
     this->exitPoints = std::move(toMove.exitPoints);
@@ -64,36 +224,37 @@ Map &Map::operator=(Map &&toMove) noexcept {
 }
 
 Map::~Map() {
-    SDL_DestroyTexture(Map::obstruction);
-    SDL_DestroyTexture(Map::grass);
-    SDL_DestroyTexture(Map::tallGrass);
-}
-
-void Map::init() {
-    static bool isInitialized = false;
-    // only allow calls to this function if the TextureManager is initialized,
-    // and if Maps are not already initialized
-    if (not isInitialized and TextureManager::getInstance()) {
-        Map::obstruction = TextureManager::getInstance().loadTexture("terrain\\tree.png");
-        Map::grass = TextureManager::getInstance().loadTexture("terrain\\grass.png");
-
-        isInitialized = true;
+    --Map::instanceCounter;
+    if (Map::instanceCounter > 1) {
+        return;
     }
+    for (auto &mapping : Map::textureMap) {
+        for (auto &texture : mapping.second) {
+            SDL_DestroyTexture(texture.second);
+        }
+    }
+    Map::textureMap.clear();
 }
 
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(const int x, const int y) const {
     try {
-        return this->layout.at(x).at(y).id == Map::Tile::Id::OBSTRUCTION or this->isTrainerHere(x, y);
+        return this->collision.at(x).at(y) or this->isTrainerHere(x, y);
     }
     catch (const std::exception &e) {
-        throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
+        std::clog << "Error accessing map layout: " << e.what() << '\n';
+        return true;
     }
 }
 
 void Map::addExitPoint(const ExitPoint &exitPoint) {
     this->exitPoints.push_back(exitPoint);
-    this->layout[exitPoint.x][exitPoint.y].id = Map::Tile::Id::GRASS;
+    try {
+        this->collision.at(exitPoint.x).at(exitPoint.y) = false;
+    }
+    catch (const std::out_of_range &e) {
+        std::clog << "Error adding exit point: " << e.what() << '\n';
+    }
 }
 
 // returns a tuple containing the new coordinates and new map respectively if an exit point is present,
@@ -101,7 +262,7 @@ void Map::addExitPoint(const ExitPoint &exitPoint) {
 std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(const int x, const int y) const {
     for (const ExitPoint &exit_point : this->exitPoints) {
         if (exit_point.x == x and exit_point.y == y) {
-            return std::make_optional<>(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
+            return std::make_optional(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
         }
     }
     return std::nullopt;
@@ -146,7 +307,7 @@ std::string Map::getMusic() const {
 void Map::setObstruction(const int x, const int y) {
     if (not this->isTrainerHere(x, y)) {
         try {
-            this->layout.at(x).at(y).id = Map::Tile::Id::OBSTRUCTION;
+            this->collision.at(x).at(y) = true;
         }
         catch (const std::out_of_range &e) {
             throw std::out_of_range(std::string("Error accessing layout: ") + e.what() + '\n');
@@ -156,27 +317,32 @@ void Map::setObstruction(const int x, const int y) {
 
 // shift the map and its trainers, according to a passed in flag
 void Map::shift(Direction direction, int distance) {
-    for (auto &row : this->layout) {
-        for (auto &column : row) {
-            switch (direction) {
-                case Direction::DOWN:
-                    column.y += distance;
-                    break;
-                case Direction::UP:
-                    column.y -= distance;
-                    break;
-                case Direction::RIGHT:
-                    column.x += distance;
-                    break;
-                case Direction::LEFT:
-                    column.x -= distance;
-                    break;
-                default:
-                    return;
+    for (auto &layer : this->layout) {
+        //threads.emplace_back([&layer, &direction, &distance] -> void {
+        for (auto &row : layer) {
+            for (auto &col : row) {
+                switch (direction) {
+                    case Direction::DOWN:
+                        col.y += distance;
+                        break;
+                    case Direction::UP:
+                        col.y -= distance;
+                        break;
+                    case Direction::RIGHT:
+                        col.x += distance;
+                        break;
+                    case Direction::LEFT:
+                        col.x -= distance;
+                        break;
+                    default:
+                        return;
+                }
             }
         }
+        //});
     }
 
+    //threads.emplace_back([this, &direction, &distance] -> void {
     for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
         switch (direction) {
             case Direction::DOWN:
@@ -195,42 +361,25 @@ void Map::shift(Direction direction, int distance) {
                 return;
         }
     }
+    //});
 }
 
-void Map::render() {
-    SDL_Rect sdlRect;
-    for (auto &row : this->layout) {
-        for (auto &column : row) {
-            sdlRect = { column.x, column.y, Constants::TILE_SIZE, Constants::TILE_SIZE };
-            // prevents rendering tiles that aren't onscreen
-            if (Camera::getInstance().isInView(sdlRect)) {
-                switch (column.id) {
-                    case Map::Tile::Id::GRASS:
-                        TextureManager::getInstance().draw(Map::grass, sdlRect);
-                        break;
-
-                    case Map::Tile::Id::TALL_GRASS:
-                        TextureManager::getInstance().draw(Map::tallGrass, sdlRect);
-                        break;
-
-                    case Map::Tile::Id::OBSTRUCTION:
-                        TextureManager::getInstance().draw(Map::grass, sdlRect);
-                        TextureManager::getInstance().draw(Map::obstruction, sdlRect);
-                        break;
-
-                    case Map::Tile::Id::WATER:
-                        Map::water.update();
-                        Map::water.render(sdlRect);
-                        break;
-
-                    default:
-                        break;
+void Map::render() const {
+    SDL_Rect sdlRect{ 0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE };
+    for (const auto &layer : this->layout) {
+        for (const auto &row : layer) {
+            for (const auto &col : row) {
+                sdlRect.x = col.x;
+                sdlRect.y = col.y;
+                // prevents rendering tiles that aren't onscreen
+                if (Camera::getInstance().isInView(sdlRect) and col.bucket > 0) {
+                    TextureManager::getInstance().draw(Map::textureMap.at(col.bucket).at(col.id), sdlRect);
                 }
             }
         }
     }
 
-    for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
+    for (const auto &trainer : this->trainers) {
         // prevents rendering trainers that aren't onscreen
         if (Camera::getInstance().isInView(
                 { trainer->getScreenX(), trainer->getScreenY(), Constants::TILE_SIZE, Constants::TILE_SIZE })) {
@@ -242,10 +391,12 @@ void Map::render() {
 // resets the previous map's tile positions
 // as well as the trainer's positions
 void Map::reset() {
-    for (int row = 0; row < this->layout.size(); ++row) {
-        for (int column = 0; column < this->layout[row].size(); ++column) {
-            this->layout[row][column] = { this->layout[row][column].id, row * Constants::TILE_SIZE,
-                                          column * Constants::TILE_SIZE };
+    for (auto &layer : this->layout) {
+        for (int i = 0; i < layer.size(); ++i) {
+            for (int j = 0; j < layer[i].size(); ++j) {
+                layer[i][j].x = i * Constants::TILE_SIZE;
+                layer[i][j].y = j * Constants::TILE_SIZE;
+            }
         }
     }
 

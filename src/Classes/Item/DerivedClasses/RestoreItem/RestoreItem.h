@@ -7,7 +7,7 @@
 #include "../../Item.h"
 
 struct RestoreItem : public Item {
-    enum class Id {
+    enum class Id : Uint8 {
         POTION,
         SUPER_POTION,
         HYPER_POTION,

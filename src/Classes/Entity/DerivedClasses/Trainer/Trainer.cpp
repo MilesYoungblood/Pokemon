@@ -4,12 +4,24 @@
 
 #include "Trainer.h"
 
-Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y), items() {
+Trainer::Trainer() {
+    this->items[typeid(RestoreItem).hash_code()];
+    this->items[typeid(StatusItem).hash_code()];
+    this->items[typeid(PokeBall).hash_code()];
+    this->items[typeid(BattleItem).hash_code()];
+}
+
+Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y) {
+    this->items[typeid(RestoreItem).hash_code()];
+    this->items[typeid(StatusItem).hash_code()];
+    this->items[typeid(PokeBall).hash_code()];
+    this->items[typeid(BattleItem).hash_code()];
+
     //FIXME change these to not be Hilbert
-    this->setAnimation(Direction::UP, "sprites\\Hilbert\\HilbertSpriteSheetUp.png", 4, 1);
-    this->setAnimation(Direction::DOWN, "sprites\\Hilbert\\HilbertSpriteSheetDown.png", 4, 1);
-    this->setAnimation(Direction::LEFT, "sprites\\Hilbert\\HilbertSpriteSheetLeft.png", 4, 1);
-    this->setAnimation(Direction::RIGHT, "sprites\\Hilbert\\HilbertSpriteSheetRight.png", 4, 1);
+    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png", 4, 1);
+    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png", 4, 1);
+    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png", 4, 1);
+    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png", 4, 1);
 }
 
 Trainer::Trainer(const char *name, const int x, const int y, const Direction direction) : Trainer(name, x, y) {
@@ -21,15 +33,8 @@ Trainer::Trainer(const char *name, const int x, const int y, const Direction dir
     this->setVision(vision);
 }
 
-void Trainer::init() {
-    Trainer::getItemTypeId<RestoreItem>();
-    Trainer::getItemTypeId<StatusItem>();
-    Trainer::getItemTypeId<PokeBall>();
-    Trainer::getItemTypeId<BattleItem>();
-}
-
-int Trainer::partySize() const {
-    return static_cast<int>(this->party.size());
+std::size_t Trainer::partySize() const {
+    return this->party.size();
 }
 
 void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
@@ -45,7 +50,7 @@ void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
     }
 }
 
-void Trainer::removePokemon(const int index) {
+void Trainer::removePokemon(long long int index) {
     try {
         // decrement the faint counter if the Pokémon we're removing is fainted
         if (this->party.at(index)->isFainted()) {
@@ -59,7 +64,7 @@ void Trainer::removePokemon(const int index) {
     }
 }
 
-void Trainer::swapPokemon(const int a, const int b) {
+void Trainer::swapPokemon(std::size_t a, std::size_t b) {
     try {
         std::unique_ptr<Pokemon> copy = std::move(this->party.at(a));
         this->party.at(a) = std::move(this->party.at(b));
@@ -86,7 +91,7 @@ int Trainer::getFaintCount() const {
     return this->numFainted;
 }
 
-Pokemon &Trainer::operator[](const int index) {
+Pokemon &Trainer::operator[](std::size_t index) {
     try {
         return *this->party.at(index);
     }
@@ -95,7 +100,7 @@ Pokemon &Trainer::operator[](const int index) {
     }
 }
 
-const Pokemon &Trainer::operator[](const int index) const {
+const Pokemon &Trainer::operator[](std::size_t index) const {
     try {
         return *this->party.at(index);
     }

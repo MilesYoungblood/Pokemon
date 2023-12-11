@@ -116,7 +116,7 @@ Game::Game() {
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
-    this->isRunning = true;
+    this->running = true;
 }
 
 Game::~Game() {
@@ -157,8 +157,7 @@ void Game::handleEvents() {
     if (SDL_PollEvent(&this->event) == 1) {
         switch (this->event.type) {
             case SDL_EventType::SDL_QUIT:
-                this->saveData();
-                this->isRunning = false;
+                this->running = false;
                 break;
             case SDL_EventType::SDL_KEYDOWN:
                 keyDelay.start();
@@ -186,13 +185,13 @@ void Game::saveData() {
     std::ofstream saveFile("../docs/data/SaveData.txt");
     if (not saveFile.is_open()) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
-        isRunning = false;
+        running = false;
         return;
     }
 
     saveFile << this->currentMapIndex;
     saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
-             << Player::getPlayer().getDirection();
+             << static_cast<int>(Player::getPlayer().getDirection());
     saveFile << '\n' << Player::getPlayer().partySize();
     for (auto &pokemon : Player::getPlayer()) {
         saveFile << '\n' << pokemon->getId() << ' ';
@@ -213,10 +212,10 @@ void Game::saveData() {
         }
     }
 
-    const int num_restore_items = Player::getPlayer().getNumItems<RestoreItem>();
-    const int num_status_items = Player::getPlayer().getNumItems<StatusItem>();
-    const int num_poke_balls = Player::getPlayer().getNumItems<PokeBall>();
-    const int num_battle_items = Player::getPlayer().getNumItems<BattleItem>();
+    const std::size_t num_restore_items = Player::getPlayer().getNumItems<RestoreItem>();
+    const std::size_t num_status_items = Player::getPlayer().getNumItems<StatusItem>();
+    const std::size_t num_poke_balls = Player::getPlayer().getNumItems<PokeBall>();
+    const std::size_t num_battle_items = Player::getPlayer().getNumItems<BattleItem>();
 
     saveFile << '\n' << num_restore_items;
 
@@ -274,13 +273,12 @@ void defaultAction(Entity *entity) {
                 binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
             }
             break;
+        default:
+            break;
     }
 }
 
 void Game::initializeGame() {
-    this->currentMapIndex = Map::Id::ROUTE_1;
-    this->currentMap = &this->maps.at(this->currentMapIndex);
-
     this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
     this->maps[Map::Id::ROUTE_1][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
     this->maps[Map::Id::ROUTE_1][0].setAction(defaultAction);
@@ -338,14 +336,15 @@ void Game::initializeGame() {
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SP_DEFENSE)(5));
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SPEED)(5));
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_ACCURACY)(5));
+
+    this->currentMapIndex = Map::Id::ROUTE_1;
+    this->currentMap = &this->maps.at(this->currentMapIndex);
 }
 
 void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    // initialize map class
-    Map::init();
-
+    this->maps[Map::Id::ROUTE_1] = Map("NuvemaTown", "Route1");
     this->maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
     this->maps[Map::Id::ROUTE_1].addExitPoint({ 9, 2, Map::Id::ROUTE_2, 13, 20 });
     this->maps[Map::Id::ROUTE_1].addExitPoint({ 10, 2, Map::Id::ROUTE_2, 14, 20 });
@@ -360,8 +359,6 @@ void Game::loadData() {
     this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 6, Map::Id::ROUTE_2, 4, 11 });
     this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 7, Map::Id::ROUTE_2, 4, 12 });
     this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
-
-    Trainer::init();
 
     if (saveFile) {
         std::string buffer;
@@ -545,6 +542,6 @@ int Game::getFps() const {
     return this->currentFps;
 }
 
-Game::operator bool() const {
-    return this->isRunning;
+bool Game::isRunning() const {
+    return this->running;
 }

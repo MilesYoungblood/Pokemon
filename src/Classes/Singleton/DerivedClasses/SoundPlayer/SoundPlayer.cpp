@@ -5,8 +5,9 @@
 #include "SoundPlayer.h"
 
 SoundPlayer::~SoundPlayer() {
-    Mix_FreeChunk(this->soundBoard["select"]);
     Mix_FreeChunk(this->soundBoard["accept"]);
+    Mix_FreeChunk(this->soundBoard["select"]);
+    Mix_FreeChunk(this->soundBoard["spotted"]);
 }
 
 void SoundPlayer::playSound(const char *name) {
@@ -24,8 +25,9 @@ void SoundPlayer::setFinishedCallback(void (*f)(int)) {
 }
 
 SoundPlayer::SoundPlayer() {
-    this->loadSound("select");
     this->loadSound("accept");
+    this->loadSound("select");
+    this->loadSound("spotted");
 }
 
 void SoundPlayer::loadSound(const char *name) {
@@ -34,6 +36,5 @@ void SoundPlayer::loadSound(const char *name) {
     if (this->soundBoard.at(name) == nullptr) {
         std::clog << "Error loading sound: " << SDL_GetError() << '\n';
         SDL_ClearError();
-        std::terminate();
     }
 }

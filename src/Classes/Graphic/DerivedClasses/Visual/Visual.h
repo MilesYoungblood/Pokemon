@@ -8,15 +8,17 @@
 
 class Visual : public Graphic {
 private:
-    SDL_Texture *visual{ nullptr };
-    SDL_Rect rect{ 0, 0, 0, 0 };
+    SDL_Texture *visual;
+    SDL_Rect rect;
 
     int counter{ 0 };
 
     const int NUM_FRAMES;
 
 public:
-    Visual(const char *path, int frames);
+    Visual(const char *path, int frames, SDL_Rect dest);
+
+    ~Visual() override;
 
     void update() override;
 

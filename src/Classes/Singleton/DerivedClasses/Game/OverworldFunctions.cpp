@@ -13,7 +13,7 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
         std::clog << "Error fading out \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
-        this->isRunning = false;
+        this->running = false;
         return;
     }
 
@@ -26,7 +26,7 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
             std::clog << "Error loading \"" << Game::getInstance().currentMap->getMusic() << "\": " << SDL_GetError()
                       << '\n';
             SDL_ClearError();
-            Game::getInstance().isRunning = false;
+            Game::getInstance().running = false;
             return;
         }
 
@@ -34,7 +34,7 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
             std::clog << "Error playing \"" << Game::getInstance().currentMap->getMusic() << "\": " << SDL_GetError()
                       << '\n';
             SDL_ClearError();
-            Game::getInstance().isRunning = false;
+            Game::getInstance().running = false;
             return;
         }
     });
@@ -101,6 +101,15 @@ void Game::checkForOpponents() {
             if (haltMusic) {
                 Mix_HaltMusic();
                 haltMusic = false;
+
+                GraphicsEngine::getInstance().addGraphic<Visual>("exclamation.png",
+                                                                 50 * (this->currentFps / 30) / 2,
+                                                                 SDL_Rect{ trainer->getScreenX(),
+                                                                           trainer->getScreenY() - Constants::TILE_SIZE,
+                                                                           Constants::TILE_SIZE,
+                                                                           Constants::TILE_SIZE }
+                );
+                SoundPlayer::getInstance().playSound("spotted");
             }
             KeyManager::getInstance().blockInput();
             resetVariables();
@@ -118,14 +127,14 @@ void Game::checkForOpponents() {
                 if (this->music == nullptr) {
                     std::clog << "Error loading \"GymBattle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
-                    this->isRunning = false;
+                    this->running = false;
                     return;
                 }
 
                 if (Mix_PlayMusic(this->music, -1) == -1) {
                     std::clog << "Error playing \"GymBattle\": " << SDL_GetError() << '\n';
                     SDL_ClearError();
-                    this->isRunning = false;
+                    this->running = false;
                     return;
                 }
 
@@ -252,17 +261,18 @@ void Game::updateOverworld() {
                             if (this->music == nullptr) {
                                 std::clog << "Error loading \"TrainerBattle\": " << SDL_GetError() << '\n';
                                 SDL_ClearError();
-                                this->isRunning = false;
+                                this->running = false;
                                 return;
                             }
 
                             if (Mix_PlayMusic(this->music, -1) == -1) {
                                 std::clog << "Error playing \"TrainerBattle\": " << SDL_GetError() << '\n';
                                 SDL_ClearError();
-                                this->isRunning = false;
+                                this->running = false;
                                 return;
                             }
 
+                            trainer->clearParty();
                             this->currentState = Game::State::BATTLE;
                             SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
                         }

@@ -8,7 +8,7 @@
 
 class Map {
 public:
-    enum Id {
+    enum Id : Uint8 {
         ROUTE_1,
         ROUTE_2,
         ROUTE_3
@@ -22,6 +22,10 @@ public:
         const int newY;                             // the player's new y-coordinates
     };
 
+    Map();
+
+    Map(const std::string &path, const char *music);
+
     Map(const char *name, const char *music, int width, int height);
 
     Map(const Map &toCopy) = delete;
@@ -33,8 +37,6 @@ public:
     Map &operator=(Map &&) noexcept;
 
     ~Map();
-
-    static void init();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
@@ -63,35 +65,36 @@ public:
 
     void shift(Direction direction, int distance);
 
-    void render();
+    void render() const;
 
     void reset();
 
 private:
+    inline static int instanceCounter = 0;
+
     using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
 
-    struct Tile {
-        enum class Id {
-            GRASS,
-            TALL_GRASS,
-            OBSTRUCTION,
-            WATER
-        };
-        Id id;
+    const char *name{ "" };                             // name of the map
+
+    const char *music{ "" };
+
+    inline static Animation water;
+
+    using firstgid = int;
+    using tile = int;
+    using textures = std::unordered_map<tile, SDL_Texture *>;
+    inline static std::map<firstgid, textures> textureMap;
+
+    using data = struct {
+        int id;
+        int bucket;
         int x;
         int y;
     };
 
-    const char *name;                               // name of the map
-
-    const char *music;
-
-    inline static SDL_Texture *obstruction{ nullptr };
-    inline static SDL_Texture *grass{ nullptr };
-    inline static SDL_Texture *tallGrass{ nullptr };
-    inline static Animation water;
-
-    std::vector<std::vector<Map::Tile>> layout;     // The map is represented by a 2D Tile vector
+    using layer = std::vector<std::vector<data>>;
+    std::vector<layer> layout;                      // The map is represented by a 2D int vector
+    std::vector<std::vector<bool>> collision;
 
     std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
 

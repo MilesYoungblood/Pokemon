@@ -35,16 +35,20 @@ public:
     }
 
     template<typename G>
-    void removeGraphic(long long index = 0) {
+    void removeGraphic(long long int index = 0) {
         try {
             std::size_t i = typeid(G).hash_code();
             this->graphics.at(i).erase(this->graphics.at(i).begin() + index);
         }
         catch (const std::out_of_range &e) {
-            std::clog << "Error removing graphic: " << e.what() << '\n';
+            throw std::out_of_range(std::string("Error removing graphic: ") + e.what() + '\n');
         }
     }
 
+    /// \brief gets a reference to a graphic
+    /// \tparam G graphic type
+    /// \param index index in the vector
+    /// \return a reference to the graphic
     template<typename G>
     G &getGraphic(std::size_t index = 0) {
         try {

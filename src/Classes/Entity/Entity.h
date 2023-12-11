@@ -6,7 +6,7 @@
 
 #include "../Animation/Animation.h"
 
-enum class Direction {
+enum class Direction : Uint8 {
     UP, DOWN, LEFT, RIGHT
 };
 

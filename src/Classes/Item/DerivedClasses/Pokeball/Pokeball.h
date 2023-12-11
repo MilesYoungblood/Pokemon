@@ -7,7 +7,7 @@
 #include "../../Item.h"
 
 struct PokeBall : public Item {
-    enum class Id {
+    enum class Id : Uint8 {
         POKE_BALL,
         GREAT_BALL,
         ULTRA_BALL,

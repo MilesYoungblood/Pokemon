@@ -63,6 +63,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Button/Button.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj"

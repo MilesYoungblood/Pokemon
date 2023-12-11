@@ -23,7 +23,7 @@ public:
     /// \brief Loads a texture.
     /// \param path path of the image in the project
     /// \return a pointer to an SDL_Texture, or nullptr on error
-    SDL_Texture *loadTexture(const char *path);
+    SDL_Texture *loadTexture(const std::string &path);
 
     /// \brief Loads a texture as a text.
     /// \param font font of text

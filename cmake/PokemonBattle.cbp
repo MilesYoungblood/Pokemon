@@ -24,6 +24,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/libs/GSL-4.0.0/include"/>
+					<Add directory="C:/libs/tinyxml2-master"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_image"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_mixer"/>
@@ -50,6 +52,8 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="C:/libs/GSL-4.0.0/include"/>
+					<Add directory="C:/libs/tinyxml2-master"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_image"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_mixer"/>
@@ -118,9 +122,6 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Animation/Animation.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/AutoThread/AutoThread.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.cpp">
@@ -292,6 +293,12 @@
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Visual/Visual.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.cpp">

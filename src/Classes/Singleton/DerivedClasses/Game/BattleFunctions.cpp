@@ -4,11 +4,7 @@
 
 #include "Game.h"
 
-void Game::updateBattle() {
-
-}
-
-void Game::renderBattle() {
+void Game::renderMain() {
     int width;      // stores the text width
     int height;     // stores the text height
 
@@ -73,8 +69,27 @@ void Game::renderBattle() {
 
     TTF_SizeUTF8(this->font, "Pokemon", &width, &height);
     TextureManager::getInstance().drawBorderedText("Pokemon", button.x + button.w / 2 - width / 2,
-                                                   button.y + button.h / 2 - height / 2, 2, { 255, 255, 255 },
-                                                   { 0, 0, 0 }, this->font);
+                                                   button.y + button.h / 2 - height / 2, 2, Constants::Color::WHITE,
+                                                   Constants::Color::BLACK, this->font);
 
     SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+}
+
+enum class BattleState : Uint8 {
+    MAIN
+};
+
+namespace {
+    BattleState battleState = BattleState::MAIN;
+    std::array<void (*)(), 3> battleFunctions{
+            [] -> void { Game::getInstance().renderMain(); }
+    };
+}
+
+void Game::updateBattle() {
+
+}
+
+void Game::renderBattle() {
+    battleFunctions.at(static_cast<std::size_t>(battleState))();
 }

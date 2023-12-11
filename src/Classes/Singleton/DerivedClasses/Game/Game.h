@@ -25,13 +25,13 @@ private:
 
     const int FONT_SIZE{ 20 };                                          // font size for message box text
 
-    enum class State {
+    enum class State : Uint8 {
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
 
     Game::State currentState{ Game::State::TITLE_SCREEN };              // determines which set of functions to use
 
-    bool isRunning{ false };                                            // determines whether the game is running
+    bool running{ false };                                              // determines whether the game is running
 
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
@@ -50,11 +50,11 @@ private:
     const std::array<std::function<void()>, 3> RENDER_FUNCTIONS{
             [this] -> void { this->renderTitleScreen(); },
             [this] -> void { this->renderOverworld(); },
-            [this] -> void { this->renderBattle(); }
+            Game::renderBattle
     };
 
     std::array<Map, 3> maps{
-            Map("Route 1", "Route1", 19, 14),
+            Map(),
             Map("Route 2", "RivalBattle", 27, 24),
             Map("Route 3", "GymBattle", 27, 15)
     };
@@ -76,7 +76,7 @@ private:
 
     void updateBattle();
 
-    void renderBattle();
+    static void renderBattle();
 
     void initializeGame();
 
@@ -109,5 +109,7 @@ public:
 
     [[nodiscard]] int getFps() const;
 
-    explicit operator bool() const;
+    [[nodiscard]] bool isRunning() const;
+
+    void renderMain();
 };

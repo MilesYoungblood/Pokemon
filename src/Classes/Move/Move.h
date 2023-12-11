@@ -6,7 +6,7 @@
 
 #include "../../Functions/GeneralFunctions.h"
 
-enum class Type {
+enum class Type : Uint8 {
     NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
     ICE, FIGHTING, POISON, GROUND, FLYING,
     PSYCHIC, BUG, ROCK, GHOST, DRAGON,
@@ -17,7 +17,7 @@ class Pokemon;
 
 class Move {
 public:
-    enum class Id {
+    enum class Id : Uint8 {
         AIR_SLASH,
         AURA_SPHERE,
         DARK_PULSE,
@@ -34,19 +34,8 @@ public:
         VOLT_TACKLE
     };
 
-    enum class Category {
+    enum class Category : Uint8 {
         PHYSICAL, SPECIAL, STATUS
-    };
-
-    struct Data {
-        std::string_view name;
-        std::string_view description;
-        int power;
-        int accuracy;
-        Type type;
-        Move::Category category;
-        bool priority;
-        bool sureHit;
     };
 
     explicit Move(int pp);

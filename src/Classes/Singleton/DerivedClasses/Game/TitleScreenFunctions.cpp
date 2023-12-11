@@ -35,7 +35,7 @@ void Game::updateTitleScreen() {
         this->loadData();
 
         Camera::getInstance().init(this->WINDOW_WIDTH, this->WINDOW_HEIGHT);
-        Camera::getInstance().lockOnPlayer(Game::getInstance().currentMap);
+        Camera::getInstance().lockOnPlayer(this->currentMap);
 
         std::for_each(this->currentMap->begin(), this->currentMap->end(),
                       [](std::unique_ptr<Trainer> &trainer) -> void {
@@ -60,14 +60,14 @@ void Game::updateTitleScreen() {
         if (this->music == nullptr) {
             std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            this->isRunning = false;
+            this->running = false;
             return;
         }
 
         if (Mix_PlayMusic(this->music, -1) == -1) {
             std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
-            this->isRunning = false;
+            this->running = false;
             return;
         }
 

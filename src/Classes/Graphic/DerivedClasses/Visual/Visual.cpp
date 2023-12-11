@@ -4,8 +4,12 @@
 
 #include "Visual.h"
 
-Visual::Visual(const char *path, int frames) : visual(TextureManager::getInstance().loadTexture(path)),
-                                               NUM_FRAMES(frames) {}
+Visual::Visual(const char *path, int frames, SDL_Rect dest)
+        : visual(TextureManager::getInstance().loadTexture(path)), NUM_FRAMES(frames), rect(dest) {}
+
+Visual::~Visual() {
+    SDL_DestroyTexture(this->visual);
+}
 
 void Visual::update() {
     if (this->counter == this->NUM_FRAMES) {

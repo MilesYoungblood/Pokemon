@@ -7,7 +7,7 @@
 #include "../../Item.h"
 
 struct BattleItem : public Item {
-    enum class Id {
+    enum class Id : Uint8 {
         X_ATTACK,
         X_DEFENSE,
         X_SP_ATTACK,
