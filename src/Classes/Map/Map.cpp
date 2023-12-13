@@ -13,15 +13,15 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
-Map::Map() {
-    ++Map::instanceCounter;
-}
+Map::Map(const char *name) : name(name), music(name) {
+    music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
+        return c == ' ';
+    }), music.end());
 
-Map::Map(const std::string &path, const char *music) : name(path.c_str()), music(music) {
     tinyxml2::XMLDocument tmxFile;
-    tinyxml2::XMLError isOpen = tmxFile.LoadFile(std::string("../assets/Tiled/Tilemaps/" + path + ".tmx").c_str());
+    tinyxml2::XMLError isOpen = tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data());
     if (isOpen != tinyxml2::XML_SUCCESS) {
-        std::clog << "Error code" << isOpen << ": " << tmxFile.ErrorStr() << '\n';
+        std::clog << "Error code " << isOpen << ": " << tmxFile.ErrorStr() << '\n';
         return;
     }
 
@@ -42,10 +42,14 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
         return;
     }
 
+    // the collision layer's dimensions MUST be an inverted version of the textureMap's dimensions
     this->collision = std::vector<std::vector<bool>>(width, std::vector<bool>(height, false));
 
-    //std::unordered_map<int, std::string> pathMap;
+    // used when parsing the actual contents of the layer;
+    // keeps track of which tile id's (on layer 1 specifically) have collision
     std::unordered_map<int, bool> collisionMap;
+
+    // an id of 0 denotes an absence of a tile, so collision is always false
     collisionMap.insert(std::make_pair(0, false));
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
@@ -90,7 +94,9 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
                 return;
             }
 
-            if (Map::textureMap[first_gid_attribute + id] == nullptr) {
+            // variable to reduce the number of expression calculations
+            const int index = first_gid_attribute + id;
+            if (Map::textureMap[index] == nullptr) {
                 tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
                 if (propertyListElement == nullptr) {
                     std::clog << "Invalid TSX file format: missing \"properties\" element\n";
@@ -104,9 +110,7 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
                 }
 
                 const bool collision_attribute = propertyElement->BoolAttribute("value");
-                if (not collisionMap.contains(first_gid_attribute + id)) {
-                    collisionMap.insert(std::make_pair(first_gid_attribute + id, collision_attribute));
-                }
+                collisionMap.insert(std::make_pair(index, collision_attribute));
 
                 tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
                 if (imageElement == nullptr) {
@@ -122,8 +126,8 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
 
                 sourceAttribute.erase(0, 13);
 
-                Map::textureMap[first_gid_attribute + id] = TextureManager::getInstance().loadTexture(sourceAttribute);
-                if (Map::textureMap[first_gid_attribute + id] == nullptr) {
+                Map::textureMap[index] = std::make_shared<Texture>(sourceAttribute);
+                if (Map::textureMap[index] == nullptr) {
                     std::clog << "Error loading texture\n";
                 }
             }
@@ -137,6 +141,12 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
     }
 
     while (layerElement != nullptr) {
+        const int layer_id = layerElement->IntAttribute("id");
+        if (layer_id == 0) {
+            std::clog << "Invalid TMX file format: missing \"layer\" attribute\n";
+            return;
+        }
+
         tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
             std::clog << "Invalid TMX file format: missing \"data\" element\n";
@@ -161,47 +171,32 @@ Map::Map(const std::string &path, const char *music) : name(path.c_str()), music
                     ss.ignore();
                 }
 
-                this->collision[col][row] = collisionMap.at(value);
+                // the only layer that affects collision is layer 2
+                if (layer_id == 2) {
+                    this->collision[col][row] = collisionMap.at(value);
+                }
             }
         }
 
         layerElement = layerElement->NextSiblingElement("layer");
         this->layout.push_back(layer);
     }
-    ++Map::instanceCounter;
-}
-
-Map::Map(const char *name, const char *music, int width, int height) : name(name), music(music) {
-    ++Map::instanceCounter;
-    this->layout = std::vector<layer>(2, layer(height, std::vector<data>(width, { 1, 0, 0 })));
-    this->collision = std::vector<std::vector<bool>>(height, std::vector<bool>(width, false));
 }
 
 Map::Map(Map &&toMove) noexcept
-        : name(toMove.name), music(toMove.music), layout(std::move(toMove.layout)), collision(std::move(toMove.collision)),
+        : name(toMove.name), music(std::move(toMove.music)), layout(std::move(toMove.layout)), collision(std::move(toMove.collision)),
           trainers(std::move(toMove.trainers)), items(std::move(toMove.items)), exitPoints(std::move(toMove.exitPoints)) {}
 
-Map &Map::operator=(Map &&toMove) noexcept {
-    this->name = toMove.name;
-    this->music = toMove.music;
-    this->layout = std::move(toMove.layout);
-    this->collision = std::move(toMove.collision);
-    this->trainers = std::move(toMove.trainers);
-    this->items = std::move(toMove.items);
-    this->exitPoints = std::move(toMove.exitPoints);
+Map &Map::operator=(Map &&rhs) noexcept {
+    this->name = rhs.name;
+    this->music = std::move(rhs.music);
+    this->layout = std::move(rhs.layout);
+    this->collision = std::move(rhs.collision);
+    this->trainers = std::move(rhs.trainers);
+    this->items = std::move(rhs.items);
+    this->exitPoints = std::move(rhs.exitPoints);
 
     return *this;
-}
-
-Map::~Map() {
-    --Map::instanceCounter;
-    if (Map::instanceCounter > 1) {
-        return;
-    }
-    for (auto &texture : Map::textureMap) {
-        SDL_DestroyTexture(texture.second);
-    }
-    Map::textureMap.clear();
 }
 
 // returns true if an obstruction is at the passed coordinates
@@ -271,18 +266,6 @@ std::string Map::getMusic() const {
     return this->music;
 }
 
-// places an obstruction at the passed coordinates
-void Map::setObstruction(const int x, const int y) {
-    if (not this->isTrainerHere(x, y)) {
-        try {
-            this->collision.at(x).at(y) = true;
-        }
-        catch (const std::out_of_range &e) {
-            throw std::out_of_range(std::string("Error accessing layout: ") + e.what() + '\n');
-        }
-    }
-}
-
 // shift the map and its trainers, according to a passed in flag
 void Map::shift(Direction direction, int distance) {
     for (auto &layer : this->layout) {
@@ -334,25 +317,32 @@ void Map::shift(Direction direction, int distance) {
 
 void Map::render() const {
     SDL_Rect sdlRect{ 0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE };
-    for (const auto &layer : this->layout) {
-        for (const auto &row : layer) {
+    for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
+        for (const auto &row : this->layout[layer]) {
             for (const auto &col : row) {
                 sdlRect.x = col.x;
                 sdlRect.y = col.y;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and col.id > 0) {
-                    TextureManager::getInstance().draw(Map::textureMap.at(col.id), sdlRect);
+                    try {
+                        TextureManager::getInstance().draw(Map::textureMap.at(col.id)->getTexture(), sdlRect);
+                    }
+                    catch (const std::exception &e) {
+                        std::clog << "Error rendering tile: " << e.what() << ' ' << col.id << '\n';
+                    }
                 }
             }
         }
-    }
-
-    for (const auto &trainer : this->trainers) {
-        sdlRect.x = trainer->getScreenX();
-        sdlRect.y = trainer->getScreenY();
-        // prevents rendering trainers that aren't onscreen
-        if (Camera::getInstance().isInView(sdlRect)) {
-            trainer->render();
+        if (layer == 1) {
+            for (const auto &trainer : this->trainers) {
+                sdlRect.x = trainer->getScreenX();
+                sdlRect.y = trainer->getScreenY();
+                // prevents rendering trainers that aren't onscreen
+                if (Camera::getInstance().isInView(sdlRect)) {
+                    trainer->render();
+                }
+            }
+            Player::getPlayer().render();
         }
     }
 }

@@ -4,12 +4,16 @@
 
 #include "Animation.h"
 
-Animation::Animation(const char *path, int numFrames, int numRows)
-        : spriteSheet(TextureManager::getInstance().loadTexture(path)), numFrames(numFrames), numRows(numRows) {}
+Animation::Animation(const char *path) {
+    const auto data = TextureManager::getInstance().loadTextureData(path);
+    this->spriteSheet = std::get<0>(data);
+    this->numRows = std::get<1>(data) / Constants::TILE_SIZE;
+    this->numCols = std::get<2>(data) / Constants::TILE_SIZE;
+}
 
 Animation &Animation::operator=(Animation &&rhs) noexcept {
-    this->numFrames = rhs.numFrames;
     this->numRows = rhs.numRows;
+    this->numCols = rhs.numCols;
     this->spriteSheet = rhs.spriteSheet;
     rhs.spriteSheet = nullptr;
 
@@ -23,7 +27,7 @@ Animation::~Animation() {
 void Animation::update() {
     ++this->currentFrame;
 
-    if (this->currentFrame == this->numFrames) {
+    if (this->currentFrame == this->numCols) {
         this->currentFrame = 0;
 
         ++this->currentRow;
@@ -33,6 +37,6 @@ void Animation::update() {
     }
 }
 
-void Animation::render(const SDL_Rect &destRect) {
+void Animation::render(const SDL_Rect &destRect) const {
     TextureManager::getInstance().drawFrame(this->spriteSheet, destRect, this->currentFrame, this->currentRow);
 }

@@ -21,7 +21,8 @@ inline Direction oppositeDirection(Direction direction) {
         case Direction::LEFT:
             return Direction::RIGHT;
         default:
-            throw std::invalid_argument(std::string("Invalid argument: " + std::to_string(static_cast<int>(direction))) + " was passed");
+            throw std::invalid_argument(
+                    std::string("Invalid argument: " + std::to_string(static_cast<int>(direction))) + " was passed");
     }
 }
 
@@ -43,6 +44,7 @@ private:
     std::unordered_map<Direction, Animation> animations;
 
     void (*action)(Entity *){ nullptr };
+
     bool isLocked{ false };
 
 public:
@@ -100,7 +102,7 @@ public:
 
     bool isNextTo(const Entity *entity) const;
 
-    bool hasVisionOf(const Entity *entity) const;
+    virtual bool hasVisionOf(const Entity *entity) const;
 
     void setVision(int newVision);
 
@@ -122,19 +124,19 @@ public:
 
     [[nodiscard]] int getScreenY() const;
 
-    void setAnimation(Direction direction, const char *path, int numFrames, int numRows);
+    void setAnimation(Direction direction, const char *path);
 
     void setAction(void (*function)(Entity *entity));
+
+    void act();
 
     void lock();
 
     void unlock();
 
-    void act();
-
     void updateAnimation();
 
-    void render();
+    void render() const;
 
     void resetPos();
 

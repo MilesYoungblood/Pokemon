@@ -4,8 +4,12 @@
 
 #include "SpriteComponent.h"
 
-SpriteComponent::SpriteComponent(const char *path, int numFrames, int numRows)
-        : sprite(TextureManager::getInstance().loadTexture(path)), NUM_FRAMES(numFrames), NUM_ROWS(numRows) {}
+SpriteComponent::SpriteComponent(const char *path) {
+    const auto data = TextureManager::getInstance().loadTextureData(path);
+    this->sprite = std::get<0>(data);
+    this->numRows = std::get<1>(data);
+    this->numCols = std::get<2>(data);
+}
 
 SpriteComponent::~SpriteComponent() {
     SDL_DestroyTexture(this->sprite);
@@ -14,11 +18,11 @@ SpriteComponent::~SpriteComponent() {
 void SpriteComponent::update() {
     ++this->currentFrame;
 
-    if (this->currentFrame == this->NUM_FRAMES) {
+    if (this->currentFrame == this->numCols) {
         this->currentFrame = 0;
 
         ++this->currentRow;
-        if (this->currentRow == this->NUM_ROWS) {
+        if (this->currentRow == this->numRows) {
             this->currentRow = 0;
         }
     }

@@ -9,8 +9,8 @@
 
 class SpriteComponent : public GameComponent {
 private:
-    const int NUM_FRAMES;
-    const int NUM_ROWS;
+    Uint32 numRows;
+    Uint32 numCols;
 
     int currentFrame{ 0 };
     int currentRow{ 0 };
@@ -18,7 +18,7 @@ private:
     SDL_Texture *sprite{ nullptr };
 
 public:
-    SpriteComponent(const char *path, int numFrames, int numRows);
+    explicit SpriteComponent(const char *path);
 
     SpriteComponent(const SpriteComponent &) = delete;
 

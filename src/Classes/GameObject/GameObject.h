@@ -8,32 +8,22 @@
 
 class GameObject {
 private:
-    using componentId = int;
-
-    std::unordered_map<componentId, std::unique_ptr<GameComponent>> components;
-
-    static componentId getComponentId();
-
-    template<typename C>
-    static componentId getComponentId() {
-        const static componentId component_id = GameObject::getComponentId();
-        return component_id;
-    }
+    std::unordered_map<std::size_t, std::unique_ptr<GameComponent>> components;
 
 public:
-    static void init();
+    GameObject() = default;
 
     template<typename C, typename ...Args>
     void addComponent(Args ...args) {
-        if (not this->components.contains(GameObject::getComponentId<C>())) {
-            this->components.insert(std::make_pair(GameObject::getComponentId<C>(), std::make_unique<C>(args...)));
+        if (not this->components.contains(typeid(C).hash_code())) {
+            this->components.insert(std::make_pair(typeid(C).hash_code(), std::make_unique<C>(args...)));
         }
     }
 
     template<typename C>
     void removeComponent() {
         try {
-            this->components.erase(GameObject::getComponentId<C>());
+            this->components.erase(typeid(C).hash_code());
         }
         catch (const std::exception &e) {
             std::clog << "Trying to remove component that doesn't yet exist: " << e.what() << '\n';
@@ -43,7 +33,7 @@ public:
     template<typename C>
     C &getComponent() {
         try {
-            GameComponent *ptr = this->components.at(GameObject::getComponentId<C>()).get();
+            GameComponent *ptr = this->components.at(typeid(C).hash_code()).get();
             return *dynamic_cast<C *>(ptr);
         }
         catch (const std::exception &e) {
@@ -60,7 +50,7 @@ inline void foo() {
     gameObject.getComponent<PositionComponent>().translateY(6);
     std::cout << gameObject.getComponent<PositionComponent>().getX() << '\n';
 
-    gameObject.addComponent<SpriteComponent>("sprites/Hilbert/HilbertSpriteSheetDown.png", 4, 1);
+    gameObject.addComponent<SpriteComponent>("sprites/Hilbert/HilbertSpriteSheetDown.png");
     gameObject.getComponent<SpriteComponent>().update();
 
     gameObject.addComponent<ResourceComponent>(100, 500);

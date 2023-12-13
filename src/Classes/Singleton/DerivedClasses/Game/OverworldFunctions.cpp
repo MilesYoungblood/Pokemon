@@ -102,12 +102,13 @@ void Game::checkForOpponents() {
                 Mix_HaltMusic();
                 haltMusic = false;
 
-                GraphicsEngine::getInstance().addGraphic<Visual>("exclamation.png",
-                                                                 50 * (this->currentFps / 30) / 2,
-                                                                 SDL_Rect{ trainer->getScreenX(),
-                                                                           trainer->getScreenY() - Constants::TILE_SIZE,
-                                                                           Constants::TILE_SIZE,
-                                                                           Constants::TILE_SIZE }
+                GraphicsEngine::getInstance().addGraphic<TempVisual>("exclamation.png",
+                                                                     50 * (this->currentFps / 30) / 2,
+                                                                     SDL_Rect{ trainer->getScreenX(),
+                                                                               trainer->getScreenY() -
+                                                                               Constants::TILE_SIZE,
+                                                                               Constants::TILE_SIZE,
+                                                                               Constants::TILE_SIZE }
                 );
                 SoundPlayer::getInstance().playSound("spotted");
             }
@@ -324,7 +325,6 @@ void Game::updateOverworld() {
 
 void Game::renderOverworld() {
     this->currentMap->render();
-    Player::getPlayer().render();
 
     GraphicsEngine::getInstance().render();
 }

@@ -4,14 +4,16 @@ project(PokemonBattle)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-include_directories(C:/libs/GSL-4.0.0/include)
-
-include_directories(C:/libs/tinyxml2-master)
-
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_image)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_mixer)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_ttf)
+
+include_directories(C:/libs/GSL-4.0.0/include)
+
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2-master)
+
+#include_directories(C:/libs/opencv-4.8.1/include/opencv2)
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     message("64-bit system detected")
@@ -91,8 +93,10 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Button/Button.cpp
         src/Classes/Graphic/DerivedClasses/Button/Button.h
         src/Classes/Graphic/DerivedClasses/Graphics.h
-        src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp
-        src/Classes/Graphic/DerivedClasses/Visual/Visual.h
+        src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.cpp
+        src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.h
+        src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp
+        src/Classes/Graphic/DerivedClasses/Texture/Texture.h
 )
 
 set(POKEMON
@@ -243,7 +247,15 @@ set(ITEMS
         ${BATTLE_ITEMS}
 )
 
-add_executable(PokemonBattle ${SOURCES} ${POKEMON} ${MOVES} ${ABILITIES} ${ITEMS})
+add_executable(PokemonBattle
+        ${SOURCES}
+        ${POKEMON}
+        ${MOVES}
+        ${ABILITIES}
+        ${ITEMS}
+        #${PNG_SOURCES}
+        #include/third_party/lpng1640/pnglibconf.h
+)
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/constants.h)
 
@@ -266,4 +278,4 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_mixer.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_ttf.dll)
 
-target_link_libraries(${PROJECT_NAME} C:/libs/tinyxml2-master/tinyxml2.cpp)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2-master/tinyxml2.cpp)

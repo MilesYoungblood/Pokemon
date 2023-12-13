@@ -53,11 +53,7 @@ private:
             Game::renderBattle
     };
 
-    std::array<Map, 3> maps{
-            Map(),
-            Map("Route 2", "RivalBattle", 27, 24),
-            Map("Route 3", "GymBattle", 27, 15)
-    };
+    std::array<Map, 1> maps;
 
     std::size_t currentMapIndex{ 0 };
     Map *currentMap{ nullptr };

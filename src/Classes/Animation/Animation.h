@@ -8,8 +8,8 @@
 
 class Animation {
 private:
-    int numFrames{ 0 };
-    int numRows{ 0 };
+    Uint32 numCols{ 0 };
+    Uint32 numRows{ 0 };
 
     int currentFrame{ 0 };
     int currentRow{ 0 };
@@ -19,7 +19,7 @@ private:
 public:
     Animation() = default;
 
-    Animation(const char *path, int numFrames, int numRows);
+    explicit Animation(const char *path);
 
     Animation(const Animation &) = delete;
 
@@ -33,5 +33,5 @@ public:
 
     void update();
 
-    void render(const SDL_Rect &destRect);
+    void render(const SDL_Rect &destRect) const;
 };

@@ -24,12 +24,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/libs/GSL-4.0.0/include"/>
-					<Add directory="C:/libs/tinyxml2-master"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_image"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_mixer"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_ttf"/>
+					<Add directory="C:/libs/GSL-4.0.0/include"/>
+					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/tinyxml2-master"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
@@ -52,12 +52,12 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/libs/GSL-4.0.0/include"/>
-					<Add directory="C:/libs/tinyxml2-master"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_image"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_mixer"/>
 					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_ttf"/>
+					<Add directory="C:/libs/GSL-4.0.0/include"/>
+					<Add directory="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/tinyxml2-master"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32"/>
 					<Add directory="C:/Program Files/JetBrains/CLion 2021.3.2/bin/mingw/bin/../lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward"/>
@@ -94,6 +94,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx">
 			<Option target="PokemonBattle"/>
 		</Unit>
@@ -289,16 +292,22 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Visual/Visual.cpp">
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Visual/Visual.h">
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.cpp">

@@ -5,10 +5,10 @@
 #include "Player.h"
 
 Player::Player() {
-    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png", 4, 1);
-    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png", 4, 1);
-    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png", 4, 1);
-    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png", 4, 1);
+    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png");
+    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png");
+    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png");
+    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png");
 }
 
 Player &Player::getPlayer() {

@@ -25,6 +25,11 @@ public:
     /// \return a pointer to an SDL_Texture, or nullptr on error
     SDL_Texture *loadTexture(const std::string &path);
 
+    /// \brief Loads a texture, as well as the dimensions of it
+    /// \param path path of the image in the project
+    /// \return a tuple containing SDL_Texture (nullptr on error), and two Uint8's representing the height and width respectively
+    std::tuple<SDL_Texture *, Uint32, Uint32> loadTextureData(const std::string &path);
+
     /// \brief Loads a texture as a text.
     /// \param font font of text
     /// \param text text to load

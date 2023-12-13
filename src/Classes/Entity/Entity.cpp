@@ -5,8 +5,7 @@
 #include "../Map/Map.h"
 #include "Entity.h"
 
-Entity::Entity(int x, int y)
-        : x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
+Entity::Entity(int x, int y) : x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
 
 Entity::Entity(const char *name, int x, int y)
         : name(name), x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
@@ -97,12 +96,7 @@ Direction Entity::getDirection() const {
 
 // makes this face the entity
 void Entity::face(const Entity *entity) {
-    try {
-        this->setDirection(oppositeDirection(entity->getDirection()));
-    }
-    catch (const std::invalid_argument &e) {
-        std::clog << "Error facing entity: " << e.what() << '\n';
-    }
+    this->setDirection(oppositeDirection(entity->getDirection()));
 }
 
 bool Entity::isFacing(Direction direction) const {
@@ -230,20 +224,12 @@ int Entity::getScreenY() const {
     return this->screenY;
 }
 
-void Entity::setAnimation(Direction direction, const char *path, int numFrames, int numRows) {
-    this->animations[direction] = Animation(path, numFrames, numRows);
+void Entity::setAnimation(Direction direction, const char *path) {
+    this->animations[direction] = Animation(path);
 }
 
 void Entity::setAction(void (*function)(Entity *)) {
     this->action = function;
-}
-
-void Entity::lock() {
-    this->isLocked = true;
-}
-
-void Entity::unlock() {
-    this->isLocked = false;
 }
 
 void Entity::act() {
@@ -257,19 +243,21 @@ void Entity::act() {
     }
 }
 
+void Entity::lock() {
+    this->isLocked = true;
+}
+
+void Entity::unlock() {
+    this->isLocked = false;
+}
+
 void Entity::updateAnimation() {
     this->animations.at(this->currentDirection).update();
 }
 
-void Entity::render() {
-    try {
-        this->animations.at(this->currentDirection).render(
-                { this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE });
-    }
-    catch (const std::out_of_range &e) {
-        static int attempts = 1;
-        std::clog << "(Attempt " << attempts++ << ") Error rendering animation: " << e.what() << '\n';
-    }
+void Entity::render() const {
+    this->animations.at(this->currentDirection).render(
+            { this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE });
 }
 
 void Entity::resetPos() {

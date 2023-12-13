@@ -18,10 +18,10 @@ Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y
     this->items[typeid(BattleItem).hash_code()];
 
     //FIXME change these to not be Hilbert
-    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png", 4, 1);
-    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png", 4, 1);
-    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png", 4, 1);
-    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png", 4, 1);
+    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png");
+    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png");
+    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png");
+    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png");
 }
 
 Trainer::Trainer(const char *name, const int x, const int y, const Direction direction) : Trainer(name, x, y) {

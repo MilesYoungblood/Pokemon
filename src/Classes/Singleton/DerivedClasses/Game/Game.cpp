@@ -279,19 +279,6 @@ void defaultAction(Entity *entity) {
 }
 
 void Game::initializeGame() {
-    this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-    this->maps[Map::Id::ROUTE_1][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
-    this->maps[Map::Id::ROUTE_1][0].setAction(defaultAction);
-    this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
-    this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-    this->maps[Map::Id::ROUTE_1][1].setDialogue({
-                                                        "Hmm... you look pretty tough...",
-                                                        "This calls for a battle!",
-                                                        "Prepare yourself!"
-                                                });
-    this->maps[Map::Id::ROUTE_1][1].setAction(defaultAction);
-    this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
-
     // default values for player
     Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
 
@@ -337,35 +324,37 @@ void Game::initializeGame() {
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SPEED)(5));
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_ACCURACY)(5));
 
-    this->currentMapIndex = Map::Id::ROUTE_1;
+    this->currentMapIndex = Map::Id::NUVEMA_TOWN;
     this->currentMap = &this->maps.at(this->currentMapIndex);
 }
 
 void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    this->maps[Map::Id::ROUTE_1] = Map("NuvemaTown", "Route1");
-    this->maps[Map::Id::ROUTE_1].addExitPoint({ 8, 2, Map::Id::ROUTE_2, 12, 20 });
-    this->maps[Map::Id::ROUTE_1].addExitPoint({ 9, 2, Map::Id::ROUTE_2, 13, 20 });
-    this->maps[Map::Id::ROUTE_1].addExitPoint({ 10, 2, Map::Id::ROUTE_2, 14, 20 });
+    this->maps[Map::Id::NUVEMA_TOWN] = Map("Nuvema Town");
+    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 8, 2, Map::Id::ROUTE_1, 12, 20 });
+    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 9, 2, Map::Id::ROUTE_1, 13, 20 });
+    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 10, 2, Map::Id::ROUTE_1, 14, 20 });
 
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 12, 21, Map::Id::ROUTE_1, 8, 3 });
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 13, 21, Map::Id::ROUTE_1, 9, 3 });
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 14, 21, Map::Id::ROUTE_1, 10, 3 });
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 11, Map::Id::ROUTE_3, 22, 6 });
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 12, Map::Id::ROUTE_3, 22, 7 });
-    this->maps[Map::Id::ROUTE_2].addExitPoint({ 3, 13, Map::Id::ROUTE_3, 22, 8 });
-
-    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 6, Map::Id::ROUTE_2, 4, 11 });
-    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 7, Map::Id::ROUTE_2, 4, 12 });
-    this->maps[Map::Id::ROUTE_3].addExitPoint({ 23, 8, Map::Id::ROUTE_2, 4, 13 });
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 8, 8, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
+    this->maps[Map::Id::NUVEMA_TOWN][0].setAction(defaultAction);
+    this->maps[Map::Id::NUVEMA_TOWN][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue({
+                                                            "Hmm... you look pretty tough...",
+                                                            "This calls for a battle!",
+                                                            "Prepare yourself!"
+                                                    });
+    this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
+    this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
     if (saveFile) {
         std::string buffer;
 
         // load the current map
         std::getline(saveFile, buffer);
-        this->currentMapIndex = static_cast<Map::Id>(buffer[0] - '0');
+        this->currentMapIndex = buffer[0] - '0';
         this->currentMap = &this->maps.at(this->currentMapIndex);
 
         // grab the player's x-coordinates
@@ -489,19 +478,6 @@ void Game::loadData() {
 
             Player::getPlayer().addItem<BattleItem>(battleItems.at(item)(quantity));
         }
-
-        this->maps[Map::Id::ROUTE_1].addTrainer("Cheren", 10, 8, Direction::DOWN, 3);
-        this->maps[Map::Id::ROUTE_1][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
-        this->maps[Map::Id::ROUTE_1][0].setAction(defaultAction);
-        this->maps[Map::Id::ROUTE_1][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
-        this->maps[Map::Id::ROUTE_1].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-        this->maps[Map::Id::ROUTE_1][1].setDialogue({
-                                                            "Hmm... you look pretty tough...",
-                                                            "This calls for a battle!",
-                                                            "Prepare yourself!"
-                                                    });
-        this->maps[Map::Id::ROUTE_1][1].setAction(defaultAction);
-        this->maps[Map::Id::ROUTE_1][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
         std::stringstream ss;
         // load each trainer's data for every map

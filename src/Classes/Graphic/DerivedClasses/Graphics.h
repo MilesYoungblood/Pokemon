@@ -5,5 +5,6 @@
 #pragma once
 
 #include "TextBox/TextBox.h"
+#include "Texture/Texture.h"
 #include "Button/Button.h"
-#include "Visual/Visual.h"
+#include "TempVisual/TempVisual.h"

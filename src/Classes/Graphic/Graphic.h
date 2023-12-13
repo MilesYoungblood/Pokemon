@@ -23,7 +23,7 @@ public:
 
     virtual ~Graphic() = default;
 
-    virtual void update();
+    virtual void update() = 0;
 
     virtual void render() const = 0;
 

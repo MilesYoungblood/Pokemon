@@ -5,13 +5,12 @@
 #pragma once
 
 #include "../Singleton/DerivedClasses/Camera/Camera.h"
+#include "../Graphic/DerivedClasses/Texture/Texture.h"
 
 class Map {
 public:
     enum Id : Uint8 {
-        ROUTE_1,
-        ROUTE_2,
-        ROUTE_3
+        NUVEMA_TOWN
     };
 
     struct ExitPoint {
@@ -22,21 +21,19 @@ public:
         const int newY;                             // the player's new y-coordinates
     };
 
-    Map();
+    Map() = default;
 
-    Map(const std::string &path, const char *music);
+    explicit Map(const char *name);
 
-    Map(const char *name, const char *music, int width, int height);
-
-    Map(const Map &toCopy) = delete;
+    Map(const Map &) = delete;
 
     Map(Map &&toMove) noexcept;
 
     Map &operator=(const Map &) = delete;
 
-    Map &operator=(Map &&) noexcept;
+    Map &operator=(Map &&rhs) noexcept;
 
-    ~Map();
+    ~Map() = default;
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
@@ -61,8 +58,6 @@ public:
 
     [[nodiscard]] std::string getMusic() const;
 
-    void setObstruction(int x, int y);
-
     void shift(Direction direction, int distance);
 
     void render() const;
@@ -70,18 +65,16 @@ public:
     void reset();
 
 private:
-    inline static int instanceCounter = 0;
-
     using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
 
     const char *name{ "" };                             // name of the map
 
-    const char *music{ "" };
+    std::string music;
 
     inline static Animation water;
 
     using tile = int;
-    inline static std::unordered_map<tile, SDL_Texture *> textureMap;
+    inline static std::unordered_map<tile, std::shared_ptr<Texture>> textureMap;
 
     using data = struct {
         int id;

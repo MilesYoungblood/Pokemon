@@ -16,6 +16,21 @@ SDL_Texture *TextureManager::loadTexture(const std::string &path) {
     return IMG_LoadTexture(this->textureRenderer, std::string_view("../assets/images/" + path).data());
 }
 
+std::tuple<SDL_Texture *, Uint32, Uint32> TextureManager::loadTextureData(const std::string &path) {
+    SDL_Surface *temp = IMG_Load(std::string_view("../assets/images/" + path).data());
+    if (temp == nullptr) {
+        throw std::runtime_error("Error creating surface\n");
+    }
+
+    int rows = temp->h;
+    int cols = temp->w;
+
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
+    SDL_FreeSurface(temp);
+
+    return std::make_tuple(texture, rows, cols);
+}
+
 SDL_Texture *TextureManager::loadText(TTF_Font *font, const char *text, SDL_Color fg) {
     SDL_Surface *temp = TTF_RenderText_Solid(font, text, fg);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);

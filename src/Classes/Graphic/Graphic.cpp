@@ -4,8 +4,6 @@
 
 #include "Graphic.h"
 
-void Graphic::update() {}
-
 void Graphic::deactivate() {
     this->active = false;
 }
