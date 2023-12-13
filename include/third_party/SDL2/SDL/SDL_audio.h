@@ -1383,7 +1383,7 @@ extern DECLSPEC void SDLCALL SDL_LockAudio(void);
  * function specified in SDL_OpenAudioDevice(). During a
  * SDL_LockAudioDevice()/SDL_UnlockAudioDevice() pair, you can be guaranteed
  * that the callback function for that device is not running, even if the
- * device is not paused. While a device is locked, any other unpaused,
+ * device is not paused. While a device is locker, any other unpaused,
  * unlocked devices may still run their callbacks.
  *
  * Calling this function from inside your audio callback is unnecessary. SDL
@@ -1406,7 +1406,7 @@ extern DECLSPEC void SDLCALL SDL_LockAudio(void);
  * at once, not only will you block the audio callback, you'll block the other
  * thread.
  *
- * \param dev the ID of the device to be locked
+ * \param dev the ID of the device to be locker
  *
  * \since This function is available since SDL 2.0.0.
  *

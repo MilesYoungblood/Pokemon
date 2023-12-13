@@ -266,7 +266,7 @@ void defaultAction(Entity *entity) {
             break;
 
         case 2:
-            if (entity->isFacingNorth() or entity->isFacingSouth()) {
+            if (entity->isFacing(Direction::UP) or entity->isFacing(Direction::DOWN)) {
                 binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
             }
             else {
@@ -280,7 +280,7 @@ void defaultAction(Entity *entity) {
 
 void Game::initializeGame() {
     // default values for player
-    Player::getPlayer().init("Hilbert", 9, 10, Direction::DOWN);
+    Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
 
@@ -332,9 +332,6 @@ void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
     this->maps[Map::Id::NUVEMA_TOWN] = Map("Nuvema Town");
-    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 8, 2, Map::Id::ROUTE_1, 12, 20 });
-    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 9, 2, Map::Id::ROUTE_1, 13, 20 });
-    //this->maps[Map::Id::NUVEMA_TOWN].addExitPoint({ 10, 2, Map::Id::ROUTE_1, 14, 20 });
 
     this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 8, 8, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });

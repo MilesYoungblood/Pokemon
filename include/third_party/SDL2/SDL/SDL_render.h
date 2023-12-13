@@ -671,9 +671,9 @@ extern DECLSPEC int SDLCALL SDL_UpdateNVTexture(SDL_Texture * texture,
  *                `SDL_TEXTUREACCESS_STREAMING`
  * \param rect an SDL_Rect structure representing the area to lock for access;
  *             NULL to lock the entire texture
- * \param pixels this is filled in with a pointer to the locked pixels,
- *               appropriately offset by the locked area
- * \param pitch this is filled in with the pitch of the locked pixels; the
+ * \param pixels this is filled in with a pointer to the locker pixels,
+ *               appropriately offset by the locker area
+ * \param pitch this is filled in with the pitch of the locker pixels; the
  *              pitch is the length of one row in bytes
  * \returns 0 on success or a negative error code if the texture is not valid
  *          or was not created with `SDL_TEXTUREACCESS_STREAMING`; call
@@ -708,9 +708,9 @@ extern DECLSPEC int SDLCALL SDL_LockTexture(SDL_Texture * texture,
  * \param texture the texture to lock for access, which was created with
  *                `SDL_TEXTUREACCESS_STREAMING`
  * \param rect a pointer to the rectangle to lock for access. If the rect is
- *             NULL, the entire texture will be locked
+ *             NULL, the entire texture will be locker
  * \param surface this is filled in with an SDL surface representing the
- *                locked area
+ *                locker area
  * \returns 0 on success, or -1 if the texture is not valid or was not created
  *          with `SDL_TEXTUREACCESS_STREAMING`
  *
@@ -734,7 +734,7 @@ extern DECLSPEC int SDLCALL SDL_LockTextureToSurface(SDL_Texture *texture,
  * Which is to say: locking and immediately unlocking a texture can result in
  * corrupted textures, depending on the renderer in use.
  *
- * \param texture a texture locked by SDL_LockTexture()
+ * \param texture a texture locker by SDL_LockTexture()
  *
  * \since This function is available since SDL 2.0.0.
  *

@@ -38,7 +38,7 @@ private:
     int y{ 0 };                                           // y-coordinate on map
     int screenX{ 0 };                                     // x-coordinate on the screen
     int screenY{ 0 };                                     // y-coordinate on the screen
-    int vision{ 1 };                                      // line of sight
+    unsigned int vision{ 1 };                             // line of sight
     Direction currentDirection{ Direction::DOWN };        // numerical representation of which way the trainer is facing
 
     std::unordered_map<Direction, Animation> animations;
@@ -47,7 +47,18 @@ private:
 
     bool isLocked{ false };
 
+protected:
+    void setVision(unsigned int newVision);
+
+    void setAnimation(Direction direction, const char *path);
+
 public:
+    enum class State : Uint8 {
+        IDLE,
+        WALKING,
+        INTERACTING
+    };
+
     Entity() = default;
 
     Entity(int x, int y);
@@ -90,29 +101,11 @@ public:
 
     [[nodiscard]] bool isFacing(Direction direction) const;
 
-    [[nodiscard]] bool isFacingNorth() const;
-
-    [[nodiscard]] bool isFacingEast() const;
-
-    [[nodiscard]] bool isFacingSouth() const;
-
-    [[nodiscard]] bool isFacingWest() const;
-
     bool canMoveForward(const Map *map) const;
 
     bool isNextTo(const Entity *entity) const;
 
-    virtual bool hasVisionOf(const Entity *entity) const;
-
-    void setVision(int newVision);
-
-    void shiftUpOnMap(int distance);
-
-    void shiftDownOnMap(int distance);
-
-    void shiftLeftOnMap(int distance);
-
-    void shiftRightOnMap(int distance);
+    bool hasVisionOf(const Entity *entity) const;
 
     void shiftHorizontally(int distance);
 
@@ -123,8 +116,6 @@ public:
     [[nodiscard]] int getScreenX() const;
 
     [[nodiscard]] int getScreenY() const;
-
-    void setAnimation(Direction direction, const char *path);
 
     void setAction(void (*function)(Entity *entity));
 

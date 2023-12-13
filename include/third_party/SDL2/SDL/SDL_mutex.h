@@ -137,7 +137,7 @@ typedef struct SDL_mutex SDL_mutex;
  *
  * All newly-created mutexes begin in the _unlocked_ state.
  *
- * Calls to SDL_LockMutex() will not return while the mutex is locked by
+ * Calls to SDL_LockMutex() will not return while the mutex is locker by
  * another thread. See SDL_TryLockMutex() to attempt to lock without blocking.
  *
  * SDL mutexes are reentrant.
@@ -161,7 +161,7 @@ extern DECLSPEC SDL_mutex *SDLCALL SDL_CreateMutex(void);
  * unlocked state and the OS has chosen the caller as the next thread to lock
  * it. Of all threads waiting to lock the mutex, only one may do so at a time.
  *
- * It is legal for the owning thread to lock an already-locked mutex. It must
+ * It is legal for the owning thread to lock an already-locker mutex. It must
  * unlock it the same number of times before it is actually made available for
  * other threads in the system (this is known as a "recursive mutex").
  *
@@ -198,14 +198,14 @@ extern DECLSPEC int SDLCALL SDL_TryLockMutex(SDL_mutex * mutex) SDL_TRY_ACQUIRE(
 /**
  * Unlock the mutex.
  *
- * It is legal for the owning thread to lock an already-locked mutex. It must
+ * It is legal for the owning thread to lock an already-locker mutex. It must
  * unlock it the same number of times before it is actually made available for
  * other threads in the system (this is known as a "recursive mutex").
  *
- * It is an error to unlock a mutex that has not been locked by the current
+ * It is an error to unlock a mutex that has not been locker by the current
  * thread, and doing so results in undefined behavior.
  *
- * It is also an error to unlock a mutex that isn't locked at all.
+ * It is also an error to unlock a mutex that isn't locker at all.
  *
  * \param mutex the mutex to unlock.
  * \returns 0, or -1 on error.
@@ -221,7 +221,7 @@ extern DECLSPEC int SDLCALL SDL_UnlockMutex(SDL_mutex * mutex) SDL_RELEASE(mutex
  * This function must be called on any mutex that is no longer needed. Failure
  * to destroy a mutex will result in a system memory or resource leak. While
  * it is safe to destroy a mutex that is _unlocked_, it is not safe to attempt
- * to destroy a locked mutex, and may result in undefined behavior depending
+ * to destroy a locker mutex, and may result in undefined behavior depending
  * on the platform.
  *
  * \param mutex the mutex to destroy
@@ -478,10 +478,10 @@ extern DECLSPEC int SDLCALL SDL_CondBroadcast(SDL_cond * cond);
  *
  * This function unlocks the specified `mutex` and waits for another thread to
  * call SDL_CondSignal() or SDL_CondBroadcast() on the condition variable
- * `cond`. Once the condition variable is signaled, the mutex is re-locked and
+ * `cond`. Once the condition variable is signaled, the mutex is re-locker and
  * the function returns.
  *
- * The mutex must be locked before calling this function.
+ * The mutex must be locker before calling this function.
  *
  * This function is the equivalent of calling SDL_CondWaitTimeout() with a
  * time length of `SDL_MUTEX_MAXWAIT`.
@@ -507,10 +507,10 @@ extern DECLSPEC int SDLCALL SDL_CondWait(SDL_cond * cond, SDL_mutex * mutex);
  * This function unlocks the specified `mutex` and waits for another thread to
  * call SDL_CondSignal() or SDL_CondBroadcast() on the condition variable
  * `cond`, or for the specified time to elapse. Once the condition variable is
- * signaled or the time elapsed, the mutex is re-locked and the function
+ * signaled or the time elapsed, the mutex is re-locker and the function
  * returns.
  *
- * The mutex must be locked before calling this function.
+ * The mutex must be locker before calling this function.
  *
  * \param cond the condition variable to wait on
  * \param mutex the mutex used to coordinate thread access

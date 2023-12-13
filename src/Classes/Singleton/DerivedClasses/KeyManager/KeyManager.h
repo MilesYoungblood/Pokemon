@@ -12,7 +12,7 @@ class KeyManager : public Singleton<KeyManager> {
 private:
     static const std::size_t NUM_KEYS{ 6 };
 
-    std::unordered_map<SDL_Scancode, bool> locked;
+    std::unordered_map<SDL_Scancode, bool> locker;
 
     friend class Singleton<KeyManager>;
 
@@ -41,17 +41,17 @@ public:
 
     /// \brief Grabs the state of a key.
     /// \param direction direction that corresponds to a key
-    /// \return true if the key is pressed and the key is not locked
+    /// \return true if the key is pressed and the key is not locker
     /// \throw std::invalid_argument by passing in an invalid direction
     bool getKey(Direction direction);
 
     /// \brief Grabs the state of a key.
     /// \param key the key to check
-    /// \return true if the key is pressed and the key is not locked
+    /// \return true if the key is pressed and the key is not locker
     bool getKey(SDL_Scancode key);
 
     /// \brief Grabs the states of a set of keys.
     /// \param keys list of keys to check
-    /// \return true if any of the keys are pressed and that key is not locked
+    /// \return true if any of the keys are pressed and that key is not locker
     bool getKeys(const std::array<SDL_Scancode, KeyManager::NUM_KEYS> &keys);
 };

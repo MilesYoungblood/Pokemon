@@ -103,22 +103,6 @@ bool Entity::isFacing(Direction direction) const {
     return this->currentDirection == direction;
 }
 
-bool Entity::isFacingNorth() const {
-    return this->currentDirection == Direction::UP;
-}
-
-bool Entity::isFacingEast() const {
-    return this->currentDirection == Direction::RIGHT;
-}
-
-bool Entity::isFacingSouth() const {
-    return this->currentDirection == Direction::DOWN;
-}
-
-bool Entity::isFacingWest() const {
-    return this->currentDirection == Direction::LEFT;
-}
-
 bool Entity::canMoveForward(const Map *map) const {
     switch (this->currentDirection) {
         case Direction::UP:
@@ -129,26 +113,21 @@ bool Entity::canMoveForward(const Map *map) const {
             return not map->isObstructionHere(this->x, this->y + 1);
         case Direction::LEFT:
             return not map->isObstructionHere(this->x - 1, this->y);
-        default:
-            throw std::runtime_error("Unexpected error: function canMoveForward");
     }
 }
 
 // returns true if this is right next to another entity, not necessarily facing
 bool Entity::isNextTo(const Entity *entity) const {
-    if (this->currentDirection == Direction::UP) {
-        return this->y == entity->y + 1 and this->x == entity->x;
+    switch (this->currentDirection) {
+        case Direction::UP:
+            return this->y == entity->y + 1 and this->x == entity->x;
+        case Direction::DOWN:
+            return this->y == entity->y - 1 and this->x == entity->x;
+        case Direction::LEFT:
+            return this->x == entity->x + 1 and this->y == entity->y;
+        case Direction::RIGHT:
+            return this->x == entity->x - 1 and this->y == entity->y;
     }
-    if (this->currentDirection == Direction::RIGHT) {
-        return this->x == entity->x - 1 and this->y == entity->y;
-    }
-    if (this->currentDirection == Direction::DOWN) {
-        return this->y == entity->y - 1 and this->x == entity->x;
-    }
-    if (this->currentDirection == Direction::LEFT) {
-        return this->x == entity->x + 1 and this->y == entity->y;
-    }
-    return false;
 }
 
 bool Entity::hasVisionOf(const Entity *entity) const {
@@ -156,39 +135,20 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     if (this == entity) {
         return false;
     }
-    if (this->currentDirection == Direction::UP) {
-        return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
+    switch (this->currentDirection) {
+        case Direction::UP:
+            return entity->getX() == this->x and entity->getY() < this->y and entity->getY() >= this->y - this->vision;
+        case Direction::DOWN:
+            return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->vision;
+        case Direction::LEFT:
+            return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
+        case Direction::RIGHT:
+            return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
     }
-    if (this->currentDirection == Direction::RIGHT) {
-        return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
-    }
-    if (this->currentDirection == Direction::DOWN) {
-        return entity->getX() == this->x and entity->getY() > this->y and entity->getY() <= this->y + this->vision;
-    }
-    if (this->currentDirection == Direction::LEFT) {
-        return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
-    }
-    return false;
 }
 
-void Entity::setVision(int newVision) {
+void Entity::setVision(unsigned int newVision) {
     this->vision = newVision;
-}
-
-void Entity::shiftUpOnMap(const int distance) {
-    this->screenY -= distance;
-}
-
-void Entity::shiftDownOnMap(const int distance) {
-    this->screenY += distance;
-}
-
-void Entity::shiftLeftOnMap(const int distance) {
-    this->screenX -= distance;
-}
-
-void Entity::shiftRightOnMap(const int distance) {
-    this->screenX += distance;
 }
 
 void Entity::shiftHorizontally(int distance) {

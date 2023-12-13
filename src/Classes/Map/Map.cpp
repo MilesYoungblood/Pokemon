@@ -13,6 +13,8 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
+
+
 Map::Map(const char *name) : name(name), music(name) {
     music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
         return c == ' ';
@@ -45,8 +47,8 @@ Map::Map(const char *name) : name(name), music(name) {
     // the collision layer's dimensions MUST be an inverted version of the textureMap's dimensions
     this->collision = std::vector<std::vector<bool>>(width, std::vector<bool>(height, false));
 
-    // used when parsing the actual contents of the layer;
-    // keeps track of which tile id's (on layer 1 specifically) have collision
+    // used when parsing the actual contents of a layer;
+    // keeps track of which tile id's (on layer 2 specifically) have collision
     std::unordered_map<int, bool> collisionMap;
 
     // an id of 0 denotes an absence of a tile, so collision is always false
@@ -127,7 +129,7 @@ Map::Map(const char *name) : name(name), music(name) {
                 sourceAttribute.erase(0, 13);
 
                 Map::textureMap[index] = std::make_shared<Texture>(sourceAttribute);
-                if (Map::textureMap[index] == nullptr) {
+                if (Map::textureMap[index]->getTexture() == nullptr) {
                     std::clog << "Error loading texture\n";
                 }
             }
@@ -200,7 +202,7 @@ Map &Map::operator=(Map &&rhs) noexcept {
 }
 
 // returns true if an obstruction is at the passed coordinates
-bool Map::isObstructionHere(const int x, const int y) const {
+bool Map::isObstructionHere(int x, int y) const {
     try {
         return this->collision.at(x).at(y) or this->isTrainerHere(x, y);
     }
@@ -268,51 +270,37 @@ std::string Map::getMusic() const {
 
 // shift the map and its trainers, according to a passed in flag
 void Map::shift(Direction direction, int distance) {
+    std::vector<std::jthread> threads(this->layout.size() + 1);
     for (auto &layer : this->layout) {
-        //threads.emplace_back([&layer, &direction, &distance] -> void {
-        for (auto &row : layer) {
-            for (auto &col : row) {
-                switch (direction) {
-                    case Direction::DOWN:
-                        col.y += distance;
-                        break;
-                    case Direction::UP:
-                        col.y -= distance;
-                        break;
-                    case Direction::RIGHT:
-                        col.x += distance;
-                        break;
-                    case Direction::LEFT:
-                        col.x -= distance;
-                        break;
-                    default:
-                        return;
+        threads.emplace_back([&layer, &direction, &distance] -> void {
+            for (auto &row : layer) {
+                for (auto &col : row) {
+                    switch (direction) {
+                        case Direction::DOWN:
+                            col.y += distance;
+                            break;
+                        case Direction::UP:
+                            col.y -= distance;
+                            break;
+                        case Direction::RIGHT:
+                            col.x += distance;
+                            break;
+                        case Direction::LEFT:
+                            col.x -= distance;
+                            break;
+                        default:
+                            return;
+                    }
                 }
             }
-        }
-        //});
+        });
     }
 
-    //threads.emplace_back([this, &direction, &distance] -> void {
-    for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
-        switch (direction) {
-            case Direction::DOWN:
-                trainer->shiftDownOnMap(distance);
-                break;
-            case Direction::UP:
-                trainer->shiftUpOnMap(distance);
-                break;
-            case Direction::RIGHT:
-                trainer->shiftRightOnMap(distance);
-                break;
-            case Direction::LEFT:
-                trainer->shiftLeftOnMap(distance);
-                break;
-            default:
-                return;
+    threads.emplace_back([this, &direction, &distance] -> void {
+        for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
+            trainer->shiftDirectionOnMap(direction, distance);
         }
-    }
-    //});
+    });
 }
 
 void Map::render() const {

@@ -37,11 +37,10 @@ void Game::updateTitleScreen() {
         Camera::getInstance().init(this->WINDOW_WIDTH, this->WINDOW_HEIGHT);
         Camera::getInstance().lockOnPlayer(this->currentMap);
 
-        std::for_each(this->currentMap->begin(), this->currentMap->end(),
-                      [](std::unique_ptr<Trainer> &trainer) -> void {
-                          pixelsTraveled[&trainer] = 0;
-                          keepLooping[&trainer] = true;
-                      });
+        for (auto &trainer : *this->currentMap) {
+            pixelsTraveled[&trainer] = 0;
+            keepLooping[&trainer] = true;
+        }
 
         SDL_DestroyTexture(this->logo);
         if (strlen(SDL_GetError()) > 0ULL) {

@@ -5,13 +5,15 @@
 #include "Game.h"
 
 int walkCounter = 0;                                     // measures how many screen pixels the player has moved
+int bumpCounter = 0;
 
 bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
+bool colliding = false;
 bool momentum = false;                                   // denotes whether the player is still moving
 
 void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
-        std::clog << "Error fading out \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
+        std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         this->running = false;
         return;
@@ -46,14 +48,14 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     this->currentMap = &this->maps.at(this->currentMapIndex);
 
     // resets the states of these variables for each trainer
-    std::for_each(this->currentMap->begin(), this->currentMap->end(), [](std::unique_ptr<Trainer> &trainer) -> void {
+    for (auto &trainer : *this->currentMap) {
         pixelsTraveled[&trainer] = 0;
         keepLooping[&trainer] = true;
-    });
+    }
 
     Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
 
-    Camera::getInstance().lockOnPlayer(Game::getInstance().currentMap);
+    Camera::getInstance().lockOnPlayer(this->currentMap);
 }
 
 void Game::createTextBox(const std::vector<std::string> &messages) const {
@@ -79,7 +81,6 @@ void Game::createTextBox(const std::vector<std::string> &messages) const {
 void Game::checkForOpponents() {
     static void (*resetVariables)() = [] -> void {
         momentum = false;
-        keepMovingForward = false;
         walkCounter = 0;
     };
 
@@ -102,13 +103,14 @@ void Game::checkForOpponents() {
                 Mix_HaltMusic();
                 haltMusic = false;
 
-                GraphicsEngine::getInstance().addGraphic<TempVisual>("exclamation.png",
-                                                                     50 * (this->currentFps / 30) / 2,
-                                                                     SDL_Rect{ trainer->getScreenX(),
-                                                                               trainer->getScreenY() -
-                                                                               Constants::TILE_SIZE,
-                                                                               Constants::TILE_SIZE,
-                                                                               Constants::TILE_SIZE }
+                GraphicsEngine::getInstance().addGraphic<TempVisual>(
+                        "exclamation.png",
+                        50 * (this->currentFps / 30) / 2,
+                        SDL_Rect{ trainer->getScreenX(),
+                                  trainer->getScreenY() -
+                                  Constants::TILE_SIZE,
+                                  Constants::TILE_SIZE,
+                                  Constants::TILE_SIZE }
                 );
                 SoundPlayer::getInstance().playSound("spotted");
             }
@@ -172,32 +174,37 @@ void Game::checkForOpponents() {
 
 void Game::updateOverworld() {
     static auto checkKey = [this](SDL_Scancode scancode) -> void {
-        static auto directionAsKey = [](SDL_Scancode key) -> Direction {
-            switch (key) {
-                case SDL_Scancode::SDL_SCANCODE_W:
-                    return Direction::UP;
-                case SDL_Scancode::SDL_SCANCODE_A:
-                    return Direction::LEFT;
-                case SDL_Scancode::SDL_SCANCODE_S:
-                    return Direction::DOWN;
-                case SDL_Scancode::SDL_SCANCODE_D:
-                    return Direction::RIGHT;
-                default:
-                    throw std::invalid_argument("Scancode passed does not correspond to a direction");
-            }
+        static std::unordered_map<SDL_Scancode, Direction> directionToKey{
+                std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
+                std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
+                std::make_pair(SDL_Scancode::SDL_SCANCODE_S, Direction::DOWN),
+                std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
         };
 
-        if (not Player::getPlayer().isFacing(directionAsKey(scancode))) {
-            Player::getPlayer().setDirection(directionAsKey(scancode));
+        if (not Player::getPlayer().isFacing(directionToKey[scancode])) {
+            Player::getPlayer().setDirection(directionToKey[scancode]);
         }
-        if (KeyManager::getInstance().getKey(scancode) and Player::getPlayer().canMoveForward(this->currentMap) and
-            (momentum or keyDelay >= 10)) {
-            KeyManager::getInstance().lockWasd();
-            keepMovingForward = true;
+        if (KeyManager::getInstance().getKey(scancode)) {
+            if (Player::getPlayer().canMoveForward(this->currentMap)) {
+                if (momentum or keyDelay >= 10) {
+                    KeyManager::getInstance().lockWasd();
+                    keepMovingForward = true;
 
-            momentum = true;
-            keyDelay.stop();
-            keyDelay.reset();
+                    momentum = true;
+                    keyDelay.stop();
+                    keyDelay.reset();
+                }
+            }
+            else {
+                KeyManager::getInstance().lockWasd();
+                colliding = true;
+
+                keyDelay.stop();
+                keyDelay.reset();
+
+                Player::getPlayer().updateAnimation();
+                SoundPlayer::getInstance().playSound("bump");
+            }
         }
     };
 
@@ -301,13 +308,30 @@ void Game::updateOverworld() {
         walkCounter += this->SCROLL_SPEED;
     }
 
+    if (colliding) {
+        if (bumpCounter == Constants::TILE_SIZE) {
+            Player::getPlayer().updateAnimation();
+        }
+        else if (bumpCounter == Constants::TILE_SIZE * 2) {
+            KeyManager::getInstance().unlockWasd();
+
+            colliding = false;
+            bumpCounter = 0;
+
+            checkForOpponents();
+        }
+
+        bumpCounter += this->SCROLL_SPEED;
+    }
+
     // if the player's sprite is on a tile...
-    if (walkCounter % Constants::TILE_SIZE == 0) {
+    else if (walkCounter % Constants::TILE_SIZE == 0) {
         if (GraphicsEngine::getInstance().hasAny<TextBox>()) {
             KeyManager::getInstance().unlockWasd();
         }
 
         keepMovingForward = false;
+        walkCounter = 0;
 
         checkForOpponents();
         const auto map_data = this->currentMap->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());

@@ -6,6 +6,7 @@
 
 SoundPlayer::~SoundPlayer() {
     Mix_FreeChunk(this->soundBoard["accept"]);
+    Mix_FreeChunk(this->soundBoard["bump"]);
     Mix_FreeChunk(this->soundBoard["select"]);
     Mix_FreeChunk(this->soundBoard["spotted"]);
 }
@@ -26,6 +27,7 @@ void SoundPlayer::setFinishedCallback(void (*f)(int)) {
 
 SoundPlayer::SoundPlayer() {
     this->loadSound("accept");
+    this->loadSound("bump");
     this->loadSound("select");
     this->loadSound("spotted");
 }

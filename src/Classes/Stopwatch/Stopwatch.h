@@ -7,21 +7,11 @@
 template<typename Time>
 class Stopwatch {
 private:
-    std::size_t elapsedTime{ 0ULL };
+    std::size_t elapsedTime{ 0 };
 
     bool active{ false };
 
     std::thread counter;
-
-    void deactivate() {
-        try {
-            this->counter.detach();
-            this->active = false;
-        }
-        catch (const std::exception &e) {
-            std::clog << "Error deactivating stopwatch: " << e.what() << '\n';
-        }
-    }
 
 public:
     Stopwatch() = default;
@@ -35,7 +25,7 @@ public:
     Stopwatch &operator=(Stopwatch &&) noexcept = delete;
 
     ~Stopwatch() {
-        this->deactivate();
+        this->active = false;
     }
 
     void start() {
@@ -51,10 +41,11 @@ public:
                 ++this->elapsedTime;
             }
         });
+        this->counter.detach();
     }
 
     void stop() {
-        this->deactivate();
+        this->active = false;
     }
 
     void reset() {

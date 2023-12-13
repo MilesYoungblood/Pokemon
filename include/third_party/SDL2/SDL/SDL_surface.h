@@ -57,7 +57,7 @@ extern "C" {
 /* @} *//* Surface flags */
 
 /**
- *  Evaluates to true if the surface needs to be locked before access.
+ *  Evaluates to true if the surface needs to be locker before access.
  */
 #define SDL_MUSTLOCK(S) (((S)->flags & SDL_RLEACCEL) != 0)
 
@@ -300,7 +300,7 @@ extern DECLSPEC int SDLCALL SDL_SetSurfacePalette(SDL_Surface * surface,
  * 0, then you can read and write to the surface at any time, and the pixel
  * format of the surface will not change.
  *
- * \param surface the SDL_Surface structure to be locked
+ * \param surface the SDL_Surface structure to be locker
  * \returns 0 on success or a negative error code on failure; call
  *          SDL_GetError() for more information.
  *
@@ -389,7 +389,7 @@ extern DECLSPEC int SDLCALL SDL_SaveBMP_RW
  * Set the RLE acceleration hint for a surface.
  *
  * If RLE is enabled, color key and alpha blending blits are much faster, but
- * the surface must be locked before directly accessing the pixels.
+ * the surface must be locker before directly accessing the pixels.
  *
  * \param surface the SDL_Surface structure to optimize
  * \param flag 0 to disable, non-zero to enable RLE acceleration
@@ -811,7 +811,7 @@ extern DECLSPEC int SDLCALL SDL_FillRects
  *
  *  \returns 0 if the blit is successful, otherwise it returns -1.
  *
- *  The blit function should not be called on a locked surface.
+ *  The blit function should not be called on a locker surface.
  *
  *  The blit semantics for surfaces with and without blending and colorkey
  *  are defined as follows:
