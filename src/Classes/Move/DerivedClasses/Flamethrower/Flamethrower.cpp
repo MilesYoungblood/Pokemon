@@ -27,7 +27,7 @@ void Flamethrower::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/)
 
 std::queue<std::string> Flamethrower::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                      bool  /*skip*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Flamethrower!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Flamethrower!" });
 
     if (this->getDamageFlag() > 0) {
         messages.emplace("Flamethrower did " + std::to_string(this->getDamageFlag()) + " damage!");

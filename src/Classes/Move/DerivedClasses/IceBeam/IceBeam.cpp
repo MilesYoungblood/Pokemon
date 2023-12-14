@@ -27,7 +27,7 @@ void IceBeam::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 
 std::queue<std::string> IceBeam::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                 bool  /*skipTurn*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Ice Beam!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Ice Beam!" });
 
     if (this->getDamageFlag() > 0) {
         messages.emplace("Ice Beam did " + std::to_string(this->getDamageFlag()) + " damage!");

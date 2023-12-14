@@ -6,7 +6,7 @@
 
 std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;
 std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
-Stopwatch<std::chrono::milliseconds> keyDelay;
+Stopwatch keyDelay;
 
 Game::Game() {
     // initialize subsystems

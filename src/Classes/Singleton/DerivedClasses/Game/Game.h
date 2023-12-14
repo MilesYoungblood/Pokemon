@@ -12,7 +12,7 @@
 
 extern std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;           // measures how many screen pixels a trainer has moved
 extern std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
-extern Stopwatch<std::chrono::milliseconds> keyDelay;
+extern Stopwatch keyDelay;
 
 class Game : public Singleton<Game> {
 private:

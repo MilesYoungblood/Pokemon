@@ -22,7 +22,7 @@ void AirSlash::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
 }
 
 std::queue<std::string> AirSlash::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Air Slash!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Air Slash!" });
 
     if (this->getDamageFlag() > 0) {
         messages.emplace("Air Slash did " + std::to_string(this->getDamageFlag()) + " damage!");

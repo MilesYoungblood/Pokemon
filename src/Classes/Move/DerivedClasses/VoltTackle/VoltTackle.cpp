@@ -33,7 +33,7 @@ void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 
 std::queue<std::string> VoltTackle::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                    bool  /*skip*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Volt Tackle!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Volt Tackle!" });
 
     if (this->getDamageFlag() > 0) {
         if (this->getEffFlag() == 0.0) {

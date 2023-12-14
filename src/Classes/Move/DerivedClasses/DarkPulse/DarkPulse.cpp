@@ -22,7 +22,7 @@ void DarkPulse::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
 }
 
 std::queue<std::string> DarkPulse::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Dark Pulse!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Dark Pulse!" });
 
     if (this->getDamageFlag() > 0) {
         messages.emplace("Dark Pulse did " + std::to_string(this->getDamageFlag()) + " damage!");

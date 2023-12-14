@@ -7,7 +7,7 @@
 class Pokemon;
 
 struct Ability {
-    enum class Id {
+    enum class Id : Uint8 {
         ADAPTABILITY, AFTERMATH, AIR_LOCK, ANGER_POINT, ARENA_TRAP,
         BATTLE_ARMOR, BIG_PECKS, BLAZE, CHLOROPHYLL, CLEAR_BODY,
         CLOUD_NINE, COLOR_CHANGE, COMPOUND_EYES, CONTRARY, CUTE_CHARM,

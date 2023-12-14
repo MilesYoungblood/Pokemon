@@ -27,7 +27,7 @@ void Thunder::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
 
 std::queue<std::string> Thunder::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                 bool  /*skip*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Thunder!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Thunder!" });
 
     if (this->getDamageFlag() > 0) {
         if (this->getEffFlag() == 0.0) {

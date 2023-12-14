@@ -29,7 +29,7 @@ void FlashCannon::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) 
 
 std::queue<std::string> FlashCannon::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                     bool  /*skip*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used Flash Cannon!" }};
+    std::queue<std::string> messages({ attacker.getName() + " used Flash Cannon!" });
 
     if (this->getDamageFlag() > 0) {
         messages.emplace("Flash Cannon did " + std::to_string(this->getDamageFlag()) + " damage!");

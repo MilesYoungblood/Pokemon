@@ -33,12 +33,12 @@ Map::Map(const char *name) : name(name), music(name) {
         return;
     }
 
-    int width = mapElement->IntAttribute("width");
+    const int width = mapElement->IntAttribute("width");
     if (width == 0) {
         std::clog << "Invalid TMX file format: missing \"width\" attribute\n";
         return;
     }
-    int height = mapElement->IntAttribute("height");
+    const int height = mapElement->IntAttribute("height");
     if (height == 0) {
         std::clog << "Invalid TMX file format: missing \"height\" attribute\n";
         return;

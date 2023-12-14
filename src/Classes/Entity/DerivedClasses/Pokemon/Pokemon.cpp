@@ -245,7 +245,7 @@ bool Pokemon::isAfflicted() const {
 
 bool Pokemon::canAttack() const {
     return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
-                               [](const std::unique_ptr<Move> &move) -> bool { return not *move; });
+                               [](const std::unique_ptr<Move> &move) -> bool { return not(*move); });
 }
 
 std::string Pokemon::hpEmptyMessage() const {

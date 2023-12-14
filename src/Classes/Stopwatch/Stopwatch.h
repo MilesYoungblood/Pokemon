@@ -4,7 +4,6 @@
 
 #pragma once
 
-template<typename Time>
 class Stopwatch {
 private:
     std::size_t elapsedTime{ 0 };
@@ -24,51 +23,21 @@ public:
 
     Stopwatch &operator=(Stopwatch &&) noexcept = delete;
 
-    ~Stopwatch() {
-        this->active = false;
-    }
+    ~Stopwatch();
 
-    void start() {
-        // prevents executing start if the keyDelay is still going
-        if (this->active) {
-            return;
-        }
+    void start();
 
-        this->active = true;
-        this->counter = std::thread([this] -> void {
-            while (this->active) {
-                std::this_thread::sleep_for(Time(1));
-                ++this->elapsedTime;
-            }
-        });
-        this->counter.detach();
-    }
+    void stop();
 
-    void stop() {
-        this->active = false;
-    }
+    void reset();
 
-    void reset() {
-        this->elapsedTime = 0ULL;
-    }
+    bool operator<(std::size_t rhs) const;
 
-    bool operator<(std::size_t rhs) const {
-        return this->elapsedTime < rhs;
-    }
+    bool operator<=(std::size_t rhs) const;
 
-    bool operator<=(std::size_t rhs) const {
-        return this->elapsedTime <= rhs;
-    }
+    bool operator>(std::size_t rhs) const;
 
-    bool operator >(std::size_t rhs) const {
-        return this->elapsedTime > rhs;
-    }
+    bool operator>=(std::size_t rhs) const;
 
-    bool operator >=(std::size_t rhs) const {
-        return this->elapsedTime >= rhs;
-    }
-
-    bool operator==(std::size_t rhs) const {
-        return this->elapsedTime == rhs;
-    }
+    bool operator==(std::size_t rhs) const;
 };

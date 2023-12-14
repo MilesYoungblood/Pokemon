@@ -64,6 +64,7 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
         src/Classes/Stopwatch/Stopwatch.h
+        src/Classes/Stopwatch/Stopwatch.cpp
         src/Classes/Animation/Animation.h
         src/Classes/Animation/Animation.cpp
         src/Classes/Singleton/DerivedClasses/SoundPlayer/SoundPlayer.h

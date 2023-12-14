@@ -55,7 +55,7 @@ void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 }
 
 std::queue<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
-    std::queue<std::string> messages{{ attacker.getName() + " used " + this->getName() + '!' }};
+    std::queue<std::string> messages({ attacker.getName() + " used " + this->getName() + '!' });
 
     if (this->damageFlag > 0) {
         if (this->effFlag == 0.0) {

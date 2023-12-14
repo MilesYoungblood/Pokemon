@@ -184,23 +184,18 @@ void Game::updateOverworld() {
         if (not Player::getPlayer().isFacing(directionToKey[scancode])) {
             Player::getPlayer().setDirection(directionToKey[scancode]);
         }
-        if (KeyManager::getInstance().getKey(scancode)) {
-            if (Player::getPlayer().canMoveForward(this->currentMap)) {
-                if (momentum or keyDelay >= 10) {
-                    KeyManager::getInstance().lockWasd();
-                    keepMovingForward = true;
+        if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
+            KeyManager::getInstance().lockWasd();
 
-                    momentum = true;
-                    keyDelay.stop();
-                    keyDelay.reset();
-                }
+            momentum = true;
+            keyDelay.stop();
+            keyDelay.reset();
+
+            if (Player::getPlayer().canMoveForward(this->currentMap)) {
+                keepMovingForward = true;
             }
             else {
-                KeyManager::getInstance().lockWasd();
                 colliding = true;
-
-                keyDelay.stop();
-                keyDelay.reset();
 
                 Player::getPlayer().updateAnimation();
                 SoundPlayer::getInstance().playSound("bump");

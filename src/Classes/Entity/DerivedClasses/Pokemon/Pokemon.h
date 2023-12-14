@@ -139,7 +139,7 @@ public:
 private:
     Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
-    const static int MAX_NUM_MOVES{ 4 };
+    static const int MAX_NUM_MOVES{ 4 };
 
     int maxHp;
     int currentHp;
