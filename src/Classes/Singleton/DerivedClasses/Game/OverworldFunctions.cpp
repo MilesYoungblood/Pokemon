@@ -66,30 +66,28 @@ void Game::createTextBox(const std::vector<std::string> &messages) const {
 
     const int box_width = Constants::TILE_SIZE * 7;
     const int box_height = Constants::TILE_SIZE * 2;
-    const SDL_Rect rect{
+    const SDL_Rect rect(
             this->WINDOW_WIDTH / 2 - box_width / 2,
             this->WINDOW_HEIGHT - box_height,
             box_width,
             box_height - Constants::TILE_SIZE / 2
-    };
-    GraphicsEngine::getInstance().getGraphic<TextBox>().init(rect, rect.h / (Constants::TILE_SIZE * 3 / 10),
-                                                             rect.x + Constants::TILE_SIZE / 10,
-                                                             rect.y + Constants::TILE_SIZE / 10);
+    );
+    GraphicsEngine::getInstance().getGraphic<TextBox>().init(
+            rect,
+            rect.h / (Constants::TILE_SIZE * 3 / 10),
+            rect.x + Constants::TILE_SIZE / 10,
+            rect.y + Constants::TILE_SIZE / 10
+    );
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(messages);
 }
 
 void Game::checkForOpponents() {
-    static void (*resetVariables)() = [] -> void {
-        momentum = false;
-        walkCounter = 0;
-    };
-
     // resets movement variables if you are not inputting any directions
     if (not(KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D))) {
-        resetVariables();
+        momentum = false;
     }
 
     static int frameCounter = 0;    // makes a trainer that spotted the player stand still for a set number of frames
@@ -106,16 +104,17 @@ void Game::checkForOpponents() {
                 GraphicsEngine::getInstance().addGraphic<TempVisual>(
                         "exclamation.png",
                         50 * (this->currentFps / 30) / 2,
-                        SDL_Rect{ trainer->getScreenX(),
-                                  trainer->getScreenY() -
-                                  Constants::TILE_SIZE,
-                                  Constants::TILE_SIZE,
-                                  Constants::TILE_SIZE }
+                        SDL_Rect(
+                                trainer->getScreenX(),
+                                trainer->getScreenY() - Constants::TILE_SIZE,
+                                Constants::TILE_SIZE,
+                                Constants::TILE_SIZE
+                        )
                 );
                 SoundPlayer::getInstance().playSound("spotted");
             }
             KeyManager::getInstance().blockInput();
-            resetVariables();
+            momentum = false;
             trainer->lock();
 
             ++frameCounter;
@@ -145,7 +144,7 @@ void Game::checkForOpponents() {
             }
 
             if (not trainer->isNextTo(&Player::getPlayer())) {
-                trainer->shiftDirectionOnMap(trainer->getDirection(), this->SCROLL_SPEED);
+                trainer->shift(trainer->getDirection(), this->SCROLL_SPEED);
                 pixelsTraveled[&trainer] += this->SCROLL_SPEED;
 
                 if (pixelsTraveled[&trainer] % (Constants::TILE_SIZE / 2) == 0) {
@@ -304,10 +303,10 @@ void Game::updateOverworld() {
     }
 
     if (colliding) {
-        if (bumpCounter == Constants::TILE_SIZE) {
+        if (bumpCounter == 10 * (this->currentFps / 30)) {
             Player::getPlayer().updateAnimation();
         }
-        else if (bumpCounter == Constants::TILE_SIZE * 2) {
+        else if (bumpCounter == 20 * (this->currentFps / 30)) {
             KeyManager::getInstance().unlockWasd();
 
             colliding = false;
@@ -316,7 +315,7 @@ void Game::updateOverworld() {
             checkForOpponents();
         }
 
-        bumpCounter += this->SCROLL_SPEED;
+        ++bumpCounter;
     }
 
     // if the player's sprite is on a tile...

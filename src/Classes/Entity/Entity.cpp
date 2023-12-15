@@ -159,7 +159,7 @@ void Entity::shiftVertically(int distance) {
     this->screenY += distance;
 }
 
-void Entity::shiftDirectionOnMap(Direction direction, int distance) {
+void Entity::shift(Direction direction, int distance) {
     switch (direction) {
         case Direction::UP:
             this->screenY -= distance;

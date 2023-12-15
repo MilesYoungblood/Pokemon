@@ -10,21 +10,21 @@ void Game::renderMain() {
 
     static const int box_width = Constants::TILE_SIZE * 7;
     static const int box_height = Constants::TILE_SIZE * 2;
-    static const SDL_Rect text_box{
+    static const SDL_Rect text_box(
             box_width / (Constants::TILE_SIZE / 10) / 2,
             this->WINDOW_HEIGHT - box_height,
             box_width / 2,
             box_height - Constants::TILE_SIZE / 2
-    };
+    );
 
-    TextureManager::getInstance().drawRect(text_box, { 0, 0, 0 }, text_box.h / (Constants::TILE_SIZE * 3 / 10));
+    TextureManager::getInstance().drawRect(text_box, Constants::Color::BLACK, text_box.h / (Constants::TILE_SIZE * 3 / 10));
 
-    SDL_Rect button{
+    SDL_Rect button(
             WINDOW_WIDTH - Constants::TILE_SIZE / 10 - WINDOW_WIDTH / 4 + Constants::TILE_SIZE / 5,
             WINDOW_HEIGHT - Constants::TILE_SIZE / 2 - Constants::TILE_SIZE / 2,
             WINDOW_WIDTH / 4 - Constants::TILE_SIZE / 2,
             Constants::TILE_SIZE / 2
-    };
+    );
 
     const int border_size = (WINDOW_WIDTH / 2 - (Constants::TILE_SIZE * 2 - Constants::TILE_SIZE / 2)) /
                             (Constants::TILE_SIZE * 3 / 10) / 5;

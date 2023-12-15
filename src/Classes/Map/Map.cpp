@@ -297,14 +297,14 @@ void Map::shift(Direction direction, int distance) {
     }
 
     threads.emplace_back([this, &direction, &distance] -> void {
-        for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
-            trainer->shiftDirectionOnMap(direction, distance);
+        for (auto &trainer : this->trainers) {
+            trainer->shift(direction, distance);
         }
     });
 }
 
 void Map::render() const {
-    SDL_Rect sdlRect{ 0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE };
+    static SDL_Rect sdlRect(0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE);
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
             for (const auto &col : row) {
@@ -338,16 +338,21 @@ void Map::render() const {
 // resets the previous map's tile positions
 // as well as the trainer's positions
 void Map::reset() {
+    std::vector<std::jthread> threads(this->layout.size() + 1);
     for (auto &layer : this->layout) {
-        for (int i = 0; i < layer.size(); ++i) {
-            for (int j = 0; j < layer[i].size(); ++j) {
-                layer[i][j].x = i * Constants::TILE_SIZE;
-                layer[i][j].y = j * Constants::TILE_SIZE;
+        threads.emplace_back([&layer] -> void {
+            for (int i = 0; i < layer.size(); ++i) {
+                for (int j = 0; j < layer[i].size(); ++j) {
+                    layer[i][j].x = i * Constants::TILE_SIZE;
+                    layer[i][j].y = j * Constants::TILE_SIZE;
+                }
             }
-        }
+        });
     }
 
-    for (auto &trainer : this->trainers) {
-        trainer->resetPos();
-    }
+    threads.emplace_back([this] -> void {
+        for (auto &trainer : this->trainers) {
+            trainer->resetPos();
+        }
+    });
 }

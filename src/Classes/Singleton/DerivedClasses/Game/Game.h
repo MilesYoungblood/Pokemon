@@ -21,7 +21,7 @@ private:
 
     const int WINDOW_WIDTH{ Constants::TILE_SIZE * 9 };                            // width of the window
     const int WINDOW_HEIGHT{ Constants::TILE_SIZE * 7 };                           // height of the window
-    const int SCROLL_SPEED{ Constants::TILE_SIZE / 10 / (Game::currentFps / 30) }; // scroll speed
+    const int SCROLL_SPEED{ Constants::TILE_SIZE / 10 / (this->currentFps / 30) }; // scroll speed
 
     const int FONT_SIZE{ 20 };                                          // font size for message box text
 
@@ -72,7 +72,7 @@ private:
 
     void updateBattle();
 
-    static void renderBattle();
+    static void renderBattle() ;
 
     void initializeGame();
 
@@ -101,7 +101,7 @@ public:
 
     void update();
 
-    void render();
+    void render() const;
 
     [[nodiscard]] int getFps() const;
 

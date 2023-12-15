@@ -111,7 +111,7 @@ public:
 
     void shiftVertically(int distance);
 
-    void shiftDirectionOnMap(Direction direction, int distance);
+    void shift(Direction direction, int distance);
 
     [[nodiscard]] int getScreenX() const;
 

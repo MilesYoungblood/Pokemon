@@ -79,7 +79,8 @@ Game::Game() {
     }
 
     // load the text prompt
-    this->text = TextureManager::getInstance().loadText(this->font, "Press enter to continue!", { 0, 0, 0 });
+    this->text = TextureManager::getInstance().loadText(this->font, "Press enter to continue!",
+                                                        Constants::Color::BLACK);
     if (this->text == nullptr) {
         std::clog << "Error loading title text: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -175,7 +176,7 @@ void Game::update() {
     this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
 }
 
-void Game::render() {
+void Game::render() const {
     SDL_RenderClear(this->renderer);
     this->RENDER_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
     SDL_RenderPresent(this->renderer);
@@ -338,11 +339,12 @@ void Game::loadData() {
     this->maps[Map::Id::NUVEMA_TOWN][0].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
     this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
-    this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue({
-                                                            "Hmm... you look pretty tough...",
-                                                            "This calls for a battle!",
-                                                            "Prepare yourself!"
-                                                    });
+    this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue(
+            {
+                    "Hmm... you look pretty tough...",
+                    "This calls for a battle!",
+                    "Prepare yourself!"
+            });
     this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
