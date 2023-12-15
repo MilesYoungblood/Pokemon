@@ -14,8 +14,12 @@ std::string Victini::getSpecies() const {
     return "Victory";
 }
 
-Type Victini::getType(bool type1) const {
-    return type1 ? Type::PSYCHIC : Type::FIRE;
+Type Victini::getType1() const {
+    return Type::PSYCHIC;
+}
+
+Type Victini::getType2() const {
+    return Type::FIRE;
 }
 
 double Victini::getHeight() const {

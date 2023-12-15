@@ -27,13 +27,15 @@ public:
 
     Map(const Map &) = delete;
 
-    Map(Map &&toMove) noexcept;
+    Map(Map &&toMove) noexcept = delete;
 
     Map &operator=(const Map &) = delete;
 
-    Map &operator=(Map &&rhs) noexcept;
+    Map &operator=(Map &&rhs) noexcept = delete;
 
     ~Map() = default;
+
+    static void loadTextures();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
@@ -73,11 +75,11 @@ private:
 
     inline static Animation water;
 
-    using tile = int;
+    using tile = std::string;
     inline static std::unordered_map<tile, std::shared_ptr<Texture>> textureMap;
 
     using data = struct {
-        int id;
+        std::string id;
         int x;
         int y;
     };

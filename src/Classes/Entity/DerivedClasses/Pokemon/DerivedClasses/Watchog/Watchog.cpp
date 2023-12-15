@@ -15,8 +15,8 @@ std::string Watchog::getSpecies() const {
     return "Lookout";
 }
 
-Type Watchog::getType(bool type1) const {
-    return type1 ? Type::NORMAL : Type::NONE;
+Type Watchog::getType1() const {
+    return Type::NORMAL;
 }
 
 double Watchog::getHeight() const {

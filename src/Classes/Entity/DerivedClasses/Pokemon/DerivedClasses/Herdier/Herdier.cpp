@@ -15,8 +15,8 @@ std::string Herdier::getSpecies() const {
     return "Loyal Dog";
 }
 
-Type Herdier::getType(bool type1) const {
-    return type1 ? Type::NORMAL : Type::NONE;
+Type Herdier::getType1() const {
+    return Type::NORMAL;
 }
 
 double Herdier::getHeight() const {

@@ -14,8 +14,8 @@ std::string Tepig::getSpecies() const {
     return "Fire Pig";
 }
 
-Type Tepig::getType(bool type1) const {
-    return type1 ? Type::FIRE : Type::NONE;
+Type Tepig::getType1() const {
+    return Type::FIRE;
 }
 
 double Tepig::getHeight() const {

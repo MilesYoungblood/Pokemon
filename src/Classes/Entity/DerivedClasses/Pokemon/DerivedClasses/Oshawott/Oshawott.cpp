@@ -14,8 +14,8 @@ std::string Oshawott::getSpecies() const {
     return "Sea Otter";
 }
 
-Type Oshawott::getType(bool type1) const {
-    return type1 ? Type::WATER : Type::NONE;
+Type Oshawott::getType1() const {
+    return Type::WATER;
 }
 
 double Oshawott::getHeight() const {

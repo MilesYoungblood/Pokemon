@@ -14,8 +14,8 @@ std::string Servine::getSpecies() const {
     return "Grass Snake";
 }
 
-Type Servine::getType(bool type1) const {
-    return type1 ? Type::GRASS : Type::NONE;
+Type Servine::getType1() const {
+    return Type::GRASS;
 }
 
 double Servine::getHeight() const {

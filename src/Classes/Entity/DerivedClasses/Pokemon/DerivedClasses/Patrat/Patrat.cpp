@@ -15,8 +15,8 @@ std::string Patrat::getSpecies() const {
     return "Scout";
 }
 
-Type Patrat::getType(bool type1) const {
-    return type1 ? Type::NORMAL : Type::NONE;
+Type Patrat::getType1() const {
+    return Type::NORMAL;
 }
 
 double Patrat::getHeight() const {

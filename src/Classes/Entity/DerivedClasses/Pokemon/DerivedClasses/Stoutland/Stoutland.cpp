@@ -15,8 +15,8 @@ std::string Stoutland::getSpecies() const {
     return "Big-Hearted";
 }
 
-Type Stoutland::getType(bool type1) const {
-    return type1 ? Type::NORMAL : Type::NONE;
+Type Stoutland::getType1() const {
+    return Type::NORMAL;
 }
 
 double Stoutland::getHeight() const {

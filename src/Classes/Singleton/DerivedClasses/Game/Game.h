@@ -53,7 +53,9 @@ private:
             Game::renderBattle
     };
 
-    std::array<Map, 1> maps;
+    std::array<Map, 1> maps{
+        Map("Nuvema Town")
+    };
 
     std::size_t currentMapIndex{ 0 };
     Map *currentMap{ nullptr };

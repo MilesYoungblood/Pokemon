@@ -14,8 +14,8 @@ std::string Samurott::getSpecies() const {
     return "Formidable";
 }
 
-Type Samurott::getType(bool type1) const {
-    return type1 ? Type::WATER : Type::NONE;
+Type Samurott::getType1() const {
+    return Type::WATER;
 }
 
 double Samurott::getHeight() const {

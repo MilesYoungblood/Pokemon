@@ -104,7 +104,9 @@ public:
 
     const Ability &getAbility() const;
 
-    virtual Type getType(bool type1) const = 0;
+    virtual Type getType1() const = 0;
+
+    virtual Type getType2() const;
 
     virtual double getHeight() const = 0;
 

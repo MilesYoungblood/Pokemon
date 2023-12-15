@@ -15,8 +15,8 @@ std::string Purrloin::getSpecies() const {
     return "Devious";
 }
 
-Type Purrloin::getType(bool type1) const {
-    return type1 ? Type::DARK : Type::NONE;
+Type Purrloin::getType1() const {
+    return Type::DARK;
 }
 
 double Purrloin::getHeight() const {

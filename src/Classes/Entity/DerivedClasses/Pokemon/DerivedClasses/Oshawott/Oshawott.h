@@ -13,7 +13,7 @@ struct Oshawott : public Pokemon {
 
     std::string getSpecies() const override;
 
-    Type getType(bool type1) const override;
+    Type getType1() const override;
 
     double getHeight() const override;
 

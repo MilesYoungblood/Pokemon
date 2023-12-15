@@ -14,8 +14,8 @@ std::string Dewott::getSpecies() const {
     return "Discipline";
 }
 
-Type Dewott::getType(bool type1) const {
-    return type1 ? Type::WATER : Type::NONE;
+Type Dewott::getType1() const {
+    return Type::WATER;
 }
 
 double Dewott::getHeight() const {

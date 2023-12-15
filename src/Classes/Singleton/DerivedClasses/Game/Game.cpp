@@ -332,7 +332,7 @@ void Game::initializeGame() {
 void Game::loadData() {
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    this->maps[Map::Id::NUVEMA_TOWN] = Map("Nuvema Town");
+    Map::loadTextures();
 
     this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 8, 8, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });

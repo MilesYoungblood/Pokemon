@@ -15,8 +15,8 @@ std::string Liepard::getSpecies() const {
     return "Cruel";
 }
 
-Type Liepard::getType(bool type1) const {
-    return type1 ? Type::DARK : Type::NONE;
+Type Liepard::getType1() const {
+    return Type::DARK;
 }
 
 double Liepard::getHeight() const {

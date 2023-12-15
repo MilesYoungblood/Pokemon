@@ -14,8 +14,12 @@ std::string Pignite::getSpecies() const {
     return "Fire Pig";
 }
 
-Type Pignite::getType(bool type1) const {
-    return type1 ? Type::FIRE : Type::FIGHTING;
+Type Pignite::getType1() const {
+    return Type::FIRE;
+}
+
+Type Pignite::getType2() const {
+    return Type::FIGHTING;
 }
 
 double Pignite::getHeight() const {

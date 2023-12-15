@@ -15,8 +15,8 @@ std::string Lillipup::getSpecies() const {
     return "Puppy";
 }
 
-Type Lillipup::getType(bool type1) const {
-    return type1 ? Type::NORMAL : Type::NONE;
+Type Lillipup::getType1() const {
+    return Type::NORMAL;
 }
 
 double Lillipup::getHeight() const {

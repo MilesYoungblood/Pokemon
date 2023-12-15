@@ -15,8 +15,8 @@ std::string NetBall::getEffect() const {
 }
 
 double NetBall::getCatchRate(const Pokemon &pokemon, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
-    if (pokemon.getType(true) == Type::WATER or pokemon.getType(true) == Type::BUG or
-        pokemon.getType(false) == Type::WATER or pokemon.getType(false) == Type::BUG) {
+    if (pokemon.getType1() == Type::WATER or pokemon.getType1() == Type::BUG or
+        pokemon.getType2() == Type::WATER or pokemon.getType2() == Type::BUG) {
         return 3.5;
     }
     return 1.0;

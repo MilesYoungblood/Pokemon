@@ -172,16 +172,16 @@ void Game::checkForOpponents() {
 }
 
 void Game::updateOverworld() {
-    static auto checkKey = [this](SDL_Scancode scancode) -> void {
-        static std::unordered_map<SDL_Scancode, Direction> directionToKey{
+    static const auto check = [this](SDL_Scancode scancode) -> void {
+        static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_S, Direction::DOWN),
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
         };
 
-        if (not Player::getPlayer().isFacing(directionToKey[scancode])) {
-            Player::getPlayer().setDirection(directionToKey[scancode]);
+        if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
+            Player::getPlayer().setDirection(direction_to_key.at(scancode));
         }
         if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
             KeyManager::getInstance().lockWasd();
@@ -203,16 +203,16 @@ void Game::updateOverworld() {
     };
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
-        checkKey(SDL_Scancode::SDL_SCANCODE_W);
+        check(SDL_Scancode::SDL_SCANCODE_W);
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
-        checkKey(SDL_Scancode::SDL_SCANCODE_A);
+        check(SDL_Scancode::SDL_SCANCODE_A);
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
-        checkKey(SDL_Scancode::SDL_SCANCODE_S);
+        check(SDL_Scancode::SDL_SCANCODE_S);
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
-        checkKey(SDL_Scancode::SDL_SCANCODE_D);
+        check(SDL_Scancode::SDL_SCANCODE_D);
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and not keepMovingForward) {
         for (auto &trainer : *this->currentMap) {

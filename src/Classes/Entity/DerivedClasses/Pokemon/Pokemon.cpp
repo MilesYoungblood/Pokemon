@@ -227,6 +227,10 @@ const Ability &Pokemon::getAbility() const {
     return *this->ability;
 }
 
+Type Pokemon::getType2() const {
+    return Type::NONE;
+}
+
 bool Pokemon::isFainted() const {
     return this->currentHp == 0;
 }

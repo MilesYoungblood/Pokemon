@@ -116,20 +116,24 @@ double Move::getCritFlag() const {
 }
 
 void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
-    double initialDamage{ 0.0 };
+    double initialDamage;
 
     const int level_calc = (2 * attacker.getLevel() / 5) + 2;
-    if (this->getCategory() == Move::Category::PHYSICAL) {
-        initialDamage = level_calc * this->getDamage() * attacker.getBaseStat(Pokemon::Stat::ATTACK) /
-                        defender.getBaseStat(Pokemon::Stat::DEFENSE);
-    }
-    else if (this->getCategory() == Move::Category::SPECIAL) {
-        initialDamage = level_calc * this->getDamage() * attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
-                        defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
+    switch (this->getCategory()) {
+        case Category::PHYSICAL:
+            initialDamage = level_calc * this->getDamage() * attacker.getBaseStat(Pokemon::Stat::ATTACK) /
+                            defender.getBaseStat(Pokemon::Stat::DEFENSE);
+            break;
+        case Category::SPECIAL:
+            initialDamage = level_calc * this->getDamage() * attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
+                            defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
+            break;
+        case Category::STATUS:
+            return;
     }
 
     const double final_damage = initialDamage / 50 + 2;
-    const double stab = this->getType() == attacker.getType(true) or this->getType() == attacker.getType(false) ? 1.5 : 1.0;
+    const double stab = this->getType() == attacker.getType1() or this->getType() == attacker.getType2() ? 1.5 : 1.0;
 
     this->effFlag = this->checkType(attacker);
     this->critFlag = binomial(this->getCritRatio()) ? 2.0 : 1.0;
@@ -141,35 +145,37 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
 double Move::checkType(const Pokemon &pokemon) const {
     static const int num_types = 17;
 
-    static const std::array<std::array<double, num_types>, num_types> type_chart = {
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5 }, // normal
-            std::array<double, num_types>{ 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0 }, // fire
-            std::array<double, num_types>{ 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // water
-            std::array<double, num_types>{ 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0 }, // electric
-            std::array<double, num_types>{ 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5 }, // grass
-            std::array<double, num_types>{ 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // ice
-            std::array<double, num_types>{ 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0 }, // fighting
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0 }, // poison
-            std::array<double, num_types>{ 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0 }, // ground
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5 }, // flying
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5 }, // psychic
-            std::array<double, num_types>{ 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5 }, // bug
-            std::array<double, num_types>{ 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5 }, // rock
-            std::array<double, num_types>{ 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ghost
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // dragon
-            std::array<double, num_types>{ 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // dark
-            std::array<double, num_types>{ 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5 }, // steel
+    static const std::array<std::array<double, num_types>, num_types> type_chart{
+            {
+                    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5 }, // normal
+                    { 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0 }, // fire
+                    { 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // water
+                    { 1.0, 1.0, 2.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0 }, // electric
+                    { 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 1.0, 0.5, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 0.5, 1.0, 0.5 }, // grass
+                    { 1.0, 0.5, 0.5, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // ice
+                    { 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 0.5, 0.5, 0.5, 2.0, 0.0, 1.0, 2.0, 2.0 }, // fighting
+                    { 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 1.0, 0.5, 0.5, 1.0, 1.0, 0.0 }, // poison
+                    { 1.0, 2.0, 1.0, 2.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.0, 1.0, 0.5, 2.0, 1.0, 1.0, 1.0, 2.0 }, // ground
+                    { 1.0, 1.0, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 0.5 }, // flying
+                    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 2.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 0.0, 0.5 }, // psychic
+                    { 1.0, 0.5, 1.0, 1.0, 2.0, 1.0, 0.5, 0.5, 1.0, 0.5, 2.0, 1.0, 1.0, 0.5, 1.0, 2.0, 0.5 }, // bug
+                    { 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 2.0, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 0.5 }, // rock
+                    { 0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // ghost
+                    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5 }, // dragon
+                    { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0 }, // dark
+                    { 1.0, 0.5, 0.5, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 0.5 }, // steel
+            }
     };
 
     const int move_type = static_cast<int>(this->getType()) - 1;
-    const double type_1 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType(true)) - 1);
+    const double type_1 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType1()) - 1);
 
     double type2;
-    if (pokemon.getType(false) == Type::NONE) {
+    if (pokemon.getType2() == Type::NONE) {
         type2 = 1.0;
     }
     else {
-        type2 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType(false)) - 1);
+        type2 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType2()) - 1);
     }
 
     return type_1 * type2;

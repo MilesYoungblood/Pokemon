@@ -113,6 +113,8 @@ bool Entity::canMoveForward(const Map *map) const {
             return not map->isObstructionHere(this->x, this->y + 1);
         case Direction::LEFT:
             return not map->isObstructionHere(this->x - 1, this->y);
+        default:
+            throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
 }
 
@@ -127,6 +129,8 @@ bool Entity::isNextTo(const Entity *entity) const {
             return this->x == entity->x + 1 and this->y == entity->y;
         case Direction::RIGHT:
             return this->x == entity->x - 1 and this->y == entity->y;
+        default:
+            throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
 }
 
@@ -144,6 +148,8 @@ bool Entity::hasVisionOf(const Entity *entity) const {
             return entity->getY() == this->y and entity->getX() < this->x and entity->getX() >= this->x - this->vision;
         case Direction::RIGHT:
             return entity->getY() == this->y and entity->getX() > this->x and entity->getX() <= this->x + this->vision;
+        default:
+            throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
 }
 

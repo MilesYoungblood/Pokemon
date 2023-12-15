@@ -14,8 +14,8 @@ std::string Serperior::getSpecies() const {
     return "Regal";
 }
 
-Type Serperior::getType(bool type1) const {
-    return type1 ? Type::GRASS : Type::NONE;
+Type Serperior::getType1() const {
+    return Type::GRASS;
 }
 
 double Serperior::getHeight() const {

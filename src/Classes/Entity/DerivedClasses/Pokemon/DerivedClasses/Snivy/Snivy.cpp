@@ -14,8 +14,8 @@ std::string Snivy::getSpecies() const {
     return "Grass Snake";
 }
 
-Type Snivy::getType(bool type1) const {
-    return type1 ? Type::GRASS : Type::NONE;
+Type Snivy::getType1() const {
+    return Type::GRASS;
 }
 
 double Snivy::getHeight() const {

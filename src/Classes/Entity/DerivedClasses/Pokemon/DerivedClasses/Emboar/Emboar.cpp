@@ -14,8 +14,12 @@ std::string Emboar::getSpecies() const {
     return "Mega Fire Pig";
 }
 
-Type Emboar::getType(bool type1) const {
-    return type1 ? Type::FIRE : Type::FIGHTING;
+Type Emboar::getType1() const {
+    return Type::FIRE;
+}
+
+Type Emboar::getType2() const {
+    return Type::FIGHTING;
 }
 
 double Emboar::getHeight() const {

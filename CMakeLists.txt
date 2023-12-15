@@ -135,6 +135,10 @@ set(POKEMON
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.h
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.h
 )
 
 set(MOVES

@@ -13,17 +13,15 @@ bool Map::isTrainerHere(const int x, const int y) const {
     return false;
 }
 
-
-
 Map::Map(const char *name) : name(name), music(name) {
     music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
         return c == ' ';
     }), music.end());
 
     tinyxml2::XMLDocument tmxFile;
-    tinyxml2::XMLError isOpen = tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data());
-    if (isOpen != tinyxml2::XML_SUCCESS) {
-        std::clog << "Error code " << isOpen << ": " << tmxFile.ErrorStr() << '\n';
+    tinyxml2::XMLError xmlErrorCode = tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data());
+    if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
+        std::clog << "Error code " << xmlErrorCode << ": " << tmxFile.ErrorStr() << '\n';
         return;
     }
 
@@ -44,15 +42,18 @@ Map::Map(const char *name) : name(name), music(name) {
         return;
     }
 
-    // the collision layer's dimensions MUST be an inverted version of the textureMap's dimensions
+    // the collision layer's dimensions MUST be the inverse of the textureMap's dimensions
     this->collision = std::vector<std::vector<bool>>(width, std::vector<bool>(height, false));
 
     // used when parsing the actual contents of a layer;
     // keeps track of which tile id's (on layer 2 specifically) have collision
-    std::unordered_map<int, bool> collisionMap;
-
     // an id of 0 denotes an absence of a tile, so collision is always false
-    collisionMap.insert(std::make_pair(0, false));
+    std::unordered_map<int, bool> collisionMap({ std::make_pair(0, false) });
+
+    // used when parsing to keep track of image sources,
+    // image sources are a more unique identifier than integers since
+    // different maps can have the same source be of a different id
+    std::unordered_map<int, const std::string> pathMap({ std::make_pair(0, "") });
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     for (tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
@@ -70,9 +71,9 @@ Map::Map(const char *name) : name(name), music(name) {
         }
 
         tinyxml2::XMLDocument tsxFile;
-        isOpen = tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str());
-        if (isOpen != tinyxml2::XML_SUCCESS) {
-            std::clog << "Error code" << isOpen << ": " << tsxFile.ErrorStr() << '\n';
+        xmlErrorCode = tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str());
+        if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
+            std::clog << "Error code" << xmlErrorCode << ": " << tsxFile.ErrorStr() << '\n';
             return;
         }
 
@@ -98,7 +99,7 @@ Map::Map(const char *name) : name(name), music(name) {
 
             // variable to reduce the number of expression calculations
             const int index = first_gid_attribute + id;
-            if (Map::textureMap[index] == nullptr) {
+            if (not pathMap.contains(index)) {
                 tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
                 if (propertyListElement == nullptr) {
                     std::clog << "Invalid TSX file format: missing \"properties\" element\n";
@@ -111,8 +112,7 @@ Map::Map(const char *name) : name(name), music(name) {
                     return;
                 }
 
-                const bool collision_attribute = propertyElement->BoolAttribute("value");
-                collisionMap.insert(std::make_pair(index, collision_attribute));
+                collisionMap.insert(std::make_pair(index, propertyElement->BoolAttribute("value")));
 
                 tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
                 if (imageElement == nullptr) {
@@ -126,12 +126,12 @@ Map::Map(const char *name) : name(name), music(name) {
                     return;
                 }
 
-                sourceAttribute.erase(0, 13);
+                // strip off unnecessary characters
+                sourceAttribute.erase(0, 21);
+                sourceAttribute.erase(sourceAttribute.size() - 4);
 
-                Map::textureMap[index] = std::make_shared<Texture>(sourceAttribute);
-                if (Map::textureMap[index]->getTexture() == nullptr) {
-                    std::clog << "Error loading texture\n";
-                }
+                pathMap.insert(std::make_pair(index, sourceAttribute));
+                Map::textureMap.insert(std::make_pair(sourceAttribute, nullptr));
             }
         }
     }
@@ -166,7 +166,7 @@ Map::Map(const char *name) : name(name), music(name) {
         int value;
         for (int row = 0; row < height; ++row) {
             for (int col = 0; col < width and ss >> value; ++col) {
-                layer[row][col].id = value;
+                layer[row][col].id = pathMap.at(value);
                 layer[row][col].x = col * Constants::TILE_SIZE;
                 layer[row][col].y = row * Constants::TILE_SIZE;
                 if (ss.peek() == ',') {
@@ -180,25 +180,25 @@ Map::Map(const char *name) : name(name), music(name) {
             }
         }
 
-        layerElement = layerElement->NextSiblingElement("layer");
         this->layout.push_back(layer);
+        layerElement = layerElement->NextSiblingElement("layer");
     }
 }
 
-Map::Map(Map &&toMove) noexcept
-        : name(toMove.name), music(std::move(toMove.music)), layout(std::move(toMove.layout)), collision(std::move(toMove.collision)),
-          trainers(std::move(toMove.trainers)), items(std::move(toMove.items)), exitPoints(std::move(toMove.exitPoints)) {}
+void Map::loadTextures() {
+    static bool loaded = false;
+    if (loaded) {
+        return;
+    }
 
-Map &Map::operator=(Map &&rhs) noexcept {
-    this->name = rhs.name;
-    this->music = std::move(rhs.music);
-    this->layout = std::move(rhs.layout);
-    this->collision = std::move(rhs.collision);
-    this->trainers = std::move(rhs.trainers);
-    this->items = std::move(rhs.items);
-    this->exitPoints = std::move(rhs.exitPoints);
+    for (auto &mapping : Map::textureMap) {
+        Map::textureMap.at(mapping.first) = std::make_shared<Texture>("terrain/" + mapping.first + ".png");
+        if (Map::textureMap.at(mapping.first) == nullptr) {
+            std::clog << "Error loading texture at " << mapping.first << '\n';
+        }
+    }
 
-    return *this;
+    loaded = true;
 }
 
 // returns true if an obstruction is at the passed coordinates
@@ -311,7 +311,7 @@ void Map::render() const {
                 sdlRect.x = col.x;
                 sdlRect.y = col.y;
                 // prevents rendering tiles that aren't onscreen
-                if (Camera::getInstance().isInView(sdlRect) and col.id > 0) {
+                if (Camera::getInstance().isInView(sdlRect) and not col.id.empty()) {
                     try {
                         TextureManager::getInstance().draw(Map::textureMap.at(col.id)->getTexture(), sdlRect);
                     }
