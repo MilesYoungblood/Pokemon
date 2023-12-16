@@ -180,29 +180,53 @@ void Game::updateOverworld() {
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
         };
 
-        if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
-            Player::getPlayer().setDirection(direction_to_key.at(scancode));
+        if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+
         }
-        if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
-            KeyManager::getInstance().lockWasd();
-
-            momentum = true;
-            keyDelay.stop();
-            keyDelay.reset();
-
-            if (Player::getPlayer().canMoveForward(this->currentMap)) {
-                keepMovingForward = true;
+        else {
+            if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
+                Player::getPlayer().setDirection(direction_to_key.at(scancode));
             }
-            else {
-                colliding = true;
+            if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
+                KeyManager::getInstance().lockWasd();
 
-                Player::getPlayer().updateAnimation();
-                SoundPlayer::getInstance().playSound("bump");
+                momentum = true;
+                keyDelay.stop();
+                keyDelay.reset();
+
+                if (Player::getPlayer().canMoveForward(this->currentMap)) {
+                    keepMovingForward = true;
+                }
+                else {
+                    colliding = true;
+
+                    Player::getPlayer().updateAnimation();
+                    SoundPlayer::getInstance().playSound("bump");
+                }
             }
         }
     };
 
-    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE)) {
+        if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+            GraphicsEngine::getInstance().addGraphic<Rectangle>(SDL_Rect(50, 50, 250, 400), Constants::Color::BLACK, 5);
+        }
+        else {
+            GraphicsEngine::getInstance().removeGraphic<Rectangle>();
+        }
+        // re-lock the Enter key
+        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+
+        // sets a cool-down period before the Enter key can be registered again;
+        // this is needed because the program will register a button as
+        // being pressed faster than the user can lift their finger
+        std::thread coolDown([] -> void {
+            std::this_thread::sleep_for(std::chrono::milliseconds(500));
+            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+        });
+        coolDown.detach();
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         check(SDL_Scancode::SDL_SCANCODE_W);
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
@@ -218,7 +242,7 @@ void Game::updateOverworld() {
         for (auto &trainer : *this->currentMap) {
             if (Player::getPlayer().hasVisionOf(trainer.get())) {
                 // if the player manually clicked Enter
-                if (GraphicsEngine::getInstance().hasAny<TextBox>()) {
+                if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
                     trainer->face(&Player::getPlayer());
                     trainer->lock();
                     KeyManager::getInstance().blockInput();
@@ -320,7 +344,7 @@ void Game::updateOverworld() {
 
     // if the player's sprite is on a tile...
     else if (walkCounter % Constants::TILE_SIZE == 0) {
-        if (GraphicsEngine::getInstance().hasAny<TextBox>()) {
+        if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
             KeyManager::getInstance().unlockWasd();
         }
 

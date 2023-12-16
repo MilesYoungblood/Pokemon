@@ -40,8 +40,8 @@ public:
             std::size_t i = typeid(G).hash_code();
             this->graphics.at(i).erase(this->graphics.at(i).begin() + index);
         }
-        catch (const std::out_of_range &e) {
-            throw std::out_of_range(std::string("Error removing graphic: ") + e.what() + '\n');
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Error removing graphic: ") + e.what() + '\n');
         }
     }
 
@@ -62,7 +62,7 @@ public:
 
     template<typename G>
     [[nodiscard]] bool hasAny() const {
-        return this->graphics.at(typeid(G).hash_code()).empty();
+        return not this->graphics.at(typeid(G).hash_code()).empty();
     }
 
     void update();

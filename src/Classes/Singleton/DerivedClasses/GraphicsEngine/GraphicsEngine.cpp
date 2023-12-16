@@ -6,9 +6,10 @@
 
 GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(Button).hash_code()];
+    this->graphics[typeid(Rectangle).hash_code()];
     this->graphics[typeid(TempVisual).hash_code()];
-    this->graphics[typeid(Texture).hash_code()];
     this->graphics[typeid(TextBox).hash_code()];
+    this->graphics[typeid(Texture).hash_code()];
 }
 
 void GraphicsEngine::update() {
@@ -28,7 +29,7 @@ void GraphicsEngine::update() {
 }
 
 void GraphicsEngine::render() {
-    for (auto &type : this->graphics) {
+    for (const auto &type : this->graphics) {
         for (const auto &graphic : type.second) {
             graphic->render();
         }

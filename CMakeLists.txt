@@ -98,6 +98,8 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.h
         src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp
         src/Classes/Graphic/DerivedClasses/Texture/Texture.h
+        src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp
+        src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h
 )
 
 set(POKEMON
@@ -258,8 +260,6 @@ add_executable(PokemonBattle
         ${MOVES}
         ${ABILITIES}
         ${ITEMS}
-        #${PNG_SOURCES}
-        #include/third_party/lpng1640/pnglibconf.h
 )
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/constants.h)
