@@ -4,7 +4,7 @@
 
 #include "Stoutland.h"
 
-Stoutland::Stoutland() : Pokemon(binomial() ? Ability::Id::INTIMIDATE : Ability::Id::SAND_RUSH, 0.5, 32,
+Stoutland::Stoutland() : Pokemon(binomial() ? Ability::Id::INTIMIDATE : Ability::Id::SAND_RUSH, 50.0, 32,
                                  85, 110, 90, 45, 90, 80) {}
 
 std::string Stoutland::getName() const {

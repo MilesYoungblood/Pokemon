@@ -4,7 +4,7 @@
 
 #include "Purrloin.h"
 
-Purrloin::Purrloin() : Pokemon(binomial() ? Ability::Id::LIMBER : Ability::Id::UNBURDEN, 0.5, 1,
+Purrloin::Purrloin() : Pokemon(binomial() ? Ability::Id::LIMBER : Ability::Id::UNBURDEN, 50.0, 1,
                                41, 50, 37, 50, 37, 66) {}
 
 std::string Purrloin::getName() const {

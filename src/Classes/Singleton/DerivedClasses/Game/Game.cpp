@@ -261,6 +261,9 @@ void Game::saveData() {
 }
 
 void defaultAction(Entity *entity) {
+    if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+        return;
+    }
     switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
         case 1:
             entity->face(entity);
@@ -283,7 +286,7 @@ void Game::initializeGame() {
     // default values for player
     Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
 
-    //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
+    Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::ZEBSTRIKA)());
     //Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
@@ -344,7 +347,8 @@ void Game::loadData() {
                     "Hmm... you look pretty tough...",
                     "This calls for a battle!",
                     "Prepare yourself!"
-            });
+            }
+    );
     this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 

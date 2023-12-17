@@ -82,6 +82,9 @@ void Game::createTextBox(const std::vector<std::string> &messages) const {
 }
 
 void Game::checkForOpponents() {
+    if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+        return;
+    }
     // resets movement variables if you are not inputting any directions
     if (not(KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) or

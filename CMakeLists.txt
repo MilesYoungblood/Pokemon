@@ -141,6 +141,16 @@ set(POKEMON
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.h
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.cpp
         src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.h
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.cpp
+        src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.h
 )
 
 set(MOVES

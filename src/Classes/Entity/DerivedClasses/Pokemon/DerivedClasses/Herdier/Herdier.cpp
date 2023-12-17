@@ -4,7 +4,7 @@
 
 #include "Herdier.h"
 
-Herdier::Herdier() : Pokemon(binomial() ? Ability::Id::INTIMIDATE : Ability::Id::SAND_RUSH, 0.5, 16,
+Herdier::Herdier() : Pokemon(binomial() ? Ability::Id::INTIMIDATE : Ability::Id::SAND_RUSH, 50.0, 16,
                              65, 80, 65, 35, 65, 60) {}
 
 std::string Herdier::getName() const {
