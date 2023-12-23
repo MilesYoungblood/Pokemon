@@ -143,9 +143,9 @@ Map::Map(const char *name) : name(name), music(name) {
     }
 
     while (layerElement != nullptr) {
-        const int layer_id = layerElement->IntAttribute("id");
-        if (layer_id == 0) {
-            std::clog << "Invalid TMX file format: missing \"layer\" attribute\n";
+        const int id_attribute = layerElement->IntAttribute("id");
+        if (id_attribute == 0) {
+            std::clog << "Invalid TMX file format: missing \"id\" attribute\n";
             return;
         }
 
@@ -174,7 +174,7 @@ Map::Map(const char *name) : name(name), music(name) {
                 }
 
                 // the only layer that affects collision is layer 2
-                if (layer_id == 2) {
+                if (id_attribute == 2) {
                     this->collision[col][row] = collisionMap.at(value);
                 }
             }
@@ -209,16 +209,6 @@ bool Map::isObstructionHere(int x, int y) const {
     catch (const std::exception &e) {
         std::clog << "Error accessing map layout: " << e.what() << '\n';
         return true;
-    }
-}
-
-void Map::addExitPoint(const ExitPoint &exitPoint) {
-    this->exitPoints.push_back(exitPoint);
-    try {
-        this->collision.at(exitPoint.x).at(exitPoint.y) = false;
-    }
-    catch (const std::out_of_range &e) {
-        std::clog << "Error adding exit point: " << e.what() << '\n';
     }
 }
 

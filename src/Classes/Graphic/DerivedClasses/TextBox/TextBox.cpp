@@ -117,9 +117,10 @@ void TextBox::update() {
 void TextBox::render() const {
     TextureManager::getInstance().drawRect(this->rect, Constants::Color::WHITE, Constants::Color::BLACK, border);
 
-    TextureManager::getInstance().draw(this->text,
-                                       { this->textPos.first, this->textPos.second, this->textWidth,
-                                         this->textHeight });
+    TextureManager::getInstance().draw(
+            this->text,
+            { this->textPos.first, this->textPos.second, this->textWidth, this->textHeight }
+    );
 }
 
 void TextBox::setFinishedCallback(void (*instructions)()) {

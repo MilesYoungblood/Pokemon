@@ -14,14 +14,12 @@ public:
     };
 
     struct ExitPoint {
-        const int x;                                // x-coordinate of the exit spot
-        const int y;                                // y-coordinate of the exit spot
-        const Map::Id newMap;                       // map that this exit point leads to
-        const int newX;                             // the player's new x-coordinates
-        const int newY;                             // the player's new y-coordinates
+        int x;                                // x-coordinate of the exit spot
+        int y;                                // y-coordinate of the exit spot
+        Map::Id newMap;                       // map that this exit point leads to
+        int newX;                             // the player's new x-coordinates
+        int newY;                             // the player's new y-coordinates
     };
-
-    Map() = default;
 
     explicit Map(const char *name);
 
@@ -38,8 +36,6 @@ public:
     static void loadTextures();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
-
-    void addExitPoint(const ExitPoint &exitPoint);
 
     [[nodiscard]] std::optional<std::tuple<int, int, Map::Id>> isExitPointHere(int x, int y) const;
 
