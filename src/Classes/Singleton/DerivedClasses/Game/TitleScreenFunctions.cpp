@@ -87,7 +87,7 @@ void Game::renderTitleScreen() {
     static const SDL_Rect message_rect{
             this->WINDOW_WIDTH / 2 - 24 * this->FONT_SIZE / 2,
             this->WINDOW_HEIGHT - Constants::TILE_SIZE * 2,
-            23 * this->FONT_SIZE,
+            this->FONT_SIZE * 23,
             this->FONT_SIZE
     };
 

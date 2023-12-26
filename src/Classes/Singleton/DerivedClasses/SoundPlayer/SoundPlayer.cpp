@@ -5,10 +5,9 @@
 #include "SoundPlayer.h"
 
 SoundPlayer::~SoundPlayer() {
-    Mix_FreeChunk(this->soundBoard["accept"]);
-    Mix_FreeChunk(this->soundBoard["bump"]);
-    Mix_FreeChunk(this->soundBoard["select"]);
-    Mix_FreeChunk(this->soundBoard["spotted"]);
+    for (auto &mapping : this->soundBoard) {
+        Mix_FreeChunk(this->soundBoard.at(mapping.first));
+    }
 }
 
 void SoundPlayer::playSound(const char *name) {

@@ -6,10 +6,6 @@
 
 #include "../Classes/Entity/DerivedClasses/Trainer/Trainer.h"
 
-inline void failMessage() {
-    std::cout << "But it failed!\n";
-}
-
 inline void displayBag(int arrow, bool &print) {
     std::cout << "Choose an option:\n";
 
@@ -81,9 +77,4 @@ inline void catchPokemonMessage(const Pokemon &pokemon, const std::array<bool, 4
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
     std::cout.flush();
-}
-
-inline void noEffectMessage(const Item &item, const Pokemon &pokemon) {
-    std::cout << item.getName() + " had no effect on " + pokemon.getName() + ".\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }

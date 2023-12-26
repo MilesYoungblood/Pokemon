@@ -6,7 +6,7 @@
 
 #include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
 
-enum Time {
+enum Time : Uint8 {
     MORNING, DAY, NIGHT
 };
 
@@ -15,7 +15,7 @@ private:
     int quantity;
 
 public:
-    enum class Class {
+    enum class Class : Uint8 {
         RESTORE,
         STATUS,
         POKE_BALL,
@@ -45,6 +45,8 @@ public:
     void use();
 
     [[nodiscard]] virtual std::string useMessage() const;
+
+    [[nodiscard]] std::string noEffectMessage(const Pokemon &pokemon) const;
 
     [[nodiscard]] virtual Item::Class getClass() const = 0;
 

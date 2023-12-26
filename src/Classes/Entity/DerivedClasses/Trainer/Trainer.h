@@ -90,7 +90,7 @@ public:
     template<typename I>
     void removeItem(long long int index) {
         try {
-            std::size_t i = typeid(I).hash_code();
+            const std::size_t i = typeid(I).hash_code();
             this->items.at(i).erase(this->items.at(i).begin() + index);
         }
         catch (const std::out_of_range &e) {

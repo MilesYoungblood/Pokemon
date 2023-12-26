@@ -725,7 +725,7 @@ void Battle::chooseItem(bool &skip, const bool isTrainerBattle) {
                         this->displayHpBar();
 
                         this->player->getItem<StatusItem>(userItem).use();
-                        noEffectMessage(this->player->getItem<StatusItem>(userItem), (*this->player)[pokemon]);
+                        this->player->getItem<StatusItem>(userItem).noEffectMessage((*this->player)[pokemon]);
 
                         // automatically removes the item if it's quantity is now 0
                         if (not this->player->getItem<StatusItem>(userItem)) {

@@ -33,6 +33,10 @@ std::string Item::useMessage() const {
     return message;
 }
 
+std::string Item::noEffectMessage(const Pokemon &pokemon) const {
+    return this->getName() + " had no effect on " + pokemon.getName() + ".\n";
+}
+
 Item::operator bool() const {
     return this->quantity > 0;
 }

@@ -10,7 +10,7 @@
 #include "../SoundPlayer/SoundPlayer.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
 
-extern std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;           // measures how many screen pixels a trainer has moved
+extern std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;         // measures how many screen pixels a trainer has moved
 extern std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
 extern Stopwatch keyDelay;
 
@@ -23,7 +23,7 @@ private:
     const int WINDOW_HEIGHT{ Constants::TILE_SIZE * 7 };                           // height of the window
     const int SCROLL_SPEED{ Constants::TILE_SIZE / 10 / (this->currentFps / 30) }; // scroll speed
 
-    const int FONT_SIZE{ 20 };                                          // font size for message box text
+    const int FONT_SIZE{ Constants::TILE_SIZE / 4 };                               // font size for message box text
 
     enum class State : Uint8 {
         TITLE_SCREEN, OVERWORLD, BATTLE
@@ -74,7 +74,7 @@ private:
 
     void updateBattle();
 
-    static void renderBattle() ;
+    static void renderBattle();
 
     void initializeGame();
 

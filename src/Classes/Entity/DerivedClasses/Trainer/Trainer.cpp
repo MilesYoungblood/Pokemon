@@ -11,7 +11,7 @@ Trainer::Trainer() {
     this->items[typeid(BattleItem).hash_code()];
 }
 
-Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y) {
+Trainer::Trainer(const char *name, int x, int y) : Entity(name, x, y) {
     this->items[typeid(RestoreItem).hash_code()];
     this->items[typeid(StatusItem).hash_code()];
     this->items[typeid(PokeBall).hash_code()];
@@ -24,12 +24,11 @@ Trainer::Trainer(const char *name, const int x, const int y) : Entity(name, x, y
     this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png");
 }
 
-Trainer::Trainer(const char *name, const int x, const int y, const Direction direction) : Trainer(name, x, y) {
+Trainer::Trainer(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
     this->setDirection(direction);
 }
 
-Trainer::Trainer(const char *name, const int x, const int y, const Direction direction, const int vision)
-        : Trainer(name, x, y, direction) {
+Trainer::Trainer(const char *name, int x, int y, Direction direction, int vision) : Trainer(name, x, y, direction) {
     this->setVision(vision);
 }
 
@@ -42,12 +41,7 @@ void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
         return;
     }
 
-    try {
-        this->party.push_back(std::move(toAdd));
-    }
-    catch (const std::exception &e) {
-        std::clog << "Error adding Pokemon: " << e.what() << '\n';
-    }
+    this->party.push_back(std::move(toAdd));
 }
 
 void Trainer::removePokemon(long long int index) {

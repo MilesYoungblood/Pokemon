@@ -4,15 +4,6 @@
 
 #include "Map.h"
 
-bool Map::isTrainerHere(const int x, const int y) const {
-    for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
-        if (trainer->getX() == x and trainer->getY() == y) {
-            return true;
-        }
-    }
-    return false;
-}
-
 Map::Map(const char *name) : name(name), music(name) {
     music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
         return c == ' ';
@@ -21,25 +12,21 @@ Map::Map(const char *name) : name(name), music(name) {
     tinyxml2::XMLDocument tmxFile;
     tinyxml2::XMLError xmlErrorCode = tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data());
     if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
-        std::clog << "Error code " << xmlErrorCode << ": " << tmxFile.ErrorStr() << '\n';
-        return;
+        throw std::runtime_error("Error code " + std::to_string(xmlErrorCode) + ": " + tmxFile.ErrorStr() + '\n');
     }
 
     tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
     if (mapElement == nullptr) {
-        std::clog << "Invalid TMX file format: missing \"map\" element.\n";
-        return;
+        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"map\" element\n");
     }
 
     const int width = mapElement->IntAttribute("width");
     if (width == 0) {
-        std::clog << "Invalid TMX file format: missing \"width\" attribute\n";
-        return;
+        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"width\" attribute\n");
     }
     const int height = mapElement->IntAttribute("height");
     if (height == 0) {
-        std::clog << "Invalid TMX file format: missing \"height\" attribute\n";
-        return;
+        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"height\" attribute\n");
     }
 
     // the collision layer's dimensions MUST be the inverse of the textureMap's dimensions
@@ -55,46 +42,44 @@ Map::Map(const char *name) : name(name), music(name) {
     // different maps can have the same source be of a different id
     std::unordered_map<int, const std::string> pathMap({ std::make_pair(0, "") });
 
+    tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
+    if (tilesetElement == nullptr) {
+        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"tileset\" element\n");
+    }
+
     // populate the maps with keys being the firstgid, and open each tsx file in the map
-    for (tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
-         tilesetElement != nullptr; tilesetElement = tilesetElement->NextSiblingElement("tileset")) {
+    while (tilesetElement != nullptr) {
         const int first_gid_attribute = tilesetElement->IntAttribute("firstgid");
         if (first_gid_attribute == 0) {
-            std::clog << "Invalid TMX file format: missing \"firstgid\" attribute\n";
-            return;
+            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"firstgid\" attribute\n");
         }
 
         std::string sourceAttribute(tilesetElement->Attribute("source"));
         if (sourceAttribute.empty()) {
-            std::clog << "Invalid TMX file format: missing \"source\" attribute\n";
-            return;
+            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"source\" attribute\n");
         }
 
         tinyxml2::XMLDocument tsxFile;
         xmlErrorCode = tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str());
         if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
-            std::clog << "Error code" << xmlErrorCode << ": " << tsxFile.ErrorStr() << '\n';
-            return;
+            throw std::runtime_error("Error code " + std::to_string(xmlErrorCode) + ": " + tsxFile.ErrorStr() + '\n');
         }
 
         tinyxml2::XMLElement *tsElement = tsxFile.FirstChildElement("tileset");
         if (tsElement == nullptr) {
-            std::clog << "Invalid TSX file format: missing \"tileset\" element\n";
-            return;
+            throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"tileset\" element\n");
         }
 
         tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
         if (gridElement == nullptr) {
-            std::clog << "Invalid TSX file format: missing \"grid\" element\n";
-            return;
+            throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"grid\" element\n");
         }
 
         for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
              tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
             const int id = tileElement->IntAttribute("id", -1);
             if (id == -1) {
-                std::clog << "Invalid TSX file format: missing \"id\" attribute\n";
-                return;
+                throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"id\" attribute\n");
             }
 
             // variable to reduce the number of expression calculations
@@ -102,28 +87,25 @@ Map::Map(const char *name) : name(name), music(name) {
             if (not pathMap.contains(index)) {
                 tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
                 if (propertyListElement == nullptr) {
-                    std::clog << "Invalid TSX file format: missing \"properties\" element\n";
-                    return;
+                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"properties\" element\n");
                 }
 
                 tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
                 if (propertyElement == nullptr) {
-                    std::clog << "Invalid TSX file format: missing \"property\" element\n";
-                    return;
+                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"property\" element\n");
                 }
 
                 collisionMap.insert(std::make_pair(index, propertyElement->BoolAttribute("value")));
 
                 tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
                 if (imageElement == nullptr) {
-                    std::clog << "Invalid TSX file format: missing \"image\" element\n";
-                    return;
+                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"image\" element\n");
                 }
 
+                const std::string copy(sourceAttribute);
                 sourceAttribute = imageElement->Attribute("source");
                 if (sourceAttribute.empty()) {
-                    std::clog << "Invalid TSX file format: missing \"source\" attribute\n";
-                    return;
+                    throw std::runtime_error("Invalid TSX file format in file \"" + copy + "\": missing \"source\" attribute\n");
                 }
 
                 // strip off unnecessary characters
@@ -134,31 +116,29 @@ Map::Map(const char *name) : name(name), music(name) {
                 Map::textureMap.insert(std::make_pair(sourceAttribute, nullptr));
             }
         }
+
+        tilesetElement = tilesetElement->NextSiblingElement("tileset");
     }
 
     tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
     if (layerElement == nullptr) {
-        std::clog << "Invalid TMX file format: missing \"layer\" element\n";
-        return;
+        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"layer\" element\n");
     }
 
     while (layerElement != nullptr) {
         const int id_attribute = layerElement->IntAttribute("id");
         if (id_attribute == 0) {
-            std::clog << "Invalid TMX file format: missing \"id\" attribute\n";
-            return;
+            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"id\" attribute\n");
         }
 
         tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
-            std::clog << "Invalid TMX file format: missing \"data\" element\n";
-            return;
+            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"data\" element\n");
         }
 
         const char *csvData = dataElement->GetText();
         if (csvData == nullptr) {
-            std::clog << "Invalid TMX file format: missing csv data\n";
-            return;
+            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing csv data\n");
         }
 
         std::istringstream ss(csvData);
@@ -194,7 +174,7 @@ void Map::loadTextures() {
     for (auto &mapping : Map::textureMap) {
         Map::textureMap.at(mapping.first) = std::make_shared<Texture>("terrain/" + mapping.first + ".png");
         if (Map::textureMap.at(mapping.first) == nullptr) {
-            std::clog << "Error loading texture at " << mapping.first << '\n';
+            throw std::runtime_error("Error loading texture at \"" + mapping.first + "\"\n");
         }
     }
 
@@ -204,17 +184,23 @@ void Map::loadTextures() {
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        return this->collision.at(x).at(y) or this->isTrainerHere(x, y);
+        return this->collision.at(x).at(y) or [&y, &x, this] -> bool {
+            for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
+                if (trainer->getX() == x and trainer->getY() == y) {
+                    return true;
+                }
+            }
+            return false;
+        }();
     }
     catch (const std::exception &e) {
-        std::clog << "Error accessing map layout: " << e.what() << '\n';
-        return true;
+        throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
     }
 }
 
 // returns a tuple containing the new coordinates and new map respectively if an exit point is present,
 // or nothing otherwise
-std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(const int x, const int y) const {
+std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(int x, int y) const {
     for (const ExitPoint &exit_point : this->exitPoints) {
         if (exit_point.x == x and exit_point.y == y) {
             return std::make_optional(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
@@ -228,7 +214,7 @@ int Map::numTrainers() const {
 }
 
 // returns the trainer at the passed index
-Trainer &Map::operator[](const int index) {
+Trainer &Map::operator[](std::size_t index) {
     try {
         return *this->trainers.at(index);
     }
@@ -237,7 +223,7 @@ Trainer &Map::operator[](const int index) {
     }
 }
 
-const Trainer &Map::operator[](const int index) const {
+const Trainer &Map::operator[](std::size_t index) const {
     try {
         return *this->trainers.at(index);
     }
@@ -260,7 +246,8 @@ std::string Map::getMusic() const {
 
 // shift the map and its trainers, according to a passed in flag
 void Map::shift(Direction direction, int distance) {
-    std::vector<std::jthread> threads(this->layout.size() + 1);
+    std::vector<std::thread> threads;
+    threads.reserve(this->layout.size() + 1);
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &direction, &distance] -> void {
             for (auto &row : layer) {
@@ -291,6 +278,10 @@ void Map::shift(Direction direction, int distance) {
             trainer->shift(direction, distance);
         }
     });
+
+    for (auto &thread : threads) {
+        thread.join();
+    }
 }
 
 void Map::render() const {
@@ -302,12 +293,7 @@ void Map::render() const {
                 sdlRect.y = col.y;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and not col.id.empty()) {
-                    try {
-                        TextureManager::getInstance().draw(Map::textureMap.at(col.id)->getTexture(), sdlRect);
-                    }
-                    catch (const std::exception &e) {
-                        std::clog << "Error rendering tile: " << e.what() << ' ' << col.id << '\n';
-                    }
+                    TextureManager::getInstance().draw(Map::textureMap.at(col.id)->getTexture(), sdlRect);
                 }
             }
         }
@@ -328,7 +314,8 @@ void Map::render() const {
 // resets the previous map's tile positions
 // as well as the trainer's positions
 void Map::reset() {
-    std::vector<std::jthread> threads(this->layout.size() + 1);
+    std::vector<std::thread> threads;
+    threads.reserve(this->layout.size() + 1);
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer] -> void {
             for (int i = 0; i < layer.size(); ++i) {
@@ -345,4 +332,8 @@ void Map::reset() {
             trainer->resetPos();
         }
     });
+
+    for (auto &thread : threads) {
+        thread.join();
+    }
 }

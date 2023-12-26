@@ -46,9 +46,9 @@ public:
 
     [[nodiscard]] int numTrainers() const;
 
-    Trainer &operator[](int index);
+    Trainer &operator[](std::size_t index);
 
-    const Trainer &operator[](int index) const;
+    const Trainer &operator[](std::size_t index) const;
 
     std::vector<std::unique_ptr<Trainer>>::iterator begin();
 
@@ -65,14 +65,11 @@ public:
 private:
     using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
 
-    const char *name{ "" };                             // name of the map
+    const char *name{ "" };
 
     std::string music;
 
-    inline static Animation water;
-
-    using tile = std::string;
-    inline static std::unordered_map<tile, std::shared_ptr<Texture>> textureMap;
+    inline static std::unordered_map<std::string, std::shared_ptr<Texture>> textureMap;
 
     using data = struct {
         std::string id;
@@ -81,14 +78,12 @@ private:
     };
 
     using layer = std::vector<std::vector<data>>;
-    std::vector<layer> layout;                      // The map is represented by a 2D int vector
+    std::vector<layer> layout;                          // The map is vector of layers
     std::vector<std::vector<bool>> collision;
 
-    std::vector<std::unique_ptr<Trainer>> trainers; // the set of trainers in this map
+    std::vector<std::unique_ptr<Trainer>> trainers;     // the set of trainers in this map
 
     inventory items;
 
-    std::vector<Map::ExitPoint> exitPoints;         // coordinates where the player can leave this map to enter another
-
-    [[nodiscard]] bool isTrainerHere(int x, int y) const;
+    std::vector<Map::ExitPoint> exitPoints;             // coordinates where the player can leave this map to enter another
 };
