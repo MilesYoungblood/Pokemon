@@ -8,7 +8,7 @@
 
 class TextBox : public Graphic {
 private:
-    SDL_Rect rect{ 0, 0, 0, 0 };
+    SDL_Rect rect;
 
     std::pair<int, int> textPos;
     int border{ 1 };

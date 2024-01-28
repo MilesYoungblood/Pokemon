@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../Animation/Animation.h"
+#include "../Graphic/DerivedClasses/Animation/Animation.h"
 
 enum class Direction : Uint8 {
     UP, DOWN, LEFT, RIGHT

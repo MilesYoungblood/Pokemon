@@ -56,15 +56,12 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp
         src/Classes/Singleton/DerivedClasses/Camera/Camera.h
         src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp
-        src/Classes/Singleton/DerivedClasses/Game/OverworldFunctions.cpp
-        src/Classes/Singleton/DerivedClasses/Game/BattleFunctions.cpp
-        src/Classes/Singleton/DerivedClasses/Game/TitleScreenFunctions.cpp
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
         src/Classes/Stopwatch/Stopwatch.h
         src/Classes/Stopwatch/Stopwatch.cpp
-        src/Classes/Animation/Animation.h
-        src/Classes/Animation/Animation.cpp
+        src/Classes/Graphic/DerivedClasses/Animation/Animation.h
+        src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
         src/Classes/GameObject/GameObject.cpp
@@ -96,6 +93,11 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Texture/Texture.h
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h
+        src/Classes/State/State.h
+        src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.cpp
+        src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.h
+        src/Classes/State/DerivedClasses/Overworld/Overworld.cpp
+        src/Classes/State/DerivedClasses/Overworld/Overworld.h
 )
 
 set(POKEMON
@@ -258,6 +260,9 @@ set(ITEMS
         ${STATUS_ITEMS}
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
+        src/Classes/State/DerivedClasses/States.h
+        src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.cpp
+        src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.h
 )
 
 add_executable(PokemonBattle

@@ -15,6 +15,10 @@ private:
     GraphicsEngine();
 
 public:
+    /// \brief adds a graphic to the system
+    /// \tparam G the type of graphic
+    /// \tparam Args arguments
+    /// \param args arguments
     template<typename G, typename ...Args>
     void addGraphic(Args ...args) {
         try {
@@ -34,6 +38,9 @@ public:
         }
     }
 
+    /// \brief removes a graphic from the system
+    /// \tparam G the type of graphic
+    /// \param index the index of the graphic in the vector
     template<typename G>
     void removeGraphic(long long int index = 0) {
         try {
@@ -46,7 +53,7 @@ public:
     }
 
     /// \brief gets a reference to a graphic
-    /// \tparam G graphic type
+    /// \tparam G the type of graphic
     /// \param index index in the vector
     /// \return a reference to the graphic
     template<typename G>
@@ -60,6 +67,9 @@ public:
         }
     }
 
+    /// \brief checks to see if any graphics of type G exist
+    /// \tparam G the type of graphic
+    /// \return true if any of type G exist and false otherwise
     template<typename G>
     [[nodiscard]] bool hasAny() const {
         return not this->graphics.at(typeid(G).hash_code()).empty();

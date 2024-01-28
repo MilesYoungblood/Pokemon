@@ -6,6 +6,8 @@
 
 Texture::Texture(const std::string &path) : texture(TextureManager::getInstance().loadTexture(path)) {}
 
+Texture::Texture(const std::string &text, TTF_Font *font, SDL_Color fg) : texture(TextureManager::getInstance().loadText(font, text, fg)) {}
+
 Texture::Texture(Texture &&toMove) noexcept : texture(toMove.texture) {
     toMove.texture = nullptr;
 }
@@ -17,7 +19,6 @@ Texture &Texture::operator=(Texture &&rhs) noexcept {
     return *this;
 }
 
-
 Texture::~Texture() {
     SDL_DestroyTexture(this->texture);
 }
@@ -26,6 +27,6 @@ void Texture::update() {}
 
 void Texture::render() const {}
 
-SDL_Texture *Texture::getTexture() {
+SDL_Texture *Texture::getTexture() const {
     return this->texture;
 }

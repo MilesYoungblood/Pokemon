@@ -4,8 +4,8 @@
 
 #include "Game.h"
 
-std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;
-std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
+std::unordered_map<Trainer *, int> pixelsTraveled;
+std::unordered_map<Trainer *, bool> keepLooping;
 Stopwatch keyDelay;
 
 Game::Game() {
@@ -70,23 +70,6 @@ Game::Game() {
         return;
     }
 
-    // load the title image
-    this->logo = TextureManager::getInstance().loadTexture("PokemonLogo.png");
-    if (this->logo == nullptr) {
-        std::clog << "Error loading logo: " << SDL_GetError() << '\n';
-        SDL_ClearError();
-        return;
-    }
-
-    // load the text prompt
-    this->text = TextureManager::getInstance().loadText(this->font, "Press enter to continue!",
-                                                        Constants::Color::BLACK);
-    if (this->text == nullptr) {
-        std::clog << "Error loading title text: " << SDL_GetError() << '\n';
-        SDL_ClearError();
-        return;
-    }
-
     // initialize audio
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
         std::clog << "Error opening the default audio device: " << SDL_GetError() << '\n';
@@ -112,16 +95,6 @@ Game::~Game() {
     Mix_HookMusicFinished(nullptr);
     Mix_CloseAudio();
 
-    SDL_DestroyTexture(this->text);
-    if (strlen(SDL_GetError()) > 0ULL) {
-        std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
-        SDL_ClearError();
-    }
-    SDL_DestroyTexture(this->logo);
-    if (strlen(SDL_GetError()) > 0ULL) {
-        std::clog << "Error destroying texture (texture may have already been deleted): " << SDL_GetError() << '\n';
-        SDL_ClearError();
-    }
     TTF_CloseFont(this->font);
     TTF_Quit();
 
@@ -159,13 +132,17 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
+    this->states.at(static_cast<std::size_t>(this->currentState))->update();
 }
 
 void Game::render() const {
     SDL_RenderClear(this->renderer);
-    this->RENDER_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
+    this->states.at(static_cast<std::size_t>(this->currentState))->render();
     SDL_RenderPresent(this->renderer);
+}
+
+void Game::terminate() {
+    this->running = false;
 }
 
 void Game::saveData() {
@@ -509,4 +486,41 @@ int Game::getFps() const {
 
 bool Game::isRunning() const {
     return this->running;
+}
+
+void Game::setRenderColor(SDL_Color color) {
+    SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
+}
+
+void Game::setState(State::Id id) {
+    this->currentState = id;
+}
+
+int Game::getScrollSpeed() const {
+    return this->SCROLL_SPEED;
+}
+
+int Game::getWindowWidth() const {
+    return this->WINDOW_WIDTH;
+}
+
+int Game::getWindowHeight() const {
+    return this->WINDOW_HEIGHT;
+}
+
+int Game::getFontSize() const {
+    return this->FONT_SIZE;
+}
+
+TTF_Font *Game::getFont() const {
+    return this->font;
+}
+
+void Game::changeMap(std::size_t index) {
+    this->currentMapIndex = index;
+    this->currentMap = &this->maps.at(this->currentMapIndex);
+}
+
+Map *Game::getCurrentMap() const {
+    return this->currentMap;
 }

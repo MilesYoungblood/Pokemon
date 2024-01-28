@@ -13,6 +13,8 @@ private:
 public:
     explicit Texture(const std::string &path);
 
+    Texture(const std::string &path, TTF_Font *font, SDL_Color fg);
+
     Texture(const Texture &) = delete;
 
     Texture(Texture &&toMove) noexcept;
@@ -27,5 +29,5 @@ public:
 
     void render() const override;
 
-    SDL_Texture *getTexture();
+    [[nodiscard]] SDL_Texture *getTexture() const;
 };
