@@ -94,20 +94,7 @@ Game::Game() {
         return;
     }
 
-    // load title screen music
-    this->music = Mix_LoadMUS("../assets/audio/music/TitleScreen.mp3");
-    if (this->music == nullptr) {
-        std::clog << "Error loading \"TitleScreen\": " << SDL_GetError() << '\n';
-        SDL_ClearError();
-        return;
-    }
-
-    // play title screen music
-    if (Mix_PlayMusic(this->music, -1) == -1) {
-        std::clog << "Error playing \"TitleScreen\": " << SDL_GetError() << '\n';
-        SDL_ClearError();
-        return;
-    }
+    Mixer::getInstance().playMusic("TitleScreen");
 
     // instantiate KeyManager
     KeyManager::getInstance();
@@ -123,7 +110,6 @@ Game::Game() {
 Game::~Game() {
     Mix_HaltMusic();
     Mix_HookMusicFinished(nullptr);
-    Mix_FreeMusic(this->music);
     Mix_CloseAudio();
 
     SDL_DestroyTexture(this->text);

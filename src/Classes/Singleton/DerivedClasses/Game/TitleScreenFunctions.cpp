@@ -12,7 +12,7 @@ namespace {
 
 void Game::updateTitleScreen() {
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
-        Mix_FreeMusic(this->music);
+        Mix_HaltMusic();
 
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
@@ -30,7 +30,7 @@ void Game::updateTitleScreen() {
         showPrompt = false;
 
         // FIXME make code following this execute based on MixChannelFinished callback
-        SoundPlayer::getInstance().playSound("select");
+        Mixer::getInstance().playSound("select");
 
         this->loadData();
 
@@ -55,20 +55,7 @@ void Game::updateTitleScreen() {
 
         SDL_SetRenderDrawColor(this->renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
 
-        this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + currentMap->getMusic() + ".mp3").data());
-        if (this->music == nullptr) {
-            std::clog << "Error loading \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
-            SDL_ClearError();
-            this->running = false;
-            return;
-        }
-
-        if (Mix_PlayMusic(this->music, -1) == -1) {
-            std::clog << "Error playing \"" << currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
-            SDL_ClearError();
-            this->running = false;
-            return;
-        }
+        Mixer::getInstance().playMusic(this->currentMap->getMusic().c_str());
 
         this->currentState = Game::State::OVERWORLD;
     }

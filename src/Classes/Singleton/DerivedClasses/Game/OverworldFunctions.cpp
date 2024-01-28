@@ -20,25 +20,7 @@ void Game::changeMap(const std::tuple<int, int, Map::Id> &data) {
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mix_FreeMusic(Game::getInstance().music);
-
-        Game::getInstance().music = Mix_LoadMUS(std::string_view(
-                "../assets/audio/music/" + Game::getInstance().currentMap->getMusic() + ".mp3").data());
-        if (Game::getInstance().music == nullptr) {
-            std::clog << "Error loading \"" << Game::getInstance().currentMap->getMusic() << "\": " << SDL_GetError()
-                      << '\n';
-            SDL_ClearError();
-            Game::getInstance().running = false;
-            return;
-        }
-
-        if (Mix_PlayMusic(Game::getInstance().music, -1) == -1) {
-            std::clog << "Error playing \"" << Game::getInstance().currentMap->getMusic() << "\": " << SDL_GetError()
-                      << '\n';
-            SDL_ClearError();
-            Game::getInstance().running = false;
-            return;
-        }
+        Mixer::getInstance().playMusic(Game::getInstance().currentMap->getMusic().c_str());
     });
 
     this->currentMap->reset();
@@ -95,7 +77,7 @@ void Game::checkForOpponents() {
 
     static int frameCounter = 0;    // makes a trainer that spotted the player stand still for a set number of frames
     static bool haltMusic = true;
-    static bool freeMusic = true;
+    static bool playMusic = true;
 
     // checks if the player is in LoS for any trainer
     for (auto &trainer : *this->currentMap) {
@@ -104,7 +86,7 @@ void Game::checkForOpponents() {
                 Mix_HaltMusic();
                 haltMusic = false;
 
-                GraphicsEngine::getInstance().addGraphic<TempVisual>(
+                GraphicsEngine::getInstance().addGraphic<TimedVisual>(
                         "exclamation.png",
                         50 * (this->currentFps / 30) / 2,
                         SDL_Rect(
@@ -114,7 +96,7 @@ void Game::checkForOpponents() {
                                 Constants::TILE_SIZE
                         )
                 );
-                SoundPlayer::getInstance().playSound("spotted");
+                Mixer::getInstance().playSound("spotted");
             }
             KeyManager::getInstance().blockInput();
             momentum = false;
@@ -125,25 +107,9 @@ void Game::checkForOpponents() {
                 return;
             }
 
-            if (freeMusic) {
-                Mix_FreeMusic(this->music);
-
-                this->music = Mix_LoadMUS("../assets/audio/music/GymBattle.mp3");
-                if (this->music == nullptr) {
-                    std::clog << "Error loading \"GymBattle\": " << SDL_GetError() << '\n';
-                    SDL_ClearError();
-                    this->running = false;
-                    return;
-                }
-
-                if (Mix_PlayMusic(this->music, -1) == -1) {
-                    std::clog << "Error playing \"GymBattle\": " << SDL_GetError() << '\n';
-                    SDL_ClearError();
-                    this->running = false;
-                    return;
-                }
-
-                freeMusic = false;
+            if (playMusic) {
+                Mixer::getInstance().playMusic("GymBattle");
+                playMusic = false;
             }
 
             if (not trainer->isNextTo(&Player::getPlayer())) {
@@ -167,7 +133,7 @@ void Game::checkForOpponents() {
 
                 frameCounter = 0;
                 haltMusic = true;
-                freeMusic = true;
+                playMusic = true;
             }
             break;
         }
@@ -183,10 +149,7 @@ void Game::updateOverworld() {
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
         };
 
-        if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-
-        }
-        else {
+        if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
             if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
                 Player::getPlayer().setDirection(direction_to_key.at(scancode));
             }
@@ -204,18 +167,18 @@ void Game::updateOverworld() {
                     colliding = true;
 
                     Player::getPlayer().updateAnimation();
-                    SoundPlayer::getInstance().playSound("bump");
+                    Mixer::getInstance().playSound("bump");
                 }
             }
         }
     };
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE)) {
-        if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-            GraphicsEngine::getInstance().addGraphic<Rectangle>(SDL_Rect(50, 50, 250, 400), Constants::Color::BLACK, 5);
+        if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+            GraphicsEngine::getInstance().removeGraphic<Rectangle>();
         }
         else {
-            GraphicsEngine::getInstance().removeGraphic<Rectangle>();
+            GraphicsEngine::getInstance().addGraphic<Rectangle>(SDL_Rect(50, 50, 250, 400), Constants::Color::BLACK, 5);
         }
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
@@ -264,7 +227,7 @@ void Game::updateOverworld() {
                         GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
                         if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                            SoundPlayer::getInstance().playSound("accept");
+                            Mixer::getInstance().playSound("accept");
                         }
                     }
                     // if the textbox is done printing
@@ -284,22 +247,8 @@ void Game::updateOverworld() {
                         KeyManager::getInstance().unlockWasd();
 
                         if (trainer->canFight()) {
-                            Mix_FreeMusic(this->music);
-
-                            this->music = Mix_LoadMUS("../assets/audio/music/TrainerBattle.mp3");
-                            if (this->music == nullptr) {
-                                std::clog << "Error loading \"TrainerBattle\": " << SDL_GetError() << '\n';
-                                SDL_ClearError();
-                                this->running = false;
-                                return;
-                            }
-
-                            if (Mix_PlayMusic(this->music, -1) == -1) {
-                                std::clog << "Error playing \"TrainerBattle\": " << SDL_GetError() << '\n';
-                                SDL_ClearError();
-                                this->running = false;
-                                return;
-                            }
+                            Mix_HaltMusic();
+                            Mixer::getInstance().playMusic("TrainerBattle");
 
                             trainer->clearParty();
                             this->currentState = Game::State::BATTLE;

@@ -5,9 +5,8 @@
 #include "GraphicsEngine.h"
 
 GraphicsEngine::GraphicsEngine() {
-    this->graphics[typeid(Button).hash_code()];
     this->graphics[typeid(Rectangle).hash_code()];
-    this->graphics[typeid(TempVisual).hash_code()];
+    this->graphics[typeid(TimedVisual).hash_code()];
     this->graphics[typeid(TextBox).hash_code()];
     this->graphics[typeid(Texture).hash_code()];
 }

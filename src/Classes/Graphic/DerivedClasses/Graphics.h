@@ -4,8 +4,7 @@
 
 #pragma once
 
-#include "Button/Button.h"
 #include "Rectangle/Rectangle.h"
 #include "TextBox/TextBox.h"
 #include "Texture/Texture.h"
-#include "TempVisual/TempVisual.h"
+#include "TimedVisual//TimedVisual.h"

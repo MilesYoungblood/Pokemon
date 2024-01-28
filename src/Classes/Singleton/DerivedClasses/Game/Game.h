@@ -7,12 +7,74 @@
 #include "../../../Map/Map.h"
 #include "../../../Stopwatch/Stopwatch.h"
 #include "../KeyManager/KeyManager.h"
-#include "../SoundPlayer/SoundPlayer.h"
+#include "../Mixer/Mixer.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
 
 extern std::unordered_map<std::unique_ptr<Trainer> *, int> pixelsTraveled;         // measures how many screen pixels a trainer has moved
 extern std::unordered_map<std::unique_ptr<Trainer> *, bool> keepLooping;
 extern Stopwatch keyDelay;
+
+class State {
+protected:
+    State() = default;
+
+public:
+    State(const State &) = default;
+
+    State(State &&) noexcept = default;
+
+    State &operator=(const State &) = default;
+
+    State &operator=(State &&) noexcept = default;
+
+    virtual ~State() = default;
+
+    virtual void update() = 0;
+
+    virtual void render() = 0;
+};
+
+class TitleScreen : public State, public Singleton<TitleScreen> {
+private:
+    //TitleScreen() = default;
+
+public:
+    void update() override {
+
+    }
+
+    void render() override {
+
+    }
+};
+
+class Overworld : public State, public Singleton<Overworld> {
+private:
+    //Overworld() = default;
+
+public:
+    void update() override {
+
+    }
+
+    void render() override {
+
+    }
+};
+
+class BattlePhase : public State, public Singleton<BattlePhase> {
+private:
+    //BattlePhase() = default;
+
+public:
+    void update() override {
+
+    }
+
+    void render() override {
+
+    }
+};
 
 class Game : public Singleton<Game> {
 private:
@@ -25,6 +87,12 @@ private:
 
     const int FONT_SIZE{ Constants::TILE_SIZE / 4 };                               // font size for message box text
 
+    std::array<std::unique_ptr<State>, 3> states{
+            std::make_unique<TitleScreen>(TitleScreen::getInstance()),
+            std::make_unique<Overworld>(Overworld::getInstance()),
+            std::make_unique<BattlePhase>(BattlePhase::getInstance())
+    };
+
     enum class State : Uint8 {
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
@@ -36,7 +104,6 @@ private:
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
     SDL_Event event{};
-    Mix_Music *music{ nullptr };
     SDL_Texture *text{ nullptr };
     SDL_Texture *logo{ nullptr };
     TTF_Font *font{ nullptr };

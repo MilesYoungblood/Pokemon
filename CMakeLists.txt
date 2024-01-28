@@ -13,8 +13,6 @@ include_directories(C:/libs/GSL-4.0.0/include)
 
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2-master)
 
-#include_directories(C:/libs/opencv-4.8.1/include/opencv2)
-
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     message("64-bit system detected")
 elseif (CMAKE_SIZEOF_VOID_P EQUAL 4)
@@ -67,8 +65,8 @@ set(SOURCES
         src/Classes/Stopwatch/Stopwatch.cpp
         src/Classes/Animation/Animation.h
         src/Classes/Animation/Animation.cpp
-        src/Classes/Singleton/DerivedClasses/SoundPlayer/SoundPlayer.h
-        src/Classes/Singleton/DerivedClasses/SoundPlayer/SoundPlayer.cpp
+        src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
+        src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
         src/Classes/GameObject/GameObject.cpp
         src/Classes/GameObject/GameObject.h
         src/Classes/GameComponent/GameComponent.h
@@ -91,11 +89,9 @@ set(SOURCES
         src/Classes/Graphic/Graphic.cpp
         src/Classes/Graphic/Graphic.h
         src/Classes/Singleton/Singleton.h
-        src/Classes/Graphic/DerivedClasses/Button/Button.cpp
-        src/Classes/Graphic/DerivedClasses/Button/Button.h
         src/Classes/Graphic/DerivedClasses/Graphics.h
-        src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.cpp
-        src/Classes/Graphic/DerivedClasses/TempVisual/TempVisual.h
+        src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp
+        src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.h
         src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp
         src/Classes/Graphic/DerivedClasses/Texture/Texture.h
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp

@@ -23,6 +23,8 @@ public:
 
     explicit Map(const char *name);
 
+    Map(const char *name, const char *music);
+
     Map(const Map &) = delete;
 
     Map(Map &&toMove) noexcept = delete;
