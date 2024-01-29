@@ -91,7 +91,6 @@ namespace {
     );
 }
 
-
 void BattlePhase::update() {
 
 }

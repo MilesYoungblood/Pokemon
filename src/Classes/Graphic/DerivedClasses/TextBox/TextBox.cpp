@@ -107,10 +107,8 @@ void TextBox::update() {
 
         ++this->lettersPrinted;
     }
-    else {
-        if (this->finishedPrinting != nullptr) {
-            this->finishedPrinting();
-        }
+    else if (this->finishedPrinting != nullptr) {
+        this->finishedPrinting();
     }
 }
 

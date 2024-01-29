@@ -43,6 +43,17 @@ public:
     }
 };
 
+class EntityComponentSystem : public Singleton<EntityComponentSystem> {
+private:
+    std::unordered_map<int, std::unique_ptr<GameObject>> gameObjects;
+
+    friend class Singleton<EntityComponentSystem>;
+
+    EntityComponentSystem() = default;
+
+public:
+};
+
 inline void foo() {
     GameObject gameObject;
     gameObject.addComponent<PositionComponent>(0, 0);

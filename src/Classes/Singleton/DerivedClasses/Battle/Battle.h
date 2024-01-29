@@ -82,7 +82,7 @@ private:
     void fight(int userMove);
 
 public:
-    enum class Flag {
+    enum class Flag : Uint8 {
     };
 
     void init(Player *trainer1, Trainer *trainer2);

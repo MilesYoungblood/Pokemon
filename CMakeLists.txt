@@ -11,7 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_ttf)
 
 include_directories(C:/libs/GSL-4.0.0/include)
 
-include_directories(${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2-master)
+include_directories(${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2)
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
     message("64-bit system detected")
@@ -294,4 +294,4 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_mixer.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_ttf.dll)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2-master/tinyxml2.cpp)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2/tinyxml2.cpp)

@@ -1,7 +1,6 @@
 
 *.a
 *.gch
-include/third_party
 *.obj
 *.json
 docs/data/SaveData.txt

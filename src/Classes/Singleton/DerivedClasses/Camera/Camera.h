@@ -36,6 +36,6 @@ public:
 
     /// \brief Finds the player's current position on the screen,
     /// then shifts everything, including the player, accordingly.
-    /// \param instructions a lambda that makes the map shift
+    /// \param map a pointer to the map
     void lockOnPlayer(Map *map) const;
 };
