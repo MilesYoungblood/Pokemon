@@ -23,7 +23,7 @@ void Mixer::playSound(const char *name) {
     }
 }
 
-void Mixer::playMusic(const char *name) {
+void Mixer::playMusic(const std::string &name) {
     try {
         Mix_PlayMusic(this->playlist.at(name), -1);
     }

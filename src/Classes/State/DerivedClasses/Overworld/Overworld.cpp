@@ -143,7 +143,7 @@ void changeMap(const std::tuple<int, int, Map::Id> &data) {
 }
 
 void Overworld::update() {
-    static const auto check = [this](SDL_Scancode scancode) -> void {
+    static const auto check = [](SDL_Scancode scancode) -> void {
         static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
                 std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),

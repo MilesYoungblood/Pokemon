@@ -20,7 +20,7 @@ public:
 
     void playSound(const char *name);
 
-    void playMusic(const char *name);
+    void playMusic(const std::string &name);
 
 private:
     std::unordered_map<std::string, Mix_Chunk *> soundboard;

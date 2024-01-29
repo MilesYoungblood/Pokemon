@@ -43,7 +43,7 @@ void TitleScreen::update() {
             keepLooping[trainer.get()] = true;
         }
 
-        Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic().c_str());
+        Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic());
 
         Game::getInstance().setState(State::Id::OVERWORLD);
         Game::getInstance().setRenderColor(Constants::Color::BLACK);
