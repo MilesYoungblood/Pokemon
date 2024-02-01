@@ -184,14 +184,9 @@ void Map::loadTextures() {
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        return this->collision.at(x).at(y) or [&y, &x, this] -> bool {
-            for (const std::unique_ptr<Trainer> &trainer : this->trainers) {
-                if (trainer->getX() == x and trainer->getY() == y) {
-                    return true;
-                }
-            }
-            return false;
-        }();
+        return this->collision.at(x).at(y) or std::ranges::any_of(this->trainers, [&x, &y](const Trainer &trainer) -> bool {
+            return trainer.getX() == x && trainer.getY() == y;
+        });
     }
     catch (const std::exception &e) {
         throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
@@ -216,7 +211,7 @@ int Map::numTrainers() const {
 // returns the trainer at the passed index
 Trainer &Map::operator[](std::size_t index) {
     try {
-        return *this->trainers.at(index);
+        return this->trainers.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing trainers: ") + e.what() + '\n');
@@ -225,18 +220,18 @@ Trainer &Map::operator[](std::size_t index) {
 
 const Trainer &Map::operator[](std::size_t index) const {
     try {
-        return *this->trainers.at(index);
+        return this->trainers.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing trainers: ") + e.what() + '\n');
     }
 }
 
-std::vector<std::unique_ptr<Trainer>>::iterator Map::begin() {
+std::vector<Trainer>::iterator Map::begin() {
     return this->trainers.begin();
 }
 
-std::vector<std::unique_ptr<Trainer>>::iterator Map::end() {
+std::vector<Trainer>::iterator Map::end() {
     return this->trainers.end();
 }
 
@@ -248,6 +243,7 @@ std::string Map::getMusic() const {
 void Map::shift(Direction direction, int distance) {
     std::vector<std::thread> threads;
     threads.reserve(this->layout.size() + 1);
+
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &direction, &distance] -> void {
             for (auto &row : layer) {
@@ -275,7 +271,7 @@ void Map::shift(Direction direction, int distance) {
 
     threads.emplace_back([this, &direction, &distance] -> void {
         for (auto &trainer : this->trainers) {
-            trainer->shift(direction, distance);
+            trainer.shift(direction, distance);
         }
     });
 
@@ -299,11 +295,11 @@ void Map::render() const {
         }
         if (layer == 1) {
             for (const auto &trainer : this->trainers) {
-                sdlRect.x = trainer->getScreenX();
-                sdlRect.y = trainer->getScreenY();
+                sdlRect.x = trainer.getScreenX();
+                sdlRect.y = trainer.getScreenY();
                 // prevents rendering trainers that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect)) {
-                    trainer->render();
+                    trainer.render();
                 }
             }
             Player::getPlayer().render();
@@ -329,7 +325,7 @@ void Map::reset() {
 
     threads.emplace_back([this] -> void {
         for (auto &trainer : this->trainers) {
-            trainer->resetPos();
+            trainer.resetPos();
         }
     });
 

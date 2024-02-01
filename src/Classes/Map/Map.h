@@ -41,7 +41,7 @@ public:
 
     template<typename ...Args>
     void addTrainer(Args ...args) {
-        this->trainers.push_back(std::move(std::make_unique<Trainer>(args...)));
+        this->trainers.push_back(std::move(Trainer(args...)));
     }
 
     [[nodiscard]] int numTrainers() const;
@@ -50,9 +50,9 @@ public:
 
     const Trainer &operator[](std::size_t index) const;
 
-    std::vector<std::unique_ptr<Trainer>>::iterator begin();
+    std::vector<Trainer>::iterator begin();
 
-    std::vector<std::unique_ptr<Trainer>>::iterator end();
+    std::vector<Trainer>::iterator end();
 
     [[nodiscard]] std::string getMusic() const;
 
@@ -81,7 +81,7 @@ private:
     std::vector<layer> layout;                          // The map is vector of layers
     std::vector<std::vector<bool>> collision;
 
-    std::vector<std::unique_ptr<Trainer>> trainers;     // the set of trainers in this map
+    std::vector<Trainer> trainers;                      // the set of trainers in this map
 
     inventory items;
 

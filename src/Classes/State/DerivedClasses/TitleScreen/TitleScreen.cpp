@@ -39,8 +39,8 @@ void TitleScreen::update() {
         Camera::getInstance().lockOnPlayer(Game::getInstance().getCurrentMap());
 
         for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-            pixelsTraveled[trainer.get()] = 0;
-            keepLooping[trainer.get()] = true;
+            pixelsTraveled[&trainer] = 0;
+            keepLooping[&trainer] = true;
         }
 
         Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic());

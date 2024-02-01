@@ -55,7 +55,7 @@ void checkForOpponents() {
 
     // checks if the player is in LoS for any trainer
     for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-        if (trainer->canFight() and keepLooping[trainer.get()] and trainer->hasVisionOf(&Player::getPlayer())) {
+        if (trainer.canFight() and keepLooping[&trainer] and trainer.hasVisionOf(&Player::getPlayer())) {
             if (haltMusic) {
                 Mix_HaltMusic();
                 haltMusic = false;
@@ -64,8 +64,8 @@ void checkForOpponents() {
                         "exclamation.png",
                         50 * (Game::getInstance().getFps() / 30) / 2,
                         SDL_Rect(
-                                trainer->getScreenX(),
-                                trainer->getScreenY() - Constants::TILE_SIZE,
+                                trainer.getScreenX(),
+                                trainer.getScreenY() - Constants::TILE_SIZE,
                                 Constants::TILE_SIZE,
                                 Constants::TILE_SIZE
                         )
@@ -74,7 +74,7 @@ void checkForOpponents() {
             }
             KeyManager::getInstance().blockInput();
             momentum = false;
-            trainer->lock();
+            trainer.lock();
 
             ++frameCounter;
             if (frameCounter < 50 * (Game::getInstance().getFps() / 30)) {
@@ -86,24 +86,24 @@ void checkForOpponents() {
                 playMusic = false;
             }
 
-            if (not trainer->isNextTo(&Player::getPlayer())) {
-                trainer->shift(trainer->getDirection(), Game::getInstance().getScrollSpeed());
-                pixelsTraveled[trainer.get()] += Game::getInstance().getScrollSpeed();
+            if (not trainer.isNextTo(&Player::getPlayer())) {
+                trainer.shift(trainer.getDirection(), Game::getInstance().getScrollSpeed());
+                pixelsTraveled[&trainer] += Game::getInstance().getScrollSpeed();
 
-                if (pixelsTraveled[trainer.get()] % (Constants::TILE_SIZE / 2) == 0) {
-                    trainer->updateAnimation();
+                if (pixelsTraveled[&trainer] % (Constants::TILE_SIZE / 2) == 0) {
+                    trainer.updateAnimation();
                 }
 
-                if (pixelsTraveled[trainer.get()] % Constants::TILE_SIZE == 0) {
-                    trainer->moveForward();
+                if (pixelsTraveled[&trainer] % Constants::TILE_SIZE == 0) {
+                    trainer.moveForward();
                 }
             }
             else {
-                Player::getPlayer().face(trainer.get());
+                Player::getPlayer().face(&trainer);
 
-                createTextBox(trainer->getDialogue());
+                createTextBox(trainer.getDialogue());
 
-                keepLooping[trainer.get()] = false;
+                keepLooping[&trainer] = false;
 
                 frameCounter = 0;
                 haltMusic = true;
@@ -123,7 +123,7 @@ void changeMap(const std::tuple<int, int, Map::Id> &data) {
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic().c_str());
+        Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic());
     });
 
     Game::getInstance().getCurrentMap()->reset();
@@ -133,8 +133,8 @@ void changeMap(const std::tuple<int, int, Map::Id> &data) {
 
     // resets the states of these variables for each trainer
     for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-        pixelsTraveled[trainer.get()] = 0;
-        keepLooping[trainer.get()] = true;
+        pixelsTraveled[&trainer] = 0;
+        keepLooping[&trainer] = true;
     }
 
     Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
@@ -208,18 +208,18 @@ void Overworld::update() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and not keepMovingForward) {
         for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-            if (Player::getPlayer().hasVisionOf(trainer.get())) {
+            if (Player::getPlayer().hasVisionOf(&trainer)) {
                 // if the player manually clicked Enter
                 if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-                    trainer->face(&Player::getPlayer());
-                    trainer->lock();
+                    trainer.face(&Player::getPlayer());
+                    trainer.lock();
                     KeyManager::getInstance().blockInput();
 
                     // only create the textbox here if the trainer cannot fight;
                     // the program will loop back to checkForOpponents()
                     // and create it there if the trainer can fight
-                    if (not trainer->canFight()) {
-                        createTextBox(trainer->getDialogue());
+                    if (not trainer.canFight()) {
+                        createTextBox(trainer.getDialogue());
                     }
                 }
                 else {
@@ -248,16 +248,16 @@ void Overworld::update() {
                         coolDown.detach();
                         KeyManager::getInstance().unlockWasd();
 
-                        if (trainer->canFight()) {
+                        if (trainer.canFight()) {
                             Mix_HaltMusic();
                             Mixer::getInstance().playMusic("TrainerBattle");
 
-                            trainer->clearParty();
+                            trainer.clearParty();
                             Game::getInstance().setState(State::Id::BATTLE);
                             Game::getInstance().setRenderColor(Constants::Color::WHITE);
                         }
                         else {
-                            trainer->unlock();
+                            trainer.unlock();
                         }
                     }
 
@@ -297,7 +297,7 @@ void Overworld::update() {
         ++bumpCounter;
     }
 
-        // if the player's sprite is on a tile...
+    // if the player's sprite is on a tile...
     else if (walkCounter % Constants::TILE_SIZE == 0) {
         if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
             KeyManager::getInstance().unlockWasd();
@@ -314,7 +314,7 @@ void Overworld::update() {
     }
 
     for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-        trainer->act();
+        trainer.act();
     }
 
     GraphicsEngine::getInstance().update();

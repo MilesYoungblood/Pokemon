@@ -67,7 +67,7 @@ public:
 
     Entity(const Entity &) = delete;
 
-    Entity(Entity &&) noexcept = delete;
+    Entity(Entity &&) noexcept = default;
 
     Entity &operator=(const Entity &) = delete;
 
