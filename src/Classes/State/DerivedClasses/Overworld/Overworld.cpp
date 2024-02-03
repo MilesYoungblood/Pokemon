@@ -9,8 +9,6 @@ namespace {
     int walkCounter = 0;                                     // measures how many screen pixels the player has moved
     int bumpCounter = 0;
 
-    bool keepMovingForward = false;                          // ultimately, determine when the player stops moving
-    bool colliding = false;
     bool momentum = false;                                   // denotes whether the player is still moving
 }
 
@@ -74,7 +72,7 @@ void checkForOpponents() {
             }
             KeyManager::getInstance().blockInput();
             momentum = false;
-            trainer.lock();
+            trainer.setState(Entity::State::FROZEN);
 
             ++frameCounter;
             if (frameCounter < 50 * (Game::getInstance().getFps() / 30)) {
@@ -162,10 +160,10 @@ void check(SDL_Scancode scancode) {
             keyDelay.reset();
 
             if (Player::getPlayer().canMoveForward(Game::getInstance().getCurrentMap())) {
-                keepMovingForward = true;
+                Player::getPlayer().setState(Entity::State::WALKING);
             }
             else {
-                colliding = true;
+                Player::getPlayer().setState(Entity::State::COLLIDING);
 
                 Player::getPlayer().updateAnimation();
                 Mixer::getInstance().playSound("bump");
@@ -206,13 +204,14 @@ void Overworld::update() {
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         check(SDL_Scancode::SDL_SCANCODE_D);
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and not keepMovingForward) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and
+             Player::getPlayer().getState() != Entity::State::WALKING) {
         for (auto &trainer : *Game::getInstance().getCurrentMap()) {
             if (Player::getPlayer().hasVisionOf(&trainer)) {
                 // if the player manually clicked Enter
                 if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
                     trainer.face(&Player::getPlayer());
-                    trainer.lock();
+                    trainer.setState(Entity::State::FROZEN);
                     KeyManager::getInstance().blockInput();
 
                     // only create the textbox here if the trainer cannot fight;
@@ -256,7 +255,7 @@ void Overworld::update() {
                             Game::getInstance().setRenderColor(Constants::Color::WHITE);
                         }
                         else {
-                            trainer.unlock();
+                            trainer.setState(Entity::State::IDLE);
                         }
                     }
 
@@ -267,7 +266,7 @@ void Overworld::update() {
         }
     }
 
-    if (keepMovingForward) {
+    if (Player::getPlayer().getState() == Entity::State::WALKING) {
         if (walkCounter % (Constants::TILE_SIZE / 2) == 0) {
             Player::getPlayer().updateAnimation();
         }
@@ -280,14 +279,14 @@ void Overworld::update() {
         walkCounter += Game::getInstance().getScrollSpeed();
     }
 
-    if (colliding) {
+    if (Player::getPlayer().getState() == Entity::State::COLLIDING) {
         if (bumpCounter == 10 * (Game::getInstance().getFps() / 30)) {
             Player::getPlayer().updateAnimation();
         }
         else if (bumpCounter == 20 * (Game::getInstance().getFps() / 30)) {
             KeyManager::getInstance().unlockWasd();
 
-            colliding = false;
+            Player::getPlayer().setState(Entity::State::IDLE);
             bumpCounter = 0;
 
             checkForOpponents();
@@ -302,7 +301,7 @@ void Overworld::update() {
             KeyManager::getInstance().unlockWasd();
         }
 
-        keepMovingForward = false;
+        Player::getPlayer().setState(Entity::State::IDLE);
         walkCounter = 0;
 
         checkForOpponents();

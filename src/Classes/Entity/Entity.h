@@ -29,34 +29,12 @@ inline Direction oppositeDirection(Direction direction) {
 class Map;
 
 class Entity {
-private:
-    std::vector<std::string> dialogue;
-
-    const char *name{ "" };
-
-    int x{ 0 };                                           // x-coordinate on map
-    int y{ 0 };                                           // y-coordinate on map
-    int screenX{ 0 };                                     // x-coordinate on the screen
-    int screenY{ 0 };                                     // y-coordinate on the screen
-    unsigned int vision{ 1 };                             // line of sight
-    Direction currentDirection{ Direction::DOWN };        // numerical representation of which way the trainer is facing
-
-    std::unordered_map<Direction, Animation> animations;
-
-    void (*action)(Entity *){ nullptr };
-
-    bool isLocked{ false };
-
-protected:
-    void setVision(unsigned int newVision);
-
-    void setAnimation(Direction direction, const char *path);
-
 public:
     enum class State : Uint8 {
         IDLE,
         WALKING,
-        INTERACTING
+        COLLIDING,
+        FROZEN
     };
 
     Entity() = default;
@@ -101,6 +79,10 @@ public:
 
     [[nodiscard]] bool isFacing(Direction direction) const;
 
+    void setState(Entity::State state);
+
+    [[nodiscard]] Entity::State getState() const;
+
     bool canMoveForward(const Map *map) const;
 
     bool isNextTo(const Entity *entity) const;
@@ -121,10 +103,6 @@ public:
 
     void act();
 
-    void lock();
-
-    void unlock();
-
     void updateAnimation();
 
     void render() const;
@@ -132,4 +110,27 @@ public:
     void resetPos();
 
     [[nodiscard]] virtual bool canFight() const;
+
+protected:
+    void setVision(unsigned int newVision);
+
+    void setAnimation(Direction direction, const char *path);
+
+private:
+    std::vector<std::string> dialogue;
+
+    const char *name{ "" };
+
+    int x{ 0 };                                           // x-coordinate on map
+    int y{ 0 };                                           // y-coordinate on map
+    int screenX{ 0 };                                     // x-coordinate on the screen
+    int screenY{ 0 };                                     // y-coordinate on the screen
+    unsigned int vision{ 1 };                             // line of sight
+
+    Direction currentDirection{ Direction::DOWN };        // which way the trainer is facing
+    Entity::State currentState{ Entity::State::IDLE };
+
+    std::unordered_map<Direction, Animation> animations;
+
+    void (*action)(Entity *){ nullptr };
 };

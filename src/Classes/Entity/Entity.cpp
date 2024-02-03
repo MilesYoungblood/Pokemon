@@ -103,6 +103,14 @@ bool Entity::isFacing(Direction direction) const {
     return this->currentDirection == direction;
 }
 
+void Entity::setState(Entity::State state) {
+    this->currentState = state;
+}
+
+Entity::State Entity::getState() const {
+    return this->currentState;
+}
+
 bool Entity::canMoveForward(const Map *map) const {
     switch (this->currentDirection) {
         case Direction::UP:
@@ -199,7 +207,7 @@ void Entity::setAction(void (*function)(Entity *)) {
 }
 
 void Entity::act() {
-    if (not this->isLocked) {
+    if (this->currentState != Entity::State::FROZEN) {
         try {
             this->action(this);
         }
@@ -207,14 +215,6 @@ void Entity::act() {
             std::clog << "Error performing action: " << e.what() << '\n';
         }
     }
-}
-
-void Entity::lock() {
-    this->isLocked = true;
-}
-
-void Entity::unlock() {
-    this->isLocked = false;
 }
 
 void Entity::updateAnimation() {
