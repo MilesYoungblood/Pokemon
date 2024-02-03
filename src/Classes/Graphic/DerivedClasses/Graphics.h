@@ -8,4 +8,4 @@
 #include "Rectangle/Rectangle.h"
 #include "TextBox/TextBox.h"
 #include "Texture/Texture.h"
-#include "TimedVisual//TimedVisual.h"
+#include "TimedVisual/TimedVisual.h"

@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../../../Map/Map.h"
 #include "../../../State/DerivedClasses/States.h"
 #include "../../../Stopwatch/Stopwatch.h"
 #include "../KeyManager/KeyManager.h"
@@ -33,7 +32,7 @@ private:
     SDL_Event event{};
     TTF_Font *font{ nullptr };
 
-    std::array<std::unique_ptr<State>, 4> states{
+    std::array<std::unique_ptr<State>, 3> states{
             std::make_unique<TitleScreen>(TitleScreen::getInstance()),
             std::make_unique<Overworld>(Overworld::getInstance()),
             std::make_unique<BattlePhase>(BattlePhase::getInstance())

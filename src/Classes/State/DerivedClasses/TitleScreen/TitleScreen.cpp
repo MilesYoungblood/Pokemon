@@ -7,11 +7,11 @@
 
 namespace {
     bool showPrompt = true;
-
-    int flashSpeed = 30;
 }
 
 void TitleScreen::update() {
+    static int flashSpeed = 30;
+
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
         Mix_HaltMusic();
 
@@ -58,7 +58,10 @@ void TitleScreen::update() {
 
 void TitleScreen::render() {
     static const SDL_Rect logo_rect{
-            Game::getInstance().getWindowWidth() / 2 - 8 * Constants::TILE_SIZE / 2, 0, 8 * Constants::TILE_SIZE, 5 * Constants::TILE_SIZE
+            Game::getInstance().getWindowWidth() / 2 - 8 * Constants::TILE_SIZE / 2,
+            0,
+            8 * Constants::TILE_SIZE,
+            5 * Constants::TILE_SIZE
     };
     static const SDL_Rect message_rect{
             Game::getInstance().getWindowWidth() / 2 - 24 * Game::getInstance().getFontSize() / 2,
@@ -68,9 +71,7 @@ void TitleScreen::render() {
     };
 
     static Texture logo("PokemonLogo.png");
-
-    static Texture text("Press enter to continue", Game::getInstance().getFont(), { 0, 0, 0, SDL_ALPHA_OPAQUE });
-
+    static Texture text("Press enter to continue", Game::getInstance().getFont(), Constants::Color::BLACK);
 
     TextureManager::getInstance().draw(logo.getTexture(), logo_rect);
 

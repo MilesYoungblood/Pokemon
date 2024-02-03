@@ -149,7 +149,7 @@ void Game::saveData() {
     std::ofstream saveFile("../docs/data/SaveData.txt");
     if (not saveFile.is_open()) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
-        running = false;
+        this->running = false;
         return;
     }
 

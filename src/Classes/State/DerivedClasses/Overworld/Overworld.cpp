@@ -142,39 +142,39 @@ void changeMap(const std::tuple<int, int, Map::Id> &data) {
     Camera::getInstance().lockOnPlayer(Game::getInstance().getCurrentMap());
 }
 
-void Overworld::update() {
-    static const auto check = [](SDL_Scancode scancode) -> void {
-        static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
-                std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
-                std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
-                std::make_pair(SDL_Scancode::SDL_SCANCODE_S, Direction::DOWN),
-                std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
-        };
-
-        if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-            if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
-                Player::getPlayer().setDirection(direction_to_key.at(scancode));
-            }
-            if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
-                KeyManager::getInstance().lockWasd();
-
-                momentum = true;
-                keyDelay.stop();
-                keyDelay.reset();
-
-                if (Player::getPlayer().canMoveForward(Game::getInstance().getCurrentMap())) {
-                    keepMovingForward = true;
-                }
-                else {
-                    colliding = true;
-
-                    Player::getPlayer().updateAnimation();
-                    Mixer::getInstance().playSound("bump");
-                }
-            }
-        }
+void check(SDL_Scancode scancode) {
+    static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
+            std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
+            std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
+            std::make_pair(SDL_Scancode::SDL_SCANCODE_S, Direction::DOWN),
+            std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
     };
 
+    if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
+        if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
+            Player::getPlayer().setDirection(direction_to_key.at(scancode));
+        }
+        if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
+            KeyManager::getInstance().lockWasd();
+
+            momentum = true;
+            keyDelay.stop();
+            keyDelay.reset();
+
+            if (Player::getPlayer().canMoveForward(Game::getInstance().getCurrentMap())) {
+                keepMovingForward = true;
+            }
+            else {
+                colliding = true;
+
+                Player::getPlayer().updateAnimation();
+                Mixer::getInstance().playSound("bump");
+            }
+        }
+    }
+}
+
+void Overworld::update() {
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE)) {
         if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
             GraphicsEngine::getInstance().removeGraphic<Rectangle>();
@@ -249,7 +249,6 @@ void Overworld::update() {
                         KeyManager::getInstance().unlockWasd();
 
                         if (trainer.canFight()) {
-                            Mix_HaltMusic();
                             Mixer::getInstance().playMusic("TrainerBattle");
 
                             trainer.clearParty();
