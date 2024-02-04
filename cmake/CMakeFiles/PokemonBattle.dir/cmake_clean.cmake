@@ -73,6 +73,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/src/Classes/GameObject/GameObject.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj"

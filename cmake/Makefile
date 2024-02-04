@@ -1007,6 +1007,30 @@ src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
 
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
+
 src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj: src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
 
@@ -2711,6 +2735,9 @@ help:
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s

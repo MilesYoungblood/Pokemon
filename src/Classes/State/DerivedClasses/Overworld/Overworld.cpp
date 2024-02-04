@@ -43,7 +43,8 @@ void checkForOpponents() {
     if (not(KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A) or
             KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S) or
-            KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D))) {
+            KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) or
+        Player::getPlayer().getState() == Entity::State::FROZEN) {
         momentum = false;
     }
 
@@ -55,6 +56,7 @@ void checkForOpponents() {
     for (auto &trainer : *Game::getInstance().getCurrentMap()) {
         if (trainer.canFight() and keepLooping[&trainer] and trainer.hasVisionOf(&Player::getPlayer())) {
             if (haltMusic) {
+                Player::getPlayer().setState(Entity::State::FROZEN);
                 Mix_HaltMusic();
                 haltMusic = false;
 
@@ -70,7 +72,7 @@ void checkForOpponents() {
                 );
                 Mixer::getInstance().playSound("spotted");
             }
-            KeyManager::getInstance().blockInput();
+
             momentum = false;
             trainer.setState(Entity::State::FROZEN);
 
@@ -114,7 +116,8 @@ void checkForOpponents() {
 
 void changeMap(const std::tuple<int, int, Map::Id> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
-        std::clog << "Error fading out \"" << Game::getInstance().getCurrentMap()->getMusic() << "\": " << SDL_GetError() << '\n';
+        std::clog << "Error fading out \"" << Game::getInstance().getCurrentMap()->getMusic() << "\": "
+                  << SDL_GetError() << '\n';
         SDL_ClearError();
         Game::getInstance().terminate();
         return;
@@ -141,6 +144,9 @@ void changeMap(const std::tuple<int, int, Map::Id> &data) {
 }
 
 void check(SDL_Scancode scancode) {
+    if (Player::getPlayer().getState() != Entity::State::IDLE) {
+        return;
+    }
     static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
             std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
             std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
@@ -153,8 +159,6 @@ void check(SDL_Scancode scancode) {
             Player::getPlayer().setDirection(direction_to_key.at(scancode));
         }
         if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
-            KeyManager::getInstance().lockWasd();
-
             momentum = true;
             keyDelay.stop();
             keyDelay.reset();
@@ -173,12 +177,19 @@ void check(SDL_Scancode scancode) {
 }
 
 void Overworld::update() {
-    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE)) {
-        if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-            GraphicsEngine::getInstance().removeGraphic<Rectangle>();
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE) and
+        Player::getPlayer().getState() != Entity::State::WALKING) {
+        if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
+            GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
         }
         else {
-            GraphicsEngine::getInstance().addGraphic<Rectangle>(SDL_Rect(50, 50, 250, 400), Constants::Color::BLACK, 5);
+            GraphicsEngine::getInstance().addGraphic<SelectionBox>(
+                    SDL_Rect(50, 50, 250, 300),
+                    Constants::Color::BLACK,
+                    5,
+                    std::vector<std::string>({ "Pokemon", "Pokedex", "Bag", "Trainer", "Save", "Options" })
+            );
+            Player::getPlayer().setState(Entity::State::FROZEN);
         }
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
@@ -204,18 +215,16 @@ void Overworld::update() {
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         check(SDL_Scancode::SDL_SCANCODE_D);
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN) and
-             Player::getPlayer().getState() != Entity::State::WALKING) {
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
         for (auto &trainer : *Game::getInstance().getCurrentMap()) {
             if (Player::getPlayer().hasVisionOf(&trainer)) {
                 // if the player manually clicked Enter
                 if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
                     trainer.face(&Player::getPlayer());
                     trainer.setState(Entity::State::FROZEN);
-                    KeyManager::getInstance().blockInput();
 
                     // only create the textbox here if the trainer cannot fight;
-                    // the program will loop back to checkForOpponents()
+                    // the program will loop back to checkForOpponents() in the next cycle
                     // and create it there if the trainer can fight
                     if (not trainer.canFight()) {
                         createTextBox(trainer.getDialogue());
@@ -224,7 +233,6 @@ void Overworld::update() {
                 else {
                     // if the textbox still has messages to print
                     if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                        KeyManager::getInstance().blockInput();
                         GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
                         if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
@@ -234,18 +242,6 @@ void Overworld::update() {
                     // if the textbox is done printing
                     if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
                         GraphicsEngine::getInstance().removeGraphic<TextBox>();
-                        // re-lock the Enter key
-                        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-
-                        // sets a cool-down period before the Enter key can be registered again;
-                        // this is needed because the program will register a button as
-                        // being pressed faster than the user can lift their finger
-                        std::thread coolDown([] -> void {
-                            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-                        });
-                        coolDown.detach();
-                        KeyManager::getInstance().unlockWasd();
 
                         if (trainer.canFight()) {
                             Mixer::getInstance().playMusic("TrainerBattle");
@@ -258,6 +254,17 @@ void Overworld::update() {
                             trainer.setState(Entity::State::IDLE);
                         }
                     }
+                    // re-lock the Enter key
+                    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+
+                    // sets a cool-down period before the Enter key can be registered again;
+                    // this is needed because the program will register a button as
+                    // being pressed faster than the user can lift their finger
+                    std::thread coolDown([] -> void {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                    });
+                    coolDown.detach();
 
                     keyDelay.reset();
                     break;
@@ -267,16 +274,25 @@ void Overworld::update() {
     }
 
     if (Player::getPlayer().getState() == Entity::State::WALKING) {
-        if (walkCounter % (Constants::TILE_SIZE / 2) == 0) {
+        if (walkCounter % (Constants::TILE_SIZE / 2) == 0 and walkCounter != 0) {
             Player::getPlayer().updateAnimation();
         }
-        if (walkCounter % Constants::TILE_SIZE == 0) {
+        if (walkCounter % Constants::TILE_SIZE == 0 and walkCounter != 0) {
             Player::getPlayer().moveForward();
-        }
+            Player::getPlayer().setState(Entity::State::IDLE);
+            walkCounter = 0;
 
-        Game::getInstance().getCurrentMap()->shift(oppositeDirection(Player::getPlayer().getDirection()),
-                                                   Game::getInstance().getScrollSpeed());
-        walkCounter += Game::getInstance().getScrollSpeed();
+            const auto map_data = Game::getInstance().getCurrentMap()->isExitPointHere(Player::getPlayer().getX(),
+                                                                                       Player::getPlayer().getY());
+            if (map_data.has_value()) {
+                changeMap(map_data.value());
+            }
+        }
+        if (Player::getPlayer().getState() != Entity::State::IDLE) {
+            walkCounter += Game::getInstance().getScrollSpeed();
+            Game::getInstance().getCurrentMap()->shift(oppositeDirection(Player::getPlayer().getDirection()),
+                                                       Game::getInstance().getScrollSpeed());
+        }
     }
 
     if (Player::getPlayer().getState() == Entity::State::COLLIDING) {
@@ -284,31 +300,17 @@ void Overworld::update() {
             Player::getPlayer().updateAnimation();
         }
         else if (bumpCounter == 20 * (Game::getInstance().getFps() / 30)) {
-            KeyManager::getInstance().unlockWasd();
-
             Player::getPlayer().setState(Entity::State::IDLE);
             bumpCounter = 0;
-
-            checkForOpponents();
         }
-
-        ++bumpCounter;
+        if (Player::getPlayer().getState() != Entity::State::IDLE) {
+            ++bumpCounter;
+        }
     }
 
-    // if the player's sprite is on a tile...
-    else if (walkCounter % Constants::TILE_SIZE == 0) {
-        if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-            KeyManager::getInstance().unlockWasd();
-        }
-
-        Player::getPlayer().setState(Entity::State::IDLE);
-        walkCounter = 0;
-
+    if (Player::getPlayer().getState() == Entity::State::IDLE or
+        Player::getPlayer().getState() == Entity::State::FROZEN) {
         checkForOpponents();
-        const auto map_data = Game::getInstance().getCurrentMap()->isExitPointHere(Player::getPlayer().getX(), Player::getPlayer().getY());
-        if (map_data.has_value()) {
-            changeMap(map_data.value());
-        }
     }
 
     for (auto &trainer : *Game::getInstance().getCurrentMap()) {

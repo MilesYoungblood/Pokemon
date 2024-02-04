@@ -8,13 +8,13 @@
 
 class TextBox : public Graphic {
 private:
-    SDL_Rect rect;
+    SDL_Rect rect{};
 
     std::pair<int, int> textPos;
     int border{ 1 };
 
-    int textWidth;
-    int textHeight;
+    int textWidth{};
+    int textHeight{};
 
     std::size_t lettersPrinted{ 0ULL };
     std::queue<std::string> messages;

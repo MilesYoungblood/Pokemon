@@ -92,7 +92,7 @@ void TextBox::update() {
             std::clog << "Unexpected error: " << e.what() << '\n';
             return;
         }
-        const std::string buffer{ this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " " };
+        const std::string buffer(this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " ");
 
         // recreate the text
         SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(TextBox::font, buffer.c_str(), Constants::Color::BLACK,
@@ -117,7 +117,7 @@ void TextBox::render() const {
 
     TextureManager::getInstance().draw(
             this->text,
-            { this->textPos.first, this->textPos.second, this->textWidth, this->textHeight }
+            SDL_Rect(this->textPos.first, this->textPos.second, this->textWidth, this->textHeight)
     );
 }
 

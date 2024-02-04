@@ -13,7 +13,7 @@ private:
 public:
     explicit Texture(const std::string &path);
 
-    Texture(const std::string &path, TTF_Font *font, SDL_Color fg);
+    Texture(const std::string &text, TTF_Font *font, SDL_Color fg);
 
     Texture(const Texture &) = delete;
 

@@ -15,6 +15,25 @@ private:
 
     int borderSize;
 
+protected:
+    void renderBox() const;
+
+    [[nodiscard]] int getX() const {
+        return this->dest.x;
+    }
+
+    [[nodiscard]] int getY() const {
+        return this->dest.y;
+    }
+
+    [[nodiscard]] int getW() const {
+        return this->dest.w;
+    }
+
+    [[nodiscard]] int getH() const {
+        return this->dest.h;
+    }
+
 public:
     Rectangle(SDL_Rect dest, SDL_Color bg, int borderSize);
 

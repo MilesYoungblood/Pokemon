@@ -6,6 +6,7 @@
 
 #include "Animation/Animation.h"
 #include "Rectangle/Rectangle.h"
+#include "Rectangle/DerivedClasses/SelectionBox/SelectionBox.h"
 #include "TextBox/TextBox.h"
 #include "Texture/Texture.h"
 #include "TimedVisual/TimedVisual.h"

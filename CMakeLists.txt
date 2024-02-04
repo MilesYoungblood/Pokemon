@@ -98,6 +98,8 @@ set(SOURCES
         src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.h
         src/Classes/State/DerivedClasses/Overworld/Overworld.cpp
         src/Classes/State/DerivedClasses/Overworld/Overworld.h
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h
 )
 
 set(POKEMON
