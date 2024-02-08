@@ -35,16 +35,16 @@ void SelectionBox::update() {
 void SelectionBox::render() const {
     this->renderBox();
 
-    const int interval = static_cast<int>(this->getH() / static_cast<double>(options.size()));
+    const int interval = static_cast<int>(this->getDest().h / static_cast<double>(options.size()));
 
-    const int percent = static_cast<int>(this->getW() * 0.05);
+    const int percent = static_cast<int>(this->getDest().w * 0.05);
 
     for (int i = 0; i < options.size(); ++i) {
         TextureManager::getInstance().draw(
-                Texture(options.at(i), Game::getInstance().getFont(), Constants::Color::BLACK).getTexture(),
+                Texture(options.at(i), Constants::Color::BLACK).getTexture(),
                 SDL_Rect(
-                        this->getX() + percent,
-                        this->getY() + Game::getInstance().getFontSize() + interval * i,
+                        this->getDest().x + percent,
+                        this->getDest().y + Game::getInstance().getFontSize() + interval * i,
                         Game::getInstance().getFontSize() * static_cast<int>(options.at(i).length()),
                         Game::getInstance().getFontSize()
                 )
@@ -54,8 +54,8 @@ void SelectionBox::render() const {
     TextureManager::getInstance().draw(
             Texture("RightArrow.png").getTexture(),
             SDL_Rect(
-                    this->getW() - percent + Game::getInstance().getFontSize(),
-                    this->getY() + Game::getInstance().getFontSize() + interval * this->current,
+                    this->getDest().w - percent + Game::getInstance().getFontSize(),
+                    this->getDest().y + Game::getInstance().getFontSize() + interval * this->current,
                     Game::getInstance().getFontSize(),
                     Game::getInstance().getFontSize()
             )

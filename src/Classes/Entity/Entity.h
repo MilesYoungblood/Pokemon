@@ -45,7 +45,7 @@ public:
 
     Entity(const Entity &) = delete;
 
-    Entity(Entity &&) noexcept = default;
+    Entity(Entity &&toMove) noexcept = default;
 
     Entity &operator=(const Entity &) = delete;
 
@@ -101,9 +101,9 @@ public:
 
     void setAction(void (*function)(Entity *entity));
 
-    void act();
-
     void updateAnimation();
+
+    void update();
 
     void render() const;
 
@@ -114,7 +114,23 @@ public:
 protected:
     void setVision(unsigned int newVision);
 
-    void setAnimation(Direction direction, const char *path);
+    void setAnimation(Direction direction, const std::string &path);
+
+    void moveBackward();
+
+    virtual void walk();
+
+    void collide();
+
+    virtual void idle();
+
+    void act();
+
+    void incWalkCounter(int count);
+
+    void resetWalkCounter();
+
+    [[nodiscard]] int getWalkCounter() const;
 
 private:
     std::vector<std::string> dialogue;
@@ -125,10 +141,14 @@ private:
     int y{ 0 };                                           // y-coordinate on map
     int screenX{ 0 };                                     // x-coordinate on the screen
     int screenY{ 0 };                                     // y-coordinate on the screen
+
     unsigned int vision{ 1 };                             // line of sight
 
     Direction currentDirection{ Direction::DOWN };        // which way the trainer is facing
     Entity::State currentState{ Entity::State::IDLE };
+
+    int walkCounter{ 0 };
+    int bumpCounter{ 0 };
 
     std::unordered_map<Direction, Animation> animations;
 

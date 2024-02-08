@@ -7,10 +7,17 @@
 GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(Animation).hash_code()];
     this->graphics[typeid(Rectangle).hash_code()];
+    this->graphics[typeid(ResourceBar).hash_code()];
     this->graphics[typeid(SelectionBox).hash_code()];
     this->graphics[typeid(TextBox).hash_code()];
     this->graphics[typeid(Texture).hash_code()];
     this->graphics[typeid(TimedVisual).hash_code()];
+}
+
+void GraphicsEngine::clear() {
+    for (auto &type : this->graphics) {
+        type.second.clear();
+    }
 }
 
 void GraphicsEngine::update() {

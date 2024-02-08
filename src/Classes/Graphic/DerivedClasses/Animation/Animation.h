@@ -19,11 +19,11 @@ private:
 public:
     Animation() = default;
 
-    explicit Animation(const char *path);
+    explicit Animation(const std::string &path);
 
     Animation(const Animation &) = delete;
 
-    Animation(Animation &&) noexcept = delete;
+    Animation(Animation &&) noexcept;
 
     Animation &operator=(const Animation &) = delete;
 
@@ -34,7 +34,7 @@ public:
     void update() override;
 
     // FIXME
-    void render() const override {}
+    void render() const override;
 
     void render(const SDL_Rect &destRect) const;
 };

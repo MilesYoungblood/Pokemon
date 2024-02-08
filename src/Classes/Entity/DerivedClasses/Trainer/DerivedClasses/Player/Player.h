@@ -19,5 +19,9 @@ public:
 
     void addToPc(std::unique_ptr<Pokemon> toAdd);
 
+    void walk() override;
+
+    void idle() override;
+
     [[nodiscard]] bool canFight() const override;
 };

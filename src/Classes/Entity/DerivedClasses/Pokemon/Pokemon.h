@@ -46,7 +46,7 @@ public:
 
     Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&) noexcept = delete;
+    Pokemon(Pokemon &&) noexcept = default;
 
     Pokemon &operator=(const Pokemon &) = delete;
 

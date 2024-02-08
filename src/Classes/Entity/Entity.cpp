@@ -2,7 +2,7 @@
 // Created by Miles on 10/1/2023.
 //
 
-#include "../Map/Map.h"
+#include "../Singleton/DerivedClasses/Game/Game.h"
 #include "Entity.h"
 
 Entity::Entity(int x, int y) : x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
@@ -161,10 +161,6 @@ bool Entity::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Entity::setVision(unsigned int newVision) {
-    this->vision = newVision;
-}
-
 void Entity::shiftHorizontally(int distance) {
     this->screenX += distance;
 }
@@ -178,14 +174,14 @@ void Entity::shift(Direction direction, int distance) {
         case Direction::UP:
             this->screenY -= distance;
             break;
-        case Direction::RIGHT:
-            this->screenX += distance;
-            break;
         case Direction::DOWN:
             this->screenY += distance;
             break;
         case Direction::LEFT:
             this->screenX -= distance;
+            break;
+        case Direction::RIGHT:
+            this->screenX += distance;
             break;
     }
 }
@@ -198,32 +194,40 @@ int Entity::getScreenY() const {
     return this->screenY;
 }
 
-void Entity::setAnimation(Direction direction, const char *path) {
-    this->animations[direction] = Animation(path);
-}
-
 void Entity::setAction(void (*function)(Entity *)) {
     this->action = function;
-}
-
-void Entity::act() {
-    if (this->currentState != Entity::State::FROZEN) {
-        try {
-            this->action(this);
-        }
-        catch (const std::exception &e) {
-            std::clog << "Error performing action: " << e.what() << '\n';
-        }
-    }
 }
 
 void Entity::updateAnimation() {
     this->animations.at(this->currentDirection).update();
 }
 
+void Entity::update() {
+    switch (this->currentState) {
+        case State::WALKING:
+            this->walk();
+            break;
+
+        case State::COLLIDING:
+            // FIXME Entities and Trainers don't collide with exit points (they should)
+            this->collide();
+            break;
+
+        case State::IDLE:
+        case State::FROZEN:
+            this->idle();
+            break;
+    }
+}
+
 void Entity::render() const {
-    this->animations.at(this->currentDirection).render(
-            { this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE });
+    try {
+        this->animations.at(this->currentDirection).render(
+                SDL_Rect(this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE));
+    }
+    catch (const std::exception &e) {
+        std::clog << "Error rendering animation: " << e.what() << '\n';
+    }
 }
 
 void Entity::resetPos() {
@@ -233,4 +237,77 @@ void Entity::resetPos() {
 
 bool Entity::canFight() const {
     return false;
+}
+
+void Entity::setVision(unsigned int newVision) {
+    this->vision = newVision;
+}
+
+void Entity::setAnimation(Direction direction, const std::string &path) {
+    this->animations[direction] = Animation(path);
+}
+
+void Entity::moveBackward() {
+    switch (this->currentDirection) {
+        case Direction::UP:
+            ++this->y;
+            break;
+        case Direction::RIGHT:
+            --this->x;
+            break;
+        case Direction::DOWN:
+            --this->y;
+            break;
+        case Direction::LEFT:
+            ++this->x;
+            break;
+    }
+}
+
+void Entity::walk() {
+    this->walkCounter += Game::getInstance().getScrollSpeed();
+    this->shift(this->currentDirection, Game::getInstance().getScrollSpeed());
+
+    if (this->walkCounter % (Constants::TILE_SIZE / 2) == 0) {
+        this->animations.at(this->currentDirection).update();
+    }
+    if (this->walkCounter % Constants::TILE_SIZE == 0) {
+        this->currentState = Entity::State::IDLE;
+        this->walkCounter = 0;
+    }
+}
+
+void Entity::collide() {
+    if (this->bumpCounter == 10 * (Game::getInstance().getFps() / 30)) {
+        this->animations.at(this->currentDirection).update();
+    }
+    else if (this->bumpCounter == 20 * (Game::getInstance().getFps() / 30)) {
+        this->currentState = Entity::State::IDLE;
+        this->bumpCounter = 0;
+    }
+    if (this->currentState != Entity::State::IDLE) {
+        ++this->bumpCounter;
+    }
+}
+
+void Entity::idle() {
+    this->act();
+}
+
+void Entity::act() {
+    if (this->currentState == Entity::State::IDLE and this->action != nullptr) {
+        this->action(this);
+    }
+}
+
+void Entity::incWalkCounter(int count) {
+    this->walkCounter += count;
+}
+
+void Entity::resetWalkCounter() {
+    this->walkCounter = 0;
+}
+
+int Entity::getWalkCounter() const {
+    return this->walkCounter;
 }

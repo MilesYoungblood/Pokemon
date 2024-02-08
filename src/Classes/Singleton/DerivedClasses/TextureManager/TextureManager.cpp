@@ -4,12 +4,36 @@
 
 #include "TextureManager.h"
 
+namespace {
+    bool called = false;
+}
+
+TextureManager::~TextureManager() {
+    if (not called) {
+        std::clog << "TextureManager::clean() not called\n";
+    }
+}
+
 void TextureManager::init(SDL_Renderer *renderer) {
     // only allow this function to be called once per instantiation of TextureManager object
     if (not this->isInitialized) {
         this->textureRenderer = renderer;
+
+        this->font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", TextureManager::FONT_SIZE);
+        if (this->font == nullptr) {
+            std::clog << "Error creating font: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+            std::terminate();
+        }
+
         this->isInitialized = true;
     }
+}
+
+void TextureManager::clean() {
+    TTF_CloseFont(this->font);
+    this->textureRenderer = nullptr;
+    called = true;
 }
 
 SDL_Texture *TextureManager::loadTexture(const std::string &path) {
@@ -31,16 +55,29 @@ std::tuple<SDL_Texture *, Uint32, Uint32> TextureManager::loadTextureData(const 
     return std::make_tuple(texture, rows, cols);
 }
 
-SDL_Texture *TextureManager::loadText(TTF_Font *font, const char *text, SDL_Color fg) {
-    SDL_Surface *temp = TTF_RenderText_Solid(font, text, fg);
+std::tuple<SDL_Texture *, int, int> TextureManager::loadTextData(std::string_view text, SDL_Color fg, int wLength) {
+    SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(this->font, text.data(), fg, wLength);
+
+    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
+
+    const int w = temp->w;
+    const int h = temp->h;
+
+    SDL_FreeSurface(temp);
+
+    return std::make_tuple(texture, w, h);
+}
+
+SDL_Texture *TextureManager::loadText(const char *text, SDL_Color fg) {
+    SDL_Surface *temp = TTF_RenderText_Solid(this->font, text, fg);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
     SDL_FreeSurface(temp);
 
     return texture;
 }
 
-SDL_Texture *TextureManager::loadText(TTF_Font *font, std::string_view text, SDL_Color fg) {
-    SDL_Surface *temp = TTF_RenderText_Solid(font, text.data(), fg);
+SDL_Texture *TextureManager::loadText(std::string_view text, SDL_Color fg) {
+    SDL_Surface *temp = TTF_RenderText_Solid(this->font, text.data(), fg);
     SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
     SDL_FreeSurface(temp);
 
@@ -57,7 +94,7 @@ void TextureManager::drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int f
 }
 
 void TextureManager::drawRect(const SDL_Rect &dest, SDL_Color fg, int pt) {
-    SDL_Rect border{ dest.x - 1, dest.y - 1, dest.w + 2, dest.h + 2 };
+    SDL_Rect border(dest.x - 1, dest.y - 1, dest.w + 2, dest.h + 2);
 
     SDL_SetRenderDrawColor(this->textureRenderer, fg.r, fg.g, fg.b, fg.a);
     for (int i = 0; i < pt; ++i) {
@@ -74,7 +111,7 @@ void TextureManager::drawRect(const SDL_Rect &dest, SDL_Color fg, SDL_Color bg, 
     SDL_SetRenderDrawColor(this->textureRenderer, fg.r, fg.g, fg.b, fg.a);
     SDL_RenderFillRect(this->textureRenderer, &dest);
 
-    SDL_Rect border{ dest.x - 1, dest.y - 1, dest.w + 2, dest.h + 2 };
+    SDL_Rect border(dest.x - 1, dest.y - 1, dest.w + 2, dest.h + 2);
 
     // draw the border
     SDL_SetRenderDrawColor(this->textureRenderer, bg.r, bg.g, bg.b, bg.a);
@@ -87,9 +124,8 @@ void TextureManager::drawRect(const SDL_Rect &dest, SDL_Color fg, SDL_Color bg, 
     }
 }
 
-void TextureManager::drawBorderedText(const char *text, int x, int y, int pt, SDL_Color fg, SDL_Color bg,
-                                      TTF_Font *font) {
-    SDL_Surface *textSurface = TTF_RenderUTF8_Solid(font, text, fg);
+void TextureManager::drawBorderedText(const char *text, int x, int y, int pt, SDL_Color fg, SDL_Color bg) {
+    SDL_Surface *textSurface = TTF_RenderUTF8_Solid(this->font, text, fg);
     if (textSurface == nullptr) {
         std::clog << "Error loading surface: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -107,6 +143,7 @@ void TextureManager::drawBorderedText(const char *text, int x, int y, int pt, SD
 
     // Render text with outline by rendering text multiple times with slight offsets
     SDL_Rect destRect(x, y, textSurface->w, textSurface->h);
+    SDL_FreeSurface(textSurface);
 
     // Draw the outline first
     SDL_SetTextureColorMod(textTexture, bg.r, bg.g, bg.b);
@@ -127,12 +164,10 @@ void TextureManager::drawBorderedText(const char *text, int x, int y, int pt, SD
     SDL_RenderCopy(this->textureRenderer, textTexture, nullptr, &destRect);
 
     SDL_DestroyTexture(textTexture);
-    SDL_FreeSurface(textSurface);
 }
 
-void TextureManager::drawBorderedText(std::string_view text, int x, int y, int pt, SDL_Color fg, SDL_Color bg,
-                                      TTF_Font *font) {
-    SDL_Surface *textSurface = TTF_RenderUTF8_Solid(font, text.data(), fg);
+void TextureManager::drawBorderedText(std::string_view text, int x, int y, int pt, SDL_Color fg, SDL_Color bg) {
+    SDL_Surface *textSurface = TTF_RenderUTF8_Solid(this->font, text.data(), fg);
     if (textSurface == nullptr) {
         std::clog << "Error loading surface: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -171,6 +206,10 @@ void TextureManager::drawBorderedText(std::string_view text, int x, int y, int p
 
     SDL_DestroyTexture(textTexture);
     SDL_FreeSurface(textSurface);
+}
+
+TTF_Font *TextureManager::getFont() const {
+    return this->font;
 }
 
 TextureManager::operator bool() const {

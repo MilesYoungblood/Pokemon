@@ -887,102 +887,6 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.obj: src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.obj
-
-# target to build an object file
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.obj
-
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.i: src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.i
-
-# target to preprocess a source file
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.i
-
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.s: src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.s
-
-# target to generate assembly for a file
-src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp.s
-
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.obj: src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.obj
-
-# target to build an object file
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.obj
-
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.i: src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.i
-
-# target to preprocess a source file
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.i
-
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.s: src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.s
-
-# target to generate assembly for a file
-src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp.s
-
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.obj: src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.obj
-
-# target to build an object file
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.obj
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.obj
-
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.i: src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.i
-
-# target to preprocess a source file
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.i
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.i
-
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.s: src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.s
-
-# target to generate assembly for a file
-src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.s
-.PHONY : src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp.s
-
-src/Classes/GameObject/GameObject.obj: src/Classes/GameObject/GameObject.cpp.obj
-.PHONY : src/Classes/GameObject/GameObject.obj
-
-# target to build an object file
-src/Classes/GameObject/GameObject.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameObject/GameObject.cpp.obj
-.PHONY : src/Classes/GameObject/GameObject.cpp.obj
-
-src/Classes/GameObject/GameObject.i: src/Classes/GameObject/GameObject.cpp.i
-.PHONY : src/Classes/GameObject/GameObject.i
-
-# target to preprocess a source file
-src/Classes/GameObject/GameObject.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameObject/GameObject.cpp.i
-.PHONY : src/Classes/GameObject/GameObject.cpp.i
-
-src/Classes/GameObject/GameObject.s: src/Classes/GameObject/GameObject.cpp.s
-.PHONY : src/Classes/GameObject/GameObject.s
-
-# target to generate assembly for a file
-src/Classes/GameObject/GameObject.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/GameObject/GameObject.cpp.s
-.PHONY : src/Classes/GameObject/GameObject.cpp.s
-
 src/Classes/Graphic/DerivedClasses/Animation/Animation.obj: src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.obj
 
@@ -1006,6 +910,30 @@ src/Classes/Graphic/DerivedClasses/Animation/Animation.s: src/Classes/Graphic/De
 src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
 
 src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
@@ -1031,6 +959,30 @@ src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/Selecti
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
 
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
+
 src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj: src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
 
@@ -1054,30 +1006,6 @@ src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s: src/Classes/Graphic/De
 src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
-
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.obj: src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.obj
-
-# target to build an object file
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.obj
-
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.i: src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.i
-
-# target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.i
-
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.s: src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.s
-
-# target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp.s
 
 src/Classes/Graphic/DerivedClasses/Texture/Texture.obj: src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
@@ -2720,30 +2648,21 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
-	@echo ... src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.obj
-	@echo ... src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.i
-	@echo ... src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.s
-	@echo ... src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.obj
-	@echo ... src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.i
-	@echo ... src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.s
-	@echo ... src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.obj
-	@echo ... src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.i
-	@echo ... src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.s
-	@echo ... src/Classes/GameObject/GameObject.obj
-	@echo ... src/Classes/GameObject/GameObject.i
-	@echo ... src/Classes/GameObject/GameObject.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s
-	@echo ... src/Classes/Graphic/DerivedClasses/TextBox/TextBox.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/TextBox/TextBox.i
-	@echo ... src/Classes/Graphic/DerivedClasses/TextBox/TextBox.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.s

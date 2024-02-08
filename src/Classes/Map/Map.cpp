@@ -184,11 +184,13 @@ void Map::loadTextures() {
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        return this->collision.at(x).at(y) or std::ranges::any_of(this->trainers, [&x, &y](const Trainer &trainer) -> bool {
-            return trainer.getX() == x && trainer.getY() == y;
+        return this->collision.at(x).at(y) or (Player::getPlayer().getX() == x and Player::getPlayer().getY() == y) or std::ranges::any_of(this->trainers, [&x, &y](const Trainer &trainer) -> bool {
+            return trainer.getX() == x and trainer.getY() == y;
         });
     }
     catch (const std::exception &e) {
+        std::cout << "X: " << x << '\n';
+        std::cout << "Y: " << y << '\n';
         throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
     }
 }
@@ -249,17 +251,17 @@ void Map::shift(Direction direction, int distance) {
             for (auto &row : layer) {
                 for (auto &col : row) {
                     switch (direction) {
-                        case Direction::DOWN:
-                            col.y += distance;
-                            break;
                         case Direction::UP:
                             col.y -= distance;
                             break;
-                        case Direction::RIGHT:
-                            col.x += distance;
+                        case Direction::DOWN:
+                            col.y += distance;
                             break;
                         case Direction::LEFT:
                             col.x -= distance;
+                            break;
+                        case Direction::RIGHT:
+                            col.x += distance;
                             break;
                         default:
                             return;
@@ -280,8 +282,59 @@ void Map::shift(Direction direction, int distance) {
     }
 }
 
+void Map::shiftHorizontally(int n) {
+    std::vector<std::thread> threads;
+    threads.reserve(this->layout.size() + 1);
+
+    for (auto &layer : this->layout) {
+        threads.emplace_back([&layer, &n] -> void {
+            for (auto &row : layer) {
+                for (auto &col : row) {
+                    col.x += n;
+                }
+            }
+        });
+    }
+
+    threads.emplace_back([this, &n] -> void {
+        for (auto &trainer : this->trainers) {
+            trainer.shiftHorizontally(n);
+        }
+    });
+
+    for (auto &thread : threads) {
+        thread.join();
+    }
+}
+
+void Map::shiftVertically(int n) {
+    std::vector<std::thread> threads;
+    threads.reserve(this->layout.size() + 1);
+
+    for (auto &layer : this->layout) {
+        threads.emplace_back([&layer, &n] -> void {
+            for (auto &row : layer) {
+                for (auto &col : row) {
+                    col.y += n;
+                }
+            }
+        });
+    }
+
+    threads.emplace_back([this, &n] -> void {
+        for (auto &trainer : this->trainers) {
+            trainer.shiftVertically(n);
+        }
+    });
+
+    for (auto &thread : threads) {
+        thread.join();
+    }
+}
+
 void Map::render() const {
     static SDL_Rect sdlRect(0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE);
+
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
             for (const auto &col : row) {
@@ -312,6 +365,7 @@ void Map::render() const {
 void Map::reset() {
     std::vector<std::thread> threads;
     threads.reserve(this->layout.size() + 1);
+
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer] -> void {
             for (int i = 0; i < layer.size(); ++i) {

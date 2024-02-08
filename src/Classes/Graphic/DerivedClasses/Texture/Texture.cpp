@@ -6,7 +6,7 @@
 
 Texture::Texture(const std::string &path) : texture(TextureManager::getInstance().loadTexture(path)) {}
 
-Texture::Texture(const std::string &text, TTF_Font *font, SDL_Color fg) : texture(TextureManager::getInstance().loadText(font, text, fg)) {}
+Texture::Texture(const std::string &text, SDL_Color fg) : texture(TextureManager::getInstance().loadText(text, fg)) {}
 
 Texture::Texture(Texture &&toMove) noexcept : texture(toMove.texture) {
     toMove.texture = nullptr;
@@ -21,6 +21,10 @@ Texture &Texture::operator=(Texture &&rhs) noexcept {
 
 Texture::~Texture() {
     SDL_DestroyTexture(this->texture);
+    if (strlen(SDL_GetError()) > 0) {
+        std::clog << "Unable to destroy texture: " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
 }
 
 void Texture::update() {}

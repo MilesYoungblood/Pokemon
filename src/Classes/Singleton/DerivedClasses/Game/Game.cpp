@@ -4,9 +4,9 @@
 
 #include "Game.h"
 
-std::unordered_map<Trainer *, int> pixelsTraveled;
 std::unordered_map<Trainer *, bool> keepLooping;
 Stopwatch keyDelay;
+bool momentum = false;
 
 Game::Game() {
     // initialize subsystems
@@ -51,9 +51,7 @@ Game::Game() {
         SDL_ClearError();
         return;
     }
-
-    // initialize TextureManager
-    TextureManager::getInstance().init(this->renderer);
+    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
 
     // initialize true type font subsystems
     if (TTF_Init() == -1) {
@@ -62,13 +60,8 @@ Game::Game() {
         return;
     }
 
-    // set the font for the message box
-    this->font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", this->FONT_SIZE);
-    if (this->font == nullptr) {
-        std::clog << "Error creating font: " << SDL_GetError() << '\n';
-        SDL_ClearError();
-        return;
-    }
+    // initialize TextureManager
+    TextureManager::getInstance().init(this->renderer);
 
     // initialize audio
     if (Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 4096) == -1) {
@@ -82,11 +75,6 @@ Game::Game() {
     // instantiate KeyManager
     KeyManager::getInstance();
 
-    // initialize TextBox
-    TextBox::init(this->renderer, this->font);
-
-    SDL_SetRenderDrawColor(this->renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-
     this->running = true;
 }
 
@@ -95,18 +83,18 @@ Game::~Game() {
     Mix_HookMusicFinished(nullptr);
     Mix_CloseAudio();
 
-    TTF_CloseFont(this->font);
+    TextureManager::getInstance().clean();
     TTF_Quit();
 
     IMG_Quit();
 
     SDL_DestroyRenderer(this->renderer);
-    if (strlen(SDL_GetError()) > 0ULL) {
+    if (strlen(SDL_GetError()) > 0) {
         std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
     SDL_DestroyWindow(this->window);
-    if (strlen(SDL_GetError()) > 0ULL) {
+    if (strlen(SDL_GetError()) > 0) {
         std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
@@ -114,8 +102,9 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    if (SDL_PollEvent(&this->event) == 1) {
-        switch (this->event.type) {
+    static SDL_Event event;
+    if (SDL_PollEvent(&event) == 1) {
+        switch (event.type) {
             case SDL_EventType::SDL_QUIT:
                 this->running = false;
                 break;
@@ -132,12 +121,12 @@ void Game::handleEvents() {
 }
 
 void Game::update() {
-    this->states.at(static_cast<std::size_t>(this->currentState))->update();
+    this->currentState->update();
 }
 
 void Game::render() const {
     SDL_RenderClear(this->renderer);
-    this->states.at(static_cast<std::size_t>(this->currentState))->render();
+    this->currentState->render();
     SDL_RenderPresent(this->renderer);
 }
 
@@ -224,9 +213,6 @@ void Game::saveData() {
 }
 
 void defaultAction(Entity *entity) {
-    if (GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-        return;
-    }
     switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
         case 1:
             entity->face(entity);
@@ -240,12 +226,27 @@ void defaultAction(Entity *entity) {
                 binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
             }
             break;
+        case 3:
+            if (entity->canMoveForward(Game::getInstance().getCurrentMap())) {
+                entity->moveForward();
+                entity->setState(Entity::State::WALKING);
+
+                if (entity->hasVisionOf(&Player::getPlayer()) and
+                    (Player::getPlayer().getState() == Entity::State::IDLE)) {
+                    Player::getPlayer().setState(Entity::State::FROZEN);
+                }
+            }
+            else {
+                entity->setState(Entity::State::COLLIDING);
+                entity->updateAnimation();
+            }
+            break;
         default:
             break;
     }
 }
 
-void Game::initializeGame() {
+void Game::init() {
     // default values for player
     Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
 
@@ -300,11 +301,11 @@ void Game::loadData() {
 
     Map::loadTextures();
 
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 8, 8, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 12, 7, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
     this->maps[Map::Id::NUVEMA_TOWN][0].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Bianca", 5, 6, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Bianca", 18, 16, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue(
             {
                     "Hmm... you look pretty tough...",
@@ -476,7 +477,7 @@ void Game::loadData() {
         saveFile.close();
     }
     else {
-        this->initializeGame();
+        this->init();
     }
 }
 
@@ -493,7 +494,7 @@ void Game::setRenderColor(SDL_Color color) {
 }
 
 void Game::setState(State::Id id) {
-    this->currentState = id;
+    this->currentState = this->states.at(static_cast<std::size_t>(id)).get();
 }
 
 int Game::getScrollSpeed() const {
@@ -510,10 +511,6 @@ int Game::getWindowHeight() const {
 
 int Game::getFontSize() const {
     return this->FONT_SIZE;
-}
-
-TTF_Font *Game::getFont() const {
-    return this->font;
 }
 
 void Game::changeMap(std::size_t index) {

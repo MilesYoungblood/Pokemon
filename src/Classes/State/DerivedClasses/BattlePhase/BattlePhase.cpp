@@ -36,10 +36,10 @@ void renderMain() {
     TextureManager::getInstance().drawRect(button, { 0, 0, 255 }, Constants::Color::BLACK, border_size);
 
     // draw text
-    TTF_SizeUTF8(Game::getInstance().getFont(), "Run", &width, &height);
+    TTF_SizeUTF8(TextureManager::getInstance().getFont(), "Run", &width, &height);
     TextureManager::getInstance().drawBorderedText("Run", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, Constants::Color::WHITE,
-                                                   Constants::Color::BLACK, Game::getInstance().getFont());
+                                                   Constants::Color::BLACK);
 
     // BAG
     // update button position
@@ -48,10 +48,10 @@ void renderMain() {
     TextureManager::getInstance().drawRect(button, { 255, 255, 0 }, Constants::Color::BLACK, border_size);
 
     // draw text
-    TTF_SizeUTF8(Game::getInstance().getFont(), "Bag", &width, &height);
+    TTF_SizeUTF8(TextureManager::getInstance().getFont(), "Bag", &width, &height);
     TextureManager::getInstance().drawBorderedText("Bag", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, Constants::Color::WHITE,
-                                                   Constants::Color::BLACK, Game::getInstance().getFont());
+                                                   Constants::Color::BLACK);
 
     // FIGHT
     // update button position
@@ -59,10 +59,10 @@ void renderMain() {
 
     TextureManager::getInstance().drawRect(button, { 255, 0, 0 }, Constants::Color::BLACK, border_size);
 
-    TTF_SizeUTF8(Game::getInstance().getFont(), "Fight", &width, &height);
+    TTF_SizeUTF8(TextureManager::getInstance().getFont(), "Fight", &width, &height);
     TextureManager::getInstance().drawBorderedText("Fight", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, { Constants::Color::WHITE },
-                                                   Constants::Color::BLACK, Game::getInstance().getFont());
+                                                   Constants::Color::BLACK);
 
     // POKEMON
     // update button position
@@ -70,10 +70,10 @@ void renderMain() {
 
     TextureManager::getInstance().drawRect(button, { 0, 255, 0 }, Constants::Color::BLACK, border_size);
 
-    TTF_SizeUTF8(Game::getInstance().getFont(), "Pokemon", &width, &height);
+    TTF_SizeUTF8(TextureManager::getInstance().getFont(), "Pokemon", &width, &height);
     TextureManager::getInstance().drawBorderedText("Pokemon", button.x + button.w / 2 - width / 2,
                                                    button.y + button.h / 2 - height / 2, 2, Constants::Color::WHITE,
-                                                   Constants::Color::BLACK, Game::getInstance().getFont());
+                                                   Constants::Color::BLACK);
 
     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 }
@@ -92,9 +92,12 @@ namespace {
 }
 
 void BattlePhase::update() {
-
+    GraphicsEngine::getInstance().update();
 }
 
 void BattlePhase::render() {
     battleFunctions.at(battleState)();
+    GraphicsEngine::getInstance().render();
+
+    Game::getInstance().setRenderColor(Constants::Color::WHITE);
 }

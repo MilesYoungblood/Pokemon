@@ -64,23 +64,13 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
-        src/Classes/GameObject/GameObject.cpp
-        src/Classes/GameObject/GameObject.h
-        src/Classes/GameComponent/GameComponent.h
-        src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.cpp
-        src/Classes/GameComponent/DerivedClasses/Position/PositionComponent.h
-        src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.cpp
-        src/Classes/GameComponent/DerivedClasses/Resource/ResourceComponent.h
-        src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.cpp
-        src/Classes/GameComponent/DerivedClasses/Sprite/SpriteComponent.h
-        src/Classes/GameComponent/DerivedClasses/Components.h
         src/pch.h
         src/constants.h
         src/constants.cpp
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
-        src/Classes/Graphic/DerivedClasses/TextBox/TextBox.cpp
-        src/Classes/Graphic/DerivedClasses/TextBox/TextBox.h
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
         src/Classes/Graphic/Graphic.cpp
@@ -100,6 +90,8 @@ set(SOURCES
         src/Classes/State/DerivedClasses/Overworld/Overworld.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h
 )
 
 set(POKEMON

@@ -28,7 +28,7 @@ public:
 
     Trainer(const Trainer &) = delete;
 
-    Trainer(Trainer &&) noexcept = default;
+    Trainer(Trainer &&toMove) noexcept = default;
 
     Trainer &operator=(const Trainer &) = delete;
 
@@ -111,6 +111,8 @@ public:
     std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 
     std::vector<std::unique_ptr<Pokemon>>::iterator end();
+
+    void idle() override;
 
     [[nodiscard]] bool canFight() const override;
 };

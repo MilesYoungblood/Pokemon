@@ -44,7 +44,7 @@ struct Ability {
 
     Ability(const Ability &) = delete;
 
-    Ability(Ability &&) noexcept = delete;
+    Ability(Ability &&) noexcept = default;
 
     Ability &operator=(const Ability &) = delete;
 

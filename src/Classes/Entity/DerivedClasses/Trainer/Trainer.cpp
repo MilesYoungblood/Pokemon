@@ -2,6 +2,7 @@
 // Created by Miles Youngblood on 6/13/2022.
 //
 
+#include "../../../Singleton/DerivedClasses/Game/Game.h"
 #include "Trainer.h"
 
 Trainer::Trainer() {
@@ -17,11 +18,14 @@ Trainer::Trainer(const char *name, int x, int y) : Entity(name, x, y) {
     this->items[typeid(PokeBall).hash_code()];
     this->items[typeid(BattleItem).hash_code()];
 
+    const std::string base("sprites/Hilbert/HilbertSpriteSheet");
+    const std::string ext = ".png";
+
     //FIXME change these to not be Hilbert
-    this->setAnimation(Direction::UP, "sprites/Hilbert/HilbertSpriteSheetUp.png");
-    this->setAnimation(Direction::DOWN, "sprites/Hilbert/HilbertSpriteSheetDown.png");
-    this->setAnimation(Direction::LEFT, "sprites/Hilbert/HilbertSpriteSheetLeft.png");
-    this->setAnimation(Direction::RIGHT, "sprites/Hilbert/HilbertSpriteSheetRight.png");
+    this->setAnimation(Direction::UP, base + "Up" + ext);
+    this->setAnimation(Direction::DOWN, base + "Down" + ext);
+    this->setAnimation(Direction::LEFT, base + "Left" + ext);
+    this->setAnimation(Direction::RIGHT, base + "Right" + ext);
 }
 
 Trainer::Trainer(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
@@ -109,6 +113,76 @@ std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::begin() {
 
 std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
     return this->party.end();
+}
+
+void Trainer::idle() {
+    this->act();
+
+    static int frameCounter = 0;    // makes this that spotted the player stand still for a set number of frames
+    static bool haltMusic = true;
+    static bool playMusic = true;
+
+    // checks if the player is in LoS for any this
+    if ((Player::getPlayer().getState() == Entity::State::IDLE or
+         Player::getPlayer().getState() == Entity::State::FROZEN) and this->canFight() and
+        (this->getState() == Entity::State::IDLE or this->getState() == Entity::State::FROZEN) and keepLooping[this] and
+        this->hasVisionOf(&Player::getPlayer())) {
+        if (haltMusic) {
+            Player::getPlayer().setState(Entity::State::FROZEN);
+            this->setState(Entity::State::FROZEN);
+            momentum = false;
+
+            Mix_HaltMusic();
+            haltMusic = false;
+
+            GraphicsEngine::getInstance().addGraphic<TimedVisual>(
+                    "exclamation.png",
+                    50 * (Game::getInstance().getFps() / 30) / 2,
+                    SDL_Rect(
+                            this->getScreenX(),
+                            this->getScreenY() - Constants::TILE_SIZE,
+                            Constants::TILE_SIZE,
+                            Constants::TILE_SIZE
+                    )
+            );
+            Mixer::getInstance().playSound("spotted");
+        }
+
+        ++frameCounter;
+        if (frameCounter < 50 * (Game::getInstance().getFps() / 30)) {
+            return;
+        }
+
+        if (playMusic) {
+            Mixer::getInstance().playMusic("GymBattle");
+            playMusic = false;
+        }
+
+        if (not this->isNextTo(&Player::getPlayer())) {
+            this->shift(this->getDirection(), Game::getInstance().getScrollSpeed());
+            this->incWalkCounter(Game::getInstance().getScrollSpeed());
+
+            if (this->getWalkCounter() % (Constants::TILE_SIZE / 2) == 0) {
+                this->updateAnimation();
+            }
+
+            if (this->getWalkCounter() % Constants::TILE_SIZE == 0) {
+                this->moveForward();
+                this->resetWalkCounter();
+            }
+        }
+        else {
+            Player::getPlayer().face(this);
+
+            createTextBox(this->getDialogue());
+
+            keepLooping[this] = false;
+
+            frameCounter = 0;
+            haltMusic = true;
+            playMusic = true;
+        }
+    }
 }
 
 bool Trainer::canFight() const {

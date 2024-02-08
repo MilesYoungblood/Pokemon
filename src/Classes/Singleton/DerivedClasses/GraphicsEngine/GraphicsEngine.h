@@ -67,6 +67,8 @@ public:
         }
     }
 
+    void clear();
+
     /// \brief checks to see if any graphics of type G exist
     /// \tparam G the type of graphic
     /// \return true if any of type G exist and false otherwise

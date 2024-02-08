@@ -10,9 +10,17 @@
 #include "../Mixer/Mixer.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
 
-extern std::unordered_map<Trainer *, int> pixelsTraveled;         // measures how many screen pixels a trainer has moved
 extern std::unordered_map<Trainer *, bool> keepLooping;
 extern Stopwatch keyDelay;
+extern bool momentum;
+
+void createTextBox(const std::vector<std::string> &messages);
+
+void changeMap(const std::tuple<int, int, Map::Id> &data);
+
+void handleMove(SDL_Scancode scancode);
+
+void handleReturn();
 
 class Game : public Singleton<Game> {
 private:
@@ -29,16 +37,14 @@ private:
 
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
-    SDL_Event event{};
-    TTF_Font *font{ nullptr };
 
     std::array<std::unique_ptr<State>, 3> states{
-            std::make_unique<TitleScreen>(TitleScreen::getInstance()),
-            std::make_unique<Overworld>(Overworld::getInstance()),
-            std::make_unique<BattlePhase>(BattlePhase::getInstance())
+            std::make_unique<TitleScreen>(std::move(TitleScreen::getInstance())),
+            std::make_unique<Overworld>(std::move(Overworld::getInstance())),
+            std::make_unique<BattlePhase>(std::move(BattlePhase::getInstance()))
     };
 
-    State::Id currentState{ State::Id::TITLE_SCREEN };                             // current state of the game
+    State *currentState{ this->states[0].get() };
 
     std::array<Map, 1> maps{
             Map("Nuvema Town")
@@ -51,7 +57,7 @@ private:
 
     Game();
 
-    void initializeGame();
+    void init();
 
 public:
     ~Game() override;
@@ -91,8 +97,6 @@ public:
     [[nodiscard]] int getWindowHeight() const;
 
     [[nodiscard]] int getFontSize() const;
-
-    [[nodiscard]] TTF_Font *getFont() const;
 
     void changeMap(std::size_t index);
 

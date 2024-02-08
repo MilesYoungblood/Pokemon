@@ -9,6 +9,10 @@ TimedVisual::TimedVisual(const char *path, int frames, SDL_Rect dest)
 
 TimedVisual::~TimedVisual() {
     SDL_DestroyTexture(this->visual);
+    if (strlen(SDL_GetError()) > 0) {
+        std::clog << "Unable to destroy visual: " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
 }
 
 void TimedVisual::update() {

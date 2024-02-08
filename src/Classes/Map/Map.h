@@ -25,7 +25,7 @@ public:
 
     Map(const Map &) = delete;
 
-    Map(Map &&toMove) noexcept = delete;
+    Map(Map &&toMove) noexcept = default;
 
     Map &operator=(const Map &) = delete;
 
@@ -57,6 +57,10 @@ public:
     [[nodiscard]] std::string getMusic() const;
 
     void shift(Direction direction, int distance);
+
+    void shiftHorizontally(int n);
+
+    void shiftVertically(int n);
 
     void render() const;
 

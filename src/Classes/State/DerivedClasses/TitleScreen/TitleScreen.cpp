@@ -2,8 +2,8 @@
 // Created by Miles on 1/28/2024.
 //
 
-#include "TitleScreen.h"
 #include "../../../Singleton/DerivedClasses/Game/Game.h"
+#include "TitleScreen.h"
 
 namespace {
     bool showPrompt = true;
@@ -39,7 +39,6 @@ void TitleScreen::update() {
         Camera::getInstance().lockOnPlayer(Game::getInstance().getCurrentMap());
 
         for (auto &trainer : *Game::getInstance().getCurrentMap()) {
-            pixelsTraveled[&trainer] = 0;
             keepLooping[&trainer] = true;
         }
 
@@ -71,7 +70,7 @@ void TitleScreen::render() {
     };
 
     static Texture logo("PokemonLogo.png");
-    static Texture text("Press enter to continue", Game::getInstance().getFont(), Constants::Color::BLACK);
+    static Texture text("Press enter to continue", Constants::Color::BLACK);
 
     TextureManager::getInstance().draw(logo.getTexture(), logo_rect);
 

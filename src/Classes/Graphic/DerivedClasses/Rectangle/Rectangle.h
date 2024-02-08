@@ -8,31 +8,29 @@
 
 class Rectangle : public Graphic {
 private:
-    SDL_Rect dest;
+    SDL_Rect dest{ 0, 0, 0, 0 };
 
-    SDL_Color fg;
-    SDL_Color bg;
+    SDL_Color fg{ Constants::Color::WHITE };
+    SDL_Color bg{ Constants::Color::BLACK };
 
-    int borderSize;
+    int borderSize{ 0 };
 
 protected:
+    Rectangle() = default;
+
     void renderBox() const;
 
-    [[nodiscard]] int getX() const {
-        return this->dest.x;
-    }
+    void setDest(SDL_Rect newDest);
 
-    [[nodiscard]] int getY() const {
-        return this->dest.y;
-    }
+    [[nodiscard]] SDL_Rect getDest() const;
 
-    [[nodiscard]] int getW() const {
-        return this->dest.w;
-    }
+    [[nodiscard]] SDL_Color getFg() const;
 
-    [[nodiscard]] int getH() const {
-        return this->dest.h;
-    }
+    [[nodiscard]] SDL_Color getBg() const;
+
+    void setBorderSize(int n);
+
+    [[nodiscard]] int getBorderSize() const;
 
 public:
     Rectangle(SDL_Rect dest, SDL_Color bg, int borderSize);
@@ -49,7 +47,7 @@ public:
 
     ~Rectangle() override = default;
 
-    void update() override;
+    void update() override = 0;
 
-    void render() const override;
+    void render() const override = 0;
 };

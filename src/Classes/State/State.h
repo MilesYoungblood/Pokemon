@@ -13,11 +13,11 @@ public:
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
 
-    State(const State &) = default;
+    State(const State &) = delete;
 
     State(State &&) noexcept = default;
 
-    State &operator=(const State &) = default;
+    State &operator=(const State &) = delete;
 
     State &operator=(State &&) noexcept = default;
 

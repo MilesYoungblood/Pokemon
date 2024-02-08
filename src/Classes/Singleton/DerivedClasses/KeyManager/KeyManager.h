@@ -26,6 +26,6 @@ public:
 
     /// \brief Grabs the state of a key.
     /// \param key the key to check
-    /// \return true if the key is pressed and the key is not locker
+    /// \return true if the key is pressed and the key is not locked
     bool getKey(SDL_Scancode key);
 };

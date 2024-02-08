@@ -4,11 +4,16 @@
 
 #include "Animation.h"
 
-Animation::Animation(const char *path) {
+Animation::Animation(const std::string &path) {
     const auto data = TextureManager::getInstance().loadTextureData(path);
     this->spriteSheet = std::get<0>(data);
     this->numRows = std::get<1>(data) / Constants::TILE_SIZE;
     this->numCols = std::get<2>(data) / Constants::TILE_SIZE;
+}
+
+Animation::Animation(Animation &&toMove) noexcept
+        : numRows(toMove.numRows), numCols(toMove.numCols), spriteSheet(toMove.spriteSheet) {
+    toMove.spriteSheet = nullptr;
 }
 
 Animation &Animation::operator=(Animation &&rhs) noexcept {
@@ -22,6 +27,10 @@ Animation &Animation::operator=(Animation &&rhs) noexcept {
 
 Animation::~Animation() {
     SDL_DestroyTexture(this->spriteSheet);
+    if (strlen(SDL_GetError()) > 0) {
+        std::clog << "Unable to destroy sprite sheet: " << SDL_GetError() << '\n';
+        SDL_ClearError();
+    }
 }
 
 void Animation::update() {
@@ -36,6 +45,8 @@ void Animation::update() {
         }
     }
 }
+
+void Animation::render() const {}
 
 void Animation::render(const SDL_Rect &destRect) const {
     TextureManager::getInstance().drawFrame(this->spriteSheet, destRect, this->currentFrame, this->currentRow);
