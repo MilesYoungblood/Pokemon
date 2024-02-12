@@ -142,13 +142,13 @@ Map::Map(const char *name) : name(name), music(name) {
         }
 
         std::istringstream ss(csvData);
-        layer layer(height, std::vector<data>(width));
+        layer<tile> layer(height, std::vector<tile>(width));
         int value;
         for (int row = 0; row < height; ++row) {
             for (int col = 0; col < width and ss >> value; ++col) {
                 layer[row][col].id = pathMap.at(value);
-                layer[row][col].x = col * Constants::TILE_SIZE;
-                layer[row][col].y = row * Constants::TILE_SIZE;
+                layer[row][col].x = col * Map::TILE_SIZE;
+                layer[row][col].y = row * Map::TILE_SIZE;
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
@@ -333,7 +333,7 @@ void Map::shiftVertically(int n) {
 }
 
 void Map::render() const {
-    static SDL_Rect sdlRect(0, 0, Constants::TILE_SIZE, Constants::TILE_SIZE);
+    static SDL_Rect sdlRect(0, 0, Map::TILE_SIZE, Map::TILE_SIZE);
 
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
@@ -370,8 +370,8 @@ void Map::reset() {
         threads.emplace_back([&layer] -> void {
             for (int i = 0; i < layer.size(); ++i) {
                 for (int j = 0; j < layer[i].size(); ++j) {
-                    layer[i][j].x = i * Constants::TILE_SIZE;
-                    layer[i][j].y = j * Constants::TILE_SIZE;
+                    layer[i][j].x = i * Map::TILE_SIZE;
+                    layer[i][j].y = j * Map::TILE_SIZE;
                 }
             }
         });

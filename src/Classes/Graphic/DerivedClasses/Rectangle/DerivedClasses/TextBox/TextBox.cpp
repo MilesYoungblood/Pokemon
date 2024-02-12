@@ -87,6 +87,10 @@ void TextBox::setFinishedCallback(void (*instructions)()) {
     this->finishedPrinting = instructions;
 }
 
+bool TextBox::isPrinting() const {
+    return this->lettersPrinted <= this->messages.front().length();
+}
+
 bool TextBox::empty() const {
     return this->messages.empty();
 }

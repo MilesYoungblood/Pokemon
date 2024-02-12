@@ -22,11 +22,11 @@ bool Camera::isInView(const SDL_Rect &rect) const {
 
 void Camera::lockOnPlayer(Map *map) const {
     // x-distance of the player from the center of the screen
-    const int x_from_center = ((this->view.w - Constants::TILE_SIZE) / 2) -
-                              Player::getPlayer().getX() * Constants::TILE_SIZE;
+    const int x_from_center = ((this->view.w - Map::TILE_SIZE) / 2) -
+                              Player::getPlayer().getX() * Map::TILE_SIZE;
     // y-distance of the player from the center of the screen
-    const int y_from_center = ((this->view.h - Constants::TILE_SIZE) / 2) -
-                              Player::getPlayer().getY() * Constants::TILE_SIZE;
+    const int y_from_center = ((this->view.h - Map::TILE_SIZE) / 2) -
+                              Player::getPlayer().getY() * Map::TILE_SIZE;
 
     Player::getPlayer().shiftHorizontally(x_from_center);
     Player::getPlayer().shiftVertically(y_from_center);

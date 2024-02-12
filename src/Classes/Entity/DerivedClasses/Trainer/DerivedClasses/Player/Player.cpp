@@ -37,20 +37,20 @@ void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
 }
 
 void Player::walk() {
-    this->incWalkCounter(Game::getInstance().getScrollSpeed());
-    Game::getInstance().getCurrentMap()->shift(oppositeDirection(this->getDirection()),
-                                               Game::getInstance().getScrollSpeed());
+    this->incWalkCounter(Overworld::getInstance().getScrollSpeed());
+    Overworld::getInstance().getCurrentMap()->shift(oppositeDirection(this->getDirection()),
+                                                    Overworld::getInstance().getScrollSpeed());
 
-    if (this->getWalkCounter() % (Constants::TILE_SIZE / 2) == 0) {
+    if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
     }
-    if (this->getWalkCounter() % Constants::TILE_SIZE == 0) {
+    if (this->getWalkCounter() % Map::TILE_SIZE == 0) {
         this->setState(Entity::State::IDLE);
         this->resetWalkCounter();
 
-        const auto map_data = Game::getInstance().getCurrentMap()->isExitPointHere(this->getX(), this->getY());
+        const auto map_data = Overworld::getInstance().getCurrentMap()->isExitPointHere(this->getX(), this->getY());
         if (map_data.has_value()) {
-            changeMap(map_data.value());
+            Overworld::getInstance().changeMap(map_data.value());
         }
     }
 }
@@ -58,16 +58,16 @@ void Player::walk() {
 void Player::idle() {
     if (Player::getPlayer().getState() != Entity::State::FROZEN) {
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
-            handleMove(SDL_Scancode::SDL_SCANCODE_W);
+            Overworld::getInstance().handleMove(SDL_Scancode::SDL_SCANCODE_W);
         }
         else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
-            handleMove(SDL_Scancode::SDL_SCANCODE_A);
+            Overworld::getInstance().handleMove(SDL_Scancode::SDL_SCANCODE_A);
         }
         else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
-            handleMove(SDL_Scancode::SDL_SCANCODE_S);
+            Overworld::getInstance().handleMove(SDL_Scancode::SDL_SCANCODE_S);
         }
         else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
-            handleMove(SDL_Scancode::SDL_SCANCODE_D);
+            Overworld::getInstance().handleMove(SDL_Scancode::SDL_SCANCODE_D);
         }
     }
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE) and
@@ -98,7 +98,7 @@ void Player::idle() {
         coolDown.detach();
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
-        handleReturn();
+        Overworld::getInstance().handleReturn();
     }
 
     // resets movement variables if you are not inputting any directions

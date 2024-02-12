@@ -9,28 +9,27 @@ void renderMain() {
     int width;      // stores the text width
     int height;     // stores the text height
 
-    static const int box_width = Constants::TILE_SIZE * 7;
-    static const int box_height = Constants::TILE_SIZE * 2;
+    static const int box_width = Map::TILE_SIZE * 7;
+    static const int box_height = Map::TILE_SIZE * 2;
     static const SDL_Rect text_box(
-            box_width / (Constants::TILE_SIZE / 10) / 2,
-            Game::getInstance().getWindowHeight() - box_height,
+            box_width / (Map::TILE_SIZE / 10) / 2,
+            Game::WINDOW_HEIGHT - box_height,
             box_width / 2,
-            box_height - Constants::TILE_SIZE / 2
+            box_height - Map::TILE_SIZE / 2
     );
 
     TextureManager::getInstance().drawRect(text_box, Constants::Color::BLACK,
-                                           text_box.h / (Constants::TILE_SIZE * 3 / 10));
+                                           text_box.h / (Map::TILE_SIZE * 3 / 10));
 
     SDL_Rect button(
-            Game::getInstance().getWindowWidth() - Constants::TILE_SIZE / 10 - Game::getInstance().getWindowWidth() / 4 + Constants::TILE_SIZE / 5,
-            Game::getInstance().getWindowHeight() - Constants::TILE_SIZE / 2 - Constants::TILE_SIZE / 2,
-            Game::getInstance().getWindowWidth() / 4 - Constants::TILE_SIZE / 2,
-            Constants::TILE_SIZE / 2
+            Game::WINDOW_WIDTH - Map::TILE_SIZE / 10 - Game::WINDOW_WIDTH / 4 + Map::TILE_SIZE / 5,
+            Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2,
+            Game::WINDOW_WIDTH / 4 - Map::TILE_SIZE / 2,
+            Map::TILE_SIZE / 2
     );
 
-    const int border_size =
-            (Game::getInstance().getWindowWidth() / 2 - (Constants::TILE_SIZE * 2 - Constants::TILE_SIZE / 2)) /
-            (Constants::TILE_SIZE * 3 / 10) / 5;
+    const int border_size = (Game::WINDOW_WIDTH / 2 - (Map::TILE_SIZE * 2 - Map::TILE_SIZE / 2)) /
+                            (Map::TILE_SIZE * 3 / 10) / 5;
 
     // RUN
     TextureManager::getInstance().drawRect(button, { 0, 0, 255 }, Constants::Color::BLACK, border_size);
@@ -66,7 +65,7 @@ void renderMain() {
 
     // POKEMON
     // update button position
-    button.y = Game::getInstance().getWindowHeight() - Constants::TILE_SIZE / 2 - Constants::TILE_SIZE / 2;
+    button.y = Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2;
 
     TextureManager::getInstance().drawRect(button, { 0, 255, 0 }, Constants::Color::BLACK, border_size);
 

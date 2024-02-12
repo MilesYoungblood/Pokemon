@@ -140,9 +140,9 @@ void Trainer::idle() {
                     50 * (Game::getInstance().getFps() / 30) / 2,
                     SDL_Rect(
                             this->getScreenX(),
-                            this->getScreenY() - Constants::TILE_SIZE,
-                            Constants::TILE_SIZE,
-                            Constants::TILE_SIZE
+                            this->getScreenY() - Map::TILE_SIZE,
+                            Map::TILE_SIZE,
+                            Map::TILE_SIZE
                     )
             );
             Mixer::getInstance().playSound("spotted");
@@ -159,14 +159,14 @@ void Trainer::idle() {
         }
 
         if (not this->isNextTo(&Player::getPlayer())) {
-            this->shift(this->getDirection(), Game::getInstance().getScrollSpeed());
-            this->incWalkCounter(Game::getInstance().getScrollSpeed());
+            this->shift(this->getDirection(), Overworld::getInstance().getScrollSpeed());
+            this->incWalkCounter(Overworld::getInstance().getScrollSpeed());
 
-            if (this->getWalkCounter() % (Constants::TILE_SIZE / 2) == 0) {
+            if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
                 this->updateAnimation();
             }
 
-            if (this->getWalkCounter() % Constants::TILE_SIZE == 0) {
+            if (this->getWalkCounter() % Map::TILE_SIZE == 0) {
                 this->moveForward();
                 this->resetWalkCounter();
             }
@@ -174,7 +174,7 @@ void Trainer::idle() {
         else {
             Player::getPlayer().face(this);
 
-            createTextBox(this->getDialogue());
+            Overworld::createTextBox(this->getDialogue());
 
             keepLooping[this] = false;
 

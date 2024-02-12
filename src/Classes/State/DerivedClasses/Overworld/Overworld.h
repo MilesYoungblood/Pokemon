@@ -17,22 +17,30 @@ private:
     std::size_t currentMapIndex{ 0 };
     Map *currentMap{ nullptr };
 
+    int scrollSpeed = Map::TILE_SIZE / 20;
+
     friend class Singleton<Overworld>;
 
     Overworld() = default;
+
+    void init();
 
 public:
     void update() override;
 
     void render() override;
 
-    void changeMap(std::size_t index);
+    void load();
+
+    void save();
 
     void changeMap(const std::tuple<int, int, Map::Id> &data);
 
     [[nodiscard]] Map *getCurrentMap() const;
 
-    void createTextBox(const std::vector<std::string> &messages);
+    [[nodiscard]] int getScrollSpeed() const;
+
+    static void createTextBox(const std::vector<std::string> &messages);
 
     void handleMove(SDL_Scancode scancode);
 

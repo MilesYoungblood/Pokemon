@@ -53,5 +53,7 @@ public:
 
     void setFinishedCallback(void (*instructions)());
 
+    [[nodiscard]] bool isPrinting() const;
+
     [[nodiscard]] bool empty() const;
 };

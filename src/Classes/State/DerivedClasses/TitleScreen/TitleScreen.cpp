@@ -3,7 +3,6 @@
 //
 
 #include "../../../Singleton/DerivedClasses/Game/Game.h"
-#include "TitleScreen.h"
 
 namespace {
     bool showPrompt = true;
@@ -33,16 +32,16 @@ void TitleScreen::update() {
         // FIXME make code following this execute based on MixChannelFinished callback
         Mixer::getInstance().playSound("select");
 
-        Game::getInstance().loadData();
+        Overworld::getInstance().load();
 
-        Camera::getInstance().init(Game::getInstance().getWindowWidth(), Game::getInstance().getWindowHeight());
-        Camera::getInstance().lockOnPlayer(Game::getInstance().getCurrentMap());
+        Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
+        Camera::getInstance().lockOnPlayer(Overworld::getInstance().getCurrentMap());
 
-        for (auto &trainer : *Game::getInstance().getCurrentMap()) {
+        for (auto &trainer : *Overworld::getInstance().getCurrentMap()) {
             keepLooping[&trainer] = true;
         }
 
-        Mixer::getInstance().playMusic(Game::getInstance().getCurrentMap()->getMusic());
+        Mixer::getInstance().playMusic(Overworld::getInstance().getCurrentMap()->getMusic());
 
         Game::getInstance().setState(State::Id::OVERWORLD);
         Game::getInstance().setRenderColor(Constants::Color::BLACK);
@@ -57,16 +56,16 @@ void TitleScreen::update() {
 
 void TitleScreen::render() {
     static const SDL_Rect logo_rect{
-            Game::getInstance().getWindowWidth() / 2 - 8 * Constants::TILE_SIZE / 2,
+            Game::WINDOW_WIDTH / 2 - 8 * Map::TILE_SIZE / 2,
             0,
-            8 * Constants::TILE_SIZE,
-            5 * Constants::TILE_SIZE
+            8 * Map::TILE_SIZE,
+            5 * Map::TILE_SIZE
     };
     static const SDL_Rect message_rect{
-            Game::getInstance().getWindowWidth() / 2 - 24 * Game::getInstance().getFontSize() / 2,
-            Game::getInstance().getWindowHeight() - Constants::TILE_SIZE * 2,
-            Game::getInstance().getFontSize() * 23,
-            Game::getInstance().getFontSize()
+            Game::WINDOW_WIDTH / 2 - 24 * Game::FONT_SIZE / 2,
+            Game::WINDOW_HEIGHT - Map::TILE_SIZE * 2,
+            Game::FONT_SIZE * 23,
+            Game::FONT_SIZE
     };
 
     static Texture logo("PokemonLogo.png");

@@ -9,6 +9,9 @@
 
 class Map {
 public:
+    enum : Uint8 {
+        TILE_SIZE = 80
+    };
     enum Id : Uint8 {
         NUVEMA_TOWN
     };
@@ -41,7 +44,7 @@ public:
 
     template<typename ...Args>
     void addTrainer(Args ...args) {
-        this->trainers.push_back(std::move(Trainer(args...)));
+        this->trainers.emplace_back(args...);
     }
 
     [[nodiscard]] int numTrainers() const;
@@ -67,7 +70,11 @@ public:
     void reset();
 
 private:
-    using inventory = std::vector<std::pair<std::pair<int, int>, std::unique_ptr<Item>>>;
+    using position = struct {
+        int x;
+        int y;
+    };
+    using inventory = std::vector<std::pair<position, std::unique_ptr<Item>>>;
 
     const char *name{ "" };
 
@@ -75,15 +82,17 @@ private:
 
     inline static std::unordered_map<std::string, std::shared_ptr<Texture>> textureMap;
 
-    using data = struct {
+    using tile = struct {
         std::string id;
         int x;
         int y;
     };
 
-    using layer = std::vector<std::vector<data>>;
-    std::vector<layer> layout;                          // The map is vector of layers
-    std::vector<std::vector<bool>> collision;
+    template<typename T>
+    using layer = std::vector<std::vector<T>>;          // a layer is a 2D vector of data
+
+    std::vector<layer<tile>> layout;                    // The map is vector of layers
+    layer<bool> collision;                              // collision values for each tile
 
     std::vector<Trainer> trainers;                      // the set of trainers in this map
 

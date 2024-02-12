@@ -5,10 +5,10 @@
 #include "../Singleton/DerivedClasses/Game/Game.h"
 #include "Entity.h"
 
-Entity::Entity(int x, int y) : x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
+Entity::Entity(int x, int y) : x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
 
 Entity::Entity(const char *name, int x, int y)
-        : name(name), x(x), y(y), screenX(x * Constants::TILE_SIZE), screenY(y * Constants::TILE_SIZE) {}
+        : name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
 
 void Entity::setName(const char *newName) {
     this->name = newName;
@@ -57,8 +57,8 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->x = newX;
     this->y = newY;
 
-    this->screenX = this->x * Constants::TILE_SIZE;
-    this->screenY = this->y * Constants::TILE_SIZE;
+    this->screenX = this->x * Map::TILE_SIZE;
+    this->screenY = this->y * Map::TILE_SIZE;
 }
 
 int Entity::getX() const {
@@ -222,8 +222,7 @@ void Entity::update() {
 
 void Entity::render() const {
     try {
-        this->animations.at(this->currentDirection).render(
-                SDL_Rect(this->screenX, this->screenY, Constants::TILE_SIZE, Constants::TILE_SIZE));
+        this->animations.at(this->currentDirection).render(SDL_Rect(this->screenX, this->screenY, Map::TILE_SIZE, Map::TILE_SIZE));
     }
     catch (const std::exception &e) {
         std::clog << "Error rendering animation: " << e.what() << '\n';
@@ -231,8 +230,8 @@ void Entity::render() const {
 }
 
 void Entity::resetPos() {
-    this->screenX = this->x * Constants::TILE_SIZE;
-    this->screenY = this->y * Constants::TILE_SIZE;
+    this->screenX = this->x * Map::TILE_SIZE;
+    this->screenY = this->y * Map::TILE_SIZE;
 }
 
 bool Entity::canFight() const {
@@ -265,13 +264,13 @@ void Entity::moveBackward() {
 }
 
 void Entity::walk() {
-    this->walkCounter += Game::getInstance().getScrollSpeed();
-    this->shift(this->currentDirection, Game::getInstance().getScrollSpeed());
+    this->walkCounter += Overworld::getInstance().getScrollSpeed();
+    this->shift(this->currentDirection, Overworld::getInstance().getScrollSpeed());
 
-    if (this->walkCounter % (Constants::TILE_SIZE / 2) == 0) {
+    if (this->walkCounter % (Map::TILE_SIZE / 2) == 0) {
         this->animations.at(this->currentDirection).update();
     }
-    if (this->walkCounter % Constants::TILE_SIZE == 0) {
+    if (this->walkCounter % Map::TILE_SIZE == 0) {
         this->currentState = Entity::State::IDLE;
         this->walkCounter = 0;
     }

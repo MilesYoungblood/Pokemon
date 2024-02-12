@@ -2,13 +2,14 @@
 // Created by Miles on 11/29/2023.
 //
 
+#include "../../../Map/Map.h"
 #include "Animation.h"
 
 Animation::Animation(const std::string &path) {
     const auto data = TextureManager::getInstance().loadTextureData(path);
     this->spriteSheet = std::get<0>(data);
-    this->numRows = std::get<1>(data) / Constants::TILE_SIZE;
-    this->numCols = std::get<2>(data) / Constants::TILE_SIZE;
+    this->numRows = std::get<1>(data) / Map::TILE_SIZE;
+    this->numCols = std::get<2>(data) / Map::TILE_SIZE;
 }
 
 Animation::Animation(Animation &&toMove) noexcept

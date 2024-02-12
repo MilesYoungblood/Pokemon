@@ -14,52 +14,35 @@ extern std::unordered_map<Trainer *, bool> keepLooping;
 extern Stopwatch keyDelay;
 extern bool momentum;
 
-void createTextBox(const std::vector<std::string> &messages);
-
-void changeMap(const std::tuple<int, int, Map::Id> &data);
-
-void handleMove(SDL_Scancode scancode);
-
-void handleReturn();
-
 class Game : public Singleton<Game> {
 private:
     const std::array<int, 2> FPS{ 30, 60 };
     int currentFps{ FPS[1] };
-
-    const int WINDOW_WIDTH{ Constants::TILE_SIZE * 9 };                            // width of the window
-    const int WINDOW_HEIGHT{ Constants::TILE_SIZE * 7 };                           // height of the window
-    const int SCROLL_SPEED{ Constants::TILE_SIZE / 10 / (this->currentFps / 30) }; // scroll speed
-
-    const int FONT_SIZE{ Constants::TILE_SIZE / 4 };                               // font size for message box text
 
     bool running{ false };                                                         // determines if the game is running
 
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
 
-    std::array<std::unique_ptr<State>, 3> states{
-            std::make_unique<TitleScreen>(std::move(TitleScreen::getInstance())),
-            std::make_unique<Overworld>(std::move(Overworld::getInstance())),
-            std::make_unique<BattlePhase>(std::move(BattlePhase::getInstance()))
+    std::array<State *, 3> states{
+            &TitleScreen::getInstance(),
+            &Overworld::getInstance(),
+            &BattlePhase::getInstance()
     };
 
-    State *currentState{ this->states[0].get() };
-
-    std::array<Map, 1> maps{
-            Map("Nuvema Town")
-    };
-
-    std::size_t currentMapIndex{ 0 };
-    Map *currentMap{ nullptr };
+    State *currentState{ this->states[static_cast<std::size_t>(State::Id::TITLE_SCREEN)] };
 
     friend class Singleton<Game>;
 
     Game();
 
-    void init();
-
 public:
+    enum : Uint16 {
+        WINDOW_WIDTH = Map::TILE_SIZE * 9,
+        WINDOW_HEIGHT = Map::TILE_SIZE * 7,
+        FONT_SIZE = Map::TILE_SIZE / 4
+    };
+
     ~Game() override;
 
     Game(const Game &) = delete;
@@ -78,10 +61,6 @@ public:
 
     void terminate();
 
-    void saveData();
-
-    void loadData();
-
     [[nodiscard]] int getFps() const;
 
     [[nodiscard]] bool isRunning() const;
@@ -89,16 +68,4 @@ public:
     void setRenderColor(SDL_Color color);
 
     void setState(State::Id id);
-
-    [[nodiscard]] int getScrollSpeed() const;
-
-    [[nodiscard]] int getWindowWidth() const;
-
-    [[nodiscard]] int getWindowHeight() const;
-
-    [[nodiscard]] int getFontSize() const;
-
-    void changeMap(std::size_t index);
-
-    [[nodiscard]] Map *getCurrentMap() const;
 };

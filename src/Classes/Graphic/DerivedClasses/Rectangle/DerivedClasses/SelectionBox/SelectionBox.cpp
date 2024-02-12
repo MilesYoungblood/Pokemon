@@ -44,9 +44,9 @@ void SelectionBox::render() const {
                 Texture(options.at(i), Constants::Color::BLACK).getTexture(),
                 SDL_Rect(
                         this->getDest().x + percent,
-                        this->getDest().y + Game::getInstance().getFontSize() + interval * i,
-                        Game::getInstance().getFontSize() * static_cast<int>(options.at(i).length()),
-                        Game::getInstance().getFontSize()
+                        this->getDest().y + Game::FONT_SIZE + interval * i,
+                        Game::FONT_SIZE * static_cast<int>(options.at(i).length()),
+                        Game::FONT_SIZE
                 )
         );
     }
@@ -54,10 +54,10 @@ void SelectionBox::render() const {
     TextureManager::getInstance().draw(
             Texture("RightArrow.png").getTexture(),
             SDL_Rect(
-                    this->getDest().w - percent + Game::getInstance().getFontSize(),
-                    this->getDest().y + Game::getInstance().getFontSize() + interval * this->current,
-                    Game::getInstance().getFontSize(),
-                    Game::getInstance().getFontSize()
+                    this->getDest().w - percent + Game::FONT_SIZE,
+                    this->getDest().y + Game::FONT_SIZE + interval * this->current,
+                    Game::FONT_SIZE,
+                    Game::FONT_SIZE
             )
     );
 }
