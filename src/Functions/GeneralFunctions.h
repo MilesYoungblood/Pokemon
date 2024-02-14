@@ -10,7 +10,7 @@
 
 class [[maybe_unused]] Sort {
 private:
-    template <typename Comparable, std::size_t size>
+    template<typename Comparable, std::size_t size>
     static void merge(std::array<Comparable, size> &array, const size_t left, const size_t mid, const size_t right) {
         const size_t sub_array_one = mid - left + 1;
         const size_t sub_array_two = right - mid;
@@ -61,7 +61,7 @@ private:
         }
     }
 
-    template <typename Comparable>
+    template<typename Comparable>
     static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
         const size_t sub_array_one = mid - left + 1;
         const size_t sub_array_two = right - mid;
@@ -114,7 +114,7 @@ private:
 
     // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
-    template <typename Comparable, std::size_t size>
+    template<typename Comparable, std::size_t size>
     static void mergeSort(std::array<Comparable, size> &array, const size_t left, const size_t right) {
         if (left < right) {
             const size_t mid = left + (right - left) / 2;
@@ -126,7 +126,7 @@ private:
 
     // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
-    template <typename Comparable>
+    template<typename Comparable>
     static void mergeSort(std::vector<Comparable> &vector, const size_t left, const size_t right) {
         if (left < right) {
             const size_t mid = left + (right - left) / 2;
@@ -255,24 +255,20 @@ inline bool chooseOption(int &option, const int upper) {
                     --option;
                     return false;
                 }
-                else {
-                    continue;
-                }
+                continue;
             }
-            else if (key_states[SDL_SCANCODE_S] == 1U) {
+            if (key_states[SDL_SCANCODE_S] == 1U) {
                 f();
                 if (option + 1 <= upper) {
                     ++option;
                     return false;
                 }
-                else {
-                    continue;
-                }
+                continue;
             }
-            else if (key_states[SDL_SCANCODE_RETURN] == 1U) {
+            if (key_states[SDL_SCANCODE_RETURN] == 1U) {
                 return true;
             }
-            else if (key_states[SDL_SCANCODE_ESCAPE] == 1U) {
+            if (key_states[SDL_SCANCODE_ESCAPE] == 1U) {
                 option = upper;
                 return true;
             }

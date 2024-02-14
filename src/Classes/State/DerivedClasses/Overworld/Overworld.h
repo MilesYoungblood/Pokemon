@@ -17,7 +17,7 @@ private:
     std::size_t currentMapIndex{ 0 };
     Map *currentMap{ nullptr };
 
-    int scrollSpeed = Map::TILE_SIZE / 20;
+    int scrollSpeed{ Map::TILE_SIZE / 20 };
 
     friend class Singleton<Overworld>;
 

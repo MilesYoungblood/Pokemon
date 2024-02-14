@@ -8,7 +8,7 @@
 
 class Graphic {
 private:
-    SDL_Rect dest{ 0, 0, 0, 0};
+    SDL_Rect dest{ 0, 0, 0, 0 };
     bool active{ true };
 
 public:
