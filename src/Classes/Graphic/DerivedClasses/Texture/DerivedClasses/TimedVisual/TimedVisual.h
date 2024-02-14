@@ -4,13 +4,10 @@
 
 #pragma once
 
-#include "../../Graphic.h"
+#include "../../Texture.h"
 
-class TimedVisual : public Graphic {
+class TimedVisual : public Texture {
 private:
-    SDL_Texture *visual;
-    SDL_Rect rect;
-
     int counter{ 0 };
 
     int numFrames;
@@ -26,9 +23,7 @@ public:
 
     TimedVisual &operator=(TimedVisual &&) noexcept = default;
 
-    ~TimedVisual() override;
+    ~TimedVisual() override = default;
 
     void update() override;
-
-    void render() const override;
 };

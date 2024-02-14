@@ -60,8 +60,8 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
         src/Classes/Stopwatch/Stopwatch.h
         src/Classes/Stopwatch/Stopwatch.cpp
-        src/Classes/Graphic/DerivedClasses/Animation/Animation.h
-        src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp
+        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h
+        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
         src/pch.h
@@ -77,8 +77,8 @@ set(SOURCES
         src/Classes/Graphic/Graphic.h
         src/Classes/Singleton/Singleton.h
         src/Classes/Graphic/DerivedClasses/Graphics.h
-        src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp
-        src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.h
+        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp
+        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h
         src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp
         src/Classes/Graphic/DerivedClasses/Texture/Texture.h
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp

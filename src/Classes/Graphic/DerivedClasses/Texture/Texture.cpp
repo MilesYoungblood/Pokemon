@@ -4,11 +4,25 @@
 
 #include "Texture.h"
 
-Texture::Texture(const std::string &path) : texture(TextureManager::getInstance().loadTexture(path)) {}
+Texture::Texture(SDL_Rect dest) : Graphic(dest) {}
 
-Texture::Texture(const std::string &text, SDL_Color fg) : texture(TextureManager::getInstance().loadText(text, fg)) {}
+Texture::Texture(SDL_Texture *txt) : texture(txt) {}
 
-Texture::Texture(Texture &&toMove) noexcept : texture(toMove.texture) {
+void Texture::setTexture(SDL_Texture *newTexture) {
+    this->texture = newTexture;
+}
+
+SDL_Texture *Texture::getTexture() const {
+    return this->texture;
+}
+
+Texture::Texture(const std::string &path, SDL_Rect dest)
+        : Graphic(dest), texture(TextureManager::getInstance().loadTexture(path)) {}
+
+Texture::Texture(const std::string &text, SDL_Color fg, SDL_Rect dest)
+        : Graphic(dest), texture(TextureManager::getInstance().loadText(text, fg)) {}
+
+Texture::Texture(Texture &&toMove) noexcept : Graphic(toMove.getDest()), texture(toMove.texture) {
     toMove.texture = nullptr;
 }
 
@@ -29,8 +43,6 @@ Texture::~Texture() {
 
 void Texture::update() {}
 
-void Texture::render() const {}
-
-SDL_Texture *Texture::getTexture() const {
-    return this->texture;
+void Texture::render() const {
+    TextureManager::getInstance().draw(this->texture, this->getDest());
 }

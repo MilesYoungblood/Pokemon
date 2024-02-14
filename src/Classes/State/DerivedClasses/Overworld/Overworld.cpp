@@ -113,11 +113,11 @@ void Overworld::load() {
 
     std::ifstream saveFile("../docs/data/SaveData.txt");
 
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Cheren", 12, 7, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer(Entity::Id::YOUNGSTER, "Cheren", 12, 7, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
     this->maps[Map::Id::NUVEMA_TOWN][0].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer("Bianca", 18, 16, Direction::DOWN, 3);
+    this->maps[Map::Id::NUVEMA_TOWN].addTrainer(Entity::Id::YOUNGSTER, "Bianca", 18, 16, Direction::DOWN, 3);
     this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue(
             {
                     "Hmm... you look pretty tough...",
@@ -127,6 +127,8 @@ void Overworld::load() {
     );
     this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
+
+    this->maps[Map::Id::NUVEMA_TOWN].addItem<PokeBall>(std::make_pair(7, 18), 0);
 
     if (saveFile) {
         std::string buffer;
@@ -292,7 +294,9 @@ void Overworld::load() {
         this->init();
     }
 
-    Map::loadTextures();
+    Entity::init();
+    Map::init();
+
     loaded = true;
 }
 

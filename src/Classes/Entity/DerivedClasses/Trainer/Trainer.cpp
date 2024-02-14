@@ -12,28 +12,27 @@ Trainer::Trainer() {
     this->items[typeid(BattleItem).hash_code()];
 }
 
-Trainer::Trainer(const char *name, int x, int y) : Entity(name, x, y) {
+Trainer::Trainer(Entity::Id id, const char *name, int x, int y) : Entity(id, name, x, y) {
     this->items[typeid(RestoreItem).hash_code()];
     this->items[typeid(StatusItem).hash_code()];
     this->items[typeid(PokeBall).hash_code()];
     this->items[typeid(BattleItem).hash_code()];
-
-    const std::string base("sprites/Hilbert/HilbertSpriteSheet");
-    const std::string ext = ".png";
-
-    //FIXME change these to not be Hilbert
-    this->setAnimation(Direction::UP, base + "Up" + ext);
-    this->setAnimation(Direction::DOWN, base + "Down" + ext);
-    this->setAnimation(Direction::LEFT, base + "Left" + ext);
-    this->setAnimation(Direction::RIGHT, base + "Right" + ext);
 }
 
-Trainer::Trainer(const char *name, int x, int y, Direction direction) : Trainer(name, x, y) {
-    this->setDirection(direction);
+Trainer::Trainer(Entity::Id id, const char *name, int x, int y, Direction direction)
+        : Entity(id, name, x, y, direction) {
+    this->items[typeid(RestoreItem).hash_code()];
+    this->items[typeid(StatusItem).hash_code()];
+    this->items[typeid(PokeBall).hash_code()];
+    this->items[typeid(BattleItem).hash_code()];
 }
 
-Trainer::Trainer(const char *name, int x, int y, Direction direction, int vision) : Trainer(name, x, y, direction) {
-    this->setVision(vision);
+Trainer::Trainer(Entity::Id id, const char *name, int x, int y, Direction direction, int vision)
+        : Entity(id, name, x, y, direction, vision) {
+    this->items[typeid(RestoreItem).hash_code()];
+    this->items[typeid(StatusItem).hash_code()];
+    this->items[typeid(PokeBall).hash_code()];
+    this->items[typeid(BattleItem).hash_code()];
 }
 
 std::size_t Trainer::partySize() const {

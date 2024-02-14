@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../Entity/Entity.h"
+#include "../../Singleton.h"
 
 // manages key-states
 class KeyManager : public Singleton<KeyManager> {

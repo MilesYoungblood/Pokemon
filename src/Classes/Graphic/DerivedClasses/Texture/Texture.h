@@ -8,12 +8,23 @@
 
 class Texture : public Graphic {
 private:
-    SDL_Texture *texture;
+    SDL_Texture *texture{ nullptr };
+
+protected:
+    Texture() = default;
+
+    explicit Texture(SDL_Rect dest);
+
+    explicit Texture(SDL_Texture *txt);
+
+    void setTexture(SDL_Texture *newTexture);
+
+    [[nodiscard]] SDL_Texture *getTexture() const;
 
 public:
-    explicit Texture(const std::string &path);
+    Texture(const std::string &path, SDL_Rect dest);
 
-    Texture(const std::string &text, SDL_Color fg);
+    Texture(const std::string &text, SDL_Color fg, SDL_Rect dest);
 
     Texture(const Texture &) = delete;
 
@@ -28,6 +39,4 @@ public:
     void update() override;
 
     void render() const override;
-
-    [[nodiscard]] SDL_Texture *getTexture() const;
 };

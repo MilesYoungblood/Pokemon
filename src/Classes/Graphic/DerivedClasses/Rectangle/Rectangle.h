@@ -8,8 +8,6 @@
 
 class Rectangle : public Graphic {
 private:
-    SDL_Rect dest{ 0, 0, 0, 0 };
-
     SDL_Color fg{ Constants::Color::WHITE };
     SDL_Color bg{ Constants::Color::BLACK };
 
@@ -19,10 +17,6 @@ protected:
     Rectangle() = default;
 
     void renderBox() const;
-
-    void setDest(SDL_Rect newDest);
-
-    [[nodiscard]] SDL_Rect getDest() const;
 
     [[nodiscard]] SDL_Color getFg() const;
 

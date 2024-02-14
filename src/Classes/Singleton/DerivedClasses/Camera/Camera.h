@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../../../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
+#include "../../Singleton.h"
 
 class Map;
 

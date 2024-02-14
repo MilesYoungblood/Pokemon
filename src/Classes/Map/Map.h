@@ -34,13 +34,23 @@ public:
 
     Map &operator=(Map &&rhs) noexcept = delete;
 
-    ~Map() = default;
+    ~Map();
 
-    static void loadTextures();
+    static void init();
+
+    static void clean();
 
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
     [[nodiscard]] std::optional<std::tuple<int, int, Map::Id>> isExitPointHere(int x, int y) const;
+
+    template<typename I, typename ...Args>
+    void addItem(const std::pair<int, int> &pos, Args ...args) {
+        this->items.emplace_back(
+                position(pos.first, pos.second, pos.first * Map::TILE_SIZE, pos.second * Map::TILE_SIZE),
+                std::move(std::make_unique<I>(args...))
+        );
+    }
 
     template<typename ...Args>
     void addTrainer(Args ...args) {
@@ -73,6 +83,8 @@ private:
     using position = struct {
         int x;
         int y;
+        int screenX;
+        int screenY;
     };
     using inventory = std::vector<std::pair<position, std::unique_ptr<Item>>>;
 
@@ -80,7 +92,7 @@ private:
 
     std::string music;
 
-    inline static std::unordered_map<std::string, std::shared_ptr<Texture>> textureMap;
+    inline static std::unordered_map<std::string, SDL_Texture *> textureMap;
 
     using tile = struct {
         std::string id;

@@ -887,30 +887,6 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Animation/Animation.obj: src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.obj
-
-# target to build an object file
-src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj
-
-src/Classes/Graphic/DerivedClasses/Animation/Animation.i: src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.i
-
-# target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i
-
-src/Classes/Graphic/DerivedClasses/Animation/Animation.s: src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.s
-
-# target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s
-
 src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 
@@ -1007,6 +983,54 @@ src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
 
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.obj: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.i: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.s: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s
+
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
+
 src/Classes/Graphic/DerivedClasses/Texture/Texture.obj: src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
 
@@ -1030,30 +1054,6 @@ src/Classes/Graphic/DerivedClasses/Texture/Texture.s: src/Classes/Graphic/Derive
 src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s
-
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.obj: src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.obj
-
-# target to build an object file
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
-
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.i: src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.i
-
-# target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i
-
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.s: src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.s
-
-# target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s
 
 src/Classes/Graphic/Graphic.obj: src/Classes/Graphic/Graphic.cpp.obj
 .PHONY : src/Classes/Graphic/Graphic.obj
@@ -2648,9 +2648,6 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Animation/Animation.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
@@ -2663,12 +2660,15 @@ help:
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.s
-	@echo ... src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.i
-	@echo ... src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.s
 	@echo ... src/Classes/Graphic/Graphic.obj
 	@echo ... src/Classes/Graphic/Graphic.i
 	@echo ... src/Classes/Graphic/Graphic.s

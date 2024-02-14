@@ -12,9 +12,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/Overworld/Overworl
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/Trainer.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Animation/Animation.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/Ability.h \
@@ -25,6 +22,8 @@ CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/Overworld/Overworl
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h \
@@ -35,4 +34,5 @@ CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/Overworld/Overworl
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.h
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h

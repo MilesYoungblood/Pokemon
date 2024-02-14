@@ -5,16 +5,6 @@
 #include "../../../../../Singleton/DerivedClasses/Game/Game.h"
 #include "Player.h"
 
-Player::Player() {
-    const std::string base("sprites/Hilbert/HilbertSpriteSheet");
-    const char *ext = ".png";
-
-    this->setAnimation(Direction::UP, base + "Up" + ext);
-    this->setAnimation(Direction::DOWN, base + "Down" + ext);
-    this->setAnimation(Direction::LEFT, base + "Left" + ext);
-    this->setAnimation(Direction::RIGHT, base + "Right" + ext);
-}
-
 Player &Player::getPlayer() {
     static Player player;
     return player;

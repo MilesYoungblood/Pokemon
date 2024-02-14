@@ -88,8 +88,8 @@ void TextureManager::draw(SDL_Texture *texture, const SDL_Rect &dest) {
     SDL_RenderCopy(this->textureRenderer, texture, nullptr, &dest);
 }
 
-void TextureManager::drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int frame, int row) {
-    const SDL_Rect src{ dest.w * frame, dest.h * row, dest.w, dest.h };
+void TextureManager::drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int col, int row) {
+    const SDL_Rect src{ dest.w * col, dest.h * row, dest.w, dest.h };
     SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
 }
 

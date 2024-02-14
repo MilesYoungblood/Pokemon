@@ -5,15 +5,7 @@
 #include "Rectangle.h"
 
 void Rectangle::renderBox() const {
-    TextureManager::getInstance().drawRect(this->dest, this->fg, this->bg, this->borderSize);
-}
-
-void Rectangle::setDest(SDL_Rect newDest) {
-    this->dest = newDest;
-}
-
-SDL_Rect Rectangle::getDest() const {
-    return this->dest;
+    TextureManager::getInstance().drawRect(this->getDest(), this->fg, this->bg, this->borderSize);
 }
 
 SDL_Color Rectangle::getFg() const {
@@ -33,7 +25,7 @@ int Rectangle::getBorderSize() const {
 }
 
 Rectangle::Rectangle(SDL_Rect dest, SDL_Color bg, int borderSize)
-        : dest(dest), fg(Constants::Color::WHITE), bg(bg), borderSize(borderSize) {}
+        : Graphic(dest), fg(Constants::Color::WHITE), bg(bg), borderSize(borderSize) {}
 
 Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize)
-        : dest(dest), fg(fg), bg(bg), borderSize(borderSize) {}
+        : Graphic(dest), fg(fg), bg(bg), borderSize(borderSize) {}

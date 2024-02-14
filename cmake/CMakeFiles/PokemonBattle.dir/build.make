@@ -390,22 +390,22 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Stopwatch\Stopwatch.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Stopwatch\Stopwatch.cpp.s
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp"
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp"
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp.i
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp.i
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Animation\Animation.cpp.s
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\Animation\Animation.cpp.s
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
@@ -509,22 +509,22 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\Graphic.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\Graphic.cpp.s
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp"
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\cmake\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -MD -MT CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj -MF CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp.obj.d -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp.obj -c "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp"
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp.i
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -E "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp" > CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp.i
 
-CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\TimedVisual\TimedVisual.cpp.s
+CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include "C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" -S "C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp" -o CMakeFiles\PokemonBattle.dir\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses\TimedVisual\TimedVisual.cpp.s
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj: CMakeFiles/PokemonBattle.dir/flags.make
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj: CMakeFiles/PokemonBattle.dir/includes_CXX.rsp
@@ -1804,14 +1804,14 @@ PokemonBattle_OBJECTS = \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj" \
-"CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj" \
+"CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/constants.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Ability/Ability.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj" \
-"CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj" \
+"CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj" \
 "CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.cpp.obj" \
@@ -1909,14 +1909,14 @@ PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedCla
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj
-PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj
+PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/constants.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Ability/Ability.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj
-PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
+PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
 PokemonBattle.exe: CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.cpp.obj

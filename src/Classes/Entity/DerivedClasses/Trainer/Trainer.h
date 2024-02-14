@@ -20,11 +20,11 @@ private:
 public:
     Trainer();
 
-    Trainer(const char *name, int x, int y);
+    Trainer(Entity::Id id, const char *name, int x, int y);
 
-    Trainer(const char *name, int x, int y, Direction direction);
+    Trainer(Entity::Id id, const char *name, int x, int y, Direction direction);
 
-    Trainer(const char *name, int x, int y, Direction direction, int vision);
+    Trainer(Entity::Id id, const char *name, int x, int y, Direction direction, int vision);
 
     Trainer(const Trainer &) = delete;
 

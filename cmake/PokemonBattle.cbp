@@ -286,12 +286,6 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Animation/Animation.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
@@ -319,16 +313,22 @@
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.cpp">

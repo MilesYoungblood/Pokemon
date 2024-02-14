@@ -40,8 +40,9 @@ void SelectionBox::render() const {
     const int percent = static_cast<int>(this->getDest().w * 0.05);
 
     for (int i = 0; i < options.size(); ++i) {
-        TextureManager::getInstance().draw(
-                Texture(options.at(i), Constants::Color::BLACK).getTexture(),
+        Texture text(
+                options.at(i),
+                Constants::Color::BLACK,
                 SDL_Rect(
                         this->getDest().x + percent,
                         this->getDest().y + Game::FONT_SIZE + interval * i,
@@ -49,10 +50,11 @@ void SelectionBox::render() const {
                         Game::FONT_SIZE
                 )
         );
+        text.render();
     }
 
-    TextureManager::getInstance().draw(
-            Texture("RightArrow.png").getTexture(),
+    Texture arrow(
+            "RightArrow.png",
             SDL_Rect(
                     this->getDest().w - percent + Game::FONT_SIZE,
                     this->getDest().y + Game::FONT_SIZE + interval * this->current,
@@ -60,4 +62,5 @@ void SelectionBox::render() const {
                     Game::FONT_SIZE
             )
     );
+    arrow.render();
 }

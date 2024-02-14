@@ -4,8 +4,6 @@
 
 #pragma once
 
-#include "../Graphic/DerivedClasses/Animation/Animation.h"
-
 enum class Direction : Uint8 {
     UP, DOWN, LEFT, RIGHT
 };
@@ -30,6 +28,10 @@ class Map;
 
 class Entity {
 public:
+    enum class Id : Uint8 {
+        PLAYER,
+        YOUNGSTER
+    };
     enum class State : Uint8 {
         IDLE,
         WALKING,
@@ -39,9 +41,13 @@ public:
 
     Entity() = default;
 
-    Entity(int x, int y);
+    Entity(Entity::Id id, int x, int y);
 
-    Entity(const char *name, int x, int y);
+    Entity(Entity::Id id, const char *name, int x, int y);
+
+    Entity(Entity::Id id, const char *name, int x, int y, Direction direction);
+
+    Entity(Entity::Id id, const char *name, int x, int y, Direction direction, int vision);
 
     Entity(const Entity &) = delete;
 
@@ -51,7 +57,9 @@ public:
 
     Entity &operator=(Entity &&) noexcept = delete;
 
-    virtual ~Entity() = default;
+    virtual ~Entity();
+
+    static void init();
 
     void setName(const char *newName);
 
@@ -112,12 +120,6 @@ public:
     [[nodiscard]] virtual bool canFight() const;
 
 protected:
-    void setVision(unsigned int newVision);
-
-    void setAnimation(Direction direction, const std::string &path);
-
-    void moveBackward();
-
     virtual void walk();
 
     void collide();
@@ -135,6 +137,8 @@ protected:
 private:
     std::vector<std::string> dialogue;
 
+    Entity::Id id{ Entity::Id::PLAYER };
+
     const char *name{ "" };
 
     int x{ 0 };                                           // x-coordinate on map
@@ -144,13 +148,25 @@ private:
 
     unsigned int vision{ 1 };                             // line of sight
 
-    Direction currentDirection{ Direction::DOWN };        // which way the trainer is facing
-    Entity::State currentState{ Entity::State::IDLE };
+    Direction currentDirection{ Direction::DOWN };        // which way the entity is facing
+    Entity::State currentState{ Entity::State::IDLE };    // dictates what the entity is doing
 
     int walkCounter{ 0 };
     int bumpCounter{ 0 };
 
-    std::unordered_map<Direction, Animation> animations;
+    struct SpriteData {
+        SDL_Texture *sprite{ nullptr };
+        Uint32 numRows{ 0 };
+        Uint32 numCols{ 0 };
+    };
+    using spriteSet = std::unordered_map<Direction, SpriteData>;
+    inline static std::unordered_map<Entity::Id, spriteSet> sprites;
+
+    struct Sprite {
+        int currentCol{ 0 };
+        int currentRow{ 0 };
+    };
+    Sprite sprite;
 
     void (*action)(Entity *){ nullptr };
 };

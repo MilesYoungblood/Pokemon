@@ -5,10 +5,51 @@
 #include "../Singleton/DerivedClasses/Game/Game.h"
 #include "Entity.h"
 
-Entity::Entity(int x, int y) : x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
+Entity::Entity(Entity::Id id, int x, int y) : id(id), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
 
-Entity::Entity(const char *name, int x, int y)
-        : name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
+Entity::Entity(Entity::Id id, const char *name, int x, int y)
+        : id(id), name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
+
+Entity::Entity(Entity::Id id, const char *name, int x, int y, Direction direction)
+        : id(id), name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE), currentDirection(direction) {}
+
+Entity::Entity(Entity::Id id, const char *name, int x, int y, Direction direction, int vision)
+        : id(id), name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE), currentDirection(direction), vision(vision) {}
+
+Entity::~Entity() {
+    for (auto &set : Entity::sprites) {
+        for (auto &animation : set.second) {
+            SDL_DestroyTexture(animation.second.sprite);
+            if (strlen(SDL_GetError()) > 0) {
+                std::clog << "Unable to destroy sprite: " << SDL_GetError() << '\n';
+                SDL_ClearError();
+            }
+        }
+    }
+}
+
+void Entity::init() {
+    auto populate = [](Entity::Id entityId, Direction direction, const char *path) -> void {
+        const std::string base("sprites/Hilbert/HilbertSpriteSheet");
+
+        const auto data = TextureManager::getInstance().loadTextureData(base + path + ".png");
+        Entity::sprites[entityId][direction] = SpriteData(
+                std::get<0>(data),
+                std::get<1>(data) / Map::TILE_SIZE,
+                std::get<2>(data) / Map::TILE_SIZE
+        );
+    };
+
+    populate(Entity::Id::PLAYER, Direction::UP, "Up");
+    populate(Entity::Id::PLAYER, Direction::DOWN, "Down");
+    populate(Entity::Id::PLAYER, Direction::LEFT, "Left");
+    populate(Entity::Id::PLAYER, Direction::RIGHT, "Right");
+
+    populate(Entity::Id::YOUNGSTER, Direction::UP, "Up");
+    populate(Entity::Id::YOUNGSTER, Direction::DOWN, "Down");
+    populate(Entity::Id::YOUNGSTER, Direction::LEFT, "Left");
+    populate(Entity::Id::YOUNGSTER, Direction::RIGHT, "Right");
+}
 
 void Entity::setName(const char *newName) {
     this->name = newName;
@@ -199,7 +240,16 @@ void Entity::setAction(void (*function)(Entity *)) {
 }
 
 void Entity::updateAnimation() {
-    this->animations.at(this->currentDirection).update();
+    ++this->sprite.currentCol;
+
+    if (this->sprite.currentCol == Entity::sprites.at(this->id).at(this->currentDirection).numCols) {
+        this->sprite.currentCol = 0;
+
+        ++this->sprite.currentRow;
+        if (this->sprite.currentRow == Entity::sprites.at(this->id).at(this->currentDirection).numRows) {
+            this->sprite.currentRow = 0;
+        }
+    }
 }
 
 void Entity::update() {
@@ -222,7 +272,12 @@ void Entity::update() {
 
 void Entity::render() const {
     try {
-        this->animations.at(this->currentDirection).render(SDL_Rect(this->screenX, this->screenY, Map::TILE_SIZE, Map::TILE_SIZE));
+        TextureManager::getInstance().drawFrame(
+                Entity::sprites.at(this->id).at(this->currentDirection).sprite,
+                SDL_Rect(this->screenX, this->screenY, Map::TILE_SIZE, Map::TILE_SIZE),
+                this->sprite.currentCol,
+                this->sprite.currentRow
+        );
     }
     catch (const std::exception &e) {
         std::clog << "Error rendering animation: " << e.what() << '\n';
@@ -238,37 +293,12 @@ bool Entity::canFight() const {
     return false;
 }
 
-void Entity::setVision(unsigned int newVision) {
-    this->vision = newVision;
-}
-
-void Entity::setAnimation(Direction direction, const std::string &path) {
-    this->animations[direction] = Animation(path);
-}
-
-void Entity::moveBackward() {
-    switch (this->currentDirection) {
-        case Direction::UP:
-            ++this->y;
-            break;
-        case Direction::RIGHT:
-            --this->x;
-            break;
-        case Direction::DOWN:
-            --this->y;
-            break;
-        case Direction::LEFT:
-            ++this->x;
-            break;
-    }
-}
-
 void Entity::walk() {
     this->walkCounter += Overworld::getInstance().getScrollSpeed();
     this->shift(this->currentDirection, Overworld::getInstance().getScrollSpeed());
 
     if (this->walkCounter % (Map::TILE_SIZE / 2) == 0) {
-        this->animations.at(this->currentDirection).update();
+        this->updateAnimation();
     }
     if (this->walkCounter % Map::TILE_SIZE == 0) {
         this->currentState = Entity::State::IDLE;
@@ -278,7 +308,7 @@ void Entity::walk() {
 
 void Entity::collide() {
     if (this->bumpCounter == 10 * (Game::getInstance().getFps() / 30)) {
-        this->animations.at(this->currentDirection).update();
+        this->updateAnimation();
     }
     else if (this->bumpCounter == 20 * (Game::getInstance().getFps() / 30)) {
         this->currentState = Entity::State::IDLE;

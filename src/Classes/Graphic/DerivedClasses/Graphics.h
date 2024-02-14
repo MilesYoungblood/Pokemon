@@ -4,10 +4,10 @@
 
 #pragma once
 
-#include "Animation/Animation.h"
 #include "Rectangle/Rectangle.h"
 #include "Rectangle/DerivedClasses/ResourceBar/ResourceBar.h"
 #include "Rectangle/DerivedClasses/SelectionBox/SelectionBox.h"
 #include "Rectangle/DerivedClasses/TextBox/TextBox.h"
 #include "Texture/Texture.h"
-#include "TimedVisual/TimedVisual.h"
+#include "Texture/DerivedClasses/Animation/Animation.h"
+#include "Texture/DerivedClasses/TimedVisual/TimedVisual.h"

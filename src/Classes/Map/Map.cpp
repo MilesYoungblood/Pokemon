@@ -4,6 +4,10 @@
 
 #include "Map.h"
 
+namespace {
+    bool called = false;
+}
+
 Map::Map(const char *name) : name(name), music(name) {
     music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
         return c == ' ';
@@ -165,14 +169,20 @@ Map::Map(const char *name) : name(name), music(name) {
     }
 }
 
-void Map::loadTextures() {
+Map::~Map() {
+    if (not called) {
+        std::clog << "Map::clean() not called\n";
+    }
+}
+
+void Map::init() {
     static bool loaded = false;
     if (loaded) {
         return;
     }
 
     for (auto &mapping : Map::textureMap) {
-        Map::textureMap.at(mapping.first) = std::make_shared<Texture>("terrain/" + mapping.first + ".png");
+        Map::textureMap.at(mapping.first) = TextureManager::getInstance().loadTexture("terrain/" + mapping.first + ".png");
         if (Map::textureMap.at(mapping.first) == nullptr) {
             throw std::runtime_error("Error loading texture at \"" + mapping.first + "\"\n");
         }
@@ -181,16 +191,26 @@ void Map::loadTextures() {
     loaded = true;
 }
 
+void Map::clean() {
+    for (auto &mapping : Map::textureMap) {
+        SDL_DestroyTexture(mapping.second);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Unable to destroy map texture: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
+    }
+}
+
 // returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     try {
         return this->collision.at(x).at(y) or (Player::getPlayer().getX() == x and Player::getPlayer().getY() == y) or std::ranges::any_of(this->trainers, [&x, &y](const Trainer &trainer) -> bool {
             return trainer.getX() == x and trainer.getY() == y;
+        }) or std::ranges::any_of(this->items, [&x, &y](const auto &item) -> bool {
+            return item.first.x == x and item.first.y == y;
         });
     }
     catch (const std::exception &e) {
-        std::cout << "X: " << x << '\n';
-        std::cout << "Y: " << y << '\n';
         throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
     }
 }
@@ -244,7 +264,7 @@ std::string Map::getMusic() const {
 // shift the map and its trainers, according to a passed in flag
 void Map::shift(Direction direction, int distance) {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
+    threads.reserve(this->layout.size() + 2);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &direction, &distance] -> void {
@@ -277,6 +297,27 @@ void Map::shift(Direction direction, int distance) {
         }
     });
 
+    threads.emplace_back([this, &direction, &distance] -> void {
+        for (auto &item : this->items) {
+            switch (direction) {
+                case Direction::UP:
+                    item.first.screenY -= distance;
+                    break;
+                case Direction::DOWN:
+                    item.first.screenY += distance;
+                    break;
+                case Direction::LEFT:
+                    item.first.screenX -= distance;
+                    break;
+                case Direction::RIGHT:
+                    item.first.screenX += distance;
+                    break;
+                default:
+                    return;
+            }
+        }
+    });
+
     for (auto &thread : threads) {
         thread.join();
     }
@@ -284,7 +325,7 @@ void Map::shift(Direction direction, int distance) {
 
 void Map::shiftHorizontally(int n) {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
+    threads.reserve(this->layout.size() + 2);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &n] -> void {
@@ -302,6 +343,12 @@ void Map::shiftHorizontally(int n) {
         }
     });
 
+    threads.emplace_back([this, &n] -> void {
+        for (auto &item : this->items) {
+            item.first.screenX += n;
+        }
+    });
+
     for (auto &thread : threads) {
         thread.join();
     }
@@ -309,7 +356,7 @@ void Map::shiftHorizontally(int n) {
 
 void Map::shiftVertically(int n) {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
+    threads.reserve(this->layout.size() + 2);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &n] -> void {
@@ -327,13 +374,19 @@ void Map::shiftVertically(int n) {
         }
     });
 
+    threads.emplace_back([this, &n] -> void {
+        for (auto &item : this->items) {
+            item.first.screenY += n;
+        }
+    });
+
     for (auto &thread : threads) {
         thread.join();
     }
 }
 
 void Map::render() const {
-    static SDL_Rect sdlRect(0, 0, Map::TILE_SIZE, Map::TILE_SIZE);
+    SDL_Rect sdlRect(0, 0, Map::TILE_SIZE, Map::TILE_SIZE);
 
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
@@ -342,7 +395,7 @@ void Map::render() const {
                 sdlRect.y = col.y;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and not col.id.empty()) {
-                    TextureManager::getInstance().draw(Map::textureMap.at(col.id)->getTexture(), sdlRect);
+                    TextureManager::getInstance().draw(Map::textureMap.at(col.id), sdlRect);
                 }
             }
         }
@@ -355,16 +408,29 @@ void Map::render() const {
                     trainer.render();
                 }
             }
+
+            static Texture texture("Item_Overworld_Sprite.png", SDL_Rect(0, 0, 0, 0));
+            for (const auto &item : this->items) {
+                texture.setDest(SDL_Rect(
+                        item.first.screenX + 28,
+                        item.first.screenY + 28,
+                        24,
+                        24
+                ));
+                if (Camera::getInstance().isInView(texture.getDest())) {
+                    texture.render();
+                }
+            }
             Player::getPlayer().render();
         }
     }
 }
 
 // resets the previous map's tile positions
-// as well as the trainer's positions
+// as well as the trainer's and item's positions
 void Map::reset() {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
+    threads.reserve(this->layout.size() + 2);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer] -> void {
@@ -380,6 +446,13 @@ void Map::reset() {
     threads.emplace_back([this] -> void {
         for (auto &trainer : this->trainers) {
             trainer.resetPos();
+        }
+    });
+
+    threads.emplace_back([this] -> void {
+        for (auto &item : this->items) {
+            item.first.screenX = item.first.x * Map::TILE_SIZE;
+            item.first.screenY = item.first.y * Map::TILE_SIZE;
         }
     });
 

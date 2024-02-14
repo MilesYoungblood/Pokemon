@@ -46,7 +46,7 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Animation/Animation.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
@@ -60,7 +60,7 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/TimedVisual/TimedVisual.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 

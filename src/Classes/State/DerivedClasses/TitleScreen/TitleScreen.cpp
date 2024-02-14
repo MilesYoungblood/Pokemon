@@ -68,12 +68,12 @@ void TitleScreen::render() {
             Game::FONT_SIZE
     };
 
-    static Texture logo("PokemonLogo.png");
-    static Texture text("Press enter to continue", Constants::Color::BLACK);
+    static const Texture logo("PokemonLogo.png", logo_rect);
+    static const Texture text("Press enter to continue", Constants::Color::BLACK, message_rect);
 
-    TextureManager::getInstance().draw(logo.getTexture(), logo_rect);
+    logo.render();
 
     if (showPrompt) {
-        TextureManager::getInstance().draw(text.getTexture(), message_rect);
+        text.render();
     }
 }

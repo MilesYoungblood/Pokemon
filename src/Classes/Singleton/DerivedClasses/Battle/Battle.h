@@ -7,6 +7,7 @@
 #include "../../../Item/ItemList.h"
 #include "../../../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../../../Functions/ItemFunctions.h"
+#include "../../Singleton.h"
 
 class Battle : public Singleton<Battle> {
 private:

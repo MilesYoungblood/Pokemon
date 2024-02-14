@@ -10,7 +10,7 @@ class Player : public Trainer {
 private:
     std::array<std::array<std::unique_ptr < Pokemon>, 30>, 12> pc;
 
-    Player();
+    Player() = default;
 
 public:
     static Player &getPlayer();

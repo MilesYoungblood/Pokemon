@@ -9,7 +9,7 @@
 class SelectionBox : public Rectangle {
 private:
     std::vector<std::string> options;
-    int current{};
+    int current{ 0 };
 
 public:
     SelectionBox(SDL_Rect dest, SDL_Color bg, int borderSize, const std::vector<std::string> &options);

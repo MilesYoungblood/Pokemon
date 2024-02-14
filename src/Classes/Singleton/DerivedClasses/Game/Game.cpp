@@ -18,7 +18,7 @@ Game::Game() {
 
     // create window
     this->window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                    this->WINDOW_WIDTH, this->WINDOW_HEIGHT, 0);
+                                    Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0);
     if (this->window == nullptr) {
         std::clog << "Error creating window: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -79,6 +79,8 @@ Game::Game() {
 }
 
 Game::~Game() {
+    Map::clean();
+
     Mix_HaltMusic();
     Mix_HookMusicFinished(nullptr);
     Mix_CloseAudio();

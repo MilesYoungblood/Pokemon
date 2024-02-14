@@ -73,9 +73,9 @@ public:
     /// \brief Draws a frame of a sprite sheet to the renderer.
     /// \param texture texture to be drawn
     /// \param dest destination on the screen
-    /// \param frame current frame
+    /// \param col current column
     /// \param row current row
-    void drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int frame, int row);
+    void drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int col, int row);
 
     /// \brief Draws an empty rectangle to the renderer.
     /// \param dest destination on the screen
