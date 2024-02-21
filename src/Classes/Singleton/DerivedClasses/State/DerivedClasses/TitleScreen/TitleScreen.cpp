@@ -2,7 +2,7 @@
 // Created by Miles on 1/28/2024.
 //
 
-#include "../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../Game/Game.h"
 
 namespace {
     bool showPrompt = true;
@@ -32,16 +32,16 @@ void TitleScreen::update() {
         // FIXME make code following this execute based on MixChannelFinished callback
         Mixer::getInstance().playSound("select");
 
-        Overworld::getInstance().load();
+        State::getInstance<Overworld>().load();
 
         Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
-        Camera::getInstance().lockOnPlayer(Overworld::getInstance().getCurrentMap());
+        Camera::getInstance().lockOnPlayer(State::getInstance<Overworld>().getCurrentMap());
 
-        for (auto &trainer : *Overworld::getInstance().getCurrentMap()) {
+        for (auto &trainer : *State::getInstance<Overworld>().getCurrentMap()) {
             keepLooping[&trainer] = true;
         }
 
-        Mixer::getInstance().playMusic(Overworld::getInstance().getCurrentMap()->getMusic());
+        Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
 
         Game::getInstance().setState(State::Id::OVERWORLD);
         Game::getInstance().setRenderColor(Constants::Color::BLACK);

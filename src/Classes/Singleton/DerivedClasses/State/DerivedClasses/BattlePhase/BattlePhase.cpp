@@ -2,7 +2,7 @@
 // Created by Miles on 1/28/2024.
 //
 
-#include "../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../Game/Game.h"
 #include "BattlePhase.h"
 
 void renderMain() {

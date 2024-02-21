@@ -5,11 +5,10 @@
 #pragma once
 
 #include "../../State.h"
-#include "../../../Singleton/Singleton.h"
 
-class BattlePhase : public State, public Singleton<BattlePhase> {
+class BattlePhase : public State {
 private:
-    friend class Singleton<BattlePhase>;
+    friend class State;
 
     BattlePhase() = default;
 

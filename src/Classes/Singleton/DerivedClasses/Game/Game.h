@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "../../../State/DerivedClasses/States.h"
 #include "../../../Stopwatch/Stopwatch.h"
+#include "../State/DerivedClasses/States.h"
 #include "../KeyManager/KeyManager.h"
 #include "../Mixer/Mixer.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
@@ -25,9 +25,9 @@ private:
     SDL_Renderer *renderer{ nullptr };
 
     std::array<State *, 3> states{
-            &TitleScreen::getInstance(),
-            &Overworld::getInstance(),
-            &BattlePhase::getInstance()
+            &State::getInstance<TitleScreen>(),
+            &State::getInstance<Overworld>(),
+            &State::getInstance<BattlePhase>()
     };
 
     State *currentState{ this->states[static_cast<std::size_t>(State::Id::TITLE_SCREEN)] };

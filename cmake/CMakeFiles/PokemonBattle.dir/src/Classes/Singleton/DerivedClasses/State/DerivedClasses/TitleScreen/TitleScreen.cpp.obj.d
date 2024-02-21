@@ -1,5 +1,5 @@
-CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: \
- C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Entity\Entity.cpp \
+CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj: \
+ C:\Users\Miles\ Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Singleton\DerivedClasses\State\DerivedClasses\TitleScreen\TitleScreen.cpp \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/States.h \

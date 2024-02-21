@@ -5,11 +5,10 @@
 #pragma once
 
 #include "../../State.h"
-#include "../../../Singleton/Singleton.h"
 
-class TitleScreen : public State, public Singleton<TitleScreen> {
+class TitleScreen : public State {
 private:
-    friend class Singleton<TitleScreen>;
+    friend class State;
 
     TitleScreen() = default;
 

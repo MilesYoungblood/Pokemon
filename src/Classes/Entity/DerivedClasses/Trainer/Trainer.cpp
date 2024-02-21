@@ -158,8 +158,8 @@ void Trainer::idle() {
         }
 
         if (not this->isNextTo(&Player::getPlayer())) {
-            this->shift(this->getDirection(), Overworld::getInstance().getScrollSpeed());
-            this->incWalkCounter(Overworld::getInstance().getScrollSpeed());
+            this->shift(this->getDirection(), ::State::getInstance<Overworld>().getScrollSpeed());
+            this->incWalkCounter(::State::getInstance<Overworld>().getScrollSpeed());
 
             if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
                 this->updateAnimation();

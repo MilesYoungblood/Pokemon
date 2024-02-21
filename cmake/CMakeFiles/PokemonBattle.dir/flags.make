@@ -66,9 +66,9 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/Overworld/Overworld.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
@@ -208,5 +208,5 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 

@@ -5,10 +5,9 @@
 #pragma once
 
 #include "../../State.h"
-#include "../../../Singleton/Singleton.h"
-#include "../../../Map/Map.h"
+#include "../../../../../Map/Map.h"
 
-class Overworld : public State, public Singleton<Overworld> {
+class Overworld : public State {
 private:
     std::array<Map, 1> maps{
             Map("Nuvema Town")
@@ -19,13 +18,23 @@ private:
 
     int scrollSpeed{ Map::TILE_SIZE / 20 };
 
-    friend class Singleton<Overworld>;
+    friend class State;
 
     Overworld() = default;
 
     void init();
 
 public:
+    Overworld(const Overworld &) = delete;
+
+    Overworld(Overworld &&) noexcept = delete;
+
+    Overworld &operator=(const Overworld &) = delete;
+
+    Overworld &operator=(Overworld &&) noexcept = delete;
+
+    ~Overworld() override = default;
+
     void update() override;
 
     void render() override;

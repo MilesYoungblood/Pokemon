@@ -83,11 +83,11 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Texture/Texture.h
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h
-        src/Classes/State/State.h
-        src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.cpp
-        src/Classes/State/DerivedClasses/BattlePhase/BattlePhase.h
-        src/Classes/State/DerivedClasses/Overworld/Overworld.cpp
-        src/Classes/State/DerivedClasses/Overworld/Overworld.h
+        src/Classes/Singleton/DerivedClasses/State/State.h
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.cpp
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.h
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp
@@ -254,9 +254,9 @@ set(ITEMS
         ${STATUS_ITEMS}
         ${POKE_BALLS}
         ${BATTLE_ITEMS}
-        src/Classes/State/DerivedClasses/States.h
-        src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.cpp
-        src/Classes/State/DerivedClasses/TitleScreen/TitleScreen.h
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/States.h
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.h
 )
 
 add_executable(PokemonBattle

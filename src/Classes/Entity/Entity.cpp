@@ -294,8 +294,8 @@ bool Entity::canFight() const {
 }
 
 void Entity::walk() {
-    this->walkCounter += Overworld::getInstance().getScrollSpeed();
-    this->shift(this->currentDirection, Overworld::getInstance().getScrollSpeed());
+    this->walkCounter += ::State::getInstance<Overworld>().getScrollSpeed();
+    this->shift(this->currentDirection, ::State::getInstance<Overworld>().getScrollSpeed());
 
     if (this->walkCounter % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();

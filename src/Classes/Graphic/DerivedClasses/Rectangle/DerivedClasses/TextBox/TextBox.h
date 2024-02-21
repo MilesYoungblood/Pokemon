@@ -6,7 +6,7 @@
 
 #include "../../Rectangle.h"
 
-class TextBox : public Rectangle, public Singleton<TextBox> {
+class TextBox : public Rectangle {
 private:
     std::pair<int, int> textPos;
 
@@ -20,11 +20,9 @@ private:
 
     void (*finishedPrinting)(){ nullptr };
 
-    friend Singleton<TextBox>;
-
+public:
     TextBox() = default;
 
-public:
     TextBox(const TextBox &) = default;
 
     TextBox(TextBox &&) noexcept = default;

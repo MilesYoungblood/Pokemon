@@ -2,7 +2,7 @@
 // Created by Miles on 1/28/2024.
 //
 
-#include "../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../Game/Game.h"
 #include "Overworld.h"
 
 void defaultAction(Entity *entity) {
@@ -20,7 +20,7 @@ void defaultAction(Entity *entity) {
             }
             break;
         case 3:
-            if (entity->canMoveForward(Overworld::getInstance().getCurrentMap())) {
+            if (entity->canMoveForward(State::getInstance<Overworld>().getCurrentMap())) {
                 entity->moveForward();
                 entity->setState(Entity::State::WALKING);
 
@@ -388,7 +388,7 @@ void Overworld::changeMap(const std::tuple<int, int, Map::Id> &data) {
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mixer::getInstance().playMusic(Overworld::getInstance().currentMap->getMusic());
+        Mixer::getInstance().playMusic(State::getInstance<Overworld>().currentMap->getMusic());
     });
 
     this->currentMap->reset();
@@ -416,7 +416,7 @@ int Overworld::getScrollSpeed() const {
 }
 
 void Overworld::createTextBox(const std::vector<std::string> &messages) {
-    GraphicsEngine::getInstance().addGraphic<TextBox>(TextBox::getInstance());
+    GraphicsEngine::getInstance().addGraphic<TextBox>();
     GraphicsEngine::getInstance().getGraphic<TextBox>().setFinishedCallback([] -> void {
         KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
     });

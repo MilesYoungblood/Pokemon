@@ -4,7 +4,9 @@
 
 #pragma once
 
-class State {
+#include "../../Singleton.h"
+
+class State : public Singleton<State> {
 protected:
     State() = default;
 
@@ -15,13 +17,19 @@ public:
 
     State(const State &) = delete;
 
-    State(State &&) noexcept = default;
+    State(State &&) noexcept = delete;
 
     State &operator=(const State &) = delete;
 
-    State &operator=(State &&) noexcept = default;
+    State &operator=(State &&) noexcept = delete;
 
-    virtual ~State() = default;
+    ~State() override = default;
+
+    template<typename Derived>
+    inline static Derived &getInstance() {
+        static Derived state;
+        return state;
+    }
 
     virtual void update() = 0;
 
