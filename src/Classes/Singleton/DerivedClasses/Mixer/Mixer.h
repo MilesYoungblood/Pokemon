@@ -24,7 +24,7 @@ public:
 
 private:
     std::unordered_map<std::string, Mix_Chunk *> soundboard;
-    std::unordered_map<std::string, Mix_Music *> playlist;
+    Mix_Music *music{ nullptr };
 
     friend class Singleton<Mixer>;
 

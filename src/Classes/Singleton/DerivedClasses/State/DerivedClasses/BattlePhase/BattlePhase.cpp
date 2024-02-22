@@ -5,7 +5,10 @@
 #include "../../../Game/Game.h"
 #include "BattlePhase.h"
 
-void renderMain() {
+void BattlePhase::initMain() {
+}
+
+void BattlePhase::renderMain() {
     int width;      // stores the text width
     int height;     // stores the text height
 
@@ -77,17 +80,8 @@ void renderMain() {
     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 }
 
-enum class BattleState : Uint8 {
-    MAIN
-};
-
-namespace {
-    BattleState battleState = BattleState::MAIN;
-    std::unordered_map<BattleState, void (*)()> battleFunctions(
-            {
-                    std::make_pair(BattleState::MAIN, renderMain)
-            }
-    );
+void BattlePhase::init() {
+    this->INIT_FUNCTIONS[static_cast<std::size_t>(BattlePhase::BattleState::MAIN)]();
 }
 
 void BattlePhase::update() {
@@ -95,7 +89,7 @@ void BattlePhase::update() {
 }
 
 void BattlePhase::render() {
-    battleFunctions.at(battleState)();
+    this->RENDER_FUNCTIONS.at(static_cast<std::size_t>(this->currentState))();
     GraphicsEngine::getInstance().render();
 
     Game::getInstance().setRenderColor(Constants::Color::WHITE);
