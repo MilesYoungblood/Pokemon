@@ -887,6 +887,30 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
+
 src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 
@@ -2648,6 +2672,9 @@ help:
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s

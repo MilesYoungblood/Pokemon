@@ -15,13 +15,13 @@ private:
     BattlePhase::BattleState currentState{ BattleState::MAIN };
 
     const std::array<std::function<void()>, 1> INIT_FUNCTIONS{
-
+            BattlePhase::initMain
     };
     const std::array<std::function<void()>, 1> RENDER_FUNCTIONS{
             BattlePhase::renderMain
     };
 
-    Trainer *opponent{ nullptr };
+    Entity *opponent{ nullptr };
     std::size_t turn{ 0 };
 
     bool skipPlayer{ false };

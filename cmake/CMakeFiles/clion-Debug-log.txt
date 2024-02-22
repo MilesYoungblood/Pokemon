@@ -9,6 +9,6 @@ CMake Deprecation Warning:
 
 
 64-bit system detected
--- Configuring done (0.8s)
--- Generating done (0.4s)
+-- Configuring done (0.9s)
+-- Generating done (0.3s)
 -- Build files have been written to: C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake

@@ -6,6 +6,7 @@
 
 GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(Animation).hash_code()];
+    this->graphics[typeid(Button).hash_code()];
     this->graphics[typeid(Rectangle).hash_code()];
     this->graphics[typeid(ResourceBar).hash_code()];
     this->graphics[typeid(SelectionBox).hash_code()];

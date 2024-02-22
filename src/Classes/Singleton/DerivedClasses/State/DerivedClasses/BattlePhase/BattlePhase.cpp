@@ -85,6 +85,11 @@ void BattlePhase::init() {
 }
 
 void BattlePhase::update() {
+    if (not this->isRunning) {
+        Game::getInstance().setState(State::Id::OVERWORLD);
+        return;
+    }
+
     GraphicsEngine::getInstance().update();
 }
 
