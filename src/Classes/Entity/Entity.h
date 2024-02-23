@@ -61,6 +61,8 @@ public:
 
     static void init();
 
+    static void clean();
+
     void setName(const char *newName);
 
     [[nodiscard]] virtual std::string getName() const;

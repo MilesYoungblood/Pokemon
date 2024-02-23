@@ -79,6 +79,7 @@ Game::Game() {
 }
 
 Game::~Game() {
+    Entity::clean();
     Map::clean();
 
     Mix_HaltMusic();

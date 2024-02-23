@@ -10,6 +10,13 @@ void BattlePhase::handleInput() {
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         if (not consecutive) {
+            GraphicsEngine::getInstance().removeGraphic<Texture>();
+            GraphicsEngine::getInstance().addGraphic<Texture>(
+                    "RightArrow.png",
+                    SDL_Rect(
+
+                    )
+            );
             this->row = std::max(0, this->row - 1);
             consecutive = true;
         }
@@ -62,7 +69,7 @@ void BattlePhase::initMain() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().push("What will " + Player::getPlayer()[0].getName() + " do?");
 
     GraphicsEngine::getInstance().addGraphic<ResourceBar>(
-            SDL_Rect(Game::WINDOW_WIDTH - 200 - 50, 50, 200, 10),
+            SDL_Rect(Game::WINDOW_WIDTH - 200 - 50, Map::TILE_SIZE * 4, 200, 10),
             Constants::Color::GREEN,
             Constants::Color::BLACK,
             5,

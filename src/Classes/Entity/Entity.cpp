@@ -5,6 +5,10 @@
 #include "../Singleton/DerivedClasses/Game/Game.h"
 #include "Entity.h"
 
+namespace {
+    bool called = false;
+}
+
 Entity::Entity(Entity::Id id, int x, int y) : id(id), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE) {}
 
 Entity::Entity(Entity::Id id, const char *name, int x, int y)
@@ -17,14 +21,8 @@ Entity::Entity(Entity::Id id, const char *name, int x, int y, Direction directio
         : id(id), name(name), x(x), y(y), screenX(x * Map::TILE_SIZE), screenY(y * Map::TILE_SIZE), currentDirection(direction), vision(vision) {}
 
 Entity::~Entity() {
-    for (auto &set : Entity::sprites) {
-        for (auto &animation : set.second) {
-            SDL_DestroyTexture(animation.second.sprite);
-            if (strlen(SDL_GetError()) > 0) {
-                std::clog << "Unable to destroy sprite: " << SDL_GetError() << '\n';
-                SDL_ClearError();
-            }
-        }
+    if (not called) {
+        std::clog << "Entity::clean() not called\n";
     }
 }
 
@@ -49,6 +47,21 @@ void Entity::init() {
     populate(Entity::Id::YOUNGSTER, Direction::DOWN, "Down");
     populate(Entity::Id::YOUNGSTER, Direction::LEFT, "Left");
     populate(Entity::Id::YOUNGSTER, Direction::RIGHT, "Right");
+}
+
+void Entity::clean() {
+    for (auto &set : Entity::sprites) {
+        for (auto &animation : set.second) {
+            if (animation.second.sprite != nullptr) {
+                SDL_DestroyTexture(animation.second.sprite);
+                if (strlen(SDL_GetError()) > 0) {
+                    std::clog << "Unable to destroy sprite: " << SDL_GetError() << '\n';
+                    SDL_ClearError();
+                }
+            }
+        }
+    }
+    called = true;
 }
 
 void Entity::setName(const char *newName) {

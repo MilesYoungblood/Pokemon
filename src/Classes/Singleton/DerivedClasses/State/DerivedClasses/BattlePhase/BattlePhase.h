@@ -23,8 +23,8 @@ private:
     };
 
     std::vector<std::vector<Button *>> options;
-    int col;
-    int row;
+    int col{ 0 };
+    int row{ 0 };
 
     Entity *opponent{ nullptr };
     std::size_t turn{ 0 };
