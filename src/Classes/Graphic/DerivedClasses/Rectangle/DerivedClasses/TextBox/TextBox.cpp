@@ -4,10 +4,8 @@
 
 #include "TextBox.h"
 
-TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) {
-    this->setDest(dest);
+TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) : Rectangle(dest, borderSize){
     this->textPos = std::make_pair(x, y);
-    this->setBorderSize(borderSize);
 }
 
 TextBox::~TextBox() {
@@ -75,8 +73,7 @@ void TextBox::update() {
 }
 
 void TextBox::render() const {
-    TextureManager::getInstance().drawRect(this->getDest(), Constants::Color::WHITE, Constants::Color::BLACK,
-                                           this->getBorderSize());
+    this->renderBox();
 
     TextureManager::getInstance().draw(
             this->text,

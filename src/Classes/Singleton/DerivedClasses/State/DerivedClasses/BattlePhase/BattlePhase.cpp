@@ -5,6 +5,44 @@
 #include "../../../Game/Game.h"
 #include "BattlePhase.h"
 
+void BattlePhase::handleInput() {
+    static bool consecutive = false;
+
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
+        if (not consecutive) {
+            this->row = std::max(0, this->row - 1);
+            consecutive = true;
+        }
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
+        if (not consecutive) {
+            this->col = std::max(0, this->col - 1);
+            consecutive = true;
+        }
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
+        if (not consecutive) {
+            this->row = std::min(this->row + 1, static_cast<int>(this->options.size()) - 1);
+            consecutive = true;
+        }
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
+        if (not consecutive) {
+            this->col = std::min(this->col + 1, static_cast<int>(this->options.size()) - 1);
+            consecutive = true;
+        }
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+        if (not consecutive) {
+            this->options[this->col][this->row]->click();
+            consecutive = true;
+        }
+    }
+    else {
+        consecutive = false;
+    }
+}
+
 void BattlePhase::initMain() {
     const int box_width = Map::TILE_SIZE * 7;
     const int box_height = Map::TILE_SIZE * 2;
@@ -31,6 +69,8 @@ void BattlePhase::initMain() {
             100
     );
 
+    this->options = std::vector<std::vector<Button *>>(2, std::vector<Button *>(2, nullptr));
+
     SDL_Rect button(
             Game::WINDOW_WIDTH - Map::TILE_SIZE / 10 - Game::WINDOW_WIDTH / 4 + Map::TILE_SIZE / 5,
             Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2,
@@ -48,6 +88,8 @@ void BattlePhase::initMain() {
             nullptr
     );
 
+    this->options[1][1] = &GraphicsEngine::getInstance().getGraphic<Button>(0);
+
     button.y = button.y - button.h - static_cast<int>(button.y * 0.025);
     GraphicsEngine::getInstance().addGraphic<Button>(
             button,
@@ -56,6 +98,8 @@ void BattlePhase::initMain() {
             "Bag",
             nullptr
     );
+
+    this->options[1][0] = &GraphicsEngine::getInstance().getGraphic<Button>(1);
 
     button.x = button.x - button.w - static_cast<int>(button.x * 0.025);
     GraphicsEngine::getInstance().addGraphic<Button>(
@@ -66,6 +110,8 @@ void BattlePhase::initMain() {
             nullptr
     );
 
+    this->options[0][0] = &GraphicsEngine::getInstance().getGraphic<Button>(2);
+
     button.y = Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2;
     GraphicsEngine::getInstance().addGraphic<Button>(
             button,
@@ -74,6 +120,8 @@ void BattlePhase::initMain() {
             "Pokemon",
             nullptr
     );
+
+    this->options[0][1] = &GraphicsEngine::getInstance().getGraphic<Button>(3);
 }
 
 void BattlePhase::init() {
@@ -86,6 +134,7 @@ void BattlePhase::update() {
         return;
     }
 
+    this->handleInput();
     GraphicsEngine::getInstance().update();
 }
 

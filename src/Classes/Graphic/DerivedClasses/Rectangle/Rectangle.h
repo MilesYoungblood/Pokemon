@@ -22,8 +22,6 @@ protected:
 
     [[nodiscard]] SDL_Color getBg() const;
 
-    void setBorderSize(int n);
-
     [[nodiscard]] int getBorderSize() const;
 
 public:

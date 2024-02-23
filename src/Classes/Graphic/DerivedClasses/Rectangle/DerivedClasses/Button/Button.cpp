@@ -8,6 +8,10 @@ Button::Button(SDL_Rect dest, SDL_Color color, int borderSize, std::string label
         : Rectangle(dest, color, borderSize), text(std::move(label)), onClick(f) {}
 
 void Button::click() {
+    if (this->onClick == nullptr) {
+        std::clog << "This button \"" << this->text << "\" does nothing\n";
+        return;
+    }
     this->onClick();
 }
 

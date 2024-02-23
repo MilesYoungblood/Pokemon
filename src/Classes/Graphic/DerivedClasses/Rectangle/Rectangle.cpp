@@ -16,10 +16,6 @@ SDL_Color Rectangle::getBg() const {
     return this->bg;
 }
 
-void Rectangle::setBorderSize(int n) {
-    this->borderSize = n;
-}
-
 int Rectangle::getBorderSize() const {
     return this->borderSize;
 }

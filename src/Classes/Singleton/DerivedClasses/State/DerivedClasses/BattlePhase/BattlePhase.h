@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../../../../../Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h"
 #include "../../../../../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../State.h"
 
@@ -15,11 +16,15 @@ private:
     BattlePhase::BattleState currentState{ BattleState::MAIN };
 
     const std::array<std::function<void()>, 1> INIT_FUNCTIONS{
-            BattlePhase::initMain
+            [this] -> void { this->initMain(); }
     };
     const std::array<std::function<void()>, 1> RENDER_FUNCTIONS{
             [] -> void {}
     };
+
+    std::vector<std::vector<Button *>> options;
+    int col;
+    int row;
 
     Entity *opponent{ nullptr };
     std::size_t turn{ 0 };
@@ -33,7 +38,9 @@ private:
 
     BattlePhase() = default;
 
-    static void initMain();
+    void handleInput();
+
+    void initMain();
 
 public:
     void init();
