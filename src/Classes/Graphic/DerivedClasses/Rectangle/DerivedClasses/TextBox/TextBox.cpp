@@ -4,18 +4,18 @@
 
 #include "TextBox.h"
 
+TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) {
+    this->setDest(dest);
+    this->textPos = std::make_pair(x, y);
+    this->setBorderSize(borderSize);
+}
+
 TextBox::~TextBox() {
     SDL_DestroyTexture(this->text);
     if (strlen(SDL_GetError()) > 0) {
         std::clog << "Error destroying text: " << SDL_GetError() << '\n';
         SDL_ClearError();
     }
-}
-
-void TextBox::init(SDL_Rect newRect, int newBorder, int x, int y) {
-    this->setDest(newRect);
-    this->textPos = std::make_pair(x, y);
-    this->setBorderSize(newBorder);
 }
 
 void TextBox::push(const char *message) {
@@ -58,7 +58,8 @@ void TextBox::update() {
         const std::string buff(this->messages.front());
         const std::string buffer(this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " ");
 
-        const auto data = TextureManager::getInstance().loadTextData(buffer, Constants::Color::BLACK, this->getDest().w);
+        const auto data = TextureManager::getInstance().loadTextData(buffer, Constants::Color::BLACK,
+                                                                     this->getDest().w);
         // recreate the text
         this->text = std::get<0>(data);
 

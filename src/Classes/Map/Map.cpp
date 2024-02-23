@@ -199,6 +199,7 @@ void Map::clean() {
             SDL_ClearError();
         }
     }
+    called = true;
 }
 
 // returns true if an obstruction is at the passed coordinates

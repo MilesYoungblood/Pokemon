@@ -416,11 +416,6 @@ int Overworld::getScrollSpeed() const {
 }
 
 void Overworld::createTextBox(const std::vector<std::string> &messages) {
-    GraphicsEngine::getInstance().addGraphic<TextBox>();
-    GraphicsEngine::getInstance().getGraphic<TextBox>().setFinishedCallback([] -> void {
-        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-    });
-
     const int box_width = Map::TILE_SIZE * 7;
     const int box_height = Map::TILE_SIZE * 2;
     const SDL_Rect rect(
@@ -429,12 +424,17 @@ void Overworld::createTextBox(const std::vector<std::string> &messages) {
             box_width,
             box_height - Map::TILE_SIZE / 2
     );
-    GraphicsEngine::getInstance().getGraphic<TextBox>().init(
+
+    GraphicsEngine::getInstance().addGraphic<TextBox>(
             rect,
             rect.h / (Map::TILE_SIZE * 3 / 10),
             rect.x + Map::TILE_SIZE / 10,
             rect.y + Map::TILE_SIZE / 10
     );
+    GraphicsEngine::getInstance().getGraphic<TextBox>().setFinishedCallback([] -> void {
+        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    });
+
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(messages);
 }
 
@@ -494,23 +494,16 @@ void Overworld::handleReturn() {
                         Mixer::getInstance().playSound("accept");
                     }
                 }
-                else {
+                if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
                     GraphicsEngine::getInstance().removeGraphic<TextBox>();
 
                     if (trainer.canFight()) {
-                        Mixer::getInstance().playMusic("TrainerBattle");
-
-                        trainer.clearParty();
                         Game::getInstance().setState(State::Id::BATTLE);
                         Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                        GraphicsEngine::getInstance().addGraphic<ResourceBar>(
-                                SDL_Rect(Game::WINDOW_WIDTH - 200 - 50, 50, 200, 10),
-                                Constants::Color::GREEN,
-                                Constants::Color::BLACK,
-                                5,
-                                100
-                        );
+                        State::getInstance<BattlePhase>().init();
+
+                        Mixer::getInstance().playMusic("TrainerBattle");
                     }
                     else {
                         Player::getPlayer().setState(Entity::State::IDLE);

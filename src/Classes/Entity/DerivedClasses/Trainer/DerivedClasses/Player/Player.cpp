@@ -29,7 +29,7 @@ void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
 void Player::walk() {
     this->incWalkCounter(::State::getInstance<Overworld>().getScrollSpeed());
     ::State::getInstance<Overworld>().getCurrentMap()->shift(oppositeDirection(this->getDirection()),
-                                                    ::State::getInstance<Overworld>().getScrollSpeed());
+                                                             ::State::getInstance<Overworld>().getScrollSpeed());
 
     if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
@@ -69,7 +69,7 @@ void Player::idle() {
         else {
             GraphicsEngine::getInstance().addGraphic<SelectionBox>(
                     SDL_Rect(50, 50, 250, 300),
-                    Constants::Color::BLACK,
+                    Constants::Color::WHITE,
                     5,
                     std::vector<std::string>({ "Pokemon", "Pokedex", "Bag", "Trainer", "Save", "Options" })
             );

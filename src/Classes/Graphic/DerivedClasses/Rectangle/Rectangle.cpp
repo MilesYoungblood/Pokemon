@@ -24,8 +24,10 @@ int Rectangle::getBorderSize() const {
     return this->borderSize;
 }
 
-Rectangle::Rectangle(SDL_Rect dest, SDL_Color bg, int borderSize)
-        : Graphic(dest), fg(Constants::Color::WHITE), bg(bg), borderSize(borderSize) {}
+Rectangle::Rectangle(SDL_Rect dest, int borderSize) : Graphic(dest), borderSize(borderSize) {}
+
+Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, int borderSize)
+        : Graphic(dest), fg(fg), bg(Constants::Color::BLACK), borderSize(borderSize) {}
 
 Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize)
         : Graphic(dest), fg(fg), bg(bg), borderSize(borderSize) {}

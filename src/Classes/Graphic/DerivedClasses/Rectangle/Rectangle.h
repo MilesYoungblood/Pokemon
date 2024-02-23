@@ -27,7 +27,9 @@ protected:
     [[nodiscard]] int getBorderSize() const;
 
 public:
-    Rectangle(SDL_Rect dest, SDL_Color bg, int borderSize);
+    Rectangle(SDL_Rect dest, int borderSize);
+
+    Rectangle(SDL_Rect dest, SDL_Color fg, int borderSize);
 
     Rectangle(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize);
 

@@ -23,7 +23,7 @@ void Mixer::playSound(const char *name) {
 
 void Mixer::playMusic(const std::string &name) {
     Mix_FreeMusic(this->music);
-    this->music = Mix_LoadMUS(name.c_str());
+    this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + name + ".mp3").data());
 
     if (Mix_PlayMusic(this->music, -1) == -1) {
         std::clog << "Error playing music: " << SDL_GetError() << '\n';

@@ -18,7 +18,7 @@ private:
             BattlePhase::initMain
     };
     const std::array<std::function<void()>, 1> RENDER_FUNCTIONS{
-            BattlePhase::renderMain
+            [] -> void {}
     };
 
     Entity *opponent{ nullptr };
@@ -34,8 +34,6 @@ private:
     BattlePhase() = default;
 
     static void initMain();
-
-    static void renderMain();
 
 public:
     void init();

@@ -16,4 +16,8 @@ public:
     Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, void (*f)());
 
     void click();
+
+    void update() override;
+
+    void render() const override;
 };

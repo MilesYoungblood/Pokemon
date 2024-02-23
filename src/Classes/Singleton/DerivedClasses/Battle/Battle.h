@@ -30,11 +30,7 @@ private:
 
     void introMessage();
 
-    void displayChoices(int arrow, bool &print);
-
     void displayPokemon(int arrow, bool &index);
-
-    void displayHpBar(bool displayPokemon);
 
     static void faintMessage(const Pokemon &pokemon);
 

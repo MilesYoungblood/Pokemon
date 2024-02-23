@@ -21,7 +21,7 @@ private:
     void (*finishedPrinting)(){ nullptr };
 
 public:
-    TextBox() = default;
+    TextBox(SDL_Rect dest, int borderSize, int x, int y);
 
     TextBox(const TextBox &) = default;
 
@@ -32,8 +32,6 @@ public:
     TextBox &operator=(TextBox &&) noexcept = default;
 
     ~TextBox() override;
-
-    void init(SDL_Rect newRect, int newBorder, int x, int y);
 
     void push(const char *message);
 
