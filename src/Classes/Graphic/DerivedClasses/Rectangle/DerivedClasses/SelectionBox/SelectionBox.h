@@ -9,6 +9,7 @@
 class SelectionBox : public Rectangle {
 private:
     std::vector<std::string> options;
+    std::vector<void (*)()> functions;
     int current{ 0 };
 
 public:

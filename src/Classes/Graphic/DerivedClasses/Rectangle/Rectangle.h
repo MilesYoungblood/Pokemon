@@ -14,8 +14,6 @@ private:
     int borderSize{ 0 };
 
 protected:
-    Rectangle() = default;
-
     void renderBox() const;
 
     [[nodiscard]] SDL_Color getFg() const;

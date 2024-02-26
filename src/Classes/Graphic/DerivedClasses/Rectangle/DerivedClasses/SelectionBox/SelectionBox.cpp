@@ -6,11 +6,17 @@
 #include "SelectionBox.h"
 
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize, const std::vector<std::string> &options)
-        : Rectangle(dest, fg, borderSize), options(options) {}
+        : Rectangle(dest, fg, borderSize), options(options) {
+    // FIXME eventually have constructor take in functions
+    this->functions = std::vector<void (*)()>(options.size(), nullptr);
+}
 
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize,
                            const std::vector<std::string> &options)
-        : Rectangle(dest, fg, bg, borderSize), options(options) {}
+        : Rectangle(dest, fg, bg, borderSize), options(options) {
+    // FIXME eventually have constructor take in functions
+    this->functions = std::vector<void (*)()>(options.size(), nullptr);
+}
 
 void SelectionBox::update() {
     static bool consecutive = false;
@@ -24,6 +30,17 @@ void SelectionBox::update() {
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
         if (not consecutive) {
             this->current = std::min(static_cast<int>(this->options.size() - 1), this->current + 1);
+            consecutive = true;
+        }
+    }
+    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+        if (not consecutive) {
+            if (this->functions[this->current] != nullptr) {
+                this->functions[this->current]();
+            }
+            else {
+                std::clog << "This option doesn't do anything\n";
+            }
             consecutive = true;
         }
     }
