@@ -42,9 +42,11 @@ void TextBox::pop() {
 }
 
 void TextBox::update() {
+    static bool called = false;
     // if the message has not yet completed concatenation
     if (this->lettersPrinted <= this->messages.front().length()) {
         if (this->text != nullptr) {
+            called = false;
             // safe delete the current text
             SDL_DestroyTexture(this->text);
             if (strlen(SDL_GetError()) > 0) {
@@ -69,8 +71,12 @@ void TextBox::update() {
 
         ++this->lettersPrinted;
     }
-    else if (this->finishedPrinting != nullptr) {
-        this->finishedPrinting();
+    else if (not called) {
+        // TODO care; this could be causing a logic error with input of Return
+        if (this->finishedPrinting != nullptr) {
+            this->finishedPrinting();
+        }
+        called = true;
     }
 }
 

@@ -94,6 +94,8 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp
+        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
 )
 
 set(POKEMON

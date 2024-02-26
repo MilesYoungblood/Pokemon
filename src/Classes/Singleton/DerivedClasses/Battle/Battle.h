@@ -28,8 +28,6 @@ private:
 
     static void returnMessage(const Pokemon &pokemon);
 
-    void introMessage();
-
     void displayPokemon(int arrow, bool &index);
 
     static void faintMessage(const Pokemon &pokemon);
@@ -37,10 +35,6 @@ private:
     static void forcedSwitchPrompt(int arrow, bool &print);
 
     bool run();
-
-    static void runMessage(bool runStatus);
-
-    static void runErrorMessage();
 
     static void pokemonPrompt(int arrow, bool &print);
 

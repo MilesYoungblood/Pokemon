@@ -4,7 +4,7 @@
 
 #include "Button.h"
 
-Button::Button(SDL_Rect dest, SDL_Color color, int borderSize, std::string label, void (*f)())
+Button::Button(SDL_Rect dest, SDL_Color color, int borderSize, std::string label, std::function<void()> f)
         : Rectangle(dest, color, borderSize), text(std::move(label)), onClick(f) {}
 
 void Button::click() {

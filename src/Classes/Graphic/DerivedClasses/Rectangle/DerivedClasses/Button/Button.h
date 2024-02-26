@@ -10,10 +10,10 @@ class Button : public Rectangle {
 private:
     std::string text;
 
-    void (*onClick)();
+    std::function<void()> onClick;
 
 public:
-    Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, void (*f)());
+    Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, std::function<void()> f);
 
     void click();
 

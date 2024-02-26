@@ -26,11 +26,12 @@ private:
     int col{ 0 };
     int row{ 0 };
 
-    Entity *opponent{ nullptr };
+    Trainer *opponent{ nullptr };
     std::size_t turn{ 0 };
 
     bool skipPlayer{ false };
     bool skipOpponent{ false };
+    bool canRunAway{ false };
 
     bool isRunning{ true };
 
@@ -43,7 +44,7 @@ private:
     void initMain();
 
 public:
-    void init();
+    void init(Trainer *trainer, bool isTrainer);
 
     void update() override;
 

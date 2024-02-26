@@ -501,7 +501,7 @@ void Overworld::handleReturn() {
                         Game::getInstance().setState(State::Id::BATTLE);
                         Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                        State::getInstance<BattlePhase>().init();
+                        State::getInstance<BattlePhase>().init(&trainer, true);
 
                         Mixer::getInstance().playMusic("TrainerBattle");
                     }

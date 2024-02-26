@@ -17,13 +17,6 @@ void Battle::returnMessage(const Pokemon &pokemon) {
     std::cout << pokemon.getName() + ", return! ";
 }
 
-void Battle::introMessage() {
-    Battle::sendOutMessage((*this->opponent)[0], false);
-    //pressEnter();
-    Battle::sendOutMessage((*this->player)[0], true);
-    //pressEnter();
-}
-
 void Battle::displayPokemon(const int arrow, bool &print) {
     auto printOut = [this](const char *string, const int index) -> void {
         std::cout << string << (*this->player)[index].getName() << std::string(15 - (*this->player)[index].getName().length(), ' ')
@@ -71,16 +64,6 @@ bool Battle::run() {
                     + 30 };
 
     return opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds;
-}
-
-void Battle::runMessage(const bool runStatus) {
-    runStatus ? std::cout << "Got away safely!\n" : std::cout << "Couldn't getKey away!\n";
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-}
-
-void Battle::runErrorMessage() {
-    std::cout << "You can't run away from a trainer battle!";
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void Battle::pokemonPrompt(const int arrow, bool &print) {
@@ -208,7 +191,7 @@ void Battle::switchOut(Trainer *trainer, const bool isUser) {
         //FIXME does not take into account trainer battle
         if (toSwitch == 1) {
             const bool run_success = run();
-            Battle::runMessage(run_success);
+            //Battle::runMessage(run_success);
             if (run_success) {
                 this->isRunning = false;
                 return;
@@ -767,14 +750,14 @@ bool Battle::runAway(bool &skip, const bool canRun) {
     //this->displayHpBar();
 
     if (not canRun) {
-        Battle::runErrorMessage();
+        //Battle::runErrorMessage();
         skip = true;
         return false;
     }
     //bool runAway = run();
     //FIXME commented out for testing purposes
     const bool run_away = true;
-    Battle::runMessage(run_away);
+    //Battle::runMessage(run_away);
 
     return run_away;
 }
@@ -916,7 +899,7 @@ void Battle::init(Player *trainer1, Trainer *trainer2) {
 
 void Battle::engageBattle(const bool isTrainer) {
     //this->displayHpBar(false);
-    this->introMessage();
+    //this->introMessage();
 
     ++this->turn;
 

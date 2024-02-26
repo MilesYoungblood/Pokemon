@@ -10,13 +10,6 @@ void BattlePhase::handleInput() {
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         if (not consecutive) {
-            GraphicsEngine::getInstance().removeGraphic<Texture>();
-            GraphicsEngine::getInstance().addGraphic<Texture>(
-                    "RightArrow.png",
-                    SDL_Rect(
-
-                    )
-            );
             this->row = std::max(0, this->row - 1);
             consecutive = true;
         }
@@ -69,7 +62,7 @@ void BattlePhase::initMain() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().push("What will " + Player::getPlayer()[0].getName() + " do?");
 
     GraphicsEngine::getInstance().addGraphic<ResourceBar>(
-            SDL_Rect(Game::WINDOW_WIDTH - 200 - 50, Map::TILE_SIZE * 4, 200, 10),
+            SDL_Rect(Game::WINDOW_WIDTH - 250, Map::TILE_SIZE * 4, 200, 10),
             Constants::Color::GREEN,
             5,
             100
@@ -79,7 +72,7 @@ void BattlePhase::initMain() {
 
     SDL_Rect button(
             Game::WINDOW_WIDTH - Map::TILE_SIZE / 10 - Game::WINDOW_WIDTH / 4 + Map::TILE_SIZE / 5,
-            Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2,
+            Game::WINDOW_HEIGHT - static_cast<Uint16>(Map::TILE_SIZE),
             Game::WINDOW_WIDTH / 4 - Map::TILE_SIZE / 2,
             Map::TILE_SIZE / 2
     );
@@ -91,7 +84,23 @@ void BattlePhase::initMain() {
             Constants::Color::BLUE,
             border_size,
             "Run",
-            nullptr
+            [this] -> void {
+                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+                if (not this->canRunAway) {
+                    GraphicsEngine::getInstance().getGraphic<TextBox>().push("You can't run away from a trainer battle!");
+                }
+                else {
+                    const int opponent_speed = static_cast<int>((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256;
+                    const int odds = static_cast<int>((Player::getPlayer()[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
+
+                    if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
+                    }
+                    else {
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().push("Couldn't get away");
+                    }
+                }
+            }
     );
 
     this->options[1][1] = &GraphicsEngine::getInstance().getGraphic<Button>(0);
@@ -118,7 +127,7 @@ void BattlePhase::initMain() {
 
     this->options[0][0] = &GraphicsEngine::getInstance().getGraphic<Button>(2);
 
-    button.y = Game::WINDOW_HEIGHT - Map::TILE_SIZE / 2 - Map::TILE_SIZE / 2;
+    button.y = Game::WINDOW_HEIGHT - static_cast<Uint16>(Map::TILE_SIZE);
     GraphicsEngine::getInstance().addGraphic<Button>(
             button,
             Constants::Color::GREEN,
@@ -130,12 +139,24 @@ void BattlePhase::initMain() {
     this->options[0][1] = &GraphicsEngine::getInstance().getGraphic<Button>(3);
 }
 
-void BattlePhase::init() {
+void BattlePhase::init(Trainer *trainer, bool isTrainer) {
+    this->opponent = trainer;
+    this->canRunAway = isTrainer;
     this->INIT_FUNCTIONS[static_cast<std::size_t>(BattlePhase::BattleState::MAIN)]();
 }
 
 void BattlePhase::update() {
     if (not this->isRunning) {
+        this->options.clear();
+        this->col = 0;
+        this->row = 0;
+
+        this->opponent = nullptr;
+        this->turn = 0;
+
+        this->skipPlayer = false;
+        this->skipOpponent = false;
+
         Game::getInstance().setState(State::Id::OVERWORLD);
         return;
     }

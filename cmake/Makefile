@@ -911,6 +911,30 @@ src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
 
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj
+
+# target to build an object file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i
+
+# target to preprocess a source file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
+
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
+.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
+
 src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
 .PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 
@@ -2675,6 +2699,9 @@ help:
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i
+	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
 	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
