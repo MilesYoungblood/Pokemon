@@ -4,9 +4,9 @@
 
 #include "Texture.h"
 
-Texture::Texture(SDL_Rect dest) : Graphic(dest) {}
+Texture::Texture(SDL_Rect dest) : Graphic(dest), texture(nullptr) {}
 
-Texture::Texture(SDL_Texture *txt) : texture(txt) {}
+Texture::Texture(SDL_Rect dest, SDL_Texture *txt) : Graphic(dest), texture(txt) {}
 
 void Texture::setTexture(SDL_Texture *newTexture) {
     this->texture = newTexture;

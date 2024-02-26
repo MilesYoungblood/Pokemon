@@ -4,8 +4,8 @@
 
 #include "ResourceBar.h"
 
-ResourceBar::ResourceBar(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize, int amount)
-        : Rectangle(dest, fg, bg, borderSize), progress(amount) {}
+ResourceBar::ResourceBar(SDL_Rect dest, SDL_Color fg, int borderSize, int amount)
+        : Rectangle(dest, fg, borderSize), progress(amount) {}
 
 void ResourceBar::raise(int n) {
     this->progress = std::max(this->progress + n, 100);

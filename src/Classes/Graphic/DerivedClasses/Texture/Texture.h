@@ -8,14 +8,12 @@
 
 class Texture : public Graphic {
 private:
-    SDL_Texture *texture{ nullptr };
+    SDL_Texture *texture;
 
 protected:
-    Texture() = default;
-
     explicit Texture(SDL_Rect dest);
 
-    explicit Texture(SDL_Texture *txt);
+    Texture(SDL_Rect dest, SDL_Texture *txt);
 
     void setTexture(SDL_Texture *newTexture);
 

@@ -11,7 +11,7 @@ private:
     int progress;
 
 public:
-    ResourceBar(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize, int amount);
+    ResourceBar(SDL_Rect dest, SDL_Color fg, int borderSize, int amount);
 
     void raise(int n);
 

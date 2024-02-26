@@ -44,11 +44,13 @@ void TextBox::pop() {
 void TextBox::update() {
     // if the message has not yet completed concatenation
     if (this->lettersPrinted <= this->messages.front().length()) {
-        // safe delete the current text
-        SDL_DestroyTexture(this->text);
-        if (strlen(SDL_GetError()) > 0) {
-            std::clog << "Error destroying text: " << SDL_GetError() << '\n';
-            SDL_ClearError();
+        if (this->text != nullptr) {
+            // safe delete the current text
+            SDL_DestroyTexture(this->text);
+            if (strlen(SDL_GetError()) > 0) {
+                std::clog << "Error destroying text: " << SDL_GetError() << '\n';
+                SDL_ClearError();
+            }
         }
 
         // buffer is required to store the substring

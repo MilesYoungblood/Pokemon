@@ -71,7 +71,6 @@ void BattlePhase::initMain() {
     GraphicsEngine::getInstance().addGraphic<ResourceBar>(
             SDL_Rect(Game::WINDOW_WIDTH - 200 - 50, Map::TILE_SIZE * 4, 200, 10),
             Constants::Color::GREEN,
-            Constants::Color::BLACK,
             5,
             100
     );

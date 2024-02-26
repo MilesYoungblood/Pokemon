@@ -11,7 +11,7 @@ private:
     SDL_Color fg{ Constants::Color::WHITE };
     SDL_Color bg{ Constants::Color::BLACK };
 
-    int borderSize{ 0 };
+    int borderSize;
 
 protected:
     void renderBox() const;

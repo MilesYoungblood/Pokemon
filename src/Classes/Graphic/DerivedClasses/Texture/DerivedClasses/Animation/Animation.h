@@ -15,8 +15,6 @@ private:
     int currentRow{ 0 };
 
 public:
-    Animation() = default;
-
     Animation(const std::string &path, SDL_Rect rect);
 
     Animation(const Animation &) = delete;

@@ -13,7 +13,7 @@ Animation::Animation(const std::string &path, SDL_Rect rect) : Texture(rect) {
 }
 
 Animation::Animation(Animation &&toMove) noexcept
-        : Texture(toMove.getTexture()), numRows(toMove.numRows), numCols(toMove.numCols) {
+        : Texture(toMove.getDest(), toMove.getTexture()), numRows(toMove.numRows), numCols(toMove.numCols) {
     toMove.setTexture(nullptr);
 }
 

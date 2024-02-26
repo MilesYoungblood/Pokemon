@@ -8,12 +8,10 @@
 
 class Graphic {
 private:
-    SDL_Rect dest{ 0, 0, 0, 0 };
+    SDL_Rect dest;
     bool active{ true };
 
 public:
-    Graphic() = default;
-
     explicit Graphic(SDL_Rect rect);
 
     Graphic(const Graphic &) = default;
