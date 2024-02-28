@@ -22,10 +22,6 @@ private:
             [] -> void {}
     };
 
-    std::vector<std::vector<Button *>> options;
-    int col{ 0 };
-    int row{ 0 };
-
     Trainer *opponent{ nullptr };
     std::size_t turn{ 0 };
 
@@ -38,8 +34,6 @@ private:
     friend class State;
 
     BattlePhase() = default;
-
-    void handleInput();
 
     void initMain();
 
