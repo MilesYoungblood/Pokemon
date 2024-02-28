@@ -39,6 +39,8 @@ public:
 
     ~Rectangle() override = default;
 
+    void setBorderSize(int pt);
+
     void update() override = 0;
 
     void render() const override = 0;

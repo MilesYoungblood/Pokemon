@@ -6,6 +6,7 @@
 
 #include "Rectangle/Rectangle.h"
 #include "Rectangle/DerivedClasses/Button/Button.h"
+#include "Rectangle/DerivedClasses/Panel/Panel.h"
 #include "Rectangle/DerivedClasses/ResourceBar/ResourceBar.h"
 #include "Rectangle/DerivedClasses/SelectionBox/SelectionBox.h"
 #include "Rectangle/DerivedClasses/TextBox/TextBox.h"

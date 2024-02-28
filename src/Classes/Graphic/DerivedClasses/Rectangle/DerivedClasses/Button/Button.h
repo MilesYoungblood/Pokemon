@@ -13,7 +13,9 @@ private:
     std::function<void()> onClick;
 
 public:
-    Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, std::function<void()> f);
+    Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, const std::function<void()> &f);
+
+    Button(SDL_Color fg, std::string label, const std::function<void()> &f);
 
     void click();
 

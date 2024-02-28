@@ -4,15 +4,21 @@
 
 #include "Button.h"
 
-Button::Button(SDL_Rect dest, SDL_Color color, int borderSize, std::string label, std::function<void()> f)
-        : Rectangle(dest, color, borderSize), text(std::move(label)), onClick(f) {}
+#include <utility>
+
+Button::Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, const std::function<void()> &f)
+        : Rectangle(dest, fg, borderSize), text(std::move(label)), onClick(f) {}
+
+Button::Button(SDL_Color fg, std::string label, const std::function<void()> &f)
+        : Rectangle(SDL_Rect(), fg, 0), text(std::move(label)), onClick(f) {}
 
 void Button::click() {
     if (this->onClick == nullptr) {
         std::clog << "This button \"" << this->text << "\" does nothing\n";
-        return;
     }
-    this->onClick();
+    else {
+        this->onClick();
+    }
 }
 
 void Button::update() {

@@ -79,6 +79,43 @@ void BattlePhase::initMain() {
     const int border_size = (Game::WINDOW_WIDTH / 2 - (Map::TILE_SIZE * 2 - Map::TILE_SIZE / 2)) /
                             (Map::TILE_SIZE * 3 / 10) / 5;
 
+    GraphicsEngine::getInstance().addGraphic<Panel>(
+            SDL_Rect(
+                    10,
+                    10,
+                    box_width / 2 + box_width / 10,
+                    box_height - Map::TILE_SIZE / 2
+            ),
+            Constants::Color::GRAY,
+            text_box.h / (Map::TILE_SIZE * 3 / 10),
+            2,
+            2,
+            Game::WINDOW_WIDTH / 4 - Map::TILE_SIZE / 2,
+            Map::TILE_SIZE / 2,
+            border_size
+    );
+
+    GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 0>(
+            Constants::Color::RED,
+            "Fight",
+            nullptr
+    );
+    GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 1>(
+            Constants::Color::YELLOW,
+            "Bag",
+            nullptr
+    );
+    GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 0>(
+            Constants::Color::GREEN,
+            "Pokemon",
+            nullptr
+    );
+    GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 1>(
+            Constants::Color::BLUE,
+            "Run",
+            nullptr
+    );
+
     GraphicsEngine::getInstance().addGraphic<Button>(
             button,
             Constants::Color::BLUE,
@@ -95,6 +132,26 @@ void BattlePhase::initMain() {
 
                     if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
+                        std::thread thread([this] -> void {
+                            while (GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {
+                                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                            }
+                            this->isRunning = false;
+                            GraphicsEngine::getInstance().clear();
+
+                            if (Mix_FadeOutMusic(2000) == 0) {
+                                std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap()->getMusic() << "\": "
+                                          << SDL_GetError() << '\n';
+                                SDL_ClearError();
+                                Game::getInstance().terminate();
+                                return;
+                            }
+
+                            Mix_HookMusicFinished([] -> void {
+                                Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
+                            });
+                        });
+                        thread.detach();
                     }
                     else {
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push("Couldn't get away");

@@ -20,6 +20,10 @@ int Rectangle::getBorderSize() const {
     return this->borderSize;
 }
 
+void Rectangle::setBorderSize(int pt) {
+    this->borderSize = pt;
+}
+
 Rectangle::Rectangle(SDL_Rect dest, int borderSize) : Graphic(dest), borderSize(borderSize) {}
 
 Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, int borderSize)

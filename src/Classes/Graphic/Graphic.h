@@ -30,7 +30,23 @@ public:
 
     void setDest(SDL_Rect newDest);
 
+    void setX(int x);
+
+    void setY(int y);
+
+    void setW(int w);
+
+    void setH(int h);
+
     [[nodiscard]] SDL_Rect getDest() const;
+
+    [[nodiscard]] int getX() const;
+
+    [[nodiscard]] int getY() const;
+
+    [[nodiscard]] int getW() const;
+
+    [[nodiscard]] int getH() const;
 
     void deactivate();
 
