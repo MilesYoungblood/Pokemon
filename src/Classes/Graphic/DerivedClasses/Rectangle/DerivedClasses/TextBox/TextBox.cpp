@@ -9,44 +9,58 @@ TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) : Rectangle(dest, 
 }
 
 TextBox::~TextBox() {
-    SDL_DestroyTexture(this->text);
-    if (strlen(SDL_GetError()) > 0) {
-        std::clog << "Error destroying text: " << SDL_GetError() << '\n';
-        SDL_ClearError();
+    if (this->text != nullptr) {
+        SDL_DestroyTexture(this->text);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Error destroying text: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
     }
 }
 
-void TextBox::push(const char *message) {
-    this->messages.emplace(message);
+void TextBox::push(const char *message, const std::function<void()> &function) {
+    this->messageQueue.emplace(message);
+    this->functionQueue.push(function);
 }
 
-void TextBox::push(const std::string &message) {
-    this->messages.push(message);
+void TextBox::push(const std::string &message, const std::function<void()> &function) {
+    this->messageQueue.push(message);
+    this->functionQueue.push(function);
 }
 
-void TextBox::push(const std::vector<const char *> &toPush) {
-    std::for_each(toPush.begin(), toPush.end(), [this](const char *message) -> void {
-        this->messages.emplace(message);
+void TextBox::push(const std::vector<const char *> &messages, const std::vector<std::function<void()>> &functions) {
+    std::for_each(messages.begin(), messages.end(), [this](const char *message) -> void {
+        this->messageQueue.emplace(message);
     });
+    std::for_each(functions.begin(), functions.end(), [this](const std::function<void()> &function) -> void {
+        this->functionQueue.emplace(function);
+    });
+
 }
 
-void TextBox::push(const std::vector<std::string> &toPush) {
-    std::for_each(toPush.begin(), toPush.end(), [this](const std::string &message) -> void {
-        this->messages.push(message);
+void TextBox::push(const std::vector<std::string> &messages, const std::vector<std::function<void()>> &functions) {
+    std::for_each(messages.begin(), messages.end(), [this](const std::string &message) -> void {
+        this->messageQueue.push(message);
+    });
+    std::for_each(functions.begin(), functions.end(), [this](const std::function<void()> &function) -> void {
+        this->functionQueue.emplace(function);
     });
 }
 
 void TextBox::pop() {
-    if (not this->messages.empty()) {
-        this->messages.pop();
+    if (not this->messageQueue.empty()) {
+        this->messageQueue.pop();
         this->lettersPrinted = 0;
+    }
+    if (not this->functionQueue.empty()) {
+        this->functionQueue.pop();
     }
 }
 
 void TextBox::update() {
     static bool called = false;
     // if the message has not yet completed concatenation
-    if (this->lettersPrinted <= this->messages.front().length()) {
+    if (this->lettersPrinted <= this->messageQueue.front().length()) {
         if (this->text != nullptr) {
             called = false;
             // safe delete the current text
@@ -59,7 +73,7 @@ void TextBox::update() {
 
         // buffer is required to store the substring
         // TODO eventually try to use src rect to display text rather than substr
-        const std::string buff(this->messages.front());
+        const std::string buff(this->messageQueue.front());
         const std::string buffer(this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " ");
 
         const auto data = TextureManager::getInstance().loadTextData(buffer, Constants::Color::BLACK,
@@ -75,8 +89,8 @@ void TextBox::update() {
     }
     else if (not called) {
         // TODO care; this could be causing a logic error with input of Return
-        if (this->finishedPrinting != nullptr) {
-            this->finishedPrinting();
+        if (this->functionQueue.front() != nullptr) {
+            this->functionQueue.front()();
         }
         called = true;
     }
@@ -91,14 +105,10 @@ void TextBox::render() const {
     );
 }
 
-void TextBox::setFinishedCallback(void (*instructions)()) {
-    this->finishedPrinting = instructions;
-}
-
 bool TextBox::isPrinting() const {
-    return this->lettersPrinted <= this->messages.front().length();
+    return this->lettersPrinted <= this->messageQueue.front().length();
 }
 
 bool TextBox::empty() const {
-    return this->messages.empty();
+    return this->messageQueue.empty();
 }

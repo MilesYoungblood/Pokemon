@@ -14,8 +14,8 @@ private:
     int textHeight{ 0 };
 
     std::size_t lettersPrinted{ 0 };
-    std::queue<std::string> messages;
-    std::queue<std::function<void()>> functions;
+    std::queue<std::string> messageQueue;
+    std::queue<std::function<void()>> functionQueue;
 
     SDL_Texture *text{ nullptr };
 
@@ -32,13 +32,13 @@ public:
 
     ~TextBox() override;
 
-    void push(const char *message);
+    void push(const char *message, const std::function<void()> &function = nullptr);
 
-    void push(const std::string &message);
+    void push(const std::string &message, const std::function<void()> &function = nullptr);
 
-    void push(const std::vector<const char *> &toPush);
+    void push(const std::vector<const char *> &messages, const std::vector<std::function<void()>> &functions = std::vector<std::function<void()>>());
 
-    void push(const std::vector<std::string> &toPush);
+    void push(const std::vector<std::string> &messages, const std::vector<std::function<void()>> &functions = std::vector<std::function<void()>>());
 
     void pop();
 

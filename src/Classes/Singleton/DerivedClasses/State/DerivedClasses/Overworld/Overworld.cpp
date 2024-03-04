@@ -416,7 +416,7 @@ int Overworld::getScrollSpeed() const {
     return this->scrollSpeed;
 }
 
-void Overworld::createTextBox(const std::vector<std::string> &messages) {
+void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     const int box_width = Map::TILE_SIZE * 7;
     const int box_height = Map::TILE_SIZE * 2;
     const SDL_Rect rect(
@@ -432,11 +432,14 @@ void Overworld::createTextBox(const std::vector<std::string> &messages) {
             rect.x + Map::TILE_SIZE / 10,
             rect.y + Map::TILE_SIZE / 10
     );
-    GraphicsEngine::getInstance().getGraphic<TextBox>().setFinishedCallback([] -> void {
-        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-    });
 
-    GraphicsEngine::getInstance().getGraphic<TextBox>().push(messages);
+    const std::function<void()> callback = [] -> void {
+        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    };
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            dialogue,
+            std::vector<std::function<void()>>({ callback, callback, callback })
+    );
 }
 
 void Overworld::handleMove(SDL_Scancode scancode) {

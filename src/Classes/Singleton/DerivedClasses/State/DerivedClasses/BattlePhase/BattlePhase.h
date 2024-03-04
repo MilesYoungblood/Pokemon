@@ -13,7 +13,6 @@ private:
     enum class BattleState : Uint8 {
         MAIN,
         FIGHT,
-        ACTION,
         T_OUT
     };
     std::stack<BattlePhase::BattleState> states{{ BattlePhase::BattleState::MAIN }};
@@ -21,14 +20,12 @@ private:
     const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
             [this] -> void { this->initMain(); },
             [this] -> void { this->initFight(); },
-            [] -> void {},
-            [] -> void {}
+            nullptr
     };
 
     const std::array<std::function<void()>, 4> UPDATE_FUNCTIONS{
-            [] -> void {},
-            [] -> void {},
-            [] -> void {},
+            nullptr,
+            nullptr,
             [this] -> void { this->updateTOut(); }
     };
 
@@ -53,9 +50,9 @@ private:
 
     void engage(Trainer *attacker, Trainer *defender, int move, bool *skip);
 
-    void preStatus(bool isUserFaster);
+    void preStatus(bool isPlayerFaster);
 
-    void postStatus(bool isUserFaster);
+    void postStatus(bool isPlayerFaster);
 
     void handleTurn();
 

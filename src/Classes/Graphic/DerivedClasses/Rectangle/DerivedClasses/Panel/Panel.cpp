@@ -40,26 +40,38 @@ void Panel::update() {
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
         if (not consecutive) {
-            this->currentRow = std::max(0, this->currentRow - 1);
-            consecutive = true;
+            const int value = std::max(0, this->currentRow - 1);
+            if (this->buttons[value][currentCol] != nullptr) {
+                this->currentRow = value;
+                consecutive = true;
+            }
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
         if (not consecutive) {
-            this->currentCol = std::max(0, this->currentCol - 1);
-            consecutive = true;
+            const int value = std::max(0, this->currentCol - 1);
+            if (this->buttons[this->currentRow][value] != nullptr) {
+                this->currentCol = value;
+                consecutive = true;
+            }
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
         if (not consecutive) {
-            this->currentRow = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()) - 1);
-            consecutive = true;
+            const int value = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()));
+            if (this->buttons[value][this->currentCol] != nullptr) {
+                this->currentRow = value;
+                consecutive = true;
+            }
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         if (not consecutive) {
-            this->currentCol = std::min(this->currentCol + 1, static_cast<int>(this->buttons.size()) - 1);
-            consecutive = true;
+            const int value = std::min(this->currentCol + 1, static_cast<int>(this->buttons.size()) - 1);
+            if (this->buttons[this->currentRow][value] != nullptr) {
+                this->currentCol = value;
+                consecutive = true;
+            }
         }
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {

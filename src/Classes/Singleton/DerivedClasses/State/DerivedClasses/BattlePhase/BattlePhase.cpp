@@ -132,32 +132,47 @@ void BattlePhase::initFight() {
             border_size
     );
 
+    // default assignment for if the player skips
+    this->playerMove = Player::getPlayer()[0].numMoves();
+
     if (Player::getPlayer()[0].numMoves() > 0) {
         GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 0>(
                 typeToColor(Player::getPlayer()[0][0].getType()),
                 Player::getPlayer()[0][0].getName(),
-                nullptr
+                [this] -> void {
+                    this->playerMove = 0;
+                    this->handleTurn();
+                }
         );
 
         if (Player::getPlayer()[0].numMoves() > 1) {
             GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 1>(
                     typeToColor(Player::getPlayer()[0][1].getType()),
                     Player::getPlayer()[0][1].getName(),
-                    nullptr
+                    [this] -> void {
+                        this->playerMove = 1;
+                        this->handleTurn();
+                    }
             );
 
             if (Player::getPlayer()[0].numMoves() > 2) {
                 GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 0>(
                         typeToColor(Player::getPlayer()[0][2].getType()),
                         Player::getPlayer()[0][2].getName(),
-                        nullptr
+                        [this] -> void {
+                            this->playerMove = 2;
+                            this->handleTurn();
+                        }
                 );
 
                 if (Player::getPlayer()[0].numMoves() > 3) {
                     GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 1>(
                             typeToColor(Player::getPlayer()[0][3].getType()),
                             Player::getPlayer()[0][3].getName(),
-                            nullptr
+                            [this] -> void {
+                                this->playerMove = 3;
+                                this->handleTurn();
+                            }
                     );
                 }
             }
@@ -212,33 +227,22 @@ void BattlePhase::engage(Trainer *attacker, Trainer *defender, int move, bool *s
             this->states.push(BattlePhase::BattleState::T_OUT);
         }
         else {
-            // TODO implement switchout for trainer and player inside the classes
+            // TODO implement switchOut for trainer and player inside the classes
         }
     }
 }
 
-void BattlePhase::preStatus(bool isUserFaster) {
+void BattlePhase::preStatus(bool isPlayerFaster) {
     bool (*hasStatusCondition)(const StatusCondition) = [](const StatusCondition status) -> bool {
         return status == StatusCondition::PARALYSIS ? binomial(25.0) : status == StatusCondition::FREEZE or status == StatusCondition::SLEEP;
     };
 
-    Trainer *first;
-    Trainer *second;
-    bool *toSkip;
+    Trainer *first = isPlayerFaster ? &Player::getPlayer() : this->opponent;
+    Trainer *second = isPlayerFaster ? this->opponent : &Player::getPlayer();
+    bool *toSkip = isPlayerFaster ? &this->skipOpponent : &this->skipPlayer;
 
-    if (isUserFaster) {
-        first = &Player::getPlayer();
-        second = this->opponent;
-        toSkip = &this->skipOpponent;
-    }
-    else {
-        first = this->opponent;
-        second = &Player::getPlayer();
-        toSkip = &this->skipPlayer;
-    }
-
-    const auto action = [this, &isUserFaster, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender) -> void {
-        const int move = isUserFaster ? this->playerMove : this->opponentMove;
+    const auto action = [this, &isPlayerFaster, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender) -> void {
+        const int move = isPlayerFaster ? this->playerMove : this->opponentMove;
         if (move < (*attacker)[0].numMoves()) {
             if (not hasStatusCondition((*attacker)[0].getStatus())) {
                 this->engage(attacker, defender, move, toSkip);
@@ -250,14 +254,51 @@ void BattlePhase::preStatus(bool isUserFaster) {
     };
 
     action(first, second);
-    if (not *toSkip and this->states.top() == BattlePhase::BattleState::ACTION) {
+    if (not *toSkip and this->states.top() != BattlePhase::BattleState::T_OUT) {
         action(second, first);
     }
     *toSkip = false;
 }
 
-void BattlePhase::postStatus(bool isUserFaster) {
+void BattlePhase::postStatus(bool isPlayerFaster) {
+    if (this->states.top() == BattlePhase::BattleState::T_OUT) {
+        return;
+    }
 
+    bool (*hasStatusCondition)(StatusCondition) = [](StatusCondition status) -> bool {
+        return status == StatusCondition::BURN or status == StatusCondition::POISON;
+    };
+
+    auto postStatus = [this](Trainer *trainer) -> void {
+        (*trainer)[0].takeDamage(static_cast<int>(std::round((*trainer)[0].getMaxHp() * 0.0625)));
+        GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*trainer)[0]));
+
+        if ((*trainer)[0].isFainted()) {
+            trainer->incFaintCount();
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push((*trainer)[0].getName() + " fainted!");
+
+            if (not trainer->canFight()) {
+                for (int i = 0; i < Player::getPlayer().partySize(); ++i) {
+                    Player::getPlayer()[i].initStatMods();
+                }
+                GraphicsEngine::getInstance().getGraphic<TextBox>().push(trainer->winMessage());
+                this->states.push(BattlePhase::BattleState::T_OUT);
+            }
+            else {
+                // TODO implement switchOut for trainer and player inside the classes
+            }
+        }
+    };
+
+    Trainer *first = isPlayerFaster ? &Player::getPlayer() : this->opponent;
+    Trainer *second = isPlayerFaster ? this->opponent : &Player::getPlayer();
+
+    if (hasStatusCondition((*first)[0].getStatus())) {
+        postStatus(first);
+    }
+    if (hasStatusCondition((*second)[0].getStatus())) {
+        postStatus(second);
+    }
 }
 
 void BattlePhase::handleTurn() {
@@ -283,12 +324,20 @@ void BattlePhase::handleTurn() {
     }
         // if trainer and opponent rival in speed or both or neither are using a priority move, choose randomly
     else {
-        const bool user_first = binomial();
-        this->preStatus(user_first);
-        this->postStatus(user_first);
+        const bool player_first = binomial();
+        this->preStatus(player_first);
+        this->postStatus(player_first);
     }
 
     ++this->turn;
+
+    // reset flags
+    // TODO account for self skipping moves such as Solar Beam
+    this->skipPlayer = false;
+    this->skipOpponent = false;
+
+    // FIXME this is assuming that there are only 2 states pushed at this point; this could break
+    this->states.pop();
 }
 
 void BattlePhase::updateTOut() {
@@ -305,8 +354,7 @@ void BattlePhase::updateTOut() {
 
             if (Mix_FadeOutMusic(2000) == 0) {
                 std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap()->getMusic()
-                          << "\": "
-                          << SDL_GetError() << '\n';
+                          << "\": " << SDL_GetError() << '\n';
                 SDL_ClearError();
                 Game::getInstance().terminate();
                 return;
@@ -345,10 +393,14 @@ void BattlePhase::update() {
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE) and this->states.size() != 1) {
         this->states.pop();
-        this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+        if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
+            this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+        }
     }
 
-    this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+    if (this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
+        this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+    }
 }
 
 void BattlePhase::render() {
