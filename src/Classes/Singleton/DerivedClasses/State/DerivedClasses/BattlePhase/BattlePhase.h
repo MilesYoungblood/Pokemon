@@ -11,15 +11,25 @@
 class BattlePhase : public State {
 private:
     enum class BattleState : Uint8 {
-        MAIN
+        MAIN,
+        FIGHT,
+        ACTION,
+        T_OUT
     };
-    BattlePhase::BattleState currentState{ BattleState::MAIN };
+    std::stack<BattlePhase::BattleState> states{{ BattlePhase::BattleState::MAIN }};
 
-    const std::array<std::function<void()>, 1> INIT_FUNCTIONS{
-            [this] -> void { this->initMain(); }
-    };
-    const std::array<std::function<void()>, 1> RENDER_FUNCTIONS{
+    const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
+            [this] -> void { this->initMain(); },
+            [this] -> void { this->initFight(); },
+            [] -> void {},
             [] -> void {}
+    };
+
+    const std::array<std::function<void()>, 4> UPDATE_FUNCTIONS{
+            [] -> void {},
+            [] -> void {},
+            [] -> void {},
+            [this] -> void { this->updateTOut(); }
     };
 
     Trainer *opponent{ nullptr };
@@ -27,7 +37,9 @@ private:
 
     bool skipPlayer{ false };
     bool skipOpponent{ false };
-    bool canRunAway{ false };
+
+    int playerMove{ 0 };
+    int opponentMove{ 0 };
 
     bool isRunning{ true };
 
@@ -37,8 +49,20 @@ private:
 
     void initMain();
 
+    void initFight();
+
+    void engage(Trainer *attacker, Trainer *defender, int move, bool *skip);
+
+    void preStatus(bool isUserFaster);
+
+    void postStatus(bool isUserFaster);
+
+    void handleTurn();
+
+    void updateTOut();
+
 public:
-    void init(Trainer *trainer, bool isTrainer);
+    void init(Trainer *trainer);
 
     void update() override;
 

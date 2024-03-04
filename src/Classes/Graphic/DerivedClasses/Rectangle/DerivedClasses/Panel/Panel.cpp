@@ -7,9 +7,9 @@
 
 void Panel::init(int r, int c) {
     this->buttons.resize(r);
-    for (auto &row : this->buttons) {
-        row.resize(c);
-        for (auto &button : row) {
+    for (auto &set : this->buttons) {
+        set.resize(c);
+        for (auto &button : set) {
             button = nullptr;
         }
     }
@@ -64,8 +64,10 @@ void Panel::update() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
         if (not consecutive) {
-            this->buttons[this->currentCol][this->currentRow]->click();
-            consecutive = true;
+            if (this->buttons[this->currentRow][this->currentCol] != nullptr) {
+                this->buttons[this->currentRow][this->currentCol]->press();
+                consecutive = true;
+            }
         }
     }
     else {
@@ -75,25 +77,29 @@ void Panel::update() {
 
 void Panel::render() const {
     this->renderBox();
-    for (const auto &row : this->buttons) {
-        for (const auto &button : row) {
-            button->render();
+    for (std::size_t row = 0; row < this->buttons.size(); ++row) {
+        for (std::size_t col = 0; col < this->buttons[row].size(); ++col) {
+            if (this->buttons.at(row).at(col) != nullptr) {
+                this->buttons.at(row).at(col)->render();
+
+                if (row == this->currentRow and col == this->currentCol) {
+                    const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
+                    const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
+
+                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentCol][this->currentRow]->getW()) / 2.0)) - this->buttonH;
+                    const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentCol][this->currentRow]->getH()) / 2.0));
+
+                    TextureManager::getInstance().draw(
+                            this->arrow,
+                            SDL_Rect(
+                                    x_pos,
+                                    y_pos,
+                                    this->buttonH,
+                                    this->buttonH
+                            )
+                    );
+                }
+            }
         }
     }
-
-    const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
-    const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
-
-    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentCol][this->currentRow]->getW()) / 2.0)) - this->buttonH;
-    const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentCol][this->currentRow]->getH()) / 2.0));
-
-    TextureManager::getInstance().draw(
-            this->arrow,
-            SDL_Rect(
-                    x_pos,
-                    y_pos,
-                    this->buttonH,
-                    this->buttonH
-            )
-    );
 }

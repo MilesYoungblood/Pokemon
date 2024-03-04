@@ -44,6 +44,7 @@ void Overworld::init() {
     Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
 
     Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
+    Player::getPlayer()[0].addMove(moveMap.at(Move::Id::FLAMETHROWER)());
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::ZEBSTRIKA)());
     //Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
@@ -501,7 +502,7 @@ void Overworld::handleReturn() {
                         Game::getInstance().setState(State::Id::BATTLE);
                         Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                        State::getInstance<BattlePhase>().init(&trainer, true);
+                        State::getInstance<BattlePhase>().init(&trainer);
 
                         Mixer::getInstance().playMusic("TrainerBattle");
                     }

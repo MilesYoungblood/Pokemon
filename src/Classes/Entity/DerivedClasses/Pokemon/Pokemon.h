@@ -122,6 +122,8 @@ public:
 
     [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
 
+    [[nodiscard]] bool rivalsInSpeed(const Pokemon &pokemon) const;
+
     [[nodiscard]] bool isAfflicted() const;
 
     [[nodiscard]] bool canAttack() const;

@@ -37,8 +37,10 @@ void TextBox::push(const std::vector<std::string> &toPush) {
 }
 
 void TextBox::pop() {
-    this->messages.pop();
-    this->lettersPrinted = 0;
+    if (not this->messages.empty()) {
+        this->messages.pop();
+        this->lettersPrinted = 0;
+    }
 }
 
 void TextBox::update() {

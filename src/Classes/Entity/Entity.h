@@ -121,6 +121,8 @@ public:
 
     [[nodiscard]] virtual bool canFight() const;
 
+    [[nodiscard]] virtual bool isTrainer() const;
+
 protected:
     virtual void walk();
 

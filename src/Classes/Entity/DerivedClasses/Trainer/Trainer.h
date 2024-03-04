@@ -115,4 +115,8 @@ public:
     void idle() override;
 
     [[nodiscard]] bool canFight() const override;
+
+    [[nodiscard]] virtual std::vector<std::string> winMessage() const;
+
+    [[nodiscard]] bool isTrainer() const override;
 };

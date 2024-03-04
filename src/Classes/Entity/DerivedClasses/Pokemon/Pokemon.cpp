@@ -243,6 +243,10 @@ bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
     return this->baseStats.at(Pokemon::Stat::SPEED) > pokemon.baseStats.at(Pokemon::Stat::SPEED);
 }
 
+bool Pokemon::rivalsInSpeed(const Pokemon &pokemon) const {
+    return this->baseStats.at(Pokemon::Stat::SPEED) == pokemon.baseStats.at(Pokemon::Stat::SPEED);
+}
+
 bool Pokemon::isAfflicted() const {
     return this->status != StatusCondition::NONE;
 }

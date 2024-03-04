@@ -15,10 +15,9 @@ private:
 
     std::size_t lettersPrinted{ 0 };
     std::queue<std::string> messages;
+    std::queue<std::function<void()>> functions;
 
     SDL_Texture *text{ nullptr };
-
-    void (*finishedPrinting)(){ nullptr };
 
 public:
     TextBox(SDL_Rect dest, int borderSize, int x, int y);
@@ -46,8 +45,6 @@ public:
     void update() override;
 
     void render() const override;
-
-    void setFinishedCallback(void (*instructions)());
 
     [[nodiscard]] bool isPrinting() const;
 

@@ -10,14 +10,14 @@ class Button : public Rectangle {
 private:
     std::string text;
 
-    std::function<void()> onClick;
+    std::function<void()> onPress;
 
 public:
     Button(SDL_Rect dest, SDL_Color fg, int borderSize, std::string label, const std::function<void()> &f);
 
     Button(SDL_Color fg, std::string label, const std::function<void()> &f);
 
-    void click();
+    void press();
 
     void update() override;
 

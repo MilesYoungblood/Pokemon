@@ -187,3 +187,11 @@ void Trainer::idle() {
 bool Trainer::canFight() const {
     return not this->party.empty();
 }
+
+std::vector<std::string> Trainer::winMessage() const {
+    return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
+}
+
+bool Trainer::isTrainer() const {
+    return true;
+}

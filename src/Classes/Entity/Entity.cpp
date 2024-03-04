@@ -306,6 +306,10 @@ bool Entity::canFight() const {
     return false;
 }
 
+bool Entity::isTrainer() const {
+    return false;
+}
+
 void Entity::walk() {
     this->walkCounter += ::State::getInstance<Overworld>().getScrollSpeed();
     this->shift(this->currentDirection, ::State::getInstance<Overworld>().getScrollSpeed());
