@@ -58,16 +58,21 @@ void TextBox::pop() {
 }
 
 void TextBox::update() {
+    if (this->messageQueue.empty() or this->functionQueue.empty()) {
+        return;
+    }
     static bool called = false;
     // if the message has not yet completed concatenation
     if (this->lettersPrinted <= this->messageQueue.front().length()) {
         if (this->text != nullptr) {
             called = false;
             // safe delete the current text
-            SDL_DestroyTexture(this->text);
-            if (strlen(SDL_GetError()) > 0) {
-                std::clog << "Error destroying text: " << SDL_GetError() << '\n';
-                SDL_ClearError();
+            if (this->text != nullptr) {
+                SDL_DestroyTexture(this->text);
+                if (strlen(SDL_GetError()) > 0) {
+                    std::clog << "Error destroying text: " << SDL_GetError() << '\n';
+                    SDL_ClearError();
+                }
             }
         }
 
