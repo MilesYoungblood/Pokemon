@@ -4,9 +4,7 @@
 
 #include "TextBox.h"
 
-TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) : Rectangle(dest, borderSize){
-    this->textPos = std::make_pair(x, y);
-}
+TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) : Rectangle(dest, borderSize), textBox(x, y, 0, 0) {}
 
 TextBox::~TextBox() {
     if (this->text != nullptr) {
@@ -87,8 +85,8 @@ void TextBox::update() {
         this->text = std::get<0>(data);
 
         // save the width and height of the text just in case next iteration, this branch isn't executed
-        this->textWidth = std::get<1>(data);
-        this->textHeight = std::get<2>(data);
+        this->textBox.w = std::get<1>(data);
+        this->textBox.h = std::get<2>(data);
 
         ++this->lettersPrinted;
     }
@@ -106,7 +104,7 @@ void TextBox::render() const {
 
     TextureManager::getInstance().draw(
             this->text,
-            SDL_Rect(this->textPos.first, this->textPos.second, this->textWidth, this->textHeight)
+            this->textBox
     );
 }
 

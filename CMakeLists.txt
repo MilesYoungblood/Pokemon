@@ -96,6 +96,8 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
+        src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp
+        src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
 )
 
 set(POKEMON
@@ -166,6 +168,10 @@ set(MOVES
         src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h
         src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp
         src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h
+        src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp
+        src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h
+        src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp
+        src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h
         src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp
         src/Classes/Move/DerivedClasses/IceBeam/IceBeam.h
         src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp

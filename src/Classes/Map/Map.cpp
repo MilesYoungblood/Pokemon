@@ -19,7 +19,7 @@ Map::Map(const char *name) : name(name), music(name) {
         throw std::runtime_error("Error code " + std::to_string(xmlErrorCode) + ": " + tmxFile.ErrorStr() + '\n');
     }
 
-    tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
+    const tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
     if (mapElement == nullptr) {
         throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"map\" element\n");
     }
@@ -46,7 +46,7 @@ Map::Map(const char *name) : name(name), music(name) {
     // different maps can have the same source be of a different id
     std::unordered_map<int, const std::string> pathMap({ std::make_pair(0, "") });
 
-    tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
+    const tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
     if (tilesetElement == nullptr) {
         throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"tileset\" element\n");
     }
@@ -124,7 +124,7 @@ Map::Map(const char *name) : name(name), music(name) {
         tilesetElement = tilesetElement->NextSiblingElement("tileset");
     }
 
-    tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
+    const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
     if (layerElement == nullptr) {
         throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"layer\" element\n");
     }
@@ -135,7 +135,7 @@ Map::Map(const char *name) : name(name), music(name) {
             throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"id\" attribute\n");
         }
 
-        tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
+        const tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
             throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"data\" element\n");
         }
@@ -193,10 +193,12 @@ void Map::init() {
 
 void Map::clean() {
     for (auto &mapping : Map::textureMap) {
-        SDL_DestroyTexture(mapping.second);
-        if (strlen(SDL_GetError()) > 0) {
-            std::clog << "Unable to destroy map texture: " << SDL_GetError() << '\n';
-            SDL_ClearError();
+        if (mapping.second != nullptr) {
+            SDL_DestroyTexture(mapping.second);
+            if (strlen(SDL_GetError()) > 0) {
+                std::clog << "Unable to destroy map texture: " << SDL_GetError() << '\n';
+                SDL_ClearError();
+            }
         }
     }
     called = true;

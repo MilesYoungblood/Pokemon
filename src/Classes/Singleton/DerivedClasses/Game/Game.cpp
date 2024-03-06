@@ -3,6 +3,7 @@
 //
 
 #include "Game.h"
+#include "../Pokedex/Pokedex.h"
 
 std::unordered_map<Trainer *, bool> keepLooping;
 Stopwatch keyDelay;
@@ -74,6 +75,8 @@ Game::Game() {
 
     // instantiate KeyManager
     KeyManager::getInstance();
+
+    Pokedex::getInstance();
 
     this->running = true;
 }

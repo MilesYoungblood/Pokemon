@@ -12,7 +12,6 @@ enum class StatusCondition : Uint8 {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
 };
 
-/// \inherit Entity
 class Pokemon : public Entity {
 public:
     enum class Id : Uint8 {
@@ -155,6 +154,8 @@ private:
 
     std::vector<std::unique_ptr<Move>> moveSet;
     std::unique_ptr<Ability> ability;
+
+    Ability::Id abilityId;
 
     Pokemon::Gender gender;
     StatusCondition status{ StatusCondition::NONE };

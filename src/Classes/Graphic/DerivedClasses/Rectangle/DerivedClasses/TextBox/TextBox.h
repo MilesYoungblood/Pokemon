@@ -8,15 +8,11 @@
 
 class TextBox : public Rectangle {
 private:
-    std::pair<int, int> textPos;
-
-    int textWidth{ 0 };
-    int textHeight{ 0 };
-
     std::size_t lettersPrinted{ 0 };
     std::queue<std::string> messageQueue;
     std::queue<std::function<void()>> functionQueue;
 
+    SDL_Rect textBox;
     SDL_Texture *text{ nullptr };
 
 public:

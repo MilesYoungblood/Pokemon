@@ -44,7 +44,7 @@ void Overworld::init() {
     Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
 
     Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
-    Player::getPlayer()[0].addMove(moveMap.at(Move::Id::FLAMETHROWER)());
+    Player::getPlayer()[0].addMove(moveMap.at(Move::Id::HEAT_CRASH)());
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::ZEBSTRIKA)());
     //Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
@@ -129,7 +129,7 @@ void Overworld::load() {
     this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
     this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
 
-    this->maps[Map::Id::NUVEMA_TOWN].addItem<PokeBall>(std::make_pair(7, 18), 0);
+    this->maps[Map::Id::NUVEMA_TOWN].addItem<PokeBall>(std::make_pair(7, 18), 5);
 
     if (saveFile) {
         std::string buffer;

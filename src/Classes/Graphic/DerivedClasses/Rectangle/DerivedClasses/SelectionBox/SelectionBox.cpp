@@ -6,17 +6,11 @@
 #include "SelectionBox.h"
 
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize, const std::vector<std::string> &options)
-        : Rectangle(dest, fg, borderSize), options(options) {
-    // FIXME eventually have constructor take in functions
-    this->functions = std::vector<void (*)()>(options.size(), nullptr);
-}
+        : Rectangle(dest, fg, borderSize), options(options), functions(options.size(), nullptr) {}
 
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize,
                            const std::vector<std::string> &options)
-        : Rectangle(dest, fg, bg, borderSize), options(options) {
-    // FIXME eventually have constructor take in functions
-    this->functions = std::vector<void (*)()>(options.size(), nullptr);
-}
+        : Rectangle(dest, fg, bg, borderSize), options(options), functions(options.size(), nullptr) {}
 
 void SelectionBox::update() {
     static bool consecutive = false;
@@ -53,7 +47,6 @@ void SelectionBox::render() const {
     this->renderBox();
 
     const int interval = static_cast<int>(this->getDest().h / static_cast<double>(options.size()));
-
     const int percent = static_cast<int>(this->getDest().w * 0.05);
 
     for (int i = 0; i < options.size(); ++i) {

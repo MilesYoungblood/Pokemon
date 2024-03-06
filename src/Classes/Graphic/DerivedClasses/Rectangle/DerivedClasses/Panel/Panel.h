@@ -12,8 +12,8 @@ private:
     int currentCol{ 0 };
     int currentRow{ 0 };
 
-    int buttonW;
-    int buttonH;
+    int buttonWeight;
+    int buttonHeight;
     int buttonBorder;
 
     SDL_Texture *arrow{ TextureManager::getInstance().loadTexture("RightArrowWhite.png") };
@@ -41,8 +41,8 @@ public:
         const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
 
         this->buttons[row][col] = std::make_unique<Button>(args...);
-        this->buttons[row][col]->setW(this->buttonW);
-        this->buttons[row][col]->setH(this->buttonH);
+        this->buttons[row][col]->setW(this->buttonWeight);
+        this->buttons[row][col]->setH(this->buttonHeight);
 
         const int x_pos = this->getX() +
                           static_cast<int>((col * x_interval) + ((x_interval - this->buttons[row][col]->getW()) / 2.0));

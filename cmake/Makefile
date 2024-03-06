@@ -2111,6 +2111,54 @@ src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
 .PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
 
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
+
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
+
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
+
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj
+
+# target to build an object file
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
+
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i
+
+# target to preprocess a source file
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
+
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s
+
+# target to generate assembly for a file
+src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
+.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
+
 src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
 .PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
 
@@ -2422,6 +2470,30 @@ src/Classes/Singleton/DerivedClasses/Mixer/Mixer.s: src/Classes/Singleton/Derive
 src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s
 .PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s
+
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj
+
+# target to build an object file
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
+
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i
+
+# target to preprocess a source file
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
+
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
 
 src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.obj: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.cpp.obj
 .PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.obj
@@ -2849,6 +2921,12 @@ help:
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.obj
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.i
 	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.s
+	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj
+	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i
+	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s
+	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj
+	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i
+	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s
 	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
 	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i
 	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s
@@ -2888,6 +2966,9 @@ help:
 	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.obj
 	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.i
 	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.s
+	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj
+	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i
+	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s
 	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.obj
 	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.i
 	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.s

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="PokemonBattle" targetName="PokemonBattle" />
+    </generated>
+  </component>
+  <component name="CMakeSettings" AUTO_RELOAD="true">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" GENERATION_DIR="cmake" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="3af25855-22d2-42ca-b39c-e6c5511d52d9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeCache.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeCXXCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeCXXCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_C.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_C.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeDetermineCompilerABI_CXX.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeRCCompiler.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CMakeRCCompiler.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CompilerIdC/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CompilerIdC/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CompilerIdCXX/a.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/3.27.8/CompilerIdCXX/a.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/CMakeConfigureLog.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/CMakeConfigureLog.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/Ability.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/Ability.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Blaze/Blaze.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Blaze/Blaze.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/constants.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/constants.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/main.cpp.obj" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/PokemonBattle.dir/src/main.cpp.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/TargetDirectories.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/TargetDirectories.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/clion-Debug-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/clion-Debug-log.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/clion-environment.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/CMakeFiles/clion-environment.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/CMakeFiles/rules.ninja" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/PokemonBattle.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/PokemonBattle.cbp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/PokemonBattle.exe" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/PokemonBattle.exe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/Testing/Temporary/LastTest.log" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/Testing/Temporary/LastTest.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake/cmake_install.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/cmake/cmake_install.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/Graphic.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/Graphic.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Graphic/Graphic.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Graphic/Graphic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Move/Move.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Move/Move.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Move/Move.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Move/Move.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+    <option name="indexerUseModules" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="2bPopWKraihAxVf9inC99RzRuSD" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;CMake Application.PokemonBattle.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/assignment-4-search-engine-milesy&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.updates&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Singleton\DerivedClasses" />
+      <recent name="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Texture\DerivedClasses" />
+      <recent name="C:\Users\Miles Youngblood\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Graphic\DerivedClasses\Rectangle\DerivedClasses" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="PokemonBattle" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="PokemonBattle" TARGET_NAME="PokemonBattle" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="PokemonBattle" RUN_TARGET_NAME="PokemonBattle">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3af25855-22d2-42ca-b39c-e6c5511d52d9" name="Changes" comment="" />
+      <created>1706123397970</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706123397970</updated>
+      <workItem from="1706123404734" duration="672000" />
+      <workItem from="1706126264393" duration="6553000" />
+      <workItem from="1706542241529" duration="1192000" />
+      <workItem from="1706553380874" duration="348000" />
+      <workItem from="1706555296979" duration="4817000" />
+      <workItem from="1706665267620" duration="629000" />
+      <workItem from="1706717958436" duration="4000" />
+      <workItem from="1706806994947" duration="5559000" />
+      <workItem from="1706899942924" duration="9336000" />
+      <workItem from="1706987398088" duration="14489000" />
+      <workItem from="1707009135614" duration="2595000" />
+      <workItem from="1707016867512" duration="26196000" />
+      <workItem from="1707148456258" duration="4885000" />
+      <workItem from="1707329050302" duration="4818000" />
+      <workItem from="1707336228790" duration="19180000" />
+      <workItem from="1707535105663" duration="595000" />
+      <workItem from="1707751704837" duration="8475000" />
+      <workItem from="1707771042303" duration="10000" />
+      <workItem from="1707872603176" duration="2298000" />
+      <workItem from="1707874946162" duration="11362000" />
+      <workItem from="1707888546043" duration="4550000" />
+      <workItem from="1708016274886" duration="4425000" />
+      <workItem from="1708540883450" duration="2509000" />
+      <workItem from="1708546126469" duration="579000" />
+      <workItem from="1708546733783" duration="100000" />
+      <workItem from="1708547354681" duration="3075000" />
+      <workItem from="1708621040277" duration="2989000" />
+      <workItem from="1708665242979" duration="17763000" />
+      <workItem from="1709069352416" duration="25784000" />
+      <workItem from="1709492820584" duration="7581000" />
+      <workItem from="1709504483382" duration="5960000" />
+      <workItem from="1709513745310" duration="155000" />
+      <workItem from="1709513950439" duration="7016000" />
+      <workItem from="1709582412742" duration="5000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="CMakeRunConfiguration">
+        <watch expression="set" />
+        <watch expression="this-&gt;buttons" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

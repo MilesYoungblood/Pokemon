@@ -16,12 +16,12 @@ void Panel::init(int r, int c) {
 }
 
 Panel::Panel(SDL_Rect dest, int borderSize, int numRows, int numCols, int w, int h, int pt)
-        : Rectangle(dest, borderSize), buttonW(w), buttonH(h), buttonBorder(pt) {
+        : Rectangle(dest, borderSize), buttonWeight(w), buttonHeight(h), buttonBorder(pt) {
     this->init(numRows, numCols);
 }
 
 Panel::Panel(SDL_Rect dest, SDL_Color fg, int borderSize, int numRows, int numCols, int w, int h, int pt)
-        : Rectangle(dest, fg, borderSize), buttonW(w), buttonH(h), buttonBorder(pt) {
+        : Rectangle(dest, fg, borderSize), buttonWeight(w), buttonHeight(h), buttonBorder(pt) {
     this->init(numRows, numCols);
 }
 
@@ -98,7 +98,7 @@ void Panel::render() const {
                     const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
                     const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
 
-                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentCol][this->currentRow]->getW()) / 2.0)) - this->buttonH;
+                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentCol][this->currentRow]->getW()) / 2.0)) - this->buttonHeight;
                     const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentCol][this->currentRow]->getH()) / 2.0));
 
                     TextureManager::getInstance().draw(
@@ -106,8 +106,8 @@ void Panel::render() const {
                             SDL_Rect(
                                     x_pos,
                                     y_pos,
-                                    this->buttonH,
-                                    this->buttonH
+                                    this->buttonHeight,
+                                    this->buttonHeight
                             )
                     );
                 }

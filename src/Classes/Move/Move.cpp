@@ -39,7 +39,7 @@ void Move::fillToMax() {
     this->pp = maxPp;
 }
 
-int Move::getDamage() const {
+int Move::getDamage(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return binomial(static_cast<double>(this->getAccuracy())) ? this->getPower() : -1;
 }
 
@@ -121,12 +121,14 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
     const int level_calc = (2 * attacker.getLevel() / 5) + 2;
     switch (this->getCategory()) {
         case Category::PHYSICAL:
-            initialDamage = level_calc * this->getDamage() * attacker.getBaseStat(Pokemon::Stat::ATTACK) /
-                            defender.getBaseStat(Pokemon::Stat::DEFENSE);
+            initialDamage =
+                    level_calc * this->getDamage(attacker, defender) * attacker.getBaseStat(Pokemon::Stat::ATTACK) /
+                    defender.getBaseStat(Pokemon::Stat::DEFENSE);
             break;
         case Category::SPECIAL:
-            initialDamage = level_calc * this->getDamage() * attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
-                            defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
+            initialDamage =
+                    level_calc * this->getDamage(attacker, defender) * attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
+                    defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
             break;
         case Category::STATUS:
             return;

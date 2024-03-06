@@ -1,0 +1,26 @@
+<xml version="1.0" encoding="UTF-8">
+    <data>
+        <dex>6</dex>
+        <name>Emboar</name>
+        <species>Mega Fire Pig</species>
+        <types>
+            <type>2</type>
+            <type>7</type>
+        </types>
+        <abilities>
+            <ability>7</ability>
+        </abilities>
+        <height>1.6</height>
+        <weight>150.0</weight>
+        <gender male="87.5"/>
+        <base_stats>
+            <stat id="hp">110</stat>
+            <stat id="attack">123</stat>
+            <stat id="defense">65</stat>
+            <stat id="sp_attack">100</stat>
+            <stat id="sp_defense">65</stat>
+            <stat id="speed">65</stat>
+        </base_stats>
+        <catch_rate>45</catch_rate>
+    </data>
+</xml>

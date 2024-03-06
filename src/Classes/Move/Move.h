@@ -69,6 +69,8 @@ public:
         FLAMETHROWER,
         FLASH_CANNON,
         FOCUS_BLAST,
+        HEAD_SMASH,
+        HEAT_CRASH,
         ICE_BEAM,
         IRON_TAIL,
         QUICK_ATTACK,
@@ -109,7 +111,7 @@ public:
 
     void fillToMax();
 
-    [[nodiscard]] virtual int getDamage() const;
+    [[nodiscard]] virtual int getDamage(const Pokemon &attacker, const Pokemon &defender) const;
 
     virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 

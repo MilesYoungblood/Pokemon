@@ -4,7 +4,7 @@
 
 #include "Graphic.h"
 
-Graphic::Graphic(SDL_Rect rect) : dest(rect) {}
+Graphic::Graphic(SDL_Rect dest) : dest(dest) {}
 
 void Graphic::setDest(SDL_Rect newDest) {
     this->dest = newDest;

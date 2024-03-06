@@ -12,7 +12,7 @@ private:
     bool active{ true };
 
 public:
-    explicit Graphic(SDL_Rect rect);
+    explicit Graphic(SDL_Rect dest);
 
     Graphic(const Graphic &) = default;
 
