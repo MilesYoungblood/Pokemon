@@ -2327,30 +2327,6 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Battle/Battle.obj: src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.obj
-
-# target to build an object file
-src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj
-
-src/Classes/Singleton/DerivedClasses/Battle/Battle.i: src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.i
-
-# target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.i
-
-src/Classes/Singleton/DerivedClasses/Battle/Battle.s: src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.s
-
-# target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.s
-
 src/Classes/Singleton/DerivedClasses/Camera/Camera.obj: src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj
 .PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.obj
 
@@ -2614,6 +2590,78 @@ src/Classes/Stopwatch/Stopwatch.s: src/Classes/Stopwatch/Stopwatch.cpp.s
 src/Classes/Stopwatch/Stopwatch.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.s
 .PHONY : src/Classes/Stopwatch/Stopwatch.cpp.s
+
+src/Enums/Direction/Direction.obj: src/Enums/Direction/Direction.cpp.obj
+.PHONY : src/Enums/Direction/Direction.obj
+
+# target to build an object file
+src/Enums/Direction/Direction.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.obj
+.PHONY : src/Enums/Direction/Direction.cpp.obj
+
+src/Enums/Direction/Direction.i: src/Enums/Direction/Direction.cpp.i
+.PHONY : src/Enums/Direction/Direction.i
+
+# target to preprocess a source file
+src/Enums/Direction/Direction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.i
+.PHONY : src/Enums/Direction/Direction.cpp.i
+
+src/Enums/Direction/Direction.s: src/Enums/Direction/Direction.cpp.s
+.PHONY : src/Enums/Direction/Direction.s
+
+# target to generate assembly for a file
+src/Enums/Direction/Direction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.s
+.PHONY : src/Enums/Direction/Direction.cpp.s
+
+src/Enums/StatusCondition/StatusCondition.obj: src/Enums/StatusCondition/StatusCondition.cpp.obj
+.PHONY : src/Enums/StatusCondition/StatusCondition.obj
+
+# target to build an object file
+src/Enums/StatusCondition/StatusCondition.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj
+.PHONY : src/Enums/StatusCondition/StatusCondition.cpp.obj
+
+src/Enums/StatusCondition/StatusCondition.i: src/Enums/StatusCondition/StatusCondition.cpp.i
+.PHONY : src/Enums/StatusCondition/StatusCondition.i
+
+# target to preprocess a source file
+src/Enums/StatusCondition/StatusCondition.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.i
+.PHONY : src/Enums/StatusCondition/StatusCondition.cpp.i
+
+src/Enums/StatusCondition/StatusCondition.s: src/Enums/StatusCondition/StatusCondition.cpp.s
+.PHONY : src/Enums/StatusCondition/StatusCondition.s
+
+# target to generate assembly for a file
+src/Enums/StatusCondition/StatusCondition.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.s
+.PHONY : src/Enums/StatusCondition/StatusCondition.cpp.s
+
+src/Enums/Type/Type.obj: src/Enums/Type/Type.cpp.obj
+.PHONY : src/Enums/Type/Type.obj
+
+# target to build an object file
+src/Enums/Type/Type.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj
+.PHONY : src/Enums/Type/Type.cpp.obj
+
+src/Enums/Type/Type.i: src/Enums/Type/Type.cpp.i
+.PHONY : src/Enums/Type/Type.i
+
+# target to preprocess a source file
+src/Enums/Type/Type.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.i
+.PHONY : src/Enums/Type/Type.cpp.i
+
+src/Enums/Type/Type.s: src/Enums/Type/Type.cpp.s
+.PHONY : src/Enums/Type/Type.s
+
+# target to generate assembly for a file
+src/Enums/Type/Type.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.s
+.PHONY : src/Enums/Type/Type.cpp.s
 
 src/constants.obj: src/constants.cpp.obj
 .PHONY : src/constants.obj
@@ -2948,9 +2996,6 @@ help:
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Battle/Battle.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Battle/Battle.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Battle/Battle.s
 	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.obj
 	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.i
 	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.s
@@ -2984,6 +3029,15 @@ help:
 	@echo ... src/Classes/Stopwatch/Stopwatch.obj
 	@echo ... src/Classes/Stopwatch/Stopwatch.i
 	@echo ... src/Classes/Stopwatch/Stopwatch.s
+	@echo ... src/Enums/Direction/Direction.obj
+	@echo ... src/Enums/Direction/Direction.i
+	@echo ... src/Enums/Direction/Direction.s
+	@echo ... src/Enums/StatusCondition/StatusCondition.obj
+	@echo ... src/Enums/StatusCondition/StatusCondition.i
+	@echo ... src/Enums/StatusCondition/StatusCondition.s
+	@echo ... src/Enums/Type/Type.obj
+	@echo ... src/Enums/Type/Type.i
+	@echo ... src/Enums/Type/Type.s
 	@echo ... src/constants.obj
 	@echo ... src/constants.i
 	@echo ... src/constants.s

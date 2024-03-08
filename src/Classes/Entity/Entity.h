@@ -4,25 +4,7 @@
 
 #pragma once
 
-enum class Direction : Uint8 {
-    UP, DOWN, LEFT, RIGHT
-};
-
-inline Direction oppositeDirection(Direction direction) {
-    switch (direction) {
-        case Direction::UP:
-            return Direction::DOWN;
-        case Direction::RIGHT:
-            return Direction::LEFT;
-        case Direction::DOWN:
-            return Direction::UP;
-        case Direction::LEFT:
-            return Direction::RIGHT;
-        default:
-            throw std::invalid_argument(
-                    std::string("Invalid argument: " + std::to_string(static_cast<int>(direction))) + " was passed");
-    }
-}
+#include "../../Enums/Direction/Direction.h"
 
 class Map;
 
@@ -158,18 +140,19 @@ private:
     int walkCounter{ 0 };
     int bumpCounter{ 0 };
 
-    struct SpriteData {
-        SDL_Texture *sprite{ nullptr };
-        Uint32 numRows{ 0 };
-        Uint32 numCols{ 0 };
-    };
-    using spriteSet = std::unordered_map<Direction, SpriteData>;
-    inline static std::unordered_map<Entity::Id, spriteSet> sprites;
-
     struct Sprite {
+        struct Data {
+            SDL_Texture *sprite{ nullptr };
+            Uint32 numRows{ 0 };
+            Uint32 numCols{ 0 };
+        };
         int currentCol{ 0 };
         int currentRow{ 0 };
     };
+
+    using spriteSet = std::array<Sprite::Data, 4>;
+    inline static std::unordered_map<Entity::Id, spriteSet> sprites;
+
     Sprite sprite;
 
     void (*action)(Entity *){ nullptr };

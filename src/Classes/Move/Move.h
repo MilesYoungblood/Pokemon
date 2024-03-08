@@ -4,59 +4,39 @@
 
 #pragma once
 
+#include "../../Enums/Type/Type.h"
 #include "../../Functions/GeneralFunctions.h"
 
-enum class Type : Uint8 {
-    NONE, NORMAL, FIRE, WATER, ELECTRIC, GRASS,
-    ICE, FIGHTING, POISON, GROUND, FLYING,
-    PSYCHIC, BUG, ROCK, GHOST, DRAGON,
-    DARK, STEEL
-};
-
-inline SDL_Color typeToColor(Type type) {
-    switch (type) {
-        case Type::NONE:
-            return Constants::Color::WHITE;
-        case Type::NORMAL:
-            return Constants::Color::LIGHT_GRAY;
-        case Type::FIRE:
-            return Constants::Color::RED;
-        case Type::WATER:
-            return Constants::Color::BLUE;
-        case Type::ELECTRIC:
-            return Constants::Color::YELLOW;
-        case Type::GRASS:
-            return Constants::Color::GREEN;
-        case Type::ICE:
-            return Constants::Color::CYAN;
-        case Type::FIGHTING:
-            return Constants::Color::BROWN;
-        case Type::POISON:
-            return Constants::Color::PURPLE;
-        case Type::GROUND:
-            return Constants::Color::BRONZE;
-        case Type::FLYING:
-            return Constants::Color::SKY_BLUE;
-        case Type::PSYCHIC:
-            return Constants::Color::HOT_PINK;
-        case Type::BUG:
-            return Constants::Color::YELLOW_GREEN;
-        case Type::ROCK:
-            return Constants::Color::SAND;
-        case Type::GHOST:
-            return Constants::Color::INDIGO;
-        case Type::DRAGON:
-            return Constants::Color::ROYAL_BLUE;
-        case Type::DARK:
-            return Constants::Color::DARK_BROWN;
-        case Type::STEEL:
-            return Constants::Color::PLATINUM;
-        default:
-            throw std::runtime_error("Unexpected error: function typeToColor\n");
-    }
-}
-
 class Pokemon;
+
+enum Effect : Uint8 {
+    BINDING,
+    CONSECUTIVE,
+    HP_DRAINING,
+    RAISE_STAT,
+    LOWER_STAT,
+    CAN_FLINCH,
+    CAN_CONFUSE,
+    CAN_BURN,
+    CAN_FREEZE,
+    CAN_PARALYZE,
+    CAN_POISON,
+    CAN_SLEEP,
+    CANNOT_MISS,
+    CAUSE_FAINT,
+    CHANGE_TYPE,
+    COST_HP,
+    HAVE_RECOIL,
+    REQUIRE_RECHARGE,
+    RESTORE_HP,
+    SWITCH_OUT_USER,
+    SWITCH_OUT_TARGET,
+    THAW_OUT_USER,
+    CHARGING_TURN,
+    SEMI_INVULNERABLE,
+    MULTI_STRIKE,
+    PROTECTION
+};
 
 class Move {
 public:
@@ -111,17 +91,15 @@ public:
 
     void fillToMax();
 
-    [[nodiscard]] virtual int getDamage(const Pokemon &attacker, const Pokemon &defender) const;
-
     virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 
-    [[nodiscard]] virtual std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const;
+    [[nodiscard]] virtual std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const;
 
     [[nodiscard]] virtual std::string getName() const = 0;
 
-    [[nodiscard]] virtual const char *getDescription() const = 0;
+    [[nodiscard]] virtual std::string getDescription() const = 0;
 
-    [[nodiscard]] virtual int getPower() const = 0;
+    [[nodiscard]] virtual int getPower(const Pokemon &attacker, const Pokemon &defender) const = 0;
 
     [[nodiscard]] virtual int getAccuracy() const;
 

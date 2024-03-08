@@ -18,7 +18,7 @@ void StatusItem::restore(Pokemon &pokemon) const {
 
 std::string StatusItem::restoreMessage(const Pokemon &pokemon) const {
     if (pokemon.getStatus() == StatusCondition::NONE) {
-        return pokemon.getName() + " recovered from " + pokemon.getStatusAsString() + '!';
+        return pokemon.getName() + " recovered from " + statusToString(pokemon.getStatus()) + '!';
     }
     else {
         return "But it failed!";

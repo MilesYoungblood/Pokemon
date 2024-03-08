@@ -209,11 +209,9 @@ std::string statusMessage(const Pokemon &pokemon) {
 void BattlePhase::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) {
     (*attacker)[0][move].action((*attacker)[0], (*defender)[0], *skip);
 
-    auto queue = (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip);
-    while (not queue.empty()) {
-        GraphicsEngine::getInstance().getGraphic<TextBox>().push(queue.front());
-        queue.pop();
-    }
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip)
+    );
 
     if ((*defender)[0].isFainted()) {
         defender->incFaintCount();

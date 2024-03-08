@@ -10,11 +10,11 @@ std::string QuickAttack::getName() const {
     return "Quick Attack";
 }
 
-const char *QuickAttack::getDescription() const {
+std::string QuickAttack::getDescription() const {
     return "The user lunges at the target at a speed that makes it almost invisible. It is sure to strike first.";
 }
 
-int QuickAttack::getPower() const {
+int QuickAttack::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 40;
 }
 
@@ -32,7 +32,7 @@ Move::Id QuickAttack::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::IRON_TAIL,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<QuickAttack>(); }));
     });

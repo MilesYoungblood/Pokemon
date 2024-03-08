@@ -43,9 +43,7 @@ set(SOURCES
         src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
-        src/Classes/Item/ItemList.h
-        src/Classes/Singleton/DerivedClasses/Battle/Battle.h
-        src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp
+        src/Classes/Item/DerivedClasses/Items.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
         src/Classes/Singleton/DerivedClasses/Game/Game.cpp
@@ -98,6 +96,13 @@ set(SOURCES
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
         src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp
         src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
+        src/Enums/Type/Type.cpp
+        src/Enums/Type/Type.h
+        src/Enums/Time/Time.h
+        src/Enums/StatusCondition/StatusCondition.cpp
+        src/Enums/StatusCondition/StatusCondition.h
+        src/Enums/Direction/Direction.cpp
+        src/Enums/Direction/Direction.h
 )
 
 set(POKEMON

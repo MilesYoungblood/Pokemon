@@ -25,32 +25,32 @@ void Thunder::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     this->use();
 }
 
-std::queue<std::string> Thunder::actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                bool  /*skip*/) const {
-    std::queue<std::string> messages({ attacker.getName() + " used Thunder!" });
+std::vector<std::string> Thunder::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                 bool  /*skip*/) const {
+    std::vector<std::string> messages({ attacker.getName() + " used Thunder!" });
 
-    if (this->getDamageFlag() > 0) {
+    if (this->getDamageFlag() >= 0) {
         if (this->getEffFlag() == 0.0) {
-            messages.emplace("It doesn't affect " + defender.getName() + "...");
+            messages.push_back("It doesn't affect " + defender.getName() + "...");
         }
         else {
-            messages.emplace("Thunder did " + std::to_string(this->getDamageFlag()) + " damage!");
+            messages.push_back("Thunder did " + std::to_string(this->getDamageFlag()) + " damage!");
             if (this->getEffFlag() >= 2.0) {
-                messages.emplace("It's super effective!");
+                messages.emplace_back("It's super effective!");
             }
             else if (this->getEffFlag() <= 0.5) {
-                messages.emplace("It's not very effective...");
+                messages.emplace_back("It's not very effective...");
             }
             if (this->getCritFlag() == 2.0) {
-                messages.emplace("A critical hit!");
+                messages.emplace_back("A critical hit!");
             }
             if (this->paralysisFlag) {
-                messages.emplace(defender.getName() + " was paralyzed!");
+                messages.push_back(defender.getName() + " was paralyzed!");
             }
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -60,11 +60,11 @@ std::string Thunder::getName() const {
     return "Thunder";
 }
 
-const char *Thunder::getDescription() const {
+std::string Thunder::getDescription() const {
     return "A wicked thunderbolt is dropped on the target to inflict damage. It may also leave the target with paralysis.";
 }
 
-int Thunder::getPower() const {
+int Thunder::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 120;
 }
 
@@ -86,7 +86,7 @@ Move::Id Thunder::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::THUNDER,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<Thunder>(); }));
     });

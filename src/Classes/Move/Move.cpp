@@ -39,10 +39,6 @@ void Move::fillToMax() {
     this->pp = maxPp;
 }
 
-int Move::getDamage(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
-    return binomial(static_cast<double>(this->getAccuracy())) ? this->getPower() : -1;
-}
-
 void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->resetFlags();
     this->calculateDamage(attacker, defender);
@@ -54,28 +50,28 @@ void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->use();
 }
 
-std::queue<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
-    std::queue<std::string> messages({ attacker.getName() + " used " + this->getName() + '!' });
+std::vector<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
+    std::vector<std::string> messages({ attacker.getName() + " used " + this->getName() + '!' });
 
-    if (this->damageFlag > 0) {
+    if (this->damageFlag >= 0) {
         if (this->effFlag == 0.0) {
-            messages.emplace("It doesn't affect " + defender.getName() + "...");
+            messages.push_back("It doesn't affect " + defender.getName() + "...");
         }
         else {
-            messages.emplace(this->getName() + " did " + std::to_string(this->damageFlag) + " damage!");
+            messages.push_back(this->getName() + " did " + std::to_string(this->damageFlag) + " damage!");
             if (this->effFlag >= 2.0) {
-                messages.emplace("It's super effective!");
+                messages.emplace_back("It's super effective!");
             }
             else if (this->effFlag <= 0.5) {
-                messages.emplace("It's not very effective...");
+                messages.emplace_back("It's not very effective...");
             }
             if (this->critFlag == 2.0) {
-                messages.emplace("A critical hit!");
+                messages.emplace_back("A critical hit!");
             }
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -116,19 +112,24 @@ double Move::getCritFlag() const {
 }
 
 void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
+    if (binomial(static_cast<double>(this->getAccuracy()))) {
+        // denotes a miss
+        this->damageFlag = -1;
+        return;
+    }
     double initialDamage;
 
     const int level_calc = (2 * attacker.getLevel() / 5) + 2;
     switch (this->getCategory()) {
         case Category::PHYSICAL:
-            initialDamage =
-                    level_calc * this->getDamage(attacker, defender) * attacker.getBaseStat(Pokemon::Stat::ATTACK) /
-                    defender.getBaseStat(Pokemon::Stat::DEFENSE);
+            initialDamage = level_calc * this->getPower(attacker, defender) *
+                            attacker.getBaseStat(Pokemon::Stat::ATTACK) /
+                            defender.getBaseStat(Pokemon::Stat::DEFENSE);
             break;
         case Category::SPECIAL:
-            initialDamage =
-                    level_calc * this->getDamage(attacker, defender) * attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
-                    defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
+            initialDamage = level_calc * this->getPower(attacker, defender) *
+                            attacker.getStatMod(Pokemon::Stat::SP_ATTACK) /
+                            defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
             break;
         case Category::STATUS:
             return;

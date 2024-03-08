@@ -97,15 +97,6 @@ Pokemon &Trainer::operator[](std::size_t index) {
     }
 }
 
-const Pokemon &Trainer::operator[](std::size_t index) const {
-    try {
-        return *this->party.at(index);
-    }
-    catch (const std::out_of_range &e) {
-        throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
-    }
-}
-
 std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::begin() {
     return this->party.begin();
 }
@@ -121,10 +112,12 @@ void Trainer::idle() {
     static bool haltMusic = true;
     static bool playMusic = true;
 
+    static const auto not_moving = [](Entity *entity) -> bool {
+        return entity->getState() == Entity::State::IDLE or entity->getState() == Entity::State::FROZEN;
+    };
+
     // checks if the player is in LoS for any this
-    if ((Player::getPlayer().getState() == Entity::State::IDLE or
-         Player::getPlayer().getState() == Entity::State::FROZEN) and this->canFight() and
-        (this->getState() == Entity::State::IDLE or this->getState() == Entity::State::FROZEN) and keepLooping[this] and
+    if (not_moving(&Player::getPlayer()) and this->canFight() and not_moving(this) and keepLooping[this] and
         this->hasVisionOf(&Player::getPlayer())) {
         if (haltMusic) {
             Player::getPlayer().setState(Entity::State::FROZEN);

@@ -23,7 +23,7 @@ Ability::Id Intimidate::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(abilityMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(abilityMutex);
         abilityMap.insert(std::make_pair(Ability::Id::INTIMIDATE,
                                          [] -> std::unique_ptr<Ability> { return std::make_unique<Intimidate>(); }));
     });

@@ -20,11 +20,11 @@ std::string AuraSphere::getName() const {
     return "Aura Sphere";
 }
 
-const char *AuraSphere::getDescription() const {
+std::string AuraSphere::getDescription() const {
     return "The user looses a blast of aura power from deep within its body at the target. This move is certain to hit.";
 }
 
-int AuraSphere::getPower() const {
+int AuraSphere::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 90;
 }
 
@@ -42,7 +42,7 @@ Move::Id AuraSphere::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::AURA_SPHERE,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<AuraSphere>(); }));
     });

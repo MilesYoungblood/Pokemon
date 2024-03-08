@@ -10,11 +10,11 @@ std::string SolarBeam::getName() const {
     return "Solar Beam";
 }
 
-const char *SolarBeam::getDescription() const {
+std::string SolarBeam::getDescription() const {
     return "A two-turn attack. The user gathers light, then blasts a bundled beam on the second turn.";
 }
 
-int SolarBeam::getPower() const {
+int SolarBeam::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 120;
 }
 
@@ -32,7 +32,7 @@ Move::Id SolarBeam::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::SOLAR_BEAM,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<SolarBeam>(); }));
     });

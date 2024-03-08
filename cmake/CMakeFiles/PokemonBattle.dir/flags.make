@@ -30,8 +30,6 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
-
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
@@ -79,6 +77,12 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/Miles Youngblood/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 

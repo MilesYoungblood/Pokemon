@@ -7,10 +7,7 @@
 #include "../../Entity.h"
 #include "../../../Move/Move.h"
 #include "../../../Ability/Ability.h"
-
-enum class StatusCondition : Uint8 {
-    NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
-};
+#include "../../../../Enums/StatusCondition/StatusCondition.h"
 
 class Pokemon : public Entity {
 public:
@@ -82,8 +79,6 @@ public:
     void setStatus(StatusCondition newStatus);
 
     [[nodiscard]] StatusCondition getStatus() const;
-
-    [[nodiscard]] const char *getStatusAsString() const;
 
     void levelUp();
 

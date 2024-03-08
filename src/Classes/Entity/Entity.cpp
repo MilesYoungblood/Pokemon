@@ -31,7 +31,7 @@ void Entity::init() {
         const std::string base("sprites/Hilbert/HilbertSpriteSheet");
 
         const auto data = TextureManager::getInstance().loadTextureData(base + path + ".png");
-        Entity::sprites[entityId][direction] = SpriteData(
+        Entity::sprites[entityId].at(static_cast<std::size_t>(direction)) = Sprite::Data(
                 std::get<0>(data),
                 std::get<1>(data) / Map::TILE_SIZE,
                 std::get<2>(data) / Map::TILE_SIZE
@@ -52,8 +52,8 @@ void Entity::init() {
 void Entity::clean() {
     for (auto &set : Entity::sprites) {
         for (auto &animation : set.second) {
-            if (animation.second.sprite != nullptr) {
-                SDL_DestroyTexture(animation.second.sprite);
+            if (animation.sprite != nullptr) {
+                SDL_DestroyTexture(animation.sprite);
                 if (strlen(SDL_GetError()) > 0) {
                     std::clog << "Unable to destroy sprite: " << SDL_GetError() << '\n';
                     SDL_ClearError();
@@ -255,11 +255,11 @@ void Entity::setAction(void (*function)(Entity *)) {
 void Entity::updateAnimation() {
     ++this->sprite.currentCol;
 
-    if (this->sprite.currentCol == Entity::sprites.at(this->id).at(this->currentDirection).numCols) {
+    if (this->sprite.currentCol == Entity::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).numCols) {
         this->sprite.currentCol = 0;
 
         ++this->sprite.currentRow;
-        if (this->sprite.currentRow == Entity::sprites.at(this->id).at(this->currentDirection).numRows) {
+        if (this->sprite.currentRow == Entity::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).numRows) {
             this->sprite.currentRow = 0;
         }
     }
@@ -284,17 +284,12 @@ void Entity::update() {
 }
 
 void Entity::render() const {
-    try {
-        TextureManager::getInstance().drawFrame(
-                Entity::sprites.at(this->id).at(this->currentDirection).sprite,
-                SDL_Rect(this->screenX, this->screenY, Map::TILE_SIZE, Map::TILE_SIZE),
-                this->sprite.currentCol,
-                this->sprite.currentRow
-        );
-    }
-    catch (const std::exception &e) {
-        std::clog << "Error rendering animation: " << e.what() << '\n';
-    }
+    TextureManager::getInstance().drawFrame(
+            Entity::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).sprite,
+            SDL_Rect(this->screenX, this->screenY, Map::TILE_SIZE, Map::TILE_SIZE),
+            this->sprite.currentCol,
+            this->sprite.currentRow
+    );
 }
 
 void Entity::resetPos() {

@@ -31,38 +31,38 @@ void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->use();
 }
 
-std::queue<std::string> VoltTackle::actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                   bool  /*skip*/) const {
-    std::queue<std::string> messages({ attacker.getName() + " used Volt Tackle!" });
+std::vector<std::string> VoltTackle::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                    bool  /*skip*/) const {
+    std::vector<std::string> messages({ attacker.getName() + " used Volt Tackle!" });
 
     if (this->getDamageFlag() > 0) {
         if (this->getEffFlag() == 0.0) {
-            messages.emplace("It doesn't affect " + defender.getName() + "...");
+            messages.push_back("It doesn't affect " + defender.getName() + "...");
         }
         else {
-            messages.emplace("Volt Tackle did " + std::to_string(this->getDamageFlag()) + " damage!");
+            messages.push_back("Volt Tackle did " + std::to_string(this->getDamageFlag()) + " damage!");
             if (this->getEffFlag() >= 2.0) {
-                messages.emplace("It's super effective!");
+                messages.emplace_back("It's super effective!");
             }
             else if (this->getEffFlag() <= 0.5) {
-                messages.emplace("It's not very effective...");
+                messages.emplace_back("It's not very effective...");
             }
             if (this->getCritFlag() == 2.0) {
-                messages.emplace("A critical hit!");
+                messages.emplace_back("A critical hit!");
             }
             if (this->paralysisFlag) {
-                messages.emplace(defender.getName() + " was paralyzed!");
+                messages.push_back(defender.getName() + " was paralyzed!");
             }
-            messages.emplace(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 3.0)) +
-                             " damage!");
+            messages.push_back(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 3.0))
+                               + " damage!");
 
             if (attacker.isFainted()) {
-                messages.emplace(attacker.getName() + " fainted!");
+                messages.push_back(attacker.getName() + " fainted!");
             }
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -72,11 +72,11 @@ std::string VoltTackle::getName() const {
     return "Volt Tackle";
 }
 
-const char *VoltTackle::getDescription() const {
+std::string VoltTackle::getDescription() const {
     return "The user electrifies itself, then charges. It causes considerable damage to the user and may leave the target with paralysis.";
 }
 
-int VoltTackle::getPower() const {
+int VoltTackle::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 120;
 }
 
@@ -94,7 +94,7 @@ Move::Id VoltTackle::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::VOLT_TACKLE,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<VoltTackle>(); }));
     });

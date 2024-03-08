@@ -163,6 +163,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch: CMakeFiles/PokemonBattle.dir/cma
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stringfwd.h \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/this_thread_sleep.h \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
+  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h \
@@ -209,6 +210,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch: CMakeFiles/PokemonBattle.dir/cma
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/limits \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/locale \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
+  C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numbers \
   C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
@@ -464,6 +466,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Ability/DerivedClasses/Intimidate/Intim
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.h
@@ -473,6 +478,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.h
@@ -482,6 +490,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.h
@@ -491,6 +502,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.h
@@ -500,6 +514,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.h
@@ -509,6 +526,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.h
@@ -518,6 +538,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.h
@@ -527,6 +550,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.h
@@ -536,6 +562,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.h
@@ -545,6 +574,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.h
@@ -554,6 +586,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.h
@@ -563,6 +598,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.h
@@ -572,6 +610,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.h
@@ -581,6 +622,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.h
@@ -590,6 +634,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.h
@@ -599,6 +646,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.h
@@ -608,6 +658,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.h
@@ -617,6 +670,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.h
@@ -626,6 +682,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.h
@@ -635,6 +694,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.h
@@ -644,6 +706,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.h
@@ -653,6 +718,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.h
@@ -662,6 +730,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.h
@@ -671,6 +742,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.h
@@ -680,6 +754,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.h
@@ -688,6 +765,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/Ability.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h
@@ -710,11 +790,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -730,6 +810,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/DerivedCl
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
 
@@ -751,11 +835,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -771,6 +855,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Trainer/Trainer.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/Trainer.cpp
 
@@ -792,11 +880,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CMakeFiles/Pokem
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -812,6 +900,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj: CMakeFiles/Pokem
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.cpp
 
@@ -841,11 +933,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -861,6 +953,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp
 
@@ -890,11 +986,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -910,6 +1006,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp
 
@@ -937,16 +1037,20 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h
@@ -978,6 +1082,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/BattleIt
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h
@@ -989,6 +1097,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.h
@@ -1000,6 +1112,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.h
@@ -1011,6 +1127,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.h
@@ -1022,6 +1142,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.h
@@ -1033,6 +1157,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.h
@@ -1044,6 +1172,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/BattleItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.h
@@ -1055,6 +1187,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.h
@@ -1066,6 +1202,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.h
@@ -1077,6 +1217,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.h
@@ -1088,6 +1232,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.h
@@ -1099,6 +1247,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.h
@@ -1110,6 +1262,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.h
@@ -1121,6 +1277,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.h
@@ -1132,6 +1292,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.h
@@ -1143,6 +1307,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.h
@@ -1154,6 +1322,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/DerivedCla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.h
@@ -1164,6 +1336,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h
@@ -1175,6 +1351,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.h
@@ -1186,6 +1366,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.h
@@ -1197,6 +1381,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.h
@@ -1208,6 +1396,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.h
@@ -1219,6 +1411,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.h
@@ -1230,6 +1426,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Derived
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.h
@@ -1240,6 +1440,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/RestoreItem/Restore
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h
@@ -1251,6 +1455,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.h
@@ -1262,6 +1470,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h
@@ -1273,6 +1485,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.h
@@ -1284,6 +1500,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h
@@ -1295,6 +1515,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.h
@@ -1305,6 +1529,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/DerivedClasses/StatusItem/StatusIt
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h
@@ -1314,6 +1542,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Item/Item.cpp.obj: CMakeFiles/PokemonBa
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h
@@ -1327,15 +1559,19 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj: CMakeFiles/PokemonBatt
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h
@@ -1345,6 +1581,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.h
@@ -1354,6 +1593,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphe
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.h
@@ -1363,12 +1605,16 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.h
@@ -1378,6 +1624,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extras
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.h
@@ -1387,6 +1636,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamet
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.h
@@ -1396,6 +1648,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCa
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h
@@ -1405,6 +1660,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBla
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h
@@ -1414,6 +1672,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h
@@ -1423,6 +1684,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h
@@ -1432,6 +1696,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.h
@@ -1441,18 +1708,23 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.c
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IronTail/IronTail.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.h
@@ -1462,6 +1734,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder/Thunder.h
@@ -1471,6 +1746,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTack
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.h
@@ -1480,27 +1758,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj: CMakeFiles/PokemonBa
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp
-
-CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/Ability.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/Trainer.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Battle/Battle.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/Ability.h \
@@ -1511,16 +1773,20 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp
 
@@ -1542,11 +1808,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -1562,6 +1828,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h
@@ -1599,6 +1869,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokede
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
@@ -1621,11 +1894,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -1641,6 +1914,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.cpp
 
@@ -1662,11 +1939,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -1682,6 +1959,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp
 
@@ -1703,11 +1984,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -1723,6 +2004,10 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedC
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp
 
@@ -1734,6 +2019,18 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager
 CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.cpp \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h
+
+CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.cpp \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h
+
+CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.cpp \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h
+
+CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.cpp \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h
 
 CMakeFiles/PokemonBattle.dir/src/constants.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/constants.cpp
@@ -1756,11 +2053,11 @@ CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CMakeFiles/PokemonBattle.dir/cmak
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/BattleItem/BattleItem.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/RestoreItem/RestoreItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/StatusItem/StatusItem.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/Item.h \
-  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h \
@@ -1775,6 +2072,10 @@ CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CMakeFiles/PokemonBattle.dir/cmak
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
+  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h \
   C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.cpp
@@ -1833,6 +2134,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxcomplexintrin.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL_ttf/SDL_ttf.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.cpp:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxint8intrin.h:
 
@@ -1910,6 +2213,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/mwaitintrin.h:
 
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx512vlbwintrin.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h:
@@ -1961,6 +2266,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avxifmaintrin.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h:
 
@@ -2218,8 +2525,6 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_function.h:
 
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/ItemList.h:
-
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_surface.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ostream.tcc:
@@ -2362,8 +2667,6 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/prfchiintrin.h:
 
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h:
-
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Ability/DerivedClasses/Blaze/Blaze.cpp:
@@ -2385,6 +2688,10 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.h:
+
+C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_lock.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h:
 
@@ -2444,6 +2751,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/atomicity.h:
 
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.cpp:
+
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/concurrence.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/numeric_traits.h:
@@ -2471,6 +2780,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory:
+
+C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/mutex:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/new:
 
@@ -2648,6 +2959,8 @@ C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/sdkddkver.h:
 
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/pkuintrin.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2021.3.2/bin/mingw/x86_64-w64-mingw32/include/pthread_time.h:
@@ -2780,10 +3093,6 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.cpp:
 
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp:
-
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h:
-
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_blendmode.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_cpuinfo.h:
@@ -2834,9 +3143,9 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/constants.h:
 
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_video.h:
-
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/Trainer.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_video.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/close_code.h:
 
@@ -2870,6 +3179,8 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/M
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.h:
 
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h:
+
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.cpp:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.cpp:
@@ -2881,8 +3192,6 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/E
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.cpp:
-
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.cpp:
 
@@ -2928,7 +3237,13 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/E
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Pokemon/Pokemon.cpp:
 
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h:
+
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h:
 
@@ -2939,6 +3254,8 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/G
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/main.cpp:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Items.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Item/DerivedClasses/Pokeball/Pokeball.h:
 
@@ -3086,12 +3403,6 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/M
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder/Thunder.h:
 
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/ItemFunctions.h:
-
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Battle/Battle.cpp:
-
-C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Battle/Battle.h:
-
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp:
@@ -3103,5 +3414,7 @@ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/S
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.cpp:
+
+C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.cpp:
 
 C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/constants.cpp:

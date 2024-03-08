@@ -15,14 +15,14 @@ public:
 
     void action(Pokemon &attacker, Pokemon &defender, bool &skip) override;
 
-    [[nodiscard]] std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                         bool skip) const override;
+    [[nodiscard]] std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                          bool skip) const override;
 
     [[nodiscard]] std::string getName() const override;
 
-    [[nodiscard]] const char *getDescription() const override;
+    [[nodiscard]] std::string getDescription() const override;
 
-    [[nodiscard]] int getPower() const override;
+    [[nodiscard]] int getPower(const Pokemon &attacker, const Pokemon &defender) const override;
 
     [[nodiscard]] Type getType() const override;
 

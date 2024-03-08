@@ -14,9 +14,9 @@ Map::Map(const char *name) : name(name), music(name) {
     }), music.end());
 
     tinyxml2::XMLDocument tmxFile;
-    tinyxml2::XMLError xmlErrorCode = tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data());
-    if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
-        throw std::runtime_error("Error code " + std::to_string(xmlErrorCode) + ": " + tmxFile.ErrorStr() + '\n');
+    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data()) != tinyxml2::XML_SUCCESS) {
+        tmxFile.PrintError();
+        std::terminate();
     }
 
     const tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
@@ -64,9 +64,9 @@ Map::Map(const char *name) : name(name), music(name) {
         }
 
         tinyxml2::XMLDocument tsxFile;
-        xmlErrorCode = tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str());
-        if (xmlErrorCode != tinyxml2::XML_SUCCESS) {
-            throw std::runtime_error("Error code " + std::to_string(xmlErrorCode) + ": " + tsxFile.ErrorStr() + '\n');
+        if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) != tinyxml2::XML_SUCCESS) {
+            tsxFile.PrintError();
+            std::terminate();
         }
 
         tinyxml2::XMLElement *tsElement = tsxFile.FirstChildElement("tileset");

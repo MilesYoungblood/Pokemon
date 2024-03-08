@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../Pokemon/Pokemon.h"
-#include "../../../Item/ItemList.h"
+#include "../../../Item/DerivedClasses/Items.h"
 
 class Trainer : public Entity {
 private:
@@ -105,8 +105,6 @@ public:
     [[nodiscard]] int getFaintCount() const;
 
     Pokemon &operator[](std::size_t index);
-
-    const Pokemon &operator[](std::size_t index) const;
 
     std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 

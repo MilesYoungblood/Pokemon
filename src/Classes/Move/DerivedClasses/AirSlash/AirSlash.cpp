@@ -21,26 +21,26 @@ void AirSlash::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     skip = binomial(30.0);
 }
 
-std::queue<std::string> AirSlash::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
-    std::queue<std::string> messages({ attacker.getName() + " used Air Slash!" });
+std::vector<std::string> AirSlash::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
+    std::vector<std::string> messages({ attacker.getName() + " used Air Slash!" });
 
-    if (this->getDamageFlag() > 0) {
-        messages.emplace("Air Slash did " + std::to_string(this->getDamageFlag()) + " damage!");
+    if (this->getDamageFlag() >= 0) {
+        messages.push_back("Air Slash did " + std::to_string(this->getDamageFlag()) + " damage!");
         if (this->getEffFlag() >= 2.0) {
-            messages.emplace("It's super effective!");
+            messages.emplace_back("It's super effective!");
         }
         else if (this->getEffFlag() <= 0.5) {
-            messages.emplace("It's not very effective...");
+            messages.emplace_back("It's not very effective...");
         }
         if (this->getCritFlag() == 2.0) {
-            messages.emplace("A critical hit!");
+            messages.emplace_back("A critical hit!");
         }
         if (skip) {
-            messages.emplace(defender.getName() + " flinched!");
+            messages.push_back(defender.getName() + " flinched!");
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -50,11 +50,11 @@ std::string AirSlash::getName() const {
     return "Air Slash";
 }
 
-const char *AirSlash::getDescription() const {
+std::string AirSlash::getDescription() const {
     return "The user attacks with a blade of air that slices even the sky. It may also make the target flinch.";
 }
 
-int AirSlash::getPower() const {
+int AirSlash::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 75;
 }
 
@@ -76,7 +76,7 @@ Move::Id AirSlash::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::AIR_SLASH,
                                       [] -> std::unique_ptr <Move> { return std::make_unique<AirSlash>(); }));
     });

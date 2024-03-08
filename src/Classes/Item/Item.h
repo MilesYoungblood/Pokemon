@@ -4,11 +4,8 @@
 
 #pragma once
 
+#include "../../Enums/Time/Time.h"
 #include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
-
-enum Time : Uint8 {
-    MORNING, DAY, NIGHT
-};
 
 class Item {
 private:

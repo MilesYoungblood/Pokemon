@@ -25,27 +25,27 @@ void IceBeam::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->use();
 }
 
-std::queue<std::string> IceBeam::actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                bool  /*skipTurn*/) const {
-    std::queue<std::string> messages({ attacker.getName() + " used Ice Beam!" });
+std::vector<std::string> IceBeam::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                 bool  /*skipTurn*/) const {
+    std::vector<std::string> messages({ attacker.getName() + " used Ice Beam!" });
 
     if (this->getDamageFlag() > 0) {
-        messages.emplace("Ice Beam did " + std::to_string(this->getDamageFlag()) + " damage!");
+        messages.push_back("Ice Beam did " + std::to_string(this->getDamageFlag()) + " damage!");
         if (this->getEffFlag() >= 2.0) {
-            messages.emplace("It's super effective!");
+            messages.emplace_back("It's super effective!");
         }
         else if (this->getEffFlag() <= 0.5) {
-            messages.emplace("It's not very effective...");
+            messages.emplace_back("It's not very effective...");
         }
         if (this->getCritFlag() == 2.0) {
-            messages.emplace("A critical hit!");
+            messages.emplace_back("A critical hit!");
         }
         if (this->freezeFlag) {
-            messages.emplace(defender.getName() + " became frozen!");
+            messages.push_back(defender.getName() + " became frozen!");
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -55,11 +55,11 @@ std::string IceBeam::getName() const {
     return "Ice Beam";
 }
 
-const char *IceBeam::getDescription() const {
+std::string IceBeam::getDescription() const {
     return "The target is struck with an icy-cold beam of energy. It may also freeze the target solid.";
 }
 
-int IceBeam::getPower() const {
+int IceBeam::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 95;
 }
 
@@ -77,7 +77,7 @@ Move::Id IceBeam::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::ICE_BEAM,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<IceBeam>(); }));
     });

@@ -177,28 +177,6 @@ StatusCondition Pokemon::getStatus() const {
     return this->status;
 }
 
-const char *Pokemon::getStatusAsString() const {
-    switch (this->status) {
-        case StatusCondition::PARALYSIS:
-            return "paralysis";
-
-        case StatusCondition::BURN:
-            return "burn";
-
-        case StatusCondition::FREEZE:
-            return "freezing";
-
-        case StatusCondition::POISON:
-            return "poisoning";
-
-        case StatusCondition::SLEEP:
-            return "slumber";
-
-        default:
-            throw std::runtime_error("Unexpected error: function getStatusAsString");
-    }
-}
-
 void Pokemon::levelUp() {
     this->level = std::min(this->level + 1, 100);
 }

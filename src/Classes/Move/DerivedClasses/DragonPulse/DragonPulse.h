@@ -15,9 +15,9 @@ public:
 
     [[nodiscard]] std::string getName() const override;
 
-    [[nodiscard]] const char *getDescription() const override;
+    [[nodiscard]] std::string getDescription() const override;
 
-    [[nodiscard]] int getPower() const override;
+    [[nodiscard]] int getPower(const Pokemon &attacker, const Pokemon &defender) const override;
 
     [[nodiscard]] Type getType() const override;
 

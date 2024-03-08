@@ -27,27 +27,27 @@ void FlashCannon::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) 
     this->use();
 }
 
-std::queue<std::string> FlashCannon::actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                    bool  /*skip*/) const {
-    std::queue<std::string> messages({ attacker.getName() + " used Flash Cannon!" });
+std::vector<std::string> FlashCannon::actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                     bool  /*skip*/) const {
+    std::vector<std::string> messages({ attacker.getName() + " used Flash Cannon!" });
 
-    if (this->getDamageFlag() > 0) {
-        messages.emplace("Flash Cannon did " + std::to_string(this->getDamageFlag()) + " damage!");
+    if (this->getDamageFlag() >= 0) {
+        messages.push_back("Flash Cannon did " + std::to_string(this->getDamageFlag()) + " damage!");
         if (this->getEffFlag() >= 2.0) {
-            messages.emplace("It's super effective!");
+            messages.emplace_back("It's super effective!");
         }
         else if (this->getEffFlag() <= 0.5) {
-            messages.emplace("It's not very effective...");
+            messages.emplace_back("It's not very effective...");
         }
         if (this->getCritFlag() == 2.0) {
-            messages.emplace("A critical hit!");
+            messages.emplace_back("A critical hit!");
         }
         if (this->loweredFlag) {
-            messages.emplace(defender.getName() + "'s special defense was lowered!");
+            messages.emplace_back(defender.getName() + "'s special defense was lowered!");
         }
     }
     else {
-        messages.emplace(defender.getName() + " avoided the attack!");
+        messages.push_back(defender.getName() + " avoided the attack!");
     }
 
     return messages;
@@ -57,11 +57,11 @@ std::string FlashCannon::getName() const {
     return "Flash Cannon";
 }
 
-const char *FlashCannon::getDescription() const {
+std::string FlashCannon::getDescription() const {
     return "The user gathers all its light energy and releases it at once. It may also lower the target’s Sp. Def stat.";
 }
 
-int FlashCannon::getPower() const {
+int FlashCannon::getPower(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
     return 80;
 }
 
@@ -79,7 +79,7 @@ Move::Id FlashCannon::getId() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(moveMutex);
+        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
         moveMap.insert(std::make_pair(Move::Id::FLASH_CANNON,
                                       [] -> std::unique_ptr<Move> { return std::make_unique<FlashCannon>(); }));
     });
