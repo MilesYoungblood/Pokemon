@@ -5,7 +5,7 @@
 #pragma once
 
 #include "../../../../../Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h"
-#include "../../../../../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
+#include "../../../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../State.h"
 
 class BattlePhase : public State {

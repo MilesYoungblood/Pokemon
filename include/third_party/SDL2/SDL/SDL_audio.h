@@ -1242,7 +1242,7 @@ extern DECLSPEC int SDLCALL SDL_QueueAudio(SDL_AudioDeviceID dev, const void *da
  * method) with this function.
  *
  * There are no limits on the amount of data you can queue, short of
- * exhaustion of address space. Data from the device will keep queuing as
+ * exhaustion of address space. Sheet from the device will keep queuing as
  * necessary without further intervention from you. This means you will
  * eventually run out of memory if you aren't routinely dequeueing data.
  *

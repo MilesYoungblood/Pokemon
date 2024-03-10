@@ -43,7 +43,7 @@ const char *typeToString(Type type) {
         case Type::STEEL:
             return "Steel";
         default:
-            throw std::runtime_error("Unexpected error: function typeToColor\n");
+            throw std::invalid_argument("Unexpected error: function typeToColor\n");
     }
 }
 
@@ -86,6 +86,6 @@ SDL_Color typeToColor(Type type) {
         case Type::STEEL:
             return Constants::Color::PLATINUM;
         default:
-            throw std::runtime_error("Unexpected error: function typeToColor\n");
+            throw std::invalid_argument("Unexpected error: function typeToColor\n");
     }
 }

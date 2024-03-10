@@ -61,7 +61,7 @@ extern "C" {
 #endif
 
 /**
- * Data structure for CRC32 (checksum) computation
+ * Sheet structure for CRC32 (checksum) computation
  */
   typedef struct {
     CrcUint32    crc32_table[256]; /* CRC table */

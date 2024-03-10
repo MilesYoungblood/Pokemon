@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "FlashCannon.h"
 
 FlashCannon::FlashCannon() : Move(10) {}
@@ -73,14 +73,9 @@ Move::Category FlashCannon::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id FlashCannon::getId() const {
-    return Move::Id::FLASH_CANNON;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::FLASH_CANNON,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<FlashCannon>(); }));
+        moveMap["Flash Cannon"] = [] -> std::unique_ptr<Move> { return std::make_unique<FlashCannon>(); };
     });
 }

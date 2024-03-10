@@ -347,7 +347,7 @@ void BattlePhase::updateTOut() {
             this->isRunning = false;
             this->opponent->clearParty();
 
-            Player::getPlayer().setState(Entity::State::IDLE);
+            Player::getPlayer().setState(Character::State::IDLE);
             GraphicsEngine::getInstance().clear();
 
             if (Mix_FadeOutMusic(2000) == 0) {

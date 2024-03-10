@@ -26,14 +26,13 @@ Move::Category QuickAttack::getCategory() const {
     return Move::Category::PHYSICAL;
 }
 
-Move::Id QuickAttack::getId() const {
-    return Move::Id::QUICK_ATTACK;
+bool QuickAttack::isPriority() const {
+    return true;
 }
 
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::IRON_TAIL,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<QuickAttack>(); }));
+        moveMap["Quick Attack"] = [] -> std::unique_ptr<Move> { return std::make_unique<QuickAttack>(); };
     });
 }

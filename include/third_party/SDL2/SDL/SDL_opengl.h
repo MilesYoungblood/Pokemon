@@ -199,7 +199,7 @@ typedef double		GLclampd;	/* double precision float in [0,1] */
 #define GL_FALSE				0
 #define GL_TRUE					1
 
-/* Data types */
+/* Sheet types */
 #define GL_BYTE					0x1400
 #define GL_UNSIGNED_BYTE			0x1401
 #define GL_SHORT				0x1402

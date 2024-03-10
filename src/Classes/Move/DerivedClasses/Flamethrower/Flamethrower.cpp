@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Flamethrower.h"
 
 Flamethrower::Flamethrower() : Move(15) {}
@@ -71,14 +71,9 @@ Move::Category Flamethrower::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id Flamethrower::getId() const {
-    return Move::Id::FLAMETHROWER;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::FLAMETHROWER,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<Flamethrower>(); }));
+        moveMap["Flamethrower"] = [] -> std::unique_ptr<Move> { return std::make_unique<Flamethrower>(); };
     });
 }

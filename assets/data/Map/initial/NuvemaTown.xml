@@ -1,0 +1,45 @@
+<xml version="1.0" encoding="UTF-8">
+    <entities>
+        <entity class="Trainer" id="Youngster">
+            <name>Cheren</name>
+            <position x="12" y="7"/>
+            <direction>1</direction>
+            <vision>3</vision>
+            <dialogue>
+                <message>Hmm... you look pretty tough...</message>
+                <message>This calls for a battle!</message>
+                <message>Prepare yourself!</message>
+            </dialogue>
+            <party>
+                <pokemon id="Samurott">
+                    <move_set>
+                        <move id=""/>
+                        <move id=""/>
+                        <move id=""/>
+                        <move id=""/>
+                    </move_set>
+                </pokemon>
+            </party>
+        </entity>
+        <entity class="Trainer" id="Youngster">
+            <name>Bianca</name>
+            <position x="18" y="16"/>
+            <direction>1</direction>
+            <vision>3</vision>
+            <dialogue>
+                <message>Press ENTER to see the next message!</message>
+                <message>Yay! You did it!</message>
+            </dialogue>
+            <party>
+                <pokemon id="Serperior">
+                    <move_set>
+                        <move id=""/>
+                        <move id=""/>
+                        <move id=""/>
+                        <move id=""/>
+                    </move_set>
+                </pokemon>
+            </party>
+        </entity>
+    </entities>
+</xml>

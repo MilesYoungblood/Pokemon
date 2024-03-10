@@ -27,6 +27,4 @@ public:
     [[nodiscard]] Type getType() const override;
 
     [[nodiscard]] Move::Category getCategory() const override;
-
-    [[nodiscard]] Move::Id getId() const override;
 };

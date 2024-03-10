@@ -1,159 +1,89 @@
 //
-// Created by Miles on 10/1/2023.
+// Created by Miles Youngblood on 3/9/2024.
 //
 
 #pragma once
 
 #include "../../Enums/Direction/Direction.h"
 
-class Map;
-
 class Entity {
-public:
-    enum class Id : Uint8 {
-        PLAYER,
-        YOUNGSTER
-    };
-    enum class State : Uint8 {
-        IDLE,
-        WALKING,
-        COLLIDING,
-        FROZEN
-    };
+private:
+    int mapX{ 0 };                                        // x-coordinate on map
+    int mapY{ 0 };                                        // y-coordinate on map
+    int screenX{ 0 };                                     // x-coordinate on the screen
+    int screenY{ 0 };                                     // y-coordinate on the screen
 
+protected:
     Entity() = default;
 
-    Entity(Entity::Id id, int x, int y);
+    Entity(int x, int y);
 
-    Entity(Entity::Id id, const char *name, int x, int y);
-
-    Entity(Entity::Id id, const char *name, int x, int y, Direction direction);
-
-    Entity(Entity::Id id, const char *name, int x, int y, Direction direction, int vision);
-
+public:
     Entity(const Entity &) = delete;
 
-    Entity(Entity &&toMove) noexcept = default;
+    Entity(Entity &&) noexcept = default;
 
     Entity &operator=(const Entity &) = delete;
 
     Entity &operator=(Entity &&) noexcept = delete;
 
-    virtual ~Entity();
+    virtual ~Entity() = default;
 
-    static void init();
+    /// \brief Sets the entity's map coordinates and screen coordinates
+    /// \param x new x-coordinate on the map
+    /// \param y new y-coordinate on the map
+    void setCoordinates(int x, int y);
 
-    static void clean();
+    /// \brief Translates the entity's x-coordinate
+    /// \param n distance
+    void translateX(int n);
 
-    void setName(const char *newName);
+    /// \brief Translates the entity's y-coordinate
+    /// \param n distance
+    void translateY(int n);
 
-    [[nodiscard]] virtual std::string getName() const;
+    /// \brief Getter for map x-coordinate
+    /// \return x-coordinate on map
+    [[nodiscard]] int getMapX() const;
 
-    void setDialogue(const char *text);
+    /// \brief Getter for map y-coordinate
+    /// \return y-coordinate on map
+    [[nodiscard]] int getMapY() const;
 
-    void setDialogue(const std::vector<std::string> &text);
-
-    [[nodiscard]] std::vector<std::string> getDialogue() const;
-
-    void setCoordinates(int newX, int newY);
-
-    [[nodiscard]] int getX() const;
-
-    [[nodiscard]] int getY() const;
-
-    void moveForward();
-
-    void setDirection(Direction direction);
-
-    [[nodiscard]] Direction getDirection() const;
-
-    void face(const Entity *entity);
-
-    [[nodiscard]] bool isFacing(Direction direction) const;
-
-    void setState(Entity::State state);
-
-    [[nodiscard]] Entity::State getState() const;
-
-    bool canMoveForward(const Map *map) const;
-
+    /// \brief Checks to see if this is next to an entity on the map
+    /// \param entity to check
+    /// \return true if this is next to the entity and false otherwise
     bool isNextTo(const Entity *entity) const;
 
-    bool hasVisionOf(const Entity *entity) const;
+    /// \brief shifts this horizontally on the screen
+    /// \param n distance
+    void shiftHorizontally(int n);
 
-    void shiftHorizontally(int distance);
+    /// \brief shifts this vertically on the screen
+    /// \param n distance
+    void shiftVertically(int n);
 
-    void shiftVertically(int distance);
+    /// \brief shifts this some direction on the screen
+    /// \param direction to shift
+    /// \param n distance
+    void shift(Direction direction, int n);
 
-    void shift(Direction direction, int distance);
-
+    /// \brief Getter for screen x coordinate
+    /// \return screen x-coordinate
     [[nodiscard]] int getScreenX() const;
 
+    /// \brief Getter for screen y coordinate
+    /// \return screen y-coordinate
     [[nodiscard]] int getScreenY() const;
 
-    void setAction(void (*function)(Entity *entity));
+    virtual void interact() = 0;
 
-    void updateAnimation();
+    /// \brief Updates the entity
+    virtual void update() = 0;
 
-    void update();
+    /// \brief Renders the entity
+    virtual void render() const = 0;
 
-    void render() const;
-
+    /// \brief Resets the entity's map and screen coordinates
     void resetPos();
-
-    [[nodiscard]] virtual bool canFight() const;
-
-    [[nodiscard]] virtual bool isTrainer() const;
-
-protected:
-    virtual void walk();
-
-    void collide();
-
-    virtual void idle();
-
-    void act();
-
-    void incWalkCounter(int count);
-
-    void resetWalkCounter();
-
-    [[nodiscard]] int getWalkCounter() const;
-
-private:
-    std::vector<std::string> dialogue;
-
-    Entity::Id id{ Entity::Id::PLAYER };
-
-    const char *name{ "" };
-
-    int x{ 0 };                                           // x-coordinate on map
-    int y{ 0 };                                           // y-coordinate on map
-    int screenX{ 0 };                                     // x-coordinate on the screen
-    int screenY{ 0 };                                     // y-coordinate on the screen
-
-    unsigned int vision{ 1 };                             // line of sight
-
-    Direction currentDirection{ Direction::DOWN };        // which way the entity is facing
-    Entity::State currentState{ Entity::State::IDLE };    // dictates what the entity is doing
-
-    int walkCounter{ 0 };
-    int bumpCounter{ 0 };
-
-    struct Sprite {
-        struct Data {
-            SDL_Texture *sprite{ nullptr };
-            Uint32 numRows{ 0 };
-            Uint32 numCols{ 0 };
-        };
-        int currentCol{ 0 };
-        int currentRow{ 0 };
-    };
-
-    using spriteSet = std::array<Sprite::Data, 4>;
-    inline static std::unordered_map<Entity::Id, spriteSet> sprites;
-
-    Sprite sprite;
-
-    void (*action)(Entity *){ nullptr };
 };

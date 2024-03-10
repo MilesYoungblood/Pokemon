@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Intimidate.h"
 
 void Intimidate::action(Pokemon & /*attacker*/, Pokemon &defender) {

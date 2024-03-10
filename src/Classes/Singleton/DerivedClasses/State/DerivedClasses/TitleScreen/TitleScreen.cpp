@@ -37,8 +37,8 @@ void TitleScreen::update() {
         Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
         Camera::getInstance().lockOnPlayer(State::getInstance<Overworld>().getCurrentMap());
 
-        for (auto &trainer : *State::getInstance<Overworld>().getCurrentMap()) {
-            keepLooping[&trainer] = true;
+        for (auto &entity : *State::getInstance<Overworld>().getCurrentMap()) {
+            keepLooping[entity.get()] = true;
         }
 
         Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());

@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "AuraSphere.h"
 
 AuraSphere::AuraSphere() : Move(20) {}
@@ -36,14 +36,9 @@ Move::Category AuraSphere::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id AuraSphere::getId() const {
-    return Move::Id::AURA_SPHERE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::AURA_SPHERE,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<AuraSphere>(); }));
+        moveMap["Aura Sphere"] = [] -> std::unique_ptr<Move> { return std::make_unique<AuraSphere>(); };
     });
 }

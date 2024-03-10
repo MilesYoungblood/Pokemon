@@ -23,9 +23,5 @@ public:
 
     [[nodiscard]] Move::Category getCategory() const override;
 
-    [[nodiscard]] Move::Id getId() const override;
-
-    [[nodiscard]] bool isPriority() const override {
-        return true;
-    }
+    [[nodiscard]] bool isPriority() const override;
 };

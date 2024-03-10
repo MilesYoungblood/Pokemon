@@ -5,7 +5,7 @@
 #include "../../../Game/Game.h"
 #include "Overworld.h"
 
-void defaultAction(Entity *entity) {
+void defaultAction(Character *entity) {
     switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
         case 1:
             entity->face(entity);
@@ -22,15 +22,15 @@ void defaultAction(Entity *entity) {
         case 3:
             if (entity->canMoveForward(State::getInstance<Overworld>().getCurrentMap())) {
                 entity->moveForward();
-                entity->setState(Entity::State::WALKING);
+                entity->setState(Character::State::WALKING);
 
                 if (entity->hasVisionOf(&Player::getPlayer()) and
-                    (Player::getPlayer().getState() == Entity::State::IDLE)) {
-                    Player::getPlayer().setState(Entity::State::FROZEN);
+                    (Player::getPlayer().getState() == Character::State::IDLE)) {
+                    Player::getPlayer().setState(Character::State::IMMOBILE);
                 }
             }
             else {
-                entity->setState(Entity::State::COLLIDING);
+                entity->setState(Character::State::COLLIDING);
                 entity->updateAnimation();
             }
             break;
@@ -41,10 +41,10 @@ void defaultAction(Entity *entity) {
 
 void Overworld::init() {
     // default values for player
-    Player::getPlayer().init("Hilbert", 7, 17, Direction::DOWN);
+    Player::getPlayer().setName("Hilbert");
 
-    Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::EMBOAR)());
-    Player::getPlayer()[0].addMove(moveMap.at(Move::Id::HEAT_CRASH)());
+    Player::getPlayer().addPokemon(Pokemon::Id::EMBOAR);
+    Player::getPlayer()[0].addMove("Heat Crash");
 
     //Player::getPlayer().addPokemon(pokemonMap.at(Pokemon::Id::ZEBSTRIKA)());
     //Player::getPlayer()[1].addMove(Move::Id::VOLT_TACKLE);
@@ -85,16 +85,17 @@ void Overworld::init() {
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SP_DEFENSE)(5));
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_SPEED)(5));
     Player::getPlayer().addItem<BattleItem>(battleItems.at(BattleItem::Id::X_ACCURACY)(5));
+}
 
-    this->currentMapIndex = Map::Id::NUVEMA_TOWN;
-    this->currentMap = &this->maps.at(this->currentMapIndex);
+Overworld::~Overworld() {
+    delete this->currentMap;
 }
 
 void Overworld::update() {
     Player::getPlayer().update();
 
-    for (auto &trainer : *this->currentMap) {
-        trainer.update();
+    for (auto &entity : *this->currentMap) {
+        entity->update();
     }
 
     GraphicsEngine::getInstance().update();
@@ -112,32 +113,48 @@ void Overworld::load() {
         return;
     }
 
-    std::ifstream saveFile("../docs/data/SaveData.txt");
+    std::vector<std::unique_ptr<Move>> moves;
+    moves.push_back(std::move(moveMap.at("Dark Pulse")()));
+    moves.push_back(std::move(moveMap.at("Dragon Pulse")()));
+    moves.push_back(std::move(moveMap.at("Flamethrower")()));
+    moves.push_back(std::move(moveMap.at("Focus Blast")()));
 
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer(Entity::Id::YOUNGSTER, "Cheren", 12, 7, Direction::DOWN, 3);
-    this->maps[Map::Id::NUVEMA_TOWN][0].setDialogue({ "Press ENTER to see the next message.", "Great job!" });
-    this->maps[Map::Id::NUVEMA_TOWN][0].setAction(defaultAction);
-    this->maps[Map::Id::NUVEMA_TOWN][0].addPokemon(pokemonMap.at(Pokemon::Id::SAMUROTT)());
-    this->maps[Map::Id::NUVEMA_TOWN].addTrainer(Entity::Id::YOUNGSTER, "Bianca", 18, 16, Direction::DOWN, 3);
-    this->maps[Map::Id::NUVEMA_TOWN][1].setDialogue(
-            {
-                    "Hmm... you look pretty tough...",
-                    "This calls for a battle!",
-                    "Prepare yourself!"
-            }
-    );
-    this->maps[Map::Id::NUVEMA_TOWN][1].setAction(defaultAction);
-    this->maps[Map::Id::NUVEMA_TOWN][1].addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
+    this->currentMap = new Map("Nuvema Town");
 
-    this->maps[Map::Id::NUVEMA_TOWN].addItem<PokeBall>(std::make_pair(7, 18), 5);
+    {
+        std::unique_ptr<Trainer> trainer = std::make_unique<Trainer>("Youngster", "Cheren", 12, 7, Direction::DOWN, 3);
+        trainer->addPokemon(Pokemon::Id::SAMUROTT);
+        trainer->setDialogue({ "Press ENTER to see the next message.", "Great job!" });
+        trainer->setAction(defaultAction);
+
+        this->currentMap->addEntity(std::move(trainer));
+    }
+    {
+        std::unique_ptr<Trainer> trainer = std::make_unique<Trainer>("Youngster", "Bianca", 18, 16, Direction::DOWN, 3);
+        trainer->addPokemon(pokemonMap.at(Pokemon::Id::SERPERIOR)());
+        trainer->setDialogue(
+                {
+                        "Hmm... you look pretty tough...",
+                        "This calls for a battle!",
+                        "Prepare yourself!"
+                }
+        );
+        trainer->setAction(defaultAction);
+
+        this->currentMap->addEntity(std::move(trainer));
+    }
+
+    std::unique_ptr<PokeBall> pokeBall = std::make_unique<PokeBall>(5, 7, 18);
+    this->currentMap->addEntity(std::move(pokeBall));
+
+    std::ifstream saveFile("../assets/data/SaveData.txt");
 
     if (saveFile) {
         std::string buffer;
 
         // load the current map
         std::getline(saveFile, buffer);
-        this->currentMapIndex = buffer[0] - '0';
-        this->currentMap = &this->maps.at(this->currentMapIndex);
+        this->currentMap = new Map(buffer.c_str());
 
         // grab the player's x-coordinates
         std::getline(saveFile, buffer, ' ');
@@ -151,7 +168,9 @@ void Overworld::load() {
         std::getline(saveFile, buffer);
 
         //TODO load player name dynamically
-        Player::getPlayer().init("Hilbert", player_x, player_y, static_cast<Direction>(buffer[0] - '0'));
+        Player::getPlayer().setName("Hilbert");
+        Player::getPlayer().setCoordinates(player_x, player_y);
+        Player::getPlayer().setDirection(static_cast<Direction>(buffer[0] - '0'));
 
         // load the player's party size
         std::getline(saveFile, buffer);
@@ -192,7 +211,7 @@ void Overworld::load() {
                 std::getline(saveFile, buffer, ' ');
                 const int max_pp = std::stoi(buffer);
 
-                Player::getPlayer()[pokemon].addMove(moveMap.at(static_cast<Move::Id>(id))());
+                //Player::getPlayer()[pokemon].addMove(moveMap.at(static_cast<Move::Id>(id))());
                 Player::getPlayer()[pokemon][move].setPp(saved_pp);
                 Player::getPlayer()[pokemon][move].setMaxPp(max_pp);
             }
@@ -272,17 +291,17 @@ void Overworld::load() {
 
             // grabs the trainer
             std::getline(ss, buffer, ' ');
-            const int trainer = std::stoi(buffer);
+            //const int trainer = std::stoi(buffer);
 
             // grabs the trainer's party size
             std::getline(ss, buffer);
             if (buffer[0] == '0') {
                 // deletes the Pokémon set if the trainer has been defeated
                 // FIXME change to adding Pokémon if not defeated
-                this->maps.at(map)[trainer].clearParty();
+                //this->maps.at(map)[trainer].clearParty();
             }
 
-            this->maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
+            //this->maps.at(map)[trainer].setDirection(static_cast<Direction>(buffer[1] - '0'));
 
             // Clear the string stream and reset its state
             ss.str().clear();
@@ -295,22 +314,23 @@ void Overworld::load() {
         this->init();
     }
 
-    Entity::init();
+    Character::init();
+    Item::init();
     Map::init();
 
     loaded = true;
 }
 
 void Overworld::save() {
-    std::ofstream saveFile("../docs/data/SaveData.txt");
+    std::ofstream saveFile("../assets/data/SaveData.txt");
     if (not saveFile.is_open()) {
         std::clog << "Unable to open \"SaveData.txt\"\n";
         Game::getInstance().terminate();
         return;
     }
 
-    saveFile << this->currentMapIndex;
-    saveFile << '\n' << Player::getPlayer().getX() << ' ' << Player::getPlayer().getY() << ' '
+    saveFile << this->currentMapId;
+    saveFile << '\n' << Player::getPlayer().getMapX() << ' ' << Player::getPlayer().getMapY() << ' '
              << static_cast<int>(Player::getPlayer().getDirection());
     saveFile << '\n' << Player::getPlayer().partySize();
     for (auto &pokemon : Player::getPlayer()) {
@@ -328,7 +348,7 @@ void Overworld::save() {
         saveFile << num_moves << ' ';
 
         for (auto &move : *pokemon) {
-            saveFile << move->getId() << ' ' << move->getPp() << ' ' << move->getMaxPp() << ' ';
+            //saveFile << move->getId() << ' ' << move->getPp() << ' ' << move->getMaxPp() << ' ';
         }
     }
 
@@ -340,7 +360,7 @@ void Overworld::save() {
     saveFile << '\n' << num_restore_items;
 
     RestoreItem *restoreItem;
-    for (int i = 0; i < num_restore_items; ++i) {
+    for (std::size_t i = 0; i < num_restore_items; ++i) {
         restoreItem = &Player::getPlayer().getItem<RestoreItem>(i);
         saveFile << '\n' << static_cast<int>(restoreItem->getId()) << ' ' << restoreItem->getQuantity();
     }
@@ -348,7 +368,7 @@ void Overworld::save() {
     saveFile << '\n' << num_status_items;
 
     StatusItem *statusItem;
-    for (int i = 0; i < num_status_items; ++i) {
+    for (std::size_t i = 0; i < num_status_items; ++i) {
         statusItem = &Player::getPlayer().getItem<StatusItem>(i);
         saveFile << '\n' << static_cast<int>(statusItem->getId()) << ' ' << statusItem->getQuantity();
     }
@@ -356,7 +376,7 @@ void Overworld::save() {
     saveFile << '\n' << num_poke_balls;
 
     PokeBall *pokeBall;
-    for (int i = 0; i < num_poke_balls; ++i) {
+    for (std::size_t i = 0; i < num_poke_balls; ++i) {
         pokeBall = &Player::getPlayer().getItem<PokeBall>(i);
         saveFile << '\n' << static_cast<int>(pokeBall->getId()) << ' ' << pokeBall->getQuantity();
     }
@@ -364,22 +384,24 @@ void Overworld::save() {
     saveFile << '\n' << num_battle_items;
 
     BattleItem *battleItem;
-    for (int i = 0; i < num_battle_items; ++i) {
+    for (std::size_t i = 0; i < num_battle_items; ++i) {
         battleItem = &Player::getPlayer().getItem<BattleItem>(i);
         saveFile << '\n' << static_cast<int>(battleItem->getId()) << ' ' << battleItem->getQuantity();
     }
 
-    for (std::size_t map = 0ULL; map < this->maps.size(); ++map) {
-        for (int trainer = 0; trainer < this->maps.at(map).numTrainers(); ++trainer) {
+    /*
+    for (std::size_t map = 0; map < this->maps.size(); ++map) {
+        for (std::size_t trainer = 0; trainer < this->maps.at(map).numTrainers(); ++trainer) {
             saveFile << '\n' << map << ' ' << trainer << ' ' << this->maps.at(map)[trainer].partySize();
             saveFile << static_cast<int>(this->maps.at(map)[trainer].getDirection());
         }
     }
+     */
 
     saveFile.close();
 }
 
-void Overworld::changeMap(const std::tuple<int, int, Map::Id> &data) {
+void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
         std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": "
                   << SDL_GetError() << '\n';
@@ -394,21 +416,22 @@ void Overworld::changeMap(const std::tuple<int, int, Map::Id> &data) {
 
     this->currentMap->reset();
 
-    // move the new map into the current map variable
-    this->currentMapIndex = std::get<2>(data);
-    this->currentMap = &this->maps.at(this->currentMapIndex);
-
     // resets the states of these variables for each trainer
-    for (auto &trainer : *this->currentMap) {
-        keepLooping[&trainer] = true;
+    for (auto &entity : *this->currentMap) {
+        keepLooping[entity.get()] = true;
     }
+
+    // move the new map into the current map variable
+    this->currentMapId = std::get<2>(data);
+    delete this->currentMap;
+    this->currentMap = new Map(this->currentMapId.c_str());
 
     Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
 
     Camera::getInstance().lockOnPlayer(this->currentMap);
 }
 
-Map *Overworld::getCurrentMap() const {
+gsl::owner<Map *> Overworld::getCurrentMap() const {
     return this->currentMap;
 }
 
@@ -442,18 +465,31 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     );
 }
 
-void Overworld::handleMove(SDL_Scancode scancode) {
-    static const std::unordered_map<SDL_Scancode, Direction> direction_to_key{
-            std::make_pair(SDL_Scancode::SDL_SCANCODE_W, Direction::UP),
-            std::make_pair(SDL_Scancode::SDL_SCANCODE_A, Direction::LEFT),
-            std::make_pair(SDL_Scancode::SDL_SCANCODE_S, Direction::DOWN),
-            std::make_pair(SDL_Scancode::SDL_SCANCODE_D, Direction::RIGHT)
-    };
+/// \brief converts a SDL_Scancode to a Direction
+/// \param scancode the scancode to convert
+/// \return the corresponding Direction
+Direction scancodeToDirection(SDL_Scancode scancode) {
+    switch (scancode) {
+        case SDL_Scancode::SDL_SCANCODE_W:
+            return Direction::UP;
+        case SDL_Scancode::SDL_SCANCODE_A:
+            return Direction::LEFT;
+        case SDL_Scancode::SDL_SCANCODE_S:
+            return Direction::DOWN;
+        case SDL_Scancode::SDL_SCANCODE_D:
+            return Direction::RIGHT;
+        default:
+            throw std::invalid_argument("Invalid argument passed into scancodeToDirection");
+    }
+}
 
-    if (not GraphicsEngine::getInstance().hasAny<Rectangle>()) {
-        if (not Player::getPlayer().isFacing(direction_to_key.at(scancode))) {
-            Player::getPlayer().setDirection(direction_to_key.at(scancode));
+void Overworld::handleMove(SDL_Scancode scancode) {
+    if (not GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
+        // turns the player
+        if (not Player::getPlayer().isFacing(scancodeToDirection(scancode))) {
+            Player::getPlayer().setDirection(scancodeToDirection(scancode));
         }
+        // if the user is still holding down the key after 10ms, begin movement
         if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
             momentum = true;
             keyDelay.stop();
@@ -461,10 +497,10 @@ void Overworld::handleMove(SDL_Scancode scancode) {
 
             if (Player::getPlayer().canMoveForward(this->currentMap)) {
                 Player::getPlayer().moveForward();
-                Player::getPlayer().setState(Entity::State::WALKING);
+                Player::getPlayer().setState(Character::State::WALKING);
             }
             else {
-                Player::getPlayer().setState(Entity::State::COLLIDING);
+                Player::getPlayer().setState(Character::State::COLLIDING);
                 Player::getPlayer().updateAnimation();
 
                 Mixer::getInstance().playSound("bump");
@@ -474,61 +510,10 @@ void Overworld::handleMove(SDL_Scancode scancode) {
 }
 
 void Overworld::handleReturn() {
-    for (auto &trainer : *this->currentMap) {
-        if (Player::getPlayer().hasVisionOf(&trainer)) {
-            // if the player manually clicked Enter
-            if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-                Player::getPlayer().setState(Entity::State::FROZEN);
-                trainer.face(&Player::getPlayer());
-
-                // only create the textbox here if the trainer cannot fight;
-                // the program will loop back to checkForOpponents() in the next cycle
-                // and create it there if the trainer can fight
-                if (not trainer.canFight()) {
-                    trainer.setState(Entity::State::FROZEN);
-                    Overworld::createTextBox(trainer.getDialogue());
-                }
-            }
-            else if (not GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {
-                // if the textbox still has messages to print
-                if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-
-                    if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                        Mixer::getInstance().playSound("accept");
-                    }
-                }
-                if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                    GraphicsEngine::getInstance().removeGraphic<TextBox>();
-
-                    if (trainer.canFight()) {
-                        Game::getInstance().setState(State::Id::BATTLE);
-                        Game::getInstance().setRenderColor(Constants::Color::WHITE);
-
-                        State::getInstance<BattlePhase>().init(&trainer);
-
-                        Mixer::getInstance().playMusic("TrainerBattle");
-                    }
-                    else {
-                        Player::getPlayer().setState(Entity::State::IDLE);
-                        trainer.setState(Entity::State::IDLE);
-                    }
-                }
-                // re-lock the Enter key
-                KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-
-                // sets a cool-down period before the Enter key can be registered again;
-                // this is needed because the program will register a button as
-                // being pressed faster than the user can lift their finger
-                std::thread coolDown([] -> void {
-                    std::this_thread::sleep_for(std::chrono::milliseconds(500));
-                    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-                });
-                coolDown.detach();
-
-                keyDelay.reset();
-                return;
-            }
+    for (auto &entity : *this->currentMap) {
+        if (Player::getPlayer().hasVisionOf(entity.get())) {
+            entity->interact();
+            return;
         }
     }
 }

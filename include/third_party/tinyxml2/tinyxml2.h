@@ -195,7 +195,7 @@ private:
 
 
 /*
-	A dynamic array of Plain Old Data. Doesn't support constructors, etc.
+	A dynamic array of Plain Old Sheet. Doesn't support constructors, etc.
 	Has a small initial memory pool, so that low or no usage will not
 	cause a call to new/delete
 */

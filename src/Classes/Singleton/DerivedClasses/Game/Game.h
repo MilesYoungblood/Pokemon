@@ -10,7 +10,7 @@
 #include "../Mixer/Mixer.h"
 #include "../GraphicsEngine/GraphicsEngine.h"
 
-extern std::unordered_map<Trainer *, bool> keepLooping;
+extern std::unordered_map<Entity *, bool> keepLooping;
 extern Stopwatch keyDelay;
 extern bool momentum;
 

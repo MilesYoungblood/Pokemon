@@ -40,25 +40,6 @@ enum Effect : Uint8 {
 
 class Move {
 public:
-    enum class Id : Uint8 {
-        AIR_SLASH,
-        AURA_SPHERE,
-        DARK_PULSE,
-        DRAGON_PULSE,
-        EXTRASENSORY,
-        FLAMETHROWER,
-        FLASH_CANNON,
-        FOCUS_BLAST,
-        HEAD_SMASH,
-        HEAT_CRASH,
-        ICE_BEAM,
-        IRON_TAIL,
-        QUICK_ATTACK,
-        SOLAR_BEAM,
-        THUNDER,
-        VOLT_TACKLE
-    };
-
     enum class Category : Uint8 {
         PHYSICAL, SPECIAL, STATUS
     };
@@ -109,8 +90,6 @@ public:
 
     [[nodiscard]] virtual Move::Category getCategory() const = 0;
 
-    [[nodiscard]] virtual Move::Id getId() const = 0;
-
     [[nodiscard]] virtual bool isPriority() const;
 
     explicit operator bool() const;
@@ -138,4 +117,4 @@ private:
 };
 
 inline std::mutex moveMutex;
-inline std::unordered_map<Move::Id, std::unique_ptr<Move>(*)()> moveMap;
+inline std::unordered_map<std::string, std::unique_ptr<Move>(*)()> moveMap;

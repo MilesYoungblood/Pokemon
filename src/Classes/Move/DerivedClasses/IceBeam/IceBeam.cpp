@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/4/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "IceBeam.h"
 
 IceBeam::IceBeam() : Move(10) {}
@@ -71,14 +71,9 @@ Move::Category IceBeam::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id IceBeam::getId() const {
-    return Move::Id::ICE_BEAM;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::ICE_BEAM,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<IceBeam>(); }));
+        moveMap["Ice Beam"] = [] -> std::unique_ptr<Move> { return std::make_unique<IceBeam>(); };
     });
 }

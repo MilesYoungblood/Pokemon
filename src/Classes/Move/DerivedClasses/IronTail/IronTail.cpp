@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/4/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "IronTail.h"
 
 IronTail::IronTail() : Move(15) {}
@@ -78,14 +78,9 @@ Move::Category IronTail::getCategory() const {
     return Move::Category::PHYSICAL;
 }
 
-Move::Id IronTail::getId() const {
-    return Move::Id::IRON_TAIL;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::IRON_TAIL,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<IronTail>(); }));
+        moveMap["Iron Tail"] = [] -> std::unique_ptr<Move> { return std::make_unique<IronTail>(); };
     });
 }

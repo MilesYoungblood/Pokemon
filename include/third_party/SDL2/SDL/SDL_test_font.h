@@ -68,7 +68,7 @@ int SDLTest_DrawCharacter(SDL_Renderer *renderer, int x, int y, Uint32 c);
 int SDLTest_DrawString(SDL_Renderer *renderer, int x, int y, const char *s);
 
 /**
- *  \brief Data used for multi-line text output
+ *  \brief Sheet used for multi-line text output
  */
 typedef struct SDLTest_TextWindow
 {

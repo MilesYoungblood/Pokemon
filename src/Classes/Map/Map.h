@@ -5,7 +5,6 @@
 #pragma once
 
 #include "../Singleton/DerivedClasses/Camera/Camera.h"
-#include "../Graphic/DerivedClasses/Texture/Texture.h"
 
 class Map {
 public:
@@ -19,7 +18,7 @@ public:
     struct ExitPoint {
         int x;                                // x-coordinate of the exit spot
         int y;                                // y-coordinate of the exit spot
-        Map::Id newMap;                       // map that this exit point leads to
+        std::string newMap;                   // map that this exit point leads to
         int newX;                             // the player's new x-coordinates
         int newY;                             // the player's new y-coordinates
     };
@@ -32,51 +31,70 @@ public:
 
     Map &operator=(const Map &) = delete;
 
-    Map &operator=(Map &&rhs) noexcept = delete;
+    Map &operator=(Map &&rhs) noexcept = default;
 
-    ~Map();
+    ~Map() = default;
 
+    /// \brief Initializes the texture map
     static void init();
 
+    /// \brief Cleans the texture map
     static void clean();
 
+    /// \brief Checks to see if an obstruction is present
+    /// \param x coordinate
+    /// \param y coordinate
+    /// \return true if an obstruction is here and false otherwise
     [[nodiscard]] bool isObstructionHere(int x, int y) const;
 
-    [[nodiscard]] std::optional<std::tuple<int, int, Map::Id>> isExitPointHere(int x, int y) const;
+    /// \brief Checks to see if an exit point is present
+    /// \param x coordinate
+    /// \param y coordinate
+    /// \return a tuple containing the new coordinates and new map respectively if an exit point is present, or nothing otherwise
+    [[nodiscard]] std::optional<std::tuple<int, int, std::string>> isExitPointHere(int x, int y) const;
 
-    template<typename I, typename ...Args>
-    void addItem(const std::pair<int, int> &pos, Args ...args) {
-        this->items.emplace_back(
-                position(pos.first, pos.second, pos.first * Map::TILE_SIZE, pos.second * Map::TILE_SIZE),
-                std::move(std::make_unique<I>(args...))
-        );
-    }
+    /// \brief Adds an entity to the map
+    /// \param entity to add
+    void addEntity(std::unique_ptr<Entity> entity);
 
-    template<typename ...Args>
-    void addTrainer(Args ...args) {
-        this->trainers.emplace_back(args...);
-    }
+    /// \brief Getter for entity vector size
+    /// \return the number of entities in the map
+    [[nodiscard]] std::size_t numEntities() const;
 
-    [[nodiscard]] int numTrainers() const;
+    /// \brief Getter for entity in entity vector
+    /// \param index
+    /// \return a reference to the Pokemon
+    Entity &operator[](std::size_t index);
 
-    Trainer &operator[](std::size_t index);
+    /// \brief Allows for for-each loop functionality
+    /// \return an iterator to the start of the entity vector
+    std::vector<std::unique_ptr<Entity>>::iterator begin();
 
-    const Trainer &operator[](std::size_t index) const;
+    /// \brief Allows for for-each loop functionality
+    /// \return an iterator to the end of the entity vector
+    std::vector<std::unique_ptr<Entity>>::iterator end();
 
-    std::vector<Trainer>::iterator begin();
-
-    std::vector<Trainer>::iterator end();
-
+    /// \brief Getter for music
+    /// \return the music title
     [[nodiscard]] std::string getMusic() const;
 
-    void shift(Direction direction, int distance);
+    /// \brief Shifts all tiles and entities a certain direction and distance
+    /// \param direction direction to shift
+    /// \param n distance to shift
+    void shift(Direction direction, int n);
 
+    /// \brief Shifts all tiles and entities horizontally by some distance n
+    /// \param n distance to shift
     void shiftHorizontally(int n);
 
+    /// \brief Shifts all tiles and entities vertically by some distance n
+    /// \param n distance to shift
     void shiftVertically(int n);
 
+    /// \brief Renders all tiles and entities that are visible on the screen
     void render() const;
 
+    /// \brief Resets the positions of all tiles and entities
     void reset();
 
 private:
@@ -86,10 +104,8 @@ private:
         int screenX;
         int screenY;
     };
-    using inventory = std::vector<std::pair<position, std::unique_ptr<Item>>>;
 
-    const char *name{ "" };
-
+    std::string name;
     std::string music;
 
     inline static std::unordered_map<std::string, SDL_Texture *> textureMap;
@@ -106,9 +122,17 @@ private:
     std::vector<layer<tile>> layout;                    // The map is vector of layers
     layer<bool> collision;                              // collision values for each tile
 
-    std::vector<Trainer> trainers;                      // the set of trainers in this map
-
-    inventory items;
+    std::vector<std::unique_ptr<Entity>> entities;      // the set of entities in this map
 
     std::vector<Map::ExitPoint> exitPoints;             // coordinates where the player can leave this map to enter another
+
+    void parseTmx();
+
+    static void parseTsx(int firstGidAttribute, const std::string &sourceAttribute,
+                         std::unordered_map<int, const std::string> &pathMap,
+                         std::unordered_map<int, bool> &collisionMap);
+
+    void populate(const tinyxml2::XMLElement *mapElement, std::unordered_map<int, const std::string> &pathMap, std::unordered_map<int, bool> &collisionMap);
+
+    void loadEntities();
 };

@@ -30,7 +30,7 @@
 /*
  ***********************************************************************
  ** Header file for implementation of MD5                             **
- ** RSA Data Security, Inc. MD5 Message-Digest Algorithm              **
+ ** RSA Sheet Security, Inc. MD5 Message-Digest Algorithm              **
  ** Created: 2/17/90 RLR                                              **
  ** Revised: 12/27/90 SRD,AJ,BSK,JT Reference C version               **
  ** Revised (for MD5): RLR 4/27/91                                    **
@@ -67,7 +67,7 @@ extern "C" {
 /* typedef a 32-bit type */
   typedef unsigned long int MD5UINT4;
 
-/* Data structure for MD5 (Message-Digest) computation */
+/* Sheet structure for MD5 (Message-Digest) computation */
   typedef struct {
     MD5UINT4  i[2];     /* number of _bits_ handled mod 2^64 */
     MD5UINT4  buf[4];       /* scratch buffer */

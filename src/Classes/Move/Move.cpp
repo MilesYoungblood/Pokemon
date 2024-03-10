@@ -2,7 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
-#include "../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Move.h"
 
 Move::Move(int pp) : pp(pp), maxPp(pp) {}

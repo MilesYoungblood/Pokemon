@@ -2,35 +2,33 @@
 // Created by Miles Youngblood on 7/10/2023.
 //
 
+#include "../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "Map.h"
 
-namespace {
-    bool called = false;
+std::string errorMessage(const std::string &filename, const char *name, const char *type) {
+    const bool is_tmx = filename.substr(filename.size() - 5) == ".tmx";
+    return "Invalid " + std::string(is_tmx ? "TMX" : "TSX") + " file \"" + filename + "\": missing \"" + name + "\" " + type + '\n';
 }
 
-Map::Map(const char *name) : name(name), music(name) {
-    music.erase(std::remove_if(music.begin(), music.end(), [](char c) -> bool {
-        return c == ' ';
-    }), music.end());
-
+void Map::parseTmx() {
     tinyxml2::XMLDocument tmxFile;
-    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + music + ".tmx").data()) != tinyxml2::XML_SUCCESS) {
+    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) != tinyxml2::XML_SUCCESS) {
         tmxFile.PrintError();
         std::terminate();
     }
 
     const tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
     if (mapElement == nullptr) {
-        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"map\" element\n");
+        throw std::runtime_error(errorMessage(this->music + ".tmx", "map", "element"));
     }
 
     const int width = mapElement->IntAttribute("width");
     if (width == 0) {
-        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"width\" attribute\n");
+        throw std::runtime_error(errorMessage(this->music + ".tmx", "width", "attribute"));
     }
     const int height = mapElement->IntAttribute("height");
     if (height == 0) {
-        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"height\" attribute\n");
+        throw std::runtime_error(errorMessage(this->music + ".tmx", "height", "attribute"));
     }
 
     // the collision layer's dimensions MUST be the inverse of the textureMap's dimensions
@@ -48,108 +46,115 @@ Map::Map(const char *name) : name(name), music(name) {
 
     const tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
     if (tilesetElement == nullptr) {
-        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"tileset\" element\n");
+        throw std::runtime_error(errorMessage(this->music + ".tmx", "tileset", "element"));
     }
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     while (tilesetElement != nullptr) {
         const int first_gid_attribute = tilesetElement->IntAttribute("firstgid");
         if (first_gid_attribute == 0) {
-            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"firstgid\" attribute\n");
+            throw std::runtime_error(errorMessage(this->music + ".tmx", "firstgid", "attribute"));
         }
 
-        std::string sourceAttribute(tilesetElement->Attribute("source"));
-        if (sourceAttribute.empty()) {
-            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"source\" attribute\n");
+        const std::string source_attribute(tilesetElement->Attribute("source"));
+        if (source_attribute.empty()) {
+            throw std::runtime_error(errorMessage(this->music + ".tmx", "source", "attribute"));
         }
 
-        tinyxml2::XMLDocument tsxFile;
-        if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) != tinyxml2::XML_SUCCESS) {
-            tsxFile.PrintError();
-            std::terminate();
-        }
-
-        tinyxml2::XMLElement *tsElement = tsxFile.FirstChildElement("tileset");
-        if (tsElement == nullptr) {
-            throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"tileset\" element\n");
-        }
-
-        tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
-        if (gridElement == nullptr) {
-            throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"grid\" element\n");
-        }
-
-        for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
-             tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
-            const int id = tileElement->IntAttribute("id", -1);
-            if (id == -1) {
-                throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"id\" attribute\n");
-            }
-
-            // variable to reduce the number of expression calculations
-            const int index = first_gid_attribute + id;
-            if (not pathMap.contains(index)) {
-                tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
-                if (propertyListElement == nullptr) {
-                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"properties\" element\n");
-                }
-
-                tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
-                if (propertyElement == nullptr) {
-                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"property\" element\n");
-                }
-
-                collisionMap.insert(std::make_pair(index, propertyElement->BoolAttribute("value")));
-
-                tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
-                if (imageElement == nullptr) {
-                    throw std::runtime_error("Invalid TSX file format in file \"" + sourceAttribute + "\": missing \"image\" element\n");
-                }
-
-                const std::string copy(sourceAttribute);
-                sourceAttribute = imageElement->Attribute("source");
-                if (sourceAttribute.empty()) {
-                    throw std::runtime_error("Invalid TSX file format in file \"" + copy + "\": missing \"source\" attribute\n");
-                }
-
-                // strip off unnecessary characters
-                sourceAttribute.erase(0, 21);
-                sourceAttribute.erase(sourceAttribute.size() - 4);
-
-                pathMap.insert(std::make_pair(index, sourceAttribute));
-                Map::textureMap.insert(std::make_pair(sourceAttribute, nullptr));
-            }
-        }
+        Map::parseTsx(first_gid_attribute, source_attribute, pathMap, collisionMap);
 
         tilesetElement = tilesetElement->NextSiblingElement("tileset");
     }
 
+    this->populate(mapElement, pathMap, collisionMap);
+}
+
+void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute, std::unordered_map<int, const std::string> &pathMap, std::unordered_map<int, bool> &collisionMap) {
+    tinyxml2::XMLDocument tsxFile;
+    if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) != tinyxml2::XML_SUCCESS) {
+        tsxFile.PrintError();
+        std::terminate();
+    }
+
+    tinyxml2::XMLElement *tsElement = tsxFile.FirstChildElement("tileset");
+    if (tsElement == nullptr) {
+        throw std::runtime_error(errorMessage(sourceAttribute, "tileset", "element"));
+    }
+
+    tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
+    if (gridElement == nullptr) {
+        throw std::runtime_error(errorMessage(sourceAttribute, "grid", "element"));
+    }
+
+    for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
+         tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
+        const int id = tileElement->IntAttribute("id", -1);
+        if (id == -1) {
+            throw std::runtime_error(errorMessage(sourceAttribute, "id", "attribute"));
+        }
+
+        // variable to reduce the number of expression calculations
+        const int index = firstGidAttribute + id;
+        if (not pathMap.contains(index)) {
+            tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
+            if (propertyListElement == nullptr) {
+                throw std::runtime_error(errorMessage(sourceAttribute, "properties", "element"));
+            }
+
+            tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
+            if (propertyElement == nullptr) {
+                throw std::runtime_error(errorMessage(sourceAttribute, "property", "element"));
+            }
+
+            collisionMap.insert(std::make_pair(index, propertyElement->BoolAttribute("value")));
+
+            tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
+            if (imageElement == nullptr) {
+                throw std::runtime_error(errorMessage(sourceAttribute, "image", "element"));
+            }
+
+            std::string copy(imageElement->Attribute("source"));
+            if (copy.empty()) {
+                throw std::runtime_error(errorMessage(sourceAttribute, "source", "attribute"));
+            }
+
+            // strip off unnecessary characters
+            copy.erase(0, 21);
+            copy.erase(copy.size() - 4);
+
+            pathMap.insert(std::make_pair(index, copy));
+            Map::textureMap.insert(std::make_pair(copy, nullptr));
+        }
+    }
+}
+
+void Map::populate(const tinyxml2::XMLElement *mapElement, std::unordered_map<int, const std::string> &pathMap, std::unordered_map<int, bool> &collisionMap) {
     const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
     if (layerElement == nullptr) {
-        throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"layer\" element\n");
+        throw std::runtime_error(errorMessage(music + ".tmx", "layer", "element"));
     }
 
     while (layerElement != nullptr) {
         const int id_attribute = layerElement->IntAttribute("id");
         if (id_attribute == 0) {
-            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"id\" attribute\n");
+            throw std::runtime_error(errorMessage(music + ".tmx", "id", "attribute"));
         }
 
         const tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
-            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing \"data\" element\n");
+            throw std::runtime_error(errorMessage(music + ".tmx", "data", "element"));
         }
 
         const char *csvData = dataElement->GetText();
         if (csvData == nullptr) {
-            throw std::runtime_error("Invalid TMX file format in file \"" + music + "\": missing csv data\n");
+            throw std::runtime_error(errorMessage(music + ".tmx", "data", "text"));
         }
 
         std::istringstream ss(csvData);
-        layer<tile> layer(height, std::vector<tile>(width));
+        layer<tile> layer(this->collision[0].size(), std::vector<tile>(this->collision.size()));
         int value;
-        for (int row = 0; row < height; ++row) {
-            for (int col = 0; col < width and ss >> value; ++col) {
+        for (int row = 0; row < this->collision[0].size(); ++row) {
+            for (int col = 0; col < this->collision.size() and ss >> value; ++col) {
                 layer[row][col].id = pathMap.at(value);
                 layer[row][col].x = col * Map::TILE_SIZE;
                 layer[row][col].y = row * Map::TILE_SIZE;
@@ -169,10 +174,17 @@ Map::Map(const char *name) : name(name), music(name) {
     }
 }
 
-Map::~Map() {
-    if (not called) {
-        std::clog << "Map::clean() not called\n";
-    }
+void Map::loadEntities() {
+
+}
+
+Map::Map(const char *name) : name(name), music(name) {
+    this->music.erase(std::remove_if(this->music.begin(), this->music.end(), [](char c) -> bool {
+        return c == ' ';
+    }), this->music.end());
+
+    this->parseTmx();
+    this->loadEntities();
 }
 
 void Map::init() {
@@ -201,16 +213,12 @@ void Map::clean() {
             }
         }
     }
-    called = true;
 }
 
-// returns true if an obstruction is at the passed coordinates
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        return this->collision.at(x).at(y) or (Player::getPlayer().getX() == x and Player::getPlayer().getY() == y) or std::ranges::any_of(this->trainers, [&x, &y](const Trainer &trainer) -> bool {
-            return trainer.getX() == x and trainer.getY() == y;
-        }) or std::ranges::any_of(this->items, [&x, &y](const auto &item) -> bool {
-            return item.first.x == x and item.first.y == y;
+        return this->collision.at(x).at(y) or (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y)or std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
+            return entity->getMapX() == x and entity->getMapY() == y;
         });
     }
     catch (const std::exception &e) {
@@ -218,9 +226,7 @@ bool Map::isObstructionHere(int x, int y) const {
     }
 }
 
-// returns a tuple containing the new coordinates and new map respectively if an exit point is present,
-// or nothing otherwise
-std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(int x, int y) const {
+std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int y) const {
     for (const ExitPoint &exit_point : this->exitPoints) {
         if (exit_point.x == x and exit_point.y == y) {
             return std::make_optional(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
@@ -229,62 +235,55 @@ std::optional<std::tuple<int, int, Map::Id>> Map::isExitPointHere(int x, int y) 
     return std::nullopt;
 }
 
-int Map::numTrainers() const {
-    return static_cast<int>(this->trainers.size());
+void Map::addEntity(std::unique_ptr<Entity> entity) {
+    this->entities.push_back(std::move(entity));
 }
 
-// returns the trainer at the passed index
-Trainer &Map::operator[](std::size_t index) {
+std::size_t Map::numEntities() const {
+    return this->entities.size();
+}
+
+Entity &Map::operator[](std::size_t index) {
     try {
-        return this->trainers.at(index);
+        return *this->entities.at(index);
     }
     catch (const std::out_of_range &e) {
-        throw std::out_of_range(std::string("Error accessing trainers: ") + e.what() + '\n');
+        throw std::out_of_range(std::string("Error accessing entities: ") + e.what() + '\n');
     }
 }
 
-const Trainer &Map::operator[](std::size_t index) const {
-    try {
-        return this->trainers.at(index);
-    }
-    catch (const std::out_of_range &e) {
-        throw std::out_of_range(std::string("Error accessing trainers: ") + e.what() + '\n');
-    }
+std::vector<std::unique_ptr<Entity>>::iterator Map::begin() {
+    return this->entities.begin();
 }
 
-std::vector<Trainer>::iterator Map::begin() {
-    return this->trainers.begin();
-}
-
-std::vector<Trainer>::iterator Map::end() {
-    return this->trainers.end();
+std::vector<std::unique_ptr<Entity>>::iterator Map::end() {
+    return this->entities.end();
 }
 
 std::string Map::getMusic() const {
     return this->music;
 }
 
-// shift the map and its trainers, according to a passed in flag
-void Map::shift(Direction direction, int distance) {
+void Map::shift(Direction direction, int n) {
     std::vector<std::thread> threads;
     threads.reserve(this->layout.size() + 2);
 
     for (auto &layer : this->layout) {
-        threads.emplace_back([&layer, &direction, &distance] -> void {
+        threads.emplace_back([&layer, &direction, &n] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
                     switch (direction) {
                         case Direction::UP:
-                            col.y -= distance;
+                            col.y -= n;
                             break;
                         case Direction::DOWN:
-                            col.y += distance;
+                            col.y += n;
                             break;
                         case Direction::LEFT:
-                            col.x -= distance;
+                            col.x -= n;
                             break;
                         case Direction::RIGHT:
-                            col.x += distance;
+                            col.x += n;
                             break;
                         default:
                             return;
@@ -294,30 +293,9 @@ void Map::shift(Direction direction, int distance) {
         });
     }
 
-    threads.emplace_back([this, &direction, &distance] -> void {
-        for (auto &trainer : this->trainers) {
-            trainer.shift(direction, distance);
-        }
-    });
-
-    threads.emplace_back([this, &direction, &distance] -> void {
-        for (auto &item : this->items) {
-            switch (direction) {
-                case Direction::UP:
-                    item.first.screenY -= distance;
-                    break;
-                case Direction::DOWN:
-                    item.first.screenY += distance;
-                    break;
-                case Direction::LEFT:
-                    item.first.screenX -= distance;
-                    break;
-                case Direction::RIGHT:
-                    item.first.screenX += distance;
-                    break;
-                default:
-                    return;
-            }
+    threads.emplace_back([this, &direction, &n] -> void {
+        for (auto &entity : this->entities) {
+            entity->shift(direction, n);
         }
     });
 
@@ -328,7 +306,7 @@ void Map::shift(Direction direction, int distance) {
 
 void Map::shiftHorizontally(int n) {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 2);
+    threads.reserve(this->layout.size() + 1);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &n] -> void {
@@ -341,14 +319,8 @@ void Map::shiftHorizontally(int n) {
     }
 
     threads.emplace_back([this, &n] -> void {
-        for (auto &trainer : this->trainers) {
-            trainer.shiftHorizontally(n);
-        }
-    });
-
-    threads.emplace_back([this, &n] -> void {
-        for (auto &item : this->items) {
-            item.first.screenX += n;
+        for (auto &entity : this->entities) {
+            entity->shiftHorizontally(n);
         }
     });
 
@@ -359,7 +331,7 @@ void Map::shiftHorizontally(int n) {
 
 void Map::shiftVertically(int n) {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 2);
+    threads.reserve(this->layout.size() + 1);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer, &n] -> void {
@@ -372,14 +344,8 @@ void Map::shiftVertically(int n) {
     }
 
     threads.emplace_back([this, &n] -> void {
-        for (auto &trainer : this->trainers) {
-            trainer.shiftVertically(n);
-        }
-    });
-
-    threads.emplace_back([this, &n] -> void {
-        for (auto &item : this->items) {
-            item.first.screenY += n;
+        for (auto &entity : this->entities) {
+            entity->shiftVertically(n);
         }
     });
 
@@ -403,37 +369,23 @@ void Map::render() const {
             }
         }
         if (layer == 1) {
-            for (const auto &trainer : this->trainers) {
-                sdlRect.x = trainer.getScreenX();
-                sdlRect.y = trainer.getScreenY();
-                // prevents rendering trainers that aren't onscreen
+            for (const auto &entity : this->entities) {
+                sdlRect.x = entity->getScreenX();
+                sdlRect.y = entity->getScreenY();
+                // prevents rendering entities that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect)) {
-                    trainer.render();
+                    entity->render();
                 }
             }
 
-            static Texture texture("Item_Overworld_Sprite.png", SDL_Rect(0, 0, 0, 0));
-            for (const auto &item : this->items) {
-                texture.setDest(SDL_Rect(
-                        item.first.screenX + 28,
-                        item.first.screenY + 28,
-                        24,
-                        24
-                ));
-                if (Camera::getInstance().isInView(texture.getDest())) {
-                    texture.render();
-                }
-            }
             Player::getPlayer().render();
         }
     }
 }
 
-// resets the previous map's tile positions
-// as well as the trainer's and item's positions
 void Map::reset() {
     std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 2);
+    threads.reserve(this->layout.size() + 1);
 
     for (auto &layer : this->layout) {
         threads.emplace_back([&layer] -> void {
@@ -447,15 +399,8 @@ void Map::reset() {
     }
 
     threads.emplace_back([this] -> void {
-        for (auto &trainer : this->trainers) {
-            trainer.resetPos();
-        }
-    });
-
-    threads.emplace_back([this] -> void {
-        for (auto &item : this->items) {
-            item.first.screenX = item.first.x * Map::TILE_SIZE;
-            item.first.screenY = item.first.y * Map::TILE_SIZE;
+        for (auto &entity : this->entities) {
+            entity->resetPos();
         }
     });
 

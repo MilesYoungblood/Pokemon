@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "AirSlash.h"
 
 AirSlash::AirSlash() : Move(15) {}
@@ -70,14 +70,9 @@ Move::Category AirSlash::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id AirSlash::getId() const {
-    return Move::Id::AIR_SLASH;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::AIR_SLASH,
-                                      [] -> std::unique_ptr <Move> { return std::make_unique<AirSlash>(); }));
+        moveMap["Air Slash"] = [] -> std::unique_ptr<Move> { return std::make_unique<AirSlash>(); };
     });
 }

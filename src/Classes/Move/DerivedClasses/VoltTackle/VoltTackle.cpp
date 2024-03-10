@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/4/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "VoltTackle.h"
 
 VoltTackle::VoltTackle() : Move(15) {}
@@ -88,14 +88,9 @@ Move::Category VoltTackle::getCategory() const {
     return Move::Category::PHYSICAL;
 }
 
-Move::Id VoltTackle::getId() const {
-    return Move::Id::VOLT_TACKLE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::VOLT_TACKLE,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<VoltTackle>(); }));
+        moveMap["Volt Tackle"] = [] -> std::unique_ptr<Move> { return std::make_unique<VoltTackle>(); };
     });
 }

@@ -26,14 +26,9 @@ Move::Category DragonPulse::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id DragonPulse::getId() const {
-    return Move::Id::DRAGON_PULSE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::DRAGON_PULSE,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<DragonPulse>(); }));
+        moveMap["Dragon Pulse"] = [] -> std::unique_ptr<Move> { return std::make_unique<DragonPulse>(); };
     });
 }

@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 3/4/2024.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "HeatCrash.h"
 
 HeatCrash::HeatCrash() : Move(10) {}
@@ -40,14 +40,9 @@ Move::Category HeatCrash::getCategory() const {
     return Move::Category::PHYSICAL;
 }
 
-Move::Id HeatCrash::getId() const {
-    return Move::Id::HEAT_CRASH;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::HEAT_CRASH,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<HeatCrash>(); }));
+        moveMap["Heat Crash"] = [] -> std::unique_ptr<Move> { return std::make_unique<HeatCrash>(); };
     });
 }

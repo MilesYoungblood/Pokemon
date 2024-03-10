@@ -16,12 +16,6 @@ GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(TimedVisual).hash_code()];
 }
 
-void GraphicsEngine::clear() {
-    for (auto &type : this->graphics) {
-        type.second.clear();
-    }
-}
-
 void GraphicsEngine::update() {
     for (const auto &type : this->graphics) {
         std::vector<std::unique_ptr<Graphic>> &ref = this->graphics.at(type.first);
@@ -41,5 +35,11 @@ void GraphicsEngine::render() {
         for (const auto &graphic : type.second) {
             graphic->render();
         }
+    }
+}
+
+void GraphicsEngine::clear() {
+    for (auto &type : this->graphics) {
+        type.second.clear();
     }
 }

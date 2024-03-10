@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../Entity/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Singleton.h"
 
 class Map;
@@ -38,5 +38,5 @@ public:
     /// \brief Finds the player's current position on the screen,
     /// then shifts everything, including the player, accordingly.
     /// \param map a pointer to the map
-    void lockOnPlayer(Map *map) const;
+    void lockOnPlayer(gsl::owner<Map *> map) const;
 };

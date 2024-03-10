@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 3/4/2024.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "HeadSmash.h"
 
 HeadSmash::HeadSmash() : Move(5) {}
@@ -78,14 +78,9 @@ Move::Category HeadSmash::getCategory() const {
     return Move::Category::PHYSICAL;
 }
 
-Move::Id HeadSmash::getId() const {
-    return Move::Id::HEAD_SMASH;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::HEAD_SMASH,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<HeadSmash>(); }));
+        moveMap["Head Smash"] = [] -> std::unique_ptr<Move> { return std::make_unique<HeadSmash>(); };
     });
 }

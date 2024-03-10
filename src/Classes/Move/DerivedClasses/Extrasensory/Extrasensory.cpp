@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Extrasensory.h"
 
 Extrasensory::Extrasensory() : Move(30) {}
@@ -72,14 +72,9 @@ Move::Category Extrasensory::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id Extrasensory::getId() const {
-    return Move::Id::EXTRASENSORY;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::EXTRASENSORY,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); }));
+        moveMap["Extrasensory"] = [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); };
     });
 }

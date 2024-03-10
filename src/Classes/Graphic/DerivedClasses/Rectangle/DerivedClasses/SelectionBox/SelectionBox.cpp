@@ -5,6 +5,9 @@
 #include "../../../../../../Classes/Singleton/DerivedClasses/Game/Game.h"
 #include "SelectionBox.h"
 
+SelectionBox::SelectionBox(SDL_Rect dest, int borderSize, const std::vector<std::string> &options)
+        : Rectangle(dest, borderSize), options(options), functions(options.size(), nullptr) {}
+
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize, const std::vector<std::string> &options)
         : Rectangle(dest, fg, borderSize), options(options), functions(options.size(), nullptr) {}
 

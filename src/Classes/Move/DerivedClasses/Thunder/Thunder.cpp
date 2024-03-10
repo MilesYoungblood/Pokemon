@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/4/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Thunder.h"
 
 Thunder::Thunder() : Move(10) {}
@@ -80,14 +80,9 @@ Move::Category Thunder::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id Thunder::getId() const {
-    return Move::Id::THUNDER;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::THUNDER,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<Thunder>(); }));
+        moveMap["Thunder"] = [] -> std::unique_ptr<Move> { return std::make_unique<Thunder>(); };
     });
 }

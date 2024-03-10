@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "DarkPulse.h"
 
 DarkPulse::DarkPulse() : Move(15) {}
@@ -66,14 +66,9 @@ Move::Category DarkPulse::getCategory() const {
     return Move::Category::SPECIAL;
 }
 
-Move::Id DarkPulse::getId() const {
-    return Move::Id::DARK_PULSE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
-        moveMap.insert(std::make_pair(Move::Id::DARK_PULSE,
-                                      [] -> std::unique_ptr<Move> { return std::make_unique<DarkPulse>(); }));
+        moveMap["Dark Pulse"] = [] -> std::unique_ptr<Move> { return std::make_unique<DarkPulse>(); };
     });
 }

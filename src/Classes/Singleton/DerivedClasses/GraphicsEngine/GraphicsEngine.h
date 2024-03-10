@@ -67,8 +67,6 @@ public:
         }
     }
 
-    void clear();
-
     /// \brief checks to see if any graphics of type G exist
     /// \tparam G the type of graphic
     /// \return true if any of type G exist and false otherwise
@@ -77,7 +75,12 @@ public:
         return not this->graphics.at(typeid(G).hash_code()).empty();
     }
 
+    /// \brief updates all Graphics
     void update();
 
+    /// \brief renders all Graphics
     void render();
+
+    /// \brief erases all Graphics
+    void clear();
 };

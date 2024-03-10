@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../Entity/DerivedClasses/Pokemon/Pokemon.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "../../Singleton.h"
 
 class Pokedex : public Singleton<Pokedex> {

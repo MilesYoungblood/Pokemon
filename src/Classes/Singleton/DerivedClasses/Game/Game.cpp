@@ -5,7 +5,7 @@
 #include "Game.h"
 #include "../Pokedex/Pokedex.h"
 
-std::unordered_map<Trainer *, bool> keepLooping;
+std::unordered_map<Entity *, bool> keepLooping;
 Stopwatch keyDelay;
 bool momentum = false;
 
@@ -82,7 +82,8 @@ Game::Game() {
 }
 
 Game::~Game() {
-    Entity::clean();
+    Character::clean();
+    Item::clean();
     Map::clean();
 
     Mix_HaltMusic();

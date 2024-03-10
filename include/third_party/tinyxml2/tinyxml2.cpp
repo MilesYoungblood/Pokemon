@@ -138,14 +138,14 @@ static const unsigned char TIXML_UTF_LEAD_2 = 0xbfU;
 namespace tinyxml2
 {
 
-struct Entity {
+struct Character {
     const char* pattern;
     int length;
     char value;
 };
 
 static const int NUM_ENTITIES = 5;
-static const Entity entities[NUM_ENTITIES] = {
+static const Character entities[NUM_ENTITIES] = {
     { "quot", 4,	DOUBLE_QUOTE },
     { "amp", 3,		'&'  },
     { "apos", 4,	SINGLE_QUOTE },
@@ -346,7 +346,7 @@ const char* StrPair::GetStr()
                     else {
                         bool entityFound = false;
                         for( int i = 0; i < NUM_ENTITIES; ++i ) {
-                            const Entity& entity = entities[i];
+                            const Character& entity = entities[i];
                             if ( strncmp( p + 1, entity.pattern, entity.length ) == 0
                                     && *( p + entity.length + 1 ) == ';' ) {
                                 // Found an entity - convert.

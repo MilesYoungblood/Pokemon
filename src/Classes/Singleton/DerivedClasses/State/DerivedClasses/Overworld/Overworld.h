@@ -9,12 +9,8 @@
 
 class Overworld : public State {
 private:
-    std::array<Map, 1> maps{
-            Map("Nuvema Town")
-    };
-
-    std::size_t currentMapIndex{ 0 };
-    Map *currentMap{ nullptr };
+    gsl::owner<Map *> currentMap{ nullptr };
+    std::string currentMapId;
 
     int scrollSpeed{ Map::TILE_SIZE / 20 };
 
@@ -33,7 +29,7 @@ public:
 
     Overworld &operator=(Overworld &&) noexcept = delete;
 
-    ~Overworld() override = default;
+    ~Overworld() override;
 
     void update() override;
 
@@ -43,9 +39,9 @@ public:
 
     void save();
 
-    void changeMap(const std::tuple<int, int, Map::Id> &data);
+    void changeMap(const std::tuple<int, int, std::string> &data);
 
-    [[nodiscard]] Map *getCurrentMap() const;
+    [[nodiscard]] gsl::owner<Map *> getCurrentMap() const;
 
     [[nodiscard]] int getScrollSpeed() const;
 
