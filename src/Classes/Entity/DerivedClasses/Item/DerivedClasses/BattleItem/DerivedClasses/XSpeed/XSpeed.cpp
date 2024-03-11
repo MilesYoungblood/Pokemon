@@ -20,7 +20,7 @@ Pokemon::Stat XSpeed::getStat() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(battleItemMutex);
-        battleItems["X Speed"] = [](int n) -> std::unique_ptr<BattleItem> { return std::make_unique<XSpeed>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["X Speed"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XSpeed>(n); };
     });
 }

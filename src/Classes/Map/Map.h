@@ -15,9 +15,9 @@ public:
     struct ExitPoint {
         int x;                                // x-coordinate of the exit spot
         int y;                                // y-coordinate of the exit spot
-        std::string newMap;                   // map that this exit point leads to
         int newX;                             // the player's new x-coordinates
         int newY;                             // the player's new y-coordinates
+        std::string newMap;                   // map that this exit point leads to
     };
 
     explicit Map(const char *name);
@@ -44,13 +44,9 @@ public:
     /// \return a tuple containing the new coordinates and new map respectively if an exit point is present, or nothing otherwise
     [[nodiscard]] std::optional<std::tuple<int, int, std::string>> isExitPointHere(int x, int y) const;
 
-    /// \brief Adds an entity to the map
-    /// \param entity to add
-    void addEntity(std::unique_ptr<Entity> entity);
-
-    /// \brief Getter for entity vector size
-    /// \return the number of entities in the map
-    [[nodiscard]] std::size_t numEntities() const;
+    /// \brief Removes an entity from the map
+    /// \param entity pointer to the entity to remove
+    void removeEntity(Entity *entity);
 
     /// \brief Getter for entity in entity vector
     /// \param index
@@ -94,11 +90,11 @@ private:
 
     using tile = struct {
         int id;
-        int x;
-        int y;
+        int screenX;
+        int screenY;
     };
 
-    using layer = std::vector<std::vector<tile>>;       // a layer is a 2D vector of data
+    using layer = std::vector<std::vector<tile>>;
 
     std::vector<layer> layout;                          // The map is vector of layers
 

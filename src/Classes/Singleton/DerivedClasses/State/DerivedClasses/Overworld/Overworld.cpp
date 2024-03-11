@@ -83,6 +83,26 @@ int Overworld::getScrollSpeed() const {
     return this->scrollSpeed;
 }
 
+void Overworld::createTextBox(const std::string &message, const std::function<void()> &function) {
+    const int box_width = Map::TILE_SIZE * 7;
+    const int box_height = Map::TILE_SIZE * 2;
+    const SDL_Rect rect(
+            Game::WINDOW_WIDTH / 2 - box_width / 2,
+            Game::WINDOW_HEIGHT - box_height,
+            box_width,
+            box_height - Map::TILE_SIZE / 2
+    );
+
+    GraphicsEngine::getInstance().addGraphic<TextBox>(
+            rect,
+            rect.h / (Map::TILE_SIZE * 3 / 10),
+            rect.x + Map::TILE_SIZE / 10,
+            rect.y + Map::TILE_SIZE / 10
+    );
+
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(message, function);
+}
+
 void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     const int box_width = Map::TILE_SIZE * 7;
     const int box_height = Map::TILE_SIZE * 2;

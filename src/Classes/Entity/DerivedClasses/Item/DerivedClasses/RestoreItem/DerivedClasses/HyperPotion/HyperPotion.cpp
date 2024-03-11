@@ -24,7 +24,7 @@ bool HyperPotion::isHp() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
-        restoreItems["Hyper Potion"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<HyperPotion>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Hyper Potion"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<HyperPotion>(n); };
     });
 }

@@ -17,10 +17,7 @@ struct BattleItem : public Item {
 
     [[nodiscard]] std::string getEffect() const override = 0;
 
+    [[nodiscard]] std::size_t getClass() const override;
+
     [[nodiscard]] virtual Pokemon::Stat getStat() const = 0;
-
-    [[nodiscard]] Item::Class getClass() const override;
 };
-
-inline std::mutex battleItemMutex;
-inline std::unordered_map<std::string, std::unique_ptr<BattleItem>(*)(int)> battleItems;

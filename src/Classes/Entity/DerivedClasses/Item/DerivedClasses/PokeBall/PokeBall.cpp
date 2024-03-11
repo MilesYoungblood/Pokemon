@@ -16,15 +16,15 @@ std::string PokeBall::getEffect() const {
     return "A device for catching wild Pokemon. It is thrown like a ball at the target. It is designed as a capsule system.";
 }
 
+std::size_t PokeBall::getClass() const {
+    return typeid(PokeBall).hash_code();
+}
+
 double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
     return 1.0;
 }
 
 void PokeBall::postCatch(Pokemon &pokemon) const {}
-
-Item::Class PokeBall::getClass() const {
-    return Item::Class::POKE_BALL;
-}
 
 std::string PokeBall::useMessage() const {
     std::string message("You threw a");
@@ -76,7 +76,7 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(pokeBallMutex);
-        pokeBalls["Poke Ball"] = [](int n) -> std::unique_ptr<PokeBall> { return std::make_unique<PokeBall>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Poke Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PokeBall>(n); };
     });
 }

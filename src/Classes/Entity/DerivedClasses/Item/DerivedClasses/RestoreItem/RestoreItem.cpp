@@ -6,8 +6,8 @@
 
 RestoreItem::RestoreItem(int quantity) : Item(quantity){}
 
-Item::Class RestoreItem::getClass() const {
-    return Item::Class::RESTORE;
+std::size_t RestoreItem::getClass() const {
+    return typeid(RestoreItem).hash_code();
 }
 
 void RestoreItem::restore(Pokemon &pokemon) const {

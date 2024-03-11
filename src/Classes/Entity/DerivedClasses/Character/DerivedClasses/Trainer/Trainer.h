@@ -17,7 +17,7 @@ private:
     bool keepLooping{ true };
 
     std::vector<std::unique_ptr<Pokemon>> party;
-    std::unordered_map<std::size_t, std::vector<std::unique_ptr<Item>>> items;
+    std::unordered_map<std::size_t, std::unordered_map<std::string, std::unique_ptr<Item>>> items;
 
     void init();
 
@@ -60,41 +60,19 @@ public:
     }
 
     template<typename I>
-    I &getItem(std::size_t index) {
-        Item *ptr = this->items.at(typeid(I).hash_code())[index].get();
+    I &getItem(const std::string &id) {
+        Item *ptr = this->items.at(typeid(I).hash_code()).at(id).get();
         return *dynamic_cast<I *>(ptr);
     }
 
-    template<typename C, typename I>
-    void addItem(std::unique_ptr<I> item) {
-        try {
-            if (this->items.at(typeid(C).hash_code()).size() == Trainer::MAX_ITEMS) {
-                return;
-            }
+    void addItem(const std::string &id, int n);
 
-            for (std::size_t i = 0; i < this->items.at(typeid(C).hash_code()).size(); ++i) {
-                // if item already exists within our inventory
-                Item *ptr = this->items.at(typeid(C).hash_code()).at(i).get();
-                const C *itm = dynamic_cast<C *>(ptr);
-
-                if (item->getId() == itm->getId()) {
-                    this->items.at(typeid(C).hash_code())[i]->add(item->getQuantity());
-                    return;
-                }
-            }
-
-            this->items.at(typeid(C).hash_code()).push_back(std::move(item));
-        }
-        catch (const std::exception &e) {
-            throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
-        }
-    }
+    void addItem(std::unique_ptr<Item> item);
 
     template<typename I>
-    void removeItem(long long int index) {
+    void removeItem(const std::string &id) {
         try {
-            const std::size_t i = typeid(I).hash_code();
-            this->items.at(i).erase(this->items.at(i).begin() + index);
+            this->items.at(typeid(I).hash_code()).erase(id);
         }
         catch (const std::out_of_range &e) {
             throw std::out_of_range(std::string("Error removing item: ") + e.what() + '\n');

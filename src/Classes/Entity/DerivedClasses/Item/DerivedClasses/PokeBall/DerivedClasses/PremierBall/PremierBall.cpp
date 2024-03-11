@@ -18,7 +18,7 @@ std::string PremierBall::getEffect() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(pokeBallMutex);
-        pokeBalls["Premier Ball"] = [](int n) -> std::unique_ptr<PokeBall> { return std::make_unique<PremierBall>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Premier Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PremierBall>(n); };
     });
 }

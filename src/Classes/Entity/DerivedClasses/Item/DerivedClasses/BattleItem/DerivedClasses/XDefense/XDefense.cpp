@@ -20,7 +20,7 @@ Pokemon::Stat XDefense::getStat() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(battleItemMutex);
-        battleItems["X Defense"] = [](int n) -> std::unique_ptr<BattleItem> { return std::make_unique<XDefense>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["X Defense"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XDefense>(n); };
     });
 }

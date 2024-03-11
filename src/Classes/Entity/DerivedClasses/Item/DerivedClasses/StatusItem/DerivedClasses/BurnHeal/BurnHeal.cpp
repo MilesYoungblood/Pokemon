@@ -20,7 +20,7 @@ StatusCondition BurnHeal::getStatus() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
-        statusItems["Burn Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<BurnHeal>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Burn Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<BurnHeal>(n); };
     });
 }

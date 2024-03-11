@@ -20,7 +20,7 @@ StatusCondition IceHeal::getStatus() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
-        statusItems["Ice Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<IceHeal>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Ice Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<IceHeal>(n); };
     });
 }

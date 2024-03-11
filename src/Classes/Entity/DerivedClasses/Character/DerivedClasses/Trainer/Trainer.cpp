@@ -71,6 +71,29 @@ void Trainer::clearParty() {
     this->party.clear();
 }
 
+void Trainer::addItem(const std::string &id, int n) {
+    this->addItem(std::move(itemMap.at(id)(n)));
+}
+
+void Trainer::addItem(std::unique_ptr<Item> item) {
+    try {
+        if (this->items.at(item->getClass()).size() == Trainer::MAX_ITEMS) {
+            return;
+        }
+
+        // if item already exists within our inventory
+        if (this->items.at(item->getClass()).contains(item->getName())) {
+            this->items.at(item->getClass()).at(item->getName())->add(item->getQuantity());
+            return;
+        }
+
+        this->items.at(item->getClass())[item->getName()] = std::move(item);
+    }
+    catch (const std::exception &e) {
+        throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
+    }
+}
+
 Pokemon &Trainer::operator[](std::size_t index) {
     try {
         return *this->party.at(index);
@@ -180,6 +203,8 @@ void Trainer::interact() {
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
+        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+
         Player::getPlayer().setState(Character::State::IMMOBILE);
         this->face(&Player::getPlayer());
 
@@ -196,24 +221,25 @@ void Trainer::interact() {
         if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
             GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
+            // the 'accept' sound effect will play for every pop except the last
             if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
                 Mixer::getInstance().playSound("accept");
             }
-        }
-        if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-            GraphicsEngine::getInstance().removeGraphic<TextBox>();
-
-            if (this->canFight()) {
-                Game::getInstance().setState(::State::Id::BATTLE);
-                Game::getInstance().setRenderColor(Constants::Color::WHITE);
-
-                ::State::getInstance<Battle>().init(this);
-
-                Mixer::getInstance().playMusic("TrainerBattle");
-            }
             else {
-                Player::getPlayer().setState(Character::State::IDLE);
-                this->setState(Character::State::IDLE);
+                GraphicsEngine::getInstance().removeGraphic<TextBox>();
+
+                if (this->canFight()) {
+                    Game::getInstance().setState(::State::Id::BATTLE);
+                    Game::getInstance().setRenderColor(Constants::Color::WHITE);
+
+                    ::State::getInstance<Battle>().init(this);
+
+                    Mixer::getInstance().playMusic("TrainerBattle");
+                }
+                else {
+                    Player::getPlayer().setState(Character::State::IDLE);
+                    this->setState(Character::State::IDLE);
+                }
             }
         }
         // re-lock the Enter key

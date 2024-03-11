@@ -51,6 +51,6 @@ std::string BattleItem::boostMessage(const Pokemon &pokemon, int amount, bool li
     return message;
 }
 
-Item::Class BattleItem::getClass() const {
-    return Item::Class::BATTLE;
+std::size_t BattleItem::getClass() const {
+    return typeid(BattleItem).hash_code();
 }

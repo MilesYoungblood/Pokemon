@@ -11,13 +11,6 @@ private:
     int quantity;
 
 public:
-    enum class Class : Uint8 {
-        RESTORE,
-        STATUS,
-        POKE_BALL,
-        BATTLE
-    };
-
     explicit Item(int n);
 
     Item(int n, int x, int y);
@@ -32,10 +25,6 @@ public:
 
     ~Item() override = default;
 
-    [[nodiscard]] virtual std::string getName() const = 0;
-
-    [[nodiscard]] virtual std::string getEffect() const = 0;
-
     [[nodiscard]] int getQuantity() const;
 
     void add(int n);
@@ -46,7 +35,11 @@ public:
 
     [[nodiscard]] std::string noEffectMessage(const Pokemon &pokemon) const;
 
-    [[nodiscard]] virtual Item::Class getClass() const = 0;
+    [[nodiscard]] virtual std::string getName() const = 0;
+
+    [[nodiscard]] virtual std::string getEffect() const = 0;
+
+    [[nodiscard]] virtual std::size_t getClass() const = 0;
 
     void interact() override;
 
@@ -56,3 +49,6 @@ public:
 
     explicit operator bool() const;
 };
+
+inline std::mutex itemMutex;
+inline std::unordered_map<std::string, std::unique_ptr<Item> (*)(int)> itemMap;

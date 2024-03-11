@@ -6,8 +6,8 @@
 
 StatusItem::StatusItem(int quantity) : Item(quantity) {}
 
-Item::Class StatusItem::getClass() const {
-    return Item::Class::STATUS;
+std::size_t StatusItem::getClass() const {
+    return typeid(StatusItem).hash_code();
 }
 
 void StatusItem::restore(Pokemon &pokemon) const {
@@ -16,11 +16,9 @@ void StatusItem::restore(Pokemon &pokemon) const {
     }
 }
 
-std::string StatusItem::restoreMessage(const Pokemon &pokemon) const {
+std::string StatusItem::restoreMessage(const Pokemon &pokemon) {
     if (pokemon.getStatus() == StatusCondition::NONE) {
         return pokemon.getName() + " recovered from " + statusToString(pokemon.getStatus()) + '!';
     }
-    else {
-        return "But it failed!";
-    }
+    return "But it failed!";
 }

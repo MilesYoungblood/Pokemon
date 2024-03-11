@@ -24,7 +24,7 @@ bool Ether::isHp() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
-        restoreItems["Ether"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<Ether>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Ether"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Ether>(n); };
     });
 }

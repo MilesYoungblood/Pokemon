@@ -177,11 +177,13 @@ void Character::interact() {
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
+        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+
         Player::getPlayer().setState(Character::State::IMMOBILE);
         this->face(&Player::getPlayer());
 
         // only create the textbox here if the trainer cannot fight;
-        // the program will loop back to checkForOpponents() in the next cycle
+        // the program will loop back to the trainer's update() in the next cycle
         // and create it there if the trainer can fight
         if (not this->canFight()) {
             this->setState(Character::State::IMMOBILE);
@@ -193,15 +195,16 @@ void Character::interact() {
         if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
             GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
+            // the 'accept' sound effect will play for every pop except the last
             if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
                 Mixer::getInstance().playSound("accept");
             }
-        }
-        if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-            GraphicsEngine::getInstance().removeGraphic<TextBox>();
+            else {
+                GraphicsEngine::getInstance().removeGraphic<TextBox>();
 
-            Player::getPlayer().setState(Character::State::IDLE);
-            this->setState(Character::State::IDLE);
+                Player::getPlayer().setState(Character::State::IDLE);
+                this->setState(Character::State::IDLE);
+            }
         }
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);

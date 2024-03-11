@@ -43,6 +43,8 @@ public:
 
     [[nodiscard]] int getScrollSpeed() const;
 
+    static void createTextBox(const std::string &message, const std::function<void()> &function = nullptr);
+
     static void createTextBox(const std::vector<std::string> &dialogue);
 
     void handleMove(SDL_Scancode scancode);

@@ -20,7 +20,7 @@ StatusCondition Antidote::getStatus() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
-        statusItems["Antidote"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<Antidote>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Antidote"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Antidote>(n); };
     });
 }

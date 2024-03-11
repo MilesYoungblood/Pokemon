@@ -24,7 +24,7 @@ bool MaxEther::isHp() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
-        restoreItems["Max Ether"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<MaxEther>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Max Ether"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<MaxEther>(n); };
     });
 }

@@ -11,11 +11,13 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] std::string getName() const override = 0;
 
+    [[nodiscard]] std::string getEffect() const override = 0;
+
+    [[nodiscard]] std::size_t getClass() const override;
+
     [[nodiscard]] virtual int getAmount() const = 0;
 
     [[nodiscard]] virtual bool isHp() const = 0;
-
-    [[nodiscard]] Item::Class getClass() const override;
 
     void restore(Pokemon &pokemon) const;
 
@@ -25,6 +27,3 @@ struct RestoreItem : public Item {
 
     [[nodiscard]] std::string restoreMessage(const Move &move) const;
 };
-
-inline std::mutex restoreItemMutex;
-inline std::unordered_map<std::string, std::unique_ptr<RestoreItem>(*)(int)> restoreItems;

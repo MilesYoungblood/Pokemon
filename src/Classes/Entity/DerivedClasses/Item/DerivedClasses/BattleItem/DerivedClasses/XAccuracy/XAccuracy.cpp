@@ -20,7 +20,7 @@ Pokemon::Stat XAccuracy::getStat() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(battleItemMutex);
-        battleItems["X Accuracy"] = [](int n) -> std::unique_ptr<BattleItem> { return std::make_unique<XAccuracy>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["X Accuracy"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XAccuracy>(n); };
     });
 }

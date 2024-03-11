@@ -145,8 +145,8 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         for (int row = 0; row < height; ++row) {
             for (int col = 0; col < width and ss >> value; ++col) {
                 layer[row][col].id = value;
-                layer[row][col].x = col * Map::TILE_SIZE;
-                layer[row][col].y = row * Map::TILE_SIZE;
+                layer[row][col].screenX = col * Map::TILE_SIZE;
+                layer[row][col].screenY = row * Map::TILE_SIZE;
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
@@ -253,7 +253,7 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         throw std::runtime_error(errorMessage(this->music + ".xml", "vision", "text"));
     }
 
-    std::unique_ptr<Trainer> trainer = std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos, Direction(trainer_direction), trainer_vision);
+    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos, Direction(trainer_direction), trainer_vision));
     this->loadTrainer2(trainer, visionElement);
 }
 
@@ -336,7 +336,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
             std::terminate();
         }
 
-        std::unique_ptr<Pokemon> pokemon = pokemonMap.at(idAttribute)();
+        std::unique_ptr<Pokemon> pokemon(pokemonMap.at(idAttribute)());
 
         for (tinyxml2::XMLElement *moveElement = moveSetElement->FirstChildElement("move"); moveElement != nullptr;
              moveElement = moveElement->NextSiblingElement("move")) {
@@ -357,11 +357,6 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 }
 
 void Map::loadItem(tinyxml2::XMLElement *entityElement) {
-    const char *subClassAttribute = entityElement->Attribute("subclass");
-    if (subClassAttribute == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "subclass", "attribute"));
-    }
-
     const char *idAttribute = entityElement->Attribute("id");
     if (idAttribute == nullptr) {
         throw std::runtime_error(errorMessage(this->music + ".xml", "id", "attribute"));
@@ -392,21 +387,9 @@ void Map::loadItem(tinyxml2::XMLElement *entityElement) {
         throw std::runtime_error(errorMessage(this->music + ".xml", "y", "attribute"));
     }
 
-    std::unique_ptr<Item> item;
-    if (strcmp(subClassAttribute, "Restore Item") == 0) {
-        item = restoreItems.at(idAttribute)(quantity);
-    }
-    else if (strcmp(subClassAttribute, "Status Item") == 0) {
-        item = statusItems.at(idAttribute)(quantity);
-    }
-    else if (strcmp(subClassAttribute, "Poke Ball") == 0) {
-        item = pokeBalls.at(idAttribute)(quantity);
-    }
-    else if (strcmp(subClassAttribute, "Battle Item") == 0) {
-        item = battleItems.at(idAttribute)(quantity);
-    }
-
+    std::unique_ptr<Item> item(itemMap.at(idAttribute)(quantity));
     item->setCoordinates(x_pos, y_pos);
+
     this->entities.push_back(std::move(item));
 }
 
@@ -452,12 +435,13 @@ std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int
     return std::nullopt;
 }
 
-void Map::addEntity(std::unique_ptr<Entity> entity) {
-    this->entities.push_back(std::move(entity));
-}
-
-std::size_t Map::numEntities() const {
-    return this->entities.size();
+void Map::removeEntity(Entity *entity) {
+    for (int i = 0; i < this->entities.size(); ++i) {
+        if (this->entities.at(i).get() == entity) {
+            this->entities.erase(this->entities.begin() + i);
+            return;
+        }
+    }
 }
 
 Entity &Map::operator[](std::size_t index) {
@@ -491,16 +475,16 @@ void Map::shift(Direction direction, int n) {
                 for (auto &col : row) {
                     switch (direction) {
                         case Direction::UP:
-                            col.y -= n;
+                            col.screenY -= n;
                             break;
                         case Direction::DOWN:
-                            col.y += n;
+                            col.screenY += n;
                             break;
                         case Direction::LEFT:
-                            col.x -= n;
+                            col.screenX -= n;
                             break;
                         case Direction::RIGHT:
-                            col.x += n;
+                            col.screenX += n;
                             break;
                         default:
                             return;
@@ -529,7 +513,7 @@ void Map::shiftHorizontally(int n) {
         threads.emplace_back([&layer, &n] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
-                    col.x += n;
+                    col.screenX += n;
                 }
             }
         });
@@ -554,7 +538,7 @@ void Map::shiftVertically(int n) {
         threads.emplace_back([&layer, &n] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
-                    col.y += n;
+                    col.screenY += n;
                 }
             }
         });
@@ -577,8 +561,8 @@ void Map::render() const {
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
             for (const auto &col : row) {
-                sdlRect.x = col.x;
-                sdlRect.y = col.y;
+                sdlRect.x = col.screenX;
+                sdlRect.y = col.screenY;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and col.id != 0) {
                     TextureManager::getInstance().draw(Map::textures.at(col.id), sdlRect);
@@ -608,8 +592,8 @@ void Map::reset() {
         threads.emplace_back([&layer] -> void {
             for (int i = 0; i < layer.size(); ++i) {
                 for (int j = 0; j < layer[i].size(); ++j) {
-                    layer[i][j].x = i * Map::TILE_SIZE;
-                    layer[i][j].y = j * Map::TILE_SIZE;
+                    layer[i][j].screenX = i * Map::TILE_SIZE;
+                    layer[i][j].screenY = j * Map::TILE_SIZE;
                 }
             }
         });

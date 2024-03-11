@@ -26,7 +26,7 @@ double NetBall::getCatchRate(const Pokemon &pokemon, Time  /*time*/, int  /*turn
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(pokeBallMutex);
-        pokeBalls["Net Ball"] = [](int n) -> std::unique_ptr<PokeBall> { return std::make_unique<NetBall>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Net Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<NetBall>(n); };
     });
 }

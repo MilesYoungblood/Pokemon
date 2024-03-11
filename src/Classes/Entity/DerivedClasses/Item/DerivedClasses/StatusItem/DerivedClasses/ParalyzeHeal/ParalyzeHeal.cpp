@@ -20,7 +20,7 @@ StatusCondition ParalyzeHeal::getStatus() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
-        statusItems["Paralyze Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<ParalyzeHeal>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Paralyze Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<ParalyzeHeal>(n); };
     });
 }

@@ -23,7 +23,7 @@ void HealBall::postCatch(Pokemon &pokemon) const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(pokeBallMutex);
-        pokeBalls["Heal Ball"] = [](int n) -> std::unique_ptr<PokeBall> { return std::make_unique<HealBall>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Heal Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<HealBall>(n); };
     });
 }

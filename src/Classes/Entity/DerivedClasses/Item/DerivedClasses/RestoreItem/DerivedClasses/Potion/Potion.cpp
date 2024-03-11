@@ -24,7 +24,7 @@ bool Potion::isHp() const {
 
 namespace {
     std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
-        restoreItems["Potion"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<Potion>(n); };
+        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+        itemMap["Potion"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Potion>(n); };
     });
 }
