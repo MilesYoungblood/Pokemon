@@ -37,7 +37,6 @@ Pokemon::Id Munna::getId() const {
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
-        pokemonMap.insert(std::make_pair(Pokemon::Id::MUNNA,
-                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Munna>(); }));
+        pokemonMap["Munna"] = [] -> std::unique_ptr<Pokemon> { return std::make_unique<Munna>(); };
     });
 }

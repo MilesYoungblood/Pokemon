@@ -4,6 +4,6 @@
 
 #pragma once
 
-#include "BattlePhase/BattlePhase.h"
+#include "Battle/Battle.h"
 #include "Overworld/Overworld.h"
 #include "TitleScreen/TitleScreen.h"

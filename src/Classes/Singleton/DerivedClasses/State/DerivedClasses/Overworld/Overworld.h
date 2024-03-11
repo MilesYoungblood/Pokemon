@@ -18,8 +18,6 @@ private:
 
     Overworld() = default;
 
-    void init();
-
 public:
     Overworld(const Overworld &) = delete;
 
@@ -31,11 +29,11 @@ public:
 
     ~Overworld() override;
 
+    void init();
+
     void update() override;
 
     void render() override;
-
-    void load();
 
     void save();
 

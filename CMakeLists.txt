@@ -37,8 +37,8 @@ set(SOURCES
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.h
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/Pokeball.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/Pokeball.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.h
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp
         src/Classes/Map/Map.cpp
@@ -203,26 +203,26 @@ set(STATUS_ITEMS
 )
 
 set(POKE_BALLS
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/GreatBall/GreatBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/UltraBall/UltraBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/MasterBall/MasterBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/NetBall/NetBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/NestBall/NestBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/TimerBall/TimerBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/PremierBall/PremierBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/DuskBall/DuskBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/HealBall/HealBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/DerivedClasses/QuickBall/QuickBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.h
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp
+        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.h
 )
 
 set(BATTLE_ITEMS
@@ -274,8 +274,8 @@ set(GRAPHICS
 set(STATES
         src/Classes/Singleton/DerivedClasses/State/State.h
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/States.h
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.cpp
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/BattlePhase/BattlePhase.h
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp
+        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.h
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.h
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp

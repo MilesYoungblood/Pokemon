@@ -18,15 +18,9 @@ StatusCondition Antidote::getStatus() const {
     return StatusCondition::POISON;
 }
 
-StatusItem::Id Antidote::getId() const {
-    return StatusItem::Id::ANTIDOTE;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
-        statusItems.insert(std::make_pair(StatusItem::Id::ANTIDOTE, [](int n) -> std::unique_ptr<StatusItem> {
-            return std::make_unique<Antidote>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
+        statusItems["Antidote"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<Antidote>(n); };
     });
 }

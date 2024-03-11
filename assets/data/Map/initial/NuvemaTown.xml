@@ -13,10 +13,7 @@
             <party>
                 <pokemon id="Samurott">
                     <move_set>
-                        <move id=""/>
-                        <move id=""/>
-                        <move id=""/>
-                        <move id=""/>
+                        <move id="Ice Beam"/>
                     </move_set>
                 </pokemon>
             </party>
@@ -33,13 +30,14 @@
             <party>
                 <pokemon id="Serperior">
                     <move_set>
-                        <move id=""/>
-                        <move id=""/>
-                        <move id=""/>
-                        <move id=""/>
+                        <move id="Solar Beam"/>
                     </move_set>
                 </pokemon>
             </party>
+        </entity>
+        <entity class="Item" subclass="Poke Ball" id="Poke Ball">
+            <quantity>5</quantity>
+            <position x="7" y="18"/>
         </entity>
     </entities>
 </xml>

@@ -37,7 +37,6 @@ Pokemon::Id Simisear::getId() const {
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
-        pokemonMap.insert(std::make_pair(Pokemon::Id::SIMISEAR,
-                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Simisear>(); }));
+        pokemonMap["Simisear"] = [] -> std::unique_ptr<Pokemon> { return std::make_unique<Simisear>(); };
     });
 }

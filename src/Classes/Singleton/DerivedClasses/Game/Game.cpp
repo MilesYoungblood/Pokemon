@@ -2,10 +2,11 @@
 // Created by Miles on 10/2/2023.
 //
 
-#include "Game.h"
+#include "../Mixer/Mixer.h"
+#include "../KeyManager/KeyManager.h"
 #include "../Pokedex/Pokedex.h"
+#include "Game.h"
 
-std::unordered_map<Entity *, bool> keepLooping;
 Stopwatch keyDelay;
 bool momentum = false;
 
@@ -83,8 +84,6 @@ Game::Game() {
 
 Game::~Game() {
     Character::clean();
-    Item::clean();
-    Map::clean();
 
     Mix_HaltMusic();
     Mix_HookMusicFinished(nullptr);

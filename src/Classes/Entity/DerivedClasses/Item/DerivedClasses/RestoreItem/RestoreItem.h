@@ -7,15 +7,6 @@
 #include "../../Item.h"
 
 struct RestoreItem : public Item {
-    enum class Id : Uint8 {
-        POTION,
-        SUPER_POTION,
-        HYPER_POTION,
-        MAX_POTION,
-        ETHER,
-        MAX_ETHER,
-    };
-
     explicit RestoreItem(int quantity);
 
     [[nodiscard]] std::string getName() const override = 0;
@@ -23,8 +14,6 @@ struct RestoreItem : public Item {
     [[nodiscard]] virtual int getAmount() const = 0;
 
     [[nodiscard]] virtual bool isHp() const = 0;
-
-    [[nodiscard]] virtual RestoreItem::Id getId() const = 0;
 
     [[nodiscard]] Item::Class getClass() const override;
 
@@ -38,4 +27,4 @@ struct RestoreItem : public Item {
 };
 
 inline std::mutex restoreItemMutex;
-inline std::unordered_map<RestoreItem::Id, std::unique_ptr<RestoreItem>(*)(int)> restoreItems;
+inline std::unordered_map<std::string, std::unique_ptr<RestoreItem>(*)(int)> restoreItems;

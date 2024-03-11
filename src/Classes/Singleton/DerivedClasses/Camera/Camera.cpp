@@ -2,19 +2,10 @@
 // Created by Miles on 11/28/2023.
 //
 
-#include "../../../Map/Map.h"
+#include "../../../Singleton/DerivedClasses/Game/Game.h"
 #include "Camera.h"
 
-void Camera::init(int w, int h) {
-    static bool isInitialized = false;
-    // only allow this function to be called once
-    if (not isInitialized) {
-        this->view.w = w;
-        this->view.h = h;
-
-        isInitialized = true;
-    }
-}
+Camera::Camera() : view(0, 0, Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT) {}
 
 bool Camera::isInView(const SDL_Rect &rect) const {
     return SDL_HasIntersection(&rect, &this->view) == SDL_bool::SDL_TRUE;
@@ -22,11 +13,9 @@ bool Camera::isInView(const SDL_Rect &rect) const {
 
 void Camera::lockOnPlayer(gsl::owner<Map *> map) const {
     // x-distance of the player from the center of the screen
-    const int x_from_center = ((this->view.w - Map::TILE_SIZE) / 2) -
-            Player::getPlayer().getMapX() * Map::TILE_SIZE;
+    const int x_from_center = ((this->view.w - Map::TILE_SIZE) / 2) - Player::getPlayer().getMapX() * Map::TILE_SIZE;
     // y-distance of the player from the center of the screen
-    const int y_from_center = ((this->view.h - Map::TILE_SIZE) / 2) -
-            Player::getPlayer().getMapY() * Map::TILE_SIZE;
+    const int y_from_center = ((this->view.h - Map::TILE_SIZE) / 2) - Player::getPlayer().getMapY() * Map::TILE_SIZE;
 
     Player::getPlayer().shiftHorizontally(x_from_center);
     Player::getPlayer().shiftVertically(y_from_center);

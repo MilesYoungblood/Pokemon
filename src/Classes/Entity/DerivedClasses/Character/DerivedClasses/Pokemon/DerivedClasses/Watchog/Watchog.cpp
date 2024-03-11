@@ -38,7 +38,6 @@ Pokemon::Id Watchog::getId() const {
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
-        pokemonMap.insert(std::make_pair(Pokemon::Id::WATCHOG,
-                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Watchog>(); }));
+        pokemonMap["Watchog"] = [] -> std::unique_ptr<Pokemon> { return std::make_unique<Watchog>(); };
     });
 }

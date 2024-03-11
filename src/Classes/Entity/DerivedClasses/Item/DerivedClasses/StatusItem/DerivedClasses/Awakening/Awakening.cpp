@@ -18,15 +18,9 @@ StatusCondition Awakening::getStatus() const {
     return StatusCondition::SLEEP;
 }
 
-StatusItem::Id Awakening::getId() const {
-    return StatusItem::Id::AWAKENING;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
-        statusItems.insert(std::make_pair(StatusItem::Id::AWAKENING, [](int n) -> std::unique_ptr<StatusItem> {
-            return std::make_unique<Awakening>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
+        statusItems["Awakening"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<Awakening>(n); };
     });
 }

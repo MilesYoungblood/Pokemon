@@ -14,7 +14,7 @@ private:
         MAX_ITEMS = 50
     };
 
-    int numFainted = 0;                                   // number of fainted Pokémon
+    bool keepLooping{ true };
 
     std::vector<std::unique_ptr<Pokemon>> party;
     std::unordered_map<std::size_t, std::vector<std::unique_ptr<Item>>> items;
@@ -23,6 +23,8 @@ private:
 
 protected:
     Trainer(const char *id, int x, int y, Direction direction);
+
+    [[nodiscard]] std::size_t partySize() const;
 
 public:
     Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision);
@@ -37,9 +39,7 @@ public:
 
     ~Trainer() override = default;
 
-    [[nodiscard]] std::size_t partySize() const;
-
-    void addPokemon(Pokemon::Id id);
+    void addPokemon(const char *id);
 
     void addPokemon(std::unique_ptr<Pokemon> toAdd);
 
@@ -101,17 +101,13 @@ public:
         }
     }
 
-    void incFaintCount();
-
-    void decFaintCount();
-
-    [[nodiscard]] int getFaintCount() const;
-
     Pokemon &operator[](std::size_t index);
 
     std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 
     std::vector<std::unique_ptr<Pokemon>>::iterator end();
+
+    virtual void handleFaint();
 
     void idle() override;
 

@@ -2,7 +2,9 @@
 // Created by Miles Youngblood on 2/3/2024.
 //
 
-#include "../../../../../../Classes/Singleton/DerivedClasses/Game/Game.h"
+#include "../../../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
+#include "../../../Texture/Texture.h"
 #include "SelectionBox.h"
 
 SelectionBox::SelectionBox(SDL_Rect dest, int borderSize, const std::vector<std::string> &options)

@@ -18,15 +18,9 @@ Pokemon::Stat XSpAttack::getStat() const {
     return Pokemon::Stat::SP_ATTACK;
 }
 
-BattleItem::Id XSpAttack::getId() const {
-    return BattleItem::Id::X_SP_ATTACK;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(battleItemMutex);
-        battleItems.insert(std::make_pair(BattleItem::Id::X_SP_ATTACK, [](int n) -> std::unique_ptr<BattleItem> {
-            return std::make_unique<XSpAttack>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(battleItemMutex);
+        battleItems["X Sp. Attack"] = [](int n) -> std::unique_ptr<BattleItem> { return std::make_unique<XSpAttack>(n); };
     });
 }

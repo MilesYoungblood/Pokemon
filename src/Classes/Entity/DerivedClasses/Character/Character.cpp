@@ -3,6 +3,9 @@
 //
 
 #include "../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
+#include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Character.h"
 
 Character::Character(const char *id, int x, int y, Direction direction)

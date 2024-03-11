@@ -4,12 +4,10 @@
 
 #pragma once
 
-#include "../../../../Enums/Time/Time.h"
 #include "../Character/DerivedClasses/Pokemon/Pokemon.h"
 
 class Item : public Entity {
 private:
-    inline static SDL_Texture *texture{ nullptr };
     int quantity;
 
 public:
@@ -33,10 +31,6 @@ public:
     Item &operator=(Item &&) noexcept = delete;
 
     ~Item() override = default;
-
-    static void init();
-
-    static void clean();
 
     [[nodiscard]] virtual std::string getName() const = 0;
 

@@ -16,6 +16,4 @@ struct SuperPotion : public RestoreItem {
     [[nodiscard]] int getAmount() const override;
 
     [[nodiscard]] bool isHp() const override;
-
-    [[nodiscard]] RestoreItem::Id getId() const override;
 };

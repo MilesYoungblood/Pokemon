@@ -161,4 +161,4 @@ private:
 };
 
 inline std::mutex pokemonMutex;
-inline std::unordered_map<Pokemon::Id, std::unique_ptr<Pokemon>(*)()> pokemonMap;
+inline std::unordered_map<std::string, std::unique_ptr<Pokemon>(*)()> pokemonMap;

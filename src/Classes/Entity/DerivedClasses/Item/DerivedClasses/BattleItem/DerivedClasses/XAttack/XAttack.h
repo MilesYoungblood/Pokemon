@@ -14,6 +14,4 @@ struct XAttack : public BattleItem {
     [[nodiscard]] std::string getEffect() const override;
 
     [[nodiscard]] Pokemon::Stat getStat() const override;
-
-    [[nodiscard]] BattleItem::Id getId() const override;
 };

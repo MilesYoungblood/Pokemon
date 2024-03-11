@@ -18,15 +18,9 @@ StatusCondition BurnHeal::getStatus() const {
     return StatusCondition::BURN;
 }
 
-StatusItem::Id BurnHeal::getId() const {
-    return StatusItem::Id::BURN_HEAL;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
-        statusItems.insert(std::make_pair(StatusItem::Id::BURN_HEAL, [](int n) -> std::unique_ptr<StatusItem> {
-            return std::make_unique<BurnHeal>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
+        statusItems["Burn Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<BurnHeal>(n); };
     });
 }

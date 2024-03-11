@@ -37,7 +37,6 @@ Pokemon::Id Pansear::getId() const {
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);
-        pokemonMap.insert(std::make_pair(Pokemon::Id::PANSEAR,
-                                         [] -> std::unique_ptr<Pokemon> { return std::make_unique<Pansear>(); }));
+        pokemonMap["Pansear"] = [] -> std::unique_ptr<Pokemon> { return std::make_unique<Pansear>(); };
     });
 }

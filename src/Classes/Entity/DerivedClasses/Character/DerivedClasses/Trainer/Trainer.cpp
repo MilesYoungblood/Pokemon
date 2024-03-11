@@ -3,6 +3,9 @@
 //
 
 #include "../../../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
+#include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Trainer.h"
 
 void Trainer::init() {
@@ -12,13 +15,7 @@ void Trainer::init() {
     this->items[typeid(BattleItem).hash_code()];
 }
 
-Trainer::Trainer(const char *id, int x, int y, Direction direction)
-        : Character(id, x, y, direction) {
-    this->init();
-}
-
-Trainer::Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision)
-        : Character(id, name, x, y, direction, vision) {
+Trainer::Trainer(const char *id, int x, int y, Direction direction) : Character(id, x, y, direction) {
     this->init();
 }
 
@@ -26,7 +23,12 @@ std::size_t Trainer::partySize() const {
     return this->party.size();
 }
 
-void Trainer::addPokemon(Pokemon::Id id) {
+Trainer::Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision)
+        : Character(id, name, x, y, direction, vision) {
+    this->init();
+}
+
+void Trainer::addPokemon(const char *id) {
     if (this->party.size() == Trainer::MAX_POKEMON) {
         return;
     }
@@ -44,10 +46,10 @@ void Trainer::removePokemon(long long int index) {
     try {
         // decrement the faint counter if the Pokémon we're removing is fainted
         if (this->party.at(index)->isFainted()) {
-            --this->numFainted;
+            //--this->numFainted;
         }
 
-        this->party.erase(this->party.begin() + index);
+        this->party.erase(this->party.cbegin() + index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error removing Pokemon: ") + e.what() + '\n');
@@ -69,18 +71,6 @@ void Trainer::clearParty() {
     this->party.clear();
 }
 
-void Trainer::incFaintCount() {
-    ++this->numFainted;
-}
-
-void Trainer::decFaintCount() {
-    --this->numFainted;
-}
-
-int Trainer::getFaintCount() const {
-    return this->numFainted;
-}
-
 Pokemon &Trainer::operator[](std::size_t index) {
     try {
         return *this->party.at(index);
@@ -98,6 +88,10 @@ std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
     return this->party.end();
 }
 
+void Trainer::handleFaint() {
+    this->party.erase(this->party.cbegin());
+}
+
 void Trainer::idle() {
     this->act();
 
@@ -110,7 +104,7 @@ void Trainer::idle() {
     };
 
     // checks if the player is in LoS for any this
-    if (not_moving(&Player::getPlayer()) and this->canFight() and not_moving(this) and keepLooping[this] and
+    if (not_moving(&Player::getPlayer()) and this->canFight() and not_moving(this) and this->keepLooping and
         this->hasVisionOf(&Player::getPlayer())) {
         if (haltMusic) {
             Player::getPlayer().setState(Character::State::IMMOBILE);
@@ -161,7 +155,7 @@ void Trainer::idle() {
 
             Overworld::createTextBox(this->getDialogue());
 
-            keepLooping[this] = false;
+            this->keepLooping = false;
 
             frameCounter = 0;
             haltMusic = true;
@@ -213,7 +207,7 @@ void Trainer::interact() {
                 Game::getInstance().setState(::State::Id::BATTLE);
                 Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                ::State::getInstance<BattlePhase>().init(this);
+                ::State::getInstance<Battle>().init(this);
 
                 Mixer::getInstance().playMusic("TrainerBattle");
             }

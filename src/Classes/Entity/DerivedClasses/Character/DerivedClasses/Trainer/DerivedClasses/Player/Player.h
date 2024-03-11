@@ -11,6 +11,8 @@ private:
     using box = std::array<std::array<std::unique_ptr<Pokemon>, 6>, 5>;
     std::array<box, 12> pc;
 
+    int numFainted{ 0 };
+
     Player();
 
 public:
@@ -19,6 +21,8 @@ public:
     void addToPc(std::unique_ptr<Pokemon> toAdd);
 
     [[nodiscard]] bool canMoveForward(gsl::owner<Map *> map) const override;
+
+    void handleFaint() override;
 
     void walk() override;
 

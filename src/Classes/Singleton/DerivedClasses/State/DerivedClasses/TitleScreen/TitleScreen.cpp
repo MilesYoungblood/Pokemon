@@ -3,6 +3,10 @@
 //
 
 #include "../../../Game/Game.h"
+#include "../../../Camera/Camera.h"
+#include "../../../Mixer/Mixer.h"
+#include "../../../KeyManager/KeyManager.h"
+#include "../../../../../Graphic/DerivedClasses/Texture/Texture.h"
 
 namespace {
     bool showPrompt = true;
@@ -32,14 +36,9 @@ void TitleScreen::update() {
         // FIXME make code following this execute based on MixChannelFinished callback
         Mixer::getInstance().playSound("select");
 
-        State::getInstance<Overworld>().load();
+        State::getInstance<Overworld>().init();
 
-        Camera::getInstance().init(Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT);
         Camera::getInstance().lockOnPlayer(State::getInstance<Overworld>().getCurrentMap());
-
-        for (auto &entity : *State::getInstance<Overworld>().getCurrentMap()) {
-            keepLooping[entity.get()] = true;
-        }
 
         Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
 

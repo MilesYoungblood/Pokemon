@@ -4,8 +4,8 @@
 
 #pragma once
 
-#include "../../../Item/DerivedClasses/Items.h"
-#include "../../../Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
+#include "../../../Entity/DerivedClasses/Item/DerivedClasses/Items.h"
+#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../../../Functions/ItemFunctions.h"
 #include "../../Singleton.h"
 

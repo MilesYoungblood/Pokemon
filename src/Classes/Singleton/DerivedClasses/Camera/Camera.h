@@ -4,29 +4,19 @@
 
 #pragma once
 
-#include "../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../Singleton.h"
 
 class Map;
 
 class Camera : public Singleton<Camera> {
 private:
-    SDL_Rect view{ 0, 0, 0, 0 };
+    SDL_Rect view;
 
     friend class Singleton<Camera>;
 
-    Camera() = default;
+    Camera();
 
 public:
-    /// \brief Initializes the Camera's view
-    /// \details This function takes in the Game's width
-    /// and height as parameters and updates the Camera's
-    /// view. This design choice is so the Game window's
-    /// width and height remain consistent.
-    /// \param w window width
-    /// \param h window height
-    void init(int w, int h);
-
     /// \brief Determines whether a rectangle is in view of the camera
     /// \details This function's purpose is to enable the rendering of only
     /// necessary objects. It is useless to render objects that are not

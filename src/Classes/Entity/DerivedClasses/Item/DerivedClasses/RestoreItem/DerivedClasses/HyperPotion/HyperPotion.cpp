@@ -22,15 +22,9 @@ bool HyperPotion::isHp() const {
     return true;
 }
 
-RestoreItem::Id HyperPotion::getId() const {
-    return RestoreItem::Id::HYPER_POTION;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
-        restoreItems.insert(std::make_pair(RestoreItem::Id::HYPER_POTION, [](int n) -> std::unique_ptr<RestoreItem> {
-            return std::make_unique<HyperPotion>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
+        restoreItems["Hyper Potion"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<HyperPotion>(n); };
     });
 }

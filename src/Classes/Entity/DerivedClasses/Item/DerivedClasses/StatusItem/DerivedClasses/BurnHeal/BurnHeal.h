@@ -14,6 +14,4 @@ struct BurnHeal : public StatusItem {
     [[nodiscard]] std::string getEffect() const override;
 
     [[nodiscard]] StatusCondition getStatus() const override;
-
-    [[nodiscard]] StatusItem::Id getId() const override;
 };

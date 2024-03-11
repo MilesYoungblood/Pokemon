@@ -6,11 +6,7 @@
 
 #include "../../../Stopwatch/Stopwatch.h"
 #include "../State/DerivedClasses/States.h"
-#include "../KeyManager/KeyManager.h"
-#include "../Mixer/Mixer.h"
-#include "../GraphicsEngine/GraphicsEngine.h"
 
-extern std::unordered_map<Entity *, bool> keepLooping;
 extern Stopwatch keyDelay;
 extern bool momentum;
 
@@ -27,7 +23,7 @@ private:
     std::array<State *, 3> states{
             &State::getInstance<TitleScreen>(),
             &State::getInstance<Overworld>(),
-            &State::getInstance<BattlePhase>()
+            &State::getInstance<Battle>()
     };
 
     State *currentState{ this->states[static_cast<std::size_t>(State::Id::TITLE_SCREEN)] };

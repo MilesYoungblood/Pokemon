@@ -4,15 +4,12 @@
 
 #pragma once
 
-#include "../Singleton/DerivedClasses/Camera/Camera.h"
+#include "../Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h"
 
 class Map {
 public:
     enum : Uint8 {
         TILE_SIZE = 80
-    };
-    enum Id : Uint8 {
-        NUVEMA_TOWN
     };
 
     struct ExitPoint {
@@ -33,13 +30,7 @@ public:
 
     Map &operator=(Map &&rhs) noexcept = default;
 
-    ~Map() = default;
-
-    /// \brief Initializes the texture map
-    static void init();
-
-    /// \brief Cleans the texture map
-    static void clean();
+    ~Map();
 
     /// \brief Checks to see if an obstruction is present
     /// \param x coordinate
@@ -98,29 +89,21 @@ public:
     void reset();
 
 private:
-    using position = struct {
-        int x;
-        int y;
-        int screenX;
-        int screenY;
-    };
-
     std::string name;
     std::string music;
 
-    inline static std::unordered_map<std::string, SDL_Texture *> textureMap;
-
     using tile = struct {
-        std::string id;
+        int id;
         int x;
         int y;
     };
 
-    template<typename T>
-    using layer = std::vector<std::vector<T>>;          // a layer is a 2D vector of data
+    using layer = std::vector<std::vector<tile>>;       // a layer is a 2D vector of data
 
-    std::vector<layer<tile>> layout;                    // The map is vector of layers
-    layer<bool> collision;                              // collision values for each tile
+    std::vector<layer> layout;                          // The map is vector of layers
+
+    std::vector<bool> collision{ false };               // collision values for each tile id
+    std::vector<SDL_Texture *> textures{ nullptr };     // texture for each tile id
 
     std::vector<std::unique_ptr<Entity>> entities;      // the set of entities in this map
 
@@ -128,11 +111,15 @@ private:
 
     void parseTmx();
 
-    static void parseTsx(int firstGidAttribute, const std::string &sourceAttribute,
-                         std::unordered_map<int, const std::string> &pathMap,
-                         std::unordered_map<int, bool> &collisionMap);
+    void parseTsx(const std::string &sourceAttribute);
 
-    void populate(const tinyxml2::XMLElement *mapElement, std::unordered_map<int, const std::string> &pathMap, std::unordered_map<int, bool> &collisionMap);
+    void populate(const tinyxml2::XMLElement *mapElement, int width, int height);
 
     void loadEntities();
+
+    void loadTrainer1(tinyxml2::XMLElement *entityElement);
+
+    void loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *visionElement);
+
+    void loadItem(tinyxml2::XMLElement *entityElement);
 };

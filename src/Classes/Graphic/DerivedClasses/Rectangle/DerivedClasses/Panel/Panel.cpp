@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 2/26/2024.
 //
 
-#include "../../../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../../../Singleton/DerivedClasses/KeyManager//KeyManager.h"
 #include "Panel.h"
 
 void Panel::init(int r, int c) {

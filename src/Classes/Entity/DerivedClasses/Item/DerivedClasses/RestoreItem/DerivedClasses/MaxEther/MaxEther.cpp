@@ -22,15 +22,9 @@ bool MaxEther::isHp() const {
     return false;
 }
 
-RestoreItem::Id MaxEther::getId() const {
-    return RestoreItem::Id::MAX_ETHER;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(restoreItemMutex);
-        restoreItems.insert(std::make_pair(RestoreItem::Id::MAX_ETHER, [](int n) -> std::unique_ptr<RestoreItem> {
-            return std::make_unique<MaxEther>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(restoreItemMutex);
+        restoreItems["Max Ether"] = [](int n) -> std::unique_ptr<RestoreItem> { return std::make_unique<MaxEther>(n); };
     });
 }

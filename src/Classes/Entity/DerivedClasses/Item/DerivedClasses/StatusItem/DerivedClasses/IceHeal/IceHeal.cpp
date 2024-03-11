@@ -18,15 +18,9 @@ StatusCondition IceHeal::getStatus() const {
     return StatusCondition::FREEZE;
 }
 
-StatusItem::Id IceHeal::getId() const {
-    return StatusItem::Id::ICE_HEAL;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
-        statusItems.insert(std::make_pair(StatusItem::Id::ICE_HEAL, [](int n) -> std::unique_ptr<StatusItem> {
-            return std::make_unique<IceHeal>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
+        statusItems["Ice Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<IceHeal>(n); };
     });
 }

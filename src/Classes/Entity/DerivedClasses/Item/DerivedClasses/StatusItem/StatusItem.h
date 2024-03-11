@@ -7,14 +7,6 @@
 #include "../../Item.h"
 
 struct StatusItem : public Item {
-    enum class Id : Uint8 {
-        ANTIDOTE,
-        AWAKENING,
-        BURN_HEAL,
-        ICE_HEAL,
-        PARALYZE_HEAL
-    };
-
     explicit StatusItem(int quantity);
 
     [[nodiscard]] std::string getName() const override = 0;
@@ -22,8 +14,6 @@ struct StatusItem : public Item {
     [[nodiscard]] std::string getEffect() const override = 0;
 
     [[nodiscard]] virtual StatusCondition getStatus() const = 0;
-
-    [[nodiscard]] virtual StatusItem::Id getId() const = 0;
 
     [[nodiscard]] Item::Class getClass() const override;
 
@@ -33,4 +23,4 @@ struct StatusItem : public Item {
 };
 
 inline std::mutex statusItemMutex;
-inline std::unordered_map<StatusItem::Id, std::unique_ptr<StatusItem>(*)(int)> statusItems;
+inline std::unordered_map<std::string, std::unique_ptr<StatusItem>(*)(int)> statusItems;

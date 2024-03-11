@@ -3,6 +3,8 @@
 //
 
 #include "../../../../../../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Player.h"
 
 Player::Player() : Trainer("Player", 7, 17, Direction::DOWN) {}
@@ -37,6 +39,10 @@ bool Player::canMoveForward(gsl::owner<Map *> map) const {
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
+}
+
+void Player::handleFaint() {
+    ++this->numFainted;
 }
 
 void Player::walk() {
@@ -115,5 +121,5 @@ void Player::idle() {
 }
 
 bool Player::canFight() const {
-    return this->getFaintCount() < this->partySize();
+    return this->numFainted < this->partySize();
 }

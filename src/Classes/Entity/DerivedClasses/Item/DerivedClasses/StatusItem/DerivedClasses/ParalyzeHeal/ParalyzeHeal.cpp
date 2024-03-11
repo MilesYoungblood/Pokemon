@@ -18,15 +18,9 @@ StatusCondition ParalyzeHeal::getStatus() const {
     return StatusCondition::FREEZE;
 }
 
-StatusItem::Id ParalyzeHeal::getId() const {
-    return StatusItem::Id::PARALYZE_HEAL;
-}
-
 namespace {
     std::jthread init([] -> void {
-        const std::lock_guard<std::mutex> lock_guard(statusItemMutex);
-        statusItems.insert(std::make_pair(StatusItem::Id::PARALYZE_HEAL, [](int n) -> std::unique_ptr<StatusItem> {
-            return std::make_unique<ParalyzeHeal>(n);
-        }));
+        const std::scoped_lock<std::mutex> scoped_lock(statusItemMutex);
+        statusItems["Paralyze Heal"] = [](int n) -> std::unique_ptr<StatusItem> { return std::make_unique<ParalyzeHeal>(n); };
     });
 }
