@@ -8,28 +8,34 @@
 #include "../../../KeyManager/KeyManager.h"
 #include "Battle.h"
 
+const int DOUBLE_TILE = Map::TILE_SIZE * 2;
+const int HALF_TILE = Map::TILE_SIZE / 2;
+const int TENTH_TILE = Map::TILE_SIZE / 10;
+const int HALF_WINDOW_HEIGHT = Game::WINDOW_HEIGHT / 2;
+
+const SDL_Rect RECTANGLE(
+        Game::WINDOW_HEIGHT / TENTH_TILE / 2,
+        Game::WINDOW_HEIGHT - DOUBLE_TILE,
+        HALF_WINDOW_HEIGHT,
+        DOUBLE_TILE - HALF_TILE
+);
+
+const int BORDER_SIZE = (Game::WINDOW_WIDTH / 2 - (DOUBLE_TILE - HALF_TILE)) / (TENTH_TILE * 3) / 5;
+
 void Battle::initMain() {
     GraphicsEngine::getInstance().clear();
 
-    const int double_tile = Map::TILE_SIZE * 2;
-    const int half_tile = Map::TILE_SIZE / 2;
-    const int tenth_tile = Map::TILE_SIZE / 10;
-    const int half_window_height = Game::WINDOW_HEIGHT / 2;
-
-    const SDL_Rect rectangle(
-            Game::WINDOW_HEIGHT / tenth_tile / 2,
-            Game::WINDOW_HEIGHT - double_tile,
-            half_window_height,
-            double_tile - half_tile
-    );
-
     GraphicsEngine::getInstance().addGraphic<TextBox>(
-            rectangle,
-            rectangle.h / (tenth_tile * 3),
-            rectangle.x + tenth_tile,
-            rectangle.y + tenth_tile
+            RECTANGLE,
+            RECTANGLE.h / (TENTH_TILE * 3),
+            RECTANGLE.x + TENTH_TILE,
+            RECTANGLE.y + TENTH_TILE
     );
-    GraphicsEngine::getInstance().getGraphic<TextBox>().push("What will " + Player::getPlayer()[0].getName() + " do?");
+    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            "What will " + Player::getPlayer()[0].getName() + " do?",
+            [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+    );
 
     GraphicsEngine::getInstance().addGraphic<ResourceBar>(
             SDL_Rect(Game::WINDOW_WIDTH - 250, Map::TILE_SIZE * 4, 200, 10),
@@ -38,25 +44,23 @@ void Battle::initMain() {
             100
     );
 
-    const int border_size = (Game::WINDOW_WIDTH / 2 - (double_tile - half_tile)) / (tenth_tile * 3) / 5;
-
     GraphicsEngine::getInstance().addGraphic<Panel>(
             SDL_Rect(
-                    Game::WINDOW_WIDTH - (half_window_height + Game::WINDOW_HEIGHT / 10) - (half_tile),
-                    Game::WINDOW_HEIGHT - double_tile,
-                    half_window_height + Game::WINDOW_HEIGHT / 10,
-                    double_tile - half_tile
+                    Game::WINDOW_WIDTH - (HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10) - HALF_TILE,
+                    Game::WINDOW_HEIGHT - DOUBLE_TILE,
+                    HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10,
+                    DOUBLE_TILE - HALF_TILE
             ),
             Constants::Color::GRAY,
-            rectangle.h / (tenth_tile * 3),
+            RECTANGLE.h / (TENTH_TILE * 3),
             2,
             2,
-            Game::WINDOW_WIDTH / 4 - half_tile,
-            half_tile,
-            border_size
+            Game::WINDOW_WIDTH / 4 - HALF_TILE,
+            HALF_TILE,
+            BORDER_SIZE
     );
 
-    GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 0>(
+    GraphicsEngine::getInstance().getGraphic<Panel>().add(
             Constants::Color::RED,
             "Fight",
             [this] -> void {
@@ -64,165 +68,57 @@ void Battle::initMain() {
                 this->initFight();
             }
     );
-    GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 1>(
+    GraphicsEngine::getInstance().getGraphic<Panel>().add(
             Constants::Color::YELLOW,
             "Bag",
             nullptr
     );
-    GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 0>(
+    GraphicsEngine::getInstance().getGraphic<Panel>().add(
             Constants::Color::GREEN,
             "Pokemon",
             nullptr
     );
-    GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 1>(
+    GraphicsEngine::getInstance().getGraphic<Panel>().add(
             Constants::Color::BLUE,
             "Run",
             [this] -> void {
-                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-                // TODO not is only here for testing purposes
-                if (not this->opponent->isTrainer()) {
-                    GraphicsEngine::getInstance().getGraphic<TextBox>().push("You can't run away from a trainer battle!");
-                }
-                else {
-                    const int opponent_speed = static_cast<int>((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256;
-                    const int odds = static_cast<int>((Player::getPlayer()[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
-
-                    if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
-                        GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
-                        this->states.pop_back();
-                        this->states.push_front(Battle::BattleState::T_OUT);
-                    }
-                    else {
-                        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
-                                "Couldn't get away",
-                                [this] -> void {
-                                    [] -> void {
-                                        SDL_Event event;
-                                        while (true) {
-                                            SDL_WaitEvent(&event);
-                                            if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
-                                                return;
-                                            }
-                                        }
-                                    }();
-                                    this->playerMove = Player::getPlayer()[0].numMoves();
-                                    this->handleTurn();
-                                    this->states.clear();
-                                    this->states.push_front(Battle::BattleState::ENGAGE);
-                                    Battle::initEngage();
-                                    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-                                }
-                        );
-                    }
-                }
+                this->handleRun();
             }
     );
 }
 
 void Battle::initFight() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-    GraphicsEngine::getInstance().getGraphic<TextBox>().push("Select a move");
 
-    GraphicsEngine::getInstance().removeGraphic<Panel>();
-
-    const int double_tile = Map::TILE_SIZE * 2;
-    const int half_tile = Map::TILE_SIZE / 2;
-    const int tenth_tile = Map::TILE_SIZE / 10;
-    const int half_window_height = Game::WINDOW_HEIGHT / 2;
-
-    const SDL_Rect rectangle(
-            Game::WINDOW_HEIGHT / tenth_tile / 2,
-            Game::WINDOW_HEIGHT - double_tile,
-            half_window_height,
-            double_tile - half_tile
+    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            "Select a move",
+            [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
     );
 
-    const int border_size = (Game::WINDOW_WIDTH / 2 - (double_tile - half_tile)) / (tenth_tile * 3) / 5;
-
-    GraphicsEngine::getInstance().addGraphic<Panel>(
-            SDL_Rect(
-                    Game::WINDOW_WIDTH - (half_window_height + Game::WINDOW_HEIGHT / 10) - (half_tile),
-                    Game::WINDOW_HEIGHT - double_tile,
-                    half_window_height + Game::WINDOW_HEIGHT / 10,
-                    double_tile - half_tile
-            ),
-            Constants::Color::GRAY,
-            rectangle.h / (tenth_tile * 3),
-            2,
-            2,
-            Game::WINDOW_WIDTH / 4 - half_tile,
-            half_tile,
-            border_size
-    );
+    GraphicsEngine::getInstance().getGraphic<Panel>().clear();
 
     // default assignment for if the player skips
     this->playerMove = Player::getPlayer()[0].numMoves();
 
-    if (Player::getPlayer()[0].numMoves() > 0) {
-        GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 0>(
+    for (int i = 0; i < Player::getPlayer()[0].numMoves(); ++i) {
+        GraphicsEngine::getInstance().getGraphic<Panel>().add(
                 typeToColor(Player::getPlayer()[0][0].getType()),
                 Player::getPlayer()[0][0].getName(),
-                [this] -> void {
-                    this->playerMove = 0;
+                [this, &i] -> void {
                     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+                    this->playerMove = i;
                     this->handleTurn();
                     this->states.clear();
                     this->states.push_front(Battle::BattleState::ENGAGE);
                     Battle::initEngage();
                 }
         );
-
-        if (Player::getPlayer()[0].numMoves() > 1) {
-            GraphicsEngine::getInstance().getGraphic<Panel>().add<0, 1>(
-                    typeToColor(Player::getPlayer()[0][1].getType()),
-                    Player::getPlayer()[0][1].getName(),
-                    [this] -> void {
-                        this->playerMove = 1;
-                        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-                        this->handleTurn();
-                        this->states.clear();
-                        this->states.push_front(Battle::BattleState::ENGAGE);
-                        Battle::initEngage();
-                    }
-            );
-
-            if (Player::getPlayer()[0].numMoves() > 2) {
-                GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 0>(
-                        typeToColor(Player::getPlayer()[0][2].getType()),
-                        Player::getPlayer()[0][2].getName(),
-                        [this] -> void {
-                            this->playerMove = 2;
-                            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-                            this->handleTurn();
-                            this->states.pop_back();
-                            this->states.pop_back();
-                            this->states.push_front(Battle::BattleState::ENGAGE);
-                            Battle::initEngage();
-                        }
-                );
-
-                if (Player::getPlayer()[0].numMoves() > 3) {
-                    GraphicsEngine::getInstance().getGraphic<Panel>().add<1, 1>(
-                            typeToColor(Player::getPlayer()[0][3].getType()),
-                            Player::getPlayer()[0][3].getName(),
-                            [this] -> void {
-                                this->playerMove = 3;
-                                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-                                this->handleTurn();
-                                this->states.pop_back();
-                                this->states.pop_back();
-                                this->states.push_front(Battle::BattleState::ENGAGE);
-                                Battle::initEngage();
-                            }
-                    );
-                }
-            }
-        }
     }
 }
 
 void Battle::initEngage() {
-    GraphicsEngine::getInstance().removeGraphic<Panel>();
+    GraphicsEngine::getInstance().getGraphic<Panel>().clear();
     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
 }
@@ -254,18 +150,17 @@ std::string statusMessage(const Pokemon &pokemon) {
 }
 
 void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) {
+    void (*openReturn)() = [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); };
+
     (*attacker)[0][move].action((*attacker)[0], (*defender)[0], *skip);
 
-    std::vector<std::string> messages = (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip);
-    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
-            messages,
-            std::vector<std::function<void()>>(messages.size(), [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); })
-    );
+    const std::vector<std::string> messages = (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip);
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(messages,std::vector<std::function<void()>>(messages.size(), openReturn));
 
     if ((*defender)[0].isFainted()) {
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 (*defender)[0].getName() + " fained!",
-                [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+                openReturn
         );
         defender->handleFaint();
 
@@ -276,9 +171,9 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
             GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                     attacker->winMessage(),
                     std::vector<std::function<void()>>({
-                           [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); },
-                           [this] -> void {
-                                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                           openReturn,
+                           [this, &openReturn] -> void {
+                                openReturn();
                                 this->states.clear();
                                 this->states.push_front(Battle::BattleState::T_OUT);
                            }
@@ -296,12 +191,9 @@ void Battle::preStatus(bool isPlayerFaster) {
         return status == StatusCondition::PARALYSIS ? binomial(25.0) : status == StatusCondition::FREEZE or status == StatusCondition::SLEEP;
     };
 
-    Trainer *first = isPlayerFaster ? &Player::getPlayer() : this->opponent;
-    Trainer *second = isPlayerFaster ? this->opponent : &Player::getPlayer();
     bool *toSkip = isPlayerFaster ? &this->skipOpponent : &this->skipPlayer;
 
-    const auto action = [this, &isPlayerFaster, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender) -> void {
-        const int move = isPlayerFaster ? this->playerMove : this->opponentMove;
+    const auto action = [this, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender, int move) -> void {
         if (move < (*attacker)[0].numMoves()) {
             if (not hasStatusCondition((*attacker)[0].getStatus())) {
                 this->engage(attacker, defender, move, toSkip);
@@ -312,13 +204,20 @@ void Battle::preStatus(bool isPlayerFaster) {
         }
     };
 
-    action(first, second);
+    Trainer *first = isPlayerFaster ? &Player::getPlayer() : this->opponent;
+    Trainer *second = isPlayerFaster ? this->opponent : &Player::getPlayer();
+
+    const int first_move = isPlayerFaster ? this->playerMove : this->opponentMove;
+    const int second_move = isPlayerFaster ? this->opponentMove : this->playerMove;
+
+    action(first, second, first_move);
     if (not *toSkip and this->states.front() != Battle::BattleState::T_OUT) {
-        action(second, first);
+        action(second, first, second_move);
     }
 }
 
 void Battle::postStatus(bool isPlayerFaster) {
+    // if one of the trainers here can no longer fight, exit
     if (not Player::getPlayer().canFight() or not this->opponent->canFight()) {
         return;
     }
@@ -436,6 +335,63 @@ void Battle::updateEngage() {
                 KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
             });
             coolDown.detach();
+        }
+    }
+}
+
+void Battle::handleRun() {
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+    // TODO not is only here for testing purposes
+    if (not this->opponent->isTrainer()) {
+        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                "You can't run away from a trainer battle!",
+                [this] -> void {
+                    [] -> void {
+                        SDL_Event event;
+                        while (true) {
+                            SDL_WaitEvent(&event);
+                            if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
+                                return;
+                            }
+                        }
+                    }();
+                    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+                    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                    this->initMain();
+                }
+        );
+    }
+    else {
+        const int opponent_speed = static_cast<int>((*this->opponent)[0].getBaseStat(Pokemon::Stat::SPEED) / 4) % 256;
+        const int odds = static_cast<int>((Player::getPlayer()[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
+
+        if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
+            this->states.pop_back();
+            this->states.push_front(Battle::BattleState::T_OUT);
+        }
+        else {
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                    "Couldn't get away",
+                    [this] -> void {
+                            [] -> void {
+                                SDL_Event event;
+                                while (true) {
+                                    SDL_WaitEvent(&event);
+                                    if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
+                                        return;
+                                    }
+                                }
+                            }();
+                            this->playerMove = Player::getPlayer()[0].numMoves();
+                            this->handleTurn();
+                            this->states.clear();
+                            this->states.push_front(Battle::BattleState::ENGAGE);
+                            Battle::initEngage();
+                            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                    }
+            );
         }
     }
 }

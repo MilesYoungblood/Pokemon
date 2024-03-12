@@ -63,6 +63,8 @@ private:
 
     void updateEngage();
 
+    void handleRun();
+
     void updateTOut();
 
 public:

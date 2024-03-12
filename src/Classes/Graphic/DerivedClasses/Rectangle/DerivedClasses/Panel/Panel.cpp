@@ -35,6 +35,16 @@ Panel::~Panel() {
     }
 }
 
+void Panel::clear() {
+    for (auto &row : this->buttons) {
+        for (auto &button : row) {
+            button.reset(nullptr);
+        }
+    }
+    this->rowCounter = 0;
+    this->colCounter = 0;
+}
+
 void Panel::update() {
     static bool consecutive = false;
 

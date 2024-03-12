@@ -9,8 +9,11 @@
 class Panel : public Rectangle {
 private:
     std::vector<std::vector<std::unique_ptr<Button>>> buttons;
-    int currentCol{ 0 };
     int currentRow{ 0 };
+    int currentCol{ 0 };
+
+    int colCounter{ 0 };
+    int rowCounter{ 0 };
 
     int buttonWeight;
     int buttonHeight;
@@ -35,24 +38,35 @@ public:
 
     ~Panel() override;
 
-    template<std::size_t row, std::size_t col, typename ...Args>
+    template<typename ...Args>
     void add(Args ...args) {
+        if (this->rowCounter == this->buttons.size()) {
+            return;
+        }
         const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
         const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
 
-        this->buttons[row][col] = std::make_unique<Button>(args...);
-        this->buttons[row][col]->setW(this->buttonWeight);
-        this->buttons[row][col]->setH(this->buttonHeight);
+        this->buttons[this->rowCounter][this->colCounter] = std::make_unique<Button>(args...);
+        this->buttons[this->rowCounter][this->colCounter]->setW(this->buttonWeight);
+        this->buttons[this->rowCounter][this->colCounter]->setH(this->buttonHeight);
 
         const int x_pos = this->getX() +
-                          static_cast<int>((col * x_interval) + ((x_interval - this->buttons[row][col]->getW()) / 2.0));
+                          static_cast<int>((this->colCounter * x_interval) + ((x_interval - this->buttons[this->rowCounter][this->colCounter]->getW()) / 2.0));
         const int y_pos = this->getY() +
-                          static_cast<int>((row * y_interval) + ((y_interval - this->buttons[row][col]->getH()) / 2.0));
+                          static_cast<int>((this->rowCounter * y_interval) + ((y_interval - this->buttons[this->rowCounter][this->colCounter]->getH()) / 2.0));
 
-        this->buttons[row][col]->setX(x_pos);
-        this->buttons[row][col]->setY(y_pos);
-        this->buttons[row][col]->setBorderSize(this->buttonBorder);
+        this->buttons[this->rowCounter][this->colCounter]->setX(x_pos);
+        this->buttons[this->rowCounter][this->colCounter]->setY(y_pos);
+        this->buttons[this->rowCounter][this->colCounter]->setBorderSize(this->buttonBorder);
+
+        ++this->colCounter;
+        if (this->colCounter == this->buttons[this->rowCounter].size()) {
+            ++this->rowCounter;
+            this->colCounter = 0;
+        }
     }
+
+    void clear();
 
     void update() override;
 
