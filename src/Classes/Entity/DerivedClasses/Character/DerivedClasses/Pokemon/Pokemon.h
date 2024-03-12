@@ -36,6 +36,10 @@ public:
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
 
+    enum : Uint8 {
+        MAX_NUM_MOVES = 4
+    };
+
     Pokemon(Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
 
     Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
@@ -132,16 +136,12 @@ public:
 
     Move &operator[](int index);
 
-    const Move &operator[](int index) const;
-
     std::vector<std::unique_ptr<Move>>::iterator begin();
 
     std::vector<std::unique_ptr<Move>>::iterator end();
 
 private:
     Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
-
-    static const int MAX_NUM_MOVES{ 4 };
 
     int maxHp;
     int currentHp;

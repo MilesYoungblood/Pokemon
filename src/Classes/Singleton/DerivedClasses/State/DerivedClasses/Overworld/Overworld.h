@@ -12,8 +12,6 @@ private:
     gsl::owner<Map *> currentMap{ nullptr };
     std::string currentMapId;
 
-    int scrollSpeed{ Map::TILE_SIZE / 20 };
-
     friend class State;
 
     Overworld() = default;
@@ -40,8 +38,6 @@ public:
     void changeMap(const std::tuple<int, int, std::string> &data);
 
     [[nodiscard]] gsl::owner<Map *> getCurrentMap() const;
-
-    [[nodiscard]] int getScrollSpeed() const;
 
     static void createTextBox(const std::string &message, const std::function<void()> &function = nullptr);
 

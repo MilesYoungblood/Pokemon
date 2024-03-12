@@ -15,12 +15,12 @@ void Entity::setCoordinates(const int newX, const int newY) {
     this->screenY = this->mapY * Map::TILE_SIZE;
 }
 
-void Entity::translateX(int n) {
-    this->mapX += n;
+void Entity::translateX(bool positive) {
+    positive ? ++this->mapX : --this->mapX;
 }
 
-void Entity::translateY(int n) {
-    this->mapY += n;
+void Entity::translateY(bool positive) {
+    positive ? ++this->mapY : --this->mapY;
 }
 
 int Entity::getMapX() const {

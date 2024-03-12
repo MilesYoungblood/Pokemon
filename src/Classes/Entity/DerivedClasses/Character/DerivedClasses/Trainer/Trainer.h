@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../Pokemon/Pokemon.h"
 #include "../../../Item/DerivedClasses/Items.h"
 
 class Trainer : public Character {
@@ -54,15 +53,19 @@ public:
         try {
             return this->items.at(typeid(I).hash_code()).size();
         }
-        catch (const std::out_of_range &e) {
-            throw std::out_of_range(std::string("Unable to retrieve item count: ") + e.what() + '\n');
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Unable to retrieve item count: ") + e.what() + '\n');
         }
     }
 
     template<typename I>
     I &getItem(const std::string &id) {
-        Item *ptr = this->items.at(typeid(I).hash_code()).at(id).get();
-        return *dynamic_cast<I *>(ptr);
+        try {
+            return *dynamic_cast<I *>(this->items.at(typeid(I).hash_code()).at(id).get());
+        }
+        catch (const std::exception &e) {
+            throw std::runtime_error(std::string("Unable to retrieve item: ") + e.what() + '\n');
+        }
     }
 
     void addItem(const std::string &id, int n);
@@ -89,9 +92,9 @@ public:
 
     void idle() override;
 
-    [[nodiscard]] bool canFight() const override;
-
     [[nodiscard]] virtual std::vector<std::string> winMessage() const;
+
+    [[nodiscard]] bool canFight() const override;
 
     [[nodiscard]] bool isTrainer() const override;
 

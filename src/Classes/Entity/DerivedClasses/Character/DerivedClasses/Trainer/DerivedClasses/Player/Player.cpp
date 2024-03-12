@@ -46,10 +46,9 @@ void Player::handleFaint() {
 }
 
 void Player::walk() {
-    this->incPixelCounter(::State::getInstance<Overworld>().getScrollSpeed());
+    this->incPixelCounter(Character::WALK_SPEED);
     ::State::getInstance<Overworld>().getCurrentMap()->shift(oppositeDirection(this->getDirection()),
-                                                             ::State::getInstance<Overworld>().getScrollSpeed());
-
+                                                             Character::WALK_SPEED);
     if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
     }
@@ -66,6 +65,8 @@ void Player::walk() {
 }
 
 void Player::idle() {
+    static std::unordered_map<Character *, Character::State> characterStates;
+
     if (this->getState() != Character::State::IMMOBILE) {
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
             ::State::getInstance<Overworld>().handleMove(SDL_Scancode::SDL_SCANCODE_W);
@@ -81,10 +82,18 @@ void Player::idle() {
         }
     }
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_ESCAPE) and
-        not GraphicsEngine::getInstance().hasAny<TextBox>()) {
+        ((this->getState() == Character::State::IMMOBILE and GraphicsEngine::getInstance().hasAny<SelectionBox>()) or
+         this->getState() == Character::State::IDLE)) {
         if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
             GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
             this->setState(Character::State::IDLE);
+            for (auto &entity : *::State::getInstance<Overworld>().getCurrentMap()) {
+                auto *character = dynamic_cast<Character *>(entity.get());
+                if (character != nullptr) {
+                    character->setState(characterStates.at(character));
+                    characterStates.erase(character);
+                }
+            }
         }
         else {
             GraphicsEngine::getInstance().addGraphic<SelectionBox>(
@@ -93,6 +102,13 @@ void Player::idle() {
                     std::vector<std::string>({ "Pokemon", "Pokedex", "Bag", "Trainer", "Save", "Options" })
             );
             this->setState(Character::State::IMMOBILE);
+            for (auto &entity : *::State::getInstance<Overworld>().getCurrentMap()) {
+                auto *character = dynamic_cast<Character *>(entity.get());
+                if (character != nullptr) {
+                    characterStates[character] = character->getState();
+                    character->setState(Character::State::IMMOBILE);
+                }
+            }
         }
         // re-lock the Enter key
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
@@ -118,6 +134,10 @@ void Player::idle() {
         this->getState() == Character::State::IMMOBILE) {
         momentum = false;
     }
+}
+
+std::vector<std::string> Player::winMessage() const {
+    return std::vector<std::string>({ "You're opponent has run out of usable Pokemon!", "You won!" });
 }
 
 bool Player::canFight() const {

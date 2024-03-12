@@ -11,6 +11,40 @@ std::string errorMessage(const std::string &filename, const char *name, const ch
     return "Invalid " + std::string(is_tmx ? "TMX" : "TSX") + " file \"" + filename + "\": missing \"" + name + "\" " + type + '\n';
 }
 
+void defaultAction(Character *entity) {
+    switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
+        case 1:
+            entity->face(entity);
+            break;
+
+        case 2:
+            if (entity->isFacing(Direction::UP) or entity->isFacing(Direction::DOWN)) {
+                binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
+            }
+            else {
+                binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
+            }
+            break;
+        case 3:
+            if (entity->canMoveForward(State::getInstance<Overworld>().getCurrentMap())) {
+                entity->moveForward();
+                entity->setState(Character::State::WALKING);
+
+                if (entity->hasVisionOf(&Player::getPlayer()) and
+                    (Player::getPlayer().getState() == Character::State::IDLE)) {
+                    Player::getPlayer().setState(Character::State::IMMOBILE);
+                }
+            }
+            else {
+                entity->setState(Character::State::COLLIDING);
+                entity->updateAnimation();
+            }
+            break;
+        default:
+            break;
+    }
+}
+
 void Map::parseTmx() {
     tinyxml2::XMLDocument tmxFile;
     if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) != tinyxml2::XMLError::XML_SUCCESS) {
@@ -257,40 +291,6 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
     this->loadTrainer2(trainer, visionElement);
 }
 
-void defaultAction(Character *entity) {
-    switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
-        case 1:
-            entity->face(entity);
-            break;
-
-        case 2:
-            if (entity->isFacing(Direction::UP) or entity->isFacing(Direction::DOWN)) {
-                binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
-            }
-            else {
-                binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
-            }
-            break;
-        case 3:
-            if (entity->canMoveForward(State::getInstance<Overworld>().getCurrentMap())) {
-                entity->moveForward();
-                entity->setState(Character::State::WALKING);
-
-                if (entity->hasVisionOf(&Player::getPlayer()) and
-                    (Player::getPlayer().getState() == Character::State::IDLE)) {
-                    Player::getPlayer().setState(Character::State::IMMOBILE);
-                }
-            }
-            else {
-                entity->setState(Character::State::COLLIDING);
-                entity->updateAnimation();
-            }
-            break;
-        default:
-            break;
-    }
-}
-
 void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *visionElement) {
     tinyxml2::XMLElement *dialogueListElement = visionElement->NextSiblingElement("dialogue");
     if (dialogueListElement == nullptr) {
@@ -416,7 +416,7 @@ Map::~Map() {
 
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        // No idea why, but the layout MUST be y-position first and x-second
+        // No idea why, but the layout MUST be y-position first and x-position second
         return this->collision.at(this->layout[1][y][x].id) or (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
             return entity->getMapX() == x and entity->getMapY() == y;
         });
@@ -436,7 +436,7 @@ std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int
 }
 
 void Map::removeEntity(Entity *entity) {
-    for (int i = 0; i < this->entities.size(); ++i) {
+    for (long long int i = 0; i < this->entities.size(); ++i) {
         if (this->entities.at(i).get() == entity) {
             this->entities.erase(this->entities.begin() + i);
             return;

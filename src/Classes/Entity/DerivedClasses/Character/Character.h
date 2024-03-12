@@ -4,9 +4,8 @@
 
 #pragma once
 
+#include "../../../Map/Map.h"
 #include "../../../Entity/Entity.h"
-
-class Map;
 
 class Character : public Entity {
 public:
@@ -15,6 +14,11 @@ public:
         WALKING,
         COLLIDING,
         IMMOBILE
+    };
+
+    enum : Uint8 {
+        WALK_SPEED = Map::TILE_SIZE / 20,
+        RUN_SPEED = Map::TILE_SIZE / 10
     };
 
     Character(const char *id, int x, int y, Direction direction);

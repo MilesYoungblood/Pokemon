@@ -96,16 +96,16 @@ std::vector<std::string> Character::getDialogue() const {
 void Character::moveForward() {
     switch (this->currentDirection) {
         case Direction::UP:
-            this->translateY(-1);
+            this->translateY(false);
             break;
         case Direction::RIGHT:
-            this->translateX(1);
+            this->translateX(true);
             break;
         case Direction::DOWN:
-            this->translateY(1);
+            this->translateY(true);
             break;
         case Direction::LEFT:
-            this->translateX(-1);
+            this->translateX(false);
             break;
     }
 }
@@ -186,7 +186,7 @@ void Character::interact() {
         // the program will loop back to the trainer's update() in the next cycle
         // and create it there if the trainer can fight
         if (not this->canFight()) {
-            this->setState(Character::State::IMMOBILE);
+            this->currentState = Character::State::IMMOBILE;
             Overworld::createTextBox(this->getDialogue());
         }
     }
@@ -270,8 +270,8 @@ bool Character::isTrainer() const {
 }
 
 void Character::walk() {
-    this->pixelCounter += ::State::getInstance<Overworld>().getScrollSpeed();
-    this->shift(this->currentDirection, ::State::getInstance<Overworld>().getScrollSpeed());
+    this->pixelCounter += Character::WALK_SPEED;
+    this->shift(this->currentDirection, Character::WALK_SPEED);
 
     if (this->pixelCounter % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();

@@ -4,7 +4,11 @@
 
 #pragma once
 
-#include "../Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h"
+#include "../../Enums/Direction/Direction.h"
+
+class Entity;
+
+class Trainer;
 
 class Map {
 public:

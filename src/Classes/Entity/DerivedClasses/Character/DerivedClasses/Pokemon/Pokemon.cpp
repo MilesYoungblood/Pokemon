@@ -260,15 +260,6 @@ Move &Pokemon::operator[](const int index) {
     }
 }
 
-const Move &Pokemon::operator[](const int index) const {
-    try {
-        return *this->moveSet.at(index);
-    }
-    catch (const std::out_of_range &e) {
-        throw std::out_of_range(std::string("Error accessing move-set: ") + e.what() + '\n');
-    }
-}
-
 std::vector<std::unique_ptr<Move>>::iterator Pokemon::begin() {
     return this->moveSet.begin();
 }

@@ -126,7 +126,7 @@ void Trainer::idle() {
         return entity->getState() == Character::State::IDLE or entity->getState() == Character::State::IMMOBILE;
     };
 
-    // checks if the player is in LoS for any this
+    // checks if the player is in LoS for this
     if (not_moving(&Player::getPlayer()) and this->canFight() and not_moving(this) and this->keepLooping and
         this->hasVisionOf(&Player::getPlayer())) {
         if (haltMusic) {
@@ -161,8 +161,8 @@ void Trainer::idle() {
         }
 
         if (not this->isNextTo(&Player::getPlayer())) {
-            this->shift(this->getDirection(), ::State::getInstance<Overworld>().getScrollSpeed());
-            this->incPixelCounter(::State::getInstance<Overworld>().getScrollSpeed());
+            this->shift(this->getDirection(), Character::WALK_SPEED);
+            this->incPixelCounter(Character::WALK_SPEED);
 
             if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
                 this->updateAnimation();
@@ -187,12 +187,12 @@ void Trainer::idle() {
     }
 }
 
-bool Trainer::canFight() const {
-    return not this->party.empty();
-}
-
 std::vector<std::string> Trainer::winMessage() const {
     return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
+}
+
+bool Trainer::canFight() const {
+    return not this->party.empty();
 }
 
 bool Trainer::isTrainer() const {

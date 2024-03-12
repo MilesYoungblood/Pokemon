@@ -34,13 +34,13 @@ public:
     /// \param y new y-coordinate on the map
     void setCoordinates(int x, int y);
 
-    /// \brief Translates the entity's x-coordinate
-    /// \param n distance
-    void translateX(int n);
+    /// \brief Translates the entity's x-coordinate by 1
+    /// \param positive translate positively or negatively on plane
+    void translateX(bool positive);
 
-    /// \brief Translates the entity's y-coordinate
-    /// \param n distance
-    void translateY(int n);
+    /// \brief Translates the entity's y-coordinate by 1
+    /// \param positive translate positively or negatively on plane
+    void translateY(bool positive);
 
     /// \brief Getter for map x-coordinate
     /// \return x-coordinate on map

@@ -28,5 +28,7 @@ public:
 
     void idle() override;
 
+    [[nodiscard]] std::vector<std::string> winMessage() const override;
+
     [[nodiscard]] bool canFight() const override;
 };

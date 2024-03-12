@@ -33,11 +33,10 @@ void Overworld::init() {
 }
 
 void Overworld::update() {
-    Player::getPlayer().update();
-
     for (auto &entity : *this->currentMap) {
         entity->update();
     }
+    Player::getPlayer().update();
 
     GraphicsEngine::getInstance().update();
 }
@@ -77,10 +76,6 @@ void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
 
 gsl::owner<Map *> Overworld::getCurrentMap() const {
     return this->currentMap;
-}
-
-int Overworld::getScrollSpeed() const {
-    return this->scrollSpeed;
 }
 
 void Overworld::createTextBox(const std::string &message, const std::function<void()> &function) {

@@ -12,20 +12,23 @@ class Battle : public State {
 private:
     enum class BattleState : Uint8 {
         MAIN,
-        FIGHT,
+        SELECT_MOVE,
+        ENGAGE,
         T_OUT
     };
-    std::stack<Battle::BattleState> states{{ Battle::BattleState::MAIN }};
+    std::deque<Battle::BattleState> states{ Battle::BattleState::MAIN };
 
     const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
             [this] -> void { this->initMain(); },
             [this] -> void { this->initFight(); },
+            Battle::initEngage,
             nullptr
     };
 
     const std::array<std::function<void()>, 4> UPDATE_FUNCTIONS{
             nullptr,
             nullptr,
+            [this] -> void { this->updateEngage(); },
             [this] -> void { this->updateTOut(); }
     };
 
@@ -48,6 +51,8 @@ private:
 
     void initFight();
 
+    static void initEngage();
+
     void engage(Trainer *attacker, Trainer *defender, int move, bool *skip);
 
     void preStatus(bool isPlayerFaster);
@@ -55,6 +60,8 @@ private:
     void postStatus(bool isPlayerFaster);
 
     void handleTurn();
+
+    void updateEngage();
 
     void updateTOut();
 

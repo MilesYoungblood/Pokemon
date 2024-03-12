@@ -61,7 +61,7 @@ void Battle::initMain() {
             Constants::Color::RED,
             "Fight",
             [this] -> void {
-                this->states.push(Battle::BattleState::FIGHT);
+                this->states.push_front(Battle::BattleState::SELECT_MOVE);
                 this->initFight();
             }
     );
@@ -90,10 +90,30 @@ void Battle::initMain() {
 
                     if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
-                        this->states.push(Battle::BattleState::T_OUT);
+                        this->states.pop_back();
+                        this->states.push_front(Battle::BattleState::T_OUT);
                     }
                     else {
-                        GraphicsEngine::getInstance().getGraphic<TextBox>().push("Couldn't get away");
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                                "Couldn't get away",
+                                [this] -> void {
+                                    [] -> void {
+                                        SDL_Event event;
+                                        while (true) {
+                                            SDL_WaitEvent(&event);
+                                            if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
+                                                return;
+                                            }
+                                        }
+                                    }();
+                                    this->playerMove = Player::getPlayer()[0].numMoves();
+                                    this->handleTurn();
+                                    this->states.clear();
+                                    this->states.push_front(Battle::BattleState::ENGAGE);
+                                    Battle::initEngage();
+                                    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                                }
+                        );
                     }
                 }
             }
@@ -145,7 +165,11 @@ void Battle::initFight() {
                 Player::getPlayer()[0][0].getName(),
                 [this] -> void {
                     this->playerMove = 0;
+                    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                     this->handleTurn();
+                    this->states.clear();
+                    this->states.push_front(Battle::BattleState::ENGAGE);
+                    Battle::initEngage();
                 }
         );
 
@@ -155,7 +179,11 @@ void Battle::initFight() {
                     Player::getPlayer()[0][1].getName(),
                     [this] -> void {
                         this->playerMove = 1;
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                         this->handleTurn();
+                        this->states.clear();
+                        this->states.push_front(Battle::BattleState::ENGAGE);
+                        Battle::initEngage();
                     }
             );
 
@@ -165,7 +193,12 @@ void Battle::initFight() {
                         Player::getPlayer()[0][2].getName(),
                         [this] -> void {
                             this->playerMove = 2;
+                            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                             this->handleTurn();
+                            this->states.pop_back();
+                            this->states.pop_back();
+                            this->states.push_front(Battle::BattleState::ENGAGE);
+                            Battle::initEngage();
                         }
                 );
 
@@ -175,13 +208,24 @@ void Battle::initFight() {
                             Player::getPlayer()[0][3].getName(),
                             [this] -> void {
                                 this->playerMove = 3;
+                                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                                 this->handleTurn();
+                                this->states.pop_back();
+                                this->states.pop_back();
+                                this->states.push_front(Battle::BattleState::ENGAGE);
+                                Battle::initEngage();
                             }
                     );
                 }
             }
         }
     }
+}
+
+void Battle::initEngage() {
+    GraphicsEngine::getInstance().removeGraphic<Panel>();
+    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
 }
 
 std::string statusMessage(const Pokemon &pokemon) {
@@ -213,20 +257,34 @@ std::string statusMessage(const Pokemon &pokemon) {
 void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) {
     (*attacker)[0][move].action((*attacker)[0], (*defender)[0], *skip);
 
+    std::vector<std::string> messages = (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip);
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
-            (*attacker)[0][move].actionMessage((*attacker)[0], (*defender)[0], *skip)
+            messages,
+            std::vector<std::function<void()>>(messages.size(), [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); })
     );
 
     if ((*defender)[0].isFainted()) {
-        GraphicsEngine::getInstance().getGraphic<TextBox>().push((*defender)[0].getName() + " fained!");
+        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                (*defender)[0].getName() + " fained!",
+                [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+        );
         defender->handleFaint();
 
         if (not defender->canFight()) {
             for (auto &pokemon : Player::getPlayer()) {
                 pokemon->initStatMods();
             }
-            GraphicsEngine::getInstance().getGraphic<TextBox>().push(attacker->winMessage());
-            this->states.push(Battle::BattleState::T_OUT);
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                    attacker->winMessage(),
+                    std::vector<std::function<void()>>({
+                           [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); },
+                           [this] -> void {
+                                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                                this->states.clear();
+                                this->states.push_front(Battle::BattleState::T_OUT);
+                           }
+                    })
+            );
         }
         else {
             // TODO implement switchOut for trainer and player inside the classes
@@ -256,14 +314,13 @@ void Battle::preStatus(bool isPlayerFaster) {
     };
 
     action(first, second);
-    if (not *toSkip and this->states.top() != Battle::BattleState::T_OUT) {
+    if (not *toSkip and this->states.front() != Battle::BattleState::T_OUT) {
         action(second, first);
     }
-    *toSkip = false;
 }
 
 void Battle::postStatus(bool isPlayerFaster) {
-    if (this->states.top() == Battle::BattleState::T_OUT) {
+    if (not Player::getPlayer().canFight() or not this->opponent->canFight()) {
         return;
     }
 
@@ -284,7 +341,8 @@ void Battle::postStatus(bool isPlayerFaster) {
                     pokemon->initStatMods();
                 }
                 GraphicsEngine::getInstance().getGraphic<TextBox>().push(trainer->winMessage());
-                this->states.push(Battle::BattleState::T_OUT);
+                this->states.pop_back();
+                this->states.push_front(Battle::BattleState::T_OUT);
             }
             else {
                 // TODO implement switchOut for trainer and player inside the classes
@@ -313,14 +371,14 @@ void Battle::handleTurn() {
     // if the player is faster than the opponent or,
     // assuming the opponent isn't using a priority move,
     // the player is using a priority move...
-    if (Player::getPlayer()[0].isFasterThan((*this->opponent)[0]) or Player::getPlayer()[0][this->playerMove].isPriority() and not (*this->opponent)[0][this->opponentMove].isPriority()) {
+    if (this->opponentMove == (*this->opponent)[0].numMoves() or (Player::getPlayer()[0].isFasterThan((*this->opponent)[0]) or Player::getPlayer()[0][this->playerMove].isPriority() and not (*this->opponent)[0][this->opponentMove].isPriority())) {
         this->preStatus(true);
         this->postStatus(true);
     }
         // if the opponent is faster than the player or,
         // assuming the player isn't using a priority move,
         // the opponent is using a priority move...
-    else if ((*this->opponent)[0].isFasterThan(Player::getPlayer()[0]) or (*this->opponent)[0][this->opponentMove].isPriority() and not Player::getPlayer()[0][this->playerMove].isPriority()) {
+    else if (this->playerMove == Player::getPlayer()[0].numMoves() or ((*this->opponent)[0].isFasterThan(Player::getPlayer()[0]) or (*this->opponent)[0][this->opponentMove].isPriority() and not Player::getPlayer()[0][this->playerMove].isPriority())) {
         this->preStatus(false);
         this->postStatus(false);
     }
@@ -337,9 +395,31 @@ void Battle::handleTurn() {
     // TODO account for self skipping moves such as Solar Beam
     this->skipPlayer = false;
     this->skipOpponent = false;
+}
 
-    // FIXME this is assuming that there are only 2 states pushed at this point; this could break
-    this->states.pop();
+void Battle::updateEngage() {
+    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+        if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
+            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        }
+        if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
+            this->states.clear();
+            this->states.push_front(Battle::BattleState::MAIN);
+            this->initMain();
+
+            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
+
+            // sets a cool-down period before the Enter key can be registered again;
+            // this is needed because the program will register a button as
+            // being pressed faster than the user can lift their finger
+            std::thread coolDown([] -> void {
+                std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+            });
+            coolDown.detach();
+        }
+    }
 }
 
 void Battle::updateTOut() {
@@ -385,23 +465,21 @@ void Battle::update() {
         this->skipOpponent = false;
 
         Game::getInstance().setState(State::Id::OVERWORLD);
-        while (not this->states.empty()) {
-            this->states.pop();
-        }
+        this->states.clear();
         return;
     }
 
     GraphicsEngine::getInstance().update();
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE) and this->states.size() != 1) {
-        this->states.pop();
-        if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
-            this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+        this->states.pop_front();
+        if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
+            this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
         }
     }
 
-    if (this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
-        this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
+    if (this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
+        this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
     }
 }
 
