@@ -6,7 +6,6 @@
 #include "../../../GraphicsEngine/GraphicsEngine.h"
 #include "../../../Mixer/Mixer.h"
 #include "../../../KeyManager/KeyManager.h"
-#include "../../../../../Map/Map.h"
 #include "Battle.h"
 
 void Battle::initMain() {
@@ -368,25 +367,44 @@ void Battle::handleTurn() {
         opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
     }
 
-    // if the player is faster than the opponent or,
-    // assuming the opponent isn't using a priority move,
-    // the player is using a priority move...
-    if (this->opponentMove == (*this->opponent)[0].numMoves() or (Player::getPlayer()[0].isFasterThan((*this->opponent)[0]) or Player::getPlayer()[0][this->playerMove].isPriority() and not (*this->opponent)[0][this->opponentMove].isPriority())) {
-        this->preStatus(true);
-        this->postStatus(true);
+    // if neither the player nor the opponent is attempting to attack
+    if (this->playerMove == Player::getPlayer()[0].numMoves() and this->opponentMove == (*this->opponent)[0].numMoves()) {
+        std::clog << "Not yet implemented where neither choose to attack\n";
+        Game::getInstance().terminate();
     }
-        // if the opponent is faster than the player or,
-        // assuming the player isn't using a priority move,
-        // the opponent is using a priority move...
-    else if (this->playerMove == Player::getPlayer()[0].numMoves() or ((*this->opponent)[0].isFasterThan(Player::getPlayer()[0]) or (*this->opponent)[0][this->opponentMove].isPriority() and not Player::getPlayer()[0][this->playerMove].isPriority())) {
-        this->preStatus(false);
-        this->postStatus(false);
-    }
-        // if trainer and opponent rival in speed or both or neither are using a priority move, choose randomly
     else {
-        const bool player_first = binomial();
-        this->preStatus(player_first);
-        this->postStatus(player_first);
+        bool playerFirst = [this] -> bool {
+            // if the opponent is not intending to attack, the player will attack first
+            if (this->opponentMove == (*this->opponent)[0].numMoves()) {
+                return true;
+            }
+            // if the player is not intending to attack, the opponent will attack first
+            if (this->playerMove == Player::getPlayer()[0].numMoves()) {
+                return false;
+            }
+
+            const bool same_prio = Player::getPlayer()[0][this->playerMove].isPriority() == (*this->opponent)[0][this->opponentMove].isPriority();
+            const bool same_speed = Player::getPlayer()[0].rivalsInSpeed((*this->opponent)[0]);
+
+            // if the player and the opponent's moves have matching priority,
+            if (same_prio) {
+                // if the player and the opponent have matching speeds, decide randomly
+                if (same_speed) {
+                    return binomial();
+                }
+                // otherwise, the faster entity goes first
+                return Player::getPlayer()[0].isFasterThan((*this->opponent)[0]);
+            }
+            // if the player and the opponent have matching speeds, decide randomly
+            if (same_speed) {
+                return binomial();
+            }
+            // otherwise, if the player either is using a priority move or is faster, then it goes first;
+            // and vice versa
+            return Player::getPlayer()[0][this->playerMove].isPriority() or Player::getPlayer()[0].isFasterThan((*this->opponent)[0]);
+        }();
+        this->preStatus(playerFirst);
+        this->postStatus(playerFirst);
     }
 
     ++this->turn;
