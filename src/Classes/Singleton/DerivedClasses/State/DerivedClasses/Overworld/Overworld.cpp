@@ -14,22 +14,13 @@ Overworld::~Overworld() {
 }
 
 void Overworld::init() {
-    // only allow loading once
-    static bool loaded = false;
-    if (loaded) {
-        return;
-    }
-
     this->currentMap = new Map("Nuvema Town");
 
     Player::getPlayer().setName("Hilbert");
 
     Player::getPlayer().addPokemon("Emboar");
     Player::getPlayer()[0].addMove("Heat Crash");
-
-    Character::init();
-
-    loaded = true;
+    Player::getPlayer()[0].addMove("Head Smash");
 }
 
 void Overworld::update() {
@@ -62,12 +53,9 @@ void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
         Mixer::getInstance().playMusic(State::getInstance<Overworld>().currentMap->getMusic());
     });
 
-    this->currentMap->reset();
-
     // move the new map into the current map variable
-    this->currentMapId = std::get<2>(data);
     delete this->currentMap;
-    this->currentMap = new Map(this->currentMapId.c_str());
+    this->currentMap = new Map(std::get<2>(data).c_str());
 
     Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
 

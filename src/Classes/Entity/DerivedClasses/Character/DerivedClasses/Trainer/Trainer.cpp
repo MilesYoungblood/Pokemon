@@ -107,8 +107,16 @@ std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::begin() {
     return this->party.begin();
 }
 
+std::vector<std::unique_ptr<Pokemon>>::const_iterator Trainer::begin() const {
+    return this->party.cbegin();
+}
+
 std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
     return this->party.end();
+}
+
+std::vector<std::unique_ptr<Pokemon>>::const_iterator Trainer::end() const {
+    return this->party.cend();
 }
 
 void Trainer::handleFaint() {

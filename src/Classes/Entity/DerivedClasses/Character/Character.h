@@ -35,10 +35,6 @@ public:
 
     ~Character() override = default;
 
-    static void init();
-
-    static void clean();
-
     void setName(const char *newName);
 
     [[nodiscard]] virtual std::string getName() const;
@@ -110,19 +106,6 @@ private:
     Character::State currentState{ Character::State::IDLE };                // dictates what the entity is doing
 
     int pixelCounter{ 0 };
-
-    struct Sprite {
-        struct Sheet {
-            SDL_Texture *sprite{ nullptr };
-            Uint32 numRows{ 0 };
-            Uint32 numCols{ 0 };
-        };
-        int currentCol{ 0 };
-        int currentRow{ 0 };
-    };
-
-    using spriteSet = std::array<Sprite::Sheet, 4>;
-    inline static std::unordered_map<std::string, spriteSet> sprites;     // set of overworld sprites
 
     Sprite sprite;
 

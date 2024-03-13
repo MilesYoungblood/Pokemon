@@ -86,7 +86,11 @@ public:
 
     std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 
+    std::vector<std::unique_ptr<Pokemon>>::const_iterator begin() const;
+
     std::vector<std::unique_ptr<Pokemon>>::iterator end();
+
+    std::vector<std::unique_ptr<Pokemon>>::const_iterator end() const;
 
     virtual void handleFaint();
 

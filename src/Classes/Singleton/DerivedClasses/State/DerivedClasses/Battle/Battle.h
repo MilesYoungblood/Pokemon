@@ -32,6 +32,9 @@ private:
             [this] -> void { this->updateTOut(); }
     };
 
+    std::unordered_map<std::string, SDL_Texture *> playerSprites;
+    std::unordered_map<std::string, SDL_Texture *> opponentSprites;
+
     Trainer *opponent{ nullptr };
     std::size_t turn{ 0 };
 
@@ -59,13 +62,15 @@ private:
 
     void postStatus(bool isPlayerFaster);
 
-    void handleTurn();
+    void handleTurn(int move);
 
     void updateEngage();
 
     void handleRun();
 
     void updateTOut();
+
+    void changeState(Battle::BattleState state, bool clear);
 
 public:
     void init(Trainer *trainer);

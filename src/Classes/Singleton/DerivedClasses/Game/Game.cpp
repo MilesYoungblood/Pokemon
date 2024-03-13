@@ -83,8 +83,6 @@ Game::Game() {
 }
 
 Game::~Game() {
-    Character::clean();
-
     Mix_HaltMusic();
     Mix_HookMusicFinished(nullptr);
     Mix_CloseAudio();
@@ -94,15 +92,19 @@ Game::~Game() {
 
     IMG_Quit();
 
-    SDL_DestroyRenderer(this->renderer);
-    if (strlen(SDL_GetError()) > 0) {
-        std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
-        SDL_ClearError();
+    if (this->renderer != nullptr) {
+        SDL_DestroyRenderer(this->renderer);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
     }
-    SDL_DestroyWindow(this->window);
-    if (strlen(SDL_GetError()) > 0) {
-        std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
-        SDL_ClearError();
+    if (this->window != nullptr) {
+        SDL_DestroyWindow(this->window);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
     }
     SDL_Quit();
 }

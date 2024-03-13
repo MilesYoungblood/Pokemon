@@ -68,8 +68,3 @@ int Entity::getScreenX() const {
 int Entity::getScreenY() const {
     return this->screenY;
 }
-
-void Entity::resetPos() {
-    this->screenX = this->mapX * Map::TILE_SIZE;
-    this->screenY = this->mapY * Map::TILE_SIZE;
-}

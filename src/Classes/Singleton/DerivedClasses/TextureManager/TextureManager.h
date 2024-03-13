@@ -11,8 +11,6 @@ class TextureManager : public Singleton<TextureManager> {
 private:
     SDL_Renderer *textureRenderer{ nullptr };
 
-    std::unordered_map<std::string, SDL_Texture *> textures;
-
     TTF_Font *font{ nullptr };
 
     bool isInitialized{ false };

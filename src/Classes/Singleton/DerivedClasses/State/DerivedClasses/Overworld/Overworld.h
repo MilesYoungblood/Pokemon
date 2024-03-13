@@ -10,7 +10,6 @@
 class Overworld : public State {
 private:
     gsl::owner<Map *> currentMap{ nullptr };
-    std::string currentMapId;
 
     friend class State;
 

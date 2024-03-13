@@ -10,6 +10,16 @@ class Entity;
 
 class Trainer;
 
+struct Sprite {
+    struct Sheet {
+        SDL_Texture *sprite{ nullptr };
+        Uint32 numRows{ 0 };
+        Uint32 numCols{ 0 };
+    };
+    int currentCol{ 0 };
+    int currentRow{ 0 };
+};
+
 class Map {
 public:
     enum : Uint8 {
@@ -62,12 +72,25 @@ public:
     std::vector<std::unique_ptr<Entity>>::iterator begin();
 
     /// \brief Allows for for-each loop functionality
+    /// \return a const iterator to the start of the entity vector
+    std::vector<std::unique_ptr<Entity>>::const_iterator begin() const;
+
+    /// \brief Allows for for-each loop functionality
     /// \return an iterator to the end of the entity vector
     std::vector<std::unique_ptr<Entity>>::iterator end();
+
+    /// \brief Allows for for-each loop functionality
+    /// \return a const iterator to the end of the entity vector
+    std::vector<std::unique_ptr<Entity>>::const_iterator end() const;
 
     /// \brief Getter for music
     /// \return the music title
     [[nodiscard]] std::string getMusic() const;
+
+    /// \brief Getter for an entity's sprite-sheet
+    /// \param id id of the entity
+    /// \return the sprite sheet of the respective entity
+    [[nodiscard]] Sprite::Sheet getSpriteSheet(const std::string &id, Direction direction) const;
 
     /// \brief Shifts all tiles and entities a certain direction and distance
     /// \param direction direction to shift
@@ -84,9 +107,6 @@ public:
 
     /// \brief Renders all tiles and entities that are visible on the screen
     void render() const;
-
-    /// \brief Resets the positions of all tiles and entities
-    void reset();
 
 private:
     std::string name;
@@ -106,6 +126,9 @@ private:
     std::vector<SDL_Texture *> textures{ nullptr };     // texture for each tile id
 
     std::vector<std::unique_ptr<Entity>> entities;      // the set of entities in this map
+
+    using spriteSet = std::array<Sprite::Sheet, 4>;
+    std::unordered_map<std::string, spriteSet> entitySprites;
 
     std::vector<Map::ExitPoint> exitPoints;             // coordinates where the player can leave this map to enter another
 

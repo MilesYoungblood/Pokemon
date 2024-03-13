@@ -108,8 +108,8 @@ void Panel::render() const {
                     const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
                     const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
 
-                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentCol][this->currentRow]->getW()) / 2.0)) - this->buttonHeight;
-                    const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentCol][this->currentRow]->getH()) / 2.0));
+                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentRow][this->currentCol]->getW()) / 2.0)) - this->buttonHeight;
+                    const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentRow][this->currentCol]->getH()) / 2.0));
 
                     TextureManager::getInstance().draw(
                             this->arrow,

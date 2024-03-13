@@ -1,6 +1,7 @@
 <xml version="1.0" encoding="UTF-8">
     <entities>
-        <entity class="Trainer" id="Youngster">
+        <!-- remember to change id to not be "Player" -->
+        <entity class="Trainer" id="Player">
             <name>Cheren</name>
             <position x="12" y="7"/>
             <direction>1</direction>
@@ -18,7 +19,8 @@
                 </pokemon>
             </party>
         </entity>
-        <entity class="Trainer" id="Youngster">
+        <!-- remember to change id to not be "Player" -->
+        <entity class="Trainer" id="Player">
             <name>Bianca</name>
             <position x="18" y="16"/>
             <direction>1</direction>
@@ -35,7 +37,7 @@
                 </pokemon>
             </party>
         </entity>
-        <entity class="Item" subclass="Poke Ball" id="Poke Ball">
+        <entity class="Item" id="Poke Ball">
             <quantity>5</quantity>
             <position x="7" y="18"/>
         </entity>

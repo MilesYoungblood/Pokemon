@@ -6,9 +6,10 @@
 #include "../Singleton/DerivedClasses/Camera/Camera.h"
 #include "Map.h"
 
-std::string errorMessage(const std::string &filename, const char *name, const char *type) {
-    const bool is_tmx = filename.substr(filename.size() - 5) == ".tmx";
-    return "Invalid " + std::string(is_tmx ? "TMX" : "TSX") + " file \"" + filename + "\": missing \"" + name + "\" " + type + '\n';
+void handleError(const std::string &filename, const char *name, const char *type) {
+    return;
+    std::cout << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << type << '\n';
+    Game::getInstance().terminate();
 }
 
 void defaultAction(Character *entity) {
@@ -54,28 +55,33 @@ void Map::parseTmx() {
 
     const tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
     if (mapElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".tmx", "map", "element"));
+        handleError(this->music + ".tmx", "map", "element");
+        return;
     }
 
     const int width = mapElement->IntAttribute("width");
     if (width == 0) {
-        throw std::runtime_error(errorMessage(this->music + ".tmx", "width", "attribute"));
+        handleError(this->music + ".tmx", "width", "attribute");
+        return;
     }
     const int height = mapElement->IntAttribute("height");
     if (height == 0) {
-        throw std::runtime_error(errorMessage(this->music + ".tmx", "height", "attribute"));
+        handleError(this->music + ".tmx", "height", "attribute");
+        return;
     }
 
     const tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
     if (tilesetElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".tmx", "tileset", "element"));
+        handleError(this->music + ".tmx", "tileset", "element");
+        return;
     }
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     while (tilesetElement != nullptr) {
         const std::string source_attribute(tilesetElement->Attribute("source"));
         if (source_attribute.empty()) {
-            throw std::runtime_error(errorMessage(this->music + ".tmx", "source", "attribute"));
+            handleError(this->music + ".tmx", "source", "attribute");
+            return;
         }
 
         this->parseTsx(source_attribute);
@@ -95,12 +101,14 @@ void Map::parseTsx(const std::string &sourceAttribute) {
 
     tinyxml2::XMLElement *tsElement = tsxFile.FirstChildElement("tileset");
     if (tsElement == nullptr) {
-        throw std::runtime_error(errorMessage(sourceAttribute, "tileset", "element"));
+        handleError(sourceAttribute, "tileset", "element");
+        return;
     }
 
     const int tile_count = tsElement->IntAttribute("tilecount", -1);
     if (tile_count == -1) {
-        throw std::runtime_error(errorMessage(sourceAttribute, "tilecount", "attribute"));
+        handleError(sourceAttribute, "tilecount", "attribute");
+        return;
     }
 
     this->collision.reserve(tile_count);
@@ -108,39 +116,46 @@ void Map::parseTsx(const std::string &sourceAttribute) {
 
     tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
     if (gridElement == nullptr) {
-        throw std::runtime_error(errorMessage(sourceAttribute, "grid", "element"));
+        handleError(sourceAttribute, "grid", "element");
+        return;
     }
 
     for (tinyxml2::XMLElement *tileElement = gridElement->NextSiblingElement("tile");
          tileElement != nullptr; tileElement = tileElement->NextSiblingElement("tile")) {
         const int id = tileElement->IntAttribute("id", -1);
         if (id == -1) {
-            throw std::runtime_error(errorMessage(sourceAttribute, "id", "attribute"));
+            handleError(sourceAttribute, "id", "attribute");
+            return;
         }
 
         tinyxml2::XMLElement *propertyListElement = tileElement->FirstChildElement("properties");
         if (propertyListElement == nullptr) {
-            throw std::runtime_error(errorMessage(sourceAttribute, "properties", "element"));
+            handleError(sourceAttribute, "properties", "element");
+            return;
         }
 
         tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
         if (propertyElement == nullptr) {
-            throw std::runtime_error(errorMessage(sourceAttribute, "property", "element"));
+            handleError(sourceAttribute, "property", "element");
+            return;
         }
 
         this->collision.push_back(propertyElement->BoolAttribute("value"));
 
         tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
         if (imageElement == nullptr) {
-            throw std::runtime_error(errorMessage(sourceAttribute, "image", "element"));
+            handleError(sourceAttribute, "image", "element");
+            return;
         }
 
         std::string copy(imageElement->Attribute("source"));
         if (copy.empty()) {
-            throw std::runtime_error(errorMessage(sourceAttribute, "source", "attribute"));
+            handleError(sourceAttribute, "source", "attribute");
+            return;
         }
 
-        // strip off unnecessary characters
+        // strip off
+        // unnecessary characters
         copy.erase(0, 21);
         copy.erase(copy.size() - 4);
 
@@ -154,23 +169,26 @@ void Map::parseTsx(const std::string &sourceAttribute) {
 void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height) {
     const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
     if (layerElement == nullptr) {
-        throw std::runtime_error(errorMessage(music + ".tmx", "layer", "element"));
+        handleError(music + ".tmx", "layer", "element");
+        return;
     }
 
     while (layerElement != nullptr) {
         const int id_attribute = layerElement->IntAttribute("id");
         if (id_attribute == 0) {
-            throw std::runtime_error(errorMessage(music + ".tmx", "id", "attribute"));
+            handleError(music + ".tmx", "id", "attribute");
+            return;
         }
-
         const tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
-            throw std::runtime_error(errorMessage(music + ".tmx", "data", "element"));
+            handleError(music + ".tmx", "data", "element");
+            return;
         }
 
         const char *csvData = dataElement->GetText();
         if (csvData == nullptr) {
-            throw std::runtime_error(errorMessage(music + ".tmx", "data", "text"));
+            handleError(music + ".tmx", "data", "text");
+            return;
         }
 
         std::istringstream ss(csvData);
@@ -212,19 +230,22 @@ void Map::loadEntities() {
 
     tinyxml2::XMLElement *xmlElement = xmlFile.FirstChildElement("xml");
     if (xmlElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "xml", "element"));
+        handleError(this->music + ".xml", "xml", "element");
+        return;
     }
 
     tinyxml2::XMLElement *entityListElement = xmlElement->FirstChildElement("entities");
     if (entityListElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "entities", "element"));
+        handleError(this->music + ".xml", "entities", "element");
+        return;
     }
 
     for (tinyxml2::XMLElement *entityElement = entityListElement->FirstChildElement("entity"); entityElement != nullptr;
          entityElement = entityElement->NextSiblingElement("entity")) {
         const char *classAttribute = entityElement->Attribute("class");
         if (classAttribute == nullptr) {
-            throw std::runtime_error(errorMessage(this->music + ".xml", "class", "attribute"));
+            handleError(this->music + ".xml", "class", "attribute");
+            return;
         }
 
         if (strcmp(classAttribute, "Trainer") == 0) {
@@ -239,52 +260,81 @@ void Map::loadEntities() {
 void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
     const char *idAttribute = entityElement->Attribute("id");
     if (idAttribute == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "id", "attribute"));
+        handleError(this->music + ".xml", "id", "attribute");
+        return;
+    }
+
+    if (not this->entitySprites.contains(idAttribute)) {
+        int i = 0;
+        for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
+            const std::string id(idAttribute);
+            const auto data = TextureManager::getInstance().loadTextureData(
+                    "sprites/" + id += '/' + id += "SpriteSheet" + direction + ".png"
+            );
+            this->entitySprites[idAttribute].at(i) = Sprite::Sheet(
+                    std::get<0>(data),
+                    std::get<1>(data) / Map::TILE_SIZE,
+                    std::get<2>(data) / Map::TILE_SIZE
+            );
+            if (entitySprites.at(idAttribute).at(i).sprite == nullptr) {
+                throw std::runtime_error("Unable to load sprite to map\n");
+            }
+            ++i;
+        }
     }
 
     tinyxml2::XMLElement *nameElement = entityElement->FirstChildElement("name");
     if (nameElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "name", "element"));
+        handleError(this->music + ".xml", "name", "element");
+        return;
     }
 
     const char *trainerName = nameElement->GetText();
     if (trainerName == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "name", "text"));
+        handleError(this->music + ".xml", "name", "text");
+        return;
     }
 
     tinyxml2::XMLElement *positionElement = nameElement->NextSiblingElement("position");
     if (positionElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "position", "element"));
+        handleError(this->music + ".xml", "position", "element");
+        return;
     }
 
     const int x_pos = positionElement->IntAttribute("x", -1);
     if (x_pos == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "x", "attribute"));
+        handleError(this->music + ".xml", "x", "attribute");
+        return;
     }
 
     const int y_pos = positionElement->IntAttribute("y", -1);
     if (y_pos == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "y", "attribute"));
+        handleError(this->music + ".xml", "y", "attribute");
+        return;
     }
 
     tinyxml2::XMLElement *directionElement = positionElement->NextSiblingElement("direction");
     if (directionElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "direction", "element"));
+        handleError(this->music + ".xml", "direction", "element");
+        return;
     }
 
     const int trainer_direction = directionElement->IntText(-1);
     if (trainer_direction == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "direction", "text"));
+        handleError(this->music + ".xml", "direction", "text");
+        return;
     }
 
     tinyxml2::XMLElement *visionElement = directionElement->NextSiblingElement("vision");
     if (visionElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "vision", "element"));
+        handleError(this->music + ".xml", "vision", "element");
+        return;
     }
 
     const int trainer_vision = visionElement->IntText(-1);
     if (trainer_vision == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "vision", "text"));
+        handleError(this->music + ".xml", "vision", "text");
+        return;
     }
 
     std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos, Direction(trainer_direction), trainer_vision));
@@ -294,7 +344,8 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
 void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *visionElement) {
     tinyxml2::XMLElement *dialogueListElement = visionElement->NextSiblingElement("dialogue");
     if (dialogueListElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "dialogue", "element"));
+        handleError(this->music + ".xml", "dialogue", "element");
+        return;
     }
 
     std::vector<std::string> messages;
@@ -312,7 +363,8 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 
     tinyxml2::XMLElement *partyElement = dialogueListElement->NextSiblingElement("party");
     if (partyElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "party", "element"));
+        handleError(this->music + ".xml", "party", "element");
+        return;
     }
     if (partyElement->ChildElementCount() == 0) {
         std::clog << "Invalid file format in file " << this->music << ".xml" << ": Trainer \"" << trainer->getName() << " must have at least 1 Pokemon\n";
@@ -323,12 +375,14 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
          pokemonElement = pokemonElement->NextSiblingElement("pokemon")) {
         const char *idAttribute = pokemonElement->Attribute("id");
         if (idAttribute == nullptr) {
-            throw std::runtime_error(errorMessage(this->music + ".xml", "id", "attribute"));
+            handleError(this->music + ".xml", "id", "attribute");
+            return;
         }
 
         tinyxml2::XMLElement *moveSetElement = pokemonElement->FirstChildElement("move_set");
         if (moveSetElement == nullptr) {
-            throw std::runtime_error(errorMessage(this->music + ".xml", "move_set", "element"));
+            handleError(this->music + ".xml", "move_set", "element");
+            return;
         }
 
         if (moveSetElement->ChildElementCount() == 0) {
@@ -342,7 +396,8 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
              moveElement = moveElement->NextSiblingElement("move")) {
             const char *moveIdAttribute = moveElement->Attribute("id");
             if (moveIdAttribute == nullptr) {
-                throw std::runtime_error(errorMessage(this->music + ".xml", "id", "attribute"));
+                handleError(this->music + ".xml", "id", "attribute");
+                return;
             }
 
             pokemon->addMove(moveIdAttribute);
@@ -359,32 +414,38 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 void Map::loadItem(tinyxml2::XMLElement *entityElement) {
     const char *idAttribute = entityElement->Attribute("id");
     if (idAttribute == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "id", "attribute"));
+        handleError(this->music + ".xml", "id", "attribute");
+        return;
     }
 
     tinyxml2::XMLElement *quantityElement = entityElement->FirstChildElement("quantity");
     if (quantityElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "quantity", "element"));
+        handleError(this->music + ".xml", "quantity", "element");
+        return;
     }
 
     const int quantity = quantityElement->IntText(-1);
     if (quantity == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "quantity", "text"));
+        handleError(this->music + ".xml", "quantity", "text");
+        return;
     }
 
     tinyxml2::XMLElement *positionElement = quantityElement->NextSiblingElement("position");
     if (positionElement == nullptr) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "position", "element"));
+        handleError(this->music + ".xml", "position", "element");
+        return;
     }
 
     const int x_pos = positionElement->IntAttribute("x", -1);
     if (x_pos == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "x", "attribute"));
+        handleError(this->music + ".xml", "x", "attribute");
+        return;
     }
 
     const int y_pos = positionElement->IntAttribute("y", -1);
     if (y_pos == -1) {
-        throw std::runtime_error(errorMessage(this->music + ".xml", "y", "attribute"));
+        handleError(this->music + ".xml", "y", "attribute");
+        return;
     }
 
     std::unique_ptr<Item> item(itemMap.at(idAttribute)(quantity));
@@ -398,6 +459,19 @@ Map::Map(const char *name) : name(name), music(name) {
         return c == ' ';
     }), this->music.end());
 
+    int i = 0;
+    for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
+        const auto data = TextureManager::getInstance().loadTextureData(
+                "sprites/Hilbert/HilbertSpriteSheet" + direction + ".png"
+        );
+        this->entitySprites["Player"].at(i) = Sprite::Sheet(
+                std::get<0>(data),
+                std::get<1>(data) / Map::TILE_SIZE,
+                std::get<2>(data) / Map::TILE_SIZE
+        );
+        ++i;
+    }
+
     this->parseTmx();
     this->loadEntities();
 }
@@ -409,6 +483,17 @@ Map::~Map() {
             if (strlen(SDL_GetError()) > 0) {
                 std::clog << "Unable to destroy tile texture: " << SDL_GetError() << '\n';
                 SDL_ClearError();
+            }
+        }
+    }
+    for (auto &spriteSheet : this->entitySprites) {
+        for (auto &sprite : spriteSheet.second) {
+            if (sprite.sprite != nullptr) {
+                SDL_DestroyTexture(sprite.sprite);
+                if (strlen(SDL_GetError()) > 0) {
+                    std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
+                    SDL_ClearError();
+                }
             }
         }
     }
@@ -457,12 +542,24 @@ std::vector<std::unique_ptr<Entity>>::iterator Map::begin() {
     return this->entities.begin();
 }
 
+std::vector<std::unique_ptr<Entity>>::const_iterator Map::begin() const {
+    return this->entities.cbegin();
+}
+
 std::vector<std::unique_ptr<Entity>>::iterator Map::end() {
     return this->entities.end();
 }
 
+std::vector<std::unique_ptr<Entity>>::const_iterator Map::end() const {
+    return this->entities.cend();
+}
+
 std::string Map::getMusic() const {
     return this->music;
+}
+
+Sprite::Sheet Map::getSpriteSheet(const std::string &id, Direction direction) const {
+    return this->entitySprites.at(id).at(static_cast<std::size_t>(direction));
 }
 
 void Map::shift(Direction direction, int n) {
@@ -565,7 +662,7 @@ void Map::render() const {
                 sdlRect.y = col.screenY;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and col.id != 0) {
-                    TextureManager::getInstance().draw(Map::textures.at(col.id), sdlRect);
+                    TextureManager::getInstance().draw(this->textures.at(col.id), sdlRect);
                 }
             }
         }
@@ -581,31 +678,5 @@ void Map::render() const {
 
             Player::getPlayer().render();
         }
-    }
-}
-
-void Map::reset() {
-    std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
-
-    for (auto &layer : this->layout) {
-        threads.emplace_back([&layer] -> void {
-            for (int i = 0; i < layer.size(); ++i) {
-                for (int j = 0; j < layer[i].size(); ++j) {
-                    layer[i][j].screenX = i * Map::TILE_SIZE;
-                    layer[i][j].screenY = j * Map::TILE_SIZE;
-                }
-            }
-        });
-    }
-
-    threads.emplace_back([this] -> void {
-        for (auto &entity : this->entities) {
-            entity->resetPos();
-        }
-    });
-
-    for (auto &thread : threads) {
-        thread.join();
     }
 }

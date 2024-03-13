@@ -83,7 +83,4 @@ public:
 
     /// \brief Renders the entity
     virtual void render() const = 0;
-
-    /// \brief Resets the entity's map and screen coordinates
-    void resetPos();
 };

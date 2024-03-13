@@ -14,43 +14,6 @@ Character::Character(const char *id, int x, int y, Direction direction)
 Character::Character(const char *id, const char *name, int x, int y, Direction direction, int vision)
         : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
 
-void Character::init() {
-    auto populate = [](const char *entityId, Direction direction, const char *path) -> void {
-        const std::string base("sprites/Hilbert/HilbertSpriteSheet");
-
-        const auto data = TextureManager::getInstance().loadTextureData(base + path + ".png");
-        Character::sprites[entityId].at(static_cast<std::size_t>(direction)) = Sprite::Sheet(
-                std::get<0>(data),
-                std::get<1>(data) / Map::TILE_SIZE,
-                std::get<2>(data) / Map::TILE_SIZE
-        );
-    };
-
-    populate("Player", Direction::UP, "Up");
-    populate("Player", Direction::DOWN, "Down");
-    populate("Player", Direction::LEFT, "Left");
-    populate("Player", Direction::RIGHT, "Right");
-
-    populate("Youngster", Direction::UP, "Up");
-    populate("Youngster", Direction::DOWN, "Down");
-    populate("Youngster", Direction::LEFT, "Left");
-    populate("Youngster", Direction::RIGHT, "Right");
-}
-
-void Character::clean() {
-    for (auto &set : Character::sprites) {
-        for (auto &animation : set.second) {
-            if (animation.sprite != nullptr) {
-                SDL_DestroyTexture(animation.sprite);
-                if (strlen(SDL_GetError()) > 0) {
-                    std::clog << "Unable to destroy sprite: " << SDL_GetError() << '\n';
-                    SDL_ClearError();
-                }
-            }
-        }
-    }
-}
-
 void Character::setName(const char *newName) {
     this->name = newName;
 }
@@ -225,11 +188,11 @@ void Character::interact() {
 void Character::updateAnimation() {
     ++this->sprite.currentCol;
 
-    if (this->sprite.currentCol == Character::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).numCols) {
+    if (this->sprite.currentCol == ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).numCols) {
         this->sprite.currentCol = 0;
 
         ++this->sprite.currentRow;
-        if (this->sprite.currentRow == Character::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).numRows) {
+        if (this->sprite.currentRow == ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).numRows) {
             this->sprite.currentRow = 0;
         }
     }
@@ -254,7 +217,7 @@ void Character::update() {
 
 void Character::render() const {
     TextureManager::getInstance().drawFrame(
-            Character::sprites.at(this->id).at(static_cast<std::size_t>(this->currentDirection)).sprite,
+            ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).sprite,
             SDL_Rect(this->getScreenX(), this->getScreenY(), Map::TILE_SIZE, Map::TILE_SIZE),
             this->sprite.currentCol,
             this->sprite.currentRow

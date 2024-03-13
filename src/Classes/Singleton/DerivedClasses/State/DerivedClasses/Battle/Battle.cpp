@@ -64,8 +64,7 @@ void Battle::initMain() {
             Constants::Color::RED,
             "Fight",
             [this] -> void {
-                this->states.push_front(Battle::BattleState::SELECT_MOVE);
-                this->initFight();
+                this->changeState(Battle::BattleState::SELECT_MOVE, false);
             }
     );
     GraphicsEngine::getInstance().getGraphic<Panel>().add(
@@ -103,21 +102,19 @@ void Battle::initFight() {
 
     for (int i = 0; i < Player::getPlayer()[0].numMoves(); ++i) {
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                typeToColor(Player::getPlayer()[0][0].getType()),
-                Player::getPlayer()[0][0].getName(),
-                [this, &i] -> void {
-                    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-                    this->playerMove = i;
-                    this->handleTurn();
-                    this->states.clear();
-                    this->states.push_front(Battle::BattleState::ENGAGE);
-                    Battle::initEngage();
+                typeToColor(Player::getPlayer()[0][i].getType()),
+                Player::getPlayer()[0][i].getName(),
+                [this, i] -> void {
+                    this->handleTurn(i);
+                    this->changeState(Battle::BattleState::ENGAGE, true);
                 }
         );
     }
 }
 
 void Battle::initEngage() {
+    // pops the message that does not belong
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     GraphicsEngine::getInstance().getGraphic<Panel>().clear();
     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
@@ -160,29 +157,32 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
     if ((*defender)[0].isFainted()) {
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 (*defender)[0].getName() + " fained!",
-                openReturn
+                [this, attacker, defender, openReturn] -> void {
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                    openReturn();
+                    defender->handleFaint();
+                    if (not defender->canFight()) {
+                        for (auto &pokemon : Player::getPlayer()) {
+                            pokemon->initStatMods();
+                        }
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                                attacker->winMessage(),
+                                std::vector<std::function<void()>>(
+                                        {
+                                                openReturn,
+                                                [this, openReturn] -> void {
+                                                    openReturn();
+                                                    this->changeState(Battle::BattleState::T_OUT, true);
+                                                }
+                                        }
+                                )
+                        );
+                    }
+                    else {
+                        // TODO implement switchOut for trainer and player inside the classes
+                    }
+                }
         );
-        defender->handleFaint();
-
-        if (not defender->canFight()) {
-            for (auto &pokemon : Player::getPlayer()) {
-                pokemon->initStatMods();
-            }
-            GraphicsEngine::getInstance().getGraphic<TextBox>().push(
-                    attacker->winMessage(),
-                    std::vector<std::function<void()>>({
-                           openReturn,
-                           [this, &openReturn] -> void {
-                                openReturn();
-                                this->states.clear();
-                                this->states.push_front(Battle::BattleState::T_OUT);
-                           }
-                    })
-            );
-        }
-        else {
-            // TODO implement switchOut for trainer and player inside the classes
-        }
     }
 }
 
@@ -259,7 +259,9 @@ void Battle::postStatus(bool isPlayerFaster) {
     }
 }
 
-void Battle::handleTurn() {
+void Battle::handleTurn(int move) {
+    this->playerMove = move;
+
     // re-selects opponent move if it's out of PP
     this->opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
     while (not(*this->opponent)[0][this->opponentMove]) {
@@ -321,9 +323,7 @@ void Battle::updateEngage() {
             KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
         }
         if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-            this->states.clear();
-            this->states.push_front(Battle::BattleState::MAIN);
-            this->initMain();
+            this->changeState(Battle::BattleState::MAIN, true);
 
             KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
 
@@ -342,20 +342,12 @@ void Battle::updateEngage() {
 void Battle::handleRun() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     // TODO not is only here for testing purposes
-    if (not this->opponent->isTrainer()) {
+    if (this->opponent->isTrainer()) {
         KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 "You can't run away from a trainer battle!",
                 [this] -> void {
-                    [] -> void {
-                        SDL_Event event;
-                        while (true) {
-                            SDL_WaitEvent(&event);
-                            if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
-                                return;
-                            }
-                        }
-                    }();
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                     KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
                     this->initMain();
@@ -367,28 +359,22 @@ void Battle::handleRun() {
         const int odds = static_cast<int>((Player::getPlayer()[0].getBaseStat(Pokemon::Stat::SPEED) * 32) / opponent_speed) + 30;
 
         if (opponent_speed == 0 or odds > 255 or generateInteger(0, 255) < odds) {
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_W);
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_A);
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_S);
+            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_D);
+
             GraphicsEngine::getInstance().getGraphic<TextBox>().push("Got away safely!");
-            this->states.pop_back();
+            this->states.clear();
             this->states.push_front(Battle::BattleState::T_OUT);
         }
         else {
             GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                     "Couldn't get away",
                     [this] -> void {
-                            [] -> void {
-                                SDL_Event event;
-                                while (true) {
-                                    SDL_WaitEvent(&event);
-                                    if (event.key.keysym.scancode == SDL_Scancode::SDL_SCANCODE_RETURN) {
-                                        return;
-                                    }
-                                }
-                            }();
-                            this->playerMove = Player::getPlayer()[0].numMoves();
-                            this->handleTurn();
-                            this->states.clear();
-                            this->states.push_front(Battle::BattleState::ENGAGE);
-                            Battle::initEngage();
+                            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                            this->handleTurn(Player::getPlayer()[0].numMoves());
+                            this->changeState(Battle::BattleState::ENGAGE, true);
                             KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
                     }
             );
@@ -397,36 +383,59 @@ void Battle::handleRun() {
 }
 
 void Battle::updateTOut() {
-    static int counter = 0;
-
     if (not GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {
-        ++counter;
-        if (counter == 100) {
-            this->isRunning = false;
-            this->opponent->clearParty();
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-            Player::getPlayer().setState(Character::State::IDLE);
-            GraphicsEngine::getInstance().clear();
+        this->isRunning = false;
 
-            if (Mix_FadeOutMusic(2000) == 0) {
-                std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap()->getMusic()
-                          << "\": " << SDL_GetError() << '\n';
-                SDL_ClearError();
-                Game::getInstance().terminate();
-                return;
-            }
+        Player::getPlayer().setState(Character::State::IDLE);
+        GraphicsEngine::getInstance().clear();
 
-            Mix_HookMusicFinished([] -> void {
-                Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
-            });
-
-            counter = 0;
+        if (Mix_FadeOutMusic(2000) == 0) {
+            std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap()->getMusic()
+                      << "\": " << SDL_GetError() << '\n';
+            SDL_ClearError();
+            Game::getInstance().terminate();
+            return;
         }
+
+        Mix_HookMusicFinished([] -> void {
+            Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
+        });
+    }
+}
+
+void Battle::changeState(Battle::BattleState state, bool clear) {
+    if (clear) {
+        this->states.clear();
+    }
+    this->states.push_front(state);
+    if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
+        this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
     }
 }
 
 void Battle::init(Trainer *trainer) {
     this->opponent = trainer;
+
+    auto loadMap = [](std::unordered_map<std::string, SDL_Texture *> &map, const Trainer &trainer, bool front) -> bool {
+        for (const auto &pokemon : trainer) {
+            const char *side = front ? "Front" : "Back";
+            map[pokemon->getName()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon->getName() + '/' + pokemon->getName() + side + ".png");
+            if (map[pokemon->getName()] == nullptr) {
+                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon->getName() << front << ".png\"\n";
+                Game::getInstance().terminate();
+                return false;
+            }
+        }
+        return true;
+    };
+    if (not loadMap(this->playerSprites, Player::getPlayer(), false)) {
+        return;
+    }
+    if (not loadMap(this->opponentSprites, *this->opponent, true)) {
+        return;
+    }
     this->INIT_FUNCTIONS[static_cast<std::size_t>(Battle::BattleState::MAIN)]();
 }
 
@@ -440,6 +449,23 @@ void Battle::update() {
 
         Game::getInstance().setState(State::Id::OVERWORLD);
         this->states.clear();
+
+        auto cleanMap = [](std::unordered_map<std::string, SDL_Texture *> &map) -> void{
+                for (auto &texture : map) {
+                    if (texture.second != nullptr) {
+                        SDL_DestroyTexture(texture.second);
+                        if (strlen(SDL_GetError()) > 0){
+                            std::clog << "Unable to destroy pokemon battle-sprite \"" << texture.first << ": " << SDL_GetError() << '\n';
+                            SDL_ClearError();
+                        }
+                    }
+                }
+                map.clear();
+        };
+
+        cleanMap(this->playerSprites);
+        cleanMap(this->opponentSprites);
+
         return;
     }
 
@@ -458,6 +484,30 @@ void Battle::update() {
 }
 
 void Battle::render() {
+    // FIXME works but not correctly implemented
+    if (Player::getPlayer().canFight()) {
+        TextureManager::getInstance().draw(
+                this->playerSprites.at(Player::getPlayer()[0].getName()),
+                SDL_Rect(
+                        HALF_TILE,
+                        Game::WINDOW_HEIGHT - Map::TILE_SIZE * 5 - HALF_TILE,
+                        Map::TILE_SIZE * 4,
+                        Map::TILE_SIZE * 4
+                )
+        );
+    }
+    // FIXME works but not correctly implemented
+    if (this->opponent->canFight()) {
+        TextureManager::getInstance().draw(
+                this->opponentSprites.at((*this->opponent)[0].getName()),
+                SDL_Rect(
+                        Game::WINDOW_WIDTH - Map::TILE_SIZE * 4 + HALF_TILE,
+                        0,
+                        Map::TILE_SIZE * 3 - HALF_TILE,
+                        Map::TILE_SIZE * 3 - HALF_TILE
+                )
+        );
+    }
     GraphicsEngine::getInstance().render();
     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 }
