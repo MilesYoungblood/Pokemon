@@ -22,6 +22,10 @@ std::string Character::getName() const {
     return this->name;
 }
 
+std::string Character::getId() const {
+    return this->id;
+}
+
 void Character::setDialogue(const char *text) {
     std::stringstream ss(text);
 

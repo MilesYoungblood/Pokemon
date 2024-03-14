@@ -38,11 +38,14 @@ private:
     Trainer *opponent{ nullptr };
     std::size_t turn{ 0 };
 
+    int playerMove{ 0 };
+    int opponentMove{ 0 };
+
     bool skipPlayer{ false };
     bool skipOpponent{ false };
 
-    int playerMove{ 0 };
-    int opponentMove{ 0 };
+    bool renderPlayer{ false };
+    bool renderOpponent{ false };
 
     bool isRunning{ true };
 

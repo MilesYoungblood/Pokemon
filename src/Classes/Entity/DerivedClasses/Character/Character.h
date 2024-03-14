@@ -39,6 +39,8 @@ public:
 
     [[nodiscard]] virtual std::string getName() const;
 
+    [[nodiscard]] std::string getId() const;
+
     void setDialogue(const char *text);
 
     void setDialogue(const std::vector<std::string> &text);

@@ -10,6 +10,9 @@
 extern Stopwatch keyDelay;
 extern bool momentum;
 
+inline std::condition_variable conditionVariable;
+inline std::mutex gameMutex;
+
 class Game : public Singleton<Game> {
 private:
     const std::array<int, 2> FPS{ 30, 60 };
