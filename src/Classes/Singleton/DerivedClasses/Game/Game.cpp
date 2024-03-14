@@ -110,11 +110,6 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    std::thread worker([] -> void {
-        std::unique_lock<std::mutex> uniqueLock(gameMutex);
-        conditionVariable.wait(uniqueLock);
-    });
-
     static SDL_Event event;
     if (SDL_PollEvent(&event) == 1) {
         switch (event.type) {
@@ -131,12 +126,6 @@ void Game::handleEvents() {
                 break;
         }
     }
-
-    {
-        std::scoped_lock<std::mutex> scopedLock(gameMutex);
-        conditionVariable.notify_all();
-    }
-    worker.join();
 }
 
 void Game::update() {
