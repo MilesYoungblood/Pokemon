@@ -25,4 +25,7 @@ struct PokeBall : public Item {
     [[nodiscard]] std::string useMessage() const override;
 
     bool catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const;
+
+    [[nodiscard]] static std::vector<std::string> catchPokemonMessage(const Pokemon &pokemon,
+                                                                       const std::array<bool, 4> &attempts);
 };

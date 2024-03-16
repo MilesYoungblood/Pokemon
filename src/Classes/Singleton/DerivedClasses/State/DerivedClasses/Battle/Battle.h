@@ -63,7 +63,7 @@ private:
 
     void preStatus(bool isPlayerFaster);
 
-    void postStatus(bool isPlayerFaster);
+    void postStatus(bool receiver);
 
     void handleTurn(int move);
 

@@ -34,10 +34,6 @@ int Pignite::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Pignite::getId() const {
-    return Pokemon::Id::PIGNITE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

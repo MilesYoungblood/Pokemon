@@ -1,0 +1,29 @@
+//
+// Created by Miles on 12/2/2023.
+//
+
+namespace Constants::Color {
+    const SDL_Color BLACK(0, 0, 0, SDL_ALPHA_OPAQUE);
+    const SDL_Color WHITE(255, 255, 255, SDL_ALPHA_OPAQUE);
+    const SDL_Color LIGHT_GRAY(211, 211, 211, SDL_ALPHA_OPAQUE);
+    const SDL_Color GRAY(127, 127, 127, SDL_ALPHA_OPAQUE);
+    const SDL_Color SILVER(192, 192, 192, SDL_ALPHA_OPAQUE);
+    const SDL_Color PLATINUM(229, 228, 226, SDL_ALPHA_OPAQUE);
+    const SDL_Color RED(255, 0, 0, SDL_ALPHA_OPAQUE);
+    const SDL_Color ORANGE(255, 165, 0, SDL_ALPHA_OPAQUE);
+    const SDL_Color YELLOW(255, 255, 0, SDL_ALPHA_OPAQUE);
+    const SDL_Color YELLOW_GREEN(154, 205, 50, SDL_ALPHA_OPAQUE);
+    const SDL_Color GREEN(0, 255, 0, SDL_ALPHA_OPAQUE);
+    const SDL_Color CYAN(0, 255, 255, SDL_ALPHA_OPAQUE);
+    const SDL_Color SKY_BLUE(135, 206, 235, SDL_ALPHA_OPAQUE);
+    const SDL_Color BLUE(0, 0, 255, SDL_ALPHA_OPAQUE);
+    const SDL_Color ROYAL_BLUE(65, 105, 225, SDL_ALPHA_OPAQUE);
+    const SDL_Color INDIGO(75, 0, 130, SDL_ALPHA_OPAQUE);
+    const SDL_Color PURPLE(128, 0, 128, SDL_ALPHA_OPAQUE);
+    const SDL_Color LAVENDER(230, 230, 250, SDL_ALPHA_OPAQUE);
+    const SDL_Color HOT_PINK(255, 105, 180, SDL_ALPHA_OPAQUE);
+    const SDL_Color BROWN(165, 42, 42, SDL_ALPHA_OPAQUE);
+    const SDL_Color DARK_BROWN(101, 67, 33, SDL_ALPHA_OPAQUE);
+    const SDL_Color BRONZE(205, 127, 50, SDL_ALPHA_OPAQUE);
+    const SDL_Color SAND(194, 178, 128, SDL_ALPHA_OPAQUE);
+}

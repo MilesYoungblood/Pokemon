@@ -30,10 +30,6 @@ int Servine::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Servine::getId() const {
-    return Pokemon::Id::SERVINE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

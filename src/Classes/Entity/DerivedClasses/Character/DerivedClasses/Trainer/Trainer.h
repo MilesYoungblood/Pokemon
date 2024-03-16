@@ -38,16 +38,26 @@ public:
 
     ~Trainer() override = default;
 
+    /// \brief Constructs and adds a Pokemon from the lookup table
+    /// \param id Pokemon name
     void addPokemon(const char *id);
 
-    void addPokemon(std::unique_ptr<Pokemon> toAdd);
+    /// \brief Adds a Pokemon by moving
+    /// \param pokemon to add
+    void addPokemon(std::unique_ptr<Pokemon> pokemon);
 
+    /// \brief Removes a Pokemon from the party
+    /// \param index of the party
     void removePokemon(long long int index);
 
+    /// \brief Swaps Pokemon in the party
+    /// \param a first
+    /// \param b second
     void swapPokemon(std::size_t a, std::size_t b);
 
-    void clearParty();
-
+    /// \brief Getter for number of items
+    /// \tparam I Item type
+    /// \return number of items of this type
     template<typename I>
     [[nodiscard]] std::size_t getNumItems() const {
         try {
@@ -58,6 +68,10 @@ public:
         }
     }
 
+    /// \brief Getter for an item
+    /// \tparam I Item type
+    /// \param id name of the item
+    /// \return a reference to the item
     template<typename I>
     I &getItem(const std::string &id) {
         try {
@@ -68,10 +82,18 @@ public:
         }
     }
 
+    /// \brief Constructs and adds an item by the lookup table
+    /// \param id of the item
+    /// \param n quantity
     void addItem(const std::string &id, int n);
 
+    /// \brief Adds an item by moving
+    /// \param item
     void addItem(std::unique_ptr<Item> item);
 
+    /// \brief Removes an item from the inventory
+    /// \tparam I Item type
+    /// \param id of the item
     template<typename I>
     void removeItem(const std::string &id) {
         try {
@@ -82,25 +104,39 @@ public:
         }
     }
 
+    /// \brief Getter for a Pokemon in the party
+    /// \param index of the party
+    /// \return a reference to the Pokemon
     Pokemon &operator[](std::size_t index);
 
+    /// \brief Allows for for-each loop functionality
+    /// \return an iterator to the beginning of the party
     std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 
+    /// \brief Allows for for-each loop functionality
+    /// \return a const iterator to the beginning of the party
     std::vector<std::unique_ptr<Pokemon>>::const_iterator begin() const;
 
+    /// \brief Allows for for-each loop functionality
+    /// \return an iterator to the end of the party
     std::vector<std::unique_ptr<Pokemon>>::iterator end();
 
+    /// \brief Allows for for-each loop functionality
+    /// \return a const iterator to the end of the party
     std::vector<std::unique_ptr<Pokemon>>::const_iterator end() const;
 
+    /// \brief Handles specific faint protocol
     virtual void handleFaint();
 
-    void idle() override;
-
+    /// \brief Win message for a Trainer or the Player
+    /// \return the win message
     [[nodiscard]] virtual std::vector<std::string> winMessage() const;
 
     [[nodiscard]] bool canFight() const override;
 
     [[nodiscard]] bool isTrainer() const override;
+
+    void idle() override;
 
     void interact() override;
 };

@@ -30,10 +30,6 @@ int Snivy::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Snivy::getId() const {
-    return Pokemon::Id::SNIVY;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

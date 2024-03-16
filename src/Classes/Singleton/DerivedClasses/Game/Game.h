@@ -4,14 +4,7 @@
 
 #pragma once
 
-#include "../../../Stopwatch/Stopwatch.h"
 #include "../State/DerivedClasses/States.h"
-
-extern Stopwatch keyDelay;
-extern bool momentum;
-
-inline std::condition_variable conditionVariable;
-inline std::mutex gameMutex;
 
 class Game : public Singleton<Game> {
 private:

@@ -31,10 +31,6 @@ int Stoutland::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Stoutland::getId() const {
-    return Pokemon::Id::STOUTLAND;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

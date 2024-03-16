@@ -158,6 +158,7 @@ double Pokemon::getBaseStat(Pokemon::Stat stat) const {
 void Pokemon::setStatus(StatusCondition newStatus) {
     this->status = newStatus;
 
+    // FIXME
     if (this->status == StatusCondition::NONE) {
         if (newStatus == StatusCondition::BURN) {
             this->baseStats[Pokemon::Stat::ATTACK] *= 2.0;
@@ -240,7 +241,7 @@ bool Pokemon::isAfflicted() const {
 
 bool Pokemon::canAttack() const {
     return std::ranges::all_of(this->moveSet.begin(), this->moveSet.end(),
-                               [](const std::unique_ptr<Move> &move) -> bool { return not(*move); });
+                               [](const std::unique_ptr<Move> &move) -> bool { return move->canUse(); });
 }
 
 std::string Pokemon::hpEmptyMessage() const {
@@ -264,6 +265,14 @@ std::vector<std::unique_ptr<Move>>::iterator Pokemon::begin() {
     return this->moveSet.begin();
 }
 
+std::vector<std::unique_ptr<Move>>::const_iterator Pokemon::begin() const {
+    return this->moveSet.cbegin();
+}
+
 std::vector<std::unique_ptr<Move>>::iterator Pokemon::end() {
     return this->moveSet.end();
+}
+
+std::vector<std::unique_ptr<Move>>::const_iterator Pokemon::end() const {
+    return this->moveSet.cend();
 }

@@ -7,7 +7,6 @@
 #include "Map.h"
 
 void handleError(const std::string &filename, const char *name, const char *type) {
-    return;
     std::cout << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << type << '\n';
     Game::getInstance().terminate();
 }
@@ -161,7 +160,8 @@ void Map::parseTsx(const std::string &sourceAttribute) {
 
         this->textures.push_back(TextureManager::getInstance().loadTexture("terrain/" + copy + ".png"));
         if (this->textures.end().base() == nullptr) {
-            throw std::runtime_error("Error loading texture at \"" + copy + "\"\n");
+            std::clog << "Error loading texture \"" << copy << "\"\n";
+            Game::getInstance().terminate();
         }
     }
 }
@@ -223,7 +223,8 @@ void Map::loadEntities() {
             if (xmlFile.LoadFile(std::string_view("../assets/data/Map/initial/" + this->music + ".xml").data()) !=
                 tinyxml2::XMLError::XML_SUCCESS) {
                 xmlFile.PrintError();
-                std::terminate();
+                Game::getInstance().terminate();
+                return;
             }
         }
     }
@@ -474,6 +475,8 @@ Map::Map(const char *name) : name(name), music(name) {
 
     this->parseTmx();
     this->loadEntities();
+
+    this->workers.resize(this->layout.size() + 1);
 }
 
 Map::~Map() {
@@ -502,9 +505,11 @@ Map::~Map() {
 bool Map::isObstructionHere(int x, int y) const {
     try {
         // No idea why, but the layout MUST be y-position first and x-position second
-        return this->collision.at(this->layout[1][y][x].id) or (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
-            return entity->getMapX() == x and entity->getMapY() == y;
-        });
+        return this->collision.at(this->layout[1][y][x].id) or
+               (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or
+               std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr <Entity> &entity) -> bool {
+                   return entity->getMapX() == x and entity->getMapY() == y;
+               });
     }
     catch (const std::exception &e) {
         throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
@@ -563,12 +568,9 @@ Sprite::Sheet Map::getSpriteSheet(const std::string &id, Direction direction) co
 }
 
 void Map::shift(Direction direction, int n) {
-    std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
-
-    for (auto &layer : this->layout) {
-        threads.emplace_back([&layer, &direction, &n] -> void {
-            for (auto &row : layer) {
+    for (std::size_t i = 0; i < this->layout.size(); ++i) {
+        this->workers[i] = std::thread([this, direction, n, i] -> void {
+            for (auto &row : this->layout[i]) {
                 for (auto &col : row) {
                     switch (direction) {
                         case Direction::UP:
@@ -590,25 +592,21 @@ void Map::shift(Direction direction, int n) {
             }
         });
     }
-
-    threads.emplace_back([this, &direction, &n] -> void {
+    this->workers.back() = std::thread([this, direction, n] -> void {
         for (auto &entity : this->entities) {
             entity->shift(direction, n);
         }
     });
 
-    for (auto &thread : threads) {
-        thread.join();
+    for (auto &worker : this->workers) {
+        worker.join();
     }
 }
 
 void Map::shiftHorizontally(int n) {
-    std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
-
-    for (auto &layer : this->layout) {
-        threads.emplace_back([&layer, &n] -> void {
-            for (auto &row : layer) {
+    for (std::size_t i = 0; i < this->layout.size(); ++i) {
+        this->workers[i] = std::thread([this, n, i] -> void {
+            for (auto &row : this->layout[i]) {
                 for (auto &col : row) {
                     col.screenX += n;
                 }
@@ -616,24 +614,21 @@ void Map::shiftHorizontally(int n) {
         });
     }
 
-    threads.emplace_back([this, &n] -> void {
+    this->workers.back() = std::thread([this, n] -> void {
         for (auto &entity : this->entities) {
             entity->shiftHorizontally(n);
         }
     });
 
-    for (auto &thread : threads) {
-        thread.join();
+    for (auto &worker : this->workers) {
+        worker.join();
     }
 }
 
 void Map::shiftVertically(int n) {
-    std::vector<std::thread> threads;
-    threads.reserve(this->layout.size() + 1);
-
-    for (auto &layer : this->layout) {
-        threads.emplace_back([&layer, &n] -> void {
-            for (auto &row : layer) {
+    for (std::size_t i = 0; i < this->layout.size(); ++i) {
+        this->workers[i] = std::thread([this, n, i] -> void {
+            for (auto &row : this->layout[i]) {
                 for (auto &col : row) {
                     col.screenY += n;
                 }
@@ -641,14 +636,14 @@ void Map::shiftVertically(int n) {
         });
     }
 
-    threads.emplace_back([this, &n] -> void {
+    this->workers.back() = std::thread([this, n] -> void {
         for (auto &entity : this->entities) {
             entity->shiftVertically(n);
         }
     });
 
-    for (auto &thread : threads) {
-        thread.join();
+    for (auto &worker : this->workers) {
+        worker.join();
     }
 }
 

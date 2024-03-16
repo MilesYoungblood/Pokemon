@@ -31,10 +31,6 @@ int Lillipup::getCatchRate() const {
     return 255;
 }
 
-Pokemon::Id Lillipup::getId() const {
-    return Pokemon::Id::LILLIPUP;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

@@ -31,10 +31,6 @@ int Herdier::getCatchRate() const {
     return 120;
 }
 
-Pokemon::Id Herdier::getId() const {
-    return Pokemon::Id::HERDIER;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

@@ -31,10 +31,6 @@ int Purrloin::getCatchRate() const {
     return 255;
 }
 
-Pokemon::Id Purrloin::getId() const {
-    return Pokemon::Id::PURRLOIN;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

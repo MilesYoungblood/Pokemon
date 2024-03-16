@@ -92,7 +92,7 @@ public:
 
     [[nodiscard]] virtual bool isPriority() const;
 
-    explicit operator bool() const;
+    [[nodiscard]] bool canUse() const;
 
 protected:
     void resetFlags();

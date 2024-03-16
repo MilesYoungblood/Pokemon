@@ -31,10 +31,6 @@ int Patrat::getCatchRate() const {
     return 255;
 }
 
-Pokemon::Id Patrat::getId() const {
-    return Pokemon::Id::PATRAT;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

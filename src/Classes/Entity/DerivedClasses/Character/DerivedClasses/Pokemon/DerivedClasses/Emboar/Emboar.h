@@ -22,6 +22,4 @@ struct Emboar : public Pokemon {
     double getWeight() const override;
 
     int getCatchRate() const override;
-
-    Pokemon::Id getId() const override;
 };

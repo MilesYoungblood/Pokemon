@@ -5,7 +5,11 @@
 #pragma once
 
 #include "../../State.h"
+#include "../../../../../Stopwatch/Stopwatch.h"
 #include "../../../../../Map/Map.h"
+
+inline Stopwatch keyDelay;
+inline bool momentum;
 
 class Overworld : public State {
 private:
@@ -27,6 +31,8 @@ public:
     ~Overworld() override;
 
     void init();
+
+    void handleEvents() override;
 
     void update() override;
 

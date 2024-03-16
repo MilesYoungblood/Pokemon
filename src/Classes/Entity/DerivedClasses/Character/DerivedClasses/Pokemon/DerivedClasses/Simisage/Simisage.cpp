@@ -30,10 +30,6 @@ int Simisage::getCatchRate() const {
     return 75;
 }
 
-Pokemon::Id Simisage::getId() const {
-    return Pokemon::Id::SIMISAGE;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

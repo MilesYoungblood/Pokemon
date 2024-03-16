@@ -30,10 +30,6 @@ int Tepig::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Tepig::getId() const {
-    return Pokemon::Id::TEPIG;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

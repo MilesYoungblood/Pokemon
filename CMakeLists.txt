@@ -29,7 +29,6 @@ set(SOURCES
         src/Classes/Move/Move.cpp
         src/Classes/Entity/DerivedClasses/Item/Item.cpp
         src/Classes/Entity/DerivedClasses/Item/Item.h
-        src/Functions/ItemFunctions.h
         src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp
         src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h
         src/Functions/GeneralFunctions.h
@@ -61,8 +60,8 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
         src/pch.h
-        src/constants.h
-        src/constants.cpp
+        src/Constants/constants.h
+        src/Constants/constants.cpp
         src/Classes/Ability/Ability.cpp
         src/Classes/Ability/Ability.h
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
@@ -280,6 +279,7 @@ set(STATES
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.h
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp
         src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.h
+        src/Classes/Singleton/DerivedClasses/State/State.cpp
 )
 
 add_executable(PokemonBattle
@@ -292,7 +292,7 @@ add_executable(PokemonBattle
         ${STATES}
 )
 
-target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/constants.h)
+target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/Constants/constants.h)
 
 #target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
 

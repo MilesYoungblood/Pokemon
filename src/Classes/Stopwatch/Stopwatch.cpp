@@ -5,7 +5,7 @@
 #include "Stopwatch.h"
 
 Stopwatch::~Stopwatch() {
-    this->active = false;
+    this->stop();
 }
 
 void Stopwatch::start() {
@@ -21,11 +21,13 @@ void Stopwatch::start() {
                 ++this->elapsedTime;
             }
     });
-    this->counter.detach();
 }
 
 void Stopwatch::stop() {
     this->active = false;
+    if (counter.joinable()) {
+        this->counter.join();
+    }
 }
 
 void Stopwatch::reset() {

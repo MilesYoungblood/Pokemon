@@ -23,6 +23,25 @@ void Overworld::init() {
     Player::getPlayer()[0].addMove("Head Smash");
 }
 
+void Overworld::handleEvents() {
+    static SDL_Event event;
+    if (SDL_PollEvent(&event) == 1) {
+        switch (event.type) {
+            case SDL_EventType::SDL_QUIT:
+                Game::getInstance().terminate();
+                break;
+            case SDL_EventType::SDL_KEYDOWN:
+                keyDelay.start();
+                break;
+            case SDL_EventType::SDL_KEYUP:
+                keyDelay.stop();
+                break;
+            default:
+                break;
+        }
+    }
+}
+
 void Overworld::update() {
     for (auto &entity : *this->currentMap) {
         entity->update();

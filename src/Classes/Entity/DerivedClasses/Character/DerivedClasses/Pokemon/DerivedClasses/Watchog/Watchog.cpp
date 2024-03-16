@@ -31,10 +31,6 @@ int Watchog::getCatchRate() const {
     return 255;
 }
 
-Pokemon::Id Watchog::getId() const {
-    return Pokemon::Id::WATCHOG;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

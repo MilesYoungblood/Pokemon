@@ -34,10 +34,6 @@ int Emboar::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Emboar::getId() const {
-    return Pokemon::Id::EMBOAR;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

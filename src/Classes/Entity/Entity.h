@@ -76,6 +76,7 @@ public:
     /// \return screen y-coordinate
     [[nodiscard]] int getScreenY() const;
 
+    /// \brief Interacts with the entity
     virtual void interact() = 0;
 
     /// \brief Updates the entity

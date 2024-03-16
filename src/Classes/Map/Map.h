@@ -119,18 +119,18 @@ private:
     };
 
     using layer = std::vector<std::vector<tile>>;
+    std::vector<layer> layout;                                  // The map is vector of layers
 
-    std::vector<layer> layout;                          // The map is vector of layers
+    std::vector<bool> collision{ false };                       // collision values for each tile id
+    std::vector<SDL_Texture *> textures{ nullptr };             // texture for each tile id
 
-    std::vector<bool> collision{ false };               // collision values for each tile id
-    std::vector<SDL_Texture *> textures{ nullptr };     // texture for each tile id
-
-    std::vector<std::unique_ptr<Entity>> entities;      // the set of entities in this map
+    std::vector<std::unique_ptr<Entity>> entities;              // the set of entities in this map
+    std::vector<std::thread> workers;                           // help speed up updating tiles and entities
 
     using spriteSet = std::array<Sprite::Sheet, 4>;
-    std::unordered_map<std::string, spriteSet> entitySprites;
+    std::unordered_map<std::string, spriteSet> entitySprites;   // mapping of entity sprites by id
 
-    std::vector<Map::ExitPoint> exitPoints;             // coordinates where the player can leave this map to enter another
+    std::vector<Map::ExitPoint> exitPoints;                     // the set of exit points in the map
 
     void parseTmx();
 

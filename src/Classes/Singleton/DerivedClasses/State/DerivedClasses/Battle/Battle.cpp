@@ -232,24 +232,24 @@ void Battle::postStatus(bool isPlayerFaster) {
         return status == StatusCondition::BURN or status == StatusCondition::POISON;
     };
 
-    auto postStatus = [this](Trainer *trainer) -> void {
-        (*trainer)[0].takeDamage(static_cast<int>(std::round((*trainer)[0].getMaxHp() * 0.0625)));
-        GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*trainer)[0]));
+    auto postStatus = [this](Trainer *observer, Trainer *receiver) -> void {
+        (*receiver)[0].takeDamage(static_cast<int>(std::round((*receiver)[0].getMaxHp() * 0.0625)));
+        GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*receiver)[0]));
 
-        if ((*trainer)[0].isFainted()) {
-            GraphicsEngine::getInstance().getGraphic<TextBox>().push((*trainer)[0].getName() + " fainted!");
-            trainer->handleFaint();
+        if ((*receiver)[0].isFainted()) {
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push((*receiver)[0].getName() + " fainted!");
+            receiver->handleFaint();
 
-            if (not trainer->canFight()) {
+            if (not receiver->canFight()) {
                 for (auto &pokemon : Player::getPlayer()) {
                     pokemon->initStatMods();
                 }
-                GraphicsEngine::getInstance().getGraphic<TextBox>().push(trainer->winMessage());
+                GraphicsEngine::getInstance().getGraphic<TextBox>().push(observer->winMessage());
                 this->states.pop_back();
                 this->states.push_front(Battle::BattleState::T_OUT);
             }
             else {
-                // TODO implement switchOut for trainer and player inside the classes
+                // TODO implement switchOut for receiver and player inside the classes
             }
         }
     };
@@ -258,10 +258,10 @@ void Battle::postStatus(bool isPlayerFaster) {
     Trainer *second = isPlayerFaster ? this->opponent : &Player::getPlayer();
 
     if (hasStatusCondition((*first)[0].getStatus())) {
-        postStatus(first);
+        postStatus(second, first);
     }
     if (hasStatusCondition((*second)[0].getStatus())) {
-        postStatus(second);
+        postStatus(first, second);
     }
 }
 
@@ -270,7 +270,7 @@ void Battle::handleTurn(int move) {
 
     // re-selects opponent move if it's out of PP
     this->opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
-    while (not(*this->opponent)[0][this->opponentMove]) {
+    while (not(*this->opponent)[0][this->opponentMove].canUse()) {
         opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
     }
 

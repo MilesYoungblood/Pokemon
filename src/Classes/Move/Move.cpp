@@ -89,7 +89,7 @@ bool Move::isPriority() const {
     return false;
 }
 
-Move::operator bool() const {
+bool Move::canUse() const {
     return this->pp > 0;
 }
 

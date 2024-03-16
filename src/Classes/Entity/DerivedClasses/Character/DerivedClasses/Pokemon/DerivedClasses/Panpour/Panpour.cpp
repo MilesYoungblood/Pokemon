@@ -30,10 +30,6 @@ int Panpour::getCatchRate() const {
     return 190;
 }
 
-Pokemon::Id Panpour::getId() const {
-    return Pokemon::Id::PANPOUR;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

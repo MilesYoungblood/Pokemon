@@ -31,10 +31,6 @@ int Liepard::getCatchRate() const {
     return 90;
 }
 
-Pokemon::Id Liepard::getId() const {
-    return Pokemon::Id::LIEPARD;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

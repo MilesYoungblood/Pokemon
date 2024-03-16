@@ -74,6 +74,34 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
     return attempts[0] and attempts[1] and attempts[2] and attempts[3];
 }
 
+std::vector<std::string> PokeBall::catchPokemonMessage(const Pokemon &pokemon, const std::array<bool, 4> &attempts) {
+    std::vector<std::string> messages;
+    if (attempts[0]) {
+        messages.emplace_back("1...");
+        if (attempts[1]) {
+            messages.emplace_back("2...");
+            if (attempts[2]) {
+                messages.emplace_back("3...");
+                if (attempts[3]) {
+                    messages.push_back("Gotcha" + pokemon.getName() + " was caught!");
+                }
+                else {
+                    messages.emplace_back("Almost had it!");
+                }
+            }
+            else {
+                messages.push_back("No! " + pokemon.getName() + " escaped!");
+            }
+        }
+        else {
+            messages.push_back(pokemon.getName() + " failed to be caught!");
+        }
+    }
+    else {
+        messages.emplace_back("Not even close!");
+    }
+}
+
 namespace {
     std::jthread init([] -> void {
         const std::scoped_lock<std::mutex> scoped_lock(itemMutex);

@@ -30,10 +30,6 @@ int Samurott::getCatchRate() const {
     return 45;
 }
 
-Pokemon::Id Samurott::getId() const {
-    return Pokemon::Id::SAMUROTT;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

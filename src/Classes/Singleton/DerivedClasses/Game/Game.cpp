@@ -7,9 +7,6 @@
 #include "../Pokedex/Pokedex.h"
 #include "Game.h"
 
-Stopwatch keyDelay;
-bool momentum = false;
-
 Game::Game() {
     // initialize subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
@@ -110,22 +107,7 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    static SDL_Event event;
-    if (SDL_PollEvent(&event) == 1) {
-        switch (event.type) {
-            case SDL_EventType::SDL_QUIT:
-                this->running = false;
-                break;
-            case SDL_EventType::SDL_KEYDOWN:
-                keyDelay.start();
-                break;
-            case SDL_EventType::SDL_KEYUP:
-                keyDelay.stop();
-                break;
-            default:
-                break;
-        }
-    }
+    this->currentState->handleEvents();
 }
 
 void Game::update() {

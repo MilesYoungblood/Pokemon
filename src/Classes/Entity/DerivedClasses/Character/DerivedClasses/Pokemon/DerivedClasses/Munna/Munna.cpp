@@ -30,10 +30,6 @@ int Munna::getCatchRate() const {
     return 190;
 }
 
-Pokemon::Id Munna::getId() const {
-    return Pokemon::Id::MUNNA;
-}
-
 namespace {
     std::jthread init([] -> void {
         const std::lock_guard<std::mutex> lock_guard(pokemonMutex);

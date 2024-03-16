@@ -35,11 +35,11 @@ void Trainer::addPokemon(const char *id) {
     this->party.push_back(std::move(pokemonMap.at(id)()));
 }
 
-void Trainer::addPokemon(std::unique_ptr<Pokemon> toAdd) {
+void Trainer::addPokemon(std::unique_ptr<Pokemon> pokemon) {
     if (this->party.size() == Trainer::MAX_POKEMON) {
         return;
     }
-    this->party.push_back(std::move(toAdd));
+    this->party.push_back(std::move(pokemon));
 }
 
 void Trainer::removePokemon(long long int index) {
@@ -65,10 +65,6 @@ void Trainer::swapPokemon(std::size_t a, std::size_t b) {
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error swapping Pokemon: ") + e.what() + '\n');
     }
-}
-
-void Trainer::clearParty() {
-    this->party.clear();
 }
 
 void Trainer::addItem(const std::string &id, int n) {
@@ -121,6 +117,18 @@ std::vector<std::unique_ptr<Pokemon>>::const_iterator Trainer::end() const {
 
 void Trainer::handleFaint() {
     this->party.erase(this->party.cbegin());
+}
+
+std::vector<std::string> Trainer::winMessage() const {
+    return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
+}
+
+bool Trainer::canFight() const {
+    return not this->party.empty();
+}
+
+bool Trainer::isTrainer() const {
+    return true;
 }
 
 void Trainer::idle() {
@@ -193,18 +201,6 @@ void Trainer::idle() {
             playMusic = true;
         }
     }
-}
-
-std::vector<std::string> Trainer::winMessage() const {
-    return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
-}
-
-bool Trainer::canFight() const {
-    return not this->party.empty();
-}
-
-bool Trainer::isTrainer() const {
-    return true;
 }
 
 void Trainer::interact() {
