@@ -29,15 +29,15 @@ public:
 
     Character(Character &&toMove) noexcept = default;
 
-    Character &operator=(const Character &) = delete;
+    Character &operator=(const Character &) = default;
 
-    Character &operator=(Character &&) noexcept = delete;
+    Character &operator=(Character &&) noexcept = default;
 
     ~Character() override = default;
 
     void setName(const char *newName);
 
-    [[nodiscard]] virtual std::string getName() const;
+    [[nodiscard]] std::string getName() const;
 
     [[nodiscard]] std::string getId() const;
 
@@ -81,6 +81,8 @@ public:
 
 protected:
     Character() = default;
+
+    Character(std::string id, std::string name);
 
     virtual void walk();
 

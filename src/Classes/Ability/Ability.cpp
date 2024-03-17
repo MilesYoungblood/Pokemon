@@ -4,10 +4,6 @@
 
 #include "Ability.h"
 
-std::queue<std::string> Ability::actionMessage(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
-    return {};
-}
-
 bool Ability::isBattle() const {
     return true;
 }

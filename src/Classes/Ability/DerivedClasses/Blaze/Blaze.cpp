@@ -8,6 +8,10 @@ void Blaze::action(Pokemon &attacker, Pokemon &defender) {
     // TODO to be done in move class specifically; make power a field
 }
 
+std::vector<std::string> Blaze::actionMessage(const Pokemon & /*attacker*/, const Pokemon & /*defender*/) const {
+    return {};
+}
+
 int Blaze::getFlag() const {
     return -1;
 }

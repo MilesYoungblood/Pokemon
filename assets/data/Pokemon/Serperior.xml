@@ -1,2 +1,25 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Regal</species>
+        <types>
+            <type>5</type>
+        </types>
+        <abilities>
+            <ability>Overgrowth</ability>
+        </abilities>
+        <height>3.3</height>
+        <weight>63.0</weight>
+        <gender male="87.5"/>
+        <base_stats>
+            <stat id="hp">75</stat>
+            <stat id="attack">75</stat>
+            <stat id="defense">95</stat>
+            <stat id="sp_attack">75</stat>
+            <stat id="sp_defense">95</stat>
+            <stat id="speed">113</stat>
+        </base_stats>
+        <base_level>36</base_level>
+        <catch_rate>45</catch_rate>
+        <dex>3</dex>
+    </data>
 </xml>

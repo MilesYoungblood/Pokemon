@@ -1,14 +1,12 @@
 <xml version="1.0" encoding="UTF-8">
     <data>
-        <dex>6</dex>
-        <name>Emboar</name>
         <species>Mega Fire Pig</species>
         <types>
             <type>2</type>
             <type>7</type>
         </types>
         <abilities>
-            <ability>7</ability>
+            <ability>Blaze</ability>
         </abilities>
         <height>1.6</height>
         <weight>150.0</weight>
@@ -21,6 +19,8 @@
             <stat id="sp_defense">65</stat>
             <stat id="speed">65</stat>
         </base_stats>
+        <base_level>36</base_level>
         <catch_rate>45</catch_rate>
+        <dex>6</dex>
     </data>
 </xml>

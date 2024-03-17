@@ -80,57 +80,6 @@ set(SOURCES
         src/Classes/Entity/Entity.h
 )
 
-set(POKEMON
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Victini/Victini.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Snivy/Snivy.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Servine/Servine.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Serperior/Serperior.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Tepig/Tepig.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pignite/Pignite.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Emboar/Emboar.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Oshawott/Oshawott.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Dewott/Dewott.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Samurott/Samurott.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Patrat/Patrat.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Watchog/Watchog.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Lillipup/Lillipup.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Herdier/Herdier.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Stoutland/Stoutland.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Purrloin/Purrloin.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Liepard/Liepard.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pansage/Pansage.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simisage/Simisage.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Pansear/Pansear.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simisear/Simisear.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Panpour/Panpour.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Simipour/Simipour.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/DerivedClasses/Munna/Munna.h
-)
-
 set(MOVES
         src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp
         src/Classes/Move/DerivedClasses/AirSlash/AirSlash.h
@@ -284,7 +233,6 @@ set(STATES
 
 add_executable(PokemonBattle
         ${SOURCES}
-        ${POKEMON}
         ${MOVES}
         ${ABILITIES}
         ${ITEMS}

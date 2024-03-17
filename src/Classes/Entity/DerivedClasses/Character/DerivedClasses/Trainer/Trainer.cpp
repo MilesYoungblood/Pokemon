@@ -32,10 +32,10 @@ void Trainer::addPokemon(const char *id) {
     if (this->party.size() == Trainer::MAX_POKEMON) {
         return;
     }
-    this->party.push_back(std::move(pokemonMap.at(id)()));
+    this->party.push_back(std::move(Pokemon(id)));
 }
 
-void Trainer::addPokemon(std::unique_ptr<Pokemon> pokemon) {
+void Trainer::addPokemon(Pokemon pokemon) {
     if (this->party.size() == Trainer::MAX_POKEMON) {
         return;
     }
@@ -45,7 +45,7 @@ void Trainer::addPokemon(std::unique_ptr<Pokemon> pokemon) {
 void Trainer::removePokemon(long long int index) {
     try {
         // decrement the faint counter if the Pokémon we're removing is fainted
-        if (this->party.at(index)->isFainted()) {
+        if (this->party.at(index).isFainted()) {
             //--this->numFainted;
         }
 
@@ -58,7 +58,7 @@ void Trainer::removePokemon(long long int index) {
 
 void Trainer::swapPokemon(std::size_t a, std::size_t b) {
     try {
-        std::unique_ptr<Pokemon> copy = std::move(this->party.at(a));
+        Pokemon copy = std::move(this->party.at(a));
         this->party.at(a) = std::move(this->party.at(b));
         this->party.at(b) = std::move(copy);
     }
@@ -73,10 +73,6 @@ void Trainer::addItem(const std::string &id, int n) {
 
 void Trainer::addItem(std::unique_ptr<Item> item) {
     try {
-        if (this->items.at(item->getClass()).size() == Trainer::MAX_ITEMS) {
-            return;
-        }
-
         // if item already exists within our inventory
         if (this->items.at(item->getClass()).contains(item->getName())) {
             this->items.at(item->getClass()).at(item->getName())->add(item->getQuantity());
@@ -92,26 +88,26 @@ void Trainer::addItem(std::unique_ptr<Item> item) {
 
 Pokemon &Trainer::operator[](std::size_t index) {
     try {
-        return *this->party.at(index);
+        return this->party.at(index);
     }
     catch (const std::out_of_range &e) {
         throw std::out_of_range(std::string("Error accessing party: ") + e.what() + '\n');
     }
 }
 
-std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::begin() {
+std::vector<Pokemon>::iterator Trainer::begin() {
     return this->party.begin();
 }
 
-std::vector<std::unique_ptr<Pokemon>>::const_iterator Trainer::begin() const {
+std::vector<Pokemon>::const_iterator Trainer::begin() const {
     return this->party.cbegin();
 }
 
-std::vector<std::unique_ptr<Pokemon>>::iterator Trainer::end() {
+std::vector<Pokemon>::iterator Trainer::end() {
     return this->party.end();
 }
 
-std::vector<std::unique_ptr<Pokemon>>::const_iterator Trainer::end() const {
+std::vector<Pokemon>::const_iterator Trainer::end() const {
     return this->party.cend();
 }
 

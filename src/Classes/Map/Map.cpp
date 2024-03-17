@@ -111,7 +111,7 @@ void Map::parseTsx(const std::string &sourceAttribute) {
     }
 
     this->collision.reserve(tile_count);
-    this->textures.reserve(tile_count);
+    this->tileImages.reserve(tile_count);
 
     tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
     if (gridElement == nullptr) {
@@ -153,13 +153,12 @@ void Map::parseTsx(const std::string &sourceAttribute) {
             return;
         }
 
-        // strip off
-        // unnecessary characters
+        // strip off unnecessary characters
         copy.erase(0, 21);
         copy.erase(copy.size() - 4);
 
-        this->textures.push_back(TextureManager::getInstance().loadTexture("terrain/" + copy + ".png"));
-        if (this->textures.end().base() == nullptr) {
+        this->tileImages.push_back(TextureManager::getInstance().loadTexture("terrain/" + copy + ".png"));
+        if (this->tileImages.end().base() == nullptr) {
             std::clog << "Error loading texture \"" << copy << "\"\n";
             Game::getInstance().terminate();
         }
@@ -192,7 +191,7 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         }
 
         std::istringstream ss(csvData);
-        layer layer(height, std::vector<tile>(width));
+        layer layer(height, std::vector<Map::Tile>(width));
         int value;
         for (int row = 0; row < height; ++row) {
             for (int col = 0; col < width and ss >> value; ++col) {
@@ -391,7 +390,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
             std::terminate();
         }
 
-        std::unique_ptr<Pokemon> pokemon(pokemonMap.at(idAttribute)());
+        Pokemon pokemon(idAttribute);
 
         for (tinyxml2::XMLElement *moveElement = moveSetElement->FirstChildElement("move"); moveElement != nullptr;
              moveElement = moveElement->NextSiblingElement("move")) {
@@ -401,7 +400,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
                 return;
             }
 
-            pokemon->addMove(moveIdAttribute);
+            pokemon.addMove(moveIdAttribute);
         }
 
         trainer->addPokemon(std::move(pokemon));
@@ -480,9 +479,9 @@ Map::Map(const char *name) : name(name), music(name) {
 }
 
 Map::~Map() {
-    for (auto &texture : this->textures) {
-        if (texture != nullptr) {
-            SDL_DestroyTexture(texture);
+    for (auto &tileImage : this->tileImages) {
+        if (tileImage != nullptr) {
+            SDL_DestroyTexture(tileImage);
             if (strlen(SDL_GetError()) > 0) {
                 std::clog << "Unable to destroy tile texture: " << SDL_GetError() << '\n';
                 SDL_ClearError();
@@ -517,9 +516,9 @@ bool Map::isObstructionHere(int x, int y) const {
 }
 
 std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int y) const {
-    for (const ExitPoint &exit_point : this->exitPoints) {
-        if (exit_point.x == x and exit_point.y == y) {
-            return std::make_optional(std::make_tuple(exit_point.newX, exit_point.newY, exit_point.newMap));
+    for (const Map::ExitPoint &exit_point : this->exitPoints) {
+        if (exit_point.mapX == x and exit_point.mapY == y) {
+            return std::make_optional(std::make_tuple(exit_point.newMapX, exit_point.newMapY, exit_point.newMap));
         }
     }
     return std::nullopt;
@@ -657,7 +656,7 @@ void Map::render() const {
                 sdlRect.y = col.screenY;
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and col.id != 0) {
-                    TextureManager::getInstance().draw(this->textures.at(col.id), sdlRect);
+                    TextureManager::getInstance().draw(this->tileImages.at(col.id), sdlRect);
                 }
             }
         }

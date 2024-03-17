@@ -9,7 +9,7 @@
 struct Intimidate : public Ability {
     void action(Pokemon &attacker, Pokemon &defender) override;
 
-    [[nodiscard]] std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender) const override;
+    [[nodiscard]] std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender) const override;
 
     [[nodiscard]] int getFlag() const override;
 

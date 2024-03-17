@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../../../Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h"
+#include "../../../TextureManager/TextureManager.h"
 #include "../../../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "../../State.h"
 
@@ -63,7 +63,7 @@ private:
 
     void preStatus(bool isPlayerFaster);
 
-    void postStatus(bool receiver);
+    void postStatus(bool isPlayerFaster);
 
     void handleTurn(int move);
 

@@ -54,7 +54,7 @@ struct Ability {
 
     virtual void action(Pokemon &attacker, Pokemon &defender) = 0;
 
-    [[nodiscard]] virtual std::queue<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender) const;
+    [[nodiscard]] virtual std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender) const = 0;
 
     [[nodiscard]] virtual int getFlag() const = 0;
 

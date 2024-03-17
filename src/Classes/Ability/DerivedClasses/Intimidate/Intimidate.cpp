@@ -9,8 +9,8 @@ void Intimidate::action(Pokemon & /*attacker*/, Pokemon &defender) {
     defender.lowerStatMod(Pokemon::Stat::ATTACK, 1);
 }
 
-std::queue<std::string> Intimidate::actionMessage(const Pokemon & /*attacker*/, const Pokemon &defender) const {
-    return std::queue<std::string>({ defender.getName() + "'s attack was lowered!" });
+std::vector<std::string> Intimidate::actionMessage(const Pokemon & /*attacker*/, const Pokemon &defender) const {
+    return std::vector<std::string>({ defender.getName() + "'s attack was lowered!" });
 }
 
 int Intimidate::getFlag() const {

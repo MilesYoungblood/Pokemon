@@ -127,11 +127,13 @@ void Battle::initEngage() {
 }
 
 std::string statusMessage(const Pokemon &pokemon) {
+    auto damageMessage = [&pokemon](const char *status) -> std::string {
+        return pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's " + status + '!';
+    };
+
     switch (pokemon.getStatus()) {
         case StatusCondition::BURN:
-            return pokemon.getName() + " took " +
-                         std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) +
-                         " damage from it's burn!";
+            return damageMessage("burn");
 
         case StatusCondition::PARALYSIS:
             return pokemon.getName() + " is paralyzed! It can't move!";
@@ -140,15 +142,13 @@ std::string statusMessage(const Pokemon &pokemon) {
             return pokemon.getName() + " is frozen solid!";
 
         case StatusCondition::POISON:
-            return pokemon.getName() + " took " +
-                         std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) +
-                         " damage from it's poisoning!";
+            return damageMessage("poisoning");
 
         case StatusCondition::SLEEP:
             return pokemon.getName() + " is fast asleep!";
 
         default:
-            throw std::runtime_error("Unexpected error: function inflictedMessage");
+            throw std::runtime_error("Unexpected error: function statusMessage");
     }
 }
 
@@ -169,7 +169,7 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
                     defender->handleFaint();
                     if (not defender->canFight()) {
                         for (auto &pokemon : Player::getPlayer()) {
-                            pokemon->initStatMods();
+                            pokemon.initStatMods();
                         }
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                                 attacker->winMessage(),
@@ -242,7 +242,7 @@ void Battle::postStatus(bool isPlayerFaster) {
 
             if (not receiver->canFight()) {
                 for (auto &pokemon : Player::getPlayer()) {
-                    pokemon->initStatMods();
+                    pokemon.initStatMods();
                 }
                 GraphicsEngine::getInstance().getGraphic<TextBox>().push(observer->winMessage());
                 this->states.pop_back();
@@ -429,9 +429,9 @@ void Battle::init(Trainer *trainer) {
     auto loadMap = [](std::unordered_map<std::string, SDL_Texture *> &map, const Trainer &trainer, bool front) -> bool {
         for (const auto &pokemon : trainer) {
             const char *side = front ? "Front" : "Back";
-            map[pokemon->getName()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon->getName() + '/' + pokemon->getName() + side + ".png");
-            if (map[pokemon->getName()] == nullptr) {
-                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon->getName() << front << ".png\"\n";
+            map[pokemon.getName()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon.getName() + '/' + pokemon.getName() + side + ".png");
+            if (map[pokemon.getName()] == nullptr) {
+                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon.getName() << front << ".png\"\n";
                 Game::getInstance().terminate();
                 return false;
             }

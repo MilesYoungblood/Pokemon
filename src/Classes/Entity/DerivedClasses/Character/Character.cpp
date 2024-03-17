@@ -8,6 +8,8 @@
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Character.h"
 
+#include <utility>
+
 Character::Character(const char *id, int x, int y, Direction direction)
         : Entity(x, y), id(id), currentDirection(direction) {}
 
@@ -235,6 +237,8 @@ bool Character::canFight() const {
 bool Character::isTrainer() const {
     return false;
 }
+
+Character::Character(std::string id, std::string name) : name(std::move(name)), id(std::move(id)) {}
 
 void Character::walk() {
     this->pixelCounter += Character::WALK_SPEED;

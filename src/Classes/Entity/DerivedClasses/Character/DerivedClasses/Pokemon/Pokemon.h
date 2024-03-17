@@ -11,10 +11,6 @@
 
 class Pokemon : public Character {
 public:
-    enum class Gender : Uint8 {
-        MALE, FEMALE, GENDERLESS
-    };
-
     enum class Stat : Uint8 {
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
     };
@@ -23,17 +19,18 @@ public:
         MAX_NUM_MOVES = 4
     };
 
-    Pokemon(Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
+    explicit Pokemon(const std::string &id);
 
-    Pokemon(Ability::Id ability, double pMale, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
+    Pokemon(const std::string &id, const std::string &name, std::string gender, std::string ability, int level, int hp,
+            int attack, int defense, int spAttack, int spDefense, int speed);
 
     Pokemon(const Pokemon &) = delete;
 
     Pokemon(Pokemon &&) noexcept = default;
 
-    Pokemon &operator=(const Pokemon &) = delete;
+    Pokemon &operator=(const Pokemon &) = default;
 
-    Pokemon &operator=(Pokemon &&) noexcept = delete;
+    Pokemon &operator=(Pokemon &&) noexcept = default;
 
     ~Pokemon() override = default;
 
@@ -42,8 +39,6 @@ public:
     void addMove(const std::string &id);
 
     void deleteMove(int index);
-
-    void tryActivateAbility(int battleFlag, Pokemon &opponent, bool isAttacking);
 
     void restoreHp(int amount);
 
@@ -71,33 +66,21 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] std::string getName() const override = 0;
+    [[nodiscard]] std::string getGender() const;
 
-    void setNickName(const char *nickname);
+    [[nodiscard]] std::string getAbility() const;
 
-    [[nodiscard]] std::string getNickName() const;
+    [[nodiscard]] std::string getSpecies() const;
 
-    virtual std::string getSpecies() const = 0;
+    [[nodiscard]] Type getType1() const;
 
-    void setGender(Pokemon::Gender newGender);
+    [[nodiscard]] Type getType2() const;
 
-    Pokemon::Gender getGender() const;
+    [[nodiscard]] double getHeight() const;
 
-    void setAbility(std::unique_ptr<Ability> newAbility);
+    [[nodiscard]] double getWeight() const;
 
-    Ability &getAbility();
-
-    const Ability &getAbility() const;
-
-    virtual Type getType1() const = 0;
-
-    virtual Type getType2() const;
-
-    virtual double getHeight() const = 0;
-
-    virtual double getWeight() const = 0;
-
-    virtual int getCatchRate() const = 0;
+    [[nodiscard]] int getCatchRate() const;
 
     [[nodiscard]] bool isFainted() const;
 
@@ -119,31 +102,26 @@ public:
 
     std::vector<std::unique_ptr<Move>>::iterator begin();
 
-    std::vector<std::unique_ptr<Move>>::const_iterator begin() const;
+    [[nodiscard]] std::vector<std::unique_ptr<Move>>::const_iterator begin() const;
 
     std::vector<std::unique_ptr<Move>>::iterator end();
 
-    std::vector<std::unique_ptr<Move>>::const_iterator end() const;
+    [[nodiscard]] std::vector<std::unique_ptr<Move>>::const_iterator end() const;
 
 private:
-    Pokemon(Pokemon::Gender gender, Ability::Id ability, int level, int hp, double attack, double defense, double spAttack, double spDefense, double speed);
-
     int maxHp;
     int currentHp;
 
-    std::unordered_map<Pokemon::Stat, double> baseStats;
-    std::unordered_map<Pokemon::Stat, int> statModifiers;
+    std::array<int, 5> baseStats;
+    std::array<int, 7> statModifiers;
 
     int level;
 
     std::vector<std::unique_ptr<Move>> moveSet;
-    std::unique_ptr<Ability> ability;
+    std::string ability;
 
-    Pokemon::Gender gender;
+    std::string gender;
     StatusCondition status{ StatusCondition::NONE };
 
-    double getStat(Pokemon::Stat stat) const;
+    [[nodiscard]] double getStat(Pokemon::Stat stat) const;
 };
-
-inline std::mutex pokemonMutex;
-inline std::unordered_map<std::string, std::unique_ptr<Pokemon>(*)()> pokemonMap;

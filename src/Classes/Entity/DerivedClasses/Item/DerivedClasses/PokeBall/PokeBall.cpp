@@ -100,6 +100,8 @@ std::vector<std::string> PokeBall::catchPokemonMessage(const Pokemon &pokemon, c
     else {
         messages.emplace_back("Not even close!");
     }
+
+    return messages;
 }
 
 namespace {

@@ -1,2 +1,25 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Formidable</species>
+        <types>
+            <type>3</type>
+        </types>
+        <abilities>
+            <ability>Torrent</ability>
+        </abilities>
+        <height>1.5</height>
+        <weight>94.6</weight>
+        <gender male="87.5"/>
+        <base_stats>
+            <stat id="hp">95</stat>
+            <stat id="attack">100</stat>
+            <stat id="defense">85</stat>
+            <stat id="sp_attack">108</stat>
+            <stat id="sp_defense">70</stat>
+            <stat id="speed">70</stat>
+        </base_stats>
+        <base_level>36</base_level>
+        <catch_rate>45</catch_rate>
+        <dex>9</dex>
+    </data>
 </xml>

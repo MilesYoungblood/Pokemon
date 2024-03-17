@@ -13,19 +13,20 @@ private:
         NUM_POKEMON = 156
     };
     template<typename T>
-    using set = std::array<T, NUM_POKEMON>;
+    using set = std::unordered_map<std::string, T>;
 
-    set<std::string> names;
     set<std::string> species;
     set<Type> type1Array{};
     set<Type> type2Array{};
-    set<Ability::Id> ability1Array{};
-    set<Ability::Id> ability2Array{};
+    set<std::string> ability1Array{};
+    set<std::string> ability2Array{};
     set<double> heights{};
     set<double> weights{};
     set<double> genderRatios{};
     set<std::array<int, 6>> baseStats{};
+    set<int> baseLevels{};
     set<int> catchRates{};
+    set<int> dexNums{};
 
 public:
     Pokedex();
@@ -39,4 +40,24 @@ public:
     Pokedex &operator=(Pokedex &&) noexcept = default;
 
     ~Pokedex() override = default;
+
+    std::string getSpecies(const std::string &id) const;
+
+    Type getType1(const std::string &id) const;
+
+    Type getType2(const std::string &id) const;
+
+    double getHeight(const std::string &id) const;
+
+    double getWeight(const std::string &id) const;
+
+    double getGenderRatio(const std::string &id) const;
+
+    int getBaseStat(const std::string &id, int stat) const;
+
+    int getBaseLevel(const std::string &id) const;
+
+    int getCatchRate(const std::string &id) const;
+
+    int getDexNum(const std::string &id) const;
 };

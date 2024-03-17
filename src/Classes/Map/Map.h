@@ -26,14 +26,6 @@ public:
         TILE_SIZE = 80
     };
 
-    struct ExitPoint {
-        int x;                                // x-coordinate of the exit spot
-        int y;                                // y-coordinate of the exit spot
-        int newX;                             // the player's new x-coordinates
-        int newY;                             // the player's new y-coordinates
-        std::string newMap;                   // map that this exit point leads to
-    };
-
     explicit Map(const char *name);
 
     Map(const Map &) = delete;
@@ -112,23 +104,31 @@ private:
     std::string name;
     std::string music;
 
-    using tile = struct {
+    struct Tile {
         int id;
         int screenX;
         int screenY;
     };
 
-    using layer = std::vector<std::vector<tile>>;
-    std::vector<layer> layout;                                  // The map is vector of layers
+    using layer = std::vector<std::vector<Map::Tile>>;          // a 2D matrix of tiles
+    std::vector<Map::layer> layout;                             // The map is vector of layers
 
     std::vector<bool> collision{ false };                       // collision values for each tile id
-    std::vector<SDL_Texture *> textures{ nullptr };             // texture for each tile id
+    std::vector<SDL_Texture *> tileImages{ nullptr };           // texture for each tile id
 
     std::vector<std::unique_ptr<Entity>> entities;              // the set of entities in this map
     std::vector<std::thread> workers;                           // help speed up updating tiles and entities
 
-    using spriteSet = std::array<Sprite::Sheet, 4>;
+    using spriteSet = std::array<Sprite::Sheet, 4>;             // a sprite sheet per cardinal direction
     std::unordered_map<std::string, spriteSet> entitySprites;   // mapping of entity sprites by id
+
+    struct ExitPoint {
+        int mapX;                                               // x-coordinate of the exit spot
+        int mapY;                                               // y-coordinate of the exit spot
+        int newMapX;                                            // the player's new x-coordinates
+        int newMapY;                                            // the player's new y-coordinates
+        std::string newMap;                                     // map that this exit point leads to
+    };
 
     std::vector<Map::ExitPoint> exitPoints;                     // the set of exit points in the map
 

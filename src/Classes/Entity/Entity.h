@@ -23,9 +23,9 @@ public:
 
     Entity(Entity &&) noexcept = default;
 
-    Entity &operator=(const Entity &) = delete;
+    Entity &operator=(const Entity &) = default;
 
-    Entity &operator=(Entity &&) noexcept = delete;
+    Entity &operator=(Entity &&) noexcept = default;
 
     virtual ~Entity() = default;
 

@@ -74,8 +74,6 @@ Game::Game() {
     // instantiate KeyManager
     KeyManager::getInstance();
 
-    Pokedex::getInstance();
-
     this->running = true;
 }
 
