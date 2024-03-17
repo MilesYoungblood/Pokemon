@@ -400,7 +400,7 @@ void Battle::updateTOut() {
         GraphicsEngine::getInstance().clear();
 
         if (Mix_FadeOutMusic(2000) == 0) {
-            std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap()->getMusic()
+            std::clog << "Error fading out \"" << State::getInstance<Overworld>().getCurrentMap().getMusic()
                       << "\": " << SDL_GetError() << '\n';
             SDL_ClearError();
             Game::getInstance().terminate();
@@ -408,7 +408,7 @@ void Battle::updateTOut() {
         }
 
         Mix_HookMusicFinished([] -> void {
-            Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
+            Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap().getMusic());
         });
     }
 }

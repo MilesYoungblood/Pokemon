@@ -20,7 +20,7 @@ public:
 
     void addToPc(std::unique_ptr<Pokemon> toAdd);
 
-    [[nodiscard]] bool canMoveForward(gsl::owner<Map *> map) const override;
+    [[nodiscard]] bool canMoveForward(const Map &map) const override;
 
     void handleFaint() override;
 

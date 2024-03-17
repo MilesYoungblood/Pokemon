@@ -26,16 +26,16 @@ void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
     }
 }
 
-bool Player::canMoveForward(gsl::owner<Map *> map) const {
+bool Player::canMoveForward(const Map &map) const {
     switch (this->getDirection()) {
         case Direction::UP:
-            return not map->isObstructionHere(this->getMapX(), this->getMapY() - 1);
+            return not map.isObstructionHere(this->getMapX(), this->getMapY() - 1);
         case Direction::RIGHT:
-            return not map->isObstructionHere(this->getMapX() + 1, this->getMapY());
+            return not map.isObstructionHere(this->getMapX() + 1, this->getMapY());
         case Direction::DOWN:
-            return not map->isObstructionHere(this->getMapX(), this->getMapY() + 1);
+            return not map.isObstructionHere(this->getMapX(), this->getMapY() + 1);
         case Direction::LEFT:
-            return not map->isObstructionHere(this->getMapX() - 1, this->getMapY());
+            return not map.isObstructionHere(this->getMapX() - 1, this->getMapY());
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
@@ -47,8 +47,8 @@ void Player::handleFaint() {
 
 void Player::walk() {
     this->incPixelCounter(Character::WALK_SPEED);
-    ::State::getInstance<Overworld>().getCurrentMap()->shift(oppositeDirection(this->getDirection()),
-                                                             Character::WALK_SPEED);
+    ::State::getInstance<Overworld>().getCurrentMap().shift(oppositeDirection(this->getDirection()),
+                                                            Character::WALK_SPEED);
     if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
     }
@@ -56,8 +56,8 @@ void Player::walk() {
         this->setState(Character::State::IDLE);
         this->resetPixelCounter();
 
-        const auto map_data = ::State::getInstance<Overworld>().getCurrentMap()->isExitPointHere(this->getMapX(),
-                                                                                                 this->getMapY());
+        const auto map_data = ::State::getInstance<Overworld>().getCurrentMap().isExitPointHere(this->getMapX(),
+                                                                                                this->getMapY());
         if (map_data.has_value()) {
             ::State::getInstance<Overworld>().changeMap(map_data.value());
         }
@@ -87,7 +87,7 @@ void Player::idle() {
         if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
             GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
             this->setState(Character::State::IDLE);
-            for (auto &entity : *::State::getInstance<Overworld>().getCurrentMap()) {
+            for (auto &entity : ::State::getInstance<Overworld>().getCurrentMap()) {
                 auto *character = dynamic_cast<Character *>(entity.get());
                 if (character != nullptr) {
                     character->setState(characterStates.at(character));
@@ -102,7 +102,7 @@ void Player::idle() {
                     std::vector<std::string>({ "Pokemon", "Pokedex", "Bag", "Trainer", "Save", "Options" })
             );
             this->setState(Character::State::IMMOBILE);
-            for (auto &entity : *::State::getInstance<Overworld>().getCurrentMap()) {
+            for (auto &entity : ::State::getInstance<Overworld>().getCurrentMap()) {
                 auto *character = dynamic_cast<Character *>(entity.get());
                 if (character != nullptr) {
                     characterStates[character] = character->getState();

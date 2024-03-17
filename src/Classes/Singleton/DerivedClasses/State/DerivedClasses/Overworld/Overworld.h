@@ -13,7 +13,7 @@ inline bool momentum;
 
 class Overworld : public State {
 private:
-    gsl::owner<Map *> currentMap{ nullptr };
+    std::unique_ptr<Map> currentMap;
 
     friend class State;
 
@@ -28,7 +28,7 @@ public:
 
     Overworld &operator=(Overworld &&) noexcept = delete;
 
-    ~Overworld() override;
+    ~Overworld() override = default;
 
     void init();
 
@@ -42,7 +42,7 @@ public:
 
     void changeMap(const std::tuple<int, int, std::string> &data);
 
-    [[nodiscard]] gsl::owner<Map *> getCurrentMap() const;
+    [[nodiscard]] Map &getCurrentMap() const;
 
     static void createTextBox(const std::string &message, const std::function<void()> &function = nullptr);
 

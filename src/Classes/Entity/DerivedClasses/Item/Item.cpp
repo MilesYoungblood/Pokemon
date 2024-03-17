@@ -63,7 +63,7 @@ void Item::interact() {
 
         // add the item to the Player's inventory and remove it from the map
         Player::getPlayer().addItem(this->getName(), this->getQuantity());
-        State::getInstance<Overworld>().getCurrentMap()->removeEntity(this);
+        State::getInstance<Overworld>().getCurrentMap().removeEntity(this);
     }
 }
 

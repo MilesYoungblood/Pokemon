@@ -9,12 +9,8 @@
 #include "../../../Camera/Camera.h"
 #include "Overworld.h"
 
-Overworld::~Overworld() {
-    delete this->currentMap;
-}
-
 void Overworld::init() {
-    this->currentMap = new Map("Nuvema Town");
+    this->currentMap = std::make_unique<Map>("Nuvema Town");
 
     Player::getPlayer().setName("Hilbert");
 
@@ -73,16 +69,15 @@ void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
     });
 
     // move the new map into the current map variable
-    delete this->currentMap;
-    this->currentMap = new Map(std::get<2>(data).c_str());
+    this->currentMap = std::make_unique<Map>(std::get<2>(data).c_str());
 
     Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
 
-    Camera::getInstance().lockOnPlayer(this->currentMap);
+    Camera::getInstance().lockOnPlayer(*this->currentMap);
 }
 
-gsl::owner<Map *> Overworld::getCurrentMap() const {
-    return this->currentMap;
+Map &Overworld::getCurrentMap() const {
+    return *this->currentMap;
 }
 
 void Overworld::createTextBox(const std::string &message, const std::function<void()> &function) {
@@ -161,7 +156,7 @@ void Overworld::handleMove(SDL_Scancode scancode) {
             keyDelay.stop();
             keyDelay.reset();
 
-            if (Player::getPlayer().canMoveForward(this->currentMap)) {
+            if (Player::getPlayer().canMoveForward(*this->currentMap)) {
                 Player::getPlayer().moveForward();
                 Player::getPlayer().setState(Character::State::WALKING);
             }

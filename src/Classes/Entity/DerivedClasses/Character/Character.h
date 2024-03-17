@@ -61,7 +61,7 @@ public:
 
     [[nodiscard]] Character::State getState() const;
 
-    [[nodiscard]] virtual bool canMoveForward(gsl::owner<Map *> map) const;
+    [[nodiscard]] virtual bool canMoveForward(const Map &map) const;
 
     bool hasVisionOf(const Entity *entity) const;
 

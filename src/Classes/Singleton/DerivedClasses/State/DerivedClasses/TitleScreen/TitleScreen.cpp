@@ -40,7 +40,7 @@ void TitleScreen::update() {
 
         Camera::getInstance().lockOnPlayer(State::getInstance<Overworld>().getCurrentMap());
 
-        Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap()->getMusic());
+        Mixer::getInstance().playMusic(State::getInstance<Overworld>().getCurrentMap().getMusic());
 
         Game::getInstance().setState(State::Id::OVERWORLD);
         Game::getInstance().setRenderColor(Constants::Color::BLACK);

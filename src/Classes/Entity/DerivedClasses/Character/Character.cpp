@@ -104,16 +104,16 @@ Character::State Character::getState() const {
     return this->currentState;
 }
 
-bool Character::canMoveForward(gsl::owner<Map *> map) const {
+bool Character::canMoveForward(const Map &map) const {
     switch (this->currentDirection) {
         case Direction::UP:
-            return not map->isObstructionHere(this->getMapX(), this->getMapY() - 1) and map->isExitPointHere(this->getMapX(), this->getMapY() - 1) == std::nullopt;
+            return not map.isObstructionHere(this->getMapX(), this->getMapY() - 1) and map.isExitPointHere(this->getMapX(), this->getMapY() - 1) == std::nullopt;
         case Direction::RIGHT:
-            return not map->isObstructionHere(this->getMapX() + 1, this->getMapY()) and map->isExitPointHere(this->getMapX() + 1, this->getMapY()) == std::nullopt;
+            return not map.isObstructionHere(this->getMapX() + 1, this->getMapY()) and map.isExitPointHere(this->getMapX() + 1, this->getMapY()) == std::nullopt;
         case Direction::DOWN:
-            return not map->isObstructionHere(this->getMapX(), this->getMapY() + 1) and map->isExitPointHere(this->getMapX(), this->getMapY() + 1) == std::nullopt;
+            return not map.isObstructionHere(this->getMapX(), this->getMapY() + 1) and map.isExitPointHere(this->getMapX(), this->getMapY() + 1) == std::nullopt;
         case Direction::LEFT:
-            return not map->isObstructionHere(this->getMapX() - 1, this->getMapY()) and map->isExitPointHere(this->getMapX() - 1, this->getMapY()) == std::nullopt;
+            return not map.isObstructionHere(this->getMapX() - 1, this->getMapY()) and map.isExitPointHere(this->getMapX() - 1, this->getMapY()) == std::nullopt;
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
@@ -194,11 +194,11 @@ void Character::interact() {
 void Character::updateAnimation() {
     ++this->sprite.currentCol;
 
-    if (this->sprite.currentCol == ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).numCols) {
+    if (this->sprite.currentCol == ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numCols) {
         this->sprite.currentCol = 0;
 
         ++this->sprite.currentRow;
-        if (this->sprite.currentRow == ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).numRows) {
+        if (this->sprite.currentRow == ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numRows) {
             this->sprite.currentRow = 0;
         }
     }
@@ -223,7 +223,7 @@ void Character::update() {
 
 void Character::render() const {
     TextureManager::getInstance().drawFrame(
-            ::State::getInstance<Overworld>().getCurrentMap()->getSpriteSheet(this->id, this->currentDirection).sprite,
+            ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).sprite,
             SDL_Rect(this->getScreenX(), this->getScreenY(), Map::TILE_SIZE, Map::TILE_SIZE),
             this->sprite.currentCol,
             this->sprite.currentRow
