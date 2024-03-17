@@ -4,10 +4,6 @@
 
 #pragma once
 
-#ifdef SYNCHRONIZE
-#undef SYNCHRONIZE
-#endif
-
 class [[maybe_unused]] Sort {
 private:
     template<typename Comparable, std::size_t size>

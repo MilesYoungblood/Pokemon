@@ -9,9 +9,6 @@
 
 class Pokedex : public Singleton<Pokedex> {
 private:
-    enum : Uint8 {
-        NUM_POKEMON = 156
-    };
     template<typename T>
     using set = std::unordered_map<std::string, T>;
 

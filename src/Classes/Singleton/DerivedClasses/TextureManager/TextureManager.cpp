@@ -14,7 +14,7 @@ TextureManager::~TextureManager() {
     }
 }
 
-void TextureManager::init(SDL_Renderer *renderer) {
+bool TextureManager::init(SDL_Renderer *renderer) {
     // only allow this function to be called once per instantiation of TextureManager object
     if (not this->isInitialized) {
         this->textureRenderer = renderer;
@@ -23,11 +23,13 @@ void TextureManager::init(SDL_Renderer *renderer) {
         if (this->font == nullptr) {
             std::clog << "Error creating font: " << SDL_GetError() << '\n';
             SDL_ClearError();
-            std::terminate();
+            return false;
         }
 
         this->isInitialized = true;
+        return true;
     }
+    return false;
 }
 
 void TextureManager::clean() {

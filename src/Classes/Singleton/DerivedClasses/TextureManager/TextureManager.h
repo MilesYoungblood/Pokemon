@@ -20,7 +20,9 @@ private:
     TextureManager() = default;
 
 public:
-    static const int FONT_SIZE{ 20 };
+    enum : Uint8 {
+        FONT_SIZE = 20
+    };
 
     TextureManager(const TextureManager &) = default;
 
@@ -34,7 +36,8 @@ public:
 
     /// \brief initializes the class
     /// \param renderer the renderer of the Game class
-    void init(SDL_Renderer *renderer);
+    /// \return true upon successful initialization and false otherwise
+    bool init(SDL_Renderer *renderer);
 
     /// \brief destructs the class
     void clean();
