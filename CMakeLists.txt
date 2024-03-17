@@ -62,8 +62,6 @@ set(SOURCES
         src/pch.h
         src/Constants/constants.h
         src/Constants/constants.cpp
-        src/Classes/Ability/Ability.cpp
-        src/Classes/Ability/Ability.h
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
         src/Classes/Singleton/Singleton.h
@@ -113,13 +111,6 @@ set(MOVES
         src/Classes/Move/DerivedClasses/Thunder/Thunder.h
         src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp
         src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.h
-)
-
-set(ABILITIES
-        src/Classes/Ability/DerivedClasses/Blaze/Blaze.cpp
-        src/Classes/Ability/DerivedClasses/Blaze/Blaze.h
-        src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.cpp
-        src/Classes/Ability/DerivedClasses/Intimidate/Intimidate.h
 )
 
 set(RESTORE_ITEMS
@@ -234,7 +225,6 @@ set(STATES
 add_executable(PokemonBattle
         ${SOURCES}
         ${MOVES}
-        ${ABILITIES}
         ${ITEMS}
         ${GRAPHICS}
         ${STATES}

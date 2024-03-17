@@ -6,7 +6,6 @@
 
 #include "../../Character.h"
 #include "../../../../../Move/Move.h"
-#include "../../../../../Ability/Ability.h"
 #include "../../../../../../Enums/StatusCondition/StatusCondition.h"
 
 class Pokemon : public Character {
