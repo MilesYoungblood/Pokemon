@@ -28,10 +28,15 @@ void Button::render() const {
     int width;
     int height;
     TTF_SizeUTF8(TextureManager::getInstance().getFont(), this->text.c_str(), &width, &height);
+
+    width = std::min(width, this->getW());
+    height = std::min(height, this->getH());
     TextureManager::getInstance().drawBorderedText(
             this->text,
-            this->getDest().x + this->getDest().w / 2 - width / 2,
-            this->getDest().y + this->getDest().h / 2 - height / 2,
+            this->getX() + this->getW() / 2 - width / 2,
+            this->getY() + this->getH() / 2 - height / 2,
+            std::make_optional<int>(this->getW()),
+            std::make_optional<int>(this->getH()),
             2,
             Constants::Color::WHITE,
             Constants::Color::BLACK

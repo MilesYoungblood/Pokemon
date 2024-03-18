@@ -54,7 +54,7 @@ std::vector<std::string> VoltTackle::actionMessage(const Pokemon &attacker, cons
                 messages.push_back(defender.getName() + " was paralyzed!");
             }
             messages.push_back(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 3.0))
-                               + " damage!");
+                               + " damage from recoil!");
 
             if (attacker.isFainted()) {
                 messages.push_back(attacker.getName() + " fainted!");

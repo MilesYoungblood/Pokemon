@@ -146,10 +146,11 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
 }
 
 double Move::checkType(const Pokemon &pokemon) const {
-    static const int num_types = 17;
+    const int num_types = 17;
 
-    static const std::array<std::array<double, num_types>, num_types> type_chart{
-            {
+    // x-axis is defender, y-axis is attacker
+    const std::array<std::array<double, num_types>, num_types> type_chart{
+            {       // normal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, ..., steel
                     { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5 }, // normal
                     { 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0 }, // fire
                     { 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 1.0, 1.0, 2.0, 1.0, 1.0, 1.0, 2.0, 1.0, 0.5, 1.0, 1.0 }, // water
@@ -170,6 +171,7 @@ double Move::checkType(const Pokemon &pokemon) const {
             }
     };
 
+    // -1 because Type::NONE is 0 rather than Type::NORMAL
     const int move_type = static_cast<int>(this->getType()) - 1;
     const double type_1 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType1()) - 1);
 

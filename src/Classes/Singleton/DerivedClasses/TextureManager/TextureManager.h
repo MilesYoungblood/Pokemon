@@ -107,7 +107,7 @@ public:
     /// \param pt size of the border
     /// \param fg text color
     /// \param bg border color
-    void drawBorderedText(std::string_view text, int x, int y, int pt, SDL_Color fg, SDL_Color bg);
+    void drawBorderedText(std::string_view text, int x, int y, std::optional<int> maxW, std::optional<int> maxH, int pt, SDL_Color fg, SDL_Color bg);
 
     /// \brief returns the class's font.
     /// \return returns a pointer to the class's font.

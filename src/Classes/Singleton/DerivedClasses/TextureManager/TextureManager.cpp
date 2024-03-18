@@ -168,7 +168,7 @@ void TextureManager::drawBorderedText(const char *text, int x, int y, int pt, SD
     SDL_DestroyTexture(textTexture);
 }
 
-void TextureManager::drawBorderedText(std::string_view text, int x, int y, int pt, SDL_Color fg, SDL_Color bg) {
+void TextureManager::drawBorderedText(std::string_view text, int x, int y, std::optional<int> maxW, std::optional<int> maxH, int pt, SDL_Color fg, SDL_Color bg) {
     SDL_Surface *textSurface = TTF_RenderUTF8_Solid(this->font, text.data(), fg);
     if (textSurface == nullptr) {
         std::clog << "Error loading surface: " << SDL_GetError() << '\n';
@@ -187,6 +187,12 @@ void TextureManager::drawBorderedText(std::string_view text, int x, int y, int p
 
     // Render text with outline by rendering text multiple times with slight offsets
     SDL_Rect destRect(x, y, textSurface->w, textSurface->h);
+    if (maxW.has_value()) {
+        destRect.w = std::min(destRect.w, maxW.value());
+    }
+    if (maxH.has_value()) {
+        destRect.h = std::min(destRect.h, maxH.value());
+    }
 
     // Draw the outline first
     SDL_SetTextureColorMod(textTexture, bg.r, bg.g, bg.b);

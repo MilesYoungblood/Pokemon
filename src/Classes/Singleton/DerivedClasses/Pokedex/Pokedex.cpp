@@ -74,6 +74,9 @@ Pokedex::Pokedex() {
 
             this->type2Array[name] = Type(type2);
         }
+        else {
+            this->type2Array[name] = Type::NONE;
+        }
 
         // Abilities
 

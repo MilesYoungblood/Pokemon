@@ -41,7 +41,7 @@ std::vector<std::string> HeadSmash::actionMessage(const Pokemon &attacker, const
             messages.emplace_back("A critical hit!");
         }
         messages.push_back(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 2.0)) +
-                           " damage!");
+                           " damage from recoil!");
 
         if (attacker.isFainted()) {
             messages.push_back(attacker.getName() + " fainted!");
