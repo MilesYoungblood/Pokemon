@@ -89,7 +89,23 @@ Direction Character::getDirection() const {
 
 // makes this face the entity
 void Character::face(const Character *entity) {
-    this->setDirection(oppositeDirection(entity->getDirection()));
+    switch (entity->currentDirection) {
+        case Direction::UP:
+            this->currentDirection = Direction::DOWN;
+            break;
+        case Direction::DOWN:
+            this->currentDirection = Direction::UP;
+            break;
+        case Direction::LEFT:
+            this->currentDirection = Direction::RIGHT;
+            break;
+        case Direction::RIGHT:
+            this->currentDirection = Direction::LEFT;
+            break;
+        default:
+            std::clog << "Invalid direction " << entity->currentDirection << '\n';
+            Game::getInstance().terminate();
+    }
 }
 
 bool Character::isFacing(Direction direction) const {

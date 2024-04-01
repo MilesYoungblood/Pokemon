@@ -59,8 +59,7 @@ public:
     template<typename G>
     G &getGraphic(std::size_t index = 0) {
         try {
-            Graphic *ptr = this->graphics.at(typeid(G).hash_code()).at(index).get();
-            return *dynamic_cast<G *>(ptr);
+            return *dynamic_cast<G *>(this->graphics.at(typeid(G).hash_code()).at(index).get());
         }
         catch (const std::out_of_range &e) {
             throw std::out_of_range(std::string("Error retrieving graphic: ") + e.what() + '\n');

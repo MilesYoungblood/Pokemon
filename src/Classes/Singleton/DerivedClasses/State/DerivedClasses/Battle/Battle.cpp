@@ -32,9 +32,6 @@ void delay() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 }
 
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "LoopDoesntUseConditionVariableInspection"
-
 void Battle::initMain() {
     KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
     if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
@@ -54,6 +51,24 @@ void Battle::initMain() {
                 cv.notify_one();
             }
     );
+
+    if (not GraphicsEngine::getInstance().hasAny<Panel>()) {
+        GraphicsEngine::getInstance().addGraphic<Panel>(
+                SDL_Rect(
+                        Game::WINDOW_WIDTH - (HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10) - HALF_TILE,
+                        Game::WINDOW_HEIGHT - DOUBLE_TILE,
+                        HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10,
+                        DOUBLE_TILE - HALF_TILE
+                ),
+                Constants::Color::GRAY,
+                RECTANGLE.h / (TENTH_TILE * 3),
+                2,
+                2,
+                Game::WINDOW_WIDTH / 4 - HALF_TILE,
+                HALF_TILE,
+                BORDER_SIZE
+        );
+    }
 
     std::thread thread([this] -> void {
         std::unique_lock<std::mutex> uniqueLock(mutex);
@@ -76,7 +91,9 @@ void Battle::initMain() {
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
                 Constants::Color::GREEN,
                 "Pokemon",
-                nullptr
+                [this] -> void {
+                    this->changeState(Battle::BattleState::SELECT_POKEMON, false);
+                }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
                 Constants::Color::BLUE,
@@ -88,8 +105,6 @@ void Battle::initMain() {
     });
     thread.detach();
 }
-
-#pragma clang diagnostic pop
 
 void Battle::initFight() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
@@ -115,6 +130,86 @@ void Battle::initFight() {
                 }
         );
     }
+}
+
+void Battle::initPokemon() {
+    GraphicsEngine::getInstance().getGraphic<Panel>().clear();
+
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+
+    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            "Select a Pokemon",
+            [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+    );
+
+    std::vector<std::pair<std::string, std::function<void()>>> pairs;
+    int i = 0;
+    for (auto &pokemon : Player::getPlayer()) {
+        pairs.emplace_back(pokemon.getName(), [this, i] -> void {
+            if (i == 0) {
+                KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+
+                GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
+                GraphicsEngine::getInstance().addGraphic<Panel>(
+                        SDL_Rect(
+                                Game::WINDOW_WIDTH - (HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10) - HALF_TILE,
+                                Game::WINDOW_HEIGHT - DOUBLE_TILE,
+                                HALF_WINDOW_HEIGHT + Game::WINDOW_HEIGHT / 10,
+                                DOUBLE_TILE - HALF_TILE
+                        ),
+                        Constants::Color::GRAY,
+                        RECTANGLE.h / (TENTH_TILE * 3),
+                        2,
+                        2,
+                        Game::WINDOW_WIDTH / 4 - HALF_TILE,
+                        HALF_TILE,
+                        BORDER_SIZE
+                );
+
+                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+                GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                        Player::getPlayer()[0].getName() + " is already in battle!",
+                        [] -> void {
+                            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+
+                            GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                                    "What will " + Player::getPlayer()[0].getName() + " do?",
+                                    [] -> void {
+                                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_W);
+                                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_A);
+                                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_S);
+                                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_D);
+
+                                        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                                    }
+                            );
+                        }
+                );
+            }
+            else {
+                Player::getPlayer().swapPokemon(0, i);
+
+                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+                GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                        "You swapped out " + Player::getPlayer()[i].getName() + " for " + Player::getPlayer()[0].getName() + '!',
+                        [this] -> void {
+                                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                                this->handleTurn(Player::getPlayer()[0].numMoves());
+                                this->changeState(Battle::BattleState::ENGAGE, true);
+                        }
+                );
+            }
+        });
+        ++i;
+    }
+
+    GraphicsEngine::getInstance().addGraphic<SelectionBox>(
+            SDL_Rect(50, 50, 250, 300),
+            5,
+            pairs
+    );
 }
 
 void Battle::initEngage() {
@@ -217,7 +312,7 @@ void Battle::preStatus(bool isPlayerFaster) {
     const int second_move = isPlayerFaster ? this->opponentMove : this->playerMove;
 
     action(first, second, first_move);
-    if (not *toSkip and this->states.front() != Battle::BattleState::T_OUT) {
+    if (not *toSkip and this->states.top() != Battle::BattleState::T_OUT) {
         action(second, first, second_move);
     }
 }
@@ -245,8 +340,7 @@ void Battle::postStatus(bool isPlayerFaster) {
                     pokemon.initStatMods();
                 }
                 GraphicsEngine::getInstance().getGraphic<TextBox>().push(observer->winMessage());
-                this->states.pop_back();
-                this->states.push_front(Battle::BattleState::T_OUT);
+                this->changeState(Battle::BattleState::T_OUT, true);
             }
             else {
                 // TODO implement switchOut for receiver and player inside the classes
@@ -267,11 +361,15 @@ void Battle::postStatus(bool isPlayerFaster) {
 
 void Battle::handleTurn(int move) {
     this->playerMove = move;
+    this->opponentMove = (*this->opponent)[0].numMoves();
 
-    // re-selects opponent move if it's out of PP
-    this->opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
-    while (not(*this->opponent)[0][this->opponentMove].canUse()) {
-        opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
+    if ((*this->opponent)[0].canAttack()) {
+        while (true) {
+            this->opponentMove = generateInteger(0, (*this->opponent)[0].numMoves() - 1);
+            if ((*this->opponent)[0][this->opponentMove].canUse()) {
+                break;
+            }
+        }
     }
 
     // if neither the player nor the opponent is attempting to attack
@@ -415,11 +513,13 @@ void Battle::updateTOut() {
 
 void Battle::changeState(Battle::BattleState state, bool clear) {
     if (clear) {
-        this->states.clear();
+        while (not this->states.empty()) {
+            this->states.pop();
+        }
     }
-    this->states.push_front(state);
-    if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
-        this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
+    this->states.push(state);
+    if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
+        this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
     }
 }
 
@@ -505,7 +605,9 @@ void Battle::update() {
         this->skipOpponent = false;
 
         Game::getInstance().setState(State::Id::OVERWORLD);
-        this->states.clear();
+        while (not this->states.empty()) {
+            this->states.pop();
+        }
 
         auto cleanMap = [](std::unordered_map<std::string, SDL_Texture *> &map) -> void{
                 for (auto &texture : map) {
@@ -529,14 +631,14 @@ void Battle::update() {
     GraphicsEngine::getInstance().update();
 
     if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE) and this->states.size() != 1) {
-        this->states.pop_front();
-        if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
-            this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
+        this->states.pop();
+        if (this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
+            this->INIT_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
         }
     }
 
-    if (this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.front())) != nullptr) {
-        this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.front()))();
+    if (this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
+        this->UPDATE_FUNCTIONS.at(static_cast<std::size_t>(this->states.top()))();
     }
 }
 

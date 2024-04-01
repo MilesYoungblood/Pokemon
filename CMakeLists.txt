@@ -72,7 +72,6 @@ set(SOURCES
         src/Enums/Time/Time.h
         src/Enums/StatusCondition/StatusCondition.cpp
         src/Enums/StatusCondition/StatusCondition.h
-        src/Enums/Direction/Direction.cpp
         src/Enums/Direction/Direction.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h

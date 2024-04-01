@@ -19,7 +19,7 @@ GraphicsEngine::GraphicsEngine() {
 void GraphicsEngine::update() {
     for (const auto &type : this->graphics) {
         std::vector<std::unique_ptr<Graphic>> &ref = this->graphics.at(type.first);
-        for (long long i = 0; i < ref.size(); ++i) {
+        for (long long int i = 0; i < ref.size(); ++i) {
             if (ref.at(i)->isActive()) {
                 ref.at(i)->update();
             }

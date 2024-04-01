@@ -13,19 +13,22 @@ private:
     enum class BattleState : Uint8 {
         MAIN,
         SELECT_MOVE,
+        SELECT_POKEMON,
         ENGAGE,
         T_OUT
     };
-    std::deque<Battle::BattleState> states{ Battle::BattleState::MAIN };
+    std::stack<Battle::BattleState> states{{ Battle::BattleState::MAIN }};
 
-    const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
+    const std::array<std::function<void()>, 5> INIT_FUNCTIONS{
             [this] -> void { this->initMain(); },
             [this] -> void { this->initFight(); },
+            [this] -> void { this->initPokemon(); },
             Battle::initEngage,
             nullptr
     };
 
-    const std::array<std::function<void()>, 4> UPDATE_FUNCTIONS{
+    const std::array<std::function<void()>, 5> UPDATE_FUNCTIONS{
+            nullptr,
             nullptr,
             nullptr,
             [this] -> void { this->updateEngage(); },
@@ -56,6 +59,8 @@ private:
     void initMain();
 
     void initFight();
+
+    void initPokemon();
 
     static void initEngage();
 

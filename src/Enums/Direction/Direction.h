@@ -7,5 +7,3 @@
 enum class Direction : Uint8 {
     UP, DOWN, LEFT, RIGHT
 };
-
-Direction oppositeDirection(Direction direction);

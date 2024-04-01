@@ -2015,30 +2015,6 @@ src/Constants/constants.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Constants/constants.cpp.s
 .PHONY : src/Constants/constants.cpp.s
 
-src/Enums/Direction/Direction.obj: src/Enums/Direction/Direction.cpp.obj
-.PHONY : src/Enums/Direction/Direction.obj
-
-# target to build an object file
-src/Enums/Direction/Direction.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.obj
-.PHONY : src/Enums/Direction/Direction.cpp.obj
-
-src/Enums/Direction/Direction.i: src/Enums/Direction/Direction.cpp.i
-.PHONY : src/Enums/Direction/Direction.i
-
-# target to preprocess a source file
-src/Enums/Direction/Direction.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.i
-.PHONY : src/Enums/Direction/Direction.cpp.i
-
-src/Enums/Direction/Direction.s: src/Enums/Direction/Direction.cpp.s
-.PHONY : src/Enums/Direction/Direction.s
-
-# target to generate assembly for a file
-src/Enums/Direction/Direction.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Direction/Direction.cpp.s
-.PHONY : src/Enums/Direction/Direction.cpp.s
-
 src/Enums/StatusCondition/StatusCondition.obj: src/Enums/StatusCondition/StatusCondition.cpp.obj
 .PHONY : src/Enums/StatusCondition/StatusCondition.obj
 
@@ -2357,9 +2333,6 @@ help:
 	@echo ... src/Constants/constants.obj
 	@echo ... src/Constants/constants.i
 	@echo ... src/Constants/constants.s
-	@echo ... src/Enums/Direction/Direction.obj
-	@echo ... src/Enums/Direction/Direction.i
-	@echo ... src/Enums/Direction/Direction.s
 	@echo ... src/Enums/StatusCondition/StatusCondition.obj
 	@echo ... src/Enums/StatusCondition/StatusCondition.i
 	@echo ... src/Enums/StatusCondition/StatusCondition.s

@@ -47,8 +47,7 @@ void Player::handleFaint() {
 
 void Player::walk() {
     this->incPixelCounter(Character::WALK_SPEED);
-    ::State::getInstance<Overworld>().getCurrentMap().shift(oppositeDirection(this->getDirection()),
-                                                            Character::WALK_SPEED);
+    ::State::getInstance<Overworld>().getCurrentMap().shift(this->getDirection(), -Character::WALK_SPEED);
     if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
     }
@@ -99,7 +98,16 @@ void Player::idle() {
             GraphicsEngine::getInstance().addGraphic<SelectionBox>(
                     SDL_Rect(50, 50, 250, 300),
                     5,
-                    std::vector<std::string>({ "Pokemon", "Pokedex", "Bag", "Trainer", "Save", "Options" })
+                    std::vector<std::pair<std::string, std::function<void()>>>(
+                    {
+                        std::make_pair("Pokemon", nullptr),
+                                std::make_pair("Pokedex", nullptr),
+                                std::make_pair("Bag", nullptr),
+                                std::make_pair("Trainer", nullptr),
+                                std::make_pair("Save", nullptr),
+                                std::make_pair("Options", nullptr)
+                    }
+            )
             );
             this->setState(Character::State::IMMOBILE);
             for (auto &entity : ::State::getInstance<Overworld>().getCurrentMap()) {

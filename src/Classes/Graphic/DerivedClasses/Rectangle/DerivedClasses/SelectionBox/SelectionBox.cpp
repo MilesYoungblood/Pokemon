@@ -7,15 +7,17 @@
 #include "../../../Texture/Texture.h"
 #include "SelectionBox.h"
 
-SelectionBox::SelectionBox(SDL_Rect dest, int borderSize, const std::vector<std::string> &options)
-        : Rectangle(dest, borderSize), options(options), functions(options.size(), nullptr) {}
+SelectionBox::SelectionBox(SDL_Rect dest, int borderSize,
+                           const std::vector<std::pair<std::string, std::function<void()>>> &options)
+        : Rectangle(dest, borderSize), options(options) {}
 
-SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize, const std::vector<std::string> &options)
-        : Rectangle(dest, fg, borderSize), options(options), functions(options.size(), nullptr) {}
+SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize,
+                           const std::vector<std::pair<std::string, std::function<void()>>> &options)
+        : Rectangle(dest, fg, borderSize), options(options) {}
 
 SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize,
-                           const std::vector<std::string> &options)
-        : Rectangle(dest, fg, bg, borderSize), options(options), functions(options.size(), nullptr) {}
+                           const std::vector<std::pair<std::string, std::function<void()>>> &options)
+        : Rectangle(dest, fg, bg, borderSize), options(options) {}
 
 void SelectionBox::update() {
     static bool consecutive = false;
@@ -34,8 +36,8 @@ void SelectionBox::update() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
         if (not consecutive) {
-            if (this->functions[this->current] != nullptr) {
-                this->functions[this->current]();
+            if (this->options[this->current].second != nullptr) {
+                this->options[this->current].second();
             }
             else {
                 std::clog << "This option doesn't do anything\n";
@@ -56,12 +58,12 @@ void SelectionBox::render() const {
 
     for (int i = 0; i < options.size(); ++i) {
         Texture text(
-                options.at(i),
+                options.at(i).first,
                 Constants::Color::BLACK,
                 SDL_Rect(
                         this->getDest().x + percent,
                         this->getDest().y + Game::FONT_SIZE + interval * i,
-                        Game::FONT_SIZE * static_cast<int>(options.at(i).length()),
+                        Game::FONT_SIZE * static_cast<int>(options.at(i).first.length()),
                         Game::FONT_SIZE
                 )
         );
