@@ -29,4 +29,5 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cp
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h \
  C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
- C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
+ C:/Users/Miles\ Youngblood/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h

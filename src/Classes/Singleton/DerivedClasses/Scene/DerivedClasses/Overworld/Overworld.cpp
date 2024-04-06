@@ -22,6 +22,7 @@ void Overworld::init() {
 void Overworld::handleEvents() {
     static SDL_Event event;
     if (SDL_PollEvent(&event) == 1) {
+        KeyManager::getInstance().update();
         switch (event.type) {
             case SDL_EventType::SDL_QUIT:
                 Game::getInstance().terminate();
@@ -57,8 +58,7 @@ void Overworld::save() {
 
 void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
-        std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": "
-                  << SDL_GetError() << '\n';
+        std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         Game::getInstance().terminate();
         return;
@@ -118,8 +118,12 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     );
 
     std::vector<std::pair<std::string, std::function<void()>>> pairs;
-    for (auto &message : dialogue) {
-        pairs.emplace_back(message, [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); });
+    pairs.reserve(dialogue.size());
+    for (const auto &message : dialogue) {
+        pairs.emplace_back(
+                message,
+                [] -> void { KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN); }
+        );
     }
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
 }
@@ -148,6 +152,9 @@ void Overworld::handleMove(SDL_Scancode scancode) {
         if (not Player::getPlayer().isFacing(scancodeToDirection(scancode))) {
             Player::getPlayer().setDirection(scancodeToDirection(scancode));
         }
+        // refresh the KeyManager to check if the player is still holding down
+        KeyManager::getInstance().update();
+
         // if the user is still holding down the key after 10ms, begin movement
         if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
             momentum = true;

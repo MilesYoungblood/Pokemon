@@ -32,8 +32,8 @@ int Entity::getMapY() const {
 }
 
 bool Entity::isNextTo(const Entity *entity) const {
-    return (this->mapY == entity->mapY + 1 and this->mapX == entity->mapX) or (this->mapY == entity->mapY - 1 and this->mapX == entity->mapX) or
-           (this->mapX == entity->mapX + 1 and this->mapY == entity->mapY) or (this->mapX == entity->mapX - 1 and this->mapY == entity->mapY);
+    return ((this->mapY == entity->mapY + 1 or this->mapY == entity->mapY - 1) and this->mapX == entity->mapX) or
+           ((this->mapX == entity->mapX + 1 or this->mapX == entity->mapX - 1) and this->mapY == entity->mapY);
 }
 
 void Entity::shiftHorizontally(int n) {

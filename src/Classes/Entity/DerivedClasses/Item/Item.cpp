@@ -44,7 +44,7 @@ std::string Item::noEffectMessage(const Pokemon &pokemon) const {
 
 void Item::interact() {
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         Player::getPlayer().setState(Character::State::IMMOBILE);
         Overworld::createTextBox(
@@ -52,8 +52,8 @@ void Item::interact() {
         );
         Mix_PauseMusic();
         Mixer::getInstance().playSound("item_found");
-        Mix_ChannelFinished([](int c) -> void {
-            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        Mix_ChannelFinished([](int) -> void {
+            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
             Mix_ResumeMusic();
         });
     }
@@ -79,6 +79,6 @@ void Item::render() const {
     texture.render();
 }
 
-Item::operator bool() const {
+bool Item::canUse() const {
     return this->quantity > 0;
 }

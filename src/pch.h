@@ -13,6 +13,7 @@
 #include <stack>
 #include <queue>
 #include <unordered_map>
+#include <unordered_set>
 #include <span>
 #include <thread>
 #include <mutex>

@@ -3,7 +3,6 @@
 //
 
 #include "../Mixer/Mixer.h"
-#include "../KeyManager/KeyManager.h"
 #include "../Pokedex/Pokedex.h"
 #include "Game.h"
 
@@ -73,9 +72,6 @@ Game::Game() {
 
     Mixer::getInstance().playMusic("TitleScreen");
 
-    // instantiate KeyManager
-    KeyManager::getInstance();
-
     this->running = true;
 }
 
@@ -136,6 +132,6 @@ void Game::setRenderColor(SDL_Color color) {
     SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
 }
 
-void Game::changeScene(Scene::Id id) {
-    this->currentScene = this->scenes.at(static_cast<std::size_t>(id));
+void Game::changeScene(Scene::Id scene) {
+    this->currentScene = this->scenes.at(static_cast<std::size_t>(scene));
 }

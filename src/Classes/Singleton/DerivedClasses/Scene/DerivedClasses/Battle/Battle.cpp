@@ -33,21 +33,20 @@ void delay() {
 }
 
 void Battle::initMain() {
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-    if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-    }
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
             "What will " + Player::getPlayer()[0].getName() + " do?",
             [] -> void {
                 std::scoped_lock<std::mutex> scopedLock(mutex);
                 // unlocking the WASD keys is necessary in case the player was skipped
-                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_W);
-                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_A);
-                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_S);
-                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_D);
+                KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_W);
+                KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_A);
+                KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_S);
+                KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_D);
 
-                KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+                KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
                 cv.notify_one();
             }
     );
@@ -62,18 +61,22 @@ void Battle::initMain() {
                 Constants::Color::RED,
                 "Fight",
                 [this] -> void {
+                    Mixer::getInstance().playSound("select");
                     this->changeState(Battle::State::SELECT_MOVE, false);
                 }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
                 Constants::Color::YELLOW,
                 "Bag",
-                nullptr
+                [] -> void {
+                    Mixer::getInstance().playSound("select");
+                }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
                 Constants::Color::GREEN,
                 "Pokemon",
                 [this] -> void {
+                    Mixer::getInstance().playSound("select");
                     this->changeState(Battle::State::SELECT_POKEMON, false);
                 }
         );
@@ -81,6 +84,7 @@ void Battle::initMain() {
                 Constants::Color::BLUE,
                 "Run",
                 [this] -> void {
+                    Mixer::getInstance().playSound("select");
                     this->handleRun();
                 }
         );
@@ -91,10 +95,10 @@ void Battle::initMain() {
 void Battle::initFight() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
             "Select a move",
-            [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+            [] -> void { KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN); }
     );
 
     GraphicsEngine::getInstance().getGraphic<Panel>().clear();
@@ -107,6 +111,7 @@ void Battle::initFight() {
                 typeToColor(Player::getPlayer()[0][i].getType()),
                 Player::getPlayer()[0][i].getName(),
                 [this, i] -> void {
+                    Mixer::getInstance().playSound("select");
                     this->handleTurn(i);
                     this->changeState(Battle::State::ENGAGE, true);
                 }
@@ -119,16 +124,16 @@ void Battle::initPokemon() {
 
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
             "Select a Pokemon",
-            [] -> void { KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN); }
+            [] -> void { KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN); }
     );
 
     std::vector<std::pair<std::string, std::function<void()>>> pairs;
 
     pairs.emplace_back(Player::getPlayer()[0].getName(), [this] -> void {
-            KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
             GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
 
@@ -168,8 +173,8 @@ void Battle::initEngage() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     GraphicsEngine::getInstance().getGraphic<Panel>().clear();
 
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
 }
 
 std::string statusMessage(const Pokemon &pokemon) {
@@ -208,10 +213,11 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
 
     if ((*defender)[0].isFainted()) {
+        *skip = true;
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 (*defender)[0].getName() + " fained!",
                 [this, attacker, defender] -> void {
-                    delay();
+                    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     defender->handleFaint();
                     if (not defender->canFight()) {
                         for (auto &pokemon : Player::getPlayer()) {
@@ -223,13 +229,13 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
                             std::vector<std::string> message = attacker->winMessage();
 
                             pairs.emplace_back(message[0], delay);
-                            pairs.emplace_back(message[1],[this]->
-                            void{
+                            pairs.emplace_back(message[1],[this] -> void {
                                     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                                     this->isRunning = false;
                             });
                         }
 
+                        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
                     }
                     else {
@@ -253,7 +259,7 @@ void Battle::preStatus(bool isPlayerFaster) {
                 this->engage(attacker, defender, move, toSkip);
             }
             else {
-                GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*attacker)[0]));
+                GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*attacker)[0]), delay);
             }
         }
     };
@@ -398,8 +404,8 @@ void Battle::handleTurn(int move) {
 void Battle::updateEngage() {
     if (GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
         this->changeState(Battle::State::MAIN, true);
-        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-        KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
+        KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_BACKSPACE);
     }
 }
 
@@ -407,13 +413,13 @@ void Battle::handleRun() {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     GraphicsEngine::getInstance().getGraphic<Panel>().clear();
 
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_W);
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_A);
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_S);
-    KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_D);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_W);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_A);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_S);
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_D);
 
     if (this->opponent->isTrainer()) {
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 "You can't run away from a trainer battle!",
                 [this] -> void {
@@ -455,6 +461,9 @@ void Battle::terminate() {
     this->skipPlayer = false;
     this->skipOpponent = false;
 
+    this->renderPlayer = false;
+    this->renderOpponent = false;
+
     Game::getInstance().changeScene(Scene::Id::OVERWORLD);
     while (not this->states.empty()) {
         this->states.pop();
@@ -476,12 +485,12 @@ void Battle::terminate() {
     cleanMap(this->playerSprites);
     cleanMap(this->opponentSprites);
 
-    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_W);
-    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_A);
-    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_S);
-    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_D);
+    KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_W);
+    KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_A);
+    KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_S);
+    KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_D);
 
-    KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+    KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
     Player::getPlayer().setState(Character::State::IDLE);
     GraphicsEngine::getInstance().clear();
@@ -515,6 +524,7 @@ void Battle::changeState(Battle::State state, bool clear) {
 
 void Battle::init(Trainer *trainer) {
     this->opponent = trainer;
+    this->states.push(Battle::State::MAIN);
 
     auto loadMap = [](std::unordered_map<std::string, SDL_Texture *> &map, const Trainer &trainer, bool front) -> bool {
         for (const auto &pokemon : trainer) {

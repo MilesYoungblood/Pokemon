@@ -4,8 +4,8 @@
 
 #include "../../../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
-#include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
+#include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "Trainer.h"
 
 void Trainer::init() {
@@ -139,8 +139,8 @@ void Trainer::idle() {
     };
 
     // checks if the player is in LoS for this
-    if (not_moving(&Player::getPlayer()) and this->canFight() and not_moving(this) and this->keepLooping and
-        this->hasVisionOf(&Player::getPlayer())) {
+    if (not_moving(&Player::getPlayer()) and Player::getPlayer().canFight() and this->canFight() and
+        not_moving(this) and this->keepLooping and this->hasVisionOf(&Player::getPlayer())) {
         if (haltMusic) {
             Player::getPlayer().setState(Character::State::IMMOBILE);
             this->setState(Character::State::IMMOBILE);
@@ -176,11 +176,11 @@ void Trainer::idle() {
             this->shift(this->getDirection(), Character::WALK_SPEED);
             this->incPixelCounter(Character::WALK_SPEED);
 
-            if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
+            if (this->getPixelCounter() % (Map::TILE_SIZE / 2) == 0) {
                 this->updateAnimation();
             }
 
-            if (this->getWalkCounter() % Map::TILE_SIZE == 0) {
+            if (this->getPixelCounter() % Map::TILE_SIZE == 0) {
                 this->moveForward();
                 this->resetPixelCounter();
             }
@@ -188,7 +188,9 @@ void Trainer::idle() {
         else {
             Player::getPlayer().face(this);
 
-            Overworld::createTextBox(this->getDialogue());
+            if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
+                Overworld::createTextBox(this->getDialogue());
+            }
 
             this->keepLooping = false;
 
@@ -196,64 +198,5 @@ void Trainer::idle() {
             haltMusic = true;
             playMusic = true;
         }
-    }
-}
-
-void Trainer::interact() {
-    // if the player manually clicked Enter
-    // (the trainer will have opened the TextBox if it has contacted the player already)
-    if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-
-        Player::getPlayer().setState(Character::State::IMMOBILE);
-        this->face(&Player::getPlayer());
-
-        // only create the textbox here if the trainer cannot fight;
-        // the program will loop back to checkForOpponents() in the next cycle
-        // and create it there if the trainer can fight
-        if (not this->canFight()) {
-            this->setState(Character::State::IMMOBILE);
-            Overworld::createTextBox(this->getDialogue());
-        }
-    }
-    else if (not GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {
-        // if the textbox still has messages to print
-        if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-
-            // the 'accept' sound effect will play for every pop except the last
-            if (not GraphicsEngine::getInstance().getGraphic<TextBox>().empty()) {
-                Mixer::getInstance().playSound("accept");
-            }
-            else {
-                GraphicsEngine::getInstance().removeGraphic<TextBox>();
-
-                if (this->canFight()) {
-                    Game::getInstance().changeScene(Scene::Id::BATTLE);
-                    Game::getInstance().setRenderColor(Constants::Color::WHITE);
-
-                    Scene::getInstance<Battle>().init(this);
-
-                    Mixer::getInstance().playMusic("TrainerBattle");
-                }
-                else {
-                    Player::getPlayer().setState(Character::State::IDLE);
-                    this->setState(Character::State::IDLE);
-                }
-            }
-        }
-        // re-lock the Enter key
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-
-        // sets a cool-down period before the Enter key can be registered again;
-        // this is needed because the program will register a button as
-        // being pressed faster than the user can lift their finger
-        std::thread coolDown([] -> void {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
-        });
-        coolDown.detach();
-
-        keyDelay.reset();
     }
 }

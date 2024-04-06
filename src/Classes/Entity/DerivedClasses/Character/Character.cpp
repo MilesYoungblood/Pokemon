@@ -28,30 +28,6 @@ std::string Character::getId() const {
     return this->id;
 }
 
-void Character::setDialogue(const char *text) {
-    std::stringstream ss(text);
-
-    const int character_limit = 30;
-    std::size_t letterCounter = 0;
-    std::string buffer;
-    std::string dest;
-
-    while (std::getline(ss, buffer, ' ')) {
-        letterCounter += buffer.length();
-
-        // if the next word exceeds the limit
-        if (letterCounter >= character_limit) {
-            this->dialogue.push_back(dest);
-            letterCounter = buffer.length();
-            dest.clear();
-        }
-        dest.append(buffer + ' ');
-    }
-    if (not dest.empty()) {
-        this->dialogue.push_back(dest);
-    }
-}
-
 void Character::setDialogue(const std::vector<std::string> &text) {
     for (const auto &i : text) {
         this->dialogue.push_back(i);
@@ -76,6 +52,9 @@ void Character::moveForward() {
         case Direction::LEFT:
             this->translateX(false);
             break;
+        default:
+            std::clog << "Invalid direction " << this->currentDirection << '\n';
+            Game::getInstance().terminate();
     }
 }
 
@@ -112,8 +91,8 @@ bool Character::isFacing(Direction direction) const {
     return this->currentDirection == direction;
 }
 
-void Character::setState(Character::State state) {
-    this->currentState = state;
+void Character::setState(Character::State x) {
+    this->currentState = x;
 }
 
 Character::State Character::getState() const {
@@ -162,18 +141,13 @@ void Character::interact() {
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         Player::getPlayer().setState(Character::State::IMMOBILE);
+        this->currentState = Character::State::IMMOBILE;
         this->face(&Player::getPlayer());
 
-        // only create the textbox here if the trainer cannot fight;
-        // the program will loop back to the trainer's update() in the next cycle
-        // and create it there if the trainer can fight
-        if (not this->canFight()) {
-            this->currentState = Character::State::IMMOBILE;
-            Overworld::createTextBox(this->getDialogue());
-        }
+        Overworld::createTextBox(this->getDialogue());
     }
     else if (not GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {
         // if the textbox still has messages to print
@@ -187,19 +161,29 @@ void Character::interact() {
             else {
                 GraphicsEngine::getInstance().removeGraphic<TextBox>();
 
-                Player::getPlayer().setState(Character::State::IDLE);
-                this->setState(Character::State::IDLE);
+                if (Player::getPlayer().canFight() and this->canFight()) {
+                    Game::getInstance().changeScene(Scene::Id::BATTLE);
+                    Game::getInstance().setRenderColor(Constants::Color::WHITE);
+
+                    Scene::getInstance<Battle>().init(dynamic_cast<Trainer *>(this));
+
+                    Mixer::getInstance().playMusic("TrainerBattle");
+                }
+                else {
+                    Player::getPlayer().setState(Character::State::IDLE);
+                    this->currentState = Character::State::IDLE;
+                }
             }
         }
         // re-lock the Enter key
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again;
         // this is needed because the program will register a button as
         // being pressed faster than the user can lift their finger
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
         });
         coolDown.detach();
 
@@ -300,6 +284,6 @@ void Character::resetPixelCounter() {
     this->pixelCounter = 0;
 }
 
-int Character::getWalkCounter() const {
+int Character::getPixelCounter() const {
     return this->pixelCounter;
 }

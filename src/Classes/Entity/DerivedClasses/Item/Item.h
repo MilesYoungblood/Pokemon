@@ -47,7 +47,7 @@ public:
 
     void render() const override;
 
-    explicit operator bool() const;
+    [[nodiscard]] bool canUse() const;
 };
 
 inline std::mutex itemMutex;

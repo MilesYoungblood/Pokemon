@@ -138,6 +138,4 @@ public:
     [[nodiscard]] bool isTrainer() const override;
 
     void idle() override;
-
-    void interact() override;
 };

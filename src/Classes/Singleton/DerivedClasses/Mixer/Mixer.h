@@ -18,9 +18,9 @@ public:
 
     ~Mixer() override;
 
-    void playSound(const char *name);
+    void playSound(const char *id);
 
-    void playMusic(const std::string &name);
+    void playMusic(const std::string &id);
 
 private:
     std::unordered_map<std::string, Mix_Chunk *> soundboard;

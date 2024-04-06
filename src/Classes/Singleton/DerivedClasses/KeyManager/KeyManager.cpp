@@ -4,24 +4,29 @@
 
 #include "KeyManager.h"
 
-KeyManager::KeyManager() {
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_W, false));
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_A, false));
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_S, false));
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_D, false));
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_RETURN, false));
-    this->locker.insert(std::make_pair(SDL_Scancode::SDL_SCANCODE_ESCAPE, false));
+void KeyManager::lock(SDL_Scancode key) {
+    this->lockedKeys.insert(key);
 }
 
-void KeyManager::lockKey(SDL_Scancode key) {
-    this->locker[key] = true;
+void KeyManager::unlock(SDL_Scancode key) {
+    this->lockedKeys.erase(key);
 }
 
-void KeyManager::unlockKey(SDL_Scancode key) {
-    this->locker[key] = false;
+void KeyManager::update() {
+    this->keyStates = std::span<const Uint8>(SDL_GetKeyboardState(nullptr), 255);
 }
 
 bool KeyManager::getKey(SDL_Scancode key) {
-    const std::span key_states(SDL_GetKeyboardState(nullptr), 255ULL);
-    return (key_states[key] != 0U) and not this->locker[key];
+    if (this->lockedKeys.contains(key)) {
+        return false;
+    }
+    if (this->keyStates[key] != 0U) {
+        if (this->acceptingHold or not this->heldKeys.contains(key)) {
+            this->heldKeys.insert(key);
+            return true;
+        }
+        return false;
+    }
+    this->heldKeys.erase(key);
+    return false;
 }

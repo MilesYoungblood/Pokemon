@@ -11,9 +11,9 @@ Mixer::~Mixer() {
     Mix_FreeMusic(this->music);
 }
 
-void Mixer::playSound(const char *name) {
+void Mixer::playSound(const char *id) {
     try {
-        Mix_PlayChannel(-1, this->soundboard.at(name), 0);
+        Mix_PlayChannel(-1, this->soundboard.at(id), 0);
         Mix_ChannelFinished(nullptr);
     }
     catch (const std::exception &e) {
@@ -21,9 +21,9 @@ void Mixer::playSound(const char *name) {
     }
 }
 
-void Mixer::playMusic(const std::string &name) {
+void Mixer::playMusic(const std::string &id) {
     Mix_FreeMusic(this->music);
-    this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + name + ".mp3").data());
+    this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + id + ".mp3").data());
 
     if (Mix_PlayMusic(this->music, -1) == -1) {
         std::clog << "Error playing music: " << SDL_GetError() << '\n';

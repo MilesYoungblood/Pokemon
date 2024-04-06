@@ -18,7 +18,7 @@ public:
 
     enum : Uint8 {
         WALK_SPEED = Map::TILE_SIZE / 20,
-        RUN_SPEED = Map::TILE_SIZE / 10
+        RUN_SPEED [[maybe_unused]] = Map::TILE_SIZE / 10
     };
 
     Character(const char *id, int x, int y, Direction direction);
@@ -41,8 +41,6 @@ public:
 
     [[nodiscard]] std::string getId() const;
 
-    void setDialogue(const char *text);
-
     void setDialogue(const std::vector<std::string> &text);
 
     [[nodiscard]] std::vector<std::string> getDialogue() const;
@@ -57,7 +55,7 @@ public:
 
     [[nodiscard]] bool isFacing(Direction direction) const;
 
-    void setState(Character::State state);
+    void setState(Character::State x);
 
     [[nodiscard]] Character::State getState() const;
 
@@ -96,7 +94,7 @@ protected:
 
     void resetPixelCounter();
 
-    [[nodiscard]] int getWalkCounter() const;
+    [[nodiscard]] int getPixelCounter() const;
 
 private:
     std::vector<std::string> dialogue;

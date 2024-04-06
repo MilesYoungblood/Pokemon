@@ -91,7 +91,7 @@ void TextureManager::draw(SDL_Texture *texture, const SDL_Rect &dest) {
 }
 
 void TextureManager::drawFrame(SDL_Texture *texture, const SDL_Rect &dest, int col, int row) {
-    const SDL_Rect src{ dest.w * col, dest.h * row, dest.w, dest.h };
+    const SDL_Rect src(dest.w * col, dest.h * row, dest.w, dest.h);
     SDL_RenderCopy(this->textureRenderer, texture, &src, &dest);
 }
 

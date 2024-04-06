@@ -19,14 +19,14 @@ void TitleScreen::update() {
         Mix_HaltMusic();
 
         // re-lock the Enter key
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again;
         // this is needed because the program will register a button
         // being pressed faster than the user can lift their finger
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
         });
         coolDown.detach();
 

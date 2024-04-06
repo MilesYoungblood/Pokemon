@@ -17,7 +17,7 @@ private:
         SELECT_POKEMON,
         ENGAGE
     };
-    std::stack<Battle::State> states{{ Battle::State::MAIN }};
+    std::stack<Battle::State> states;
 
     const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
             [this] -> void { this->initMain(); },

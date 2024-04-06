@@ -48,10 +48,10 @@ void Player::handleFaint() {
 void Player::walk() {
     this->incPixelCounter(Character::WALK_SPEED);
     Scene::getInstance<Overworld>().getCurrentMap().shift(this->getDirection(), -Character::WALK_SPEED);
-    if (this->getWalkCounter() % (Map::TILE_SIZE / 2) == 0) {
+    if (this->getPixelCounter() % (Map::TILE_SIZE / 2) == 0) {
         this->updateAnimation();
     }
-    if (this->getWalkCounter() % Map::TILE_SIZE == 0) {
+    if (this->getPixelCounter() % Map::TILE_SIZE == 0) {
         this->setState(Character::State::IDLE);
         this->resetPixelCounter();
 
@@ -119,14 +119,14 @@ void Player::idle() {
             }
         }
         // re-lock the Enter key
-        KeyManager::getInstance().lockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
 
         // sets a cool-down period before the Enter key can be registered again;
         // this is needed because the program will register a button as
         // being pressed faster than the user can lift their finger
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlockKey(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
         });
         coolDown.detach();
     }
