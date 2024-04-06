@@ -503,10 +503,10 @@ Map::~Map() {
 
 bool Map::isObstructionHere(int x, int y) const {
     try {
-        // No idea why, but the layout MUST be y-position first and x-position second
+        // recall that it is row first, then column for vectors
         return this->collision.at(this->layout[1][y][x].id) or
                (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or
-               std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr <Entity> &entity) -> bool {
+               std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
                    return entity->getMapX() == x and entity->getMapY() == y;
                });
     }
