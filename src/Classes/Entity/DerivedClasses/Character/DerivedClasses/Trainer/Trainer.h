@@ -22,8 +22,6 @@ private:
 protected:
     Trainer(const char *id, int x, int y, Direction direction);
 
-    [[nodiscard]] std::size_t partySize() const;
-
 public:
     Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision);
 
@@ -123,6 +121,10 @@ public:
     /// \brief Allows for for-each loop functionality
     /// \return a const iterator to the end of the party
     std::vector<Pokemon>::const_iterator end() const;
+
+    /// \brief Getter for party size
+    /// \return party size
+    [[nodiscard]] std::size_t partySize() const;
 
     /// \brief Handles specific faint protocol
     virtual void handleFaint();

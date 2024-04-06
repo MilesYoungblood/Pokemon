@@ -107,16 +107,16 @@ Game::~Game() {
 }
 
 void Game::handleEvents() {
-    this->currentState->handleEvents();
+    this->currentScene->handleEvents();
 }
 
 void Game::update() {
-    this->currentState->update();
+    this->currentScene->update();
 }
 
 void Game::render() const {
     SDL_RenderClear(this->renderer);
-    this->currentState->render();
+    this->currentScene->render();
     SDL_RenderPresent(this->renderer);
 }
 
@@ -136,6 +136,6 @@ void Game::setRenderColor(SDL_Color color) {
     SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
 }
 
-void Game::setState(State::Id id) {
-    this->currentState = this->states.at(static_cast<std::size_t>(id));
+void Game::changeScene(Scene::Id id) {
+    this->currentScene = this->scenes.at(static_cast<std::size_t>(id));
 }

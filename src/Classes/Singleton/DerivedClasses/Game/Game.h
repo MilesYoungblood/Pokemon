@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../State/DerivedClasses/States.h"
+#include "../Scene/DerivedClasses/Scenes.h"
 
 class Game : public Singleton<Game> {
 private:
@@ -16,13 +16,13 @@ private:
     SDL_Window *window{ nullptr };
     SDL_Renderer *renderer{ nullptr };
 
-    std::array<State *, 3> states{
-            &State::getInstance<TitleScreen>(),
-            &State::getInstance<Overworld>(),
-            &State::getInstance<Battle>()
+    std::array<Scene *, 3> scenes{
+            &Scene::getInstance<TitleScreen>(),
+            &Scene::getInstance<Overworld>(),
+            &Scene::getInstance<Battle>()
     };
 
-    State *currentState{ this->states[static_cast<std::size_t>(State::Id::TITLE_SCREEN)] };
+    Scene *currentScene{ this->scenes[static_cast<std::size_t>(Scene::Id::TITLE_SCREEN)] };
 
     friend class Singleton<Game>;
 
@@ -59,5 +59,5 @@ public:
 
     void setRenderColor(SDL_Color color);
 
-    void setState(State::Id id);
+    void changeScene(Scene::Id id);
 };

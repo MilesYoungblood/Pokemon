@@ -26,7 +26,7 @@ void defaultAction(Character *entity) {
             }
             break;
         case 3:
-            if (entity->canMoveForward(State::getInstance<Overworld>().getCurrentMap())) {
+            if (entity->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
                 entity->moveForward();
                 entity->setState(Character::State::WALKING);
 

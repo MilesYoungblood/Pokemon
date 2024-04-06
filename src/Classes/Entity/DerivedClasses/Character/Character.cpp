@@ -210,11 +210,11 @@ void Character::interact() {
 void Character::updateAnimation() {
     ++this->sprite.currentCol;
 
-    if (this->sprite.currentCol == ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numCols) {
+    if (this->sprite.currentCol == Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numCols) {
         this->sprite.currentCol = 0;
 
         ++this->sprite.currentRow;
-        if (this->sprite.currentRow == ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numRows) {
+        if (this->sprite.currentRow == Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numRows) {
             this->sprite.currentRow = 0;
         }
     }
@@ -239,7 +239,7 @@ void Character::update() {
 
 void Character::render() const {
     TextureManager::getInstance().drawFrame(
-            ::State::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).sprite,
+            Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).sprite,
             SDL_Rect(this->getScreenX(), this->getScreenY(), Map::TILE_SIZE, Map::TILE_SIZE),
             this->sprite.currentCol,
             this->sprite.currentRow

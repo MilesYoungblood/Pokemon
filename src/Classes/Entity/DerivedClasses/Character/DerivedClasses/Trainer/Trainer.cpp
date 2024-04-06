@@ -19,10 +19,6 @@ Trainer::Trainer(const char *id, int x, int y, Direction direction) : Character(
     this->init();
 }
 
-std::size_t Trainer::partySize() const {
-    return this->party.size();
-}
-
 Trainer::Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision)
         : Character(id, name, x, y, direction, vision) {
     this->init();
@@ -109,6 +105,10 @@ std::vector<Pokemon>::iterator Trainer::end() {
 
 std::vector<Pokemon>::const_iterator Trainer::end() const {
     return this->party.cend();
+}
+
+std::size_t Trainer::partySize() const {
+    return this->party.size();
 }
 
 void Trainer::handleFaint() {
@@ -229,10 +229,10 @@ void Trainer::interact() {
                 GraphicsEngine::getInstance().removeGraphic<TextBox>();
 
                 if (this->canFight()) {
-                    Game::getInstance().setState(::State::Id::BATTLE);
+                    Game::getInstance().changeScene(Scene::Id::BATTLE);
                     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                    ::State::getInstance<Battle>().init(this);
+                    Scene::getInstance<Battle>().init(this);
 
                     Mixer::getInstance().playMusic("TrainerBattle");
                 }

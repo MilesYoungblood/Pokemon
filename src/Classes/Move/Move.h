@@ -74,7 +74,8 @@ public:
 
     virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 
-    [[nodiscard]] virtual std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const;
+    [[nodiscard]] virtual std::vector<std::string> actionMessage(const Pokemon &attacker, const Pokemon &defender,
+                                                                  bool skip) const;
 
     [[nodiscard]] virtual std::string getName() const = 0;
 

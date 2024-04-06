@@ -1847,101 +1847,101 @@ src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
 .PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.obj: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.i: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.s: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.obj: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.i: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.s: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.obj: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.i: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.i
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
 
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.s: src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp.s
+src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
 
-src/Classes/Singleton/DerivedClasses/State/State.obj: src/Classes/Singleton/DerivedClasses/State/State.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.obj
+src/Classes/Singleton/DerivedClasses/Scene/Scene.obj: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/State/State.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/State.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.cpp.obj
+src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/State/State.i: src/Classes/Singleton/DerivedClasses/State/State.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.i
+src/Classes/Singleton/DerivedClasses/Scene/Scene.i: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/State/State.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/State.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.cpp.i
+src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
 
-src/Classes/Singleton/DerivedClasses/State/State.s: src/Classes/Singleton/DerivedClasses/State/State.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.s
+src/Classes/Singleton/DerivedClasses/Scene/Scene.s: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/State/State.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/State/State.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/State/State.cpp.s
+src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
+.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
 
 src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj: src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj
 .PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj
@@ -2312,18 +2312,18 @@ help:
 	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj
 	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i
 	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.i
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.s
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.i
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.s
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.i
-	@echo ... src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.s
-	@echo ... src/Classes/Singleton/DerivedClasses/State/State.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/State/State.i
-	@echo ... src/Classes/Singleton/DerivedClasses/State/State.s
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.obj
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.i
+	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.s
 	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj
 	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.i
 	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.s

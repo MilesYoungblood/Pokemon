@@ -3,7 +3,7 @@
 //
 
 #include "../../../Graphic/DerivedClasses/Texture/Texture.h"
-#include "../../../Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.h"
+#include "../../../Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
 #include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
@@ -63,7 +63,7 @@ void Item::interact() {
 
         // add the item to the Player's inventory and remove it from the map
         Player::getPlayer().addItem(this->getName(), this->getQuantity());
-        State::getInstance<Overworld>().getCurrentMap().removeEntity(this);
+        Scene::getInstance<Overworld>().getCurrentMap().removeEntity(this);
     }
 }
 

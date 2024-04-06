@@ -209,16 +209,16 @@ set(GRAPHICS
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
 )
 
-set(STATES
-        src/Classes/Singleton/DerivedClasses/State/State.h
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/States.h
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.cpp
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Battle/Battle.h
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.cpp
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/Overworld/Overworld.h
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.cpp
-        src/Classes/Singleton/DerivedClasses/State/DerivedClasses/TitleScreen/TitleScreen.h
-        src/Classes/Singleton/DerivedClasses/State/State.cpp
+set(SCENES
+        src/Classes/Singleton/DerivedClasses/Scene/Scene.h
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp
+        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
+        src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp
 )
 
 add_executable(PokemonBattle
@@ -226,7 +226,7 @@ add_executable(PokemonBattle
         ${MOVES}
         ${ITEMS}
         ${GRAPHICS}
-        ${STATES}
+        ${SCENES}
 )
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/Constants/constants.h)

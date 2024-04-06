@@ -68,7 +68,7 @@ void Panel::update() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
         if (not consecutive) {
-            const int value = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()));
+            const int value = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()) - 1);
             if (this->buttons[value][this->currentCol] != nullptr) {
                 this->currentRow = value;
                 consecutive = true;
@@ -77,7 +77,7 @@ void Panel::update() {
     }
     else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
         if (not consecutive) {
-            const int value = std::min(this->currentCol + 1, static_cast<int>(this->buttons.size()) - 1);
+            const int value = std::min(this->currentCol + 1, static_cast<int>(this->buttons[0].size()) - 1);
             if (this->buttons[this->currentRow][value] != nullptr) {
                 this->currentCol = value;
                 consecutive = true;
