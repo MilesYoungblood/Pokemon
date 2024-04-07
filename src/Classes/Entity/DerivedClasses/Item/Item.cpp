@@ -70,7 +70,10 @@ void Item::interact() {
 void Item::update() {}
 
 void Item::render() const {
-    static Texture texture("Item_Overworld_Sprite.png", SDL_Rect(this->getScreenX() + 28, this->getScreenY() + 28, 24, 24));
+    static Texture texture(
+            "Item_Overworld_Sprite.png",
+            SDL_Rect(this->getScreenX() + 28, this->getScreenY() + 28, 24, 24)
+    );
 
     // update the texture's position
     texture.setX(this->getScreenX() + 28);
