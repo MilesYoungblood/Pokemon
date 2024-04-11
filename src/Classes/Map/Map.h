@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../../Enums/Direction/Direction.h"
+#include "../ThreadPool/ThreadPool.h"
 
 class Entity;
 

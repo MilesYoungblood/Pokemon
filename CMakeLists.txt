@@ -75,6 +75,8 @@ set(SOURCES
         src/Enums/Direction/Direction.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
+        src/Classes/ThreadPool/ThreadPool.cpp
+        src/Classes/ThreadPool/ThreadPool.h
 )
 
 set(MOVES

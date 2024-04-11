@@ -155,6 +155,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Classes/Stopwatch/Stopwatch.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/ThreadPool/ThreadPool.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/src/Classes/ThreadPool/ThreadPool.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Constants/constants.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Constants/constants.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj"
