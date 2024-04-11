@@ -21,8 +21,6 @@ private:
 public:
     ThreadPool() = default;
 
-    explicit ThreadPool(std::size_t n);
-
     ThreadPool(const ThreadPool &) = delete;
 
     ThreadPool(ThreadPool &&) noexcept = delete;

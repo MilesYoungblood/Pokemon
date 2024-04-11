@@ -13,21 +13,17 @@ void ThreadPool::clean() {
     }
 }
 
-ThreadPool::ThreadPool(std::size_t n) {
-    this->init(n);
-}
-
 ThreadPool::~ThreadPool() {
     this->clean();
 }
 
 void ThreadPool::init(std::size_t n) {
-    // safe clean threads already here
+    // safe clean threads already here in case of re-initialization
     this->clean();
     this->running = true;
 
     for (std::size_t i = 0; i < n; ++i) {
-        this->workers.emplace_back([this, i] -> void {
+        this->workers.emplace_back([this] -> void {
             while (true) {
                 std::function<void()> task;
 
@@ -59,9 +55,7 @@ void ThreadPool::init(std::size_t n) {
 void ThreadPool::add(std::function<void()> task) {
     {
         std::scoped_lock<std::mutex> lock(this->mutex);
-        if (this->running) {
-            this->tasks.push(std::move(task));
-        }
+        this->tasks.push(std::move(task));
     }
     this->cv.notify_one();
 }
