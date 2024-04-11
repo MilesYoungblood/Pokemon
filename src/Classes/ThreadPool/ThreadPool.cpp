@@ -4,38 +4,8 @@
 
 #include "ThreadPool.h"
 
-ThreadPool::ThreadPool(std::size_t n) {
-    for (std::size_t i = 0; i < n; ++i) {
-        this->workers.emplace_back([this, i] -> void {
-                while (true) {
-                    std::function<void()> task;
-
-                    {
-                        std::unique_lock<std::mutex> lock(this->mutex);
-                        this->cv.wait(lock, [this] -> bool { return not this->running or not this->tasks.empty(); });
-
-                        if (not this->running and this->tasks.empty()) {
-                            return;
-                        }
-
-                        task = std::move(this->tasks.front());
-                        this->tasks.pop();
-
-                        this->threadWaiting.at(i) = false;
-                    }
-
-                    task();
-                    std::scoped_lock<std::mutex> lock(this->mutex);
-                    this->threadWaiting.at(i) = true;
-                }
-        });
-    }
-
-    this->threadWaiting = std::vector<bool>(n, true);
-}
-
-ThreadPool::~ThreadPool() {
-    this->running.store(false, std::memory_order_release);
+void ThreadPool::clean() {
+    this->running = false;
     this->cv.notify_all();
 
     for (auto &worker : this->workers) {
@@ -43,19 +13,60 @@ ThreadPool::~ThreadPool() {
     }
 }
 
+ThreadPool::ThreadPool(std::size_t n) {
+    this->init(n);
+}
+
+ThreadPool::~ThreadPool() {
+    this->clean();
+}
+
+void ThreadPool::init(std::size_t n) {
+    // safe clean threads already here
+    this->clean();
+    this->running = true;
+
+    for (std::size_t i = 0; i < n; ++i) {
+        this->workers.emplace_back([this, i] -> void {
+            while (true) {
+                std::function<void()> task;
+
+                {
+                    std::unique_lock<std::mutex> lock(this->mutex);
+                    this->cv.wait(lock, [this] -> bool { return not this->running or not this->tasks.empty(); });
+
+                    if (not this->running and this->tasks.empty()) {
+                        return;
+                    }
+
+                    task = std::move(this->tasks.front());
+                    this->tasks.pop();
+                    ++this->activeThreads;
+                }
+
+                task();
+
+                std::scoped_lock<std::mutex> lock(this->mutex);
+                --this->activeThreads;
+                if (this->activeThreads == 0) {
+                    this->allIdle.notify_one();
+                }
+            }
+        });
+    }
+}
+
 void ThreadPool::add(std::function<void()> task) {
     {
         std::scoped_lock<std::mutex> lock(this->mutex);
-        if (this->running.load(std::memory_order_acquire)) {
+        if (this->running) {
             this->tasks.push(std::move(task));
         }
     }
     this->cv.notify_one();
 }
 
-bool ThreadPool::allThreadsWaiting() {
-    std::scoped_lock<std::mutex> lock(this->mutex);
-    return std::ranges::all_of(this->threadWaiting.begin(), this->threadWaiting.end(), [](bool val) -> bool {
-        return val;
-    });
+void ThreadPool::block() {
+    std::unique_lock<std::mutex> lock(this->mutex);
+    this->allIdle.wait(lock, [this] -> bool { return this->activeThreads == 0; });
 }

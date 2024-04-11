@@ -11,11 +11,16 @@ private:
 
     std::mutex mutex;
     std::condition_variable cv;
+    std::condition_variable allIdle;
 
     std::atomic_bool running{ true };
-    std::vector<bool> threadWaiting;
+    std::atomic_int activeThreads{ 0 };
+
+    void clean();
 
 public:
+    ThreadPool() = default;
+
     explicit ThreadPool(std::size_t n);
 
     ThreadPool(const ThreadPool &) = delete;
@@ -28,7 +33,9 @@ public:
 
     ~ThreadPool();
 
+    void init(std::size_t n);
+
     void add(std::function<void()> task);
 
-    bool allThreadsWaiting();
+    void block();
 };
