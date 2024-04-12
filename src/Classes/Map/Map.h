@@ -31,11 +31,11 @@ public:
 
     Map(const Map &) = delete;
 
-    Map(Map &&toMove) noexcept = default;
+    Map(Map &&toMove) noexcept = delete;
 
     Map &operator=(const Map &) = delete;
 
-    Map &operator=(Map &&rhs) noexcept = default;
+    Map &operator=(Map &&rhs) noexcept = delete;
 
     ~Map();
 
@@ -118,7 +118,7 @@ private:
     std::vector<SDL_Texture *> tileImages{ nullptr };           // texture for each tile id
 
     std::vector<std::unique_ptr<Entity>> entities;              // the set of entities in this map
-    std::vector<std::thread> workers;                           // help speed up updating tiles and entities
+    ThreadPool threadPool;                                      // help speed up updating tiles and entities
 
     using spriteSet = std::array<Sprite::Sheet, 4>;             // a sprite sheet per cardinal direction
     std::unordered_map<std::string, spriteSet> entitySprites;   // mapping of entity sprites by id

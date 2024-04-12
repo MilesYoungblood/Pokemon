@@ -475,7 +475,7 @@ Map::Map(const char *name) : name(name), music(name) {
     this->parseTmx();
     this->loadEntities();
 
-    this->workers.resize(this->layout.size() + 1);
+    this->threadPool.init(this->layout.size() + 1);
 }
 
 Map::~Map() {
@@ -567,9 +567,9 @@ Sprite::Sheet Map::getSpriteSheet(const std::string &id, Direction direction) co
 }
 
 void Map::shift(Direction direction, int n) {
-    for (std::size_t i = 0; i < this->layout.size(); ++i) {
-        this->workers[i] = std::thread([this, direction, n, i] -> void {
-            for (auto &row : this->layout[i]) {
+    for (auto &layer : this->layout) {
+        this->threadPool.add([direction, n, &layer] -> void {
+            for (auto &row : layer) {
                 for (auto &col : row) {
                     switch (direction) {
                         case Direction::UP:
@@ -591,21 +591,19 @@ void Map::shift(Direction direction, int n) {
             }
         });
     }
-    this->workers.back() = std::thread([this, direction, n] -> void {
+    this->threadPool.add([this, direction, n] -> void {
         for (auto &entity : this->entities) {
             entity->shift(direction, n);
         }
     });
 
-    for (auto &worker : this->workers) {
-        worker.join();
-    }
+    this->threadPool.block();
 }
 
 void Map::shiftHorizontally(int n) {
-    for (std::size_t i = 0; i < this->layout.size(); ++i) {
-        this->workers[i] = std::thread([this, n, i] -> void {
-            for (auto &row : this->layout[i]) {
+    for (auto &layer : this->layout) {
+        this->threadPool.add([n, &layer] -> void {
+            for (auto &row : layer) {
                 for (auto &col : row) {
                     col.screenX += n;
                 }
@@ -613,21 +611,19 @@ void Map::shiftHorizontally(int n) {
         });
     }
 
-    this->workers.back() = std::thread([this, n] -> void {
+    this->threadPool.add([this, n] -> void {
         for (auto &entity : this->entities) {
             entity->shiftHorizontally(n);
         }
     });
 
-    for (auto &worker : this->workers) {
-        worker.join();
-    }
+    this->threadPool.block();
 }
 
 void Map::shiftVertically(int n) {
-    for (std::size_t i = 0; i < this->layout.size(); ++i) {
-        this->workers[i] = std::thread([this, n, i] -> void {
-            for (auto &row : this->layout[i]) {
+    for (auto &layer : this->layout) {
+        this->threadPool.add([n, &layer] -> void {
+            for (auto &row : layer) {
                 for (auto &col : row) {
                     col.screenY += n;
                 }
@@ -635,15 +631,13 @@ void Map::shiftVertically(int n) {
         });
     }
 
-    this->workers.back() = std::thread([this, n] -> void {
+    this->threadPool.add([this, n] -> void {
         for (auto &entity : this->entities) {
             entity->shiftVertically(n);
         }
     });
 
-    for (auto &worker : this->workers) {
-        worker.join();
-    }
+    this->threadPool.block();
 }
 
 void Map::render() const {
