@@ -16,7 +16,7 @@ private:
     std::atomic_bool running{ true };
     std::atomic_int activeThreads{ 0 };
 
-    void clean();
+    void clear();
 
 public:
     ThreadPool() = default;

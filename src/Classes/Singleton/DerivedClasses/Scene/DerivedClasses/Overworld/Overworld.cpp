@@ -20,12 +20,10 @@ void Overworld::init() {
 }
 
 void Overworld::handleEvents() {
-    static SDL_Event event;
-
     std::unique_lock<std::mutex> lock(this->mutex);
-    this->cv.wait(lock, [] -> bool { return entitiesUpdating > 0 or SDL_WaitEvent(&event) == 1; });
+    this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
 
-    switch (event.type) {
+    switch (this->getEventType()) {
         case SDL_EventType::SDL_QUIT:
             Game::getInstance().terminate();
             break;

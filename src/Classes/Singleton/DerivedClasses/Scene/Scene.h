@@ -7,8 +7,15 @@
 #include "../../Singleton.h"
 
 class Scene : public Singleton<Scene> {
+private:
+    SDL_Event event{};
+
 protected:
     Scene() = default;
+
+    bool waitEvent();
+
+    [[nodiscard]] SDL_EventType getEventType() const;
 
 public:
     enum class Id : Uint8 {
@@ -30,6 +37,8 @@ public:
         static Derived state;
         return state;
     }
+
+    void pushEvent();
 
     virtual void handleEvents();
 

@@ -29,13 +29,13 @@ void Player::addToPc(std::unique_ptr<Pokemon> toAdd) {
 bool Player::canMoveForward(const Map &map) const {
     switch (this->getDirection()) {
         case Direction::UP:
-            return not map.isObstructionHere(this->getMapX(), this->getMapY() - 1);
+            return not map.isCollisionHere(this->getMapX(), this->getMapY() - 1);
         case Direction::RIGHT:
-            return not map.isObstructionHere(this->getMapX() + 1, this->getMapY());
+            return not map.isCollisionHere(this->getMapX() + 1, this->getMapY());
         case Direction::DOWN:
-            return not map.isObstructionHere(this->getMapX(), this->getMapY() + 1);
+            return not map.isCollisionHere(this->getMapX(), this->getMapY() + 1);
         case Direction::LEFT:
-            return not map.isObstructionHere(this->getMapX() - 1, this->getMapY());
+            return not map.isCollisionHere(this->getMapX() - 1, this->getMapY());
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }

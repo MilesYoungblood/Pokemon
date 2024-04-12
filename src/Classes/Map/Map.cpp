@@ -26,6 +26,7 @@ void defaultAction(Character *entity) {
             }
             break;
         case 3:
+            ++entitiesUpdating;
             if (entity->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
                 entity->moveForward();
                 entity->setState(Character::State::WALKING);
@@ -47,7 +48,8 @@ void defaultAction(Character *entity) {
 
 void Map::parseTmx() {
     tinyxml2::XMLDocument tmxFile;
-    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) != tinyxml2::XMLError::XML_SUCCESS) {
+    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) !=
+        tinyxml2::XMLError::XML_SUCCESS) {
         tmxFile.PrintError();
         std::terminate();
     }
@@ -77,13 +79,19 @@ void Map::parseTmx() {
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     while (tilesetElement != nullptr) {
+        const int first_gid_attribute = tilesetElement->IntAttribute("firstgid", -1);
+        if (first_gid_attribute == -1) {
+            handleError(this->music + ".tmx", "firstgid", "attribute");
+            return;
+        }
+
         const std::string source_attribute(tilesetElement->Attribute("source"));
         if (source_attribute.empty()) {
             handleError(this->music + ".tmx", "source", "attribute");
             return;
         }
 
-        this->parseTsx(source_attribute);
+        this->parseTsx(first_gid_attribute, source_attribute);
 
         tilesetElement = tilesetElement->NextSiblingElement("tileset");
     }
@@ -91,9 +99,10 @@ void Map::parseTmx() {
     this->populate(mapElement, width, height);
 }
 
-void Map::parseTsx(const std::string &sourceAttribute) {
+void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
     tinyxml2::XMLDocument tsxFile;
-    if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) != tinyxml2::XMLError::XML_SUCCESS) {
+    if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) !=
+        tinyxml2::XMLError::XML_SUCCESS) {
         tsxFile.PrintError();
         std::terminate();
     }
@@ -110,7 +119,7 @@ void Map::parseTsx(const std::string &sourceAttribute) {
         return;
     }
 
-    this->collision.reserve(tile_count);
+    this->collisionSet.reserve(tile_count);
     this->tileImages.reserve(tile_count);
 
     tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
@@ -139,7 +148,9 @@ void Map::parseTsx(const std::string &sourceAttribute) {
             return;
         }
 
-        this->collision.push_back(propertyElement->BoolAttribute("value"));
+        if (propertyElement->BoolAttribute("value")) {
+            this->collisionSet.insert(id + firstGidAttribute);
+        }
 
         tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
         if (imageElement == nullptr) {
@@ -166,13 +177,8 @@ void Map::parseTsx(const std::string &sourceAttribute) {
 }
 
 void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height) {
-    const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
-    if (layerElement == nullptr) {
-        handleError(music + ".tmx", "layer", "element");
-        return;
-    }
-
-    while (layerElement != nullptr) {
+    for (const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
+         layerElement != nullptr; layerElement = layerElement->NextSiblingElement("layer")) {
         const int id_attribute = layerElement->IntAttribute("id");
         if (id_attribute == 0) {
             handleError(music + ".tmx", "id", "attribute");
@@ -191,13 +197,13 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         }
 
         std::istringstream ss(csvData);
-        layer layer(height, std::vector<Map::Tile>(width));
+        Matrix<Map::Tile> layer(height, width);
         int value;
-        for (int row = 0; row < height; ++row) {
-            for (int col = 0; col < width and ss >> value; ++col) {
-                layer[row][col].id = value;
-                layer[row][col].screenX = col * Map::TILE_SIZE;
-                layer[row][col].screenY = row * Map::TILE_SIZE;
+        for (int i = 0; i < height; ++i) {
+            for (int j = 0; j < width and ss >> value; ++j) {
+                layer[i, j].id = value;
+                layer[i, j].screenX = j * Map::TILE_SIZE;
+                layer[i, j].screenY = i * Map::TILE_SIZE;
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
@@ -205,7 +211,6 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         }
 
         this->layout.push_back(layer);
-        layerElement = layerElement->NextSiblingElement("layer");
     }
 }
 
@@ -213,7 +218,8 @@ void Map::loadEntities() {
     tinyxml2::XMLDocument xmlFile;
     // first try to load from temp files
     // this means that the Player has been to this switched from this map this session
-    if (xmlFile.LoadFile(std::string("../assets/data/Map/temp/" + this->music + ".xml").data()) != tinyxml2::XMLError::XML_SUCCESS) {
+    if (xmlFile.LoadFile(std::string("../assets/data/Map/temp/" + this->music + ".xml").data()) !=
+        tinyxml2::XMLError::XML_SUCCESS) {
         // then try to load from backup files;
         // this is the first time the Player has been to this map this session
         if (xmlFile.LoadFile(std::string_view("../assets/data/Map/backup/" + this->music + ".xml").data()) !=
@@ -337,7 +343,8 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos, Direction(trainer_direction), trainer_vision));
+    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos,
+                                                                Direction(trainer_direction), trainer_vision));
     this->loadTrainer2(trainer, visionElement);
 }
 
@@ -351,7 +358,8 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
     std::vector<std::string> messages;
     messages.reserve(dialogueListElement->ChildElementCount());
 
-    for (tinyxml2::XMLElement *messageElement = dialogueListElement->FirstChildElement("message"); messageElement != nullptr;
+    for (tinyxml2::XMLElement *messageElement = dialogueListElement->FirstChildElement("message");
+         messageElement != nullptr;
          messageElement = messageElement->NextSiblingElement("message")) {
         const char *message = messageElement->GetText();
         if (message != nullptr) {
@@ -367,7 +375,8 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
         return;
     }
     if (partyElement->ChildElementCount() == 0) {
-        std::clog << "Invalid file format in file " << this->music << ".xml" << ": Trainer \"" << trainer->getName() << " must have at least 1 Pokemon\n";
+        std::clog << "Invalid file format in file " << this->music << ".xml" << ": Trainer \"" << trainer->getName()
+                  << " must have at least 1 Pokemon\n";
         std::terminate();
     }
 
@@ -386,7 +395,8 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
         }
 
         if (moveSetElement->ChildElementCount() == 0) {
-            std::clog << "Invalid file format in file " << this->music << ".xml" << ": Pokemon \"" << idAttribute << " must have at least 1 Move\n";
+            std::clog << "Invalid file format in file " << this->music << ".xml" << ": Pokemon \"" << idAttribute
+                      << " must have at least 1 Move\n";
             std::terminate();
         }
 
@@ -501,10 +511,10 @@ Map::~Map() {
     }
 }
 
-bool Map::isObstructionHere(int x, int y) const {
+bool Map::isCollisionHere(int x, int y) const {
     try {
         // recall that it is row first, then column for vectors
-        return this->collision.at(this->layout[1][y][x].id) or
+        return this->collisionSet.contains(this->layout[1][y, x].id) or
                (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or
                std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
                    return entity->getMapX() == x and entity->getMapY() == y;

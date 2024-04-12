@@ -47,7 +47,7 @@ public:
 
     void moveForward();
 
-    void setDirection(Direction direction);
+    void setDirection(Direction x);
 
     [[nodiscard]] Direction getDirection() const;
 

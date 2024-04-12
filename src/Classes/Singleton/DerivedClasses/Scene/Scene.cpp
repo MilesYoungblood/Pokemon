@@ -6,9 +6,28 @@
 #include "../KeyManager/KeyManager.h"
 #include "Scene.h"
 
+bool Scene::waitEvent() {
+    if (SDL_WaitEvent(&this->event) == 0) {
+        std::clog << "Error processing event: " << SDL_GetError() << '\n';
+        Game::getInstance().terminate();
+        return false;
+    }
+    return true;
+}
+
+SDL_EventType Scene::getEventType() const {
+    return static_cast<SDL_EventType>(this->event.type);
+}
+
+void Scene::pushEvent() {
+    if (SDL_PushEvent(&this->event) < 0) {
+        std::clog << "Error pushing event: " << SDL_GetError() << '\n';
+        Game::getInstance().terminate();
+    }
+}
+
 void Scene::handleEvents() {
-    static SDL_Event event;
-    if (SDL_PollEvent(&event) == 1) {
+    if (SDL_PollEvent(&this->event) == 1) {
         KeyManager::getInstance().update();
         if (event.type == SDL_EventType::SDL_QUIT) {
             Game::getInstance().terminate();

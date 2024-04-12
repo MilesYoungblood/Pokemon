@@ -58,8 +58,9 @@ void Character::moveForward() {
     }
 }
 
-void Character::setDirection(const Direction direction) {
-    this->currentDirection = direction;
+void Character::setDirection(Direction x) {
+    Scene::getInstance<Overworld>().pushEvent();
+    this->currentDirection = x;
 }
 
 Direction Character::getDirection() const {
@@ -68,6 +69,7 @@ Direction Character::getDirection() const {
 
 // makes this face the entity
 void Character::face(const Character *entity) {
+    Scene::getInstance<Overworld>().pushEvent();
     switch (entity->currentDirection) {
         case Direction::UP:
             this->currentDirection = Direction::DOWN;
@@ -102,13 +104,13 @@ Character::State Character::getState() const {
 bool Character::canMoveForward(const Map &map) const {
     switch (this->currentDirection) {
         case Direction::UP:
-            return not map.isObstructionHere(this->getMapX(), this->getMapY() - 1) and map.isExitPointHere(this->getMapX(), this->getMapY() - 1) == std::nullopt;
+            return not map.isCollisionHere(this->getMapX(), this->getMapY() - 1) and map.isExitPointHere(this->getMapX(), this->getMapY() - 1) == std::nullopt;
         case Direction::RIGHT:
-            return not map.isObstructionHere(this->getMapX() + 1, this->getMapY()) and map.isExitPointHere(this->getMapX() + 1, this->getMapY()) == std::nullopt;
+            return not map.isCollisionHere(this->getMapX() + 1, this->getMapY()) and map.isExitPointHere(this->getMapX() + 1, this->getMapY()) == std::nullopt;
         case Direction::DOWN:
-            return not map.isObstructionHere(this->getMapX(), this->getMapY() + 1) and map.isExitPointHere(this->getMapX(), this->getMapY() + 1) == std::nullopt;
+            return not map.isCollisionHere(this->getMapX(), this->getMapY() + 1) and map.isExitPointHere(this->getMapX(), this->getMapY() + 1) == std::nullopt;
         case Direction::LEFT:
-            return not map.isObstructionHere(this->getMapX() - 1, this->getMapY()) and map.isExitPointHere(this->getMapX() - 1, this->getMapY()) == std::nullopt;
+            return not map.isCollisionHere(this->getMapX() - 1, this->getMapY()) and map.isExitPointHere(this->getMapX() - 1, this->getMapY()) == std::nullopt;
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
@@ -248,6 +250,7 @@ void Character::walk() {
         this->updateAnimation();
     }
     if (this->pixelCounter % Map::TILE_SIZE == 0) {
+        --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
     }
@@ -258,6 +261,7 @@ void Character::collide() {
         this->updateAnimation();
     }
     else if (this->pixelCounter == 20 * (Game::getInstance().getFps() / 30)) {
+        --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
     }

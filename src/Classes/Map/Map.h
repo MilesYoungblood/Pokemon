@@ -7,6 +7,45 @@
 #include "../../Enums/Direction/Direction.h"
 #include "../ThreadPool/ThreadPool.h"
 
+template<typename T>
+class Matrix {
+private:
+    std::vector<std::vector<T>> data;
+
+public:
+    explicit Matrix(std::size_t m = 0, std::size_t n = 0) {
+        this->data = std::vector<std::vector<T>>(m, std::vector<T>(n));
+    }
+
+    T &operator[](int i, int j) {
+        return this->data[i][j];
+    }
+
+    [[nodiscard]] T operator[](int i, int j) const {
+        return this->data[i][j];
+    }
+
+    T at(std::size_t i, std::size_t j) {
+        return this->data.at(i).at(j);
+    }
+
+    std::vector<std::vector<T>>::iterator begin() {
+        return this->data.begin();
+    }
+
+    [[nodiscard]] std::vector<std::vector<T>>::const_iterator begin() const {
+        return this->data.cbegin();
+    }
+
+    std::vector<std::vector<T>>::iterator end() {
+        return this->data.end();
+    }
+
+    [[nodiscard]] std::vector<std::vector<T>>::const_iterator end() const {
+        return this->data.cend();
+    }
+};
+
 class Entity;
 
 class Trainer;
@@ -42,8 +81,8 @@ public:
     /// \brief Checks to see if an obstruction is present
     /// \param x coordinate
     /// \param y coordinate
-    /// \return true if an obstruction is here and false otherwise
-    [[nodiscard]] bool isObstructionHere(int x, int y) const;
+    /// \return true if a collision is here and false otherwise
+    [[nodiscard]] bool isCollisionHere(int x, int y) const;
 
     /// \brief Checks to see if an exit point is present
     /// \param x coordinate
@@ -111,10 +150,9 @@ private:
         int screenY;
     };
 
-    using layer = std::vector<std::vector<Map::Tile>>;          // a 2D matrix of tiles
-    std::vector<Map::layer> layout;                             // The map is vector of layers
+    std::vector<Matrix<Map::Tile>> layout;                      // The map is vector of matrices
 
-    std::vector<bool> collision{ false };                       // collision values for each tile id
+    std::unordered_set<int> collisionSet;                       // set of tile ids that cause collision
     std::vector<SDL_Texture *> tileImages{ nullptr };           // texture for each tile id
 
     std::vector<std::unique_ptr<Entity>> entities;              // the set of entities in this map
@@ -135,7 +173,7 @@ private:
 
     void parseTmx();
 
-    void parseTsx(const std::string &sourceAttribute);
+    void parseTsx(int firstGidAttribute, const std::string &sourceAttribute);
 
     void populate(const tinyxml2::XMLElement *mapElement, int width, int height);
 

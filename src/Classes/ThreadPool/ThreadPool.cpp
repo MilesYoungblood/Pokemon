@@ -4,22 +4,24 @@
 
 #include "ThreadPool.h"
 
-void ThreadPool::clean() {
+void ThreadPool::clear() {
     this->running = false;
     this->cv.notify_all();
 
     for (auto &worker : this->workers) {
         worker.join();
     }
+
+    this->workers.clear();
 }
 
 ThreadPool::~ThreadPool() {
-    this->clean();
+    this->clear();
 }
 
 void ThreadPool::init(std::size_t n) {
     // safe clean threads already here in case of re-initialization
-    this->clean();
+    this->clear();
     this->running = true;
 
     for (std::size_t i = 0; i < n; ++i) {
@@ -62,5 +64,5 @@ void ThreadPool::add(std::function<void()> task) {
 
 void ThreadPool::block() {
     std::unique_lock<std::mutex> lock(this->mutex);
-    this->allIdle.wait(lock);
+    this->allIdle.wait(lock, [this] -> bool { return this->tasks.empty() and this->activeThreads == 0; });
 }
