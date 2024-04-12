@@ -56,4 +56,6 @@ public:
     void handleMove(SDL_Scancode scancode);
 
     void handleReturn();
+
+    void handleEscape();
 };

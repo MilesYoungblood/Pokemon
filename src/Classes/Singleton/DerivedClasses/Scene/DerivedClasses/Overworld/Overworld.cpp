@@ -9,6 +9,10 @@
 #include "../../../Camera/Camera.h"
 #include "Overworld.h"
 
+namespace {
+    std::unordered_map<Character *, Character::State> characterStates;
+}
+
 void Overworld::init() {
     this->currentMap = std::make_unique<Map>("Nuvema Town");
 
@@ -66,6 +70,8 @@ void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
     Mix_HookMusicFinished([] -> void {
         Mixer::getInstance().playMusic(Scene::getInstance<Overworld>().currentMap->getMusic());
     });
+
+    characterStates.clear();
 
     // move the new map into the current map variable
     this->currentMap = std::make_unique<Map>(std::get<2>(data).c_str());
@@ -183,4 +189,53 @@ void Overworld::handleReturn() {
             return;
         }
     }
+}
+
+void Overworld::handleEscape() {
+    if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
+        GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
+        Player::getPlayer().setState(Character::State::IDLE);
+        for (auto &entity : *this->currentMap) {
+            auto *character = dynamic_cast<Character *>(entity.get());
+            if (character != nullptr) {
+                character->setState(characterStates.at(character));
+                characterStates.erase(character);
+            }
+        }
+    }
+    else {
+        GraphicsEngine::getInstance().addGraphic<SelectionBox>(
+                SDL_Rect(50, 50, 250, 300),
+                5,
+                std::vector<std::pair<std::string, std::function<void()>>>(
+                        {
+                                std::make_pair("Pokemon", nullptr),
+                                std::make_pair("Pokedex", nullptr),
+                                std::make_pair("Bag", nullptr),
+                                std::make_pair("Trainer", nullptr),
+                                std::make_pair("Save", nullptr),
+                                std::make_pair("Options", nullptr)
+                        }
+                )
+        );
+        Player::getPlayer().setState(Character::State::IMMOBILE);
+        for (auto &entity : *this->currentMap) {
+            auto *character = dynamic_cast<Character *>(entity.get());
+            if (character != nullptr) {
+                characterStates[character] = character->getState();
+                character->setState(Character::State::IMMOBILE);
+            }
+        }
+    }
+    // re-lock the Enter key
+    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+
+    // sets a cool-down period before the Enter key can be registered again;
+    // this is needed because the program will register a button as
+    // being pressed faster than the user can lift their finger
+    std::thread coolDown([] -> void {
+        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+        KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+    });
+    coolDown.detach();
 }

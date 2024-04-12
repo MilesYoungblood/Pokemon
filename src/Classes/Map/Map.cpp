@@ -11,34 +11,34 @@ void handleError(const std::string &filename, const char *name, const char *type
     Game::getInstance().terminate();
 }
 
-void defaultAction(Character *entity) {
+void defaultAction(Character *character) {
     switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
         case 1:
-            entity->face(entity);
+            character->face(character);
             break;
 
         case 2:
-            if (entity->isFacing(Direction::UP) or entity->isFacing(Direction::DOWN)) {
-                binomial() ? entity->setDirection(Direction::LEFT) : entity->setDirection(Direction::RIGHT);
+            if (character->isFacing(Direction::UP) or character->isFacing(Direction::DOWN)) {
+                binomial() ? character->setDirection(Direction::LEFT) : character->setDirection(Direction::RIGHT);
             }
             else {
-                binomial() ? entity->setDirection(Direction::UP) : entity->setDirection(Direction::DOWN);
+                binomial() ? character->setDirection(Direction::UP) : character->setDirection(Direction::DOWN);
             }
             break;
         case 3:
             ++entitiesUpdating;
-            if (entity->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
-                entity->moveForward();
-                entity->setState(Character::State::WALKING);
+            if (character->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
+                character->moveForward();
+                character->setState(Character::State::WALKING);
 
-                if (entity->hasVisionOf(&Player::getPlayer()) and
+                if (character->hasVisionOf(&Player::getPlayer()) and
                     (Player::getPlayer().getState() == Character::State::IDLE)) {
                     Player::getPlayer().setState(Character::State::IMMOBILE);
                 }
             }
             else {
-                entity->setState(Character::State::COLLIDING);
-                entity->updateAnimation();
+                character->setState(Character::State::COLLIDING);
+                character->updateAnimation();
             }
             break;
         default:
