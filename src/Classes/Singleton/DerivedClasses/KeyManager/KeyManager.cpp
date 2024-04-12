@@ -13,6 +13,7 @@ void KeyManager::unlock(SDL_Scancode key) {
 }
 
 void KeyManager::update() {
+    SDL_PumpEvents();
     this->keyStates = std::span<const Uint8>(SDL_GetKeyboardState(nullptr), 255);
 }
 

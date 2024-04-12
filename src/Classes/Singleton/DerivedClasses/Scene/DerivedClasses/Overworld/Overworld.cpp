@@ -21,21 +21,22 @@ void Overworld::init() {
 
 void Overworld::handleEvents() {
     static SDL_Event event;
-    if (SDL_PollEvent(&event) == 1) {
-        KeyManager::getInstance().update();
-        switch (event.type) {
-            case SDL_EventType::SDL_QUIT:
-                Game::getInstance().terminate();
-                break;
-            case SDL_EventType::SDL_KEYDOWN:
-                keyDelay.start();
-                break;
-            case SDL_EventType::SDL_KEYUP:
-                keyDelay.stop();
-                break;
-            default:
-                break;
-        }
+
+    std::unique_lock<std::mutex> lock(this->mutex);
+    this->cv.wait(lock, [] -> bool { return entitiesUpdating > 0 or SDL_WaitEvent(&event) == 1; });
+
+    switch (event.type) {
+        case SDL_EventType::SDL_QUIT:
+            Game::getInstance().terminate();
+            break;
+        case SDL_EventType::SDL_KEYDOWN:
+            keyDelay.start();
+            break;
+        case SDL_EventType::SDL_KEYUP:
+            keyDelay.stop();
+            break;
+        default:
+            break;
     }
 }
 
@@ -160,6 +161,8 @@ void Overworld::handleMove(SDL_Scancode scancode) {
             momentum = true;
             keyDelay.stop();
             keyDelay.reset();
+
+            ++entitiesUpdating;
 
             if (Player::getPlayer().canMoveForward(*this->currentMap)) {
                 Player::getPlayer().moveForward();

@@ -591,6 +591,7 @@ void Map::shift(Direction direction, int n) {
             }
         });
     }
+
     this->threadPool.add([this, direction, n] -> void {
         for (auto &entity : this->entities) {
             entity->shift(direction, n);

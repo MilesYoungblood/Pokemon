@@ -62,5 +62,5 @@ void ThreadPool::add(std::function<void()> task) {
 
 void ThreadPool::block() {
     std::unique_lock<std::mutex> lock(this->mutex);
-    this->allIdle.wait(lock, [this] -> bool { return this->activeThreads == 0; });
+    this->allIdle.wait(lock);
 }

@@ -11,9 +11,14 @@
 inline Stopwatch keyDelay;
 inline bool momentum;
 
+inline std::atomic_int entitiesUpdating = 0;
+
 class Overworld : public Scene {
 private:
     std::unique_ptr<Map> currentMap;
+
+    std::mutex mutex;
+    std::condition_variable cv;
 
     friend class Scene;
 

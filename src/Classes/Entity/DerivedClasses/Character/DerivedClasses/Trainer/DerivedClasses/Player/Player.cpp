@@ -52,6 +52,7 @@ void Player::walk() {
         this->updateAnimation();
     }
     if (this->getPixelCounter() % Map::TILE_SIZE == 0) {
+        --entitiesUpdating;
         this->setState(Character::State::IDLE);
         this->resetPixelCounter();
 
@@ -65,6 +66,8 @@ void Player::walk() {
 
 void Player::idle() {
     static std::unordered_map<Character *, Character::State> characterStates;
+
+    KeyManager::getInstance().update();
 
     if (this->getState() != Character::State::IMMOBILE) {
         if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
