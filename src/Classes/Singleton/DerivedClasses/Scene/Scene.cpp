@@ -20,7 +20,8 @@ SDL_EventType Scene::getEventType() const {
 }
 
 void Scene::pushEvent() {
-    if (SDL_PushEvent(&this->event) < 0) {
+    SDL_Event commonEvent;
+    if (SDL_PushEvent(&commonEvent) < 0) {
         std::clog << "Error pushing event: " << SDL_GetError() << '\n';
         Game::getInstance().terminate();
     }

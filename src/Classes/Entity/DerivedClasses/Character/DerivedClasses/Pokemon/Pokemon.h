@@ -8,7 +8,7 @@
 #include "../../../../../Move/Move.h"
 #include "../../../../../../Enums/StatusCondition/StatusCondition.h"
 
-class Pokemon : public Character {
+class Pokemon {
 public:
     enum class Stat : Uint8 {
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
@@ -20,10 +20,10 @@ public:
 
     explicit Pokemon(const std::string &id);
 
-    Pokemon(const std::string &id, const std::string &name, std::string gender, std::string ability, int level, int hp,
+    Pokemon(std::string id, std::string name, std::string gender, std::string ability, int level, int hp,
             int attack, int defense, int spAttack, int spDefense, int speed);
 
-    Pokemon(const Pokemon &) = delete;
+    Pokemon(const Pokemon &) = default;
 
     Pokemon(Pokemon &&) noexcept = default;
 
@@ -31,7 +31,7 @@ public:
 
     Pokemon &operator=(Pokemon &&) noexcept = default;
 
-    ~Pokemon() override = default;
+    ~Pokemon() = default;
 
     [[nodiscard]] int numMoves() const;
 
@@ -64,6 +64,8 @@ public:
     void levelUp();
 
     [[nodiscard]] int getLevel() const;
+
+    [[nodiscard]] std::string getName() const;
 
     [[nodiscard]] std::string getGender() const;
 
@@ -119,7 +121,10 @@ private:
     std::vector<std::unique_ptr<Move>> moveSet;
     std::string ability;
 
+    std::string name;
+    std::string id;
     std::string gender;
+
     StatusCondition status{ StatusCondition::NONE };
 
     [[nodiscard]] double getStat(Pokemon::Stat stat) const;

@@ -38,7 +38,7 @@ public:
         return state;
     }
 
-    void pushEvent();
+    static void pushEvent();
 
     virtual void handleEvents();
 

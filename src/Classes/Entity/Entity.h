@@ -8,10 +8,10 @@
 
 class Entity {
 private:
-    int mapX{ 0 };                                        // x-coordinate on map
-    int mapY{ 0 };                                        // y-coordinate on map
-    int screenX{ 0 };                                     // x-coordinate on the screen
-    int screenY{ 0 };                                     // y-coordinate on the screen
+    std::atomic_int mapX{ 0 };                          // x-coordinate on map
+    std::atomic_int mapY{ 0 };                          // y-coordinate on map
+    std::atomic_int screenX{ 0 };                       // x-coordinate on the screen
+    std::atomic_int screenY{ 0 };                       // y-coordinate on the screen
 
 protected:
     Entity() = default;
@@ -21,11 +21,11 @@ protected:
 public:
     Entity(const Entity &) = delete;
 
-    Entity(Entity &&) noexcept = default;
+    Entity(Entity &&) noexcept = delete;
 
-    Entity &operator=(const Entity &) = default;
+    Entity &operator=(const Entity &) = delete;
 
-    Entity &operator=(Entity &&) noexcept = default;
+    Entity &operator=(Entity &&) noexcept = delete;
 
     virtual ~Entity() = default;
 

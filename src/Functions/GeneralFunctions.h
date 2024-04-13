@@ -171,19 +171,19 @@ inline bool isVowel(char ltr) {
 inline bool binomial(double prob = 50.0) {
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::binomial_distribution<int> dist(1, prob / 100.0);
+    std::binomial_distribution dist(1, prob / 100.0);
 
     return dist(mt) == 1;
 }
 
 // returns a random integer from a range
-inline int generateInteger(int from, int to) {
-    if (from > to) {
-        std::swap(from, to);
+inline int generateInteger(int a, int b) {
+    if (a > b) {
+        std::swap(a, b);
     }
     std::random_device rd;
     std::mt19937 mt(rd());
-    std::uniform_int_distribution dist(from, to);
+    std::uniform_int_distribution dist(a, b);
 
     return dist(mt);
 }

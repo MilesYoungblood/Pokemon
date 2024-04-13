@@ -5,7 +5,9 @@
 #include "../../../../../Singleton/DerivedClasses/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
+#include <utility>
+
+Pokemon::Pokemon(const std::string &id) : baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
     const double ratio = Pokedex::getInstance().getGenderRatio(id);
     if (ratio == -1) {
         this->gender = "Genderless";
@@ -24,9 +26,9 @@ Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statMo
     }
 }
 
-Pokemon::Pokemon(const std::string &id, const std::string &name, std::string gender, std::string ability, int level,
+Pokemon::Pokemon(std::string id, std::string name, std::string gender, std::string ability, int level,
                  int hp, int attack, int defense, int spAttack, int spDefense, int speed)
-        : Character(id, name), gender(std::move(gender)), ability(std::move(ability)), maxHp(hp), currentHp(hp),
+        : id(std::move(id)), name(std::move(name)), gender(std::move(gender)), ability(std::move(ability)), maxHp(hp), currentHp(hp),
           level(level), baseStats({ attack, defense, spAttack, spDefense, speed }),
           statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {}
 
@@ -34,14 +36,14 @@ int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
 }
 
-void Pokemon::addMove(const std::string &id) {
+void Pokemon::addMove(const std::string &moveId) {
     if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
         return;
     }
-    this->moveSet.push_back(std::move(moveMap.at(id)()));
+    this->moveSet.push_back(std::move(moveMap.at(moveId)()));
 }
 
-void Pokemon::deleteMove(const int index) {
+void Pokemon::deleteMove(int index) {
     try {
         this->moveSet.erase(this->moveSet.begin() + index);
     }
@@ -50,11 +52,11 @@ void Pokemon::deleteMove(const int index) {
     }
 }
 
-void Pokemon::restoreHp(const int amount) {
+void Pokemon::restoreHp(int amount) {
     this->currentHp = std::min(this->currentHp + amount, this->maxHp);
 }
 
-void Pokemon::takeDamage(const int amount) {
+void Pokemon::takeDamage(int amount) {
     this->currentHp = std::max(this->currentHp - amount, 0);
 }
 
@@ -136,9 +138,6 @@ double Pokemon::getBaseStat(Pokemon::Stat stat) const {
 }
 
 void Pokemon::setStatus(StatusCondition newStatus) {
-    this->status = newStatus;
-
-    // FIXME
     if (this->status == StatusCondition::NONE) {
         if (newStatus == StatusCondition::BURN) {
             this->baseStats[static_cast<std::size_t>(Pokemon::Stat::ATTACK)] *= 2.0;
@@ -153,6 +152,8 @@ void Pokemon::setStatus(StatusCondition newStatus) {
     else if (this->status == StatusCondition::PARALYSIS) {
         this->baseStats[static_cast<std::size_t>(Pokemon::Stat::SPEED)] /= 2.0;
     }
+
+    this->status = newStatus;
 }
 
 StatusCondition Pokemon::getStatus() const {
@@ -167,6 +168,10 @@ int Pokemon::getLevel() const {
     return this->level;
 }
 
+std::string Pokemon::getName() const {
+    return this->name;
+}
+
 std::string Pokemon::getGender() const {
     return this->gender;
 }
@@ -176,27 +181,27 @@ std::string Pokemon::getAbility() const {
 }
 
 std::string Pokemon::getSpecies() const {
-    return Pokedex::getInstance().getSpecies(this->getId());
+    return Pokedex::getInstance().getSpecies(this->id);
 }
 
 Type Pokemon::getType1() const {
-    return Pokedex::getInstance().getType1(this->getId());
+    return Pokedex::getInstance().getType1(this->id);
 }
 
 Type Pokemon::getType2() const {
-    return Pokedex::getInstance().getType2(this->getId());
+    return Pokedex::getInstance().getType2(this->id);
 }
 
 double Pokemon::getHeight() const {
-    return Pokedex::getInstance().getHeight(this->getId());
+    return Pokedex::getInstance().getHeight(this->id);
 }
 
 double Pokemon::getWeight() const {
-    return Pokedex::getInstance().getWeight(this->getId());
+    return Pokedex::getInstance().getWeight(this->id);
 }
 
 int Pokemon::getCatchRate() const {
-    return Pokedex::getInstance().getCatchRate(this->getId());
+    return Pokedex::getInstance().getCatchRate(this->id);
 }
 
 bool Pokemon::isFainted() const {
@@ -225,11 +230,11 @@ bool Pokemon::canAttack() const {
 }
 
 std::string Pokemon::hpEmptyMessage() const {
-    return this->getName() + "'s HP is empty!";
+    return this->name + "'s HP is empty!";
 }
 
 std::string Pokemon::hpFullMessage() const {
-    return this->getName() + "'s HP is full!";
+    return this->name + "'s HP is full!";
 }
 
 Move &Pokemon::operator[](const int index) {

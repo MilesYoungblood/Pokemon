@@ -12,7 +12,7 @@ void handleError(const std::string &filename, const char *name, const char *type
 }
 
 void defaultAction(Character *character) {
-    switch (generateInteger(1, 100 * Game::getInstance().getFps() / 30)) {
+    switch (generateInteger(1, 4)) {
         case 1:
             character->face(character);
             break;
@@ -25,7 +25,7 @@ void defaultAction(Character *character) {
                 binomial() ? character->setDirection(Direction::UP) : character->setDirection(Direction::DOWN);
             }
             break;
-        case 3:
+        default:
             ++entitiesUpdating;
             if (character->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
                 character->moveForward();
@@ -40,8 +40,6 @@ void defaultAction(Character *character) {
                 character->setState(Character::State::COLLIDING);
                 character->updateAnimation();
             }
-            break;
-        default:
             break;
     }
 }
@@ -486,9 +484,23 @@ Map::Map(const char *name) : name(name), music(name) {
     this->loadEntities();
 
     this->threadPool.init(this->layout.size() + 1);
+
+    for (auto &entity : this->entities) {
+        auto *trainer = dynamic_cast<Trainer *>(entity.get());
+        if (trainer != nullptr) {
+            trainer->makeAutonomous(this->music);
+        }
+    }
 }
 
 Map::~Map() {
+    for (auto &entity : this->entities) {
+        auto *character = dynamic_cast<Character *>(entity.get());
+        if (character != nullptr) {
+            character->wakeUp();
+        }
+    }
+
     for (auto &tileImage : this->tileImages) {
         if (tileImage != nullptr) {
             SDL_DestroyTexture(tileImage);
@@ -512,17 +524,18 @@ Map::~Map() {
 }
 
 bool Map::isCollisionHere(int x, int y) const {
-    try {
-        // recall that it is row first, then column for vectors
-        return this->collisionSet.contains(this->layout[1][y, x].id) or
-               (Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y) or
-               std::ranges::any_of(this->entities, [&x, &y](const std::unique_ptr<Entity> &entity) -> bool {
-                   return entity->getMapX() == x and entity->getMapY() == y;
-               });
-    }
-    catch (const std::exception &e) {
-        throw std::runtime_error(std::string("Error accessing map layout: ") + e.what() + '\n');
-    }
+    const bool collision = this->collisionSet.contains(this->layout[1][y, x].id);
+
+    const bool player_here = Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y;
+
+    const bool entity_here = std::ranges::any_of(
+            this->entities,
+            [&x, &y](const std::unique_ptr <Entity> &entity) -> bool {
+                return entity->getMapX() == x and entity->getMapY() == y;
+            }
+    );
+
+    return collision or player_here or entity_here;
 }
 
 std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int y) const {

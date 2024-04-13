@@ -27,13 +27,13 @@ public:
 
     Character(const Character &) = delete;
 
-    Character(Character &&toMove) noexcept = default;
+    Character(Character &&toMove) noexcept = delete;
 
-    Character &operator=(const Character &) = default;
+    Character &operator=(const Character &) = delete;
 
-    Character &operator=(Character &&) noexcept = default;
+    Character &operator=(Character &&) noexcept = delete;
 
-    ~Character() override = default;
+    ~Character() override;
 
     void setName(const char *newName);
 
@@ -65,6 +65,10 @@ public:
 
     void setAction(void (*function)(Character *entity));
 
+    void makeAutonomous(const std::string &id);
+
+    void wakeUp();
+
     void interact() override;
 
     void updateAnimation();
@@ -78,8 +82,6 @@ public:
     [[nodiscard]] virtual bool isTrainer() const;
 
 protected:
-    Character() = default;
-
     Character(std::string id, std::string name);
 
     virtual void walk();
@@ -87,8 +89,6 @@ protected:
     void collide();
 
     virtual void idle();
-
-    void act();
 
     void incPixelCounter(int n);
 
@@ -102,14 +102,18 @@ private:
     std::string name;
     std::string id;
 
-    unsigned int vision{ 1 };                                               // line of sight
+    unsigned int vision{ 1 };                                                   // line of sight
 
-    Direction currentDirection{ Direction::DOWN };                          // which way the entity is facing
-    Character::State currentState{ Character::State::IDLE };                // dictates what the entity is doing
+    std::atomic<Direction> currentDirection{ Direction::DOWN };              // which way the entity is facing
+    std::atomic<Character::State> currentState{ Character::State::IDLE };    // dictates what the entity is doing
 
     int pixelCounter{ 0 };
 
     Sprite sprite;
 
     void (*action)(Character *entity){ nullptr };
+
+    std::thread autonomy;
+    std::mutex mutex;
+    std::condition_variable cv;
 };

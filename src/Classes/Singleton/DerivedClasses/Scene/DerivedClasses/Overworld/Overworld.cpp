@@ -26,6 +26,7 @@ void Overworld::init() {
 void Overworld::handleEvents() {
     std::unique_lock<std::mutex> lock(this->mutex);
     this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
+    std::cout << "\tWaiting on " << entitiesUpdating << " entities\n";
 
     switch (this->getEventType()) {
         case SDL_EventType::SDL_QUIT:

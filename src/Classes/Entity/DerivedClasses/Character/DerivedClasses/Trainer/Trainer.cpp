@@ -4,7 +4,6 @@
 
 #include "../../../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
-#include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "Trainer.h"
 
@@ -128,7 +127,8 @@ bool Trainer::isTrainer() const {
 }
 
 void Trainer::idle() {
-    this->act();
+    return;
+    //this->act();
 
     static int frameCounter = 0;    // makes this that spotted the player stand still for a set number of frames
     static bool haltMusic = true;

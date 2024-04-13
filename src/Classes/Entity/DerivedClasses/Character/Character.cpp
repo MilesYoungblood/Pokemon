@@ -16,6 +16,10 @@ Character::Character(const char *id, int x, int y, Direction direction)
 Character::Character(const char *id, const char *name, int x, int y, Direction direction, int vision)
         : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
 
+Character::~Character() {
+    this->autonomy.join();
+}
+
 void Character::setName(const char *newName) {
     this->name = newName;
 }
@@ -53,14 +57,15 @@ void Character::moveForward() {
             this->translateX(false);
             break;
         default:
-            std::clog << "Invalid direction " << this->currentDirection << '\n';
+            std::clog << "Invalid direction " << this->currentDirection.load() << '\n';
             Game::getInstance().terminate();
     }
 }
 
 void Character::setDirection(Direction x) {
-    Scene::getInstance<Overworld>().pushEvent();
     this->currentDirection = x;
+    std::cout << this->name << " changed direction\n";
+    Overworld::pushEvent();
 }
 
 Direction Character::getDirection() const {
@@ -69,7 +74,6 @@ Direction Character::getDirection() const {
 
 // makes this face the entity
 void Character::face(const Character *entity) {
-    Scene::getInstance<Overworld>().pushEvent();
     switch (entity->currentDirection) {
         case Direction::UP:
             this->currentDirection = Direction::DOWN;
@@ -84,9 +88,12 @@ void Character::face(const Character *entity) {
             this->currentDirection = Direction::LEFT;
             break;
         default:
-            std::clog << "Invalid direction " << entity->currentDirection << '\n';
+            std::clog << "Invalid direction " << entity->currentDirection.load() << '\n';
             Game::getInstance().terminate();
+            return;
     }
+    std::cout << this->name << " changed direction\n";
+    Overworld::pushEvent();
 }
 
 bool Character::isFacing(Direction direction) const {
@@ -139,7 +146,32 @@ void Character::setAction(void (*function)(Character *)) {
     this->action = function;
 }
 
+void Character::makeAutonomous(const std::string &mapId) {
+    this->autonomy = std::thread([this, mapId] -> void {
+        while (true) {
+            if (Scene::getInstance<Overworld>().getCurrentMap().getMusic() != mapId or
+                not Game::getInstance().isRunning()) {
+                return;
+            }
+
+            if (this->action != nullptr) {
+                this->action(this);
+            }
+
+            std::unique_lock<std::mutex> lock(this->mutex);
+            this->cv.wait_for(lock, std::chrono::seconds(generateInteger(2, 4)), [] -> bool {
+                return not Game::getInstance().isRunning();
+            });
+        }
+    });
+}
+
+void Character::wakeUp() {
+    this->cv.notify_one();
+}
+
 void Character::interact() {
+    return;
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
@@ -220,6 +252,10 @@ void Character::update() {
         case State::IMMOBILE:
             this->idle();
             break;
+        default:
+            std::clog << "Invalid argument in function Character::update()\n";
+            Game::getInstance().terminate();
+            break;
     }
 }
 
@@ -253,6 +289,7 @@ void Character::walk() {
         --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
+        this->cv.notify_one();
     }
 }
 
@@ -264,6 +301,7 @@ void Character::collide() {
         --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
+        this->cv.notify_one();
     }
     if (this->currentState != Character::State::IDLE) {
         ++this->pixelCounter;
@@ -271,13 +309,7 @@ void Character::collide() {
 }
 
 void Character::idle() {
-    this->act();
-}
-
-void Character::act() {
-    if (this->currentState == Character::State::IDLE and this->action != nullptr) {
-        this->action(this);
-    }
+    //this->act();
 }
 
 void Character::incPixelCounter(int n) {

@@ -27,7 +27,7 @@ public:
 
     Trainer(const Trainer &) = delete;
 
-    Trainer(Trainer &&toMove) noexcept = default;
+    Trainer(Trainer &&toMove) noexcept = delete;
 
     Trainer &operator=(const Trainer &) = delete;
 
