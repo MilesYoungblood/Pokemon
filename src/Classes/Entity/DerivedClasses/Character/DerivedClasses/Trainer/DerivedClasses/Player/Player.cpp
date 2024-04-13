@@ -52,7 +52,6 @@ void Player::walk() {
         this->updateAnimation();
     }
     if (this->getPixelCounter() % Map::TILE_SIZE == 0) {
-        --entitiesUpdating;
         this->setState(Character::State::IDLE);
         this->resetPixelCounter();
 
@@ -61,6 +60,8 @@ void Player::walk() {
         if (map_data.has_value()) {
             Scene::getInstance<Overworld>().changeMap(map_data.value());
         }
+
+        --entitiesUpdating;
     }
 }
 

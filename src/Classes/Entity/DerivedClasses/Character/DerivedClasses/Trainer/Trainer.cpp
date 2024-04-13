@@ -127,6 +127,7 @@ bool Trainer::isTrainer() const {
 }
 
 void Trainer::idle() {
+    Character::idle();
     return;
     //this->act();
 

@@ -11,39 +11,6 @@ void handleError(const std::string &filename, const char *name, const char *type
     Game::getInstance().terminate();
 }
 
-void defaultAction(Character *character) {
-    switch (generateInteger(1, 4)) {
-        case 1:
-            character->face(character);
-            break;
-
-        case 2:
-            if (character->isFacing(Direction::UP) or character->isFacing(Direction::DOWN)) {
-                binomial() ? character->setDirection(Direction::LEFT) : character->setDirection(Direction::RIGHT);
-            }
-            else {
-                binomial() ? character->setDirection(Direction::UP) : character->setDirection(Direction::DOWN);
-            }
-            break;
-        default:
-            ++entitiesUpdating;
-            if (character->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
-                character->moveForward();
-                character->setState(Character::State::WALKING);
-
-                if (character->hasVisionOf(&Player::getPlayer()) and
-                    (Player::getPlayer().getState() == Character::State::IDLE)) {
-                    Player::getPlayer().setState(Character::State::IMMOBILE);
-                }
-            }
-            else {
-                character->setState(Character::State::COLLIDING);
-                character->updateAnimation();
-            }
-            break;
-    }
-}
-
 void Map::parseTmx() {
     tinyxml2::XMLDocument tmxFile;
     if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) !=
@@ -414,7 +381,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
         trainer->addPokemon(std::move(pokemon));
     }
 
-    trainer->setAction(defaultAction);
+    //trainer->setAction();
 
     this->entities.push_back(std::move(trainer));
 }
@@ -494,13 +461,6 @@ Map::Map(const char *name) : name(name), music(name) {
 }
 
 Map::~Map() {
-    for (auto &entity : this->entities) {
-        auto *character = dynamic_cast<Character *>(entity.get());
-        if (character != nullptr) {
-            character->wakeUp();
-        }
-    }
-
     for (auto &tileImage : this->tileImages) {
         if (tileImage != nullptr) {
             SDL_DestroyTexture(tileImage);

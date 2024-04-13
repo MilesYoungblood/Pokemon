@@ -63,11 +63,7 @@ public:
 
     bool hasVisionOf(const Entity *entity) const;
 
-    void setAction(void (*function)(Character *entity));
-
     void makeAutonomous(const std::string &id);
-
-    void wakeUp();
 
     void interact() override;
 
@@ -111,7 +107,9 @@ private:
 
     Sprite sprite;
 
-    void (*action)(Character *entity){ nullptr };
+    void decide();
+
+    std::queue<void (*)(Character *)> decisions;
 
     std::thread autonomy;
     std::mutex mutex;

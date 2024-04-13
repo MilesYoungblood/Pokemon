@@ -12,6 +12,7 @@ bool Scene::waitEvent() {
         Game::getInstance().terminate();
         return false;
     }
+    std::cout << "Event received\n";
     return true;
 }
 
@@ -21,9 +22,23 @@ SDL_EventType Scene::getEventType() const {
 
 void Scene::pushEvent() {
     SDL_Event commonEvent;
-    if (SDL_PushEvent(&commonEvent) < 0) {
+    SDL_memset(&commonEvent, 0, sizeof(commonEvent));
+
+    commonEvent.type = SDL_EventType::SDL_USEREVENT;
+    commonEvent.user.code = 1;
+    commonEvent.user.data1 = nullptr;
+    commonEvent.user.data2 = nullptr;
+
+    const int value = SDL_PushEvent(&commonEvent);
+    if (value < 0) {
         std::clog << "Error pushing event: " << SDL_GetError() << '\n';
         Game::getInstance().terminate();
+    }
+    else if (value == 0) {
+        std::cout << "Event filtered\n";
+    }
+    else {
+        std::cout << "Event pushed\n";
     }
 }
 

@@ -162,12 +162,10 @@ void Overworld::handleMove(SDL_Scancode scancode) {
         KeyManager::getInstance().update();
 
         // if the user is still holding down the key after 10ms, begin movement
-        if (KeyManager::getInstance().getKey(scancode) and (momentum or keyDelay >= 10)) {
+        if (KeyManager::getInstance().getKey(scancode)) {
             momentum = true;
             keyDelay.stop();
             keyDelay.reset();
-
-            ++entitiesUpdating;
 
             if (Player::getPlayer().canMoveForward(*this->currentMap)) {
                 Player::getPlayer().moveForward();
@@ -179,6 +177,8 @@ void Overworld::handleMove(SDL_Scancode scancode) {
 
                 Mixer::getInstance().playSound("bump");
             }
+
+            ++entitiesUpdating;
         }
     }
 }

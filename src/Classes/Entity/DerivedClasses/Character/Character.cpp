@@ -17,7 +17,10 @@ Character::Character(const char *id, const char *name, int x, int y, Direction d
         : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
 
 Character::~Character() {
-    this->autonomy.join();
+    this->cv.notify_one();
+    if (this->autonomy.joinable()) {
+        this->autonomy.join();
+    }
 }
 
 void Character::setName(const char *newName) {
@@ -64,8 +67,6 @@ void Character::moveForward() {
 
 void Character::setDirection(Direction x) {
     this->currentDirection = x;
-    std::cout << this->name << " changed direction\n";
-    Overworld::pushEvent();
 }
 
 Direction Character::getDirection() const {
@@ -92,8 +93,6 @@ void Character::face(const Character *entity) {
             Game::getInstance().terminate();
             return;
     }
-    std::cout << this->name << " changed direction\n";
-    Overworld::pushEvent();
 }
 
 bool Character::isFacing(Direction direction) const {
@@ -142,8 +141,57 @@ bool Character::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Character::setAction(void (*function)(Character *)) {
-    this->action = function;
+void Character::decide() {
+    switch (generateInteger(1, 4)) {
+        case 1:
+            if (this->decisions.empty()) {
+                this->decisions.emplace([](Character *character) -> void {
+                    character->face(character);
+                });
+                Overworld::pushEvent();
+                std::cout << this->name << "Made decision 1\n";
+            }
+            break;
+
+        case 2:
+            if (this->decisions.empty()) {
+                this->decisions.emplace([](Character *character) -> void {
+                    if (character->isFacing(Direction::UP) or character->isFacing(Direction::DOWN)) {
+                        binomial() ? character->setDirection(Direction::LEFT) : character->setDirection(
+                                Direction::RIGHT);
+                    }
+                    else {
+                        binomial() ? character->setDirection(Direction::UP) : character->setDirection(Direction::DOWN);
+                    }
+                });
+                Overworld::pushEvent();
+                std::cout << this->name << "Made decision 2\n";
+            }
+            break;
+
+        default:
+            if (this->decisions.empty()) {
+                this->decisions.emplace([](Character *character) -> void {
+                    if (character->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
+                        character->moveForward();
+                        character->setState(Character::State::WALKING);
+
+                        if (character->hasVisionOf(&Player::getPlayer()) and
+                            (Player::getPlayer().getState() == Character::State::IDLE)) {
+                            Player::getPlayer().setState(Character::State::IMMOBILE);
+                        }
+                    }
+                    else {
+                        character->setState(Character::State::COLLIDING);
+                        character->updateAnimation();
+                    }
+                    ++entitiesUpdating;
+                });
+                Overworld::pushEvent();
+                std::cout << this->name << "Made decision 3\n";
+            }
+            break;
+    }
 }
 
 void Character::makeAutonomous(const std::string &mapId) {
@@ -154,8 +202,11 @@ void Character::makeAutonomous(const std::string &mapId) {
                 return;
             }
 
-            if (this->action != nullptr) {
-                this->action(this);
+            this->decide();
+
+            {
+                std::unique_lock<std::mutex> lock(this->mutex);
+                this->cv.wait(lock, [this] -> bool { return this->currentState == Character::State::IDLE; });
             }
 
             std::unique_lock<std::mutex> lock(this->mutex);
@@ -164,10 +215,6 @@ void Character::makeAutonomous(const std::string &mapId) {
             });
         }
     });
-}
-
-void Character::wakeUp() {
-    this->cv.notify_one();
 }
 
 void Character::interact() {
@@ -252,6 +299,7 @@ void Character::update() {
         case State::IMMOBILE:
             this->idle();
             break;
+
         default:
             std::clog << "Invalid argument in function Character::update()\n";
             Game::getInstance().terminate();
@@ -286,10 +334,12 @@ void Character::walk() {
         this->updateAnimation();
     }
     if (this->pixelCounter % Map::TILE_SIZE == 0) {
-        --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
         this->cv.notify_one();
+
+        --entitiesUpdating;
+        Overworld::pushEvent();
     }
 }
 
@@ -298,10 +348,12 @@ void Character::collide() {
         this->updateAnimation();
     }
     else if (this->pixelCounter == 20 * (Game::getInstance().getFps() / 30)) {
-        --entitiesUpdating;
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
         this->cv.notify_one();
+
+        --entitiesUpdating;
+        Overworld::pushEvent();
     }
     if (this->currentState != Character::State::IDLE) {
         ++this->pixelCounter;
@@ -309,7 +361,10 @@ void Character::collide() {
 }
 
 void Character::idle() {
-    //this->act();
+    if (not this->decisions.empty()) {
+        this->decisions.front()(this);
+        this->decisions.pop();
+    }
 }
 
 void Character::incPixelCounter(int n) {
