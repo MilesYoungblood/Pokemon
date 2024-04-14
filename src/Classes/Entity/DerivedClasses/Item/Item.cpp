@@ -10,7 +10,7 @@
 #include "../Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "Item.h"
 
-Item::Item(int n) : quantity(n) {}
+Item::Item(int n) : Entity(0, 0), quantity(n) {}
 
 Item::Item(int n, int x, int y) : Entity(x, y), quantity(n) {}
 

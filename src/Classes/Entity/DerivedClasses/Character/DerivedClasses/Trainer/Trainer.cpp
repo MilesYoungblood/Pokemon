@@ -14,7 +14,8 @@ void Trainer::init() {
     this->items[typeid(BattleItem).hash_code()];
 }
 
-Trainer::Trainer(const char *id, int x, int y, Direction direction) : Character(id, x, y, direction) {
+Trainer::Trainer(const char *id, int x, int y, Direction direction, int vision)
+        : Character(id, x, y, direction, vision) {
     this->init();
 }
 
@@ -114,7 +115,9 @@ void Trainer::handleFaint() {
     this->party.erase(this->party.cbegin());
 }
 
-std::vector<std::string> Trainer::winMessage() const {
+void Trainer::handleVictory() {}
+
+std::vector<std::string> Trainer::winMessage(const Trainer * /*trainer*/) const {
     return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
 }
 
@@ -128,8 +131,6 @@ bool Trainer::isTrainer() const {
 
 void Trainer::idle() {
     Character::idle();
-    return;
-    //this->act();
 
     static int frameCounter = 0;    // makes this that spotted the player stand still for a set number of frames
     static bool haltMusic = true;
@@ -143,6 +144,9 @@ void Trainer::idle() {
     if (not_moving(&Player::getPlayer()) and Player::getPlayer().canFight() and this->canFight() and
         not_moving(this) and this->keepLooping and this->hasVisionOf(&Player::getPlayer())) {
         if (haltMusic) {
+            this->loseAutonomy();
+            ++entitiesUpdating;
+
             Player::getPlayer().setState(Character::State::IMMOBILE);
             this->setState(Character::State::IMMOBILE);
             momentum = false;
@@ -175,13 +179,13 @@ void Trainer::idle() {
 
         if (not this->isNextTo(&Player::getPlayer())) {
             this->shift(this->getDirection(), Character::WALK_SPEED);
-            this->incPixelCounter(Character::WALK_SPEED);
+            this->incPixelCounter();
 
-            if (this->getPixelCounter() % (Map::TILE_SIZE / 2) == 0) {
+            if (this->getPixelCounter() % 10 == 0) {
                 this->updateAnimation();
             }
 
-            if (this->getPixelCounter() % Map::TILE_SIZE == 0) {
+            if (this->getPixelCounter() == 20) {
                 this->moveForward();
                 this->resetPixelCounter();
             }

@@ -8,17 +8,14 @@
 
 class Entity {
 private:
-    std::atomic_int mapX{ 0 };                          // x-coordinate on map
-    std::atomic_int mapY{ 0 };                          // y-coordinate on map
-    std::atomic_int screenX{ 0 };                       // x-coordinate on the screen
-    std::atomic_int screenY{ 0 };                       // y-coordinate on the screen
-
-protected:
-    Entity() = default;
-
-    Entity(int x, int y);
+    int mapX;                                        // x-coordinate on map
+    int mapY;                                        // y-coordinate on map
+    int screenX;                                     // x-coordinate on the screen
+    int screenY;                                     // y-coordinate on the screen
 
 public:
+    Entity(int mapX, int mapY);
+
     Entity(const Entity &) = delete;
 
     Entity(Entity &&) noexcept = delete;

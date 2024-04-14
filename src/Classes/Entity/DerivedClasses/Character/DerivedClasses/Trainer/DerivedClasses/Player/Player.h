@@ -15,20 +15,28 @@ private:
 
     Player();
 
-public:
-    static Player &getPlayer();
+    void handleMove(SDL_Scancode scancode);
 
-    void addToPc(std::unique_ptr<Pokemon> toAdd);
+    void handleReturn();
 
-    [[nodiscard]] bool canMoveForward(const Map &map) const override;
-
-    void handleFaint() override;
+    void interact() override;
 
     void walk() override;
 
     void idle() override;
 
-    [[nodiscard]] std::vector<std::string> winMessage() const override;
+public:
+    static Player &getPlayer();
+
+    [[maybe_unused]] void addToPc(std::unique_ptr<Pokemon> toAdd);
+
+    [[nodiscard]] bool canMoveForward(const Map &map) const override;
+
+    void handleFaint() override;
+
+    void handleVictory() override;
+
+    [[nodiscard]] std::vector<std::string> winMessage(const Trainer *trainer) const override;
 
     [[nodiscard]] bool canFight() const override;
 };

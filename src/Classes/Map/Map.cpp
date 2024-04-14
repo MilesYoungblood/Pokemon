@@ -6,8 +6,8 @@
 #include "../Singleton/DerivedClasses/Camera/Camera.h"
 #include "Map.h"
 
-void handleError(const std::string &filename, const char *name, const char *type) {
-    std::cout << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << type << '\n';
+void handleError(const std::string &filename, const char *name, const char *node) {
+    std::cout << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << node << '\n';
     Game::getInstance().terminate();
 }
 
@@ -229,26 +229,27 @@ void Map::loadEntities() {
 }
 
 void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
-    const char *idAttribute = entityElement->Attribute("id");
-    if (idAttribute == nullptr) {
+    const std::string id_attribute(entityElement->Attribute("id"));
+    if (id_attribute.empty()) {
         handleError(this->music + ".xml", "id", "attribute");
         return;
     }
 
-    if (not this->entitySprites.contains(idAttribute)) {
+    if (not this->entitySprites.contains(id_attribute)) {
         int i = 0;
         for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
-            const std::string id(idAttribute);
             const auto data = TextureManager::getInstance().loadTextureData(
-                    "sprites/" + id += '/' + id += "SpriteSheet" + direction + ".png"
+                    "sprites/" + id_attribute += '/' + id_attribute += "SpriteSheet" + direction + ".png"
             );
-            this->entitySprites[idAttribute].at(i) = Sprite::Sheet(
+            this->entitySprites[id_attribute].at(i) = Sprite::Sheet(
                     std::get<0>(data),
                     std::get<1>(data) / Map::TILE_SIZE,
                     std::get<2>(data) / Map::TILE_SIZE
             );
-            if (entitySprites.at(idAttribute).at(i).sprite == nullptr) {
-                throw std::runtime_error("Unable to load sprite to map\n");
+            if (entitySprites.at(id_attribute).at(i).sprite == nullptr) {
+                std::clog << "Unable to load sprite to map\n";
+                Game::getInstance().terminate();
+                return;
             }
             ++i;
         }
@@ -308,7 +309,7 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(idAttribute, trainerName, x_pos, y_pos,
+    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(id_attribute.c_str(), trainerName, x_pos, y_pos,
                                                                 Direction(trainer_direction), trainer_vision));
     this->loadTrainer2(trainer, visionElement);
 }
@@ -380,8 +381,6 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 
         trainer->addPokemon(std::move(pokemon));
     }
-
-    //trainer->setAction();
 
     this->entities.push_back(std::move(trainer));
 }
@@ -455,7 +454,7 @@ Map::Map(const char *name) : name(name), music(name) {
     for (auto &entity : this->entities) {
         auto *trainer = dynamic_cast<Trainer *>(entity.get());
         if (trainer != nullptr) {
-            trainer->makeAutonomous(this->music);
+            trainer->gainAutonomy();
         }
     }
 }

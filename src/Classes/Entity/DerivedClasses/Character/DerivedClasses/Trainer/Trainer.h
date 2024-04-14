@@ -20,7 +20,7 @@ private:
     void init();
 
 protected:
-    Trainer(const char *id, int x, int y, Direction direction);
+    Trainer(const char *id, int x, int y, Direction direction, int vision);
 
 public:
     Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision);
@@ -129,13 +129,22 @@ public:
     /// \brief Handles specific faint protocol
     virtual void handleFaint();
 
-    /// \brief Win message for a Trainer or the Player
-    /// \return the win message
-    [[nodiscard]] virtual std::vector<std::string> winMessage() const;
+    /// \brief Handles specific victory protocol
+    virtual void handleVictory();
 
+    /// \brief Win message for a Trainer or the Player
+    /// \param trainer pointer to the opponent trainer
+    /// \return the win message
+    [[nodiscard]] virtual std::vector<std::string> winMessage(const Trainer *trainer) const;
+
+    /// \brief Overrides Character::canFight
+    /// \return true if the trainer can fight and false otherwise
     [[nodiscard]] bool canFight() const override;
 
+    /// \brief Overrides Character::isTrainer
+    /// \return true
     [[nodiscard]] bool isTrainer() const override;
 
+    /// \brief Overrides Character::idle
     void idle() override;
 };

@@ -67,6 +67,8 @@ public:
 
     [[nodiscard]] std::string getName() const;
 
+    [[nodiscard]] std::string getId() const;
+
     [[nodiscard]] std::string getGender() const;
 
     [[nodiscard]] std::string getAbility() const;

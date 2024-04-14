@@ -53,9 +53,5 @@ public:
 
     static void createTextBox(const std::vector<std::string> &dialogue);
 
-    void handleMove(SDL_Scancode scancode);
-
-    void handleReturn();
-
     void handleEscape();
 };

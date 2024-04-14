@@ -220,16 +220,18 @@ void Battle::engage(Trainer *attacker, Trainer *defender, int move, bool *skip) 
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
                     defender->handleFaint();
                     if (not defender->canFight()) {
+                        attacker->handleVictory();
                         for (auto &pokemon : Player::getPlayer()) {
                             pokemon.initStatMods();
                         }
 
                         std::vector<std::pair<std::string, std::function<void()>>> pairs;
                         {
-                            std::vector<std::string> message = attacker->winMessage();
-
-                            pairs.emplace_back(message[0], delay);
-                            pairs.emplace_back(message[1],[this] -> void {
+                            std::vector<std::string> message = attacker->winMessage(defender);
+                            if (message.size() == 2) {
+                                pairs.emplace_back(message[0], delay);
+                            }
+                            pairs.emplace_back(message.back(),[this] -> void {
                                     std::this_thread::sleep_for(std::chrono::milliseconds(2000));
                                     this->isRunning = false;
                             });
@@ -309,7 +311,7 @@ void Battle::postStatus(bool isPlayerFaster) {
 
                 std::vector<std::pair<std::string, std::function<void()>>> pairs;
                 {
-                    std::vector<std::string> message = observer->winMessage();
+                    std::vector<std::string> message = observer->winMessage(receiver);
 
                     pairs.emplace_back(message[0], delay);
                     pairs.emplace_back(message[1], [this] -> void {
@@ -529,9 +531,9 @@ void Battle::init(Trainer *trainer) {
     auto loadMap = [](std::unordered_map<std::string, SDL_Texture *> &map, const Trainer &trainer, bool front) -> bool {
         for (const auto &pokemon : trainer) {
             const char *side = front ? "Front" : "Back";
-            map[pokemon.getName()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon.getName() + '/' + pokemon.getName() + side + ".png");
-            if (map[pokemon.getName()] == nullptr) {
-                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon.getName() << front << ".png\"\n";
+            map[pokemon.getId()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon.getId() + '/' + pokemon.getName() + side + ".png");
+            if (map[pokemon.getId()] == nullptr) {
+                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon.getId() << front << ".png\"\n";
                 Game::getInstance().terminate();
                 return false;
             }

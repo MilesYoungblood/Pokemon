@@ -134,64 +134,6 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
 }
 
-/// \brief converts a SDL_Scancode to a Direction
-/// \param scancode the scancode to convert
-/// \return the corresponding Direction
-Direction scancodeToDirection(SDL_Scancode scancode) {
-    switch (scancode) {
-        case SDL_Scancode::SDL_SCANCODE_W:
-            return Direction::UP;
-        case SDL_Scancode::SDL_SCANCODE_A:
-            return Direction::LEFT;
-        case SDL_Scancode::SDL_SCANCODE_S:
-            return Direction::DOWN;
-        case SDL_Scancode::SDL_SCANCODE_D:
-            return Direction::RIGHT;
-        default:
-            throw std::invalid_argument("Invalid argument passed into scancodeToDirection");
-    }
-}
-
-void Overworld::handleMove(SDL_Scancode scancode) {
-    if (not GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
-        // turns the player
-        if (not Player::getPlayer().isFacing(scancodeToDirection(scancode))) {
-            Player::getPlayer().setDirection(scancodeToDirection(scancode));
-        }
-        // refresh the KeyManager to check if the player is still holding down
-        KeyManager::getInstance().update();
-
-        // if the user is still holding down the key after 10ms, begin movement
-        if (KeyManager::getInstance().getKey(scancode)) {
-            momentum = true;
-            keyDelay.stop();
-            keyDelay.reset();
-
-            if (Player::getPlayer().canMoveForward(*this->currentMap)) {
-                Player::getPlayer().moveForward();
-                Player::getPlayer().setState(Character::State::WALKING);
-            }
-            else {
-                Player::getPlayer().setState(Character::State::COLLIDING);
-                Player::getPlayer().updateAnimation();
-
-                Mixer::getInstance().playSound("bump");
-            }
-
-            ++entitiesUpdating;
-        }
-    }
-}
-
-void Overworld::handleReturn() {
-    for (auto &entity : *this->currentMap) {
-        if (Player::getPlayer().hasVisionOf(entity.get())) {
-            entity->interact();
-            return;
-        }
-    }
-}
-
 void Overworld::handleEscape() {
     if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
         GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
