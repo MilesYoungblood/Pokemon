@@ -143,6 +143,102 @@ cmake_pch.hxx.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
+src/Classes/Component/Intelligence/Intelligence.obj: src/Classes/Component/Intelligence/Intelligence.cpp.obj
+.PHONY : src/Classes/Component/Intelligence/Intelligence.obj
+
+# target to build an object file
+src/Classes/Component/Intelligence/Intelligence.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp.obj
+.PHONY : src/Classes/Component/Intelligence/Intelligence.cpp.obj
+
+src/Classes/Component/Intelligence/Intelligence.i: src/Classes/Component/Intelligence/Intelligence.cpp.i
+.PHONY : src/Classes/Component/Intelligence/Intelligence.i
+
+# target to preprocess a source file
+src/Classes/Component/Intelligence/Intelligence.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp.i
+.PHONY : src/Classes/Component/Intelligence/Intelligence.cpp.i
+
+src/Classes/Component/Intelligence/Intelligence.s: src/Classes/Component/Intelligence/Intelligence.cpp.s
+.PHONY : src/Classes/Component/Intelligence/Intelligence.s
+
+# target to generate assembly for a file
+src/Classes/Component/Intelligence/Intelligence.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp.s
+.PHONY : src/Classes/Component/Intelligence/Intelligence.cpp.s
+
+src/Classes/Component/Position/Position.obj: src/Classes/Component/Position/Position.cpp.obj
+.PHONY : src/Classes/Component/Position/Position.obj
+
+# target to build an object file
+src/Classes/Component/Position/Position.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Position/Position.cpp.obj
+.PHONY : src/Classes/Component/Position/Position.cpp.obj
+
+src/Classes/Component/Position/Position.i: src/Classes/Component/Position/Position.cpp.i
+.PHONY : src/Classes/Component/Position/Position.i
+
+# target to preprocess a source file
+src/Classes/Component/Position/Position.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Position/Position.cpp.i
+.PHONY : src/Classes/Component/Position/Position.cpp.i
+
+src/Classes/Component/Position/Position.s: src/Classes/Component/Position/Position.cpp.s
+.PHONY : src/Classes/Component/Position/Position.s
+
+# target to generate assembly for a file
+src/Classes/Component/Position/Position.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Position/Position.cpp.s
+.PHONY : src/Classes/Component/Position/Position.cpp.s
+
+src/Classes/Component/Resource/Resource.obj: src/Classes/Component/Resource/Resource.cpp.obj
+.PHONY : src/Classes/Component/Resource/Resource.obj
+
+# target to build an object file
+src/Classes/Component/Resource/Resource.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Resource/Resource.cpp.obj
+.PHONY : src/Classes/Component/Resource/Resource.cpp.obj
+
+src/Classes/Component/Resource/Resource.i: src/Classes/Component/Resource/Resource.cpp.i
+.PHONY : src/Classes/Component/Resource/Resource.i
+
+# target to preprocess a source file
+src/Classes/Component/Resource/Resource.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Resource/Resource.cpp.i
+.PHONY : src/Classes/Component/Resource/Resource.cpp.i
+
+src/Classes/Component/Resource/Resource.s: src/Classes/Component/Resource/Resource.cpp.s
+.PHONY : src/Classes/Component/Resource/Resource.s
+
+# target to generate assembly for a file
+src/Classes/Component/Resource/Resource.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Resource/Resource.cpp.s
+.PHONY : src/Classes/Component/Resource/Resource.cpp.s
+
+src/Classes/Component/Sprite/Sprite.obj: src/Classes/Component/Sprite/Sprite.cpp.obj
+.PHONY : src/Classes/Component/Sprite/Sprite.obj
+
+# target to build an object file
+src/Classes/Component/Sprite/Sprite.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.obj
+.PHONY : src/Classes/Component/Sprite/Sprite.cpp.obj
+
+src/Classes/Component/Sprite/Sprite.i: src/Classes/Component/Sprite/Sprite.cpp.i
+.PHONY : src/Classes/Component/Sprite/Sprite.i
+
+# target to preprocess a source file
+src/Classes/Component/Sprite/Sprite.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.i
+.PHONY : src/Classes/Component/Sprite/Sprite.cpp.i
+
+src/Classes/Component/Sprite/Sprite.s: src/Classes/Component/Sprite/Sprite.cpp.s
+.PHONY : src/Classes/Component/Sprite/Sprite.s
+
+# target to generate assembly for a file
+src/Classes/Component/Sprite/Sprite.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.s
+.PHONY : src/Classes/Component/Sprite/Sprite.cpp.s
+
 src/Classes/Entity/DerivedClasses/Character/Character.obj: src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj
 .PHONY : src/Classes/Entity/DerivedClasses/Character/Character.obj
 
@@ -2123,6 +2219,18 @@ help:
 	@echo ... cmake_pch.hxx.gch
 	@echo ... cmake_pch.hxx.i
 	@echo ... cmake_pch.hxx.s
+	@echo ... src/Classes/Component/Intelligence/Intelligence.obj
+	@echo ... src/Classes/Component/Intelligence/Intelligence.i
+	@echo ... src/Classes/Component/Intelligence/Intelligence.s
+	@echo ... src/Classes/Component/Position/Position.obj
+	@echo ... src/Classes/Component/Position/Position.i
+	@echo ... src/Classes/Component/Position/Position.s
+	@echo ... src/Classes/Component/Resource/Resource.obj
+	@echo ... src/Classes/Component/Resource/Resource.i
+	@echo ... src/Classes/Component/Resource/Resource.s
+	@echo ... src/Classes/Component/Sprite/Sprite.obj
+	@echo ... src/Classes/Component/Sprite/Sprite.i
+	@echo ... src/Classes/Component/Sprite/Sprite.s
 	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.obj
 	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.i
 	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.s

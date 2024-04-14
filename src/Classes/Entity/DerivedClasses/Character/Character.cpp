@@ -18,8 +18,8 @@ Character::Character(const char *id, const char *name, int x, int y, Direction d
 
 Character::~Character() {
     this->loseAutonomy();
-    if (this->autonomy.joinable()) {
-        this->autonomy.join();
+    if (this->thoughtProcess.joinable()) {
+        this->thoughtProcess.join();
     }
 }
 
@@ -49,7 +49,7 @@ Character::State Character::getState() const {
 
 void Character::gainAutonomy() {
     this->autonomous = true;
-    this->autonomy = std::thread([this] -> void {
+    this->thoughtProcess = std::thread([this] -> void {
             std::mutex mutex;
 
             while (this->autonomous and Game::getInstance().isRunning()) {
@@ -290,8 +290,8 @@ void Character::interact() {
 
                     Mixer::getInstance().playMusic("TrainerBattle");
                     --entitiesUpdating;
-                    if (this->autonomy.joinable()) {
-                        this->autonomy.join();
+                    if (this->thoughtProcess.joinable()) {
+                        this->thoughtProcess.join();
                     }
                 }
                 else {

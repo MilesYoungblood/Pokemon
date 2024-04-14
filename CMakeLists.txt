@@ -77,6 +77,7 @@ set(SOURCES
         src/Classes/Entity/Entity.h
         src/Classes/ThreadPool/ThreadPool.cpp
         src/Classes/ThreadPool/ThreadPool.h
+        src/Classes/Matrix/Matrix.h
 )
 
 set(MOVES
@@ -211,6 +212,17 @@ set(GRAPHICS
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
 )
 
+set(COMPONENTS
+        src/Classes/Component/Intelligence/Intelligence.cpp
+        src/Classes/Component/Intelligence/Intelligence.h
+        src/Classes/Component/Position/Position.cpp
+        src/Classes/Component/Position/Position.h
+        src/Classes/Component/Resource/Resource.cpp
+        src/Classes/Component/Resource/Resource.h
+        src/Classes/Component/Sprite/Sprite.cpp
+        src/Classes/Component/Sprite/Sprite.h
+)
+
 set(SCENES
         src/Classes/Singleton/DerivedClasses/Scene/Scene.h
         src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
@@ -228,6 +240,7 @@ add_executable(PokemonBattle
         ${MOVES}
         ${ITEMS}
         ${GRAPHICS}
+        ${COMPONENTS}
         ${SCENES}
 )
 

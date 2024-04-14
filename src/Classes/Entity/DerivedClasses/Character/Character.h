@@ -159,6 +159,6 @@ private:
     std::queue<void (*)(Character *)> desires;
 
     std::atomic_bool autonomous{ false };
-    std::thread autonomy;
+    std::thread thoughtProcess;
     std::condition_variable cv;
 };
