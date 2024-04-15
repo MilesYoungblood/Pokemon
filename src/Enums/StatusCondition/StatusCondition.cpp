@@ -4,7 +4,7 @@
 
 #include "StatusCondition.h"
 
-const char *statusToString(StatusCondition status) {
+const char *statusToString(const StatusCondition status) {
     switch (status) {
         case StatusCondition::PARALYSIS:
             return "paralysis";

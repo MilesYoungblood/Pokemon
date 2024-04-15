@@ -2,10 +2,11 @@
 // Created by Miles Youngblood on 2/26/2024.
 //
 
-#include "../../../../../Singleton/DerivedClasses/KeyManager//KeyManager.h"
+#include "../../../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
+#include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Panel.h"
 
-void Panel::init(int r, int c) {
+void Panel::init(const int r, const int c) {
     this->buttons.resize(r);
     for (auto &set : this->buttons) {
         set.resize(c);
@@ -15,12 +16,12 @@ void Panel::init(int r, int c) {
     }
 }
 
-Panel::Panel(SDL_Rect dest, int borderSize, int numRows, int numCols, int w, int h, int pt)
+Panel::Panel(const SDL_Rect dest, const int borderSize, const int numRows, const int numCols, const int w, const int h,  const int pt)
         : Rectangle(dest, borderSize), buttonWeight(w), buttonHeight(h), buttonBorder(pt) {
     this->init(numRows, numCols);
 }
 
-Panel::Panel(SDL_Rect dest, SDL_Color fg, int borderSize, int numRows, int numCols, int w, int h, int pt)
+Panel::Panel(const SDL_Rect dest, const SDL_Color fg, const int borderSize, const int numRows, const int numCols, const int w, const int h, const int pt)
         : Rectangle(dest, fg, borderSize), buttonWeight(w), buttonHeight(h), buttonBorder(pt) {
     this->init(numRows, numCols);
 }
@@ -48,43 +49,39 @@ void Panel::clear() {
 void Panel::update() {
     static bool consecutive = false;
 
-    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
+    if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
         if (not consecutive) {
-            const int value = std::max(0, this->currentRow - 1);
-            if (this->buttons[value][currentCol] != nullptr) {
+            if (const int value = std::max(0, this->currentRow - 1); this->buttons[value][currentCol] != nullptr) {
                 this->currentRow = value;
                 consecutive = true;
             }
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_A)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_A)) {
         if (not consecutive) {
-            const int value = std::max(0, this->currentCol - 1);
-            if (this->buttons[this->currentRow][value] != nullptr) {
+            if (const int value = std::max(0, this->currentCol - 1); this->buttons[this->currentRow][value] != nullptr) {
                 this->currentCol = value;
                 consecutive = true;
             }
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_S)) {
         if (not consecutive) {
-            const int value = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()) - 1);
-            if (this->buttons[value][this->currentCol] != nullptr) {
+            if (const int value = std::min(this->currentRow + 1, static_cast<int>(this->buttons.size()) - 1); this->buttons[value][this->currentCol] != nullptr) {
                 this->currentRow = value;
                 consecutive = true;
             }
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_D)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_D)) {
         if (not consecutive) {
-            const int value = std::min(this->currentCol + 1, static_cast<int>(this->buttons[0].size()) - 1);
-            if (this->buttons[this->currentRow][value] != nullptr) {
+            if (const int value = std::min(this->currentCol + 1, static_cast<int>(this->buttons[0].size()) - 1); this->buttons[this->currentRow][value] != nullptr) {
                 this->currentCol = value;
                 consecutive = true;
             }
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
         if (not consecutive) {
             if (this->buttons[this->currentRow][this->currentCol] != nullptr) {
                 this->buttons[this->currentRow][this->currentCol]->press();
@@ -105,17 +102,17 @@ void Panel::render() const {
                 this->buttons.at(row).at(col)->render();
 
                 if (row == this->currentRow and col == this->currentCol) {
-                    const double x_interval = this->getW() / static_cast<double>(this->buttons[0].size());
-                    const double y_interval = this->getH() / static_cast<double>(this->buttons.size());
+                    const double xInterval = this->getW() / static_cast<double>(this->buttons[0].size());
+                    const double yInterval = this->getH() / static_cast<double>(this->buttons.size());
 
-                    const int x_pos = this->getX() + static_cast<int>((this->currentCol * x_interval) + ((x_interval - this->buttons[this->currentRow][this->currentCol]->getW()) / 2.0)) - this->buttonHeight;
-                    const int y_pos = this->getY() + static_cast<int>((this->currentRow * y_interval) + ((y_interval - this->buttons[this->currentRow][this->currentCol]->getH()) / 2.0));
+                    const int xPos = this->getX() + static_cast<int>(this->currentCol * xInterval + (xInterval - this->buttons[this->currentRow][this->currentCol]->getW()) / 2.0) - this->buttonHeight;
+                    const int yPos = this->getY() + static_cast<int>(this->currentRow * yInterval + (yInterval - this->buttons[this->currentRow][this->currentCol]->getH()) / 2.0);
 
                     TextureManager::getInstance().draw(
                             this->arrow,
                             SDL_Rect(
-                                    x_pos,
-                                    y_pos,
+                                    xPos,
+                                    yPos,
                                     this->buttonHeight,
                                     this->buttonHeight
                             )

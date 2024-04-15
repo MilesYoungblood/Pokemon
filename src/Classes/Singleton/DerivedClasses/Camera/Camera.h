@@ -8,14 +8,7 @@
 
 class Map;
 
-class Camera : public Singleton<Camera> {
-private:
-    SDL_Rect view;
-
-    friend class Singleton<Camera>;
-
-    Camera();
-
+class Camera final : public Singleton<Camera> {
 public:
     /// \brief Determines whether a rectangle is in view of the camera
     /// \details This function's purpose is to enable the rendering of only
@@ -29,4 +22,11 @@ public:
     /// then shifts everything, including the player, accordingly.
     /// \param map the map
     void lockOnPlayer(Map &map) const;
+
+private:
+    SDL_Rect view;
+
+    friend class Singleton;
+
+    Camera();
 };

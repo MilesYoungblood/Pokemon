@@ -44,19 +44,19 @@ void Map::parseTmx() {
 
     // populate the maps with keys being the firstgid, and open each tsx file in the map
     while (tilesetElement != nullptr) {
-        const int first_gid_attribute = tilesetElement->IntAttribute("firstgid", -1);
-        if (first_gid_attribute == -1) {
+        const int firstGidAttribute = tilesetElement->IntAttribute("firstgid", -1);
+        if (firstGidAttribute == -1) {
             handleError(this->music + ".tmx", "firstgid", "attribute");
             return;
         }
 
-        const std::string source_attribute(tilesetElement->Attribute("source"));
-        if (source_attribute.empty()) {
+        const std::string sourceAttribute(tilesetElement->Attribute("source"));
+        if (sourceAttribute.empty()) {
             handleError(this->music + ".tmx", "source", "attribute");
             return;
         }
 
-        this->parseTsx(first_gid_attribute, source_attribute);
+        this->parseTsx(firstGidAttribute, sourceAttribute);
 
         tilesetElement = tilesetElement->NextSiblingElement("tileset");
     }
@@ -64,7 +64,7 @@ void Map::parseTmx() {
     this->populate(mapElement, width, height);
 }
 
-void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
+void Map::parseTsx(const int firstGidAttribute, const std::string &sourceAttribute) {
     tinyxml2::XMLDocument tsxFile;
     if (tsxFile.LoadFile(std::string("../assets/Tiled/Tilesets/" + sourceAttribute).c_str()) !=
         tinyxml2::XMLError::XML_SUCCESS) {
@@ -78,14 +78,14 @@ void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
         return;
     }
 
-    const int tile_count = tsElement->IntAttribute("tilecount", -1);
-    if (tile_count == -1) {
+    const int tileCount = tsElement->IntAttribute("tilecount", -1);
+    if (tileCount == -1) {
         handleError(sourceAttribute, "tilecount", "attribute");
         return;
     }
 
-    this->collisionSet.reserve(tile_count);
-    this->tileImages.reserve(tile_count);
+    this->collisionSet.reserve(tileCount);
+    this->tileImages.reserve(tileCount);
 
     tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
     if (gridElement == nullptr) {
@@ -107,7 +107,7 @@ void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
             return;
         }
 
-        tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
+        const tinyxml2::XMLElement *propertyElement = propertyListElement->FirstChildElement("property");
         if (propertyElement == nullptr) {
             handleError(sourceAttribute, "property", "element");
             return;
@@ -117,7 +117,7 @@ void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
             this->collisionSet.insert(id + firstGidAttribute);
         }
 
-        tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
+        const tinyxml2::XMLElement *imageElement = propertyListElement->NextSiblingElement("image");
         if (imageElement == nullptr) {
             handleError(sourceAttribute, "image", "element");
             return;
@@ -141,11 +141,10 @@ void Map::parseTsx(int firstGidAttribute, const std::string &sourceAttribute) {
     }
 }
 
-void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height) {
+void Map::populate(const tinyxml2::XMLElement *mapElement, const int width, const int height) {
     for (const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
          layerElement != nullptr; layerElement = layerElement->NextSiblingElement("layer")) {
-        const int id_attribute = layerElement->IntAttribute("id");
-        if (id_attribute == 0) {
+        if (const int idAttribute = layerElement->IntAttribute("id"); idAttribute == 0) {
             handleError(music + ".tmx", "id", "attribute");
             return;
         }
@@ -162,12 +161,12 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         }
 
         std::istringstream ss(csvData);
-        Matrix<Map::Tile> layer(height, width);
+        Matrix<Tile> layer(height, width);
         int value;
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width and ss >> value; ++j) {
-                layer[i, j].id = value;
-                layer[i, j].screen.setPosition(j * Map::TILE_SIZE, i * Map::TILE_SIZE);
+                layer(i, j).id = value;
+                layer(i, j).screen.setPosition(j * TILE_SIZE, i * TILE_SIZE);
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
@@ -228,24 +227,24 @@ void Map::loadEntities() {
 }
 
 void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
-    const std::string id_attribute(entityElement->Attribute("id"));
-    if (id_attribute.empty()) {
+    const std::string idAttribute(entityElement->Attribute("id"));
+    if (idAttribute.empty()) {
         handleError(this->music + ".xml", "id", "attribute");
         return;
     }
 
-    if (not this->entitySprites.contains(id_attribute)) {
+    if (not this->entitySprites.contains(idAttribute)) {
         int i = 0;
         for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
             const auto data = TextureManager::getInstance().loadTextureData(
-                    "sprites/" + id_attribute += '/' + id_attribute += "SpriteSheet" + direction + ".png"
+                    "sprites/" + idAttribute += '/' + idAttribute += "SpriteSheet" + direction + ".png"
             );
-            this->entitySprites[id_attribute].at(i) = Sprite::Sheet(
+            this->entitySprites[idAttribute].at(i) = Sprite::Sheet(
                     std::get<0>(data),
-                    std::get<1>(data) / Map::TILE_SIZE,
-                    std::get<2>(data) / Map::TILE_SIZE
+                    std::get<1>(data) / TILE_SIZE,
+                    std::get<2>(data) / TILE_SIZE
             );
-            if (entitySprites.at(id_attribute).at(i).sprite == nullptr) {
+            if (entitySprites.at(idAttribute).at(i).sprite == nullptr) {
                 std::clog << "Unable to load sprite to map\n";
                 Game::getInstance().terminate();
                 return;
@@ -272,14 +271,14 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    const int x_pos = positionElement->IntAttribute("x", -1);
-    if (x_pos == -1) {
+    const int xPos = positionElement->IntAttribute("x", -1);
+    if (xPos == -1) {
         handleError(this->music + ".xml", "x", "attribute");
         return;
     }
 
-    const int y_pos = positionElement->IntAttribute("y", -1);
-    if (y_pos == -1) {
+    const int yPos = positionElement->IntAttribute("y", -1);
+    if (yPos == -1) {
         handleError(this->music + ".xml", "y", "attribute");
         return;
     }
@@ -290,8 +289,8 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    const int trainer_direction = directionElement->IntText(-1);
-    if (trainer_direction == -1) {
+    const int trainerDirection = directionElement->IntText(-1);
+    if (trainerDirection == -1) {
         handleError(this->music + ".xml", "direction", "text");
         return;
     }
@@ -302,14 +301,13 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    const int trainer_vision = visionElement->IntText(-1);
-    if (trainer_vision == -1) {
+    const int trainerVision = visionElement->IntText(-1);
+    if (trainerVision == -1) {
         handleError(this->music + ".xml", "vision", "text");
         return;
     }
 
-    std::unique_ptr<Trainer> trainer(std::make_unique<Trainer>(id_attribute.c_str(), trainerName, x_pos, y_pos,
-                                                                Direction(trainer_direction), trainer_vision));
+    auto trainer(std::make_unique<Trainer>(idAttribute.c_str(), trainerName, xPos, yPos, static_cast<Direction>(trainerDirection), trainerVision));
     this->loadTrainer2(trainer, visionElement);
 }
 
@@ -326,8 +324,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
     for (tinyxml2::XMLElement *messageElement = dialogueListElement->FirstChildElement("message");
          messageElement != nullptr;
          messageElement = messageElement->NextSiblingElement("message")) {
-        const char *message = messageElement->GetText();
-        if (message != nullptr) {
+        if (const char *message = messageElement->GetText(); message != nullptr) {
             messages.emplace_back(message);
         }
     }
@@ -403,35 +400,35 @@ void Map::loadItem(tinyxml2::XMLElement *entityElement) {
         return;
     }
 
-    tinyxml2::XMLElement *positionElement = quantityElement->NextSiblingElement("position");
+    const tinyxml2::XMLElement *positionElement = quantityElement->NextSiblingElement("position");
     if (positionElement == nullptr) {
         handleError(this->music + ".xml", "position", "element");
         return;
     }
 
-    const int x_pos = positionElement->IntAttribute("x", -1);
-    if (x_pos == -1) {
+    const int xPos = positionElement->IntAttribute("x", -1);
+    if (xPos == -1) {
         handleError(this->music + ".xml", "x", "attribute");
         return;
     }
 
-    const int y_pos = positionElement->IntAttribute("y", -1);
-    if (y_pos == -1) {
+    const int yPos = positionElement->IntAttribute("y", -1);
+    if (yPos == -1) {
         handleError(this->music + ".xml", "y", "attribute");
         return;
     }
 
-    std::unique_ptr<Item> item(itemMap.at(idAttribute)(quantity));
-    item->getMapPosition().setPosition(x_pos, y_pos);
-    item->getScreenPosition().setPosition(x_pos * Map::TILE_SIZE, y_pos * Map::TILE_SIZE);
+    std::unique_ptr item(itemMap.at(idAttribute)(quantity));
+    item->getMapPosition().setPosition(xPos, yPos);
+    item->getScreenPosition().setPosition(xPos * TILE_SIZE, yPos * TILE_SIZE);
 
     this->entities.push_back(std::move(item));
 }
 
 Map::Map(const char *name) : name(name), music(name) {
-    this->music.erase(std::remove_if(this->music.begin(), this->music.end(), [](char c) -> bool {
+    std::erase_if(this->music, [](const char c) -> bool {
         return c == ' ';
-    }), this->music.end());
+    });
 
     int i = 0;
     for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
@@ -440,8 +437,8 @@ Map::Map(const char *name) : name(name), music(name) {
         );
         this->entitySprites["Player"].at(i) = Sprite::Sheet(
                 std::get<0>(data),
-                std::get<1>(data) / Map::TILE_SIZE,
-                std::get<2>(data) / Map::TILE_SIZE
+                std::get<1>(data) / TILE_SIZE,
+                std::get<2>(data) / TILE_SIZE
         );
         ++i;
     }
@@ -452,15 +449,14 @@ Map::Map(const char *name) : name(name), music(name) {
     this->threadPool.init(this->layout.size() + 1);
 
     for (auto &entity : this->entities) {
-        auto *trainer = dynamic_cast<Trainer *>(entity.get());
-        if (trainer != nullptr) {
+        if (auto *trainer = dynamic_cast<Trainer *>(entity.get()); trainer != nullptr) {
             trainer->gainAutonomy();
         }
     }
 }
 
 Map::~Map() {
-    for (auto &tileImage : this->tileImages) {
+    for (const auto &tileImage : this->tileImages) {
         if (tileImage != nullptr) {
             SDL_DestroyTexture(tileImage);
             if (strlen(SDL_GetError()) > 0) {
@@ -469,10 +465,10 @@ Map::~Map() {
             }
         }
     }
-    for (auto &spriteSheet : this->entitySprites) {
-        for (auto &sprite : spriteSheet.second) {
-            if (sprite.sprite != nullptr) {
-                SDL_DestroyTexture(sprite.sprite);
+    for (auto &[fst, snd] : this->entitySprites) {
+        for (const auto &[sprite, numRows, numCols] : snd) {
+            if (sprite != nullptr) {
+                SDL_DestroyTexture(sprite);
                 if (strlen(SDL_GetError()) > 0) {
                     std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
                     SDL_ClearError();
@@ -483,30 +479,30 @@ Map::~Map() {
 }
 
 bool Map::isCollisionHere(int x, int y) const {
-    const bool collision = this->collisionSet.contains(this->layout[1][y, x].id);
+    const bool collision = this->collisionSet.contains(this->layout[1](y, x).id);
 
-    const bool player_here = Player::getPlayer().getMapPosition().isHere(x, y);
+    const bool playerHere = Player::getPlayer().getMapPosition().isHere(x, y);
 
-    const bool entity_here = std::ranges::any_of(
+    const bool entityHere = std::ranges::any_of(
             this->entities,
             [&x, &y](const std::unique_ptr <Entity> &entity) -> bool {
                 return entity->getMapPosition().isHere(x, y);
             }
     );
 
-    return collision or player_here or entity_here;
+    return collision or playerHere or entityHere;
 }
 
-std::optional<std::pair<Project::Position, std::string>> Map::isExitPointHere(int x, int y) const {
-    for (const Map::ExitPoint &exit_point : this->exitPoints) {
-        if (exit_point.map.isHere(x, y)) {
-            return std::make_optional(std::make_pair(exit_point.dest, exit_point.newMap));
+std::optional<std::pair<Project::Position, std::string>> Map::isExitPointHere(const int x, const int y) const {
+    for (const auto &[map, dest, newMap] : this->exitPoints) {
+        if (map.isHere(x, y)) {
+            return std::make_optional(std::make_pair(dest, newMap));
         }
     }
     return std::nullopt;
 }
 
-void Map::removeEntity(Entity *entity) {
+void Map::removeEntity(const Entity *entity) {
     for (long long int i = 0; i < this->entities.size(); ++i) {
         if (this->entities.at(i).get() == entity) {
             this->entities.erase(this->entities.begin() + i);
@@ -515,7 +511,7 @@ void Map::removeEntity(Entity *entity) {
     }
 }
 
-Entity &Map::operator[](std::size_t index) {
+Entity &Map::operator[](const std::size_t index) const {
     try {
         return *this->entities.at(index);
     }
@@ -552,15 +548,15 @@ void Map::shift(Direction direction, int n) {
     for (auto &layer : this->layout) {
         this->threadPool.add([direction, n, &layer] -> void {
             for (auto &row : layer) {
-                for (auto &col : row) {
-                    col.screen.translate(direction, n);
+                for (auto &[id, screen] : row) {
+                    screen.translate(direction, n);
                 }
             }
         });
     }
 
     this->threadPool.add([this, direction, n] -> void {
-        for (auto &entity : this->entities) {
+        for (const auto &entity : this->entities) {
             entity->getScreenPosition().translate(direction, n);
         }
     });
@@ -572,15 +568,15 @@ void Map::shiftHorizontally(int n) {
     for (auto &layer : this->layout) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
-                for (auto &col : row) {
-                    col.screen.translateX(n);
+                for (auto &[id, screen] : row) {
+                    screen.translateX(n);
                 }
             }
         });
     }
 
     this->threadPool.add([this, n] -> void {
-        for (auto &entity : this->entities) {
+        for (const auto &entity : this->entities) {
             entity->getScreenPosition().translateX(n);
         }
     });
@@ -592,15 +588,15 @@ void Map::shiftVertically(int n) {
     for (auto &layer : this->layout) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
-                for (auto &col : row) {
-                    col.screen.translateY(n);
+                for (auto &[id, screen] : row) {
+                    screen.translateY(n);
                 }
             }
         });
     }
 
     this->threadPool.add([this, n] -> void {
-        for (auto &entity : this->entities) {
+        for (const auto &entity : this->entities) {
             entity->getScreenPosition().translateY(n);
         }
     });
@@ -609,16 +605,16 @@ void Map::shiftVertically(int n) {
 }
 
 void Map::render() const {
-    SDL_Rect sdlRect(0, 0, Map::TILE_SIZE, Map::TILE_SIZE);
+    SDL_Rect sdlRect(0, 0, TILE_SIZE, TILE_SIZE);
 
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
-            for (const auto &col : row) {
-                sdlRect.x = col.screen.getX();
-                sdlRect.y = col.screen.getY();
+            for (const auto &[id, screen] : row) {
+                sdlRect.x = screen.getX();
+                sdlRect.y = screen.getY();
                 // prevents rendering tiles that aren't onscreen
-                if (Camera::getInstance().isInView(sdlRect) and col.id != 0) {
-                    TextureManager::getInstance().draw(this->tileImages.at(col.id), sdlRect);
+                if (Camera::getInstance().isInView(sdlRect) and id != 0) {
+                    TextureManager::getInstance().draw(this->tileImages.at(id), sdlRect);
                 }
             }
         }

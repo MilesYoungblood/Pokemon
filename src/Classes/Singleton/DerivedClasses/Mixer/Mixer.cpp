@@ -5,13 +5,13 @@
 #include "Mixer.h"
 
 Mixer::~Mixer() {
-    for (auto &mapping : this->soundboard) {
-        Mix_FreeChunk(this->soundboard.at(mapping.first));
+    for (auto &[fst, snd] : this->soundboard) {
+        Mix_FreeChunk(this->soundboard.at(fst));
     }
     Mix_FreeMusic(this->music);
 }
 
-void Mixer::playSound(const char *id) {
+void Mixer::playSound(const char *id) const {
     try {
         Mix_PlayChannel(-1, this->soundboard.at(id), 0);
         Mix_ChannelFinished(nullptr);
@@ -32,10 +32,8 @@ void Mixer::playMusic(const std::string &id) {
 }
 
 Mixer::Mixer() {
-    std::filesystem::path name;
-
     for (const auto &entry : std::filesystem::recursive_directory_iterator("../assets/audio/sfx/")) {
-        name = entry.path();
+        const std::filesystem::path& name = entry.path();
         this->soundboard.insert(std::make_pair(name.stem().string(), Mix_LoadWAV(name.string().c_str())));
         if (this->soundboard.at(name.stem().string()) == nullptr) {
             std::clog << "Error loading sound: " << SDL_GetError() << '\n';

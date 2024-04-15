@@ -6,25 +6,7 @@
 
 #include "../../Trainer.h"
 
-class Player : public Trainer {
-private:
-    using box = std::array<std::array<std::unique_ptr<Pokemon>, 6>, 5>;
-    std::array<box, 12> pc;
-
-    int numFainted{ 0 };
-
-    Player();
-
-    void handleMove(SDL_Scancode scancode);
-
-    void handleReturn();
-
-    void interact() override;
-
-    void walk() override;
-
-    void idle() override;
-
+class Player final : public Trainer {
 public:
     static Player &getPlayer();
 
@@ -39,4 +21,22 @@ public:
     [[nodiscard]] std::vector<std::string> winMessage(const Trainer *trainer) const override;
 
     [[nodiscard]] bool canFight() const override;
+
+private:
+    using box = std::array<std::array<std::unique_ptr<Pokemon>, 6>, 5>;
+    std::array<box, 12> pc;
+
+    int numFainted{ 0 };
+
+    Player();
+
+    void handleMove(SDL_Scancode scancode);
+
+    void handleReturn() const;
+
+    void interact() override;
+
+    void walk() override;
+
+    void idle() override;
 };

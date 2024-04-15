@@ -4,20 +4,19 @@
 
 #pragma once
 
+#include "../../../../../Component/Resource/Resource.h"
 #include "../../Rectangle.h"
 
-class ResourceBar : public Rectangle {
-private:
-    int progress;
-
+class ResourceBar final : public Rectangle {
 public:
     ResourceBar(SDL_Rect dest, SDL_Color fg, int borderSize, int amount);
 
-    void raise(int n);
-
-    void lower(int n);
+    Project::Resource &getProgress();
 
     void update() override;
 
     void render() const override;
+
+private:
+    Project::Resource progress;
 };

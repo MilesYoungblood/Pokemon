@@ -5,15 +5,9 @@
 #pragma once
 
 #include "../../../Graphic/DerivedClasses/Graphics.h"
+#include "../../Singleton.h"
 
-class GraphicsEngine : public Singleton<GraphicsEngine> {
-private:
-    std::unordered_map<std::size_t, std::vector<std::unique_ptr<Graphic>>> graphics;
-
-    friend class Singleton<GraphicsEngine>;
-
-    GraphicsEngine();
-
+class GraphicsEngine final : public Singleton<GraphicsEngine> {
 public:
     /// \brief adds a graphic to the system
     /// \tparam G the type of graphic
@@ -42,9 +36,9 @@ public:
     /// \tparam G the type of graphic
     /// \param index the index of the graphic in the vector
     template<typename G>
-    void removeGraphic(long long int index = 0) {
+    void removeGraphic(const long long int index = 0) {
         try {
-            std::size_t i = typeid(G).hash_code();
+            const std::size_t i = typeid(G).hash_code();
             this->graphics.at(i).erase(this->graphics.at(i).begin() + index);
         }
         catch (const std::exception &e) {
@@ -57,7 +51,7 @@ public:
     /// \param index index in the vector
     /// \return a reference to the graphic
     template<typename G>
-    G &getGraphic(std::size_t index = 0) {
+    G &getGraphic(const std::size_t index = 0) {
         try {
             return *dynamic_cast<G *>(this->graphics.at(typeid(G).hash_code()).at(index).get());
         }
@@ -78,8 +72,15 @@ public:
     void update();
 
     /// \brief renders all Graphics
-    void render();
+    void render() const;
 
     /// \brief erases all Graphics
     void clear();
+
+private:
+    std::unordered_map<std::size_t, std::vector<std::unique_ptr<Graphic>>> graphics;
+
+    friend class Singleton;
+
+    GraphicsEngine();
 };

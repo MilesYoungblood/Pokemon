@@ -7,18 +7,6 @@
 #include "../../Graphic.h"
 
 class Texture : public Graphic {
-private:
-    SDL_Texture *texture;
-
-protected:
-    explicit Texture(SDL_Rect dest);
-
-    Texture(SDL_Rect dest, SDL_Texture *txt);
-
-    void setTexture(SDL_Texture *newTexture);
-
-    [[nodiscard]] SDL_Texture *getTexture() const;
-
 public:
     Texture(const std::string &path, SDL_Rect dest);
 
@@ -37,4 +25,16 @@ public:
     void update() override;
 
     void render() const override;
+
+protected:
+    explicit Texture(SDL_Rect dest);
+
+    Texture(SDL_Rect dest, SDL_Texture *txt);
+
+    void setTexture(SDL_Texture *newTexture);
+
+    [[nodiscard]] SDL_Texture *getTexture() const;
+
+private:
+    SDL_Texture *texture;
 };

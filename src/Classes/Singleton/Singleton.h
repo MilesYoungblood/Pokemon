@@ -20,7 +20,7 @@ public:
 
     virtual ~Singleton() = default;
 
-    inline static Derived &getInstance() {
+    static Derived &getInstance() {
         static Derived instance;
         return instance;
     }

@@ -2,7 +2,20 @@
 // Created by Miles on 12/15/2023.
 //
 
+#include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "Rectangle.h"
+
+Rectangle::Rectangle(const SDL_Rect dest, const int borderSize) : Graphic(dest), borderSize(borderSize) {}
+
+Rectangle::Rectangle(const SDL_Rect dest, const SDL_Color fg, const int borderSize)
+        : Graphic(dest), fg(fg), bg(Constants::Color::BLACK), borderSize(borderSize) {}
+
+Rectangle::Rectangle(const SDL_Rect dest, const SDL_Color fg, const SDL_Color bg, const int borderSize)
+        : Graphic(dest), fg(fg), bg(bg), borderSize(borderSize) {}
+
+void Rectangle::setBorderSize(const int pt) {
+    this->borderSize = pt;
+}
 
 void Rectangle::renderBox() const {
     TextureManager::getInstance().drawRect(this->getDest(), this->fg, this->bg, this->borderSize);
@@ -19,15 +32,3 @@ SDL_Color Rectangle::getBg() const {
 int Rectangle::getBorderSize() const {
     return this->borderSize;
 }
-
-void Rectangle::setBorderSize(int pt) {
-    this->borderSize = pt;
-}
-
-Rectangle::Rectangle(SDL_Rect dest, int borderSize) : Graphic(dest), borderSize(borderSize) {}
-
-Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, int borderSize)
-        : Graphic(dest), fg(fg), bg(Constants::Color::BLACK), borderSize(borderSize) {}
-
-Rectangle::Rectangle(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize)
-        : Graphic(dest), fg(fg), bg(bg), borderSize(borderSize) {}

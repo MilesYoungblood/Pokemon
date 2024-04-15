@@ -4,20 +4,20 @@
 
 #include "KeyManager.h"
 
-void KeyManager::lock(SDL_Scancode key) {
+void KeyManager::lock(const SDL_Scancode key) {
     this->lockedKeys.insert(key);
 }
 
-void KeyManager::unlock(SDL_Scancode key) {
+void KeyManager::unlock(const SDL_Scancode key) {
     this->lockedKeys.erase(key);
 }
 
 void KeyManager::update() {
     SDL_PumpEvents();
-    this->keyStates = std::span<const Uint8>(SDL_GetKeyboardState(nullptr), 255);
+    this->keyStates = std::span(SDL_GetKeyboardState(nullptr), 255);
 }
 
-bool KeyManager::getKey(SDL_Scancode key) {
+bool KeyManager::getKey(const SDL_Scancode key) {
     if (this->lockedKeys.contains(key)) {
         return false;
     }

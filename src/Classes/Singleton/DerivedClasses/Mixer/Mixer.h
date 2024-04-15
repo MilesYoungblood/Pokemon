@@ -6,7 +6,7 @@
 
 #include "../../Singleton.h"
 
-class Mixer : public Singleton<Mixer> {
+class Mixer final : public Singleton<Mixer> {
 public:
     Mixer(const Mixer &) = delete;
 
@@ -18,7 +18,7 @@ public:
 
     ~Mixer() override;
 
-    void playSound(const char *id);
+    void playSound(const char *id) const;
 
     void playMusic(const std::string &id);
 
@@ -26,7 +26,7 @@ private:
     std::unordered_map<std::string, Mix_Chunk *> soundboard;
     Mix_Music *music{ nullptr };
 
-    friend class Singleton<Mixer>;
+    friend class Singleton;
 
     Mixer();
 };

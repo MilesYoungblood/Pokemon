@@ -2,10 +2,11 @@
 // Created by Miles on 11/29/2023.
 //
 
+#include "../../../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../../../../../Map/Map.h"
 #include "Animation.h"
 
-Animation::Animation(const std::string &path, SDL_Rect rect) : Texture(rect) {
+Animation::Animation(const std::string &path, const SDL_Rect rect) : Texture(rect) {
     const auto data = TextureManager::getInstance().loadTextureData(path);
     this->setTexture(std::get<0>(data));
     this->numRows = std::get<1>(data) / Map::TILE_SIZE;

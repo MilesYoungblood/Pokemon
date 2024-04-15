@@ -5,9 +5,8 @@
 #include "../../../../../Singleton/DerivedClasses/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 
-Pokemon::Pokemon(const std::string &id) : id(id), name(id), baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
-    const double ratio = Pokedex::getInstance().getGenderRatio(id);
-    if (ratio == -1) {
+Pokemon::Pokemon(const std::string &id) : baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }), name(id), id(id) {
+    if (const double ratio = Pokedex::getInstance().getGenderRatio(id); ratio == -1) {
         this->gender = "Genderless";
     }
     else {
@@ -23,24 +22,24 @@ Pokemon::Pokemon(const std::string &id) : id(id), name(id), baseStats(), statMod
     }
 }
 
-Pokemon::Pokemon(std::string id, std::string name, std::string gender, std::string ability, int level,
-                 int hp, int attack, int defense, int spAttack, int spDefense, int speed)
-        : id(std::move(id)), name(std::move(name)), gender(std::move(gender)), ability(std::move(ability)), maxHp(hp),
-          currentHp(hp), level(level), baseStats({ attack, defense, spAttack, spDefense, speed }),
-          statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {}
+Pokemon::Pokemon(std::string id, std::string name, std::string gender, std::string ability, const int level,
+                 const int hp, const int attack, const int defense, const int spAttack, const int spDefense, const int speed)
+        : maxHp(hp), currentHp(hp), baseStats({ attack, defense, spAttack, spDefense, speed }), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }), level(level),
+          ability(std::move(ability)), name(std::move(name)), id(std::move(id)),
+          gender(std::move(gender)) {}
 
 int Pokemon::numMoves() const {
     return static_cast<int>(this->moveSet.size());
 }
 
-void Pokemon::addMove(const std::string &moveId) {
-    if (this->moveSet.size() == Pokemon::MAX_NUM_MOVES) {
+void Pokemon::addMove(const std::string &id) {
+    if (this->moveSet.size() == MAX_NUM_MOVES) {
         return;
     }
-    this->moveSet.push_back(std::move(moveMap.at(moveId)()));
+    this->moveSet.push_back(std::move(moveMap.at(id)()));
 }
 
-void Pokemon::deleteMove(int index) {
+void Pokemon::deleteMove(const int index) {
     try {
         this->moveSet.erase(this->moveSet.begin() + index);
     }
@@ -49,11 +48,11 @@ void Pokemon::deleteMove(int index) {
     }
 }
 
-void Pokemon::restoreHp(int amount) {
+void Pokemon::restoreHp(const int amount) {
     this->currentHp = std::min(this->currentHp + amount, this->maxHp);
 }
 
-void Pokemon::takeDamage(int amount) {
+void Pokemon::takeDamage(const int amount) {
     this->currentHp = std::max(this->currentHp - amount, 0);
 }
 
@@ -66,26 +65,26 @@ int Pokemon::getMaxHp() const {
 }
 
 void Pokemon::initStatMods() {
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::ATTACK)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::DEFENSE)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::SP_ATTACK)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::SP_DEFENSE)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::SPEED)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::ACCURACY)] = 0;
-    this->statModifiers[static_cast<std::size_t>(Pokemon::Stat::EVASIVENESS)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::ATTACK)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::DEFENSE)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::SP_ATTACK)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::SP_DEFENSE)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::SPEED)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::ACCURACY)] = 0;
+    this->statModifiers[static_cast<std::size_t>(Stat::EVASIVENESS)] = 0;
 }
 
-void Pokemon::raiseStatMod(Pokemon::Stat stat, int amount) {
+void Pokemon::raiseStatMod(Stat stat, const int amount) {
     this->statModifiers.at(static_cast<std::size_t>(stat)) = std::min(
             this->statModifiers.at(static_cast<std::size_t>(stat)) + amount, 6);
 }
 
-void Pokemon::lowerStatMod(Pokemon::Stat stat, int amount) {
+void Pokemon::lowerStatMod(Stat stat, const int amount) {
     this->statModifiers.at(static_cast<std::size_t>(stat)) = std::max(
             this->statModifiers.at(static_cast<std::size_t>(stat)) - amount, -6);
 }
 
-double Pokemon::getStat(Pokemon::Stat stat) const {
+double Pokemon::getStat(Stat stat) const {
     switch (this->statModifiers.at(static_cast<std::size_t>(stat))) {
         case -6:
             return 0.25;
@@ -118,7 +117,7 @@ double Pokemon::getStat(Pokemon::Stat stat) const {
     }
 }
 
-int Pokemon::getStatMod(Pokemon::Stat stat) const {
+int Pokemon::getStatMod(Stat stat) const {
     try {
         return this->statModifiers.at(static_cast<std::size_t>(stat));
     }
@@ -127,7 +126,7 @@ int Pokemon::getStatMod(Pokemon::Stat stat) const {
     }
 }
 
-double Pokemon::getBaseStat(Pokemon::Stat stat) const {
+double Pokemon::getBaseStat(Stat stat) const {
     try {
         return std::round(this->baseStats.at(static_cast<std::size_t>(stat)) * this->getStat(stat));
     }
@@ -136,20 +135,20 @@ double Pokemon::getBaseStat(Pokemon::Stat stat) const {
     }
 }
 
-void Pokemon::setStatus(StatusCondition newStatus) {
+void Pokemon::setStatus(const StatusCondition newStatus) {
     if (this->status == StatusCondition::NONE) {
         if (newStatus == StatusCondition::BURN) {
-            this->baseStats[static_cast<std::size_t>(Pokemon::Stat::ATTACK)] *= 2.0;
+            this->baseStats[static_cast<std::size_t>(Stat::ATTACK)] *= 2.0;
         }
         else if (newStatus == StatusCondition::PARALYSIS) {
-            this->baseStats[static_cast<std::size_t>(Pokemon::Stat::SPEED)] *= 2.0;
+            this->baseStats[static_cast<std::size_t>(Stat::SPEED)] *= 2.0;
         }
     }
     else if (this->status == StatusCondition::BURN) {
-        this->baseStats[static_cast<std::size_t>(Pokemon::Stat::ATTACK)] /= 2.0;
+        this->baseStats[static_cast<std::size_t>(Stat::ATTACK)] /= 2.0;
     }
     else if (this->status == StatusCondition::PARALYSIS) {
-        this->baseStats[static_cast<std::size_t>(Pokemon::Stat::SPEED)] /= 2.0;
+        this->baseStats[static_cast<std::size_t>(Stat::SPEED)] /= 2.0;
     }
 
     this->status = newStatus;
@@ -216,13 +215,13 @@ bool Pokemon::isFullHp() const {
 }
 
 bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
-    return this->baseStats.at(static_cast<std::size_t>(Pokemon::Stat::SPEED)) >
-           pokemon.baseStats.at(static_cast<std::size_t>(Pokemon::Stat::SPEED));
+    return this->baseStats.at(static_cast<std::size_t>(Stat::SPEED)) >
+           pokemon.baseStats.at(static_cast<std::size_t>(Stat::SPEED));
 }
 
 bool Pokemon::rivalsInSpeed(const Pokemon &pokemon) const {
-    return this->baseStats.at(static_cast<std::size_t>(Pokemon::Stat::SPEED)) ==
-           pokemon.baseStats.at(static_cast<std::size_t>(Pokemon::Stat::SPEED));
+    return this->baseStats.at(static_cast<std::size_t>(Stat::SPEED)) ==
+           pokemon.baseStats.at(static_cast<std::size_t>(Stat::SPEED));
 }
 
 bool Pokemon::isAfflicted() const {
@@ -242,7 +241,7 @@ std::string Pokemon::hpFullMessage() const {
     return this->name + "'s HP is full!";
 }
 
-Move &Pokemon::operator[](const int index) {
+Move &Pokemon::operator[](const int index) const {
     try {
         return *this->moveSet.at(index);
     }

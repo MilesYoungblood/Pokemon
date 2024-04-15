@@ -7,34 +7,34 @@
 #include "../../../Texture/Texture.h"
 #include "SelectionBox.h"
 
-SelectionBox::SelectionBox(SDL_Rect dest, int borderSize,
+SelectionBox::SelectionBox(const SDL_Rect dest, const int borderSize,
                            const std::vector<std::pair<std::string, std::function<void()>>> &options)
         : Rectangle(dest, borderSize), options(options) {}
 
-SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize,
+SelectionBox::SelectionBox(const SDL_Rect dest, const SDL_Color fg, const int borderSize,
                            const std::vector<std::pair<std::string, std::function<void()>>> &options)
         : Rectangle(dest, fg, borderSize), options(options) {}
 
-SelectionBox::SelectionBox(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize,
+SelectionBox::SelectionBox(const SDL_Rect dest, const SDL_Color fg, const SDL_Color bg, const int borderSize,
                            const std::vector<std::pair<std::string, std::function<void()>>> &options)
         : Rectangle(dest, fg, bg, borderSize), options(options) {}
 
 void SelectionBox::update() {
     static bool consecutive = false;
 
-    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_W)) {
+    if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
         if (not consecutive) {
             this->current = std::max(0, this->current - 1);
             consecutive = true;
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_S)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_S)) {
         if (not consecutive) {
             this->current = std::min(static_cast<int>(this->options.size() - 1), this->current + 1);
             consecutive = true;
         }
     }
-    else if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+    else if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
         if (not consecutive) {
             if (this->options[this->current].second != nullptr) {
                 this->options[this->current].second();
@@ -70,7 +70,7 @@ void SelectionBox::render() const {
         text.render();
     }
 
-    Texture arrow(
+    const Texture arrow(
             "RightArrow.png",
             SDL_Rect(
                     this->getDest().w - percent + Game::FONT_SIZE,

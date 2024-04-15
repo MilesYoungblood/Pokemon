@@ -7,21 +7,6 @@
 #include "../../../Item/DerivedClasses/Items.h"
 
 class Trainer : public Character {
-private:
-    enum : Uint8 {
-        MAX_POKEMON = 6
-    };
-
-    bool keepLooping{ true };
-
-    std::vector<Pokemon> party;
-    std::unordered_map<std::size_t, std::unordered_map<std::string, std::unique_ptr<Item>>> items;
-
-    void init();
-
-protected:
-    Trainer(const char *id, int x, int y, Direction direction, int vision);
-
 public:
     Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision);
 
@@ -147,4 +132,19 @@ public:
 
     /// \brief Overrides Character::idle
     void idle() override;
+
+protected:
+    Trainer(const char *id, int x, int y, Direction direction, int vision);
+
+private:
+    enum : Uint8 {
+        MAX_POKEMON = 6
+    };
+
+    bool keepLooping{ true };
+
+    std::vector<Pokemon> party;
+    std::unordered_map<std::size_t, std::unordered_map<std::string, std::unique_ptr<Item>>> items;
+
+    void init();
 };

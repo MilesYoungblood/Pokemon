@@ -4,7 +4,7 @@
 
 #include "TimedVisual.h"
 
-TimedVisual::TimedVisual(const char *path, int frames, SDL_Rect dest) : Texture(path, dest), numFrames(frames) {}
+TimedVisual::TimedVisual(const char *path, const int frames, const SDL_Rect dest) : Texture(path, dest), numFrames(frames) {}
 
 void TimedVisual::update() {
     if (this->counter == this->numFrames) {

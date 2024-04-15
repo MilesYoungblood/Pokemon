@@ -2,9 +2,10 @@
 // Created by Miles Youngblood on 12/5/2023.
 //
 
+#include "../../../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "TextBox.h"
 
-TextBox::TextBox(SDL_Rect dest, int borderSize, int x, int y) : Rectangle(dest, borderSize), textBox(x, y, 0, 0) {}
+TextBox::TextBox(const SDL_Rect dest, const int borderSize, const int x, const int y) : Rectangle(dest, borderSize), textBox(x, y, 0, 0) {}
 
 TextBox::~TextBox() {
     if (this->text != nullptr) {
@@ -21,7 +22,7 @@ void TextBox::push(const std::string &message, const std::function<void()> &func
 }
 
 void TextBox::push(const std::vector<std::pair<std::string, std::function<void()>>> &pairs) {
-    std::for_each(pairs.begin(), pairs.end(), [this](const std::pair<std::string, std::function<void()>> &pair) -> void {
+    std::ranges::for_each(pairs, [this](const std::pair<std::string, std::function<void()>> &pair) -> void {
         this->messageQueue.push(pair);
     });
 }

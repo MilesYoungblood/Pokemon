@@ -6,24 +6,24 @@
 
 #include "../../Texture.h"
 
-class TimedVisual : public Texture {
-private:
-    int counter{ 0 };
-
-    int numFrames;
-
+class TimedVisual final : public Texture {
 public:
     TimedVisual(const char *path, int frames, SDL_Rect dest);
 
-    TimedVisual(const TimedVisual &) = default;
+    TimedVisual(const TimedVisual &) = delete;
 
     TimedVisual(TimedVisual &&) noexcept = default;
 
-    TimedVisual &operator=(const TimedVisual &) = default;
+    TimedVisual &operator=(const TimedVisual &) = delete;
 
     TimedVisual &operator=(TimedVisual &&) noexcept = default;
 
     ~TimedVisual() override = default;
 
     void update() override;
+
+private:
+    int counter{ 0 };
+
+    int numFrames;
 };

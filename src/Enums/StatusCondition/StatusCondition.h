@@ -8,4 +8,4 @@ enum class StatusCondition : Uint8 {
     NONE, BURN, PARALYSIS, FREEZE, POISON, SLEEP
 };
 
-const char *statusToString(StatusCondition statusCondition);
+const char *statusToString(StatusCondition status);

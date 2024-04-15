@@ -5,19 +5,6 @@
 #pragma once
 
 class ThreadPool {
-private:
-    std::vector<std::thread> workers;
-    std::queue<std::function<void()>> tasks;
-
-    std::mutex mutex;
-    std::condition_variable cv;
-    std::condition_variable allIdle;
-
-    std::atomic_bool running{ true };
-    std::atomic_int activeThreads{ 0 };
-
-    void clear();
-
 public:
     ThreadPool() = default;
 
@@ -36,4 +23,17 @@ public:
     void add(std::function<void()> task);
 
     void block();
+
+private:
+    std::vector<std::thread> workers;
+    std::queue<std::function<void()>> tasks;
+
+    std::mutex mutex;
+    std::condition_variable cv;
+    std::condition_variable allIdle;
+
+    std::atomic_bool running{ true };
+    std::atomic_int activeThreads{ 0 };
+
+    void clear();
 };

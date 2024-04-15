@@ -6,11 +6,7 @@
 
 #include "../../Rectangle.h"
 
-class SelectionBox : public Rectangle {
-private:
-    std::vector<std::pair<std::string, std::function<void()>>> options;
-    int current{ 0 };
-
+class SelectionBox final : public Rectangle {
 public:
     SelectionBox(SDL_Rect dest, int borderSize, const std::vector<std::pair<std::string, std::function<void()>>> &options);
 
@@ -23,4 +19,8 @@ public:
     void update() override;
 
     void render() const override;
+
+private:
+    std::vector<std::pair<std::string, std::function<void()>>> options;
+    int current{ 0 };
 };

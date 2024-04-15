@@ -5,7 +5,6 @@
 #pragma once
 
 #include "../../Enums/Type/Type.h"
-#include "../../Functions/GeneralFunctions.h"
 
 class Pokemon;
 

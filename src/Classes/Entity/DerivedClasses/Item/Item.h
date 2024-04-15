@@ -7,9 +7,6 @@
 #include "../Character/DerivedClasses/Pokemon/Pokemon.h"
 
 class Item : public Entity {
-private:
-    int quantity;
-
 public:
     explicit Item(int n);
 
@@ -48,6 +45,9 @@ public:
     void render() const override;
 
     [[nodiscard]] bool canUse() const;
+
+private:
+    int quantity;
 };
 
 inline std::mutex itemMutex;

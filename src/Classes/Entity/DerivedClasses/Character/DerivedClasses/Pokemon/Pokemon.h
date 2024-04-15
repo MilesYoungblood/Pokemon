@@ -49,13 +49,13 @@ public:
 
     void initStatMods();
 
-    void raiseStatMod(Pokemon::Stat stat, int amount);
+    void raiseStatMod(Stat stat, int amount);
 
-    void lowerStatMod(Pokemon::Stat stat, int amount);
+    void lowerStatMod(Stat stat, int amount);
 
-    [[nodiscard]] int getStatMod(Pokemon::Stat stat) const;
+    [[nodiscard]] int getStatMod(Stat stat) const;
 
-    [[nodiscard]] double getBaseStat(Pokemon::Stat stat) const;
+    [[nodiscard]] double getBaseStat(Stat stat) const;
 
     void setStatus(StatusCondition newStatus);
 
@@ -101,7 +101,7 @@ public:
 
     [[nodiscard]] std::string hpFullMessage() const;
 
-    Move &operator[](int index);
+    Move &operator[](int index) const;
 
     std::vector<std::unique_ptr<Move>>::iterator begin();
 
@@ -129,5 +129,5 @@ private:
 
     StatusCondition status{ StatusCondition::NONE };
 
-    [[nodiscard]] double getStat(Pokemon::Stat stat) const;
+    [[nodiscard]] double getStat(Stat stat) const;
 };

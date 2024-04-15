@@ -6,14 +6,14 @@
 
 #include "../../Scene.h"
 
-class TitleScreen : public Scene {
-private:
-    friend class Scene;
-
-    TitleScreen() = default;
-
+class TitleScreen final : public Scene {
 public:
     void update() override;
 
     void render() override;
+
+private:
+    friend class Scene;
+
+    TitleScreen() = default;
 };

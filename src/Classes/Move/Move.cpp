@@ -2,24 +2,25 @@
 // Created by miles on 5/5/2022.
 //
 
+#include "../../Functions/GeneralFunctions.h"
 #include "../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Move.h"
 
-Move::Move(int pp) : pp(pp), maxPp(pp) {}
+Move::Move(const int pp) : pp(pp), maxPp(pp) {}
 
-Move::Move(int pp, int maxPp) : pp(pp), maxPp(maxPp) {}
+Move::Move(const int pp, const int maxPp) : pp(pp), maxPp(maxPp) {}
 
-void Move::setPp(int amount) {
+void Move::setPp(const int amount) {
     this->pp = std::min(amount, this->maxPp);
     this->pp = std::max(amount, 0);
 }
 
-void Move::setMaxPp(int amount) {
+void Move::setMaxPp(const int amount) {
     // TODO add bounds to max PP
     this->maxPp = std::max(amount, 0);
 }
 
-void Move::restore(int amount) {
+void Move::restore(const int amount) {
     this->pp = std::min(this->pp + amount, this->maxPp);
 }
 
@@ -51,7 +52,7 @@ void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 }
 
 std::vector<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used " + this->getName() + '!' });
+    std::vector messages({ attacker.getName() + " used " + this->getName() + '!' });
 
     if (this->damageFlag >= 0) {
         if (this->effFlag == 0.0) {
@@ -112,22 +113,22 @@ double Move::getCritFlag() const {
 }
 
 void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
-    if (not binomial(static_cast<double>(this->getAccuracy()))) {
+    if (not binomial(this->getAccuracy())) {
         // denotes a miss
         this->damageFlag = -1;
         return;
     }
-    double initialDamage;
+    double initialDamage = 0.0;
 
-    const int level_calc = (2 * attacker.getLevel() / 5) + 2;
+    const int levelCalc = (2 * attacker.getLevel() / 5) + 2;
     switch (this->getCategory()) {
         case Category::PHYSICAL:
-            initialDamage = level_calc * this->getPower(attacker, defender) *
+            initialDamage = levelCalc * this->getPower(attacker, defender) *
                             attacker.getBaseStat(Pokemon::Stat::ATTACK) /
                             defender.getBaseStat(Pokemon::Stat::DEFENSE);
             break;
         case Category::SPECIAL:
-            initialDamage = level_calc * this->getPower(attacker, defender) *
+            initialDamage = levelCalc * this->getPower(attacker, defender) *
                             attacker.getBaseStat(Pokemon::Stat::SP_ATTACK) /
                             defender.getBaseStat(Pokemon::Stat::SP_DEFENSE);
             break;
@@ -135,21 +136,21 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
             return;
     }
 
-    const double final_damage = initialDamage / 50 + 2;
+    const double finalDamage = initialDamage / 50 + 2;
     const double stab = this->getType() == attacker.getType1() or this->getType() == attacker.getType2() ? 1.5 : 1.0;
 
     this->effFlag = this->checkType(defender);
     this->critFlag = binomial(this->getCritRatio()) ? 2.0 : 1.0;
 
     //FIXME recalculate damage
-    this->damageFlag = static_cast<int>(final_damage * stab * this->effFlag * this->critFlag);
+    this->damageFlag = static_cast<int>(finalDamage * stab * this->effFlag * this->critFlag);
 }
 
 double Move::checkType(const Pokemon &pokemon) const {
-    const int num_types = 17;
+    constexpr int numTypes = 17;
 
     // x-axis is defender, y-axis is attacker
-    const std::array<std::array<double, num_types>, num_types> type_chart{
+    constexpr std::array<std::array<double, numTypes>, numTypes> typeChart{
             {       // normal, fire, water, electric, grass, ice, fighting, poison, ground, flying, psychic, ..., steel
                     { 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.0, 1.0, 1.0, 0.5 }, // normal
                     { 1.0, 0.5, 0.5, 1.0, 2.0, 2.0, 1.0, 1.0, 1.0, 1.0, 1.0, 2.0, 0.5, 1.0, 0.5, 1.0, 2.0 }, // fire
@@ -172,16 +173,16 @@ double Move::checkType(const Pokemon &pokemon) const {
     };
 
     // -1 because Type::NONE is 0 rather than Type::NORMAL
-    const int move_type = static_cast<int>(this->getType()) - 1;
-    const double type_1 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType1()) - 1);
+    const int moveType = static_cast<int>(this->getType()) - 1;
+    const double type1 = typeChart.at(moveType).at(static_cast<int>(pokemon.getType1()) - 1);
 
     double type2;
     if (pokemon.getType2() == Type::NONE) {
         type2 = 1.0;
     }
     else {
-        type2 = type_chart.at(move_type).at(static_cast<int>(pokemon.getType2()) - 1);
+        type2 = typeChart.at(moveType).at(static_cast<int>(pokemon.getType2()) - 1);
     }
 
-    return type_1 * type2;
+    return type1 * type2;
 }

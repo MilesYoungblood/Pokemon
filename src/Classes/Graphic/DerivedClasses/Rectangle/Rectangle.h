@@ -7,21 +7,6 @@
 #include "../../Graphic.h"
 
 class Rectangle : public Graphic {
-private:
-    SDL_Color fg{ Constants::Color::WHITE };
-    SDL_Color bg{ Constants::Color::BLACK };
-
-    int borderSize;
-
-protected:
-    void renderBox() const;
-
-    [[nodiscard]] SDL_Color getFg() const;
-
-    [[nodiscard]] SDL_Color getBg() const;
-
-    [[nodiscard]] int getBorderSize() const;
-
 public:
     Rectangle(SDL_Rect dest, int borderSize);
 
@@ -44,4 +29,19 @@ public:
     void update() override = 0;
 
     void render() const override = 0;
+
+protected:
+    void renderBox() const;
+
+    [[nodiscard]] SDL_Color getFg() const;
+
+    [[nodiscard]] SDL_Color getBg() const;
+
+    [[nodiscard]] int getBorderSize() const;
+
+private:
+    SDL_Color fg{ Constants::Color::WHITE };
+    SDL_Color bg{ Constants::Color::BLACK };
+
+    int borderSize;
 };

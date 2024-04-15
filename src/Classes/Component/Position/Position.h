@@ -8,10 +8,6 @@
 
 namespace Project {
     class Position {
-    private:
-        int x{ 0 };
-        int y{ 0 };
-
     public:
         Position() = default;
 
@@ -58,5 +54,9 @@ namespace Project {
         /// \param yPos y-position
         /// \return true if the position matches the given position
         [[nodiscard]] bool isHere(int xPos, int yPos) const;
+
+    private:
+        int x;
+        int y;
     };
 }

@@ -4,17 +4,6 @@
 
 #include "ThreadPool.h"
 
-void ThreadPool::clear() {
-    this->running = false;
-    this->cv.notify_all();
-
-    for (auto &worker : this->workers) {
-        worker.join();
-    }
-
-    this->workers.clear();
-}
-
 ThreadPool::~ThreadPool() {
     this->clear();
 }
@@ -30,7 +19,7 @@ void ThreadPool::init(std::size_t n) {
                 std::function<void()> task;
 
                 {
-                    std::unique_lock<std::mutex> lock(this->mutex);
+                    std::unique_lock lock(this->mutex);
                     this->cv.wait(lock, [this] -> bool { return not this->running or not this->tasks.empty(); });
 
                     if (not this->running and this->tasks.empty()) {
@@ -44,7 +33,7 @@ void ThreadPool::init(std::size_t n) {
 
                 task();
 
-                std::scoped_lock<std::mutex> lock(this->mutex);
+                std::scoped_lock lock(this->mutex);
                 --this->activeThreads;
                 if (this->activeThreads == 0) {
                     this->allIdle.notify_one();
@@ -56,13 +45,24 @@ void ThreadPool::init(std::size_t n) {
 
 void ThreadPool::add(std::function<void()> task) {
     {
-        std::scoped_lock<std::mutex> lock(this->mutex);
+        std::scoped_lock lock(this->mutex);
         this->tasks.push(std::move(task));
     }
     this->cv.notify_one();
 }
 
 void ThreadPool::block() {
-    std::unique_lock<std::mutex> lock(this->mutex);
+    std::unique_lock lock(this->mutex);
     this->allIdle.wait(lock, [this] -> bool { return this->tasks.empty() and this->activeThreads == 0; });
+}
+
+void ThreadPool::clear() {
+    this->running = false;
+    this->cv.notify_all();
+
+    for (auto &worker : this->workers) {
+        worker.join();
+    }
+
+    this->workers.clear();
 }

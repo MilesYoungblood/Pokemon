@@ -4,25 +4,25 @@
 
 #include "Graphic.h"
 
-Graphic::Graphic(SDL_Rect dest) : dest(dest) {}
+Graphic::Graphic(const SDL_Rect dest) : dest(dest) {}
 
-void Graphic::setDest(SDL_Rect newDest) {
+void Graphic::setDest(const SDL_Rect newDest) {
     this->dest = newDest;
 }
 
-void Graphic::setX(int x) {
+void Graphic::setX(const int x) {
     this->dest.x = x;
 }
 
-void Graphic::setY(int y) {
+void Graphic::setY(const int y) {
     this->dest.y = y;
 }
 
-void Graphic::setW(int w) {
+void Graphic::setW(const int w) {
     this->dest.w = w;
 }
 
-void Graphic::setH(int h) {
+void Graphic::setH(const int h) {
     this->dest.h = h;
 }
 

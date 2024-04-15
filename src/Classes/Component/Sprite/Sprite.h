@@ -6,10 +6,6 @@
 
 namespace Project {
     class Sprite {
-    private:
-        int currentRow;
-        int currentCol;
-
     public:
         struct Sheet {
             SDL_Texture *sprite{ nullptr };
@@ -17,10 +13,16 @@ namespace Project {
             Uint32 numCols{ 0 };
         };
 
+        Sprite() = default;
+
         [[nodiscard]] int getCurrentRow() const;
 
         [[nodiscard]] int getCurrentCol() const;
 
         void update(int numRows, int numCols);
+
+    private:
+        int currentRow;
+        int currentCol;
     };
 }

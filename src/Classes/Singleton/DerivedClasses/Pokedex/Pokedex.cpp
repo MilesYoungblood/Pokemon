@@ -5,7 +5,7 @@
 #include "Pokedex.h"
 
 Pokedex::Pokedex() {
-    const auto error_message = [](const std::filesystem::path &path, const char *name, const char *type) -> void {
+    const auto errorMessage = [](const std::filesystem::path &path, const char *name, const char *type) -> void {
         std::clog << "Invalid XML file format in file " << path << ": missing \"" << name << "\" " << type << '\n';
     };
 
@@ -22,13 +22,13 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *xmlElement = xmlDocument.FirstChildElement("xml");
         if (xmlElement == nullptr) {
-            error_message(entry, "xml", "element");
+            errorMessage(entry, "xml", "element");
             continue;
         }
 
         tinyxml2::XMLElement *dataElement = xmlElement->FirstChildElement("data");
         if (dataElement == nullptr) {
-            error_message(entry, "data", "element");
+            errorMessage(entry, "data", "element");
             continue;
         }
 
@@ -36,7 +36,7 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *speciesElement = dataElement->FirstChildElement("species");
         if (speciesElement == nullptr) {
-            error_message(entry, "species", "element");
+            errorMessage(entry, "species", "element");
             continue;
         }
 
@@ -46,33 +46,32 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *typeListElement = speciesElement->NextSiblingElement("types");
         if (typeListElement == nullptr) {
-            error_message(entry, "types", "element");
+            errorMessage(entry, "types", "element");
             continue;
         }
 
         tinyxml2::XMLElement *type1Element = typeListElement->FirstChildElement("type");
         if (type1Element == nullptr) {
-            error_message(entry, "type", "element");
+            errorMessage(entry, "type", "element");
             continue;
         }
 
         const int type1 = type1Element->IntText(-1);
         if (type1 == -1) {
-            error_message(entry, "type", "text");
+            errorMessage(entry, "type", "text");
             continue;
         }
 
-        this->type1Array[name] = Type(type1);
+        this->type1Array[name] = static_cast<Type>(type1);
 
-        tinyxml2::XMLElement *type2Element = type1Element->NextSiblingElement("type");
-        if (type2Element != nullptr) {
+        if (tinyxml2::XMLElement *type2Element = type1Element->NextSiblingElement("type"); type2Element != nullptr) {
             const int type2 = type2Element->IntText(-1);
             if (type2 == -1) {
-                error_message(entry, "type", "text");
+                errorMessage(entry, "type", "text");
                 continue;
             }
 
-            this->type2Array[name] = Type(type2);
+            this->type2Array[name] = static_cast<Type>(type2);
         }
         else {
             this->type2Array[name] = Type::NONE;
@@ -82,29 +81,28 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *abilityListElement = typeListElement->NextSiblingElement("abilities");
         if (abilityListElement == nullptr) {
-            error_message(entry, "abilities", "element");
+            errorMessage(entry, "abilities", "element");
             continue;
         }
 
         tinyxml2::XMLElement *ability1Element = abilityListElement->FirstChildElement("ability");
         if (ability1Element == nullptr) {
-            error_message(entry, "ability", "element");
+            errorMessage(entry, "ability", "element");
             continue;
         }
 
         const char *ability1 = ability1Element->GetText();
         if (ability1 == nullptr) {
-            error_message(entry, "ability", "text");
+            errorMessage(entry, "ability", "text");
             continue;
         }
 
         this->ability1Array[name] = ability1;
 
-        tinyxml2::XMLElement *ability2Element = ability1Element->NextSiblingElement("ability");
-        if (ability2Element != nullptr) {
+        if (tinyxml2::XMLElement *ability2Element = ability1Element->NextSiblingElement("ability"); ability2Element != nullptr) {
             const char *ability2 = ability2Element->GetText();
             if (ability2 == nullptr) {
-                error_message(entry, "ability", "text");
+                errorMessage(entry, "ability", "text");
                 continue;
             }
 
@@ -115,13 +113,13 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *heightElement = abilityListElement->NextSiblingElement("height");
         if (heightElement == nullptr) {
-            error_message(entry, "height", "element");
+            errorMessage(entry, "height", "element");
             continue;
         }
 
         const double height = heightElement->DoubleText(-1.0);
         if (height == -1.0) {
-            error_message(entry, "height", "text");
+            errorMessage(entry, "height", "text");
             continue;
         }
 
@@ -131,13 +129,13 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *weightElement = heightElement->NextSiblingElement("weight");
         if (weightElement == nullptr) {
-            error_message(entry, "weight", "element");
+            errorMessage(entry, "weight", "element");
             continue;
         }
 
         const double weight = weightElement->DoubleText(-1.0);
         if (weight == -1.0) {
-            error_message(entry, "weight", "text");
+            errorMessage(entry, "weight", "text");
             continue;
         }
 
@@ -147,13 +145,13 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *genderElement = weightElement->NextSiblingElement("gender");
         if (genderElement == nullptr) {
-            error_message(entry, "gender", "element");
+            errorMessage(entry, "gender", "element");
             continue;
         }
 
         const double male = genderElement->DoubleAttribute("male", std::numeric_limits<int>::max());
         if (male == std::numeric_limits<int>::max()) {
-            error_message(entry, "male", "attribute");
+            errorMessage(entry, "male", "attribute");
             continue;
         }
 
@@ -163,16 +161,15 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *baseStatListElement = genderElement->NextSiblingElement("base_stats");
         if (baseStatListElement == nullptr) {
-            error_message(entry, "base_stats", "element");
+            errorMessage(entry, "base_stats", "element");
             continue;
         }
 
         int i = 0;
         for (tinyxml2::XMLElement *statElement = baseStatListElement->FirstChildElement("stat");
              statElement != nullptr; statElement = statElement->NextSiblingElement("stat")) {
-            const int stat = statElement->IntText(-1);
-            if (stat == -1) {
-                error_message(entry, "stat", "text");
+            if (const int stat = statElement->IntText(-1); stat == -1) {
+                errorMessage(entry, "stat", "text");
                 continue;
             }
             this->baseStats[name].at(i) = statElement->IntText();
@@ -183,45 +180,45 @@ Pokedex::Pokedex() {
 
         tinyxml2::XMLElement *baseLevelElement = baseStatListElement->NextSiblingElement("base_level");
         if (baseLevelElement == nullptr) {
-            error_message(entry, "base_level", "element");
+            errorMessage(entry, "base_level", "element");
             continue;
         }
 
-        const int base_level = baseLevelElement->IntText(-1);
-        if (base_level == -1) {
-            error_message(entry, "base_level", "text");
+        const int baseLevel = baseLevelElement->IntText(-1);
+        if (baseLevel == -1) {
+            errorMessage(entry, "base_level", "text");
             continue;
         }
 
-        this->baseLevels[name] = base_level;
+        this->baseLevels[name] = baseLevel;
 
         // Catch rate
 
         tinyxml2::XMLElement *catchRateElement = baseLevelElement->NextSiblingElement("catch_rate");
         if (catchRateElement == nullptr) {
-            error_message(entry, "catch_rate", "element");
+            errorMessage(entry, "catch_rate", "element");
             continue;
         }
 
-        const int catch_rate = catchRateElement->IntText(-1);
-        if (catch_rate == -1) {
-            error_message(entry, "catch_rate", "text");
+        const int catchRate = catchRateElement->IntText(-1);
+        if (catchRate == -1) {
+            errorMessage(entry, "catch_rate", "text");
             continue;
         }
 
-        this->catchRates[name] = catch_rate;
+        this->catchRates[name] = catchRate;
 
         // Dex num
 
         tinyxml2::XMLElement *dexElement = catchRateElement->NextSiblingElement("dex");
         if (dexElement == nullptr) {
-            error_message(entry, "dex", "element");
+            errorMessage(entry, "dex", "element");
             continue;
         }
 
         const int dex = dexElement->IntText(-1);
         if (dex == -1) {
-            error_message(entry, "dex", "text");
+            errorMessage(entry, "dex", "text");
             continue;
         }
 
@@ -253,7 +250,7 @@ double Pokedex::getGenderRatio(const std::string &id) const {
     return this->genderRatios.at(id);
 }
 
-int Pokedex::getBaseStat(const std::string &id, int stat) const {
+int Pokedex::getBaseStat(const std::string &id, const int stat) const {
     return this->baseStats.at(id).at(stat);
 }
 

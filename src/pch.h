@@ -39,11 +39,6 @@
 #include <SDL_ttf.h>
 
 
-// GSL headers
-
-#include <gsl/gsl>
-
-
 // TinyXML headers
 
 #include <tinyxml2.h>

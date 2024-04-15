@@ -12,7 +12,7 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
 
         while (this->intelligent and Game::getInstance().isRunning()) {
             {
-                std::unique_lock<std::mutex> lock(mutex);
+                std::unique_lock lock(mutex);
                 this->cv.wait(lock, condition);
             }
 
@@ -25,7 +25,7 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
                 Overworld::pushEvent();
             }
 
-            std::unique_lock<std::mutex> lock(mutex);
+            std::unique_lock lock(mutex);
             this->cv.wait_for(lock, std::chrono::seconds(delay()), [] -> bool {
                 return not Game::getInstance().isRunning();
             });
@@ -45,3 +45,8 @@ void Project::Intelligence::tryActing() {
         this->decisionMade = false;
     }
 }
+
+void Project::Intelligence::alert() {
+    this->cv.notify_one();
+}
+

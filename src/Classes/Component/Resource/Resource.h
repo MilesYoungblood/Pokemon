@@ -6,10 +6,6 @@
 
 namespace Project {
     class Resource {
-    private:
-        int current;
-        int max;
-
     public:
         Resource(int current, int max);
 
@@ -26,5 +22,9 @@ namespace Project {
         [[nodiscard]] int getMax() const;
 
         [[nodiscard]] bool empty() const;
+
+    private:
+        int current;
+        int max;
     };
 }

@@ -6,28 +6,7 @@
 
 #include "../Scene/DerivedClasses/Scenes.h"
 
-class Game : public Singleton<Game> {
-private:
-    const std::array<int, 2> FPS{ 30, 60 };
-    int currentFps{ FPS[1] };
-
-    bool running{ false };                                                         // determines if the game is running
-
-    SDL_Window *window{ nullptr };
-    SDL_Renderer *renderer{ nullptr };
-
-    std::array<Scene *, 3> scenes{
-            &Scene::getInstance<TitleScreen>(),
-            &Scene::getInstance<Overworld>(),
-            &Scene::getInstance<Battle>()
-    };
-
-    Scene *currentScene{ this->scenes[static_cast<std::size_t>(Scene::Id::TITLE_SCREEN)] };
-
-    friend class Singleton<Game>;
-
-    Game();
-
+class Game final : public Singleton<Game> {
 public:
     enum : Uint16 {
         WINDOW_WIDTH = Map::TILE_SIZE * 9,
@@ -45,9 +24,9 @@ public:
 
     Game &operator=(Game &&) noexcept = delete;
 
-    void handleEvents();
+    void handleEvents() const;
 
-    void update();
+    void update() const;
 
     void render() const;
 
@@ -57,7 +36,28 @@ public:
 
     [[nodiscard]] bool isRunning() const;
 
-    void setRenderColor(SDL_Color color);
+    void setRenderColor(SDL_Color color) const;
 
     void changeScene(Scene::Id id);
+
+private:
+    const std::array<int, 2> fps{ 30, 60 };
+    int currentFps{ fps[1] };
+
+    bool running{ false };                                                         // determines if the game is running
+
+    SDL_Window *window{ nullptr };
+    SDL_Renderer *renderer{ nullptr };
+
+    std::array<Scene *, 3> scenes{
+        &Scene::getInstance<TitleScreen>(),
+        &Scene::getInstance<Overworld>(),
+        &Scene::getInstance<Battle>()
+    };
+
+    Scene *currentScene{ this->scenes[static_cast<std::size_t>(Scene::Id::TITLE_SCREEN)] };
+
+    friend class Singleton;
+
+    Game();
 };

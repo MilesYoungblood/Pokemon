@@ -4,17 +4,17 @@
 
 #include "Resource.h"
 
-Project::Resource::Resource(int current, int max) : current(current), max(max) {}
+Project::Resource::Resource(const int current, const int max) : current(current), max(max) {}
 
-void Project::Resource::raise(int x) {
+void Project::Resource::raise(const int x) {
     this->current = std::min(this->current + x, this->max);
 }
 
-void Project::Resource::lower(int x) {
+void Project::Resource::lower(const int x) {
     this->current = std::max(0, this->current - x);
 }
 
-void Project::Resource::increaseMax(int x) {
+void Project::Resource::increaseMax(const int x) {
     this->max += x;
 }
 

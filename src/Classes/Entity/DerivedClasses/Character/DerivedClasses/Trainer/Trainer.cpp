@@ -7,38 +7,26 @@
 #include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "Trainer.h"
 
-void Trainer::init() {
-    this->items[typeid(RestoreItem).hash_code()];
-    this->items[typeid(StatusItem).hash_code()];
-    this->items[typeid(PokeBall).hash_code()];
-    this->items[typeid(BattleItem).hash_code()];
-}
-
-Trainer::Trainer(const char *id, int x, int y, Direction direction, int vision)
-        : Character(id, x, y, direction, vision) {
-    this->init();
-}
-
-Trainer::Trainer(const char *id, const char *name, int x, int y, Direction direction, int vision)
+Trainer::Trainer(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
         : Character(id, name, x, y, direction, vision) {
     this->init();
 }
 
 void Trainer::addPokemon(const char *id) {
-    if (this->party.size() == Trainer::MAX_POKEMON) {
+    if (this->party.size() == MAX_POKEMON) {
         return;
     }
     this->party.push_back(std::move(Pokemon(id)));
 }
 
 void Trainer::addPokemon(Pokemon pokemon) {
-    if (this->party.size() == Trainer::MAX_POKEMON) {
+    if (this->party.size() == MAX_POKEMON) {
         return;
     }
     this->party.push_back(std::move(pokemon));
 }
 
-void Trainer::removePokemon(long long int index) {
+void Trainer::removePokemon(const long long int index) {
     try {
         // decrement the faint counter if the Pokémon we're removing is fainted
         if (this->party.at(index).isFainted()) {
@@ -52,7 +40,7 @@ void Trainer::removePokemon(long long int index) {
     }
 }
 
-void Trainer::swapPokemon(std::size_t a, std::size_t b) {
+void Trainer::swapPokemon(const std::size_t a, const std::size_t b) {
     try {
         Pokemon copy = std::move(this->party.at(a));
         this->party.at(a) = std::move(this->party.at(b));
@@ -63,7 +51,7 @@ void Trainer::swapPokemon(std::size_t a, std::size_t b) {
     }
 }
 
-void Trainer::addItem(const std::string &id, int n) {
+void Trainer::addItem(const std::string &id, const int n) {
     this->addItem(std::move(itemMap.at(id)(n)));
 }
 
@@ -82,7 +70,7 @@ void Trainer::addItem(std::unique_ptr<Item> item) {
     }
 }
 
-Pokemon &Trainer::operator[](std::size_t index) {
+Pokemon &Trainer::operator[](const std::size_t index) {
     try {
         return this->party.at(index);
     }
@@ -136,8 +124,8 @@ void Trainer::idle() {
     static bool haltMusic = true;
     static bool playMusic = true;
 
-    static const auto not_moving = [](Character *entity) -> bool {
-        return entity->getState() == Character::State::IDLE or entity->getState() == Character::State::IMMOBILE;
+    static const auto not_moving = [](const Character *entity) -> bool {
+        return entity->getState() == State::IDLE or entity->getState() == State::IMMOBILE;
     };
 
     // checks if the player is in LoS for this
@@ -147,8 +135,8 @@ void Trainer::idle() {
             this->loseAutonomy();
             ++entitiesUpdating;
 
-            Player::getPlayer().setState(Character::State::IMMOBILE);
-            this->setState(Character::State::IMMOBILE);
+            Player::getPlayer().setState(State::IMMOBILE);
+            this->setState(State::IMMOBILE);
             momentum = false;
 
             Mix_HaltMusic();
@@ -178,7 +166,7 @@ void Trainer::idle() {
         }
 
         if (not this->isNextTo(&Player::getPlayer())) {
-            this->getScreenPosition().translate(this->getDirection(), Character::WALK_SPEED);
+            this->getScreenPosition().translate(this->getDirection(), WALK_SPEED);
             this->incPixelCounter();
 
             if (this->getPixelCounter() % 10 == 0) {
@@ -204,4 +192,16 @@ void Trainer::idle() {
             playMusic = true;
         }
     }
+}
+
+Trainer::Trainer(const char *id, const int x, const int y, const Direction direction, const int vision)
+        : Character(id, x, y, direction, vision) {
+    this->init();
+}
+
+void Trainer::init() {
+    this->items[typeid(RestoreItem).hash_code()];
+    this->items[typeid(StatusItem).hash_code()];
+    this->items[typeid(PokeBall).hash_code()];
+    this->items[typeid(BattleItem).hash_code()];
 }

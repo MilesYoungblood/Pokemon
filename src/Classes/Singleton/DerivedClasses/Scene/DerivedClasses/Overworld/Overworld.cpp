@@ -24,18 +24,18 @@ void Overworld::init() {
 }
 
 void Overworld::handleEvents() {
-    std::unique_lock<std::mutex> lock(this->mutex);
+    std::unique_lock lock(this->mutex);
     this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
     std::cout << "\tWaiting on " << entitiesUpdating << " entities\n";
 
     switch (this->getEventType()) {
-        case SDL_EventType::SDL_QUIT:
+        case SDL_QUIT:
             Game::getInstance().terminate();
             break;
-        case SDL_EventType::SDL_KEYDOWN:
+        case SDL_KEYDOWN:
             keyDelay.start();
             break;
-        case SDL_EventType::SDL_KEYUP:
+        case SDL_KEYUP:
             keyDelay.stop();
             break;
         default:
@@ -44,7 +44,7 @@ void Overworld::handleEvents() {
 }
 
 void Overworld::update() {
-    for (auto &entity : *this->currentMap) {
+    for (const auto &entity : *this->currentMap) {
         entity->update();
     }
     Player::getPlayer().update();
@@ -69,7 +69,7 @@ void Overworld::changeMap(const std::pair<Project::Position, std::string> &data)
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mixer::getInstance().playMusic(Scene::getInstance<Overworld>().currentMap->getMusic());
+        Mixer::getInstance().playMusic(getInstance<Overworld>().currentMap->getMusic());
     });
 
     characterStates.clear();
@@ -88,13 +88,13 @@ Map &Overworld::getCurrentMap() const {
 }
 
 void Overworld::createTextBox(const std::string &message, const std::function<void()> &function) {
-    const int box_width = Map::TILE_SIZE * 7;
-    const int box_height = Map::TILE_SIZE * 2;
-    const SDL_Rect rect(
-            Game::WINDOW_WIDTH / 2 - box_width / 2,
-            Game::WINDOW_HEIGHT - box_height,
-            box_width,
-            box_height - Map::TILE_SIZE / 2
+    constexpr int boxWidth = Map::TILE_SIZE * 7;
+    constexpr int boxHeight = Map::TILE_SIZE * 2;
+    constexpr SDL_Rect rect(
+            Game::WINDOW_WIDTH / 2 - boxWidth / 2,
+            Game::WINDOW_HEIGHT - boxHeight,
+            boxWidth,
+            boxHeight - Map::TILE_SIZE / 2
     );
 
     GraphicsEngine::getInstance().addGraphic<TextBox>(
@@ -108,13 +108,13 @@ void Overworld::createTextBox(const std::string &message, const std::function<vo
 }
 
 void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
-    const int box_width = Map::TILE_SIZE * 7;
-    const int box_height = Map::TILE_SIZE * 2;
-    const SDL_Rect rect(
-            Game::WINDOW_WIDTH / 2 - box_width / 2,
-            Game::WINDOW_HEIGHT - box_height,
-            box_width,
-            box_height - Map::TILE_SIZE / 2
+    constexpr int boxWidth = Map::TILE_SIZE * 7;
+    constexpr int boxHeight = Map::TILE_SIZE * 2;
+    constexpr SDL_Rect rect(
+            Game::WINDOW_WIDTH / 2 - boxWidth / 2,
+            Game::WINDOW_HEIGHT - boxHeight,
+            boxWidth,
+            boxHeight - Map::TILE_SIZE / 2
     );
 
     GraphicsEngine::getInstance().addGraphic<TextBox>(
@@ -129,7 +129,7 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     for (const auto &message : dialogue) {
         pairs.emplace_back(
                 message,
-                [] -> void { KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN); }
+                [] -> void { KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN); }
         );
     }
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
@@ -140,8 +140,7 @@ void Overworld::handleEscape() {
         GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
         Player::getPlayer().setState(Character::State::IDLE);
         for (auto &entity : *this->currentMap) {
-            auto *character = dynamic_cast<Character *>(entity.get());
-            if (character != nullptr) {
+            if (auto *character = dynamic_cast<Character *>(entity.get()); character != nullptr) {
                 character->setState(characterStates.at(character));
                 characterStates.erase(character);
             }
@@ -164,22 +163,21 @@ void Overworld::handleEscape() {
         );
         Player::getPlayer().setState(Character::State::IMMOBILE);
         for (auto &entity : *this->currentMap) {
-            auto *character = dynamic_cast<Character *>(entity.get());
-            if (character != nullptr) {
+            if (auto *character = dynamic_cast<Character *>(entity.get()); character != nullptr) {
                 characterStates[character] = character->getState();
                 character->setState(Character::State::IMMOBILE);
             }
         }
     }
     // re-lock the Enter key
-    KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+    KeyManager::getInstance().lock(SDL_SCANCODE_ESCAPE);
 
     // sets a cool-down period before the Enter key can be registered again;
     // this is needed because the program will register a button as
     // being pressed faster than the user can lift their finger
     std::thread coolDown([] -> void {
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
-        KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_ESCAPE);
+        KeyManager::getInstance().unlock(SDL_SCANCODE_ESCAPE);
     });
     coolDown.detach();
 }

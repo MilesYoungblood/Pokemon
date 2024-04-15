@@ -7,17 +7,7 @@
 #include "../../Singleton.h"
 
 // manages key-states
-class KeyManager : public Singleton<KeyManager> {
-private:
-    std::span<const Uint8> keyStates;
-    std::unordered_set<SDL_Scancode> lockedKeys;
-    std::unordered_set<SDL_Scancode> heldKeys;
-    bool acceptingHold{ true };
-
-    friend class Singleton<KeyManager>;
-
-    KeyManager() = default;
-
+class KeyManager final : public Singleton<KeyManager> {
 public:
     /// \brief locks a key
     /// \param key the key to lock
@@ -34,4 +24,14 @@ public:
     /// \param key the key to check
     /// \return true if the key is pressed and the key is not locked
     bool getKey(SDL_Scancode key);
+
+private:
+    std::span<const Uint8> keyStates;
+    std::unordered_set<SDL_Scancode> lockedKeys;
+    std::unordered_set<SDL_Scancode> heldKeys;
+    bool acceptingHold{ true };
+
+    friend class Singleton;
+
+    KeyManager() = default;
 };

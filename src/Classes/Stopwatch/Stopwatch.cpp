@@ -34,22 +34,22 @@ void Stopwatch::reset() {
     this->elapsedTime = 0ULL;
 }
 
-bool Stopwatch::operator<(std::size_t rhs) const {
+bool Stopwatch::operator<(const std::size_t rhs) const {
     return this->elapsedTime < rhs;
 }
 
-bool Stopwatch::operator<=(std::size_t rhs) const {
+bool Stopwatch::operator<=(const std::size_t rhs) const {
     return this->elapsedTime <= rhs;
 }
 
-bool Stopwatch::operator>(std::size_t rhs) const {
+bool Stopwatch::operator>(const std::size_t rhs) const {
     return this->elapsedTime > rhs;
 }
 
-bool Stopwatch::operator>=(std::size_t rhs) const {
+bool Stopwatch::operator>=(const std::size_t rhs) const {
     return this->elapsedTime >= rhs;
 }
 
-bool Stopwatch::operator==(std::size_t rhs) const {
+bool Stopwatch::operator==(const std::size_t rhs) const {
     return this->elapsedTime == rhs;
 }

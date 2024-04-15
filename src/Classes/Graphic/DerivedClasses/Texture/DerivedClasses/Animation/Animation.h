@@ -6,14 +6,7 @@
 
 #include "../../Texture.h"
 
-class Animation : public Texture {
-private:
-    Uint32 numCols{ 0 };
-    Uint32 numRows{ 0 };
-
-    int currentFrame{ 0 };
-    int currentRow{ 0 };
-
+class Animation final : public Texture {
 public:
     Animation(const std::string &path, SDL_Rect rect);
 
@@ -30,4 +23,11 @@ public:
     void update() override;
 
     void render() const override;
+
+private:
+    Uint32 numCols{ 0 };
+    Uint32 numRows{ 0 };
+
+    int currentFrame{ 0 };
+    int currentRow{ 0 };
 };

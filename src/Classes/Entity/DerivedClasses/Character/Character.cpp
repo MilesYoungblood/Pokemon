@@ -8,12 +8,10 @@
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Character.h"
 
-#include <utility>
-
-Character::Character(const char *id, int x, int y, Direction direction, int vision)
+Character::Character(const char *id, const int x, const int y, const Direction direction, const int vision)
         : Entity(x, y), id(id), currentDirection(direction), vision(vision) {}
 
-Character::Character(const char *id, const char *name, int x, int y, Direction direction, int vision)
+Character::Character(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
         : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
 
 void Character::setName(const char *newName) {
@@ -32,7 +30,7 @@ void Character::setDialogue(const std::vector<std::string> &text) {
     this->dialogue = text;
 }
 
-void Character::setState(Character::State x) {
+void Character::setState(const State x) {
     this->currentState = x;
 }
 
@@ -43,7 +41,7 @@ Character::State Character::getState() const {
 void Character::gainAutonomy() {
     this->intelligence = std::make_unique<Project::Intelligence>(
             [this] -> void { this->act(); },
-            [this] -> bool { return this->currentState == Character::State::IDLE; },
+            [this] -> bool { return this->currentState == State::IDLE; },
             [] -> int { return generateInteger(2, 4); }
     );
 }
@@ -59,13 +57,16 @@ void Character::update() {
                 this->updateAnimation();
             }
             else if (this->pixelCounter == 20 * (Game::getInstance().getFps() / 30)) {
-                this->currentState = Character::State::IDLE;
+                this->currentState = State::IDLE;
                 this->pixelCounter = 0;
 
                 --entitiesUpdating;
+                if (this->intelligence != nullptr) {
+                    this->intelligence->alert();
+                }
                 Overworld::pushEvent();
             }
-            if (this->currentState != Character::State::IDLE) {
+            if (this->currentState != State::IDLE) {
                 ++this->pixelCounter;
             }
             break;
@@ -115,7 +116,7 @@ void Character::moveForward() {
     }
 }
 
-void Character::setDirection(Direction x) {
+void Character::setDirection(const Direction x) {
     this->currentDirection = x;
 }
 
@@ -141,11 +142,10 @@ void Character::face(const Character *character) {
         default:
             std::clog << "Invalid direction " << character->currentDirection << '\n';
             Game::getInstance().terminate();
-            return;
     }
 }
 
-bool Character::isFacing(Direction direction) const {
+bool Character::isFacing(const Direction direction) const {
     return this->currentDirection == direction;
 }
 
@@ -203,15 +203,15 @@ void Character::act() {
         default:
             if (this->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
                 this->moveForward();
-                this->setState(Character::State::WALKING);
+                this->setState(State::WALKING);
 
                 if (this->hasVisionOf(&Player::getPlayer()) and
-                    (Player::getPlayer().getState() == Character::State::IDLE)) {
-                    Player::getPlayer().setState(Character::State::IMMOBILE);
+                    (Player::getPlayer().getState() == State::IDLE)) {
+                    Player::getPlayer().setState(State::IMMOBILE);
                 }
             }
             else {
-                this->setState(Character::State::COLLIDING);
+                this->setState(State::COLLIDING);
                 this->updateAnimation();
             }
             ++entitiesUpdating;
@@ -228,10 +228,10 @@ void Character::interact() {
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
-        Player::getPlayer().setState(Character::State::IMMOBILE);
-        this->currentState = Character::State::IMMOBILE;
+        Player::getPlayer().setState(State::IMMOBILE);
+        this->currentState = State::IMMOBILE;
         this->face(&Player::getPlayer());
 
         if (this->intelligence == nullptr) {
@@ -260,20 +260,20 @@ void Character::interact() {
                     --entitiesUpdating;
                 }
                 else {
-                    Player::getPlayer().setState(Character::State::IDLE);
-                    this->currentState = Character::State::IDLE;
+                    Player::getPlayer().setState(State::IDLE);
+                    this->currentState = State::IDLE;
                 }
             }
         }
         // re-lock the Enter key
-        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again;
         // this is needed because the program will register a button as
         // being pressed faster than the user can lift their finger
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
         });
         coolDown.detach();
 
@@ -284,16 +284,19 @@ void Character::interact() {
 void Character::walk() {
     ++this->pixelCounter;
 
-    this->getScreenPosition().translate(this->currentDirection, Character::WALK_SPEED);
+    this->getScreenPosition().translate(this->currentDirection, WALK_SPEED);
 
     if (this->pixelCounter % 10 == 0) {
         this->updateAnimation();
     }
     if (this->pixelCounter == 20) {
-        this->currentState = Character::State::IDLE;
+        this->currentState = State::IDLE;
         this->pixelCounter = 0;
 
         --entitiesUpdating;
+        if (this->intelligence != nullptr) {
+            this->intelligence->alert();
+        }
         Overworld::pushEvent();
     }
 }

@@ -2,17 +2,14 @@
 // Created by Miles Youngblood on 2/6/2024.
 //
 
+#include "../../../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "ResourceBar.h"
 
-ResourceBar::ResourceBar(SDL_Rect dest, SDL_Color fg, int borderSize, int amount)
-        : Rectangle(dest, fg, borderSize), progress(amount) {}
+ResourceBar::ResourceBar(const SDL_Rect dest, const SDL_Color fg, const int borderSize, const int amount)
+        : Rectangle(dest, fg, borderSize), progress(amount, 100) {}
 
-void ResourceBar::raise(int n) {
-    this->progress = std::max(this->progress + n, 100);
-}
-
-void ResourceBar::lower(int n) {
-    this->progress = std::min(this->progress - n, 0);
+Project::Resource &ResourceBar::getProgress() {
+    return this->progress;
 }
 
 void ResourceBar::update() {}
@@ -24,7 +21,7 @@ void ResourceBar::render() const {
             SDL_Rect(
                     this->getDest().x,
                     this->getDest().y,
-                    static_cast<int>(this->getDest().w * (this->progress / 100.0)),
+                    static_cast<int>(this->getDest().w * (this->progress.getCurrent() / 100.0)),
                     this->getDest().h
             ),
             this->getFg(),
@@ -32,4 +29,3 @@ void ResourceBar::render() const {
             0
     );
 }
-

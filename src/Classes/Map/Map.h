@@ -54,12 +54,12 @@ public:
 
     /// \brief Removes an entity from the map
     /// \param entity pointer to the entity to remove
-    void removeEntity(Entity *entity);
+    void removeEntity(const Entity *entity);
 
     /// \brief Getter for entity in entity vector
     /// \param index
     /// \return a reference to the Pokemon
-    Entity &operator[](std::size_t index);
+    Entity &operator[](std::size_t index) const;
 
     /// \brief Allows for for-each loop functionality
     /// \return an iterator to the start of the entity vector
@@ -83,6 +83,7 @@ public:
 
     /// \brief Getter for an entity's sprite-sheet
     /// \param id id of the entity
+    /// \param direction given direction
     /// \return the sprite sheet of the respective entity
     [[nodiscard]] Sprite::Sheet getSpriteSheet(const std::string &id, Direction direction) const;
 
@@ -111,7 +112,7 @@ private:
         Project::Position screen;
     };
 
-    std::vector<Matrix<Map::Tile>> layout;                      // The map is vector of matrices
+    std::vector<Matrix<Tile>> layout;                           // The map is vector of matrices
 
     std::unordered_set<int> collisionSet;                       // set of tile ids that cause collision
     std::vector<SDL_Texture *> tileImages{ nullptr };           // texture for each tile id
@@ -128,7 +129,7 @@ private:
         std::string newMap;                                     // map that this exit point leads to
     };
 
-    std::vector<Map::ExitPoint> exitPoints;                     // the set of exit points in the map
+    std::vector<ExitPoint> exitPoints;                          // the set of exit points in the map
 
     void parseTmx();
 

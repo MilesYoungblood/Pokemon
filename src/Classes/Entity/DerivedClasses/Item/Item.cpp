@@ -10,9 +10,9 @@
 #include "../Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "Item.h"
 
-Item::Item(int n) : Entity(0, 0), quantity(n) {}
+Item::Item(const int n) : Entity(0, 0), quantity(n) {}
 
-Item::Item(int n, int x, int y) : Entity(x, y), quantity(n) {}
+Item::Item(const int n, const int x, const int y) : Entity(x, y), quantity(n) {}
 
 int Item::getQuantity() const {
     return this->quantity;
@@ -44,7 +44,7 @@ std::string Item::noEffectMessage(const Pokemon &pokemon) const {
 
 void Item::interact() {
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
-        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
         Player::getPlayer().setState(Character::State::IMMOBILE);
         Overworld::createTextBox(
@@ -53,7 +53,7 @@ void Item::interact() {
         Mix_PauseMusic();
         Mixer::getInstance().playSound("item_found");
         Mix_ChannelFinished([](int) -> void {
-            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
             Mix_ResumeMusic();
         });
     }

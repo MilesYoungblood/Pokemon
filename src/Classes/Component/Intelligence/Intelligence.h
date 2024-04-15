@@ -6,15 +6,6 @@
 
 namespace Project {
     class Intelligence {
-    private:
-        std::function<void()> action{ nullptr };
-
-        std::atomic_bool decisionMade{ false };
-
-        std::atomic_bool intelligent{ true };
-        std::thread thoughtProcess;
-        std::condition_variable cv;
-
     public:
         Intelligence(const std::function<void()> &action, const std::function<bool()> &condition, int (*delay)());
 
@@ -29,5 +20,16 @@ namespace Project {
         ~Intelligence();
 
         void tryActing();
+
+        void alert();
+
+    private:
+        std::function<void()> action{ nullptr };
+
+        std::atomic_bool decisionMade{ false };
+
+        std::atomic_bool intelligent{ true };
+        std::thread thoughtProcess;
+        std::condition_variable cv;
     };
 }

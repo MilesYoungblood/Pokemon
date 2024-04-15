@@ -4,7 +4,7 @@
 
 #include "Type.h"
 
-const char *typeToString(Type type) {
+const char *typeToString(const Type type) {
     switch (type) {
         case Type::NONE:
             return "N/A";
@@ -47,7 +47,7 @@ const char *typeToString(Type type) {
     }
 }
 
-SDL_Color typeToColor(Type type) {
+SDL_Color typeToColor(const Type type) {
     switch (type) {
         case Type::NONE:
             return Constants::Color::WHITE;

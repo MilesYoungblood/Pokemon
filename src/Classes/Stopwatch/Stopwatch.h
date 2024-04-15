@@ -5,13 +5,6 @@
 #pragma once
 
 class Stopwatch {
-private:
-    std::size_t elapsedTime{ 0 };
-
-    bool active{ false };
-
-    std::thread counter;
-
 public:
     Stopwatch() = default;
 
@@ -40,4 +33,11 @@ public:
     bool operator>=(std::size_t rhs) const;
 
     bool operator==(std::size_t rhs) const;
+
+private:
+    std::size_t elapsedTime{ 0 };
+
+    bool active{ false };
+
+    std::thread counter;
 };

@@ -6,14 +6,7 @@
 
 #include "../../Rectangle.h"
 
-class TextBox : public Rectangle {
-private:
-    std::size_t lettersPrinted{ 0 };
-    std::queue<std::pair<std::string, std::function<void()>>> messageQueue;
-
-    SDL_Rect textBox;
-    SDL_Texture *text{ nullptr };
-
+class TextBox final : public Rectangle {
 public:
     TextBox(SDL_Rect dest, int borderSize, int x, int y);
 
@@ -40,4 +33,11 @@ public:
     [[nodiscard]] bool isPrinting() const;
 
     [[nodiscard]] bool empty() const;
+
+private:
+    std::size_t lettersPrinted{ 0 };
+    std::queue<std::pair<std::string, std::function<void()>>> messageQueue;
+
+    SDL_Rect textBox;
+    SDL_Texture *text{ nullptr };
 };

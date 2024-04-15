@@ -4,12 +4,18 @@
 
 #pragma once
 
-#include "../../../TextureManager/TextureManager.h"
 #include "../../../../../Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
-#include "../../Scene.h"
 #include "../../../../../Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h"
+#include "../../Scene.h"
 
-class Battle : public Scene {
+class Battle final : public Scene {
+public:
+    void init(Trainer *t);
+
+    void update() override;
+
+    void render() override;
+
 private:
     enum class State : Uint8 {
         MAIN,
@@ -17,20 +23,20 @@ private:
         SELECT_POKEMON,
         ENGAGE
     };
-    std::stack<Battle::State> states;
+    std::stack<State> states;
 
-    const std::array<std::function<void()>, 4> INIT_FUNCTIONS{
-            [this] -> void { this->initMain(); },
-            [this] -> void { this->initFight(); },
-            [this] -> void { this->initPokemon(); },
-            Battle::initEngage
-    };
+    const std::array<std::function<void()>, 4> initFunctions{
+        [this] -> void { this->initMain(); },
+        [this] -> void { this->initFight(); },
+        [this] -> void { this->initPokemon(); },
+        initEngage
+};
 
-    const std::array<std::function<void()>, 4> UPDATE_FUNCTIONS{
-            nullptr,
-            nullptr,
-            nullptr,
-            [this] -> void { this->updateEngage(); }
+    const std::array<std::function<void()>, 4> updateFunctions{
+        nullptr,
+        nullptr,
+        nullptr,
+        [this] -> void { this->updateEngage(); }
     };
 
     std::unordered_map<std::string, SDL_Texture *> playerSprites;
@@ -80,12 +86,5 @@ private:
 
     void terminate();
 
-    void changeState(Battle::State state, bool clear);
-
-public:
-    void init(Trainer *trainer);
-
-    void update() override;
-
-    void render() override;
+    void changeState(State state, bool clear);
 };

@@ -12,7 +12,7 @@ int Project::Sprite::getCurrentCol() const {
     return this->currentCol;
 }
 
-void Project::Sprite::update(int numRows, int numCols) {
+void Project::Sprite::update(const int numRows, const int numCols) {
     ++this->currentCol;
 
     if (this->currentCol == numCols) {

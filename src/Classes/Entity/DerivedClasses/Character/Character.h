@@ -5,7 +5,6 @@
 #pragma once
 
 #include "../../../Component/Intelligence/Intelligence.h"
-#include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Map/Map.h"
 #include "../../../Entity/Entity.h"
 
@@ -55,11 +54,11 @@ public:
 
     /// \brief Setter for state
     /// \param x the new state
-    void setState(Character::State x);
+    void setState(State x);
 
     /// \brief Getter for state
     /// \return the character's state
-    [[nodiscard]] Character::State getState() const;
+    [[nodiscard]] State getState() const;
 
     /// \brief Fires the character's decision making thread
     void gainAutonomy();
@@ -150,7 +149,7 @@ private:
     int pixelCounter{ 0 };                                                    // counts how many pixels this has moved
 
     Direction currentDirection{ Direction::DOWN };                            // which way the entity is facing
-    std::atomic<Character::State> currentState{ Character::State::IDLE };  // dictates what the entity is doing
+    std::atomic<State> currentState{ State::IDLE };                         // dictates what the entity is doing
 
     Sprite sprite;
 

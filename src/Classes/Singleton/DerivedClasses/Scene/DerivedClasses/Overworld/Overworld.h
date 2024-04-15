@@ -13,17 +13,7 @@ inline bool momentum;
 
 inline std::atomic_int entitiesUpdating = 0;
 
-class Overworld : public Scene {
-private:
-    std::unique_ptr<Map> currentMap;
-
-    std::mutex mutex;
-    std::condition_variable cv;
-
-    friend class Scene;
-
-    Overworld() = default;
-
+class Overworld final : public Scene {
 public:
     Overworld(const Overworld &) = delete;
 
@@ -43,7 +33,7 @@ public:
 
     void render() override;
 
-    void save();
+    static void save();
 
     void changeMap(const std::pair<Project::Position, std::string> &data);
 
@@ -54,4 +44,14 @@ public:
     static void createTextBox(const std::vector<std::string> &dialogue);
 
     void handleEscape();
+
+private:
+    std::unique_ptr<Map> currentMap;
+
+    std::mutex mutex;
+    std::condition_variable cv;
+
+    friend class Scene;
+
+    Overworld() = default;
 };

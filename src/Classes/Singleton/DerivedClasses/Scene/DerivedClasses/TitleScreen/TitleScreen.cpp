@@ -15,18 +15,18 @@ namespace {
 void TitleScreen::update() {
     static int flashSpeed = 30;
 
-    if (KeyManager::getInstance().getKey(SDL_Scancode::SDL_SCANCODE_RETURN)) {
+    if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
         Mix_HaltMusic();
 
         // re-lock the Enter key
-        KeyManager::getInstance().lock(SDL_Scancode::SDL_SCANCODE_RETURN);
+        KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
         // sets a cool-down period before the Enter key can be registered again;
         // this is needed because the program will register a button
         // being pressed faster than the user can lift their finger
         std::thread coolDown([] -> void {
             std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlock(SDL_Scancode::SDL_SCANCODE_RETURN);
+            KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
         });
         coolDown.detach();
 
@@ -36,13 +36,13 @@ void TitleScreen::update() {
         // FIXME make code following this execute based on MixChannelFinished callback
         Mixer::getInstance().playSound("select");
 
-        Scene::getInstance<Overworld>().init();
+        getInstance<Overworld>().init();
 
-        Camera::getInstance().lockOnPlayer(Scene::getInstance<Overworld>().getCurrentMap());
+        Camera::getInstance().lockOnPlayer(getInstance<Overworld>().getCurrentMap());
 
-        Mixer::getInstance().playMusic(Scene::getInstance<Overworld>().getCurrentMap().getMusic());
+        Mixer::getInstance().playMusic(getInstance<Overworld>().getCurrentMap().getMusic());
 
-        Game::getInstance().changeScene(Scene::Id::OVERWORLD);
+        Game::getInstance().changeScene(Id::OVERWORLD);
         Game::getInstance().setRenderColor(Constants::Color::BLACK);
     }
 
@@ -54,13 +54,13 @@ void TitleScreen::update() {
 }
 
 void TitleScreen::render() {
-    static const SDL_Rect logo_rect{
+    static constexpr SDL_Rect logo_rect{
             Game::WINDOW_WIDTH / 2 - 8 * Map::TILE_SIZE / 2,
             0,
             8 * Map::TILE_SIZE,
             5 * Map::TILE_SIZE
     };
-    static const SDL_Rect message_rect{
+    static constexpr SDL_Rect message_rect{
             Game::WINDOW_WIDTH / 2 - 24 * Game::FONT_SIZE / 2,
             Game::WINDOW_HEIGHT - Map::TILE_SIZE * 2,
             Game::FONT_SIZE * 23,

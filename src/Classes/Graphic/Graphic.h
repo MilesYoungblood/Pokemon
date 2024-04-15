@@ -4,13 +4,7 @@
 
 #pragma once
 
-#include "../Singleton/DerivedClasses/TextureManager/TextureManager.h"
-
 class Graphic {
-private:
-    SDL_Rect dest;
-    bool active{ true };
-
 public:
     explicit Graphic(SDL_Rect dest);
 
@@ -51,4 +45,8 @@ public:
     void deactivate();
 
     [[nodiscard]] bool isActive() const;
+
+private:
+    SDL_Rect dest;
+    bool active{ true };
 };

@@ -6,6 +6,67 @@
 #include "../Pokedex/Pokedex.h"
 #include "Game.h"
 
+Game::~Game() {
+    Mix_HaltMusic();
+    Mix_HookMusicFinished(nullptr);
+    Mix_CloseAudio();
+
+    TextureManager::getInstance().clean();
+    TTF_Quit();
+
+    IMG_Quit();
+
+    if (this->renderer != nullptr) {
+        SDL_DestroyRenderer(this->renderer);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
+    }
+    if (this->window != nullptr) {
+        SDL_DestroyWindow(this->window);
+        if (strlen(SDL_GetError()) > 0) {
+            std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
+            SDL_ClearError();
+        }
+    }
+    SDL_Quit();
+}
+
+void Game::handleEvents() const {
+    this->currentScene->handleEvents();
+}
+
+void Game::update() const {
+    this->currentScene->update();
+}
+
+void Game::render() const {
+    SDL_RenderClear(this->renderer);
+    this->currentScene->render();
+    SDL_RenderPresent(this->renderer);
+}
+
+void Game::terminate() {
+    this->running = false;
+}
+
+int Game::getFps() const {
+    return this->currentFps;
+}
+
+bool Game::isRunning() const {
+    return this->running;
+}
+
+void Game::setRenderColor(const SDL_Color color) const {
+    SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
+}
+
+void Game::changeScene(Scene::Id id) {
+    this->currentScene = this->scenes.at(static_cast<std::size_t>(id));
+}
+
 Game::Game() {
     // initialize subsystems
     if (SDL_InitSubSystem(SDL_INIT_TIMER | SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_EVENTS) < 0) {
@@ -16,7 +77,7 @@ Game::Game() {
 
     // create window
     this->window = SDL_CreateWindow("Pokémon", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                                    Game::WINDOW_WIDTH, Game::WINDOW_HEIGHT, 0);
+                                    WINDOW_WIDTH, WINDOW_HEIGHT, 0);
     if (this->window == nullptr) {
         std::clog << "Error creating window: " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -24,7 +85,7 @@ Game::Game() {
     }
 
     // initialize image subsystems
-    if (IMG_Init(IMG_InitFlags::IMG_INIT_PNG) == 0) {
+    if (IMG_Init(IMG_INIT_PNG) == 0) {
         std::clog << "Error initializing image subsystems: " << SDL_GetError() << '\n';
         SDL_ClearError();
         return;
@@ -73,65 +134,4 @@ Game::Game() {
     Mixer::getInstance().playMusic("TitleScreen");
 
     this->running = true;
-}
-
-Game::~Game() {
-    Mix_HaltMusic();
-    Mix_HookMusicFinished(nullptr);
-    Mix_CloseAudio();
-
-    TextureManager::getInstance().clean();
-    TTF_Quit();
-
-    IMG_Quit();
-
-    if (this->renderer != nullptr) {
-        SDL_DestroyRenderer(this->renderer);
-        if (strlen(SDL_GetError()) > 0) {
-            std::clog << "Unable to destroy renderer: " << SDL_GetError() << '\n';
-            SDL_ClearError();
-        }
-    }
-    if (this->window != nullptr) {
-        SDL_DestroyWindow(this->window);
-        if (strlen(SDL_GetError()) > 0) {
-            std::clog << "Unable to destroy window: " << SDL_GetError() << '\n';
-            SDL_ClearError();
-        }
-    }
-    SDL_Quit();
-}
-
-void Game::handleEvents() {
-    this->currentScene->handleEvents();
-}
-
-void Game::update() {
-    this->currentScene->update();
-}
-
-void Game::render() const {
-    SDL_RenderClear(this->renderer);
-    this->currentScene->render();
-    SDL_RenderPresent(this->renderer);
-}
-
-void Game::terminate() {
-    this->running = false;
-}
-
-int Game::getFps() const {
-    return this->currentFps;
-}
-
-bool Game::isRunning() const {
-    return this->running;
-}
-
-void Game::setRenderColor(SDL_Color color) {
-    SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
-}
-
-void Game::changeScene(Scene::Id scene) {
-    this->currentScene = this->scenes.at(static_cast<std::size_t>(scene));
 }
