@@ -4,17 +4,17 @@
 
 #include "BattleItem.h"
 
-BattleItem::BattleItem(int quantity) : Item(quantity) {}
+BattleItem::BattleItem(const int quantity) : Item(quantity) {}
 
-void BattleItem::boost(Pokemon &pokemon, int amount, bool &limit) const {
+void BattleItem::boost(Pokemon &pokemon, const int amount, bool &limit) const {
     if (pokemon.getStatMod(this->getStat()) < 6) {
         pokemon.raiseStatMod(this->getStat(), amount);
         limit = true;
     }
 }
 
-std::string BattleItem::boostMessage(const Pokemon &pokemon, int amount, bool limit) const {
-    const char *(*getStatAsString)(Pokemon::Stat) = [](Pokemon::Stat stat) -> const char * {
+std::string BattleItem::boostMessage(const Pokemon &pokemon, const int amount, const bool limit) const {
+    const char *(*getStatAsString)(Pokemon::Stat) = [](const Pokemon::Stat stat) -> const char * {
         switch (stat) {
             case Pokemon::Stat::ATTACK:
                 return "attack";

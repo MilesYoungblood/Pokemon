@@ -4,7 +4,7 @@
 
 #include "StatusItem.h"
 
-StatusItem::StatusItem(int quantity) : Item(quantity) {}
+StatusItem::StatusItem(const int quantity) : Item(quantity) {}
 
 std::size_t StatusItem::getClass() const {
     return typeid(StatusItem).hash_code();

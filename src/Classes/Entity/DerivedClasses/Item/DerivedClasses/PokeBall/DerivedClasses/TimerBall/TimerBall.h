@@ -6,7 +6,7 @@
 
 #include "../../PokeBall.h"
 
-struct TimerBall : public PokeBall {
+struct TimerBall final : PokeBall {
     explicit TimerBall(int n);
 
     TimerBall(int n, int x, int y);

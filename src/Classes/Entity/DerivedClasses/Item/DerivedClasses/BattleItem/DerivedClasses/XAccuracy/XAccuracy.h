@@ -6,7 +6,7 @@
 
 #include "../../BattleItem.h"
 
-struct XAccuracy : public BattleItem {
+struct XAccuracy final : BattleItem {
     explicit XAccuracy(int n);
 
     [[nodiscard]] std::string getName() const override;

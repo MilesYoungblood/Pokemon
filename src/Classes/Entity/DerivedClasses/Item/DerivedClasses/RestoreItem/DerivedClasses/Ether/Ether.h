@@ -6,7 +6,7 @@
 
 #include "../../RestoreItem.h"
 
-struct Ether : public RestoreItem {
+struct Ether final : RestoreItem {
     explicit Ether(int n);
 
     [[nodiscard]] std::string getName() const override;

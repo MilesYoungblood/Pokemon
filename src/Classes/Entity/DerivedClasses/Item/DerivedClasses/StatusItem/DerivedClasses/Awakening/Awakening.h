@@ -6,7 +6,7 @@
 
 #include "../../StatusItem.h"
 
-struct Awakening : public StatusItem {
+struct Awakening final : StatusItem {
     explicit Awakening(int n);
 
     [[nodiscard]] std::string getName() const override;

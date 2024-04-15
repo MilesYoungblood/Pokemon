@@ -4,7 +4,7 @@
 
 #include "MaxPotion.h"
 
-MaxPotion::MaxPotion(int n) : RestoreItem(n) {}
+MaxPotion::MaxPotion(const int n) : RestoreItem(n) {}
 
 std::string MaxPotion::getName() const {
     return "Max Potion";
@@ -23,8 +23,8 @@ bool MaxPotion::isHp() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Max Potion"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<MaxPotion>(n); };
     });
 }

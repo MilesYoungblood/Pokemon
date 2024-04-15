@@ -26,7 +26,7 @@ namespace Project {
     private:
         std::function<void()> action{ nullptr };
 
-        std::atomic_bool decisionMade{ false };
+        std::queue<std::function<void()>> desires;
 
         std::atomic_bool intelligent{ true };
         std::thread thoughtProcess;

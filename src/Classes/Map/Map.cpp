@@ -3,6 +3,7 @@
 //
 
 #include "../Singleton/DerivedClasses/Game/Game.h"
+#include "../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../Singleton/DerivedClasses/Camera/Camera.h"
 #include "Map.h"
 

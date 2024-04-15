@@ -4,7 +4,7 @@
 
 #include "Awakening.h"
 
-Awakening::Awakening(int n) : StatusItem(n) {}
+Awakening::Awakening(const int n) : StatusItem(n) {}
 
 std::string Awakening::getName() const {
     return "Awakening";
@@ -19,8 +19,8 @@ StatusCondition Awakening::getStatus() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Awakening"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Awakening>(n); };
     });
 }

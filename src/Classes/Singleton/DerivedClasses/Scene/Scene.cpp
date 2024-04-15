@@ -36,6 +36,10 @@ void Scene::handleEvents() {
     }
 }
 
+bool Scene::pollEvent() {
+    return SDL_PollEvent(&this->event) == 1;
+}
+
 bool Scene::waitEvent() {
     if (SDL_WaitEvent(&this->event) == 0) {
         std::clog << "Error processing event: " << SDL_GetError() << '\n';

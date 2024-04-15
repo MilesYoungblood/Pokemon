@@ -4,11 +4,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \

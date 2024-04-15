@@ -4,7 +4,7 @@
 
 #include "IceHeal.h"
 
-IceHeal::IceHeal(int n) : StatusItem(n) {}
+IceHeal::IceHeal(const int n) : StatusItem(n) {}
 
 std::string IceHeal::getName() const {
     return "Ice Heal";
@@ -19,8 +19,8 @@ StatusCondition IceHeal::getStatus() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Ice Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<IceHeal>(n); };
     });
 }

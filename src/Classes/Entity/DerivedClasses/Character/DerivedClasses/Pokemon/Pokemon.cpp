@@ -2,6 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
+#include "../../../../../../Functions/GeneralFunctions.h"
 #include "../../../../../Singleton/DerivedClasses/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 

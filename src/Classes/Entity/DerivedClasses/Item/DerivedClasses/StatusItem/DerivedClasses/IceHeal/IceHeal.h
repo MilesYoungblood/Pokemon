@@ -6,7 +6,7 @@
 
 #include "../../StatusItem.h"
 
-struct IceHeal : public StatusItem {
+struct IceHeal final : StatusItem {
     explicit IceHeal(int n);
 
     [[nodiscard]] std::string getName() const override;

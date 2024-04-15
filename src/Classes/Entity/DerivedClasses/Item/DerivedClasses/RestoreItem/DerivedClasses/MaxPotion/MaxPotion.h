@@ -6,7 +6,7 @@
 
 #include "../../RestoreItem.h"
 
-struct MaxPotion : public RestoreItem {
+struct MaxPotion final : RestoreItem {
     explicit MaxPotion(int n);
 
     [[nodiscard]] std::string getName() const override;

@@ -4,7 +4,7 @@
 
 #include "XSpAttack.h"
 
-XSpAttack::XSpAttack(int n) : BattleItem(n) {}
+XSpAttack::XSpAttack(const int n) : BattleItem(n) {}
 
 std::string XSpAttack::getName() const {
     return "X Sp. Attack";
@@ -19,8 +19,8 @@ Pokemon::Stat XSpAttack::getStat() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["X Sp. Attack"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XSpAttack>(n); };
     });
 }

@@ -6,7 +6,7 @@
 
 #include "../../StatusItem.h"
 
-struct BurnHeal : public StatusItem {
+struct BurnHeal final : StatusItem {
     explicit BurnHeal(int n);
 
     [[nodiscard]] std::string getName() const override;

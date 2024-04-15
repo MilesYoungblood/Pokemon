@@ -6,7 +6,7 @@
 
 #include "../../StatusItem.h"
 
-struct ParalyzeHeal : public StatusItem {
+struct ParalyzeHeal final : StatusItem {
     explicit ParalyzeHeal(int n);
 
     [[nodiscard]] std::string getName() const override;

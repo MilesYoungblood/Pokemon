@@ -39,6 +39,8 @@ public:
 protected:
     Scene() = default;
 
+    bool pollEvent();
+
     bool waitEvent();
 
     [[nodiscard]] SDL_EventType getEventType() const;

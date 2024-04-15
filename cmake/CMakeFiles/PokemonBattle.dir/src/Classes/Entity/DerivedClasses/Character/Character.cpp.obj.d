@@ -1,10 +1,9 @@
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj: \
  C:\Users\miles\OneDrive\Documents\GitHub\PokemonBattle\src\Classes\Entity\DerivedClasses\Character\Character.cpp \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Items.h \
@@ -13,7 +12,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Charact
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
@@ -27,10 +25,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Charact
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Pokeball/Pokeball.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
@@ -38,19 +38,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Charact
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_pair.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/type_traits \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/move.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/utility.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/numeric_traits.h
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h

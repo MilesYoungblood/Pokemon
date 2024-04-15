@@ -4,7 +4,7 @@
 
 #include "XAttack.h"
 
-XAttack::XAttack(int n) : BattleItem(n) {}
+XAttack::XAttack(const int n) : BattleItem(n) {}
 
 std::string XAttack::getName() const {
     return "X Attack";
@@ -19,8 +19,8 @@ Pokemon::Stat XAttack::getStat() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["X Attack"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XAttack>(n); };
     });
 }

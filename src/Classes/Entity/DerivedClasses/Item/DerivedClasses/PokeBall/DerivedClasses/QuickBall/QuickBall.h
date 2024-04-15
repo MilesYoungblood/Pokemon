@@ -6,7 +6,7 @@
 
 #include "../../PokeBall.h"
 
-struct QuickBall : public PokeBall {
+struct QuickBall final : PokeBall {
     explicit QuickBall(int n);
 
     QuickBall(int n, int x, int y);

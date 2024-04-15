@@ -6,7 +6,7 @@
 
 #include "../../StatusItem.h"
 
-struct Antidote : public StatusItem {
+struct Antidote final : StatusItem {
     explicit Antidote(int n);
 
     [[nodiscard]] std::string getName() const override;

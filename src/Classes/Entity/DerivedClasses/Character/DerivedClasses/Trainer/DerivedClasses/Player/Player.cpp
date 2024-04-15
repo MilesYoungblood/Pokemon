@@ -143,7 +143,7 @@ void Player::walk() {
 void Player::idle() {
     KeyManager::getInstance().update();
 
-    if (this->getState() == State::IMMOBILE) {
+    if (this->getState() != State::IMMOBILE) {
         if (KeyManager::getInstance().getKey(SDL_SCANCODE_W)) {
             this->handleMove(SDL_SCANCODE_W);
         }

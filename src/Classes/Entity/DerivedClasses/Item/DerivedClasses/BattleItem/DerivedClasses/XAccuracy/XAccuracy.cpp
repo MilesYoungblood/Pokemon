@@ -4,7 +4,7 @@
 
 #include "XAccuracy.h"
 
-XAccuracy::XAccuracy(int n) : BattleItem(n) {}
+XAccuracy::XAccuracy(const int n) : BattleItem(n) {}
 
 std::string XAccuracy::getName() const {
     return "X Accuracy";
@@ -19,8 +19,8 @@ Pokemon::Stat XAccuracy::getStat() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["X Accuracy"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XAccuracy>(n); };
     });
 }

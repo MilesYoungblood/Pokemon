@@ -6,7 +6,7 @@
 
 #include "../../BattleItem.h"
 
-struct XSpeed : public BattleItem {
+struct XSpeed final : BattleItem {
     explicit XSpeed(int n);
 
     [[nodiscard]] std::string getName() const override;

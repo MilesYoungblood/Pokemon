@@ -2,17 +2,19 @@
 // Created by Miles on 10/1/2023.
 //
 
+#include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Character.h"
 
 Character::Character(const char *id, const int x, const int y, const Direction direction, const int vision)
-        : Entity(x, y), id(id), currentDirection(direction), vision(vision) {}
+        : Entity(x, y), id(id), vision(vision), currentDirection(direction) {}
 
 Character::Character(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
-        : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
+        : Entity(x, y), name(name), id(id), vision(vision), currentDirection(direction) {}
 
 void Character::setName(const char *newName) {
     this->name = newName;
@@ -221,7 +223,7 @@ void Character::act() {
 }
 
 void Character::loseAutonomy() {
-    this->intelligence = nullptr;
+    this->intelligence.reset(nullptr);
 }
 
 void Character::interact() {

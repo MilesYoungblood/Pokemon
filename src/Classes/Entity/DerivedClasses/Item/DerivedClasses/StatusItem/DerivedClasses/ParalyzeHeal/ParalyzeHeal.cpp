@@ -4,7 +4,7 @@
 
 #include "ParalyzeHeal.h"
 
-ParalyzeHeal::ParalyzeHeal(int n) : StatusItem(n) {}
+ParalyzeHeal::ParalyzeHeal(const int n) : StatusItem(n) {}
 
 std::string ParalyzeHeal::getName() const {
     return "Ice Heal";
@@ -19,8 +19,8 @@ StatusCondition ParalyzeHeal::getStatus() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Paralyze Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<ParalyzeHeal>(n); };
     });
 }

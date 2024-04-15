@@ -4,7 +4,7 @@
 
 #include "MaxEther.h"
 
-MaxEther::MaxEther(int n) : RestoreItem(n) {}
+MaxEther::MaxEther(const int n) : RestoreItem(n) {}
 
 std::string MaxEther::getName() const {
     return "MaxEther";
@@ -23,8 +23,8 @@ bool MaxEther::isHp() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Max Ether"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<MaxEther>(n); };
     });
 }

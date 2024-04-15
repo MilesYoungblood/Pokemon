@@ -2,6 +2,7 @@
 // Created by Miles Youngblood on 12/4/2023.
 //
 
+#include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "IceBeam.h"
 

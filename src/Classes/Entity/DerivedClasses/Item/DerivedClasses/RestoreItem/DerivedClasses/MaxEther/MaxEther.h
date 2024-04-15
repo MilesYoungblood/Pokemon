@@ -6,7 +6,7 @@
 
 #include "../../RestoreItem.h"
 
-struct MaxEther : public RestoreItem {
+struct MaxEther final : RestoreItem {
     explicit MaxEther(int n);
 
     [[nodiscard]] std::string getName() const override;

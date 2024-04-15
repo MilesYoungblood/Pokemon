@@ -2,6 +2,7 @@
 // Created by Miles on 10/2/2023.
 //
 
+#include "../TextureManager/TextureManager.h"
 #include "../Mixer/Mixer.h"
 #include "../Pokedex/Pokedex.h"
 #include "Game.h"
@@ -37,7 +38,7 @@ void Game::handleEvents() const {
     this->currentScene->handleEvents();
 }
 
-void Game::update() const {
+void Game::update() {
     this->currentScene->update();
 }
 

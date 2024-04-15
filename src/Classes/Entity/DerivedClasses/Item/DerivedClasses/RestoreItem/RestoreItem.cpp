@@ -4,7 +4,7 @@
 
 #include "RestoreItem.h"
 
-RestoreItem::RestoreItem(int quantity) : Item(quantity){}
+RestoreItem::RestoreItem(const int quantity) : Item(quantity){}
 
 std::size_t RestoreItem::getClass() const {
     return typeid(RestoreItem).hash_code();

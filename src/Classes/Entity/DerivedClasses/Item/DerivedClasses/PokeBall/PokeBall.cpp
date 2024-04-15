@@ -2,11 +2,12 @@
 // Created by Miles on 18/05/2023.
 //
 
+#include "../../../../../../Functions/GeneralFunctions.h"
 #include "PokeBall.h"
 
-PokeBall::PokeBall(int n) : Item(n) {}
+PokeBall::PokeBall(const int n) : Item(n) {}
 
-PokeBall::PokeBall(int n, int x, int y) : Item(n, x, y) {}
+PokeBall::PokeBall(const int n, const int x, const int y) : Item(n, x, y) {}
 
 std::string PokeBall::getName() const {
     return "Poke Ball";
@@ -45,7 +46,7 @@ bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempt
     //FIXME shift
     a *= this->getCatchRate(pokemon, Time::NIGHT, 1, false);
 
-    auto statusCalc = [&pokemon] {
+    auto statusCalc = [&pokemon] -> double {
         switch (pokemon.getStatus()) {
             case StatusCondition::SLEEP:
                 return 2.0;
@@ -105,8 +106,8 @@ std::vector<std::string> PokeBall::catchPokemonMessage(const Pokemon &pokemon, c
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Poke Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PokeBall>(n); };
     });
 }

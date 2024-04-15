@@ -6,7 +6,7 @@
 
 #include "../../Item.h"
 
-struct StatusItem : public Item {
+struct StatusItem : Item {
     explicit StatusItem(int quantity);
 
     [[nodiscard]] std::string getName() const override = 0;

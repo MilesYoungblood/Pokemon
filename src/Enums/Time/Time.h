@@ -4,6 +4,6 @@
 
 #pragma once
 
-enum Time : Uint8 {
+enum class Time : Uint8 {
     MORNING, DAY, NIGHT
 };

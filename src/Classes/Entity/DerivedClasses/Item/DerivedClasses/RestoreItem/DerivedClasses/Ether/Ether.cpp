@@ -4,7 +4,7 @@
 
 #include "Ether.h"
 
-Ether::Ether(int n) : RestoreItem(n) {}
+Ether::Ether(const int n) : RestoreItem(n) {}
 
 std::string Ether::getName() const {
     return "Ether";
@@ -23,8 +23,8 @@ bool Ether::isHp() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Ether"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Ether>(n); };
     });
 }

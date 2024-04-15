@@ -26,8 +26,10 @@ void Overworld::init() {
 void Overworld::handleEvents() {
     std::unique_lock lock(this->mutex);
     this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
-    std::cout << "\tWaiting on " << entitiesUpdating << " entities\n";
 
+    if (entitiesUpdating > 0 and not this->pollEvent()) {
+        return;
+    }
     switch (this->getEventType()) {
         case SDL_QUIT:
             Game::getInstance().terminate();
@@ -44,7 +46,7 @@ void Overworld::handleEvents() {
 }
 
 void Overworld::update() {
-    for (const auto &entity : *this->currentMap) {
+    for (auto &entity : *this->currentMap) {
         entity->update();
     }
     Player::getPlayer().update();

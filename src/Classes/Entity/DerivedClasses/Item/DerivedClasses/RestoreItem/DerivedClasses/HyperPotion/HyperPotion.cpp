@@ -4,7 +4,7 @@
 
 #include "HyperPotion.h"
 
-HyperPotion::HyperPotion(int n) : RestoreItem(n) {}
+HyperPotion::HyperPotion(const int n) : RestoreItem(n) {}
 
 std::string HyperPotion::getName() const {
     return "Hyper Potion";
@@ -23,8 +23,8 @@ bool HyperPotion::isHp() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Hyper Potion"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<HyperPotion>(n); };
     });
 }

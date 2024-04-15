@@ -6,7 +6,7 @@
 
 #include "../../RestoreItem.h"
 
-struct SuperPotion : public RestoreItem {
+struct SuperPotion final : RestoreItem {
     explicit SuperPotion(int n);
 
     [[nodiscard]] std::string getName() const override;

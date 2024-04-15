@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class AirSlash : public Move {
-private:
-    static const int MAX_PP = 24;
-
+class AirSlash final : public Move {
 public:
     AirSlash();
 
@@ -28,5 +25,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp = 24;
 };

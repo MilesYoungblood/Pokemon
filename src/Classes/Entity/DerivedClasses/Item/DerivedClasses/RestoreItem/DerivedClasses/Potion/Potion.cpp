@@ -4,7 +4,7 @@
 
 #include "Potion.h"
 
-Potion::Potion(int n) : RestoreItem(n) {}
+Potion::Potion(const int n) : RestoreItem(n) {}
 
 std::string Potion::getName() const {
     return "Potion";
@@ -23,8 +23,8 @@ bool Potion::isHp() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Potion"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Potion>(n); };
     });
 }

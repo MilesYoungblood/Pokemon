@@ -4,7 +4,7 @@
 
 #include "BurnHeal.h"
 
-BurnHeal::BurnHeal(int n) : StatusItem(n) {}
+BurnHeal::BurnHeal(const int n) : StatusItem(n) {}
 
 std::string BurnHeal::getName() const {
     return "Burn Heal";
@@ -19,8 +19,8 @@ StatusCondition BurnHeal::getStatus() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Burn Heal"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<BurnHeal>(n); };
     });
 }

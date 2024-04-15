@@ -2,6 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
+#include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "AirSlash.h"
 
@@ -21,8 +22,8 @@ void AirSlash::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     skip = binomial(30.0);
 }
 
-std::vector<std::string> AirSlash::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool skip) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Air Slash!" });
+std::vector<std::string> AirSlash::actionMessage(const Pokemon &attacker, const Pokemon &defender, const bool skip) const {
+    std::vector messages({ attacker.getName() + " used Air Slash!" });
 
     if (this->getDamageFlag() >= 0) {
         messages.push_back("Air Slash did " + std::to_string(this->getDamageFlag()) + " damage!");
@@ -67,12 +68,12 @@ Type AirSlash::getType() const {
 }
 
 Move::Category AirSlash::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Air Slash"] = [] -> std::unique_ptr<Move> { return std::make_unique<AirSlash>(); };
     });
 }

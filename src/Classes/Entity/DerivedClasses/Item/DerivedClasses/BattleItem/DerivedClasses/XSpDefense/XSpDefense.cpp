@@ -4,7 +4,7 @@
 
 #include "XSpDefense.h"
 
-XSpDefense::XSpDefense(int n) : BattleItem(n) {}
+XSpDefense::XSpDefense(const int n) : BattleItem(n) {}
 
 std::string XSpDefense::getName() const {
     return "X Sp. Defense";
@@ -19,8 +19,8 @@ Pokemon::Stat XSpDefense::getStat() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["X Sp. Defense"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XSpDefense>(n); };
     });
 }

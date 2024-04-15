@@ -4,7 +4,7 @@
 
 #include "XSpeed.h"
 
-XSpeed::XSpeed(int n) : BattleItem(n) {}
+XSpeed::XSpeed(const int n) : BattleItem(n) {}
 
 std::string XSpeed::getName() const {
     return "X Speed";
@@ -19,8 +19,8 @@ Pokemon::Stat XSpeed::getStat() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["X Speed"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<XSpeed>(n); };
     });
 }

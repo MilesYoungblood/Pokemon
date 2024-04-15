@@ -6,7 +6,7 @@
 
 #include "../../BattleItem.h"
 
-struct XDefense : public BattleItem {
+struct XDefense final : BattleItem {
     explicit XDefense(int n);
 
     [[nodiscard]] std::string getName() const override;

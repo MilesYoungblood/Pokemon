@@ -4,9 +4,9 @@
 
 #include "PremierBall.h"
 
-PremierBall::PremierBall(int n) : PokeBall(n) {}
+PremierBall::PremierBall(const int n) : PokeBall(n) {}
 
-PremierBall::PremierBall(int n, int x, int y) : PokeBall(n, x, y) {}
+PremierBall::PremierBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
 
 std::string PremierBall::getName() const {
     return "Premier Ball";
@@ -17,8 +17,8 @@ std::string PremierBall::getEffect() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Premier Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PremierBall>(n); };
     });
 }

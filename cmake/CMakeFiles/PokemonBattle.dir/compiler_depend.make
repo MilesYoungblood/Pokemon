@@ -439,6 +439,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch: CMakeFiles/PokemonBattle.dir/cma
 CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -462,7 +463,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -470,7 +470,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Component/Position/Position.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
@@ -487,17 +486,9 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.obj: CMakeF
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Sprite/Sprite.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/move.h \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_pair.h \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/utility.h \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/numeric_traits.h \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/type_traits \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility \
-  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -564,6 +555,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Derived
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -606,12 +598,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Derived
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -653,7 +645,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Derived
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
@@ -670,7 +661,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.h
 
@@ -689,7 +679,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.h
 
@@ -708,7 +697,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.h
 
@@ -727,7 +715,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.h
 
@@ -746,7 +733,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.h
 
@@ -765,7 +751,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.h
 
@@ -784,7 +769,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.h
 
@@ -804,7 +788,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.h
 
@@ -824,7 +807,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.h
 
@@ -844,7 +826,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.h
 
@@ -864,7 +845,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h
 
@@ -884,7 +864,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.h
 
@@ -904,7 +883,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.h
 
@@ -924,7 +902,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.h
 
@@ -944,7 +921,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.h
 
@@ -964,7 +940,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.h
 
@@ -984,7 +959,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.h
 
@@ -1022,7 +996,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.h
 
@@ -1041,7 +1014,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.h
 
@@ -1060,7 +1032,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.h
 
@@ -1079,7 +1050,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.h
 
@@ -1098,7 +1068,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.h
 
@@ -1117,7 +1086,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.h
 
@@ -1135,7 +1103,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.h
 
@@ -1154,7 +1121,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.h
 
@@ -1173,7 +1139,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h
 
@@ -1192,7 +1157,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.h
 
@@ -1211,7 +1175,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h
 
@@ -1230,7 +1193,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.h
 
@@ -1248,13 +1210,13 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/Item.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1324,6 +1286,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
@@ -1334,6 +1297,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1359,7 +1323,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -1367,7 +1330,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h
 
@@ -1402,8 +1364,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedC
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h
 
@@ -1415,14 +1375,13 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1455,7 +1414,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj: CMakeFiles/PokemonBatt
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
@@ -1488,7 +1446,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphe
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.h
 
@@ -1512,7 +1469,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.h
 
@@ -1597,7 +1553,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h
 
@@ -1614,7 +1569,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h
 
@@ -1655,14 +1609,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.c
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.h
 
@@ -1719,6 +1671,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj: CMakeFiles/PokemonBa
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1742,7 +1695,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -1750,13 +1702,13 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1789,11 +1741,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h \
@@ -1834,13 +1786,13 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokede
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1889,6 +1841,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedC
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1932,12 +1885,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedC
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -1965,7 +1918,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedC
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -1973,12 +1925,12 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedC
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -2003,7 +1955,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cp
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -2011,7 +1962,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cp
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp
 
 CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
@@ -2041,6 +1991,7 @@ CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj: CMakeFiles/PokemonBatt
 CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CMakeFiles/PokemonBattle.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h \
@@ -2063,7 +2014,6 @@ CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CMakeFiles/PokemonBattle.dir/cmak
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
@@ -2071,7 +2021,6 @@ CMakeFiles/PokemonBattle.dir/src/main.cpp.obj: CMakeFiles/PokemonBattle.dir/cmak
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/StatusCondition/StatusCondition.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Time/Time.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h \
   C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/main.cpp
 
@@ -2550,9 +2499,9 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w6
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_queue.h:
 
-C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h:
-
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc:
+
+C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.h:
 
@@ -3088,6 +3037,8 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.cxx:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h:
 
+C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h:
+
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h:
@@ -3106,8 +3057,6 @@ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Deriv
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h:
 
-C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h:
-
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h:
@@ -3118,17 +3067,9 @@ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direc
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h:
 
-C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Resource/Resource.h:
-
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Sprite/Sprite.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Sprite/Sprite.h:
-
-C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_relops.h:
-
-C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp:
-
-C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/utility:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h:
 
@@ -3143,6 +3084,8 @@ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Der
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h:
+
+C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.cpp:
 
@@ -3176,9 +3119,9 @@ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Derive
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.h:
 
-C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp:
-
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp:
+
+C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp:
 
@@ -3213,6 +3156,8 @@ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Derive
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp:
+
+C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h:
 

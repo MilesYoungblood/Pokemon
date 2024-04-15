@@ -4,9 +4,9 @@
 
 #include "UltraBall.h"
 
-UltraBall::UltraBall(int n) : PokeBall(n) {}
+UltraBall::UltraBall(const int n) : PokeBall(n) {}
 
-UltraBall::UltraBall(int n, int x, int y) : PokeBall(n, x, y) {}
+UltraBall::UltraBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
 
 std::string UltraBall::getName() const {
     return "Ultra Ball";
@@ -21,8 +21,8 @@ double UltraBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int 
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Ultra Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<UltraBall>(n); };
     });
 }

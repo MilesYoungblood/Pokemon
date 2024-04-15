@@ -6,7 +6,7 @@
 
 #include "../../Item.h"
 
-struct BattleItem : public Item {
+struct BattleItem : Item {
     explicit BattleItem(int quantity);
 
     void boost(Pokemon &pokemon, int amount, bool &limit) const;

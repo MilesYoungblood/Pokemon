@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../../../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../Button/Button.h"
 
 class Panel final : public Rectangle {

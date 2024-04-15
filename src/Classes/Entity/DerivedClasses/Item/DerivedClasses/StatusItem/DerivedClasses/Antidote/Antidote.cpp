@@ -4,7 +4,7 @@
 
 #include "Antidote.h"
 
-Antidote::Antidote(int n) : StatusItem(n) {}
+Antidote::Antidote(const int n) : StatusItem(n) {}
 
 std::string Antidote::getName() const {
     return "Antidote";
@@ -19,8 +19,8 @@ StatusCondition Antidote::getStatus() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Antidote"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<Antidote>(n); };
     });
 }

@@ -7,7 +7,7 @@
 #include "../../../../../../Enums/Time/Time.h"
 #include "../../Item.h"
 
-struct PokeBall : public Item {
+struct PokeBall : Item {
     explicit PokeBall(int n);
 
     PokeBall(int n, int x, int y);

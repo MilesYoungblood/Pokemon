@@ -20,14 +20,14 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
                 return;
             }
 
-            if (not this->decisionMade) {
-                this->decisionMade = true;
+            if (this->desires.empty()) {
+                this->desires.emplace(this->action);
                 Overworld::pushEvent();
             }
 
             std::unique_lock lock(mutex);
-            this->cv.wait_for(lock, std::chrono::seconds(delay()), [] -> bool {
-                return not Game::getInstance().isRunning();
+            this->cv.wait_for(lock, std::chrono::seconds(delay()), [this] -> bool {
+                return not this->intelligent or not Game::getInstance().isRunning();
             });
         }
     });
@@ -40,13 +40,12 @@ Project::Intelligence::~Intelligence() {
 }
 
 void Project::Intelligence::tryActing() {
-    if (this->decisionMade) {
-        this->action();
-        this->decisionMade = false;
+    if (not this->desires.empty()) {
+        this->desires.front()();
+        this->desires.pop();
     }
 }
 
 void Project::Intelligence::alert() {
     this->cv.notify_one();
 }
-

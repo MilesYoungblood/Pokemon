@@ -6,7 +6,7 @@
 
 #include "../../PokeBall.h"
 
-struct PremierBall : public PokeBall {
+struct PremierBall final : PokeBall {
     explicit PremierBall(int n);
 
     PremierBall(int n, int x, int y);
