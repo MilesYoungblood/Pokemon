@@ -7,10 +7,6 @@
 #include "../Component/Position/Position.h"
 
 class Entity {
-private:
-    Project::Position map;
-    Project::Position screen;
-
 public:
     Entity(int x, int y);
 
@@ -53,4 +49,8 @@ public:
 
     /// \brief Renders the entity
     virtual void render() const = 0;
+
+private:
+    Project::Position map;
+    Project::Position screen;
 };

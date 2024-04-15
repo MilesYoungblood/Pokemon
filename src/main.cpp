@@ -3,21 +3,16 @@
 int main() {
     SDL_SetMainReady();
 
-    Uint32 frameStart;
-    Uint32 frameTime;
-    Uint32 frameDelay;
-
     while (Game::getInstance().isRunning()) {
-        frameStart = SDL_GetTicks64();
+        const Uint32 frameStart = SDL_GetTicks64();
 
         Game::getInstance().handleEvents();
         Game::getInstance().update();
         Game::getInstance().render();
 
-        frameTime = SDL_GetTicks64() - frameStart;
-        frameDelay = 1000 / Game::getInstance().getFps();
+        const Uint32 frameTime = SDL_GetTicks64() - frameStart;
 
-        if (frameDelay > frameTime) {
+        if (const Uint32 frameDelay = 1000 / Game::getInstance().getFps(); frameDelay > frameTime) {
             SDL_Delay(frameDelay - frameTime);
         }
     }
