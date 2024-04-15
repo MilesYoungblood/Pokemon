@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class DarkPulse : public Move {
-private:
-    const static int MAX_PP = 24;
-
+class DarkPulse final : public Move {
 public:
     DarkPulse();
 
@@ -26,5 +23,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp = 24;
 };

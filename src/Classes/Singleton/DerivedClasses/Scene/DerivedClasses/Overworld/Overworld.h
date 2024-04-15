@@ -31,7 +31,7 @@ public:
 
     void update() override;
 
-    void render() override;
+    void render() const override;
 
     static void save();
 

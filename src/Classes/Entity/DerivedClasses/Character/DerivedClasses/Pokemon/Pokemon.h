@@ -4,11 +4,12 @@
 
 #pragma once
 
-#include "../../Character.h"
-#include "../../../../../Move/Move.h"
 #include "../../../../../../Enums/StatusCondition/StatusCondition.h"
+#include "../../../../../Component/Resource/Resource.h"
+#include "../../../../../Move/Move.h"
+#include "../../Character.h"
 
-class Pokemon {
+class Pokemon final : public Character {
 public:
     enum class Stat : Uint8 {
         ATTACK, DEFENSE, SP_ATTACK, SP_DEFENSE, SPEED, ACCURACY, EVASIVENESS
@@ -23,15 +24,15 @@ public:
     Pokemon(std::string id, std::string name, std::string gender, std::string ability, int level, int hp,
             int attack, int defense, int spAttack, int spDefense, int speed);
 
-    Pokemon(const Pokemon &) = default;
+    Pokemon(const Pokemon &) = delete;
 
-    Pokemon(Pokemon &&) noexcept = default;
+    Pokemon(Pokemon &&) noexcept = delete;
 
-    Pokemon &operator=(const Pokemon &) = default;
+    Pokemon &operator=(const Pokemon &) = delete;
 
-    Pokemon &operator=(Pokemon &&) noexcept = default;
+    Pokemon &operator=(Pokemon &&) noexcept = delete;
 
-    ~Pokemon() = default;
+    ~Pokemon() override = default;
 
     [[nodiscard]] int numMoves() const;
 
@@ -39,13 +40,9 @@ public:
 
     void deleteMove(int index);
 
-    void restoreHp(int amount);
+    Project::Resource &getHp();
 
-    void takeDamage(int amount);
-
-    [[nodiscard]] int getHp() const;
-
-    [[nodiscard]] int getMaxHp() const;
+    [[nodiscard]] Project::Resource getHp() const;
 
     void initStatMods();
 
@@ -65,10 +62,6 @@ public:
 
     [[nodiscard]] int getLevel() const;
 
-    [[nodiscard]] std::string getName() const;
-
-    [[nodiscard]] std::string getId() const;
-
     [[nodiscard]] std::string getGender() const;
 
     [[nodiscard]] std::string getAbility() const;
@@ -84,10 +77,6 @@ public:
     [[nodiscard]] double getWeight() const;
 
     [[nodiscard]] int getCatchRate() const;
-
-    [[nodiscard]] bool isFainted() const;
-
-    [[nodiscard]] bool isFullHp() const;
 
     [[nodiscard]] bool isFasterThan(const Pokemon &pokemon) const;
 
@@ -112,8 +101,7 @@ public:
     [[nodiscard]] std::vector<std::unique_ptr<Move>>::const_iterator end() const;
 
 private:
-    int maxHp;
-    int currentHp;
+    Project::Resource hp{};
 
     std::array<int, 5> baseStats;
     std::array<int, 7> statModifiers;
@@ -123,8 +111,6 @@ private:
     std::vector<std::unique_ptr<Move>> moveSet;
     std::string ability;
 
-    std::string name;
-    std::string id;
     std::string gender;
 
     StatusCondition status{ StatusCondition::NONE };

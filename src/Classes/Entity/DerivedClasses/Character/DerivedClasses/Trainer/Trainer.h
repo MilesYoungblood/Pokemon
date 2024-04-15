@@ -26,7 +26,7 @@ public:
 
     /// \brief Adds a Pokemon by moving
     /// \param pokemon to add
-    void addPokemon(Pokemon pokemon);
+    void addPokemon(std::unique_ptr<Pokemon> pokemon);
 
     /// \brief Removes a Pokemon from the party
     /// \param index of the party
@@ -89,23 +89,23 @@ public:
     /// \brief Getter for a Pokemon in the party
     /// \param index of the party
     /// \return a reference to the Pokemon
-    Pokemon &operator[](std::size_t index);
+    Pokemon &operator[](std::size_t index) const;
 
     /// \brief Allows for for-each loop functionality
     /// \return an iterator to the beginning of the party
-    std::vector<Pokemon>::iterator begin();
+    std::vector<std::unique_ptr<Pokemon>>::iterator begin();
 
     /// \brief Allows for for-each loop functionality
     /// \return a const iterator to the beginning of the party
-    std::vector<Pokemon>::const_iterator begin() const;
+    std::vector<std::unique_ptr<Pokemon>>::const_iterator begin() const;
 
     /// \brief Allows for for-each loop functionality
     /// \return an iterator to the end of the party
-    std::vector<Pokemon>::iterator end();
+    std::vector<std::unique_ptr<Pokemon>>::iterator end();
 
     /// \brief Allows for for-each loop functionality
     /// \return a const iterator to the end of the party
-    std::vector<Pokemon>::const_iterator end() const;
+    std::vector<std::unique_ptr<Pokemon>>::const_iterator end() const;
 
     /// \brief Getter for party size
     /// \return party size
@@ -143,7 +143,7 @@ private:
 
     bool keepLooping{ true };
 
-    std::vector<Pokemon> party;
+    std::vector<std::unique_ptr<Pokemon>> party;
     std::unordered_map<std::size_t, std::unordered_map<std::string, std::unique_ptr<Item>>> items;
 
     void init();

@@ -12,16 +12,6 @@ class Entity;
 
 class Trainer;
 
-struct Sprite {
-    struct Sheet {
-        SDL_Texture *sprite{ nullptr };
-        Uint32 numRows{ 0 };
-        Uint32 numCols{ 0 };
-    };
-    int currentCol{ 0 };
-    int currentRow{ 0 };
-};
-
 class Map {
 public:
     enum : Uint8 {
@@ -81,12 +71,6 @@ public:
     /// \return the music title
     [[nodiscard]] std::string getMusic() const;
 
-    /// \brief Getter for an entity's sprite-sheet
-    /// \param id id of the entity
-    /// \param direction given direction
-    /// \return the sprite sheet of the respective entity
-    [[nodiscard]] Sprite::Sheet getSpriteSheet(const std::string &id, Direction direction) const;
-
     /// \brief Shifts all tiles and entities a certain direction and distance
     /// \param direction direction to shift
     /// \param n distance to shift
@@ -112,24 +96,23 @@ private:
         Project::Position screen;
     };
 
-    std::vector<Matrix<Tile>> layout;                           // The map is vector of matrices
+    std::vector<Matrix<Tile>> layout;                               // The map is vector of matrices
 
-    std::unordered_set<int> collisionSet;                       // set of tile ids that cause collision
-    std::vector<SDL_Texture *> tileImages{ nullptr };           // texture for each tile id
+    std::unordered_set<int> collisionSet;                           // set of tile ids that cause collision
+    std::vector<SDL_Texture *> tileImages{ nullptr };               // texture for each tile id
 
-    std::vector<std::unique_ptr<Entity>> entities;              // the set of entities in this map
-    ThreadPool threadPool;                                      // help speed up updating tiles and entities
+    std::vector<std::unique_ptr<Entity>> entities;                  // the set of entities in this map
+    ThreadPool threadPool;                                          // help speed up updating tiles and entities
 
-    using spriteSet = std::array<Sprite::Sheet, 4>;             // a sprite sheet per cardinal direction
-    std::unordered_map<std::string, spriteSet> entitySprites;   // mapping of entity sprites by id
+    std::unordered_map<std::string, SDL_Texture *> entitySprites;   // mapping of entity sprites by id
 
     struct ExitPoint {
         Project::Position map;
         Project::Position dest;
-        std::string newMap;                                     // map that this exit point leads to
+        std::string newMap;                                         // map that this exit point leads to
     };
 
-    std::vector<ExitPoint> exitPoints;                          // the set of exit points in the map
+    std::vector<ExitPoint> exitPoints;                              // the set of exit points in the map
 
     void parseTmx();
 

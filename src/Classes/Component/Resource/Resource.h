@@ -7,6 +7,8 @@
 namespace Project {
     class Resource {
     public:
+        Resource() = default;
+
         Resource(int current, int max);
 
         void raise(int x);
@@ -20,6 +22,8 @@ namespace Project {
         [[nodiscard]] int getCurrent() const;
 
         [[nodiscard]] int getMax() const;
+
+        [[nodiscard]] bool full() const;
 
         [[nodiscard]] bool empty() const;
 

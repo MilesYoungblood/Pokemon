@@ -3,7 +3,6 @@
 //
 
 #include "../../../../Functions/GeneralFunctions.h"
-#include "../../../Graphic/DerivedClasses/Texture/Texture.h"
 #include "../../../Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
 #include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
@@ -43,6 +42,10 @@ std::string Item::noEffectMessage(const Pokemon &pokemon) const {
     return this->getName() + " had no effect on " + pokemon.getName() + ".\n";
 }
 
+std::string Item::getKey() const {
+    return "Item";
+}
+
 void Item::interact() {
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
         KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
@@ -70,17 +73,11 @@ void Item::interact() {
 
 void Item::update() {}
 
-void Item::render() const {
-    static Texture texture(
-            "Item_Overworld_Sprite.png",
-            SDL_Rect(this->getScreenPosition().getX() + 28, this->getScreenPosition().getY() + 28, 24, 24)
+void Item::render(SDL_Texture *sprite) const {
+    TextureManager::getInstance().draw(
+        sprite,
+        SDL_Rect(this->getScreenPosition().getX() + 28, this->getScreenPosition().getY() + 28, 24, 24)
     );
-
-    // update the texture's position
-    texture.setX(this->getScreenPosition().getX() + 28);
-    texture.setY(this->getScreenPosition().getY() + 28);
-
-    texture.render();
 }
 
 bool Item::canUse() const {

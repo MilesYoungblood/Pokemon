@@ -7,10 +7,7 @@
 #include "../../Move.h"
 
 //TODO solar beam action
-class SolarBeam : public Move {
-private:
-    static const int MAX_PP{ 16 };
-
+class SolarBeam final : public Move {
 public:
     SolarBeam();
 
@@ -22,5 +19,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 16 };
 };

@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class AuraSphere : public Move {
-private:
-    static const int MAX_PP = 32;
-
+class AuraSphere final : public Move {
 public:
     AuraSphere();
 
@@ -23,5 +20,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp = 32;
 };

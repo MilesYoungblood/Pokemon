@@ -12,8 +12,8 @@ void AuraSphere::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 
     this->calculateDamage(attacker, defender);
     // if the calculation registers as a miss, force it as a hit
-    defender.takeDamage(std::max(this->getDamageFlag(), this->getDamageFlag() * -1));
-    this->use();
+    defender.getHp().lower(std::max(this->getDamageFlag(), this->getDamageFlag() * -1));
+    this->getPp().lower(1);
 }
 
 std::string AuraSphere::getName() const {
@@ -33,12 +33,12 @@ Type AuraSphere::getType() const {
 }
 
 Move::Category AuraSphere::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Aura Sphere"] = [] -> std::unique_ptr<Move> { return std::make_unique<AuraSphere>(); };
     });
 }

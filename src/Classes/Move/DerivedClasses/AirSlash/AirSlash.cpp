@@ -14,10 +14,10 @@ void AirSlash::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
     }
 
-    this->use();
+    this->getPp().lower(1);
 
     skip = binomial(30.0);
 }

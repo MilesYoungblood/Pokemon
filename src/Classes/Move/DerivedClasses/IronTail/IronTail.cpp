@@ -15,7 +15,7 @@ void IronTail::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
 
         //FIXME redo calculations
         this->loweredFlag = binomial(10.0) and defender.getStatMod(Pokemon::Stat::DEFENSE) > -6;
@@ -26,12 +26,12 @@ void IronTail::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> IronTail::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                   bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Iron Tail!" });
+    std::vector messages({ attacker.getName() + " used Iron Tail!" });
 
     if (this->getDamageFlag() > 0) {
         messages.push_back("Iron Tail did " + std::to_string(this->getDamageFlag()) + " damage!");
@@ -76,12 +76,12 @@ Type IronTail::getType() const {
 }
 
 Move::Category IronTail::getCategory() const {
-    return Move::Category::PHYSICAL;
+    return Category::PHYSICAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Iron Tail"] = [] -> std::unique_ptr<Move> { return std::make_unique<IronTail>(); };
     });
 }

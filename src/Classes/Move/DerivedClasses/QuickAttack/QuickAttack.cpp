@@ -23,7 +23,7 @@ Type QuickAttack::getType() const {
 }
 
 Move::Category QuickAttack::getCategory() const {
-    return Move::Category::PHYSICAL;
+    return Category::PHYSICAL;
 }
 
 bool QuickAttack::isPriority() const {
@@ -31,8 +31,8 @@ bool QuickAttack::isPriority() const {
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Quick Attack"] = [] -> std::unique_ptr<Move> { return std::make_unique<QuickAttack>(); };
     });
 }

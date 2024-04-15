@@ -41,6 +41,10 @@ public:
     /// \return true if this is next to the entity and false otherwise
     bool isNextTo(const Entity *entity) const;
 
+    /// \brief Getter for sprite key
+    /// \return the respective sprite key
+    [[nodiscard]] virtual std::string getKey() const = 0;
+
     /// \brief Interacts with the entity
     virtual void interact() = 0;
 
@@ -48,7 +52,7 @@ public:
     virtual void update() = 0;
 
     /// \brief Renders the entity
-    virtual void render() const = 0;
+    virtual void render(SDL_Texture *sprite) const = 0;
 
 private:
     Project::Position map;

@@ -21,14 +21,12 @@ namespace Project {
 
         void tryActing();
 
-        void alert();
-
     private:
         std::function<void()> action{ nullptr };
 
-        std::queue<std::function<void()>> desires;
-
+        std::atomic_bool ready{ false };
         std::atomic_bool intelligent{ true };
+
         std::thread thoughtProcess;
         std::condition_variable cv;
     };

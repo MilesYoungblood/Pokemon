@@ -6,11 +6,7 @@
 
 #include "../../Move.h"
 
-class Thunder : public Move {
-private:
-    static const int MAX_PP{ 16 };
-    bool paralysisFlag{ false };
-
+class Thunder final : public Move {
 public:
     Thunder();
 
@@ -29,5 +25,9 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 16 };
+    bool paralysisFlag{ false };
 };

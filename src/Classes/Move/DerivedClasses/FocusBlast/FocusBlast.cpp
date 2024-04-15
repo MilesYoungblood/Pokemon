@@ -15,7 +15,7 @@ void FocusBlast::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
 
         this->loweredFlag = binomial(10.0) and defender.getStatMod(Pokemon::Stat::SP_DEFENSE) > -6;
 
@@ -24,12 +24,12 @@ void FocusBlast::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> FocusBlast::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                     bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Focus Blast!" });
+    std::vector messages({ attacker.getName() + " used Focus Blast!" });
 
     if (this->getDamageFlag() >= 0) {
         if (this->getEffFlag() == 0.0) {
@@ -79,12 +79,12 @@ Type FocusBlast::getType() const {
 }
 
 Move::Category FocusBlast::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Focus Blast"] = [] -> std::unique_ptr<Move> { return std::make_unique<FocusBlast>(); };
     });
 }

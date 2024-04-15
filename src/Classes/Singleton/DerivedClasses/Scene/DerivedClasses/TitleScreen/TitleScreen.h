@@ -10,7 +10,7 @@ class TitleScreen final : public Scene {
 public:
     void update() override;
 
-    void render() override;
+    void render() const override;
 
 private:
     friend class Scene;

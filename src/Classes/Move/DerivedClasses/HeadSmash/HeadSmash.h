@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class HeadSmash : public Move {
-private:
-    static const int MAX_PP{ 8 };
-
+class HeadSmash final : public Move {
 public:
     HeadSmash();
 
@@ -28,5 +25,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 8 };
 };

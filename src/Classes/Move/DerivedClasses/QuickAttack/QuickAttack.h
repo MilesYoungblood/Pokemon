@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class QuickAttack : public Move {
-private:
-    static const int MAX_PP{ 48 };
-
+class QuickAttack final : public Move {
 public:
     QuickAttack();
 
@@ -21,7 +18,10 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
 
     [[nodiscard]] bool isPriority() const override;
+
+private:
+    static constexpr int max_pp{ 48 };
 };

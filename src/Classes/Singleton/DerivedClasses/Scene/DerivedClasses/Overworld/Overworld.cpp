@@ -46,7 +46,7 @@ void Overworld::handleEvents() {
 }
 
 void Overworld::update() {
-    for (auto &entity : *this->currentMap) {
+    for (const auto &entity : *this->currentMap) {
         entity->update();
     }
     Player::getPlayer().update();
@@ -54,7 +54,7 @@ void Overworld::update() {
     GraphicsEngine::getInstance().update();
 }
 
-void Overworld::render() {
+void Overworld::render() const {
     this->currentMap->render();
     GraphicsEngine::getInstance().render();
 }

@@ -15,11 +15,11 @@ void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
-        attacker.takeDamage(static_cast<int>(std::round(this->getDamageFlag() / 3.0)));
+        defender.getHp().lower(this->getDamageFlag());
+        attacker.getHp().lower(static_cast<int>(std::round(this->getDamageFlag() / 3.0)));
 
         //FIXME faint Pokemon if necessary
-        if (attacker.isFainted()) {
+        if (attacker.getHp().empty()) {
             // TODO trigger switch out back at the battle
         }
 
@@ -29,12 +29,12 @@ void VoltTackle::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> VoltTackle::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                     bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Volt Tackle!" });
+    std::vector messages({ attacker.getName() + " used Volt Tackle!" });
 
     if (this->getDamageFlag() > 0) {
         if (this->getEffFlag() == 0.0) {
@@ -57,7 +57,7 @@ std::vector<std::string> VoltTackle::actionMessage(const Pokemon &attacker, cons
             messages.push_back(attacker.getName() + " took " + static_cast<int>(std::round(this->getDamageFlag() / 3.0))
                                + " damage from recoil!");
 
-            if (attacker.isFainted()) {
+            if (attacker.getHp().empty()) {
                 messages.push_back(attacker.getName() + " fainted!");
             }
         }
@@ -86,12 +86,12 @@ Type VoltTackle::getType() const {
 }
 
 Move::Category VoltTackle::getCategory() const {
-    return Move::Category::PHYSICAL;
+    return Category::PHYSICAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Volt Tackle"] = [] -> std::unique_ptr<Move> { return std::make_unique<VoltTackle>(); };
     });
 }

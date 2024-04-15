@@ -14,17 +14,17 @@ void Extrasensory::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
     }
 
-    this->use();
+    this->getPp().lower(1);
 
     skip = binomial(10.0);
 }
 
 std::vector<std::string> Extrasensory::actionMessage(const Pokemon &attacker, const Pokemon &defender,
-                                                      bool skip) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Extrasensory!" });
+                                                     const bool skip) const {
+    std::vector messages({ attacker.getName() + " used Extrasensory!" });
 
     if (this->getDamageFlag() >= 0) {
         if (this->getEffFlag() == 0.0) {
@@ -70,12 +70,12 @@ Type Extrasensory::getType() const {
 }
 
 Move::Category Extrasensory::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Extrasensory"] = [] -> std::unique_ptr<Move> { return std::make_unique<Extrasensory>(); };
     });
 }

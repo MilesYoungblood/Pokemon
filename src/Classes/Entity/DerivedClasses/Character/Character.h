@@ -63,13 +63,20 @@ public:
     /// \brief Fires the character's decision making thread
     void gainAutonomy();
 
-    /// \brief Overloads Entity::update
+    /// \brief Overrides Entity::getKey
+    /// @return the respective sprite key
+    [[nodiscard]] std::string getKey() const override;
+
+    /// \brief Overrides Entity::update
     void update() override;
 
-    /// \brief Overloads Entity::render
-    void render() const override;
+    /// \brief Overrides Entity::render
+    /// \param sprite character sprite
+    void render(SDL_Texture *sprite) const override;
 
 protected:
+    Character(std::string name, std::string id);
+
     /// \brief Getter for dialogue
     /// \return the character's dialogue
     [[nodiscard]] std::vector<std::string> getDialogue() const;
@@ -145,13 +152,13 @@ private:
     std::string name;
     std::string id;
 
-    unsigned int vision;                                                      // line of sight
+    std::uint32_t vision;                                                     // line of sight
     int pixelCounter{ 0 };                                                    // counts how many pixels this has moved
 
     Direction currentDirection{ Direction::DOWN };                            // which way the entity is facing
     std::atomic<State> currentState{ State::IDLE };                         // dictates what the entity is doing
 
-    Sprite sprite;
+    int currentCol{ 0 };
 
     std::unique_ptr<Project::Intelligence> intelligence{ nullptr };
 

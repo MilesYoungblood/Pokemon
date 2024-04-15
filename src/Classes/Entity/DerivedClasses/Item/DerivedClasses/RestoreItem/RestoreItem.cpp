@@ -12,13 +12,13 @@ std::size_t RestoreItem::getClass() const {
 
 void RestoreItem::restore(Pokemon &pokemon) const {
     if (this->isHp()) {
-        pokemon.restoreHp(this->getAmount());
+        pokemon.getHp().raise(this->getAmount());
     }
 }
 
 void RestoreItem::restore(Move &move) const {
     if (not this->isHp()) {
-        move.restore(this->getAmount());
+        move.getPp().raise(this->getAmount());
     }
 }
 

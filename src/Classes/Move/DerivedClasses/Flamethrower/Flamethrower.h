@@ -6,11 +6,7 @@
 
 #include "../../Move.h"
 
-class Flamethrower : public Move {
-private:
-    static const int MAX_PP{ 24 };
-    bool burnFlag{ false };
-
+class Flamethrower final : public Move {
 public:
     Flamethrower();
 
@@ -27,5 +23,9 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 24 };
+    bool burnFlag{ false };
 };

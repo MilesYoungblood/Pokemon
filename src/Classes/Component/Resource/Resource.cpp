@@ -30,6 +30,10 @@ int Project::Resource::getMax() const {
     return this->max;
 }
 
+bool Project::Resource::full() const {
+    return this->current == this->max;
+}
+
 bool Project::Resource::empty() const {
     return this->current == 0;
 }

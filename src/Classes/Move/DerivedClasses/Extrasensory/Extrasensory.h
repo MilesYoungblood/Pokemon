@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class Extrasensory : public Move {
-private:
-    static const int MAX_PP = 32;       // FIXME likely incorrect
-
+class Extrasensory final : public Move {
 public:
     Extrasensory();
 
@@ -26,5 +23,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp = 32;       // FIXME likely incorrect
 };

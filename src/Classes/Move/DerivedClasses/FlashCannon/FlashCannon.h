@@ -6,11 +6,7 @@
 
 #include "../../Move.h"
 
-class FlashCannon : public Move {
-private:
-    static const int MAX_PP{ 16 };
-    bool loweredFlag{ false };
-
+class FlashCannon final : public Move {
 public:
     FlashCannon();
 
@@ -27,5 +23,9 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 16 };
+    bool loweredFlag{ false };
 };

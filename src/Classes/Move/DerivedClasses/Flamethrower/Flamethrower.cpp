@@ -15,7 +15,7 @@ void Flamethrower::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/)
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
 
         this->burnFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
         if (this->burnFlag) {
@@ -23,12 +23,12 @@ void Flamethrower::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/)
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> Flamethrower::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                       bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Flamethrower!" });
+    std::vector messages({ attacker.getName() + " used Flamethrower!" });
 
     if (this->getDamageFlag() >= 0) {
         messages.push_back("Flamethrower did " + std::to_string(this->getDamageFlag()) + " damage!");
@@ -69,12 +69,12 @@ Type Flamethrower::getType() const {
 }
 
 Move::Category Flamethrower::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Flamethrower"] = [] -> std::unique_ptr<Move> { return std::make_unique<Flamethrower>(); };
     });
 }

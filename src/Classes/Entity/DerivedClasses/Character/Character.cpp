@@ -48,6 +48,10 @@ void Character::gainAutonomy() {
     );
 }
 
+std::string Character::getKey() const {
+    return this->id;
+}
+
 void Character::update() {
     switch (this->currentState) {
         case State::WALKING:
@@ -63,9 +67,6 @@ void Character::update() {
                 this->pixelCounter = 0;
 
                 --entitiesUpdating;
-                if (this->intelligence != nullptr) {
-                    this->intelligence->alert();
-                }
                 Overworld::pushEvent();
             }
             if (this->currentState != State::IDLE) {
@@ -85,14 +86,33 @@ void Character::update() {
     }
 }
 
-void Character::render() const {
+void Character::render(SDL_Texture *sprite) const {
+    static const auto get_key = [](const Direction direction) -> int {
+        switch (direction) {
+            case Direction::UP:
+                return 3;
+            case Direction::DOWN:
+                return 0;
+            case Direction::LEFT:
+                return 1;
+            case Direction::RIGHT:
+                return 2;
+            default:
+                std::clog << "Invalid argument in function getRow()\n";
+            Game::getInstance().terminate();
+            return -1;
+        }
+    };
+
     TextureManager::getInstance().drawFrame(
-            Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).sprite,
+            sprite,
             SDL_Rect(this->getScreenPosition().getX(), this->getScreenPosition().getY(), Map::TILE_SIZE, Map::TILE_SIZE),
-            this->sprite.currentCol,
-            this->sprite.currentRow
+            this->currentCol,
+            get_key(this->currentDirection)
     );
 }
+
+Character::Character(std::string name, std::string id) : Entity(0, 0), name(std::move(name)), id(std::move(id)), vision(0) {}
 
 std::vector<std::string> Character::getDialogue() const {
     return this->dialogue;
@@ -296,9 +316,6 @@ void Character::walk() {
         this->pixelCounter = 0;
 
         --entitiesUpdating;
-        if (this->intelligence != nullptr) {
-            this->intelligence->alert();
-        }
         Overworld::pushEvent();
     }
 }
@@ -310,16 +327,7 @@ void Character::idle() {
 }
 
 void Character::updateAnimation() {
-    ++this->sprite.currentCol;
-
-    if (this->sprite.currentCol == Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numCols) {
-        this->sprite.currentCol = 0;
-
-        ++this->sprite.currentRow;
-        if (this->sprite.currentRow == Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).numRows) {
-            this->sprite.currentRow = 0;
-        }
-    }
+    this->currentCol = (this->currentCol + 1) % 4;
 }
 
 bool Character::canFight() const {

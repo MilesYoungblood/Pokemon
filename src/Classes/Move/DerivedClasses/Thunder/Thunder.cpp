@@ -15,7 +15,7 @@ void Thunder::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
 
         this->paralysisFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
         if (this->paralysisFlag) {
@@ -23,12 +23,12 @@ void Thunder::action(Pokemon &attacker, Pokemon &defender, bool &skip) {
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> Thunder::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                  bool  /*skip*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Thunder!" });
+    std::vector messages({ attacker.getName() + " used Thunder!" });
 
     if (this->getDamageFlag() >= 0) {
         if (this->getEffFlag() == 0.0) {
@@ -78,12 +78,12 @@ Type Thunder::getType() const {
 }
 
 Move::Category Thunder::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Thunder"] = [] -> std::unique_ptr<Move> { return std::make_unique<Thunder>(); };
     });
 }

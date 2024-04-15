@@ -6,11 +6,7 @@
 
 #include "../../Move.h"
 
-class FocusBlast : public Move {
-private:
-    static const int MAX_PP{ 8 };
-    bool loweredFlag{ false };
-
+class FocusBlast final : public Move {
 public:
     FocusBlast();
 
@@ -29,5 +25,9 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 8 };
+    bool loweredFlag{ false };
 };

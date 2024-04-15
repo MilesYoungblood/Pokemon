@@ -38,11 +38,13 @@ public:
 
     [[nodiscard]] virtual std::size_t getClass() const = 0;
 
+    [[nodiscard]] std::string getKey() const override;
+
     void interact() override;
 
     void update() override;
 
-    void render() const override;
+    void render(SDL_Texture *sprite) const override;
 
     [[nodiscard]] bool canUse() const;
 

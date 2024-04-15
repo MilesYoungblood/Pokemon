@@ -41,9 +41,9 @@ void Battle::init(Trainer *t) {
     auto loadMap = [](std::unordered_map<std::string, SDL_Texture *> &map, const Trainer &trainer, const bool front) -> bool {
         for (const auto &pokemon : trainer) {
             const char *side = front ? "Front" : "Back";
-            map[pokemon.getId()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon.getId() + '/' + pokemon.getName() + side + ".png");
-            if (map[pokemon.getId()] == nullptr) {
-                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon.getId() << front << ".png\"\n";
+            map[pokemon->getId()] = TextureManager::getInstance().loadTexture("sprites/Pokemon/" + pokemon->getId() + '/' + pokemon->getName() + side + ".png");
+            if (map[pokemon->getId()] == nullptr) {
+                std::clog << "Unable to load pokemon battle-sprite \"" << pokemon->getId() << front << ".png\"\n";
                 Game::getInstance().terminate();
                 return false;
             }
@@ -132,7 +132,7 @@ void Battle::update() {
     }
 }
 
-void Battle::render() {
+void Battle::render() const {
     // FIXME works but not correctly implemented
     if (this->renderPlayer and Player::getPlayer().canFight()) {
         TextureManager::getInstance().draw(
@@ -304,7 +304,7 @@ void Battle::initEngage() {
 
 std::string statusMessage(const Pokemon &pokemon) {
     auto damageMessage = [&pokemon](const char *status) -> std::string {
-        return pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getMaxHp() * 0.0625))) + " damage from it's " + status + '!';
+        return pokemon.getName() + " took " + std::to_string(static_cast<int>(std::round(pokemon.getHp().getMax() * 0.0625))) + " damage from it's " + status + '!';
     };
 
     switch (pokemon.getStatus()) {
@@ -339,7 +339,7 @@ void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
     }
 
-    if ((*defender)[0].isFainted()) {
+    if ((*defender)[0].getHp().empty()) {
         *skip = true;
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 (*defender)[0].getName() + " fained!",
@@ -348,8 +348,8 @@ void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *
                     defender->handleFaint();
                     if (not defender->canFight()) {
                         attacker->handleVictory();
-                        for (auto &pokemon : Player::getPlayer()) {
-                            pokemon.initStatMods();
+                        for (const auto &pokemon : Player::getPlayer()) {
+                            pokemon->initStatMods();
                         }
 
                         std::vector<std::pair<std::string, std::function<void()>>> pairs;
@@ -416,8 +416,8 @@ void Battle::postStatus(const bool isPlayerFaster) {
     };
 
     auto postStatus = [this](const Trainer *observer, Trainer *receiver, ResourceBar *resourceBar) -> void {
-        int damage = static_cast<int>((*receiver)[0].getMaxHp() * 0.0625);
-        (*receiver)[0].takeDamage(damage);
+        int damage = static_cast<int>((*receiver)[0].getHp().getMax() * 0.0625);
+        (*receiver)[0].getHp().lower(damage);
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 statusMessage((*receiver)[0]),
                 [resourceBar, damage] -> void {
@@ -427,13 +427,13 @@ void Battle::postStatus(const bool isPlayerFaster) {
                 }
         );
 
-        if ((*receiver)[0].isFainted()) {
+        if ((*receiver)[0].getHp().empty()) {
             GraphicsEngine::getInstance().getGraphic<TextBox>().push((*receiver)[0].getName() + " fainted!");
             receiver->handleFaint();
 
             if (not receiver->canFight()) {
-                for (auto &pokemon : Player::getPlayer()) {
-                    pokemon.initStatMods();
+                for (const auto &pokemon : Player::getPlayer()) {
+                    pokemon->initStatMods();
                 }
 
                 std::vector<std::pair<std::string, std::function<void()>>> pairs;

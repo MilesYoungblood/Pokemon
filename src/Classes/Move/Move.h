@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../../Enums/Type/Type.h"
+#include "../Component/Resource/Resource.h"
 
 class Pokemon;
 
@@ -57,19 +58,9 @@ public:
 
     virtual ~Move() = default;
 
-    void setPp(int amount);
+    Project::Resource &getPp();
 
-    void setMaxPp(int amount);
-
-    void restore(int amount);
-
-    void use();
-
-    [[nodiscard]] int getPp() const;
-
-    [[nodiscard]] int getMaxPp() const;
-
-    void fillToMax();
+    [[nodiscard]] Project::Resource getPp() const;
 
     virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 
@@ -88,7 +79,7 @@ public:
 
     [[nodiscard]] virtual Type getType() const = 0;
 
-    [[nodiscard]] virtual Move::Category getCategory() const = 0;
+    [[nodiscard]] virtual Category getCategory() const = 0;
 
     [[nodiscard]] virtual bool isPriority() const;
 
@@ -108,8 +99,7 @@ protected:
 private:
     [[nodiscard]] double checkType(const Pokemon &pokemon) const;
 
-    int pp;
-    int maxPp;
+    Project::Resource pp;
 
     int damageFlag{ 0 };
     double effFlag{ 0.0 };

@@ -14,7 +14,7 @@ public:
 
     void update() override;
 
-    void render() override;
+    void render() const override;
 
 private:
     enum class State : Uint8 {

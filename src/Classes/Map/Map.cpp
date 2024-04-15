@@ -235,22 +235,11 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
     }
 
     if (not this->entitySprites.contains(idAttribute)) {
-        int i = 0;
-        for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
-            const auto data = TextureManager::getInstance().loadTextureData(
-                    "sprites/" + idAttribute += '/' + idAttribute += "SpriteSheet" + direction + ".png"
-            );
-            this->entitySprites[idAttribute].at(i) = Sprite::Sheet(
-                    std::get<0>(data),
-                    std::get<1>(data) / TILE_SIZE,
-                    std::get<2>(data) / TILE_SIZE
-            );
-            if (entitySprites.at(idAttribute).at(i).sprite == nullptr) {
-                std::clog << "Unable to load sprite to map\n";
-                Game::getInstance().terminate();
-                return;
-            }
-            ++i;
+        this->entitySprites[idAttribute] = TextureManager::getInstance().loadTexture("sprites/" + idAttribute += idAttribute + "SpriteSheet.png");
+        if (entitySprites.at(idAttribute) == nullptr) {
+            std::clog << "Unable to load sprite to map\n";
+            Game::getInstance().terminate();
+            return;
         }
     }
 
@@ -363,7 +352,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
             std::terminate();
         }
 
-        Pokemon pokemon(idAttribute);
+        auto pokemon = std::make_unique<Pokemon>(idAttribute);
 
         for (tinyxml2::XMLElement *moveElement = moveSetElement->FirstChildElement("move"); moveElement != nullptr;
              moveElement = moveElement->NextSiblingElement("move")) {
@@ -373,7 +362,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
                 return;
             }
 
-            pokemon.addMove(moveIdAttribute);
+            pokemon->addMove(moveIdAttribute);
         }
 
         trainer->addPokemon(std::move(pokemon));
@@ -383,6 +372,14 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 }
 
 void Map::loadItem(tinyxml2::XMLElement *entityElement) {
+    if (not this->entitySprites.contains("Item")) {
+        this->entitySprites["Item"] = TextureManager::getInstance().loadTexture("Item_Overworld_Sprite.png");
+        if (entitySprites.at("Item") == nullptr) {
+            std::clog << "Unable to load item sprite\n";
+            Game::getInstance().terminate();
+            return;
+        }
+    }
     const char *idAttribute = entityElement->Attribute("id");
     if (idAttribute == nullptr) {
         handleError(this->music + ".xml", "id", "attribute");
@@ -431,18 +428,7 @@ Map::Map(const char *name) : name(name), music(name) {
         return c == ' ';
     });
 
-    int i = 0;
-    for (auto &direction : std::array<std::string, 4>({ "Up", "Down", "Left", "Right" })) {
-        const auto data = TextureManager::getInstance().loadTextureData(
-                "sprites/Hilbert/HilbertSpriteSheet" + direction + ".png"
-        );
-        this->entitySprites["Player"].at(i) = Sprite::Sheet(
-                std::get<0>(data),
-                std::get<1>(data) / TILE_SIZE,
-                std::get<2>(data) / TILE_SIZE
-        );
-        ++i;
-    }
+    this->entitySprites["Player"] = TextureManager::getInstance().loadTexture("sprites/Hilbert/HilbertSpriteSheet.png");
 
     this->parseTmx();
     this->loadEntities();
@@ -467,13 +453,11 @@ Map::~Map() {
         }
     }
     for (auto &[fst, snd] : this->entitySprites) {
-        for (const auto &[sprite, numRows, numCols] : snd) {
-            if (sprite != nullptr) {
-                SDL_DestroyTexture(sprite);
-                if (strlen(SDL_GetError()) > 0) {
-                    std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
-                    SDL_ClearError();
-                }
+        if (snd != nullptr) {
+            SDL_DestroyTexture(snd);
+            if (strlen(SDL_GetError()) > 0) {
+                std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
+                SDL_ClearError();
             }
         }
     }
@@ -539,10 +523,6 @@ std::vector<std::unique_ptr<Entity>>::const_iterator Map::end() const {
 
 std::string Map::getMusic() const {
     return this->music;
-}
-
-Sprite::Sheet Map::getSpriteSheet(const std::string &id, Direction direction) const {
-    return this->entitySprites.at(id).at(static_cast<std::size_t>(direction));
 }
 
 void Map::shift(Direction direction, int n) {
@@ -625,11 +605,11 @@ void Map::render() const {
                 sdlRect.y = entity->getScreenPosition().getY();
                 // prevents rendering entities that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect)) {
-                    entity->render();
+                    entity->render(this->entitySprites.at(entity->getKey()));
                 }
             }
 
-            Player::getPlayer().render();
+            Player::getPlayer().render(this->entitySprites.at("Player"));
         }
     }
 }

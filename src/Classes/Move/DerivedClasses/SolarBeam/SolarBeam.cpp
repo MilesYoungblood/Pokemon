@@ -23,12 +23,12 @@ Type SolarBeam::getType() const {
 }
 
 Move::Category SolarBeam::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Solar Beam"] = [] -> std::unique_ptr<Move> { return std::make_unique<SolarBeam>(); };
     });
 }

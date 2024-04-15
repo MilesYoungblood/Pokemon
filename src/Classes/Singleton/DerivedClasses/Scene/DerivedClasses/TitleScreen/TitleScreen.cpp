@@ -53,19 +53,19 @@ void TitleScreen::update() {
     }
 }
 
-void TitleScreen::render() {
-    static constexpr SDL_Rect logo_rect{
+void TitleScreen::render() const {
+    static constexpr SDL_Rect logo_rect(
             Game::WINDOW_WIDTH / 2 - 8 * Map::TILE_SIZE / 2,
             0,
             8 * Map::TILE_SIZE,
             5 * Map::TILE_SIZE
-    };
-    static constexpr SDL_Rect message_rect{
+    );
+    static constexpr SDL_Rect message_rect(
             Game::WINDOW_WIDTH / 2 - 24 * Game::FONT_SIZE / 2,
             Game::WINDOW_HEIGHT - Map::TILE_SIZE * 2,
             Game::FONT_SIZE * 23,
             Game::FONT_SIZE
-    };
+    );
 
     static const Texture logo("PokemonLogo.png", logo_rect);
     static const Texture text("Press enter to continue", Constants::Color::BLACK, message_rect);

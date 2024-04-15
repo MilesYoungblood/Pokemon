@@ -17,7 +17,7 @@ std::string HealBall::getEffect() const {
 }
 
 void HealBall::postCatch(Pokemon &pokemon) const {
-    pokemon.restoreHp(pokemon.getMaxHp() - pokemon.getHp());
+    pokemon.getHp().fill();
     pokemon.setStatus(StatusCondition::NONE);
 }
 

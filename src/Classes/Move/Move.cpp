@@ -6,38 +6,16 @@
 #include "../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Move.h"
 
-Move::Move(const int pp) : pp(pp), maxPp(pp) {}
+Move::Move(const int pp) : pp(pp, pp) {}
 
-Move::Move(const int pp, const int maxPp) : pp(pp), maxPp(maxPp) {}
+Move::Move(const int pp, const int maxPp) : pp(pp, maxPp) {}
 
-void Move::setPp(const int amount) {
-    this->pp = std::min(amount, this->maxPp);
-    this->pp = std::max(amount, 0);
-}
-
-void Move::setMaxPp(const int amount) {
-    // TODO add bounds to max PP
-    this->maxPp = std::max(amount, 0);
-}
-
-void Move::restore(const int amount) {
-    this->pp = std::min(this->pp + amount, this->maxPp);
-}
-
-void Move::use() {
-    this->pp = std::max(this->pp - 1, 0);
-}
-
-int Move::getPp() const {
+Project::Resource &Move::getPp() {
     return this->pp;
 }
 
-int Move::getMaxPp() const {
-    return this->maxPp;
-}
-
-void Move::fillToMax() {
-    this->pp = maxPp;
+Project::Resource Move::getPp() const {
+    return this->pp;
 }
 
 void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
@@ -45,10 +23,10 @@ void Move::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->damageFlag > 0) {
-        defender.takeDamage(this->damageFlag);
+        defender.getHp().lower(this->damageFlag);
     }
 
-    this->use();
+    this->pp.lower(1);
 }
 
 std::vector<std::string> Move::actionMessage(const Pokemon &attacker, const Pokemon &defender, bool  /*skip*/) const {
@@ -91,7 +69,7 @@ bool Move::isPriority() const {
 }
 
 bool Move::canUse() const {
-    return this->pp > 0;
+    return not this->pp.empty();
 }
 
 void Move::resetFlags() {

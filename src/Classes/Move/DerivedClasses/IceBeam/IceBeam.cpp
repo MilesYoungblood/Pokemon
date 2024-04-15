@@ -15,7 +15,7 @@ void IceBeam::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
     this->calculateDamage(attacker, defender);
     // damage will be negative if the attack misses
     if (this->getDamageFlag() > 0) {
-        defender.takeDamage(this->getDamageFlag());
+        defender.getHp().lower(this->getDamageFlag());
 
         this->freezeFlag = binomial(10.0) and defender.getStatus() == StatusCondition::NONE;
         if (this->freezeFlag) {
@@ -23,12 +23,12 @@ void IceBeam::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
         }
     }
 
-    this->use();
+    this->getPp().lower(1);
 }
 
 std::vector<std::string> IceBeam::actionMessage(const Pokemon &attacker, const Pokemon &defender,
                                                  bool  /*skipTurn*/) const {
-    std::vector<std::string> messages({ attacker.getName() + " used Ice Beam!" });
+    std::vector messages({ attacker.getName() + " used Ice Beam!" });
 
     if (this->getDamageFlag() > 0) {
         messages.push_back("Ice Beam did " + std::to_string(this->getDamageFlag()) + " damage!");
@@ -69,12 +69,12 @@ Type IceBeam::getType() const {
 }
 
 Move::Category IceBeam::getCategory() const {
-    return Move::Category::SPECIAL;
+    return Category::SPECIAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Ice Beam"] = [] -> std::unique_ptr<Move> { return std::make_unique<IceBeam>(); };
     });
 }

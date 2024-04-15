@@ -16,7 +16,7 @@ std::string HeatCrash::getDescription() const {
 }
 
 int HeatCrash::getPower(const Pokemon &attacker, const Pokemon &defender) const {
-    double ratio = attacker.getWeight() / defender.getWeight();
+    const double ratio = attacker.getWeight() / defender.getWeight();
     if (5 <= ratio) {
         return 120;
     }
@@ -37,12 +37,12 @@ Type HeatCrash::getType() const {
 }
 
 Move::Category HeatCrash::getCategory() const {
-    return Move::Category::PHYSICAL;
+    return Category::PHYSICAL;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(moveMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(moveMutex);
         moveMap["Heat Crash"] = [] -> std::unique_ptr<Move> { return std::make_unique<HeatCrash>(); };
     });
 }

@@ -6,10 +6,7 @@
 
 #include "../../Move.h"
 
-class HeatCrash : public Move {
-private:
-    static const int MAX_PP{ 16 };
-
+class HeatCrash final : public Move {
 public:
     HeatCrash();
 
@@ -21,5 +18,8 @@ public:
 
     [[nodiscard]] Type getType() const override;
 
-    [[nodiscard]] Move::Category getCategory() const override;
+    [[nodiscard]] Category getCategory() const override;
+
+private:
+    static constexpr int max_pp{ 16 };
 };

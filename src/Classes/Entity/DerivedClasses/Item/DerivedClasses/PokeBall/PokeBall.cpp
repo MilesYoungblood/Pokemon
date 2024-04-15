@@ -40,8 +40,8 @@ std::string PokeBall::useMessage() const {
 bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const {
     // using gen III-IV catch mechanics
 
-    double a = 3 * pokemon.getMaxHp() - 2 * pokemon.getHp();
-    a /= 3.0 * pokemon.getMaxHp();
+    double a = 3 * pokemon.getHp().getMax() - 2 * pokemon.getHp().getCurrent();
+    a /= 3.0 * pokemon.getHp().getMax();
     a *= pokemon.getCatchRate();
     //FIXME shift
     a *= this->getCatchRate(pokemon, Time::NIGHT, 1, false);

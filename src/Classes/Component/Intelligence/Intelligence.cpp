@@ -20,8 +20,8 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
                 return;
             }
 
-            if (this->desires.empty()) {
-                this->desires.emplace(this->action);
+            if (not this->ready) {
+                this->ready = true;
                 Overworld::pushEvent();
             }
 
@@ -40,12 +40,8 @@ Project::Intelligence::~Intelligence() {
 }
 
 void Project::Intelligence::tryActing() {
-    if (not this->desires.empty()) {
-        this->desires.front()();
-        this->desires.pop();
+    if (this->ready) {
+        this->action();
+        this->ready = false;
     }
-}
-
-void Project::Intelligence::alert() {
-    this->cv.notify_one();
 }
