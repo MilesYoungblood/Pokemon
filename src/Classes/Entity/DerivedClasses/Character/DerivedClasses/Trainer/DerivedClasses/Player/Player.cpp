@@ -80,8 +80,10 @@ void Player::walk() {
         this->setState(Character::State::IDLE);
         this->resetPixelCounter();
 
-        const auto map_data = Scene::getInstance<Overworld>().getCurrentMap().isExitPointHere(this->getMapX(),
-                                                                                              this->getMapY());
+        const auto map_data = Scene::getInstance<Overworld>().getCurrentMap().isExitPointHere(
+                this->getMapPosition().getX(),
+                this->getMapPosition().getY()
+        );
         if (map_data.has_value()) {
             Scene::getInstance<Overworld>().changeMap(map_data.value());
         }
@@ -147,13 +149,13 @@ Player &Player::getPlayer() {
 bool Player::canMoveForward(const Map &map) const {
     switch (this->getDirection()) {
         case Direction::UP:
-            return not map.isCollisionHere(this->getMapX(), this->getMapY() - 1);
+            return not map.isCollisionHere(this->getMapPosition().getX(), this->getMapPosition().getY() - 1);
         case Direction::RIGHT:
-            return not map.isCollisionHere(this->getMapX() + 1, this->getMapY());
+            return not map.isCollisionHere(this->getMapPosition().getX() + 1, this->getMapPosition().getY());
         case Direction::DOWN:
-            return not map.isCollisionHere(this->getMapX(), this->getMapY() + 1);
+            return not map.isCollisionHere(this->getMapPosition().getX(), this->getMapPosition().getY() + 1);
         case Direction::LEFT:
-            return not map.isCollisionHere(this->getMapX() - 1, this->getMapY());
+            return not map.isCollisionHere(this->getMapPosition().getX() - 1, this->getMapPosition().getY());
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }

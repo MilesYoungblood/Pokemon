@@ -167,8 +167,7 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, int width, int height
         for (int i = 0; i < height; ++i) {
             for (int j = 0; j < width and ss >> value; ++j) {
                 layer[i, j].id = value;
-                layer[i, j].screenX = j * Map::TILE_SIZE;
-                layer[i, j].screenY = i * Map::TILE_SIZE;
+                layer[i, j].screen.setPosition(j * Map::TILE_SIZE, i * Map::TILE_SIZE);
                 if (ss.peek() == ',') {
                     ss.ignore();
                 }
@@ -423,7 +422,8 @@ void Map::loadItem(tinyxml2::XMLElement *entityElement) {
     }
 
     std::unique_ptr<Item> item(itemMap.at(idAttribute)(quantity));
-    item->setCoordinates(x_pos, y_pos);
+    item->getMapPosition().setPosition(x_pos, y_pos);
+    item->getScreenPosition().setPosition(x_pos * Map::TILE_SIZE, y_pos * Map::TILE_SIZE);
 
     this->entities.push_back(std::move(item));
 }
@@ -485,22 +485,22 @@ Map::~Map() {
 bool Map::isCollisionHere(int x, int y) const {
     const bool collision = this->collisionSet.contains(this->layout[1][y, x].id);
 
-    const bool player_here = Player::getPlayer().getMapX() == x and Player::getPlayer().getMapY() == y;
+    const bool player_here = Player::getPlayer().getMapPosition().isHere(x, y);
 
     const bool entity_here = std::ranges::any_of(
             this->entities,
             [&x, &y](const std::unique_ptr <Entity> &entity) -> bool {
-                return entity->getMapX() == x and entity->getMapY() == y;
+                return entity->getMapPosition().isHere(x, y);
             }
     );
 
     return collision or player_here or entity_here;
 }
 
-std::optional<std::tuple<int, int, std::string>> Map::isExitPointHere(int x, int y) const {
+std::optional<std::pair<Project::Position, std::string>> Map::isExitPointHere(int x, int y) const {
     for (const Map::ExitPoint &exit_point : this->exitPoints) {
-        if (exit_point.mapX == x and exit_point.mapY == y) {
-            return std::make_optional(std::make_tuple(exit_point.newMapX, exit_point.newMapY, exit_point.newMap));
+        if (exit_point.map.isHere(x, y)) {
+            return std::make_optional(std::make_pair(exit_point.dest, exit_point.newMap));
         }
     }
     return std::nullopt;
@@ -553,22 +553,7 @@ void Map::shift(Direction direction, int n) {
         this->threadPool.add([direction, n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
-                    switch (direction) {
-                        case Direction::UP:
-                            col.screenY -= n;
-                            break;
-                        case Direction::DOWN:
-                            col.screenY += n;
-                            break;
-                        case Direction::LEFT:
-                            col.screenX -= n;
-                            break;
-                        case Direction::RIGHT:
-                            col.screenX += n;
-                            break;
-                        default:
-                            return;
-                    }
+                    col.screen.translate(direction, n);
                 }
             }
         });
@@ -576,7 +561,7 @@ void Map::shift(Direction direction, int n) {
 
     this->threadPool.add([this, direction, n] -> void {
         for (auto &entity : this->entities) {
-            entity->shift(direction, n);
+            entity->getScreenPosition().translate(direction, n);
         }
     });
 
@@ -588,7 +573,7 @@ void Map::shiftHorizontally(int n) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
-                    col.screenX += n;
+                    col.screen.translateX(n);
                 }
             }
         });
@@ -596,7 +581,7 @@ void Map::shiftHorizontally(int n) {
 
     this->threadPool.add([this, n] -> void {
         for (auto &entity : this->entities) {
-            entity->shiftHorizontally(n);
+            entity->getScreenPosition().translateX(n);
         }
     });
 
@@ -608,7 +593,7 @@ void Map::shiftVertically(int n) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &col : row) {
-                    col.screenY += n;
+                    col.screen.translateY(n);
                 }
             }
         });
@@ -616,7 +601,7 @@ void Map::shiftVertically(int n) {
 
     this->threadPool.add([this, n] -> void {
         for (auto &entity : this->entities) {
-            entity->shiftVertically(n);
+            entity->getScreenPosition().translateY(n);
         }
     });
 
@@ -629,8 +614,8 @@ void Map::render() const {
     for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
         for (const auto &row : this->layout[layer]) {
             for (const auto &col : row) {
-                sdlRect.x = col.screenX;
-                sdlRect.y = col.screenY;
+                sdlRect.x = col.screen.getX();
+                sdlRect.y = col.screen.getY();
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and col.id != 0) {
                     TextureManager::getInstance().draw(this->tileImages.at(col.id), sdlRect);
@@ -639,8 +624,8 @@ void Map::render() const {
         }
         if (layer == 1) {
             for (const auto &entity : this->entities) {
-                sdlRect.x = entity->getScreenX();
-                sdlRect.y = entity->getScreenY();
+                sdlRect.x = entity->getScreenPosition().getX();
+                sdlRect.y = entity->getScreenPosition().getY();
                 // prevents rendering entities that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect)) {
                     entity->render();

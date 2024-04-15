@@ -45,7 +45,7 @@ public:
 
     void save();
 
-    void changeMap(const std::tuple<int, int, std::string> &data);
+    void changeMap(const std::pair<Project::Position, std::string> &data);
 
     [[nodiscard]] Map &getCurrentMap() const;
 

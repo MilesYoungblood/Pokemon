@@ -5,66 +5,25 @@
 #include "../Map/Map.h"
 #include "Entity.h"
 
-Entity::Entity(int mapX, int mapY) : mapX(mapX), mapY(mapY), screenX(mapX * Map::TILE_SIZE), screenY(mapY * Map::TILE_SIZE) {}
+Entity::Entity(int mapX, int mapY) : map(mapX, mapY), screen(mapX * Map::TILE_SIZE, mapY * Map::TILE_SIZE) {}
 
-void Entity::setCoordinates(const int newX, const int newY) {
-    this->mapX = newX;
-    this->mapY = newY;
-
-    this->screenX = this->mapX * Map::TILE_SIZE;
-    this->screenY = this->mapY * Map::TILE_SIZE;
+Project::Position &Entity::getMapPosition() {
+    return this->map;
 }
 
-void Entity::translateX(bool positive) {
-    positive ? ++this->mapX : --this->mapX;
+Project::Position Entity::getMapPosition() const {
+    return this->map;
 }
 
-void Entity::translateY(bool positive) {
-    positive ? ++this->mapY : --this->mapY;
+Project::Position &Entity::getScreenPosition() {
+    return this->screen;
 }
 
-int Entity::getMapX() const {
-    return this->mapX;
-}
-
-int Entity::getMapY() const {
-    return this->mapY;
+Project::Position Entity::getScreenPosition() const {
+    return this->screen;
 }
 
 bool Entity::isNextTo(const Entity *entity) const {
-    return ((this->mapY == entity->mapY + 1 or this->mapY == entity->mapY - 1) and this->mapX == entity->mapX) or
-           ((this->mapX == entity->mapX + 1 or this->mapX == entity->mapX - 1) and this->mapY == entity->mapY);
-}
-
-void Entity::shiftHorizontally(int n) {
-    this->screenX += n;
-}
-
-void Entity::shiftVertically(int n) {
-    this->screenY += n;
-}
-
-void Entity::shift(Direction direction, int n) {
-    switch (direction) {
-        case Direction::UP:
-            this->screenY -= n;
-            break;
-        case Direction::DOWN:
-            this->screenY += n;
-            break;
-        case Direction::LEFT:
-            this->screenX -= n;
-            break;
-        case Direction::RIGHT:
-            this->screenX += n;
-            break;
-    }
-}
-
-int Entity::getScreenX() const {
-    return this->screenX;
-}
-
-int Entity::getScreenY() const {
-    return this->screenY;
+    return ((this->map.getY() == entity->map.getY() + 1 or this->map.getY() == entity->map.getY() - 1) and this->map.getX() == entity->map.getX()) or
+           ((this->map.getX() == entity->map.getX() + 1 or this->map.getX() == entity->map.getX() - 1) and this->map.getY() == entity->map.getY());
 }

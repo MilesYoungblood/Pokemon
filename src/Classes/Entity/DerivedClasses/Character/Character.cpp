@@ -16,13 +16,6 @@ Character::Character(const char *id, int x, int y, Direction direction, int visi
 Character::Character(const char *id, const char *name, int x, int y, Direction direction, int vision)
         : Entity(x, y), id(id), name(name), currentDirection(direction), vision(vision) {}
 
-Character::~Character() {
-    this->loseAutonomy();
-    if (this->thoughtProcess.joinable()) {
-        this->thoughtProcess.join();
-    }
-}
-
 void Character::setName(const char *newName) {
     this->name = newName;
 }
@@ -48,28 +41,11 @@ Character::State Character::getState() const {
 }
 
 void Character::gainAutonomy() {
-    this->autonomous = true;
-    this->thoughtProcess = std::thread([this] -> void {
-            std::mutex mutex;
-
-            while (this->autonomous and Game::getInstance().isRunning()) {
-                {
-                    std::unique_lock<std::mutex> lock(mutex);
-                    this->cv.wait(lock, [this] -> bool { return this->currentState == Character::State::IDLE; });
-                }
-
-                if (not this->autonomous or not Game::getInstance().isRunning()) {
-                    return;
-                }
-
-                this->decide();
-
-                std::unique_lock<std::mutex> lock(mutex);
-                this->cv.wait_for(lock, std::chrono::seconds(generateInteger(2, 4)), [] -> bool {
-                    return not Game::getInstance().isRunning();
-                });
-            }
-    });
+    this->intelligence = std::make_unique<Project::Intelligence>(
+            [this] -> void { this->act(); },
+            [this] -> bool { return this->currentState == Character::State::IDLE; },
+            [] -> int { return generateInteger(2, 4); }
+    );
 }
 
 void Character::update() {
@@ -85,7 +61,6 @@ void Character::update() {
             else if (this->pixelCounter == 20 * (Game::getInstance().getFps() / 30)) {
                 this->currentState = Character::State::IDLE;
                 this->pixelCounter = 0;
-                this->cv.notify_one();
 
                 --entitiesUpdating;
                 Overworld::pushEvent();
@@ -110,7 +85,7 @@ void Character::update() {
 void Character::render() const {
     TextureManager::getInstance().drawFrame(
             Scene::getInstance<Overworld>().getCurrentMap().getSpriteSheet(this->id, this->currentDirection).sprite,
-            SDL_Rect(this->getScreenX(), this->getScreenY(), Map::TILE_SIZE, Map::TILE_SIZE),
+            SDL_Rect(this->getScreenPosition().getX(), this->getScreenPosition().getY(), Map::TILE_SIZE, Map::TILE_SIZE),
             this->sprite.currentCol,
             this->sprite.currentRow
     );
@@ -123,16 +98,16 @@ std::vector<std::string> Character::getDialogue() const {
 void Character::moveForward() {
     switch (this->currentDirection) {
         case Direction::UP:
-            this->translateY(false);
+            this->getMapPosition().translateY(-1);
             break;
         case Direction::RIGHT:
-            this->translateX(true);
+            this->getMapPosition().translateX(1);
             break;
         case Direction::DOWN:
-            this->translateY(true);
+            this->getMapPosition().translateY(1);
             break;
         case Direction::LEFT:
-            this->translateX(false);
+            this->getMapPosition().translateX(-1);
             break;
         default:
             std::clog << "Invalid direction " << this->currentDirection << '\n';
@@ -177,13 +152,13 @@ bool Character::isFacing(Direction direction) const {
 bool Character::canMoveForward(const Map &map) const {
     switch (this->currentDirection) {
         case Direction::UP:
-            return not map.isCollisionHere(this->getMapX(), this->getMapY() - 1) and not map.isExitPointHere(this->getMapX(), this->getMapY() - 1).has_value();
+            return not map.isCollisionHere(this->getMapPosition().getX(), this->getMapPosition().getY() - 1) and not map.isExitPointHere(this->getMapPosition().getX(), this->getMapPosition().getY() - 1).has_value();
         case Direction::RIGHT:
-            return not map.isCollisionHere(this->getMapX() + 1, this->getMapY()) and not map.isExitPointHere(this->getMapX() + 1, this->getMapY()).has_value();
+            return not map.isCollisionHere(this->getMapPosition().getX() + 1, this->getMapPosition().getY()) and not map.isExitPointHere(this->getMapPosition().getX() + 1, this->getMapPosition().getY()).has_value();
         case Direction::DOWN:
-            return not map.isCollisionHere(this->getMapX(), this->getMapY() + 1) and not map.isExitPointHere(this->getMapX(), this->getMapY() + 1).has_value();
+            return not map.isCollisionHere(this->getMapPosition().getX(), this->getMapPosition().getY() + 1) and not map.isExitPointHere(this->getMapPosition().getX(), this->getMapPosition().getY() + 1).has_value();
         case Direction::LEFT:
-            return not map.isCollisionHere(this->getMapX() - 1, this->getMapY()) and not map.isExitPointHere(this->getMapX() - 1, this->getMapY()).has_value();
+            return not map.isCollisionHere(this->getMapPosition().getX() - 1, this->getMapPosition().getY()) and not map.isExitPointHere(this->getMapPosition().getX() - 1, this->getMapPosition().getY()).has_value();
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
@@ -196,64 +171,57 @@ bool Character::hasVisionOf(const Entity *entity) const {
     }
     switch (this->currentDirection) {
         case Direction::UP:
-            return entity->getMapX() == this->getMapX() and entity->getMapY() < this->getMapY() and entity->getMapY() >= this->getMapY() - this->vision;
+            return entity->getMapPosition().getX() == this->getMapPosition().getX() and entity->getMapPosition().getY() < this->getMapPosition().getY() and entity->getMapPosition().getY() >= this->getMapPosition().getY() - this->vision;
         case Direction::DOWN:
-            return entity->getMapX() == this->getMapX() and entity->getMapY() > this->getMapY() and entity->getMapY() <= this->getMapY() + this->vision;
+            return entity->getMapPosition().getX() == this->getMapPosition().getX() and entity->getMapPosition().getY() > this->getMapPosition().getY() and entity->getMapPosition().getY() <= this->getMapPosition().getY() + this->vision;
         case Direction::LEFT:
-            return entity->getMapY() == this->getMapY() and entity->getMapX() < this->getMapX() and entity->getMapX() >= this->getMapX() - this->vision;
+            return entity->getMapPosition().getY() == this->getMapPosition().getY() and entity->getMapPosition().getX() < this->getMapPosition().getX() and entity->getMapPosition().getX() >= this->getMapPosition().getX() - this->vision;
         case Direction::RIGHT:
-            return entity->getMapY() == this->getMapY() and entity->getMapX() > this->getMapX() and entity->getMapX() <= this->getMapX() + this->vision;
+            return entity->getMapPosition().getY() == this->getMapPosition().getY() and entity->getMapPosition().getX() > this->getMapPosition().getX() and entity->getMapPosition().getX() <= this->getMapPosition().getX() + this->vision;
         default:
             throw std::invalid_argument("Invalid direction: canMoveForward()");
     }
 }
 
-void Character::decide() {
-    if (this->desires.empty()) {
-        this->desires.emplace([](Character *character) -> void {
-            switch (generateInteger(1, 4)) {
-                case 1:
-                    character->face(character);
-                    std::cout << character->name << " made decision 1\n";
-                    break;
+void Character::act() {
+    switch (generateInteger(1, 4)) {
+        case 1:
+            this->face(this);
+            std::cout << this->name << " made decision 1\n";
+            break;
 
-                case 2:
-                    if (character->isFacing(Direction::UP) or character->isFacing(Direction::DOWN)) {
-                        binomial() ? character->setDirection(Direction::LEFT) : character->setDirection(Direction::RIGHT);
-                    }
-                    else {
-                        binomial() ? character->setDirection(Direction::UP) : character->setDirection(Direction::DOWN);
-                    }
-                    std::cout << character->name << " made decision 2\n";
-                    break;
-
-                default:
-                    if (character->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
-                        character->moveForward();
-                        character->setState(Character::State::WALKING);
-
-                        if (character->hasVisionOf(&Player::getPlayer()) and
-                            (Player::getPlayer().getState() == Character::State::IDLE)) {
-                            Player::getPlayer().setState(Character::State::IMMOBILE);
-                        }
-                    }
-                    else {
-                        character->setState(Character::State::COLLIDING);
-                        character->updateAnimation();
-                    }
-                    ++entitiesUpdating;
-                    std::cout << character->name << " made decision 3\n";
-                    break;
+        case 2:
+            if (this->isFacing(Direction::UP) or this->isFacing(Direction::DOWN)) {
+                binomial() ? this->setDirection(Direction::LEFT) : this->setDirection(Direction::RIGHT);
             }
-        });
+            else {
+                binomial() ? this->setDirection(Direction::UP) : this->setDirection(Direction::DOWN);
+            }
+            std::cout << this->name << " made decision 2\n";
+            break;
 
-        Overworld::pushEvent();
+        default:
+            if (this->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
+                this->moveForward();
+                this->setState(Character::State::WALKING);
+
+                if (this->hasVisionOf(&Player::getPlayer()) and
+                    (Player::getPlayer().getState() == Character::State::IDLE)) {
+                    Player::getPlayer().setState(Character::State::IMMOBILE);
+                }
+            }
+            else {
+                this->setState(Character::State::COLLIDING);
+                this->updateAnimation();
+            }
+            ++entitiesUpdating;
+            std::cout << this->name << " made decision 3\n";
+            break;
     }
 }
 
 void Character::loseAutonomy() {
-    this->autonomous = false;
-    this->cv.notify_one();
+    this->intelligence = nullptr;
 }
 
 void Character::interact() {
@@ -266,7 +234,7 @@ void Character::interact() {
         this->currentState = Character::State::IMMOBILE;
         this->face(&Player::getPlayer());
 
-        if (not this->autonomous) {
+        if (this->intelligence == nullptr) {
             Overworld::createTextBox(this->dialogue);
         }
     }
@@ -290,9 +258,6 @@ void Character::interact() {
 
                     Mixer::getInstance().playMusic("TrainerBattle");
                     --entitiesUpdating;
-                    if (this->thoughtProcess.joinable()) {
-                        this->thoughtProcess.join();
-                    }
                 }
                 else {
                     Player::getPlayer().setState(Character::State::IDLE);
@@ -318,7 +283,8 @@ void Character::interact() {
 
 void Character::walk() {
     ++this->pixelCounter;
-    this->shift(this->currentDirection, Character::WALK_SPEED);
+
+    this->getScreenPosition().translate(this->currentDirection, Character::WALK_SPEED);
 
     if (this->pixelCounter % 10 == 0) {
         this->updateAnimation();
@@ -326,7 +292,6 @@ void Character::walk() {
     if (this->pixelCounter == 20) {
         this->currentState = Character::State::IDLE;
         this->pixelCounter = 0;
-        this->cv.notify_one();
 
         --entitiesUpdating;
         Overworld::pushEvent();
@@ -334,9 +299,8 @@ void Character::walk() {
 }
 
 void Character::idle() {
-    if (not this->desires.empty()) {
-        this->desires.front()(this);
-        this->desires.pop();
+    if (this->intelligence != nullptr) {
+        this->intelligence->tryActing();
     }
 }
 

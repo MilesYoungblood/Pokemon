@@ -158,8 +158,8 @@ void Trainer::idle() {
                     "exclamation.png",
                     50 * (Game::getInstance().getFps() / 30) / 2,
                     SDL_Rect(
-                            this->getScreenX(),
-                            this->getScreenY() - Map::TILE_SIZE,
+                            this->getScreenPosition().getX(),
+                            this->getScreenPosition().getY() - Map::TILE_SIZE,
                             Map::TILE_SIZE,
                             Map::TILE_SIZE
                     )
@@ -178,7 +178,7 @@ void Trainer::idle() {
         }
 
         if (not this->isNextTo(&Player::getPlayer())) {
-            this->shift(this->getDirection(), Character::WALK_SPEED);
+            this->getScreenPosition().translate(this->getDirection(), Character::WALK_SPEED);
             this->incPixelCounter();
 
             if (this->getPixelCounter() % 10 == 0) {

@@ -4,13 +4,17 @@
 
 #pragma once
 
+#include "../../../Enums/Direction/Direction.h"
+
 namespace Project {
     class Position {
     private:
-        int x;
-        int y;
+        int x{ 0 };
+        int y{ 0 };
 
     public:
+        Position() = default;
+
         Position(int x, int y);
 
         Position(const Position &) = default;
@@ -33,8 +37,13 @@ namespace Project {
         void translateX(int t);
 
         /// \brief Translates the y-position
-        /// \param t
+        /// \param t amount
         void translateY(int t);
+
+        /// \brief Translates the position a certain direction
+        /// \param d direction
+        /// \param t amount
+        void translate(Direction d, int t);
 
         /// \brief Getter for x-position
         /// \return the x-position
@@ -43,5 +52,11 @@ namespace Project {
         /// \brief Getter for y-position
         /// \return the y-position
         [[nodiscard]] int getY() const;
+
+        /// \brief Checker for position
+        /// \param xPos x-position
+        /// \param yPos y-position
+        /// \return true if the position matches the given position
+        [[nodiscard]] bool isHere(int xPos, int yPos) const;
     };
 }

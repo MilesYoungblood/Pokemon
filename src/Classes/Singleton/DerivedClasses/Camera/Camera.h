@@ -23,7 +23,7 @@ public:
     /// onscreen, not to mention costly. This function eliminates this problem.
     /// \param rect the rectangle to check
     /// \return true if the rectangle is in view, false otherwise
-    [[nodiscard]] bool isInView(const SDL_Rect &rect) const;
+    [[nodiscard]] bool isInView(SDL_Rect rect) const;
 
     /// \brief Finds the player's current position on the screen,
     /// then shifts everything, including the player, accordingly.

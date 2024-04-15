@@ -72,12 +72,12 @@ void Item::update() {}
 void Item::render() const {
     static Texture texture(
             "Item_Overworld_Sprite.png",
-            SDL_Rect(this->getScreenX() + 28, this->getScreenY() + 28, 24, 24)
+            SDL_Rect(this->getScreenPosition().getX() + 28, this->getScreenPosition().getY() + 28, 24, 24)
     );
 
     // update the texture's position
-    texture.setX(this->getScreenX() + 28);
-    texture.setY(this->getScreenY() + 28);
+    texture.setX(this->getScreenPosition().getX() + 28);
+    texture.setY(this->getScreenPosition().getY() + 28);
 
     texture.render();
 }

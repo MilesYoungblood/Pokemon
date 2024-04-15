@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../Enums/Direction/Direction.h"
+#include "../Component/Position/Position.h"
 #include "../ThreadPool/ThreadPool.h"
 #include "../Matrix/Matrix.h"
 
@@ -49,8 +49,8 @@ public:
     /// \brief Checks to see if an exit point is present
     /// \param x coordinate
     /// \param y coordinate
-    /// \return a tuple containing the new coordinates and new map respectively if an exit point is present, or nothing otherwise
-    [[nodiscard]] std::optional<std::tuple<int, int, std::string>> isExitPointHere(int x, int y) const;
+    /// \return a pair containing the new position and new map respectively if an exit point is present, or nothing otherwise
+    [[nodiscard]] std::optional<std::pair<Project::Position, std::string>> isExitPointHere(int x, int y) const;
 
     /// \brief Removes an entity from the map
     /// \param entity pointer to the entity to remove
@@ -108,8 +108,7 @@ private:
 
     struct Tile {
         int id;
-        int screenX;
-        int screenY;
+        Project::Position screen;
     };
 
     std::vector<Matrix<Map::Tile>> layout;                      // The map is vector of matrices
@@ -124,10 +123,8 @@ private:
     std::unordered_map<std::string, spriteSet> entitySprites;   // mapping of entity sprites by id
 
     struct ExitPoint {
-        int mapX;                                               // x-coordinate of the exit spot
-        int mapY;                                               // y-coordinate of the exit spot
-        int newMapX;                                            // the player's new x-coordinates
-        int newMapY;                                            // the player's new y-coordinates
+        Project::Position map;
+        Project::Position dest;
         std::string newMap;                                     // map that this exit point leads to
     };
 

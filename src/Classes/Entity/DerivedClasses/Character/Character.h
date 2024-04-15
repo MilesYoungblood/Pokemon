@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include "../../../Component/Intelligence/Intelligence.h"
+#include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Map/Map.h"
 #include "../../../Entity/Entity.h"
 
@@ -33,7 +35,7 @@ public:
 
     Character &operator=(Character &&) noexcept = delete;
 
-    ~Character() override;
+    ~Character() override = default;
 
     /// \brief Setter for name
     /// \param newName the new name
@@ -152,13 +154,8 @@ private:
 
     Sprite sprite;
 
-    /// \brief Makes a decision
-    /// \details pushes its decision to the desire queue to be called in the main thread
-    void decide();
+    std::unique_ptr<Project::Intelligence> intelligence{ nullptr };
 
-    std::queue<void (*)(Character *)> desires;
-
-    std::atomic_bool autonomous{ false };
-    std::thread thoughtProcess;
-    std::condition_variable cv;
+    /// \brief Performs an action
+    void act();
 };

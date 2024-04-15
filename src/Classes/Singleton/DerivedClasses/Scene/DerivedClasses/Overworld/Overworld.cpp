@@ -60,7 +60,7 @@ void Overworld::render() {
 void Overworld::save() {
 }
 
-void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
+void Overworld::changeMap(const std::pair<Project::Position, std::string> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
         std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
@@ -75,9 +75,10 @@ void Overworld::changeMap(const std::tuple<int, int, std::string> &data) {
     characterStates.clear();
 
     // move the new map into the current map variable
-    this->currentMap = std::make_unique<Map>(std::get<2>(data).c_str());
+    this->currentMap = std::make_unique<Map>(data.second.c_str());
 
-    Player::getPlayer().setCoordinates(std::get<0>(data), std::get<1>(data));
+    Player::getPlayer().getMapPosition() = data.first;
+    Player::getPlayer().getScreenPosition().setPosition(data.first.getX() * Map::TILE_SIZE, data.first.getY() * Map::TILE_SIZE);
 
     Camera::getInstance().lockOnPlayer(*this->currentMap);
 }
