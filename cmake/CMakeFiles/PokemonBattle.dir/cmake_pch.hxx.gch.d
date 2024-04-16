@@ -232,18 +232,18 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch: \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/move_only_function.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/mofunc_impl.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algo.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algobase.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
- C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_raw_storage_iter.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_uninitialized.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algobase.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_memory_defs.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ranges_algo.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_algorithm_defs.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/math.h \
@@ -271,6 +271,10 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch: \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_numeric.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/glue_numeric_defs.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ranges \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h \
+ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/variant \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_main.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/include/third_party/SDL2/SDL/SDL_stdinc.h \

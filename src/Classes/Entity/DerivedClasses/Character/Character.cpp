@@ -167,8 +167,8 @@ void Character::face(const Character *character) {
     }
 }
 
-bool Character::isFacing(const Direction direction) const {
-    return this->currentDirection == direction;
+bool Character::isFacing(const Direction x) const {
+    return this->currentDirection == x;
 }
 
 bool Character::canMoveForward(const Map &map) const {
@@ -209,7 +209,6 @@ void Character::act() {
     switch (generateInteger(1, 4)) {
         case 1:
             this->face(this);
-            std::cout << this->name << " made decision 1\n";
             break;
 
         case 2:
@@ -219,7 +218,6 @@ void Character::act() {
             else {
                 binomial() ? this->setDirection(Direction::UP) : this->setDirection(Direction::DOWN);
             }
-            std::cout << this->name << " made decision 2\n";
             break;
 
         default:
@@ -237,7 +235,6 @@ void Character::act() {
                 this->updateAnimation();
             }
             ++entitiesUpdating;
-            std::cout << this->name << " made decision 3\n";
             break;
     }
 }
@@ -257,6 +254,7 @@ void Character::interact() {
         this->face(&Player::getPlayer());
 
         if (this->intelligence == nullptr) {
+            ++entitiesUpdating;
             Overworld::createTextBox(this->dialogue);
         }
     }
@@ -279,12 +277,12 @@ void Character::interact() {
                     Scene::getInstance<Battle>().init(dynamic_cast<Trainer *>(this));
 
                     Mixer::getInstance().playMusic("TrainerBattle");
-                    --entitiesUpdating;
                 }
                 else {
                     Player::getPlayer().setState(State::IDLE);
                     this->currentState = State::IDLE;
                 }
+                --entitiesUpdating;
             }
         }
         // re-lock the Enter key

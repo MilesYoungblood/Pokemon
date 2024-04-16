@@ -443,7 +443,7 @@ Map::Map(const char *name) : name(name), music(name) {
 }
 
 Map::~Map() {
-    for (const auto &tileImage : this->tileImages) {
+    for (const auto tileImage : this->tileImages) {
         if (tileImage != nullptr) {
             SDL_DestroyTexture(tileImage);
             if (strlen(SDL_GetError()) > 0) {
@@ -452,9 +452,9 @@ Map::~Map() {
             }
         }
     }
-    for (auto &[fst, snd] : this->entitySprites) {
-        if (snd != nullptr) {
-            SDL_DestroyTexture(snd);
+    for (const auto value : this->entitySprites | std::views::values) {
+        if (value != nullptr) {
+            SDL_DestroyTexture(value);
             if (strlen(SDL_GetError()) > 0) {
                 std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
                 SDL_ClearError();

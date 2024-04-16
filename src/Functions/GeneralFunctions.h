@@ -4,25 +4,35 @@
 
 #pragma once
 
-class [[maybe_unused]] Sort {
+class [[maybe_unused]] Sorter {
 public:
-    Sort() = delete;
+    Sorter() = delete;
+
+    Sorter(const Sorter &) = delete;
+
+    Sorter(Sorter &&) noexcept = delete;
+
+    Sorter &operator=(const Sorter &) = delete;
+
+    Sorter &operator=(Sorter &&) noexcept = delete;
+
+    ~Sorter() = delete;
 
     template<typename Comparable, std::size_t Size>
     static void mergeSort(std::array<Comparable, Size> &array) {
-        Sort::mergeSort(array, 0ULL, array.size());
+        mergeSort(array, 0, array.size());
     }
 
     template<typename Comparable>
     static void mergeSort(std::vector<Comparable> &vector) {
-        Sort::mergeSort(vector, 0ULL, vector.size());
+        mergeSort(vector, 0, vector.size());
     }
 
 private:
     template<typename Comparable, std::size_t Size>
-    static void merge(std::array<Comparable, Size> &array, const size_t left, const size_t mid, const size_t right) {
-        const size_t subArrayOne = mid - left + 1;
-        const size_t subArrayTwo = right - mid;
+    static void merge(std::array<Comparable, Size> &array, const std::size_t left, const std::size_t mid, const std::size_t right) {
+        const std::size_t subArrayOne = mid - left + 1;
+        const std::size_t subArrayTwo = right - mid;
 
         // Create temp arrays
         std::vector<Comparable> leftArray(subArrayOne);
@@ -36,9 +46,9 @@ private:
             rightArray[i] = array[mid + i + 1];
         }
 
-        size_t indexOfSubArrayOne = 0;
-        size_t indexOfSubArrayTwo = 0;
-        size_t indexOfMergedArray = left;
+        std::size_t indexOfSubArrayOne = 0;
+        std::size_t indexOfSubArrayTwo = 0;
+        std::size_t indexOfMergedArray = left;
 
         // Merge the temp arrays back into array[left.right]
         while (indexOfSubArrayOne < subArrayOne and indexOfSubArrayTwo < subArrayTwo) {
@@ -71,25 +81,25 @@ private:
     }
 
     template<typename Comparable>
-    static void merge(std::vector<Comparable> &array, const size_t left, const size_t mid, const size_t right) {
-        const size_t subArrayOne = mid - left + 1;
-        const size_t subArrayTwo = right - mid;
+    static void merge(std::vector<Comparable> &array, const std::size_t left, const std::size_t mid, const std::size_t right) {
+        const std::size_t subArrayOne = mid - left + 1;
+        const std::size_t subArrayTwo = right - mid;
 
         // Create temp arrays
         std::vector<Comparable> leftArray(subArrayOne);
         std::vector<Comparable> rightArray(subArrayTwo);
 
         // Copy data to temp arrays leftArray[] and rightArray[]
-        for (int i = 0; i < subArrayOne; ++i) {
+        for (std::size_t i = 0; i < subArrayOne; ++i) {
             leftArray[i] = array[left + i];
         }
-        for (int i = 0; i < subArrayTwo; ++i) {
+        for (std::size_t i = 0; i < subArrayTwo; ++i) {
             rightArray[i] = array[mid + i + 1];
         }
 
-        size_t indexOfSubArrayOne = 0;
-        size_t indexOfSubArrayTwo = 0;
-        size_t indexOfMergedArray = left;
+        std::size_t indexOfSubArrayOne = 0;
+        std::size_t indexOfSubArrayTwo = 0;
+        std::size_t indexOfMergedArray = left;
 
         // Merge the temp arrays back into array[left.right]
         while (indexOfSubArrayOne < subArrayOne and indexOfSubArrayTwo < subArrayTwo) {
@@ -124,9 +134,9 @@ private:
     // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
     template<typename Comparable, std::size_t Size>
-    static void mergeSort(std::array<Comparable, Size> &array, const size_t left, const size_t right) {
+    static void mergeSort(std::array<Comparable, Size> &array, const std::size_t left, const std::size_t right) {
         if (left < right) {
-            const size_t mid = left + (right - left) / 2;
+            const std::size_t mid = left + (right - left) / 2;
             mergeSort(array, left, mid);
             mergeSort(array, mid + 1, right);
             merge(array, left, mid, right);
@@ -136,9 +146,9 @@ private:
     // begin is for left index and the end is right index
     // of the sub-array of arr to be sorted
     template<typename Comparable>
-    static void mergeSort(std::vector<Comparable> &vector, const size_t left, const size_t right) {
+    static void mergeSort(std::vector<Comparable> &vector, const std::size_t left, const std::size_t right) {
         if (left < right) {
-            const size_t mid = left + (right - left) / 2;
+            const std::size_t mid = left + (right - left) / 2;
             mergeSort(vector, left, mid);
             mergeSort(vector, mid + 1, right);
             merge(vector, left, mid, right);
@@ -146,47 +156,15 @@ private:
     }
 };
 
-inline const char *getCategoryAsString(const int category) {
-    switch (category) {
-        case 0:
-            return "physical";
-
-        case 1:
-            return "special";
-
-        case 2:
-            return "status";
-
-        default:
-            throw std::runtime_error("Unexpected error: function getCategoryAsString");
-    }
-}
+const char *getCategoryAsString(int category);
 
 // returns true if character is a vowel
-inline bool isVowel(const char ltr) {
-    return tolower(ltr) == 'a' or tolower(ltr) == 'e' or
-           tolower(ltr) == 'i' or tolower(ltr) == 'o' or tolower(ltr) == 'u';
-}
+bool isVowel(char ltr);
 
-inline bool binomial(const double prob = 50.0) {
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::binomial_distribution dist(1, prob / 100.0);
-
-    return dist(mt) == 1;
-}
+bool binomial(double prob = 50.0);
 
 // returns a random integer from a range
-inline int generateInteger(int a, int b) {
-    if (a > b) {
-        std::swap(a, b);
-    }
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution dist(a, b);
-
-    return dist(mt);
-}
+int generateInteger(int a, int b);
 
 template<typename G>
 concept EnumType = std::is_enum_v<G>;

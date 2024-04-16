@@ -38,11 +38,11 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Charact
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h

@@ -1,2 +1,27 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Prototurtle</species>
+        <types>
+            <type>3</type>
+            <type>13</type>
+        </types>
+        <abilities>
+            <ability>Solid Rock</ability>
+            <ability>Sturdy</ability>
+        </abilities>
+        <height>1.2</height>
+        <weight>81.0</weight>
+        <gender male="87.5"/>
+        <base_stats>
+            <stat id="hp">74</stat>
+            <stat id="attack">108</stat>
+            <stat id="defense">133</stat>
+            <stat id="sp_attack">83</stat>
+            <stat id="sp_defense">65</stat>
+            <stat id="speed">32</stat>
+        </base_stats>
+        <base_level>37</base_level>
+        <catch_rate>45</catch_rate>
+        <dex>71</dex>
+    </data>
 </xml>

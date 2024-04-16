@@ -64,7 +64,7 @@ public:
     void gainAutonomy();
 
     /// \brief Overrides Entity::getKey
-    /// @return the respective sprite key
+    /// \return the respective sprite key
     [[nodiscard]] std::string getKey() const override;
 
     /// \brief Overrides Entity::update
@@ -98,9 +98,9 @@ protected:
     void face(const Character *character);
 
     /// \brief Checker for direction
-    /// \param direction the direction
+    /// \param x the direction
     /// \return true if the character's direction is the same as the parameter direction and false otherwise
-    [[nodiscard]] bool isFacing(Direction direction) const;
+    [[nodiscard]] bool isFacing(Direction x) const;
 
     /// \brief Checks to see if the character can move forward
     /// \details Checks if the player, other entities, or collisions and other miscellaneous tiles are present
@@ -156,7 +156,7 @@ private:
     int pixelCounter{ 0 };                                                    // counts how many pixels this has moved
 
     Direction currentDirection{ Direction::DOWN };                            // which way the entity is facing
-    std::atomic<State> currentState{ State::IDLE };                         // dictates what the entity is doing
+    std::atomic<State> currentState{ State::IDLE };                          // dictates what the entity is doing
 
     int currentCol{ 0 };
 

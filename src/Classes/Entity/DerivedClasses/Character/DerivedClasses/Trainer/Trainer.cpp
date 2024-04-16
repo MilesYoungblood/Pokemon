@@ -4,6 +4,7 @@
 
 #include "../../../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "Trainer.h"
 
@@ -101,6 +102,48 @@ std::size_t Trainer::partySize() const {
 
 void Trainer::handleFaint() {
     this->party.erase(this->party.cbegin());
+}
+
+void Trainer::handleSwitchOut(bool *renderSelf) {
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+        this->getId() + ' ' + this->getName() + " is about to send out " + this->party[0]->getName() + '.',
+        [] -> void {
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+        }
+    );
+
+    auto switchOut = [this, renderSelf] -> void {
+        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+            this->getId() + ' ' + this->getName() + " sent out " + this->party[0]->getName() + '!',
+            [renderSelf] -> void {
+                *renderSelf = true;
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+            }
+        );
+    };
+
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+        "Would you like to swap out Pokemon?",
+        [switchOut] -> void {
+            KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
+
+            auto f = [switchOut] -> void {
+                GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
+                Scene::getInstance<Battle>().openSelectionBox(switchOut);
+            };
+
+            std::vector<std::pair<std::string, std::function<void()>>> pairs({
+                std::make_pair("Yes", f),
+                std::make_pair("No", switchOut)
+            });
+
+            GraphicsEngine::getInstance().addGraphic<SelectionBox>(SDL_Rect(50, 50, 100, 100), 5, pairs);
+        }
+    );
 }
 
 void Trainer::handleVictory() {}

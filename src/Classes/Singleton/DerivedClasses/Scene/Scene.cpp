@@ -19,12 +19,6 @@ void Scene::pushEvent() {
         std::clog << "Error pushing event: " << SDL_GetError() << '\n';
         Game::getInstance().terminate();
     }
-    else if (value == 0) {
-        std::cout << "Event filtered\n";
-    }
-    else {
-        std::cout << "Event pushed\n";
-    }
 }
 
 void Scene::handleEvents() {
@@ -46,7 +40,6 @@ bool Scene::waitEvent() {
         Game::getInstance().terminate();
         return false;
     }
-    std::cout << "Event received\n";
     return true;
 }
 

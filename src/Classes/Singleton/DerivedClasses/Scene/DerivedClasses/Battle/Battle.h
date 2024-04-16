@@ -16,6 +16,8 @@ public:
 
     void render() const override;
 
+    void openSelectionBox(const std::function<void()> &callback);
+
 private:
     enum class State : Uint8 {
         MAIN,
@@ -30,7 +32,7 @@ private:
         [this] -> void { this->initFight(); },
         [this] -> void { this->initPokemon(); },
         initEngage
-};
+    };
 
     const std::array<std::function<void()>, 4> updateFunctions{
         nullptr,
@@ -72,7 +74,7 @@ private:
 
     static void initEngage();
 
-    void engage(Trainer *attacker, Trainer *defender, int move, bool *skip);
+    void engage(Trainer *attacker, Trainer *defender, int move, bool *skip, bool *target);
 
     void preStatus(bool isPlayerFaster);
 
@@ -86,5 +88,5 @@ private:
 
     void terminate();
 
-    void changeState(State state, bool clear);
+    void changeState(State x, bool clear);
 };

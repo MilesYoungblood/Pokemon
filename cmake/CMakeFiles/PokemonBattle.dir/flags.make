@@ -60,6 +60,8 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/ThreadPool/ThreadPool.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx

@@ -1,2 +1,26 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Big-Hearted</species>
+        <types>
+            <type>1</type>
+        </types>
+        <abilities>
+            <ability>Intimidate</ability>
+            <ability>Sand Rush</ability>
+        </abilities>
+        <height>1.2</height>
+        <weight>61.0</weight>
+        <gender male="50.0"/>
+        <base_stats>
+            <stat id="hp">85</stat>
+            <stat id="attack">110</stat>
+            <stat id="defense">90</stat>
+            <stat id="sp_attack">45</stat>
+            <stat id="sp_defense">90</stat>
+            <stat id="speed">80</stat>
+        </base_stats>
+        <base_level>32</base_level>
+        <catch_rate>45</catch_rate>
+        <dex>14</dex>
+    </data>
 </xml>

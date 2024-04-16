@@ -35,6 +35,11 @@
                         <move id="Solar Beam"/>
                     </move_set>
                 </pokemon>
+                <pokemon id="Stoutland">
+                    <move_set>
+                        <move id="Quick Attack"/>
+                    </move_set>
+                </pokemon>
             </party>
         </entity>
         <entity class="Item" id="Poke Ball">

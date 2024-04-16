@@ -4,6 +4,7 @@
 
 #include "../../../../Functions/GeneralFunctions.h"
 #include "../../../Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h"
+#include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
 #include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
@@ -48,6 +49,7 @@ std::string Item::getKey() const {
 
 void Item::interact() {
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
+        ++entitiesUpdating;
         KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
         Player::getPlayer().setState(Character::State::IMMOBILE);
@@ -59,6 +61,7 @@ void Item::interact() {
         Mix_ChannelFinished([](int) -> void {
             KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
             Mix_ResumeMusic();
+            --entitiesUpdating;
         });
     }
     else if (not GraphicsEngine::getInstance().getGraphic<TextBox>().isPrinting()) {

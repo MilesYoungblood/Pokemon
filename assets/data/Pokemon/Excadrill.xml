@@ -1,2 +1,27 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Subterrene</species>
+        <types>
+            <type>9</type>
+            <type>17</type>
+        </types>
+        <abilities>
+            <ability>Sand Rush</ability>
+            <ability>Sand Force</ability>
+        </abilities>
+        <height>0.7</height>
+        <weight>40.4</weight>
+        <gender male="50.0"/>
+        <base_stats>
+            <stat id="hp">110</stat>
+            <stat id="attack">135</stat>
+            <stat id="defense">60</stat>
+            <stat id="sp_attack">50</stat>
+            <stat id="sp_defense">65</stat>
+            <stat id="speed">88</stat>
+        </base_stats>
+        <base_level>31</base_level>
+        <catch_rate>60</catch_rate>
+        <dex>36</dex>
+    </data>
 </xml>

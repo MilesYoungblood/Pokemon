@@ -4,7 +4,6 @@
 
 #include "../TextureManager/TextureManager.h"
 #include "../Mixer/Mixer.h"
-#include "../Pokedex/Pokedex.h"
 #include "Game.h"
 
 Game::~Game() {
@@ -12,6 +11,7 @@ Game::~Game() {
     Mix_HookMusicFinished(nullptr);
     Mix_CloseAudio();
 
+    Scene::getInstance<Overworld>().clean();
     TextureManager::getInstance().clean();
     TTF_Quit();
 
@@ -38,7 +38,7 @@ void Game::handleEvents() const {
     this->currentScene->handleEvents();
 }
 
-void Game::update() {
+void Game::update() const {
     this->currentScene->update();
 }
 

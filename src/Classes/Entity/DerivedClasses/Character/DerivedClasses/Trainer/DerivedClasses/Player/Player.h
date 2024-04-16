@@ -16,6 +16,8 @@ public:
 
     void handleFaint() override;
 
+    void handleSwitchOut(bool *renderSelf) override;
+
     void handleVictory() override;
 
     [[nodiscard]] std::vector<std::string> winMessage(const Trainer *trainer) const override;

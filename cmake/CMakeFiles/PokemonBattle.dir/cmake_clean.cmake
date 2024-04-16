@@ -171,6 +171,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/PokemonBattle.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj.d"
+  "CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.obj"
+  "CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.obj.d"
   "CMakeFiles/PokemonBattle.dir/src/main.cpp.obj"
   "CMakeFiles/PokemonBattle.dir/src/main.cpp.obj.d"
   "PokemonBattle.exe"

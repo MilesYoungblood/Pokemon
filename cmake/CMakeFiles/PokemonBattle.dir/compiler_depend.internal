@@ -155,6 +155,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_uninitialized.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_vector.h
+ C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stream_iterator.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/streambuf.tcc
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/streambuf_iterator.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc
@@ -205,6 +206,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iosfwd
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iostream
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/istream
+ C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/limits
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/locale
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory
@@ -221,6 +223,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/queue
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/random
+ C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ranges
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ratio
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/semaphore
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/span
@@ -251,6 +254,7 @@ CMakeFiles/PokemonBattle.dir/cmake_pch.hxx.gch
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/typeinfo
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/unordered_map
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/unordered_set
+ C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/variant
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/atomic_word.h
  C:/Users/miles/AppData/Local/JetBrains/CLion 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++allocator.h
@@ -599,7 +603,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Derived
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h
@@ -641,13 +644,13 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Derived
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h
@@ -1355,6 +1358,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Derive
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Matrix/Matrix.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h
@@ -1848,7 +1852,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Matrix/Matrix.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
@@ -1879,7 +1882,7 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Matrix/Matrix.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
@@ -2005,7 +2008,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedC
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Stopwatch/Stopwatch.h
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h
@@ -2123,6 +2125,11 @@ CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.cpp
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h
+
+CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.obj
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.cpp
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h
 
 CMakeFiles/PokemonBattle.dir/src/main.cpp.obj
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx

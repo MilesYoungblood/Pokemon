@@ -13,24 +13,25 @@
 namespace {
     std::condition_variable cv;
     std::mutex mutex;
+
+    constexpr int DOUBLE_TILE = Map::TILE_SIZE * 2;
+    constexpr int HALF_TILE = Map::TILE_SIZE / 2;
+    constexpr int TENTH_TILE = Map::TILE_SIZE / 10;
+    constexpr int HALF_WINDOW_HEIGHT = Game::WINDOW_HEIGHT / 2;
+
+    constexpr SDL_Rect RECTANGLE(
+            Game::WINDOW_HEIGHT / TENTH_TILE / 2,
+            Game::WINDOW_HEIGHT - DOUBLE_TILE,
+            HALF_WINDOW_HEIGHT,
+            DOUBLE_TILE - HALF_TILE
+    );
+
+    constexpr int BORDER_SIZE = (Game::WINDOW_WIDTH / 2 - (DOUBLE_TILE - HALF_TILE)) / (TENTH_TILE * 3) / 5;
 }
 
-constexpr int DOUBLE_TILE = Map::TILE_SIZE * 2;
-constexpr int HALF_TILE = Map::TILE_SIZE / 2;
-constexpr int TENTH_TILE = Map::TILE_SIZE / 10;
-constexpr int HALF_WINDOW_HEIGHT = Game::WINDOW_HEIGHT / 2;
-
-constexpr SDL_Rect RECTANGLE(
-        Game::WINDOW_HEIGHT / TENTH_TILE / 2,
-        Game::WINDOW_HEIGHT - DOUBLE_TILE,
-        HALF_WINDOW_HEIGHT,
-        DOUBLE_TILE - HALF_TILE
-);
-
-constexpr int BORDER_SIZE = (Game::WINDOW_WIDTH / 2 - (DOUBLE_TILE - HALF_TILE)) / (TENTH_TILE * 3) / 5;
-
 void delay() {
-    std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+    std::unique_lock lock(mutex);
+    cv.wait_for(lock, std::chrono::seconds(1), [] -> bool { return not Game::getInstance().isRunning(); });
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
 }
 
@@ -161,6 +162,42 @@ void Battle::render() const {
     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 }
 
+void Battle::openSelectionBox(const std::function<void()> &callback) {
+    KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
+
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+        "Select a Pokemon",
+        [] -> void { KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN); }
+    );
+    std::vector<std::pair<std::string, std::function<void()>>> pairs;
+
+    for (int i = 1; i < Player::getPlayer().partySize(); ++i) {
+        pairs.emplace_back(Player::getPlayer()[i].getName(), [this, callback, i] -> void {
+            KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
+
+            this->renderPlayer = false;
+            // FIXME does not account for fainted Pokemon as of now
+            GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
+            Player::getPlayer().swapPokemon(0, i);
+            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+            GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+                    "You swapped out " + Player::getPlayer()[i].getName() + " for " + Player::getPlayer()[0].getName() + '!',
+                    [this, callback] -> void {
+                        std::this_thread::sleep_for(std::chrono::seconds(1));
+                        this->renderPlayer = true;
+
+                        if (callback != nullptr) {
+                            callback();
+                        }
+                    }
+            );
+        });
+    }
+
+    GraphicsEngine::getInstance().addGraphic<SelectionBox>(SDL_Rect(50, 50, 250, 300), 5, pairs);
+}
+
 void Battle::initMain() {
     KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
 
@@ -277,12 +314,16 @@ void Battle::initPokemon() {
     });
     for (int i = 1; i < Player::getPlayer().partySize(); ++i) {
         pairs.emplace_back(Player::getPlayer()[i].getName(), [this, i] -> void {
+            this->renderPlayer = false;
+
+            GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
             Player::getPlayer().swapPokemon(0, i);
             GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
             GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                     "You swapped out " + Player::getPlayer()[i].getName() + " for " + Player::getPlayer()[0].getName() + '!',
                     [this] -> void {
                         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                        this->renderPlayer = true;
                         this->handleTurn(Player::getPlayer()[0].numMoves());
                         this->changeState(State::ENGAGE, true);
                     }
@@ -328,7 +369,7 @@ std::string statusMessage(const Pokemon &pokemon) {
     }
 }
 
-void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *skip) {
+void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *skip, bool *target) {
     (*attacker)[0][move].action((*attacker)[0], (*defender)[0], *skip);
 
     {
@@ -343,8 +384,10 @@ void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *
         *skip = true;
         GraphicsEngine::getInstance().getGraphic<TextBox>().push(
                 (*defender)[0].getName() + " fained!",
-                [this, attacker, defender] -> void {
+                [this, attacker, defender, target] -> void {
                     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
+                    *target = false;
                     defender->handleFaint();
                     if (not defender->canFight()) {
                         attacker->handleVictory();
@@ -368,7 +411,7 @@ void Battle::engage(Trainer *attacker, Trainer *defender, const int move, bool *
                         GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
                     }
                     else {
-                        // TODO implement switchOut for trainer and player inside the classes
+                        defender->handleSwitchOut(target);
                     }
                 }
         );
@@ -382,10 +425,10 @@ void Battle::preStatus(const bool isPlayerFaster) {
 
     bool *toSkip = isPlayerFaster ? &this->skipOpponent : &this->skipPlayer;
 
-    const auto action = [this, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender, const int move) -> void {
+    const auto action = [this, &toSkip, &hasStatusCondition](Trainer *attacker, Trainer *defender, bool *renderTarget, const int move) -> void {
         if (move < (*attacker)[0].numMoves()) {
             if (not hasStatusCondition((*attacker)[0].getStatus())) {
-                this->engage(attacker, defender, move, toSkip);
+                this->engage(attacker, defender, move, toSkip, renderTarget);
             }
             else {
                 GraphicsEngine::getInstance().getGraphic<TextBox>().push(statusMessage((*attacker)[0]), delay);
@@ -399,9 +442,12 @@ void Battle::preStatus(const bool isPlayerFaster) {
     const int firstMove = isPlayerFaster ? this->playerMove : this->opponentMove;
     const int secondMove = isPlayerFaster ? this->opponentMove : this->playerMove;
 
-    action(first, second, firstMove);
-    if (not *toSkip and second->canFight()) {
-        action(second, first, secondMove);
+    bool *firstTarget = isPlayerFaster ? &this->renderOpponent : &this->renderPlayer;
+    bool *secondTarget = isPlayerFaster ? &this->renderPlayer : &this->renderOpponent;
+
+    action(first, second, firstTarget, firstMove);
+    if (not *toSkip and first->canFight() and second->canFight()) {
+        action(second, first, secondTarget, secondMove);
     }
 }
 
@@ -597,12 +643,12 @@ void Battle::terminate() {
         this->states.pop();
     }
 
-    auto cleanMap = [](std::unordered_map<std::string, SDL_Texture *> &map) -> void{
-        for (auto &[fst, snd] : map) {
-            if (snd != nullptr) {
-                SDL_DestroyTexture(snd);
+    auto cleanMap = [](std::unordered_map<std::string, SDL_Texture *> &map) -> void {
+        for (auto &[id, sprite] : map) {
+            if (sprite != nullptr) {
+                SDL_DestroyTexture(sprite);
                 if (strlen(SDL_GetError()) > 0){
-                    std::clog << "Unable to destroy pokemon battle-sprite \"" << fst << ": " << SDL_GetError() << '\n';
+                    std::clog << "Unable to destroy pokemon battle-sprite \"" << id << ": " << SDL_GetError() << '\n';
                     SDL_ClearError();
                 }
             }
@@ -638,13 +684,13 @@ void Battle::terminate() {
     this->isRunning = true;
 }
 
-void Battle::changeState(const State state, const bool clear) {
+void Battle::changeState(const State x, const bool clear) {
     if (clear) {
         while (not this->states.empty()) {
             this->states.pop();
         }
     }
-    this->states.push(state);
+    this->states.push(x);
     if (this->initFunctions.at(static_cast<std::size_t>(this->states.top())) != nullptr) {
         this->initFunctions.at(static_cast<std::size_t>(this->states.top()))();
     }

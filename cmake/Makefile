@@ -2183,6 +2183,30 @@ src/Enums/Type/Type.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.s
 .PHONY : src/Enums/Type/Type.cpp.s
 
+src/Functions/GeneralFunctions.obj: src/Functions/GeneralFunctions.cpp.obj
+.PHONY : src/Functions/GeneralFunctions.obj
+
+# target to build an object file
+src/Functions/GeneralFunctions.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.obj
+.PHONY : src/Functions/GeneralFunctions.cpp.obj
+
+src/Functions/GeneralFunctions.i: src/Functions/GeneralFunctions.cpp.i
+.PHONY : src/Functions/GeneralFunctions.i
+
+# target to preprocess a source file
+src/Functions/GeneralFunctions.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.i
+.PHONY : src/Functions/GeneralFunctions.cpp.i
+
+src/Functions/GeneralFunctions.s: src/Functions/GeneralFunctions.cpp.s
+.PHONY : src/Functions/GeneralFunctions.s
+
+# target to generate assembly for a file
+src/Functions/GeneralFunctions.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Functions/GeneralFunctions.cpp.s
+.PHONY : src/Functions/GeneralFunctions.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -2474,6 +2498,9 @@ help:
 	@echo ... src/Enums/Type/Type.obj
 	@echo ... src/Enums/Type/Type.i
 	@echo ... src/Enums/Type/Type.s
+	@echo ... src/Functions/GeneralFunctions.obj
+	@echo ... src/Functions/GeneralFunctions.i
+	@echo ... src/Functions/GeneralFunctions.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s

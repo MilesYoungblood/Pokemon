@@ -26,7 +26,7 @@ public:
 
     void handleEvents() const;
 
-    void update();
+    void update() const;
 
     void render() const;
 

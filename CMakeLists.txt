@@ -78,6 +78,7 @@ set(SOURCES
         src/Classes/ThreadPool/ThreadPool.cpp
         src/Classes/ThreadPool/ThreadPool.h
         src/Classes/Matrix/Matrix.h
+        src/Functions/GeneralFunctions.cpp
 )
 
 set(MOVES
@@ -245,20 +246,6 @@ add_executable(PokemonBattle
 )
 
 target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/Constants/constants.h)
-
-#target_compile_options(PokemonBattle PRIVATE -fmodules-ts)
-
-#set_source_files_properties(src/Classes/Move/Move.ixx PROPERTIES
-#        LANGUAGE CXX
-#        LINKER_LANGUAGE CXX
-#        COMPILE_FLAGS "-fmodules-ts"
-#)
-
-#set_source_files_properties(src/Functions/GeneralFunctions.ixx PROPERTIES
-#        LANGUAGE CXX
-#        LINKER_LANGUAGE CXX
-#        COMPILE_FLAGS "-fmodules-ts"
-#)
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_image.dll)

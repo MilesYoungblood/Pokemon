@@ -5,30 +5,29 @@
 #include "GraphicsEngine.h"
 
 void GraphicsEngine::update() {
-    for (const auto &[fst, snd] : this->graphics) {
-        std::vector<std::unique_ptr<Graphic>> &ref = this->graphics.at(fst);
-        for (long long int i = 0; i < ref.size(); ++i) {
-            if (ref.at(i)->isActive()) {
-                ref.at(i)->update();
+    for (auto &set : this->graphics | std::views::values) {
+        for (long long int i = 0; i < set.size(); ++i) {
+            if (set.at(i)->isActive()) {
+                set.at(i)->update();
             }
             else {
-                ref.erase(ref.cbegin() + i);
+                set.erase(set.cbegin() + i);
             }
         }
     }
 }
 
 void GraphicsEngine::render() const {
-    for (const auto &[fst, snd] : this->graphics) {
-        for (const auto &graphic : snd) {
+    for (auto &set : this->graphics | std::views::values) {
+        for (const auto &graphic : set) {
             graphic->render();
         }
     }
 }
 
 void GraphicsEngine::clear() {
-    for (auto &[fst, snd] : this->graphics) {
-        snd.clear();
+    for (auto &set : this->graphics | std::views::values) {
+        set.clear();
     }
 }
 

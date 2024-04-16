@@ -21,11 +21,27 @@ void Overworld::init() {
     Player::getPlayer().addPokemon("Emboar");
     Player::getPlayer()[0].addMove("Heat Crash");
     Player::getPlayer()[0].addMove("Head Smash");
+
+    Player::getPlayer().addPokemon("Zebstrika");
+    Player::getPlayer()[1].addMove("Volt Tackle");
+
+    Player::getPlayer().addPokemon("Excadrill");
+
+    Player::getPlayer().addPokemon("Carracosta");
+
+    Player::getPlayer().addPokemon("Braviary");
+
+    Player::getPlayer().addPokemon("Hydreigon");
+    Player::getPlayer()[5].addMove("Dark Pulse");
+    Player::getPlayer()[5].addMove("Dragon Pulse");
+    Player::getPlayer()[5].addMove("Flamethrower");
+    Player::getPlayer()[5].addMove("Focus Blast");
 }
 
 void Overworld::handleEvents() {
     std::unique_lock lock(this->mutex);
     this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
+    std::cout << entitiesUpdating << " entities updating\n";
 
     if (entitiesUpdating > 0 and not this->pollEvent()) {
         return;
@@ -57,6 +73,10 @@ void Overworld::update() {
 void Overworld::render() const {
     this->currentMap->render();
     GraphicsEngine::getInstance().render();
+}
+
+void Overworld::clean() {
+    this->currentMap.reset(nullptr);
 }
 
 void Overworld::save() {

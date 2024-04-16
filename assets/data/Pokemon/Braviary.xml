@@ -1,2 +1,26 @@
 <xml version="1.0" encoding="UTF-8">
+    <data>
+        <species>Valiant</species>
+        <types>
+            <type>1</type>
+            <type>10</type>
+        </types>
+        <abilities>
+            <ability>Keen Eye</ability>
+            <ability>Sheer Force</ability>
+        </abilities>
+        <height>1.5</height>
+        <weight>41.0</weight>
+        <gender male="100.0"/>
+        <base_stats>
+            <stat id="hp">100</stat>
+            <stat id="attack">123</stat>
+            <stat id="defense">75</stat>
+            <stat id="sp_attack">57</stat>
+            <stat id="sp_defense">75</stat>
+            <stat id="speed">80</stat>
+        </base_stats>
+        <base_level>54</base_level>
+        <dex>134</dex>
+    </data>
 </xml>

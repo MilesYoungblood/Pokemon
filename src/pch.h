@@ -19,10 +19,11 @@
 #include <mutex>
 #include <condition_variable>
 #include <functional>
+#include <memory>
 #include <optional>
 #include <algorithm>
-#include <memory>
 #include <random>
+#include <ranges>
 
 
 #pragma clang diagnostic push

@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "../../Scene.h"
 #include "../../../../../Stopwatch/Stopwatch.h"
 #include "../../../../../Map/Map.h"
+#include "../../Scene.h"
 
 inline Stopwatch keyDelay;
 inline bool momentum;
@@ -32,6 +32,8 @@ public:
     void update() override;
 
     void render() const override;
+
+    void clean();
 
     static void save();
 

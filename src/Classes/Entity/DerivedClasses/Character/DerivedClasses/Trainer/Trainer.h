@@ -114,6 +114,10 @@ public:
     /// \brief Handles specific faint protocol
     virtual void handleFaint();
 
+    /// \brief Handles specific switch out protocol
+    /// \param renderSelf will be set back to true after the switch out is made
+    virtual void handleSwitchOut(bool *renderSelf);
+
     /// \brief Handles specific victory protocol
     virtual void handleVictory();
 

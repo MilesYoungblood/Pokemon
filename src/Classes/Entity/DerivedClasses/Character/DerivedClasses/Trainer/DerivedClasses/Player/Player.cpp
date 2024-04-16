@@ -44,6 +44,13 @@ void Player::handleFaint() {
     ++this->numFainted;
 }
 
+void Player::handleSwitchOut(bool *renderSelf) {
+    Scene::getInstance<Battle>().openSelectionBox([renderSelf] -> void {
+        *renderSelf = true;
+        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+    });
+}
+
 void Player::handleVictory() {
     Mixer::getInstance().playMusic("TrainerVictory");
 }

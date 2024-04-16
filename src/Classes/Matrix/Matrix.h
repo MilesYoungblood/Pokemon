@@ -13,16 +13,20 @@ public:
         this->data = std::vector(m, std::vector<T>(n));
     }
 
+    [[nodiscard]] std::size_t getM() const {
+        return this->data.size();
+    }
+
+    [[nodiscard]] std::size_t getN() const {
+        return this->data[0].size();
+    }
+
     T &operator()(const std::size_t i, const std::size_t j) {
         return this->data[i][j];
     }
 
     [[nodiscard]] T operator()(const std::size_t i, const std::size_t j) const {
         return this->data[i][j];
-    }
-
-    [[nodiscard]] T at(const std::size_t i, const std::size_t j) const {
-        return this->data.at(i).at(j);
     }
 
     typename std::vector<std::vector<T>>::iterator begin() {

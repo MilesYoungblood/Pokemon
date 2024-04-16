@@ -631,6 +631,9 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Type/Type.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Functions/GeneralFunctions.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
