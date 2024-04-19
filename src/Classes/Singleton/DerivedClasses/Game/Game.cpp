@@ -38,13 +38,34 @@ void Game::handleEvents() const {
     this->currentScene->handleEvents();
 }
 
-void Game::update() const {
+void Game::update() {
+    if (currentScene->getState(Scene::State::FADING_IN)) {
+        this->currentScene->fadeIn();
+
+        if (this->currentScene->getState(Scene::State::FADED_IN)) {
+            this->currentScene->setState(Scene::State::RUNNING);
+        }
+    }
+
     this->currentScene->update();
+
+    if (currentScene->getState(Scene::State::FADING_OUT)) {
+        this->currentScene->fadeOut();
+
+        if (this->currentScene->getState(Scene::State::FADED_OUT)) {
+            this->currentScene = this->scenes.at(static_cast<std::size_t>(*this->nextScene));
+            this->nextScene.reset(nullptr);
+
+            this->currentScene->init();
+            this->currentScene->setState(Scene::State::FADING_IN);
+        }
+    }
 }
 
 void Game::render() const {
     SDL_RenderClear(this->renderer);
     this->currentScene->render();
+    TextureManager::getInstance().drawScreen();
     SDL_RenderPresent(this->renderer);
 }
 
@@ -64,8 +85,9 @@ void Game::setRenderColor(const SDL_Color color) const {
     SDL_SetRenderDrawColor(this->renderer, color.r, color.g, color.b, color.a);
 }
 
-void Game::changeScene(Scene::Id id) {
-    this->currentScene = this->scenes.at(static_cast<std::size_t>(id));
+void Game::changeScene(Scene::Id x) {
+    this->nextScene = std::make_unique<Scene::Id>(x);
+    this->currentScene->setState(Scene::State::FADING_OUT);
 }
 
 Game::Game() {

@@ -9,33 +9,50 @@
 #include "../../../Camera/Camera.h"
 #include "Overworld.h"
 
+#include "../../../TextureManager/TextureManager.h"
+
 namespace {
     std::unordered_map<Character *, Character::State> characterStates;
 }
 
 void Overworld::init() {
-    this->currentMap = std::make_unique<Map>("Nuvema Town");
+    static bool wasInit = false;
+    if (not wasInit) {
+        this->currentMap = std::make_unique<Map>("Nuvema Town", "NuvemaTown");
 
-    Player::getPlayer().setName("Hilbert");
+        Player::getPlayer().setName("Hilbert");
 
-    Player::getPlayer().addPokemon("Emboar");
-    Player::getPlayer()[0].addMove("Heat Crash");
-    Player::getPlayer()[0].addMove("Head Smash");
+        Player::getPlayer().addPokemon("Emboar");
+        Player::getPlayer()[0].addMove("Heat Crash");
+        Player::getPlayer()[0].addMove("Head Smash");
 
-    Player::getPlayer().addPokemon("Zebstrika");
-    Player::getPlayer()[1].addMove("Volt Tackle");
+        Player::getPlayer().addPokemon("Zebstrika");
+        Player::getPlayer()[1].addMove("Volt Tackle");
 
-    Player::getPlayer().addPokemon("Excadrill");
+        Player::getPlayer().addPokemon("Excadrill");
 
-    Player::getPlayer().addPokemon("Carracosta");
+        Player::getPlayer().addPokemon("Carracosta");
 
-    Player::getPlayer().addPokemon("Braviary");
+        Player::getPlayer().addPokemon("Braviary");
 
-    Player::getPlayer().addPokemon("Hydreigon");
-    Player::getPlayer()[5].addMove("Dark Pulse");
-    Player::getPlayer()[5].addMove("Dragon Pulse");
-    Player::getPlayer()[5].addMove("Flamethrower");
-    Player::getPlayer()[5].addMove("Focus Blast");
+        Player::getPlayer().addPokemon("Hydreigon");
+        Player::getPlayer()[5].addMove("Dark Pulse");
+        Player::getPlayer()[5].addMove("Dragon Pulse");
+        Player::getPlayer()[5].addMove("Flamethrower");
+        Player::getPlayer()[5].addMove("Focus Blast");
+
+        Camera::getInstance().lockOnPlayer(*this->currentMap);
+
+        wasInit = true;
+    }
+}
+
+void Overworld::fadeIn() {
+    Game::getInstance().setRenderColor(Constants::Color::BLACK);
+
+    TextureManager::getInstance().setScreenOpacity(SDL_ALPHA_TRANSPARENT);
+    Mixer::getInstance().playMusic(getInstance<Overworld>().getCurrentMap().getId());
+    this->setState(State::FADED_IN);
 }
 
 void Overworld::handleEvents() {
@@ -70,6 +87,24 @@ void Overworld::update() {
     GraphicsEngine::getInstance().update();
 }
 
+void Overworld::fadeOut() {
+    static bool colorChanged = false;
+    if (not colorChanged) {
+        TextureManager::getInstance().setScreenColor(255, 255, 255);
+        colorChanged = true;
+        ++entitiesUpdating;
+    }
+
+    if (not TextureManager::getInstance().isScreenOpaque()) {
+        TextureManager::getInstance().darken();
+    }
+    else {
+        this->setState(State::FADED_OUT);
+        colorChanged = false;
+        --entitiesUpdating;
+    }
+}
+
 void Overworld::render() const {
     this->currentMap->render();
     GraphicsEngine::getInstance().render();
@@ -79,25 +114,22 @@ void Overworld::clean() {
     this->currentMap.reset(nullptr);
 }
 
-void Overworld::save() {
-}
-
 void Overworld::changeMap(const std::pair<Project::Position, std::string> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
-        std::clog << "Error fading out \"" << this->currentMap->getMusic() << "\": " << SDL_GetError() << '\n';
+        std::clog << "Error fading out \"" << this->currentMap->getId() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();
         Game::getInstance().terminate();
         return;
     }
 
     Mix_HookMusicFinished([] -> void {
-        Mixer::getInstance().playMusic(getInstance<Overworld>().currentMap->getMusic());
+        Mixer::getInstance().playMusic(getInstance<Overworld>().currentMap->getId());
     });
 
     characterStates.clear();
 
     // move the new map into the current map variable
-    this->currentMap = std::make_unique<Map>(data.second.c_str());
+    this->currentMap = std::make_unique<Map>(data.second.c_str(), "");
 
     Player::getPlayer().getMapPosition() = data.first;
     Player::getPlayer().getScreenPosition().setPosition(data.first.getX() * Map::TILE_SIZE, data.first.getY() * Map::TILE_SIZE);

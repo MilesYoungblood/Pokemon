@@ -8,7 +8,13 @@
 
 class TitleScreen final : public Scene {
 public:
+    void init() override;
+
+    void fadeIn() override;
+
     void update() override;
+
+    void fadeOut() override;
 
     void render() const override;
 

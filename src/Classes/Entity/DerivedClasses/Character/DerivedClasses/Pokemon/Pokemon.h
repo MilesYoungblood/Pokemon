@@ -90,6 +90,14 @@ public:
 
     [[nodiscard]] std::string hpFullMessage() const;
 
+    [[nodiscard]] std::string initMessage() const override;
+
+    Pokemon *getAttacker() override;
+
+    [[nodiscard]] const Pokemon *getAttacker() const override;
+
+    [[nodiscard]] bool canFight() const override;
+
     Move &operator[](int index) const;
 
     std::vector<std::unique_ptr<Move>>::iterator begin();
@@ -101,6 +109,8 @@ public:
     [[nodiscard]] std::vector<std::unique_ptr<Move>>::const_iterator end() const;
 
 private:
+    static const std::unordered_map<std::string, std::pair<Stat, Stat>> natures;
+
     Project::Resource hp{};
 
     std::array<int, 5> baseStats;
@@ -111,6 +121,7 @@ private:
     std::vector<std::unique_ptr<Move>> moveSet;
     std::string ability;
 
+    std::string nature;
     std::string gender;
 
     StatusCondition status{ StatusCondition::NONE };

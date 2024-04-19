@@ -26,7 +26,7 @@ public:
 
     void handleEvents() const;
 
-    void update() const;
+    void update();
 
     void render() const;
 
@@ -38,7 +38,7 @@ public:
 
     void setRenderColor(SDL_Color color) const;
 
-    void changeScene(Scene::Id id);
+    void changeScene(Scene::Id x);
 
 private:
     const std::array<int, 2> fps{ 30, 60 };
@@ -56,6 +56,7 @@ private:
     };
 
     Scene *currentScene{ this->scenes[static_cast<std::size_t>(Scene::Id::TITLE_SCREEN)] };
+    std::unique_ptr<Scene::Id> nextScene{ nullptr };
 
     friend class Singleton;
 

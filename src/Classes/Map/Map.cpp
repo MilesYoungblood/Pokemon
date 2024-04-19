@@ -14,7 +14,7 @@ void handleError(const std::string &filename, const char *name, const char *node
 
 void Map::parseTmx() {
     tinyxml2::XMLDocument tmxFile;
-    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->music + ".tmx").data()) !=
+    if (tmxFile.LoadFile(std::string_view("../assets/Tiled/Tilemaps/" + this->id + ".tmx").data()) !=
         tinyxml2::XMLError::XML_SUCCESS) {
         tmxFile.PrintError();
         std::terminate();
@@ -22,24 +22,24 @@ void Map::parseTmx() {
 
     const tinyxml2::XMLElement *mapElement = tmxFile.FirstChildElement("map");
     if (mapElement == nullptr) {
-        handleError(this->music + ".tmx", "map", "element");
+        handleError(this->id + ".tmx", "map", "element");
         return;
     }
 
     const int width = mapElement->IntAttribute("width");
     if (width == 0) {
-        handleError(this->music + ".tmx", "width", "attribute");
+        handleError(this->id + ".tmx", "width", "attribute");
         return;
     }
     const int height = mapElement->IntAttribute("height");
     if (height == 0) {
-        handleError(this->music + ".tmx", "height", "attribute");
+        handleError(this->id + ".tmx", "height", "attribute");
         return;
     }
 
     const tinyxml2::XMLElement *tilesetElement = mapElement->FirstChildElement("tileset");
     if (tilesetElement == nullptr) {
-        handleError(this->music + ".tmx", "tileset", "element");
+        handleError(this->id + ".tmx", "tileset", "element");
         return;
     }
 
@@ -47,13 +47,13 @@ void Map::parseTmx() {
     while (tilesetElement != nullptr) {
         const int firstGidAttribute = tilesetElement->IntAttribute("firstgid", -1);
         if (firstGidAttribute == -1) {
-            handleError(this->music + ".tmx", "firstgid", "attribute");
+            handleError(this->id + ".tmx", "firstgid", "attribute");
             return;
         }
 
         const std::string sourceAttribute(tilesetElement->Attribute("source"));
         if (sourceAttribute.empty()) {
-            handleError(this->music + ".tmx", "source", "attribute");
+            handleError(this->id + ".tmx", "source", "attribute");
             return;
         }
 
@@ -86,7 +86,7 @@ void Map::parseTsx(const int firstGidAttribute, const std::string &sourceAttribu
     }
 
     this->collisionSet.reserve(tileCount);
-    this->tileImages.reserve(tileCount);
+    this->tileSprites.reserve(tileCount);
 
     tinyxml2::XMLElement *gridElement = tsElement->FirstChildElement("grid");
     if (gridElement == nullptr) {
@@ -134,8 +134,8 @@ void Map::parseTsx(const int firstGidAttribute, const std::string &sourceAttribu
         copy.erase(0, 21);
         copy.erase(copy.size() - 4);
 
-        this->tileImages.push_back(TextureManager::getInstance().loadTexture("terrain/" + copy + ".png"));
-        if (this->tileImages.end().base() == nullptr) {
+        this->tileSprites.push_back(TextureManager::getInstance().loadTexture("terrain/" + copy + ".png"));
+        if (this->tileSprites.end().base() == nullptr) {
             std::clog << "Error loading texture \"" << copy << "\"\n";
             Game::getInstance().terminate();
         }
@@ -146,18 +146,18 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, const int width, cons
     for (const tinyxml2::XMLElement *layerElement = mapElement->FirstChildElement("layer");
          layerElement != nullptr; layerElement = layerElement->NextSiblingElement("layer")) {
         if (const int idAttribute = layerElement->IntAttribute("id"); idAttribute == 0) {
-            handleError(music + ".tmx", "id", "attribute");
+            handleError(this->id + ".tmx", "id", "attribute");
             return;
         }
         const tinyxml2::XMLElement *dataElement = layerElement->FirstChildElement("data");
         if (dataElement == nullptr) {
-            handleError(music + ".tmx", "data", "element");
+            handleError(this->id + ".tmx", "data", "element");
             return;
         }
 
         const char *csvData = dataElement->GetText();
         if (csvData == nullptr) {
-            handleError(music + ".tmx", "data", "text");
+            handleError(this->id + ".tmx", "data", "text");
             return;
         }
 
@@ -182,14 +182,14 @@ void Map::loadEntities() {
     tinyxml2::XMLDocument xmlFile;
     // first try to load from temp files
     // this means that the Player has been to this switched from this map this session
-    if (xmlFile.LoadFile(std::string("../assets/data/Map/temp/" + this->music + ".xml").data()) !=
+    if (xmlFile.LoadFile(std::string("../assets/data/Map/temp/" + this->id + ".xml").data()) !=
         tinyxml2::XMLError::XML_SUCCESS) {
         // then try to load from backup files;
         // this is the first time the Player has been to this map this session
-        if (xmlFile.LoadFile(std::string_view("../assets/data/Map/backup/" + this->music + ".xml").data()) !=
+        if (xmlFile.LoadFile(std::string_view("../assets/data/Map/backup/" + this->id + ".xml").data()) !=
             tinyxml2::XMLError::XML_SUCCESS) {
             // this will only be reached if there is no new save data for this map
-            if (xmlFile.LoadFile(std::string_view("../assets/data/Map/initial/" + this->music + ".xml").data()) !=
+            if (xmlFile.LoadFile(std::string_view("../assets/data/Map/initial/" + this->id + ".xml").data()) !=
                 tinyxml2::XMLError::XML_SUCCESS) {
                 xmlFile.PrintError();
                 Game::getInstance().terminate();
@@ -200,13 +200,13 @@ void Map::loadEntities() {
 
     tinyxml2::XMLElement *xmlElement = xmlFile.FirstChildElement("xml");
     if (xmlElement == nullptr) {
-        handleError(this->music + ".xml", "xml", "element");
+        handleError(this->id + ".xml", "xml", "element");
         return;
     }
 
     tinyxml2::XMLElement *entityListElement = xmlElement->FirstChildElement("entities");
     if (entityListElement == nullptr) {
-        handleError(this->music + ".xml", "entities", "element");
+        handleError(this->id + ".xml", "entities", "element");
         return;
     }
 
@@ -214,7 +214,7 @@ void Map::loadEntities() {
          entityElement = entityElement->NextSiblingElement("entity")) {
         const char *classAttribute = entityElement->Attribute("class");
         if (classAttribute == nullptr) {
-            handleError(this->music + ".xml", "class", "attribute");
+            handleError(this->id + ".xml", "class", "attribute");
             return;
         }
 
@@ -230,7 +230,7 @@ void Map::loadEntities() {
 void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
     const std::string idAttribute(entityElement->Attribute("id"));
     if (idAttribute.empty()) {
-        handleError(this->music + ".xml", "id", "attribute");
+        handleError(this->id + ".xml", "id", "attribute");
         return;
     }
 
@@ -245,55 +245,55 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
 
     tinyxml2::XMLElement *nameElement = entityElement->FirstChildElement("name");
     if (nameElement == nullptr) {
-        handleError(this->music + ".xml", "name", "element");
+        handleError(this->id + ".xml", "name", "element");
         return;
     }
 
     const char *trainerName = nameElement->GetText();
     if (trainerName == nullptr) {
-        handleError(this->music + ".xml", "name", "text");
+        handleError(this->id + ".xml", "name", "text");
         return;
     }
 
     tinyxml2::XMLElement *positionElement = nameElement->NextSiblingElement("position");
     if (positionElement == nullptr) {
-        handleError(this->music + ".xml", "position", "element");
+        handleError(this->id + ".xml", "position", "element");
         return;
     }
 
     const int xPos = positionElement->IntAttribute("x", -1);
     if (xPos == -1) {
-        handleError(this->music + ".xml", "x", "attribute");
+        handleError(this->id + ".xml", "x", "attribute");
         return;
     }
 
     const int yPos = positionElement->IntAttribute("y", -1);
     if (yPos == -1) {
-        handleError(this->music + ".xml", "y", "attribute");
+        handleError(this->id + ".xml", "y", "attribute");
         return;
     }
 
     tinyxml2::XMLElement *directionElement = positionElement->NextSiblingElement("direction");
     if (directionElement == nullptr) {
-        handleError(this->music + ".xml", "direction", "element");
+        handleError(this->id + ".xml", "direction", "element");
         return;
     }
 
     const int trainerDirection = directionElement->IntText(-1);
     if (trainerDirection == -1) {
-        handleError(this->music + ".xml", "direction", "text");
+        handleError(this->id + ".xml", "direction", "text");
         return;
     }
 
     tinyxml2::XMLElement *visionElement = directionElement->NextSiblingElement("vision");
     if (visionElement == nullptr) {
-        handleError(this->music + ".xml", "vision", "element");
+        handleError(this->id + ".xml", "vision", "element");
         return;
     }
 
     const int trainerVision = visionElement->IntText(-1);
     if (trainerVision == -1) {
-        handleError(this->music + ".xml", "vision", "text");
+        handleError(this->id + ".xml", "vision", "text");
         return;
     }
 
@@ -304,7 +304,7 @@ void Map::loadTrainer1(tinyxml2::XMLElement *entityElement) {
 void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *visionElement) {
     tinyxml2::XMLElement *dialogueListElement = visionElement->NextSiblingElement("dialogue");
     if (dialogueListElement == nullptr) {
-        handleError(this->music + ".xml", "dialogue", "element");
+        handleError(this->id + ".xml", "dialogue", "element");
         return;
     }
 
@@ -323,11 +323,11 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 
     tinyxml2::XMLElement *partyElement = dialogueListElement->NextSiblingElement("party");
     if (partyElement == nullptr) {
-        handleError(this->music + ".xml", "party", "element");
+        handleError(this->id + ".xml", "party", "element");
         return;
     }
     if (partyElement->ChildElementCount() == 0) {
-        std::clog << "Invalid file format in file " << this->music << ".xml" << ": Trainer \"" << trainer->getName()
+        std::clog << "Invalid file format in file " << this->id << ".xml" << ": Trainer \"" << trainer->getName()
                   << " must have at least 1 Pokemon\n";
         std::terminate();
     }
@@ -336,18 +336,18 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
          pokemonElement = pokemonElement->NextSiblingElement("pokemon")) {
         const char *idAttribute = pokemonElement->Attribute("id");
         if (idAttribute == nullptr) {
-            handleError(this->music + ".xml", "id", "attribute");
+            handleError(this->id + ".xml", "id", "attribute");
             return;
         }
 
         tinyxml2::XMLElement *moveSetElement = pokemonElement->FirstChildElement("move_set");
         if (moveSetElement == nullptr) {
-            handleError(this->music + ".xml", "move_set", "element");
+            handleError(this->id + ".xml", "move_set", "element");
             return;
         }
 
         if (moveSetElement->ChildElementCount() == 0) {
-            std::clog << "Invalid file format in file " << this->music << ".xml" << ": Pokemon \"" << idAttribute
+            std::clog << "Invalid file format in file " << this->id << ".xml" << ": Pokemon \"" << idAttribute
                       << " must have at least 1 Move\n";
             std::terminate();
         }
@@ -358,7 +358,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
              moveElement = moveElement->NextSiblingElement("move")) {
             const char *moveIdAttribute = moveElement->Attribute("id");
             if (moveIdAttribute == nullptr) {
-                handleError(this->music + ".xml", "id", "attribute");
+                handleError(this->id + ".xml", "id", "attribute");
                 return;
             }
 
@@ -382,37 +382,37 @@ void Map::loadItem(tinyxml2::XMLElement *entityElement) {
     }
     const char *idAttribute = entityElement->Attribute("id");
     if (idAttribute == nullptr) {
-        handleError(this->music + ".xml", "id", "attribute");
+        handleError(this->id + ".xml", "id", "attribute");
         return;
     }
 
     tinyxml2::XMLElement *quantityElement = entityElement->FirstChildElement("quantity");
     if (quantityElement == nullptr) {
-        handleError(this->music + ".xml", "quantity", "element");
+        handleError(this->id + ".xml", "quantity", "element");
         return;
     }
 
     const int quantity = quantityElement->IntText(-1);
     if (quantity == -1) {
-        handleError(this->music + ".xml", "quantity", "text");
+        handleError(this->id + ".xml", "quantity", "text");
         return;
     }
 
     const tinyxml2::XMLElement *positionElement = quantityElement->NextSiblingElement("position");
     if (positionElement == nullptr) {
-        handleError(this->music + ".xml", "position", "element");
+        handleError(this->id + ".xml", "position", "element");
         return;
     }
 
     const int xPos = positionElement->IntAttribute("x", -1);
     if (xPos == -1) {
-        handleError(this->music + ".xml", "x", "attribute");
+        handleError(this->id + ".xml", "x", "attribute");
         return;
     }
 
     const int yPos = positionElement->IntAttribute("y", -1);
     if (yPos == -1) {
-        handleError(this->music + ".xml", "y", "attribute");
+        handleError(this->id + ".xml", "y", "attribute");
         return;
     }
 
@@ -423,8 +423,8 @@ void Map::loadItem(tinyxml2::XMLElement *entityElement) {
     this->entities.push_back(std::move(item));
 }
 
-Map::Map(const char *name) : name(name), music(name) {
-    std::erase_if(this->music, [](const char c) -> bool {
+Map::Map(const char *name, const char *id) : name(name), id(id) {
+    std::erase_if(this->id, [](const char c) -> bool {
         return c == ' ';
     });
 
@@ -443,7 +443,7 @@ Map::Map(const char *name) : name(name), music(name) {
 }
 
 Map::~Map() {
-    for (const auto tileImage : this->tileImages) {
+    for (const auto tileImage : this->tileSprites) {
         if (tileImage != nullptr) {
             SDL_DestroyTexture(tileImage);
             if (strlen(SDL_GetError()) > 0) {
@@ -521,8 +521,8 @@ std::vector<std::unique_ptr<Entity>>::const_iterator Map::end() const {
     return this->entities.cend();
 }
 
-std::string Map::getMusic() const {
-    return this->music;
+std::string Map::getId() const {
+    return this->id;
 }
 
 void Map::shift(Direction direction, int n) {
@@ -595,7 +595,7 @@ void Map::render() const {
                 sdlRect.y = screen.getY();
                 // prevents rendering tiles that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect) and id != 0) {
-                    TextureManager::getInstance().draw(this->tileImages.at(id), sdlRect);
+                    TextureManager::getInstance().draw(this->tileSprites.at(id), sdlRect);
                 }
             }
         }

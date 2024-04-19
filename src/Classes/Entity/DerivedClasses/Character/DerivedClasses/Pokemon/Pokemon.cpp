@@ -6,12 +6,52 @@
 #include "../../../../../Singleton/DerivedClasses/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 
+const std::unordered_map<std::string, std::pair<Pokemon::Stat, Pokemon::Stat>> Pokemon::natures{
+    std::make_pair("Adamant", std::make_pair(Stat::ATTACK, Stat::SP_ATTACK)),
+    std::make_pair("Bashful", std::make_pair(Stat::SP_ATTACK, Stat::SP_ATTACK)),
+    std::make_pair("Bold", std::make_pair(Stat::DEFENSE, Stat::ATTACK)),
+    std::make_pair("Brave", std::make_pair(Stat::ATTACK, Stat::SPEED)),
+    std::make_pair("Calm", std::make_pair(Stat::SP_DEFENSE, Stat::ATTACK)),
+    std::make_pair("Careful", std::make_pair(Stat::SP_DEFENSE, Stat::SP_ATTACK)),
+    std::make_pair("Docile", std::make_pair(Stat::DEFENSE, Stat::DEFENSE)),
+    std::make_pair("Gentle", std::make_pair(Stat::SP_DEFENSE, Stat::DEFENSE)),
+    std::make_pair("Hardy", std::make_pair(Stat::ATTACK, Stat::ATTACK)),
+    std::make_pair("Hasty", std::make_pair(Stat::SPEED, Stat::DEFENSE)),
+    std::make_pair("Impish", std::make_pair(Stat::DEFENSE, Stat::SP_ATTACK)),
+    std::make_pair("Jolly", std::make_pair(Stat::SPEED, Stat::SP_ATTACK)),
+    std::make_pair("Lax", std::make_pair(Stat::DEFENSE, Stat::SP_DEFENSE)),
+    std::make_pair("Lonely", std::make_pair(Stat::ATTACK, Stat::DEFENSE)),
+    std::make_pair("Mild", std::make_pair(Stat::SP_ATTACK, Stat::DEFENSE)),
+    std::make_pair("Modest", std::make_pair(Stat::SP_ATTACK, Stat::ATTACK)),
+    std::make_pair("Naive", std::make_pair(Stat::SPEED, Stat::SP_DEFENSE)),
+    std::make_pair("Naughty", std::make_pair(Stat::ATTACK, Stat::SP_DEFENSE)),
+    std::make_pair("Quiet", std::make_pair(Stat::SP_ATTACK, Stat::SPEED)),
+    std::make_pair("Quirky", std::make_pair(Stat::SP_DEFENSE, Stat::SP_DEFENSE)),
+    std::make_pair("Rash", std::make_pair(Stat::SP_ATTACK, Stat::SP_DEFENSE)),
+    std::make_pair("Relaxed", std::make_pair(Stat::DEFENSE, Stat::SPEED)),
+    std::make_pair("Sassy", std::make_pair(Stat::SP_DEFENSE, Stat::SPEED)),
+    std::make_pair("Serious", std::make_pair(Stat::SPEED, Stat::SPEED)),
+    std::make_pair("Timid", std::make_pair(Stat::SPEED, Stat::ATTACK))
+};
+
 Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
     if (const double ratio = Pokedex::getInstance().getGenderRatio(id); ratio == -1) {
         this->gender = "Genderless";
     }
     else {
         this->gender = binomial(ratio) ? "Male" : "Female";
+    }
+
+    {
+        const int random = generateInteger(1, static_cast<int>(natures.size()));
+        int i = 0;
+        for (const auto &nature: natures | std::views::keys) {
+            if (i == random) {
+                break;
+            }
+            this->nature = nature;
+            ++i;
+        }
     }
 
     this->hp = Project::Resource(Pokedex::getInstance().getBaseStat(id, 0), this->hp.getCurrent());
@@ -214,6 +254,22 @@ std::string Pokemon::hpEmptyMessage() const {
 
 std::string Pokemon::hpFullMessage() const {
     return this->getName() + "'s HP is full!";
+}
+
+std::string Pokemon::initMessage() const {
+    return "A wild " + this->getId() + " appeared!";
+}
+
+Pokemon *Pokemon::getAttacker() {
+    return this;
+}
+
+const Pokemon *Pokemon::getAttacker() const {
+    return this;
+}
+
+bool Pokemon::canFight() const {
+    return not this->hp.empty();
 }
 
 Move &Pokemon::operator[](const int index) const {

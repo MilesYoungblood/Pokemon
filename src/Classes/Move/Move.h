@@ -9,7 +9,7 @@
 
 class Pokemon;
 
-enum Effect : Uint8 {
+enum class Effect : Uint8 {
     BINDING,
     CONSECUTIVE,
     HP_DRAINING,

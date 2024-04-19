@@ -7,10 +7,15 @@
 #include "../../../Mixer/Mixer.h"
 #include "../../../KeyManager/KeyManager.h"
 #include "../../../../../Graphic/DerivedClasses/Texture/Texture.h"
+#include "../../../TextureManager/TextureManager.h"
 
 namespace {
     bool showPrompt = true;
 }
+
+void TitleScreen::init() {}
+
+void TitleScreen::fadeIn() {}
 
 void TitleScreen::update() {
     static int flashSpeed = 30;
@@ -33,23 +38,25 @@ void TitleScreen::update() {
         flashSpeed = 10;
         showPrompt = false;
 
-        // FIXME make code following this execute based on MixChannelFinished callback
         Mixer::getInstance().playSound("select");
-
-        getInstance<Overworld>().init();
-
-        Camera::getInstance().lockOnPlayer(getInstance<Overworld>().getCurrentMap());
-
-        Mixer::getInstance().playMusic(getInstance<Overworld>().getCurrentMap().getMusic());
-
-        Game::getInstance().changeScene(Id::OVERWORLD);
-        Game::getInstance().setRenderColor(Constants::Color::BLACK);
+        Mix_ChannelFinished([](int) -> void {
+            Game::getInstance().changeScene(Id::OVERWORLD);
+        });
     }
 
     static int counter = 0;
     if (++counter == flashSpeed) {
         showPrompt = not showPrompt;
         counter = 0;
+    }
+}
+
+void TitleScreen::fadeOut() {
+    if (not TextureManager::getInstance().isScreenOpaque()) {
+        TextureManager::getInstance().darken();
+    }
+    else {
+        this->setState(State::FADED_OUT);
     }
 }
 

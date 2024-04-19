@@ -25,17 +25,19 @@ public:
 
     ~Overworld() override = default;
 
-    void init();
+    void init() override;
 
     void handleEvents() override;
 
+    void fadeIn() override;
+
     void update() override;
+
+    void fadeOut() override;
 
     void render() const override;
 
     void clean();
-
-    static void save();
 
     void changeMap(const std::pair<Project::Position, std::string> &data);
 

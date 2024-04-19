@@ -1,0 +1,19 @@
+<xml version="1.0" encoding="UTF-8">
+    <name>Hilbert</name>
+    <position x="7" y="17"/>
+    <direction>1</direction>
+    <party>
+        <pokemon id="Emboar">
+        </pokemon>
+        <pokemon id="Zebstrika">
+        </pokemon>
+        <pokemon id="Excadrill">
+        </pokemon>
+        <pokemon id="Carracosta">
+        </pokemon>
+        <pokemon id="Braviary">
+        </pokemon>
+        <pokemon id="Hydreigon">
+        </pokemon>
+    </party>
+</xml>

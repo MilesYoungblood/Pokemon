@@ -11,6 +11,9 @@ public:
     enum class Id : Uint8 {
         TITLE_SCREEN, OVERWORLD, BATTLE
     };
+    enum class State : Uint8 {
+        FADED_IN, FADING_IN, RUNNING, FADING_OUT, FADED_OUT
+    };
 
     Scene(const Scene &) = delete;
 
@@ -28,11 +31,21 @@ public:
         return state;
     }
 
+    void setState(State x);
+
+    [[nodiscard]] bool getState(State x) const;
+
     static void pushEvent();
+
+    virtual void init() = 0;
 
     virtual void handleEvents();
 
+    virtual void fadeIn() = 0;
+
     virtual void update() = 0;
+
+    virtual void fadeOut() = 0;
 
     virtual void render() const = 0;
 
@@ -47,4 +60,6 @@ protected:
 
 private:
     SDL_Event event{};
+
+    State currentState{ State::RUNNING };
 };

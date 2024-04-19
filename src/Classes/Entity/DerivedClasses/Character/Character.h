@@ -67,6 +67,36 @@ public:
     /// \return the respective sprite key
     [[nodiscard]] std::string getKey() const override;
 
+    /// Getter for the initial battle message
+    /// \return the initial send out message in battle
+    [[nodiscard]] virtual std::string initMessage() const;
+
+    /// \brief Handles specific faint protocol
+    virtual void handleFaint();
+
+    /// \brief Handles specific switch out protocol
+    /// \param renderFlag will be set back to true after the switch out is made
+    virtual void handleSwitchOut(bool &renderFlag);
+
+    /// \brief Handles specific victory protocol
+    virtual void handleVictory();
+
+    /// \brief Getter for specific defeat message
+    /// \return the victory message
+    [[nodiscard]] virtual std::vector<std::string> getDefeatMessage() const;
+
+    /// \brief Getter for the attacking Pokemon in a battle
+    /// \return the attacking Pokemon
+    virtual Pokemon *getAttacker();
+
+    /// \brief Getter for the attacking Pokemon in a battle
+    /// \return the attacking Pokemon
+    [[nodiscard]] virtual const Pokemon *getAttacker() const;
+
+    /// \brief Checker for if the character can fight
+    /// \return true if the character can fight
+    [[nodiscard]] virtual bool canFight() const;
+
     /// \brief Overrides Entity::update
     void update() override;
 
@@ -128,14 +158,6 @@ protected:
     /// \brief Updates the character's sprite
     void updateAnimation();
 
-    /// \brief Checker for if the character can fight
-    /// \return true if the character can fight
-    [[nodiscard]] virtual bool canFight() const;
-
-    /// \brief Checker for if the trainer is a trainer
-    /// \return false
-    [[nodiscard]] virtual bool isTrainer() const;
-
     /// \brief Increments the character's pixel counter
     void incPixelCounter();
 
@@ -153,12 +175,12 @@ private:
     std::string id;
 
     std::uint32_t vision;                                                     // line of sight
+
     int pixelCounter{ 0 };                                                    // counts how many pixels this has moved
+    int currentFrame{ 0 };                                                    // current frame of the sprite
 
     Direction currentDirection{ Direction::DOWN };                            // which way the entity is facing
     std::atomic<State> currentState{ State::IDLE };                          // dictates what the entity is doing
-
-    int currentCol{ 0 };
 
     std::unique_ptr<Project::Intelligence> intelligence{ nullptr };
 

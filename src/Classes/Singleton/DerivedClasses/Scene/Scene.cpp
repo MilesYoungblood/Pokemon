@@ -6,6 +6,14 @@
 #include "../KeyManager/KeyManager.h"
 #include "Scene.h"
 
+void Scene::setState(const State x) {
+    this->currentState = x;
+}
+
+bool Scene::getState(const State x) const {
+    return this->currentState == x;
+}
+
 void Scene::pushEvent() {
     SDL_Event commonEvent;
     SDL_memset(&commonEvent, 0, sizeof(commonEvent));

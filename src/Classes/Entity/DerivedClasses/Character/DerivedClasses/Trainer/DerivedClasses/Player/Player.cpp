@@ -25,6 +25,26 @@ Player &Player::getPlayer() {
     }
 }
 
+void Player::addItem(const std::string &id, const int n) {
+    this->addItem(std::move(itemMap.at(id)(n)));
+}
+
+void Player::addItem(std::unique_ptr<Item> item) {
+    try {
+        // if item already exists within our inventory,
+        // add the amount of the item to our item in the inventory
+        if (this->inventory.at(item->getClass()).contains(item->getName())) {
+            this->inventory.at(item->getClass()).at(item->getName())->add(item->getQuantity());
+            return;
+        }
+
+        this->inventory.at(item->getClass())[item->getName()] = std::move(item);
+    }
+    catch (const std::exception &e) {
+        throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
+    }
+}
+
 bool Player::canMoveForward(const Map &map) const {
     switch (this->getDirection()) {
         case Direction::UP:
@@ -44,9 +64,9 @@ void Player::handleFaint() {
     ++this->numFainted;
 }
 
-void Player::handleSwitchOut(bool *renderSelf) {
-    Scene::getInstance<Battle>().openSelectionBox([renderSelf] -> void {
-        *renderSelf = true;
+void Player::handleSwitchOut(bool &renderFlag) {
+    Scene::getInstance<Battle>().openSelectionBox([&renderFlag] -> void {
+        renderFlag = true;
         GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     });
 }
@@ -55,15 +75,24 @@ void Player::handleVictory() {
     Mixer::getInstance().playMusic("TrainerVictory");
 }
 
-std::vector<std::string> Player::winMessage(const Trainer *trainer) const {
-    return std::vector({ "You defeated " + trainer->getId() + ' ' + trainer->getName() + '!' });
+std::vector<std::string> Player::getDefeatMessage() const {
+    return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
 }
 
 bool Player::canFight() const {
     return this->numFainted < this->partySize();
 }
 
-Player::Player() : Trainer("Player", 7, 17, Direction::DOWN, 1) {}
+Player::Player() : Trainer("Player", 7, 17, Direction::DOWN, 1) {
+    this->inventory[typeid(RestoreItem).hash_code()];
+    this->inventory[typeid(StatusItem).hash_code()];
+    this->inventory[typeid(PokeBall).hash_code()];
+    this->inventory[typeid(BattleItem).hash_code()];
+
+    for (auto &box : this->pc) {
+        box.resize(ROWS_PER_BOX, COLS_PER_BOX);
+    }
+}
 
 /// \brief converts a SDL_Scancode to a Direction
 /// \param scancode the scancode to convert
@@ -92,6 +121,7 @@ void Player::handleMove(const SDL_Scancode scancode) {
         // refresh the KeyManager to check if the player is still holding down
         KeyManager::getInstance().update();
 
+        // FIXME rapidly tapping to just turn does not work right now
         // if the user is still holding down the key after 10ms, begin movement
         if (KeyManager::getInstance().getKey(scancode)) {
             momentum = true;

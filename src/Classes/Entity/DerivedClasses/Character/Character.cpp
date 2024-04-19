@@ -52,6 +52,39 @@ std::string Character::getKey() const {
     return this->id;
 }
 
+std::string Character::initMessage() const {
+    return this->id + ' ' + this->name + " sent out " + this->getAttacker()->getName() + '!';
+}
+
+void Character::handleFaint() {
+    std::cout << "Calling Character::handleFaint\n";
+}
+
+void Character::handleSwitchOut(bool &renderFlag) {
+    std::cout << "Calling Character::handleSwitchOut\n";
+}
+
+void Character::handleVictory() {
+    std::cout << "Calling Character::handleVictory\n";
+}
+
+std::vector<std::string> Character::getDefeatMessage() const {
+    std::cout << "Calling Character::getDefeatMessage\n";
+    return {};
+}
+
+Pokemon *Character::getAttacker() {
+    return nullptr;
+}
+
+const Pokemon *Character::getAttacker() const {
+    return nullptr;
+}
+
+bool Character::canFight() const {
+    return false;
+}
+
 void Character::update() {
     switch (this->currentState) {
         case State::WALKING:
@@ -86,6 +119,8 @@ void Character::update() {
     }
 }
 
+constexpr int OFFSET = (Map::TILE_SIZE / 2 + Map::TILE_SIZE / 4) / 2;
+
 void Character::render(SDL_Texture *sprite) const {
     static const auto get_key = [](const Direction direction) -> int {
         switch (direction) {
@@ -106,8 +141,8 @@ void Character::render(SDL_Texture *sprite) const {
 
     TextureManager::getInstance().drawFrame(
             sprite,
-            SDL_Rect(this->getScreenPosition().getX(), this->getScreenPosition().getY(), Map::TILE_SIZE, Map::TILE_SIZE),
-            this->currentCol,
+            SDL_Rect(this->getScreenPosition().getX(), this->getScreenPosition().getY() - OFFSET, Map::TILE_SIZE, Map::TILE_SIZE),
+            this->currentFrame,
             get_key(this->currentDirection)
     );
 }
@@ -271,33 +306,35 @@ void Character::interact() {
                 GraphicsEngine::getInstance().removeGraphic<TextBox>();
 
                 if (Player::getPlayer().canFight() and this->canFight()) {
+                    KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
                     Game::getInstance().changeScene(Scene::Id::BATTLE);
                     Game::getInstance().setRenderColor(Constants::Color::WHITE);
 
-                    Scene::getInstance<Battle>().init(dynamic_cast<Trainer *>(this));
+                    Scene::getInstance<Battle>().init(this);
 
                     Mixer::getInstance().playMusic("TrainerBattle");
                 }
                 else {
                     Player::getPlayer().setState(State::IDLE);
                     this->currentState = State::IDLE;
+
+                    // re-lock the Enter key
+                    KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
+
+                    // sets a cool-down period before the Enter key can be registered again;
+                    // this is needed because the program will register a button as
+                    // being pressed faster than the user can lift their finger
+                    std::thread coolDown([] -> void {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                        KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
+                    });
+                    coolDown.detach();
+
+                    keyDelay.reset();
                 }
                 --entitiesUpdating;
             }
         }
-        // re-lock the Enter key
-        KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
-
-        // sets a cool-down period before the Enter key can be registered again;
-        // this is needed because the program will register a button as
-        // being pressed faster than the user can lift their finger
-        std::thread coolDown([] -> void {
-            std::this_thread::sleep_for(std::chrono::milliseconds(500));
-            KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
-        });
-        coolDown.detach();
-
-        keyDelay.reset();
     }
 }
 
@@ -325,15 +362,7 @@ void Character::idle() {
 }
 
 void Character::updateAnimation() {
-    this->currentCol = (this->currentCol + 1) % 4;
-}
-
-bool Character::canFight() const {
-    return false;
-}
-
-bool Character::isTrainer() const {
-    return false;
+    this->currentFrame = (this->currentFrame + 1) % 4;
 }
 
 void Character::incPixelCounter() {

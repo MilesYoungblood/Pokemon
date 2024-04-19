@@ -13,6 +13,13 @@ public:
         this->data = std::vector(m, std::vector<T>(n));
     }
 
+    void resize(const std::size_t m, const std::size_t n) {
+        this->data.resize(m);
+        for (auto &row : this->data) {
+            row.resize(n);
+        }
+    }
+
     [[nodiscard]] std::size_t getM() const {
         return this->data.size();
     }

@@ -19,6 +19,8 @@ bool TextureManager::init(SDL_Renderer *renderer) {
     if (not this->isInitialized) {
         this->textureRenderer = renderer;
 
+        SDL_SetRenderDrawBlendMode(this->textureRenderer, SDL_BLENDMODE_BLEND);
+
         this->font = TTF_OpenFont("../assets/fonts/PokemonGb-RAeo.ttf", FONT_SIZE);
         if (this->font == nullptr) {
             std::clog << "Error creating font: " << SDL_GetError() << '\n';
@@ -215,6 +217,45 @@ void TextureManager::drawBorderedText(const std::string_view text, const int x, 
 
     SDL_DestroyTexture(textTexture);
     SDL_FreeSurface(textSurface);
+}
+
+void TextureManager::drawScreen() const {
+    SDL_Color previous;
+    // save the previous draw color
+    SDL_GetRenderDrawColor(this->textureRenderer, &previous.r, &previous.g, &previous.b, &previous.a);
+
+    // draw the black screen at its alpha value
+    SDL_SetRenderDrawColor(this->textureRenderer, this->screenColor.r, this->screenColor.g, this->screenColor.b, this->screenColor.a);
+    SDL_RenderFillRect(this->textureRenderer, nullptr);
+
+    // reset the draw color to its previous state
+    SDL_SetRenderDrawColor(this->textureRenderer, previous.r, previous.g, previous.b, previous.a);
+}
+
+void TextureManager::darken() {
+    this->screenColor.a = std::min(this->screenColor.a + 2, SDL_ALPHA_OPAQUE);
+}
+
+void TextureManager::brighten() {
+    this->screenColor.a = std::max(this->screenColor.a - 2, SDL_ALPHA_TRANSPARENT);
+}
+
+void TextureManager::setScreenColor(const Uint8 r, const Uint8 g, const Uint8 b) {
+    this->screenColor.r = r;
+    this->screenColor.g = g;
+    this->screenColor.b = b;
+}
+
+void TextureManager::setScreenOpacity(const Uint8 alpha) {
+    this->screenColor.a = alpha;
+}
+
+bool TextureManager::isScreenOpaque() const {
+    return this->screenColor.a == SDL_ALPHA_OPAQUE;
+}
+
+bool TextureManager::isScreenTransparent() const {
+    return this->screenColor.a == SDL_ALPHA_TRANSPARENT;
 }
 
 TTF_Font *TextureManager::getFont() const {

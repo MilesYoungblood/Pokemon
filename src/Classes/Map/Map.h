@@ -18,7 +18,7 @@ public:
         TILE_SIZE = 80
     };
 
-    explicit Map(const char *name);
+    Map(const char *name, const char *id);
 
     Map(const Map &) = delete;
 
@@ -67,9 +67,9 @@ public:
     /// \return a const iterator to the end of the entity vector
     std::vector<std::unique_ptr<Entity>>::const_iterator end() const;
 
-    /// \brief Getter for music
-    /// \return the music title
-    [[nodiscard]] std::string getMusic() const;
+    /// \brief Getter for id
+    /// \return the map's id
+    [[nodiscard]] std::string getId() const;
 
     /// \brief Shifts all tiles and entities a certain direction and distance
     /// \param direction direction to shift
@@ -89,7 +89,7 @@ public:
 
 private:
     std::string name;
-    std::string music;
+    std::string id;
 
     struct Tile {
         int id;
@@ -97,9 +97,7 @@ private:
     };
 
     std::vector<Matrix<Tile>> layout;                               // The map is vector of Tile matrices
-    std::vector<SDL_Texture *> tileImages{ nullptr };               // texture for each tile id
-
-    std::unordered_set<int> collisionSet;                           // set of tile ids that cause collision
+    std::vector<SDL_Texture *> tileSprites{ nullptr };              // texture for each tile id
 
     struct ExitPoint {
         Project::Position map;
@@ -109,7 +107,9 @@ private:
 
     std::vector<ExitPoint> exitPoints;                              // the set of exit points in the map
 
-    std::vector<std::unique_ptr<Entity>> entities;                  // the set of entities in this map
+    std::unordered_set<int> collisionSet;                           // the set of tile ids that cause collision
+
+    std::vector<std::unique_ptr<Entity>> entities;                  // the set of entities in the map
     ThreadPool threadPool;                                          // help speed up updating tiles and entities
 
     std::unordered_map<std::string, SDL_Texture *> entitySprites;   // mapping of entity sprites by id

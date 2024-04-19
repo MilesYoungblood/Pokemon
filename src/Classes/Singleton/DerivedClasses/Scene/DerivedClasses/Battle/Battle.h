@@ -10,9 +10,17 @@
 
 class Battle final : public Scene {
 public:
-    void init(Trainer *t);
+    void init() override;
+
+    void init(Character *);
+
+    void fadeIn() override;
 
     void update() override;
+
+    void fadeOut() override;
+
+    void launch();
 
     void render() const override;
 
@@ -41,30 +49,31 @@ private:
         [this] -> void { this->updateEngage(); }
     };
 
-    std::unordered_map<std::string, SDL_Texture *> playerSprites;
-    std::unordered_map<std::string, SDL_Texture *> opponentSprites;
-
     std::size_t turn{ 0 };
 
-    Trainer *opponent{ nullptr };
+    struct Data {
+        ResourceBar *hpBar{ nullptr };
 
-    ResourceBar *playerBar{ nullptr };
-    ResourceBar *opponentBar{ nullptr };
+        std::array<int, 7> statModifiers{ 0, 0, 0, 0, 0, 0, 0 };
 
-    int playerMove{ 0 };
-    int opponentMove{ 0 };
+        int move{ 0 };
+        int skipCounter{ 0 };
 
-    bool skipPlayer{ false };
-    bool skipOpponent{ false };
+        bool skip { false };
+        bool renderSprite { false };
 
-    bool renderPlayer{ false };
-    bool renderOpponent{ false };
+        std::unordered_map<std::string, SDL_Texture *> sprites;
+    };
+
+    std::array<std::pair<Character *, std::unique_ptr<Data>>, 2> participants;
 
     bool isRunning{ true };
 
     friend class Scene;
 
     Battle() = default;
+
+    Data &getParticipant(const Character *character);
 
     void initMain();
 
@@ -74,11 +83,11 @@ private:
 
     static void initEngage();
 
-    void engage(Trainer *attacker, Trainer *defender, int move, bool *skip, bool *target);
+    void engage(Character *attacker, Character *defender);
 
-    void preStatus(bool isPlayerFaster);
+    void preStatus(Character *first, Character *second);
 
-    void postStatus(bool isPlayerFaster);
+    void postStatus(Character *first, Character *second);
 
     void handleTurn(int move);
 

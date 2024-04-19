@@ -9,9 +9,7 @@
 #include "Trainer.h"
 
 Trainer::Trainer(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
-        : Character(id, name, x, y, direction, vision) {
-    this->init();
-}
+        : Character(id, name, x, y, direction, vision) {}
 
 void Trainer::addPokemon(const char *id) {
     if (this->party.size() == MAX_POKEMON) {
@@ -52,25 +50,6 @@ void Trainer::swapPokemon(const std::size_t a, const std::size_t b) {
     }
 }
 
-void Trainer::addItem(const std::string &id, const int n) {
-    this->addItem(std::move(itemMap.at(id)(n)));
-}
-
-void Trainer::addItem(std::unique_ptr<Item> item) {
-    try {
-        // if item already exists within our inventory
-        if (this->items.at(item->getClass()).contains(item->getName())) {
-            this->items.at(item->getClass()).at(item->getName())->add(item->getQuantity());
-            return;
-        }
-
-        this->items.at(item->getClass())[item->getName()] = std::move(item);
-    }
-    catch (const std::exception &e) {
-        throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
-    }
-}
-
 Pokemon &Trainer::operator[](const std::size_t index) const {
     try {
         return *this->party.at(index);
@@ -104,7 +83,19 @@ void Trainer::handleFaint() {
     this->party.erase(this->party.cbegin());
 }
 
-void Trainer::handleSwitchOut(bool *renderSelf) {
+void switchOut(const Trainer *trainer, bool &flag) {
+    GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+    GraphicsEngine::getInstance().getGraphic<TextBox>().push(
+        trainer->getId() + ' ' + trainer->getName() + " sent out " + (*trainer)[0].getName() + '!',
+        [&flag] -> void {
+            flag = true;
+            std::this_thread::sleep_for(std::chrono::seconds(1));
+            GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
+        }
+    );
+}
+
+void Trainer::handleSwitchOut(bool &renderFlag) {
     GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
         this->getId() + ' ' + this->getName() + " is about to send out " + this->party[0]->getName() + '.',
@@ -114,31 +105,23 @@ void Trainer::handleSwitchOut(bool *renderSelf) {
         }
     );
 
-    auto switchOut = [this, renderSelf] -> void {
-        GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-        GraphicsEngine::getInstance().getGraphic<TextBox>().push(
-            this->getId() + ' ' + this->getName() + " sent out " + this->party[0]->getName() + '!',
-            [renderSelf] -> void {
-                *renderSelf = true;
-                std::this_thread::sleep_for(std::chrono::seconds(1));
-                GraphicsEngine::getInstance().getGraphic<TextBox>().pop();
-            }
-        );
-    };
-
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(
         "Would you like to swap out Pokemon?",
-        [switchOut] -> void {
+        [this, &renderFlag] -> void {
             KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN);
 
-            auto f = [switchOut] -> void {
+            std::vector<std::pair<std::string, std::function<void()>>> pairs;
+            pairs.emplace_back("Yes", [this, &renderFlag] -> void {
+                Mixer::getInstance().playSound("select");
                 GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
-                Scene::getInstance<Battle>().openSelectionBox(switchOut);
-            };
-
-            std::vector<std::pair<std::string, std::function<void()>>> pairs({
-                std::make_pair("Yes", f),
-                std::make_pair("No", switchOut)
+                Scene::getInstance<Battle>().openSelectionBox([this, &renderFlag] -> void {
+                    switchOut(this, renderFlag);
+                });
+            });
+            pairs.emplace_back("No", [this, &renderFlag] -> void {
+                Mixer::getInstance().playSound("select");
+                GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
+                switchOut(this, renderFlag);
             });
 
             GraphicsEngine::getInstance().addGraphic<SelectionBox>(SDL_Rect(50, 50, 100, 100), 5, pairs);
@@ -148,16 +131,20 @@ void Trainer::handleSwitchOut(bool *renderSelf) {
 
 void Trainer::handleVictory() {}
 
-std::vector<std::string> Trainer::winMessage(const Trainer * /*trainer*/) const {
-    return std::vector<std::string>({ "You've run out of usable Pokemon!", "You blacked out!" });
+std::vector<std::string> Trainer::getDefeatMessage() const {
+    return std::vector({ "You defeated " + this->getId() + ' ' + this->getName() + '!' });
+}
+
+Pokemon *Trainer::getAttacker() {
+    return this->party[0].get();
+}
+
+const Pokemon *Trainer::getAttacker() const {
+    return this->party[0].get();
 }
 
 bool Trainer::canFight() const {
     return not this->party.empty();
-}
-
-bool Trainer::isTrainer() const {
-    return true;
 }
 
 void Trainer::idle() {
@@ -238,13 +225,4 @@ void Trainer::idle() {
 }
 
 Trainer::Trainer(const char *id, const int x, const int y, const Direction direction, const int vision)
-        : Character(id, x, y, direction, vision) {
-    this->init();
-}
-
-void Trainer::init() {
-    this->items[typeid(RestoreItem).hash_code()];
-    this->items[typeid(StatusItem).hash_code()];
-    this->items[typeid(PokeBall).hash_code()];
-    this->items[typeid(BattleItem).hash_code()];
-}
+        : Character(id, x, y, direction, vision) {}

@@ -76,10 +76,13 @@ void Item::interact() {
 
 void Item::update() {}
 
+constexpr int DIMENSION = Map::TILE_SIZE * 3 / 10;
+constexpr int OFFSET = (Map::TILE_SIZE - DIMENSION) / 2;
+
 void Item::render(SDL_Texture *sprite) const {
     TextureManager::getInstance().draw(
         sprite,
-        SDL_Rect(this->getScreenPosition().getX() + 28, this->getScreenPosition().getY() + 28, 24, 24)
+        SDL_Rect(this->getScreenPosition().getX() + OFFSET, this->getScreenPosition().getY() + DIMENSION, DIMENSION, DIMENSION)
     );
 }
 
