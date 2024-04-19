@@ -4,9 +4,11 @@
 
 #include "Mixer.h"
 
+#include <chrono>
+
 Mixer::~Mixer() {
-    for (auto &[fst, snd] : this->soundboard) {
-        Mix_FreeChunk(this->soundboard.at(fst));
+    for (const auto &id: this->soundboard | std::views::keys) {
+        Mix_FreeChunk(this->soundboard.at(id));
     }
     Mix_FreeMusic(this->music);
 }
@@ -22,6 +24,13 @@ void Mixer::playSound(const char *id) const {
 }
 
 void Mixer::playMusic(const std::string &id) {
+    static std::string lastId;
+
+    if (id == lastId) {
+        return;
+    }
+    lastId = id;
+
     Mix_FreeMusic(this->music);
     this->music = Mix_LoadMUS(std::string_view("../assets/audio/music/" + id + ".mp3").data());
 
