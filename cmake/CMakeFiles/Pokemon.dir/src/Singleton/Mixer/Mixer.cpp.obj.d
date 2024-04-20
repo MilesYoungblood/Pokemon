@@ -1,7 +1,7 @@
 CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj: \
- C:\Users\miles\OneDrive\Documents\GitHub\PokemonBattle\src\Singleton\Mixer\Mixer.cpp \
- C:\Users\miles\OneDrive\Documents\GitHub\PokemonBattle\src\Singleton\Mixer\Mixer.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Singleton/Singleton.h \
+ C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Mixer\Mixer.cpp \
+ C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Mixer\Mixer.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/chrono \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h \
  C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/chrono.h \

@@ -1,8 +1,8 @@
-# Install script for directory: C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle
+# Install script for directory: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/PokemonBattle")
+  set(CMAKE_INSTALL_PREFIX "C:/Program Files (x86)/Pokemon")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

@@ -2,6 +2,6 @@
 
 #pragma GCC system_header
 #ifdef __cplusplus
-#include "C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/include/pch.h"
-#include "C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/utility/Constants/constants.h"
+#include "C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/include/pch.h"
+#include "C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Constants/constants.h"
 #endif // __cplusplus

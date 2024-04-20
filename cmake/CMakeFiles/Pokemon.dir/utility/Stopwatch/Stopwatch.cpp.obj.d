@@ -1,3 +1,3 @@
 CMakeFiles/Pokemon.dir/utility/Stopwatch/Stopwatch.cpp.obj: \
- C:\Users\miles\OneDrive\Documents\GitHub\PokemonBattle\utility\Stopwatch\Stopwatch.cpp \
- C:\Users\miles\OneDrive\Documents\GitHub\PokemonBattle\utility\Stopwatch\Stopwatch.h
+ C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\utility\Stopwatch\Stopwatch.cpp \
+ C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\utility\Stopwatch\Stopwatch.h

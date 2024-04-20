@@ -19,6 +19,7 @@ void TitleScreen::fadeIn() {}
 
 void TitleScreen::update() {
     static int flashSpeed = 30;
+    static int counter = 0;
 
     if (KeyManager::getInstance().getKey(SDL_SCANCODE_RETURN)) {
         Mix_HaltMusic();
@@ -36,7 +37,7 @@ void TitleScreen::update() {
         coolDown.detach();
 
         flashSpeed = 10;
-        showPrompt = false;
+        counter = 9;
 
         Mixer::getInstance().playSound("select");
         Mix_ChannelFinished([](int) -> void {
@@ -44,7 +45,6 @@ void TitleScreen::update() {
         });
     }
 
-    static int counter = 0;
     if (++counter == flashSpeed) {
         showPrompt = not showPrompt;
         counter = 0;

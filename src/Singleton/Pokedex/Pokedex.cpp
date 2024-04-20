@@ -173,7 +173,7 @@ Pokedex::Pokedex() {
                 errorMessage(entry, "stat", "text");
                 continue;
             }
-            this->baseStats[name].at(stats[i]) = statElement->IntText();
+            this->baseStats[name][stats[i]] = statElement->IntText();
             ++i;
         }
 
