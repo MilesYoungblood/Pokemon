@@ -4,7 +4,7 @@
 
 #pragma once
 
-namespace Project {
+namespace Component {
     class Resource {
     public:
         Resource() = default;

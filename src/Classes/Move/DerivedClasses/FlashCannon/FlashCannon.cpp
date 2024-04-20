@@ -2,7 +2,7 @@
 // Created by Miles Youngblood on 12/3/2023.
 //
 
-#include "../../../../Functions/GeneralFunctions.h"
+#include "../../../../../utility/Functions/GeneralFunctions.h"
 #include "../../../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "FlashCannon.h"
 

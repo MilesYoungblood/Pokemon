@@ -2,30 +2,27 @@
 // Created by Miles on 10/1/2023.
 //
 
-#include "../../../../Functions/GeneralFunctions.h"
+#include "../../../../../utility/Functions/GeneralFunctions.h"
 #include "../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
 #include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
+#include "../../../Singleton/DerivedClasses/EventHandler/EventHandler.h"
 #include "../../../Singleton/DerivedClasses/Mixer/Mixer.h"
 #include "../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "Character.h"
 
 Character::Character(const char *id, const int x, const int y, const Direction direction, const int vision)
-        : Entity(x, y), id(id), vision(vision), currentDirection(direction) {}
+        : Entity(id, x, y), vision(vision), currentDirection(direction) {}
 
 Character::Character(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
-        : Entity(x, y), name(name), id(id), vision(vision), currentDirection(direction) {}
+        : Entity(id, x, y), name(name), id(id), vision(vision), currentDirection(direction) {}
 
-void Character::setName(const char *newName) {
-    this->name = newName;
+void Character::setName(const char *x) {
+    this->name = x;
 }
 
 std::string Character::getName() const {
     return this->name;
-}
-
-std::string Character::getId() const {
-    return this->id;
 }
 
 void Character::setDialogue(const std::vector<std::string> &text) {
@@ -41,7 +38,7 @@ Character::State Character::getState() const {
 }
 
 void Character::gainAutonomy() {
-    this->intelligence = std::make_unique<Project::Intelligence>(
+    this->intelligence = std::make_unique<Component::Intelligence>(
             [this] -> void { this->act(); },
             [this] -> bool { return this->currentState == State::IDLE; },
             [] -> int { return generateInteger(2, 4); }
@@ -100,7 +97,7 @@ void Character::update() {
                 this->pixelCounter = 0;
 
                 --entitiesUpdating;
-                Overworld::pushEvent();
+                EventHandler::pushEvent();
             }
             if (this->currentState != State::IDLE) {
                 ++this->pixelCounter;
@@ -147,7 +144,7 @@ void Character::render(SDL_Texture *sprite) const {
     );
 }
 
-Character::Character(std::string name, std::string id) : Entity(0, 0), name(std::move(name)), id(std::move(id)), vision(0) {}
+Character::Character(const char *id, const char *name) : Entity(id, 0, 0), name(name), vision(0) {}
 
 std::vector<std::string> Character::getDialogue() const {
     return this->dialogue;
@@ -351,7 +348,7 @@ void Character::walk() {
         this->pixelCounter = 0;
 
         --entitiesUpdating;
-        Overworld::pushEvent();
+        EventHandler::pushEvent();
     }
 }
 

@@ -9,8 +9,6 @@ include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_image)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_mixer)
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/SDL2/SDL_ttf)
 
-include_directories(C:/libs/GSL-4.0.0/include)
-
 include_directories(${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2)
 
 if (CMAKE_SIZEOF_VOID_P EQUAL 8)
@@ -31,7 +29,6 @@ set(SOURCES
         src/Classes/Entity/DerivedClasses/Item/Item.h
         src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp
         src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h
-        src/Functions/GeneralFunctions.h
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.h
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp
@@ -55,13 +52,13 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
         src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
-        src/Classes/Stopwatch/Stopwatch.h
-        src/Classes/Stopwatch/Stopwatch.cpp
+        utility/Stopwatch/Stopwatch.h
+        utility/Stopwatch/Stopwatch.cpp
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
         src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
-        src/pch.h
-        src/Constants/constants.h
-        src/Constants/constants.cpp
+        include/pch.h
+        utility/Constants/constants.h
+        utility/Constants/constants.cpp
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
         src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
         src/Classes/Singleton/Singleton.h
@@ -69,16 +66,19 @@ set(SOURCES
         src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
         src/Enums/Type/Type.cpp
         src/Enums/Type/Type.h
-        src/Enums/Time/Time.h
         src/Enums/StatusCondition/StatusCondition.cpp
         src/Enums/StatusCondition/StatusCondition.h
         src/Enums/Direction/Direction.h
         src/Classes/Entity/Entity.cpp
         src/Classes/Entity/Entity.h
-        src/Classes/ThreadPool/ThreadPool.cpp
-        src/Classes/ThreadPool/ThreadPool.h
-        src/Classes/Matrix/Matrix.h
-        src/Functions/GeneralFunctions.cpp
+        utility/ThreadPool/ThreadPool.cpp
+        utility/ThreadPool/ThreadPool.h
+        utility/Matrix/Matrix.h
+        utility/Sorter/Sorter.h
+        utility/Functions/GeneralFunctions.h
+        utility/Functions/GeneralFunctions.cpp
+        src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp
+        src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.h
 )
 
 set(MOVES
@@ -167,34 +167,16 @@ set(POKE_BALLS
         src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.h
 )
 
-set(BATTLE_ITEMS
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAttack/XAttack.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XDefense/XDefense.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpAttack/XSpAttack.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpDefense/XSpDefense.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XSpeed/XSpeed.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/DerivedClasses/XAccuracy/XAccuracy.h
-)
-
 set(ITEMS
         ${RESTORE_ITEMS}
         ${STATUS_ITEMS}
         ${POKE_BALLS}
-        ${BATTLE_ITEMS}
 )
 
 set(GRAPHICS
         src/Classes/Graphic/Graphic.cpp
         src/Classes/Graphic/Graphic.h
         src/Classes/Graphic/DerivedClasses/Graphics.h
-        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.h
-        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/Animation/Animation.cpp
         src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp
         src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h
         src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp
@@ -245,11 +227,11 @@ add_executable(PokemonBattle
         ${SCENES}
 )
 
-target_precompile_headers(PokemonBattle PRIVATE src/pch.h src/Constants/constants.h)
+target_precompile_headers(PokemonBattle PRIVATE include/pch.h utility/Constants/constants.h)
 
-target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2.dll)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_image.dll)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_mixer.dll)
-target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/libs/third_party/SDL2/SDL2_ttf.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2_image.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2_mixer.dll)
+target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2_ttf.dll)
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_SOURCE_DIR}/include/third_party/tinyxml2/tinyxml2.cpp)

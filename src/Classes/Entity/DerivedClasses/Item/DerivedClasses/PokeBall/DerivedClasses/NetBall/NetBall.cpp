@@ -4,19 +4,15 @@
 
 #include "NetBall.h"
 
-NetBall::NetBall(int n) : PokeBall(n) {}
+NetBall::NetBall(const int n) : PokeBall("Net Ball", n) {}
 
-NetBall::NetBall(int n, int x, int y) : PokeBall(n, x, y) {}
-
-std::string NetBall::getName() const {
-    return "Net Ball";
-}
+NetBall::NetBall(const int n, const int x, const int y) : PokeBall("Net Ball", n, x, y) {}
 
 std::string NetBall::getEffect() const {
     return "A somewhat different Poke Ball that works especially well on Water- and Bug-type Pokemon.";
 }
 
-double NetBall::getCatchRate(const Pokemon &pokemon, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
+double NetBall::getCatchRate(const Pokemon &pokemon, const std::size_t  /*turn*/, const bool  /*isCave*/) const {
     if (pokemon.getType1() == Type::WATER or pokemon.getType1() == Type::BUG or
         pokemon.getType2() == Type::WATER or pokemon.getType2() == Type::BUG) {
         return 3.5;
@@ -25,8 +21,8 @@ double NetBall::getCatchRate(const Pokemon &pokemon, Time  /*time*/, int  /*turn
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Net Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<NetBall>(n); };
     });
 }

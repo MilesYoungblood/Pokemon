@@ -9,8 +9,6 @@
 struct MaxPotion final : RestoreItem {
     explicit MaxPotion(int n);
 
-    [[nodiscard]] std::string getName() const override;
-
     [[nodiscard]] std::string getEffect() const override;
 
     [[nodiscard]] int getAmount() const override;

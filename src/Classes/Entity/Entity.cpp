@@ -5,21 +5,25 @@
 #include "../Map/Map.h"
 #include "Entity.h"
 
-Entity::Entity(int mapX, int mapY) : map(mapX, mapY), screen(mapX * Map::TILE_SIZE, mapY * Map::TILE_SIZE) {}
+Entity::Entity(const char *id, const int x, const int y) : id(id), map(x, y), screen(x * Map::TILE_SIZE, y * Map::TILE_SIZE) {}
 
-Project::Position &Entity::getMapPosition() {
+std::string Entity::getId() const {
+    return this->id;
+}
+
+Component::Position &Entity::getMapPosition() {
     return this->map;
 }
 
-Project::Position Entity::getMapPosition() const {
+Component::Position Entity::getMapPosition() const {
     return this->map;
 }
 
-Project::Position &Entity::getScreenPosition() {
+Component::Position &Entity::getScreenPosition() {
     return this->screen;
 }
 
-Project::Position Entity::getScreenPosition() const {
+Component::Position Entity::getScreenPosition() const {
     return this->screen;
 }
 

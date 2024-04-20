@@ -11,5 +11,4 @@
 #include "Rectangle/DerivedClasses/SelectionBox/SelectionBox.h"
 #include "Rectangle/DerivedClasses/TextBox/TextBox.h"
 #include "Texture/Texture.h"
-#include "Texture/DerivedClasses/Animation/Animation.h"
 #include "Texture/DerivedClasses/TimedVisual/TimedVisual.h"

@@ -32,7 +32,6 @@ void GraphicsEngine::clear() {
 }
 
 GraphicsEngine::GraphicsEngine() {
-    this->graphics[typeid(Animation).hash_code()];
     this->graphics[typeid(Button).hash_code()];
     this->graphics[typeid(Panel).hash_code()];
     this->graphics[typeid(Rectangle).hash_code()];

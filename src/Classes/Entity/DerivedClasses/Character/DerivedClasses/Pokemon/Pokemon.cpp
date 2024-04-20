@@ -2,7 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
-#include "../../../../../../Functions/GeneralFunctions.h"
+#include "../../../../../../../utility/Functions/GeneralFunctions.h"
 #include "../../../../../Singleton/DerivedClasses/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 
@@ -34,7 +34,7 @@ const std::unordered_map<std::string, std::pair<Pokemon::Stat, Pokemon::Stat>> P
     std::make_pair("Timid", std::make_pair(Stat::SPEED, Stat::ATTACK))
 };
 
-Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
+Pokemon::Pokemon(const char *id) : Character(id, id), baseStats(), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }) {
     if (const double ratio = Pokedex::getInstance().getGenderRatio(id); ratio == -1) {
         this->gender = "Genderless";
     }
@@ -54,7 +54,7 @@ Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statMo
         }
     }
 
-    this->hp = Project::Resource(Pokedex::getInstance().getBaseStat(id, 0), this->hp.getCurrent());
+    this->hp = Component::Resource(Pokedex::getInstance().getBaseStat(id, 0), this->hp.getCurrent());
     this->level = Pokedex::getInstance().getBaseLevel(id);
 
     for (int i = 0; i < this->baseStats.size(); ++i) {
@@ -62,9 +62,9 @@ Pokemon::Pokemon(const std::string &id) : Character(id, id), baseStats(), statMo
     }
 }
 
-Pokemon::Pokemon(std::string id, std::string name, std::string gender, std::string ability, const int level,
+Pokemon::Pokemon(const char *id, const char *name, std::string gender, std::string ability, const int level,
                  const int hp, const int attack, const int defense, const int spAttack, const int spDefense, const int speed)
-        : Character(std::move(name), std::move(id)), hp(hp, hp), baseStats({ attack, defense, spAttack, spDefense, speed }), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }), level(level),
+        : Character(id, name), hp(hp, hp), baseStats({ attack, defense, spAttack, spDefense, speed }), statModifiers({ 0, 0, 0, 0, 0, 0, 0 }), level(level),
           ability(std::move(ability)), gender(std::move(gender)) {}
 
 int Pokemon::numMoves() const {
@@ -87,11 +87,11 @@ void Pokemon::deleteMove(const int index) {
     }
 }
 
-Project::Resource &Pokemon::getHp() {
+Component::Resource &Pokemon::getHp() {
     return this->hp;
 }
 
-Project::Resource Pokemon::getHp() const {
+Component::Resource Pokemon::getHp() const {
     return this->hp;
 }
 

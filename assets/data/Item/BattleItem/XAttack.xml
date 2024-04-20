@@ -1,0 +1,9 @@
+<xml version="1.0" encoding="UTF-8">
+    <data>
+        <name>X Attack</name>
+        <effect>An item that raises the Attack stat of a Pokémon in battle. It wears off if the Pokémon is
+            withdrawn.
+        </effect>
+        <stat>Attack</stat>
+    </data>
+</xml>

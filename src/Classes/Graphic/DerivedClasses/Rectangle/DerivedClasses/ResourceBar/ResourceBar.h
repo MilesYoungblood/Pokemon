@@ -11,12 +11,12 @@ class ResourceBar final : public Rectangle {
 public:
     ResourceBar(SDL_Rect dest, SDL_Color fg, int borderSize, int amount);
 
-    Project::Resource &getProgress();
+    Component::Resource &getProgress();
 
     void update() override;
 
     void render() const override;
 
 private:
-    Project::Resource progress;
+    Component::Resource progress;
 };

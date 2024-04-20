@@ -4,19 +4,15 @@
 
 #include "UltraBall.h"
 
-UltraBall::UltraBall(const int n) : PokeBall(n) {}
+UltraBall::UltraBall(const int n) : PokeBall("Ultra Ball", n) {}
 
-UltraBall::UltraBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
-
-std::string UltraBall::getName() const {
-    return "Ultra Ball";
-}
+UltraBall::UltraBall(const int n, const int x, const int y) : PokeBall("Ultra Ball", n, x, y) {}
 
 std::string UltraBall::getEffect() const {
     return "An ultra-performance Ball that provides a higher Pokemon catch rate than a Great Ball.";
 }
 
-double UltraBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
+double UltraBall::getCatchRate(const Pokemon & /*pokemon*/, const std::size_t  /*turn*/, const bool  /*isCave*/) const {
     return 2.0;
 }
 

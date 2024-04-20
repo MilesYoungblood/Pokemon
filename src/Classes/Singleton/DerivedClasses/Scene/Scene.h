@@ -35,8 +35,6 @@ public:
 
     [[nodiscard]] bool getState(State x) const;
 
-    static void pushEvent();
-
     virtual void init() = 0;
 
     virtual void handleEvents();
@@ -52,14 +50,6 @@ public:
 protected:
     Scene() = default;
 
-    bool pollEvent();
-
-    bool waitEvent();
-
-    [[nodiscard]] SDL_EventType getEventType() const;
-
 private:
-    SDL_Event event{};
-
     State currentState{ State::RUNNING };
 };

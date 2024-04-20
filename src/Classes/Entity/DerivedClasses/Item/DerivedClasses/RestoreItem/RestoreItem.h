@@ -7,9 +7,7 @@
 #include "../../Item.h"
 
 struct RestoreItem : Item {
-    explicit RestoreItem(int quantity);
-
-    [[nodiscard]] std::string getName() const override = 0;
+    RestoreItem(const char *id, int quantity);
 
     [[nodiscard]] std::string getEffect() const override = 0;
 
@@ -21,7 +19,7 @@ struct RestoreItem : Item {
 
     void restore(Pokemon &pokemon) const;
 
-    virtual void restore(Move &move) const;
+    void restore(Move &move) const;
 
     [[nodiscard]] std::string restoreMessage(const Pokemon &pokemon) const;
 

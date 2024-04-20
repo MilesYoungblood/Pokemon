@@ -13,6 +13,6 @@ CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClass
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Position/Position.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/ThreadPool/ThreadPool.h \
- C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Matrix/Matrix.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/utility/ThreadPool/ThreadPool.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/utility/Matrix/Matrix.h \
  C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h

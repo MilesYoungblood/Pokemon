@@ -2,7 +2,7 @@
 // Created by Miles on 1/28/2024.
 //
 
-#include "../../../../../../Functions/GeneralFunctions.h"
+#include "../../../../../../../utility/Functions/GeneralFunctions.h"
 #include "../../../Game/Game.h"
 #include "../../../GraphicsEngine/GraphicsEngine.h"
 #include "../../../TextureManager/TextureManager.h"

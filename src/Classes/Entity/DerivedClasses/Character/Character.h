@@ -37,16 +37,12 @@ public:
     ~Character() override = default;
 
     /// \brief Setter for name
-    /// \param newName the new name
-    void setName(const char *newName);
+    /// \param x the new name
+    void setName(const char *x);
 
     /// \brief Getter for name
     /// \return the character's name
     [[nodiscard]] std::string getName() const;
-
-    /// \brief Getter for id
-    /// \return the character's id
-    [[nodiscard]] std::string getId() const;
 
     /// \brief Setter for dialogue
     /// \param text the new text
@@ -105,7 +101,7 @@ public:
     void render(SDL_Texture *sprite) const override;
 
 protected:
-    Character(std::string name, std::string id);
+    Character(const char *id, const char *name);
 
     /// \brief Getter for dialogue
     /// \return the character's dialogue
@@ -182,7 +178,7 @@ private:
     Direction currentDirection{ Direction::DOWN };                            // which way the entity is facing
     std::atomic<State> currentState{ State::IDLE };                          // dictates what the entity is doing
 
-    std::unique_ptr<Project::Intelligence> intelligence{ nullptr };
+    std::unique_ptr<Component::Intelligence> intelligence{ nullptr };
 
     /// \brief Performs an action
     void act();

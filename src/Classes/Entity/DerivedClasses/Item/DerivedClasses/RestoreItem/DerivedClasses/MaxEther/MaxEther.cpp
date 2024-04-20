@@ -4,11 +4,7 @@
 
 #include "MaxEther.h"
 
-MaxEther::MaxEther(const int n) : RestoreItem(n) {}
-
-std::string MaxEther::getName() const {
-    return "MaxEther";
-}
+MaxEther::MaxEther(const int n) : RestoreItem("Max Ether", n) {}
 
 std::string MaxEther::getEffect() const {
     return "Restores 20 HP.";

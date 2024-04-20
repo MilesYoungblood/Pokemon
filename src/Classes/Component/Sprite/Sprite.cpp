@@ -4,15 +4,15 @@
 
 #include "Sprite.h"
 
-int Project::Sprite::getCurrentRow() const {
+int Component::Sprite::getCurrentRow() const {
     return this->currentRow;
 }
 
-int Project::Sprite::getCurrentCol() const {
+int Component::Sprite::getCurrentCol() const {
     return this->currentCol;
 }
 
-void Project::Sprite::update(const int numRows, const int numCols) {
+void Component::Sprite::update(const int numRows, const int numCols) {
     ++this->currentCol;
 
     if (this->currentCol == numCols) {

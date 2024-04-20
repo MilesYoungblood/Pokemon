@@ -4,11 +4,7 @@
 
 #include "SuperPotion.h"
 
-SuperPotion::SuperPotion(const int n) : RestoreItem(n) {}
-
-std::string SuperPotion::getName() const {
-    return "Super Potion";
-}
+SuperPotion::SuperPotion(const int n) : RestoreItem("Super Potion", n) {}
 
 std::string SuperPotion::getEffect() const {
     return "A spray-type medicine for wounds. It restores the HP of one Pokemon by 50 points.";

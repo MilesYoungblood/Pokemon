@@ -4,11 +4,7 @@
 
 #include "BurnHeal.h"
 
-BurnHeal::BurnHeal(const int n) : StatusItem(n) {}
-
-std::string BurnHeal::getName() const {
-    return "Burn Heal";
-}
+BurnHeal::BurnHeal(const int n) : StatusItem("Burn Heal", n) {}
 
 std::string BurnHeal::getEffect() const {
     return "A spray-type medicine. It heals a single Pokemon that is suffering from a burn.";

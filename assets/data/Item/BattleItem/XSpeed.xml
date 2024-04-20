@@ -1,0 +1,7 @@
+<xml version="1.0" encoding="UTF-8">
+    <data>
+        <name>X Speed</name>
+        <effect>An item that raises the Speed stat of a Pokémon. It wears off if the Pokémon is withdrawn.</effect>
+        <stat>Speed</stat>
+    </data>
+</xml>

@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../../../Stopwatch/Stopwatch.h"
+#include "../../../utility/Stopwatch/Stopwatch.h"
 #include "../../../../../Map/Map.h"
 #include "../../Scene.h"
 
@@ -39,7 +39,7 @@ public:
 
     void clean();
 
-    void changeMap(const std::pair<Project::Position, std::string> &data);
+    void changeMap(const std::pair<Component::Position, std::string> &data);
 
     [[nodiscard]] Map &getCurrentMap() const;
 

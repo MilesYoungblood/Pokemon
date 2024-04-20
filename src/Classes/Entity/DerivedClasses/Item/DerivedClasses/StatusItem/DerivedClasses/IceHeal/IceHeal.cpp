@@ -4,11 +4,7 @@
 
 #include "IceHeal.h"
 
-IceHeal::IceHeal(const int n) : StatusItem(n) {}
-
-std::string IceHeal::getName() const {
-    return "Ice Heal";
-}
+IceHeal::IceHeal(const int n) : StatusItem("Ice Heal", n) {}
 
 std::string IceHeal::getEffect() const {
     return "A spray-type medicine. It defrosts a Pokemon that has been frozen solid.";

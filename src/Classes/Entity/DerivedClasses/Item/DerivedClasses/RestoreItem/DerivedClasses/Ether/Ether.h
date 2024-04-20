@@ -9,8 +9,6 @@
 struct Ether final : RestoreItem {
     explicit Ether(int n);
 
-    [[nodiscard]] std::string getName() const override;
-
     [[nodiscard]] std::string getEffect() const override;
 
     [[nodiscard]] int getAmount() const override;

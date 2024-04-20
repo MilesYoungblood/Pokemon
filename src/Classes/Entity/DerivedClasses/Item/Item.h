@@ -8,17 +8,17 @@
 
 class Item : public Entity {
 public:
-    explicit Item(int n);
+    Item(const char *id, int n);
 
-    Item(int n, int x, int y);
+    Item(const char *id, int n, int x, int y);
 
-    Item(const Item &toCopy) = delete;
+    Item(const Item &toCopy) = default;
 
-    Item(Item &&) noexcept = delete;
+    Item(Item &&) noexcept = default;
 
-    Item &operator=(const Item &) = delete;
+    Item &operator=(const Item &) = default;
 
-    Item &operator=(Item &&) noexcept = delete;
+    Item &operator=(Item &&) noexcept = default;
 
     ~Item() override = default;
 
@@ -31,8 +31,6 @@ public:
     [[nodiscard]] virtual std::string useMessage() const;
 
     [[nodiscard]] std::string noEffectMessage(const Pokemon &pokemon) const;
-
-    [[nodiscard]] virtual std::string getName() const = 0;
 
     [[nodiscard]] virtual std::string getEffect() const = 0;
 

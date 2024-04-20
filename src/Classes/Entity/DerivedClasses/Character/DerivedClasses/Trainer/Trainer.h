@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "../../../Item/DerivedClasses/Items.h"
+#include "../Pokemon/Pokemon.h"
 
 class Trainer : public Character {
 public:

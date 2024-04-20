@@ -2,26 +2,22 @@
 // Created by Miles on 18/05/2023.
 //
 
-#include "../../../../../../Functions/GeneralFunctions.h"
+#include "../../../../../../../utility/Functions/GeneralFunctions.h"
 #include "PokeBall.h"
 
-PokeBall::PokeBall(const int n) : Item(n) {}
+PokeBall::PokeBall(const char *id, const int n) : Item(id, n) {}
 
-PokeBall::PokeBall(const int n, const int x, const int y) : Item(n, x, y) {}
+PokeBall::PokeBall(const char *id, const int n, const int x, const int y) : Item(id, n, x, y) {}
 
-std::string PokeBall::getName() const {
-    return "Poke Ball";
+std::size_t PokeBall::getClass() const {
+    return typeid(PokeBall).hash_code();
 }
 
 std::string PokeBall::getEffect() const {
     return "A device for catching wild Pokemon. It is thrown like a ball at the target. It is designed as a capsule system.";
 }
 
-std::size_t PokeBall::getClass() const {
-    return typeid(PokeBall).hash_code();
-}
-
-double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, int  /*turn*/, bool  /*isCave*/) const {
+double PokeBall::getCatchRate(const Pokemon & /*pokemon*/, std::size_t  /*turn*/, const bool  /*isCave*/) const {
     return 1.0;
 }
 
@@ -30,21 +26,21 @@ void PokeBall::postCatch(Pokemon &pokemon) const {}
 std::string PokeBall::useMessage() const {
     std::string message("You threw a");
 
-    if (isVowel(this->getName()[0])) {
+    if (isVowel(this->getId()[0])) {
         message += 'n';
     }
 
-    return message.append(' ' + this->getName() + '!');
+    return message.append(' ' + this->getId() + '!');
 }
 
-bool PokeBall::catchPokemon(const Pokemon &pokemon, std::array<bool, 4> &attempts) const {
+bool PokeBall::catchPokemon(const Pokemon &pokemon, const std::size_t turn, std::array<bool, 4> &attempts) const {
     // using gen III-IV catch mechanics
 
     double a = 3 * pokemon.getHp().getMax() - 2 * pokemon.getHp().getCurrent();
     a /= 3.0 * pokemon.getHp().getMax();
     a *= pokemon.getCatchRate();
     //FIXME shift
-    a *= this->getCatchRate(pokemon, Time::NIGHT, 1, false);
+    a *= this->getCatchRate(pokemon, turn, false);
 
     auto statusCalc = [&pokemon] -> double {
         switch (pokemon.getStatus()) {
@@ -108,6 +104,6 @@ std::vector<std::string> PokeBall::catchPokemonMessage(const Pokemon &pokemon, c
 namespace {
     [[maybe_unused]] std::jthread init([] -> void {
         const std::scoped_lock scopedLock(itemMutex);
-        itemMap["Poke Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PokeBall>(n); };
+        itemMap["Poke Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<PokeBall>("Poke Ball", n); };
     });
 }

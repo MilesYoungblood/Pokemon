@@ -9,8 +9,6 @@
 struct BurnHeal final : StatusItem {
     explicit BurnHeal(int n);
 
-    [[nodiscard]] std::string getName() const override;
-
     [[nodiscard]] std::string getEffect() const override;
 
     [[nodiscard]] StatusCondition getStatus() const override;

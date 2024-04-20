@@ -4,11 +4,7 @@
 
 #include "Ether.h"
 
-Ether::Ether(const int n) : RestoreItem(n) {}
-
-std::string Ether::getName() const {
-    return "Ether";
-}
+Ether::Ether(const int n) : RestoreItem("Ether", n) {}
 
 std::string Ether::getEffect() const {
     return "Restores 10 PP.";

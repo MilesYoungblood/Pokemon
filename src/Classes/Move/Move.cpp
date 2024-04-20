@@ -2,7 +2,7 @@
 // Created by miles on 5/5/2022.
 //
 
-#include "../../Functions/GeneralFunctions.h"
+#include "../../../utility/Functions/GeneralFunctions.h"
 #include "../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
 #include "Move.h"
 
@@ -10,11 +10,11 @@ Move::Move(const int pp) : pp(pp, pp) {}
 
 Move::Move(const int pp, const int maxPp) : pp(pp, maxPp) {}
 
-Project::Resource &Move::getPp() {
+Component::Resource &Move::getPp() {
     return this->pp;
 }
 
-Project::Resource Move::getPp() const {
+Component::Resource Move::getPp() const {
     return this->pp;
 }
 

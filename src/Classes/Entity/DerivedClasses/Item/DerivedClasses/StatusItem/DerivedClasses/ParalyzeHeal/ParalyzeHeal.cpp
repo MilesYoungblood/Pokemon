@@ -4,11 +4,7 @@
 
 #include "ParalyzeHeal.h"
 
-ParalyzeHeal::ParalyzeHeal(const int n) : StatusItem(n) {}
-
-std::string ParalyzeHeal::getName() const {
-    return "Ice Heal";
-}
+ParalyzeHeal::ParalyzeHeal(const int n) : StatusItem("Ice Heal", n) {}
 
 std::string ParalyzeHeal::getEffect() const {
     return "A spray-type medicine. It eliminates paralysis from a single Pokemon.";

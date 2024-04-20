@@ -4,13 +4,9 @@
 
 #include "PremierBall.h"
 
-PremierBall::PremierBall(const int n) : PokeBall(n) {}
+PremierBall::PremierBall(const int n) : PokeBall("Premier Ball", n) {}
 
-PremierBall::PremierBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
-
-std::string PremierBall::getName() const {
-    return "Premier Ball";
-}
+PremierBall::PremierBall(const int n, const int x, const int y) : PokeBall("Premier Ball", n, x, y) {}
 
 std::string PremierBall::getEffect() const {
     return "A somewhat rare Poke Ball that has been specially made to commemorate an event of some sort.";

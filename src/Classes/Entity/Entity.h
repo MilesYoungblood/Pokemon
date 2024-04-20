@@ -8,7 +8,7 @@
 
 class Entity {
 public:
-    Entity(int x, int y);
+    Entity(const char *id, int x, int y);
 
     Entity(const Entity &) = default;
 
@@ -20,21 +20,25 @@ public:
 
     virtual ~Entity() = default;
 
-    /// \brief Getter for map position
-    /// \return the entity's map position
-    Project::Position &getMapPosition();
+    /// \brief Getter for id
+    /// \return the entity's id
+    [[nodiscard]] std::string getId() const;
 
     /// \brief Getter for map position
     /// \return the entity's map position
-    [[nodiscard]] Project::Position getMapPosition() const;
+    Component::Position &getMapPosition();
+
+    /// \brief Getter for map position
+    /// \return the entity's map position
+    [[nodiscard]] Component::Position getMapPosition() const;
 
     /// \brief Getter for screen position
     /// \return the entity's screen position
-    Project::Position &getScreenPosition();
+    Component::Position &getScreenPosition();
 
     /// \brief Getter for screen position
     /// \return the entity's screen position
-    [[nodiscard]] Project::Position getScreenPosition() const;
+    [[nodiscard]] Component::Position getScreenPosition() const;
 
     /// \brief Checks to see if this is next to an entity on the map
     /// \param entity to check
@@ -55,6 +59,8 @@ public:
     virtual void render(SDL_Texture *sprite) const = 0;
 
 private:
-    Project::Position map;
-    Project::Position screen;
+    std::string id;
+
+    Component::Position map;
+    Component::Position screen;
 };

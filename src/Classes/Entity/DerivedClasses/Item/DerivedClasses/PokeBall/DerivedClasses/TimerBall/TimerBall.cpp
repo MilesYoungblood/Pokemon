@@ -4,20 +4,16 @@
 
 #include "TimerBall.h"
 
-TimerBall::TimerBall(const int n) : PokeBall(n) {}
+TimerBall::TimerBall(const int n) : PokeBall("Timer Ball", n) {}
 
-TimerBall::TimerBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
-
-std::string TimerBall::getName() const {
-    return "Timer Ball";
-}
+TimerBall::TimerBall(const int n, const int x, const int y) : PokeBall("Timer Ball", n, x, y) {}
 
 std::string TimerBall::getEffect() const {
     return "A somewhat different Ball that becomes progressively better the more turns there are in a battle.";
 }
 
-double TimerBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, const int turn, bool  /*isCave*/) const {
-    return std::min(1 + turn * 1229 / 4069.0, 4.0);
+double TimerBall::getCatchRate(const Pokemon & /*pokemon*/, const std::size_t turn, const bool  /*isCave*/) const {
+    return std::min(1 + static_cast<double>(turn) * 1229 / 4069.0, 4.0);
 }
 
 namespace {

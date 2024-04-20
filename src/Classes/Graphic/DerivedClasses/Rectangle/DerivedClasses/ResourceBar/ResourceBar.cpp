@@ -8,7 +8,7 @@
 ResourceBar::ResourceBar(const SDL_Rect dest, const SDL_Color fg, const int borderSize, const int amount)
         : Rectangle(dest, fg, borderSize), progress(amount, 100) {}
 
-Project::Resource &ResourceBar::getProgress() {
+Component::Resource &ResourceBar::getProgress() {
     return this->progress;
 }
 

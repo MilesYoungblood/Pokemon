@@ -19,9 +19,9 @@ public:
         MAX_NUM_MOVES = 4
     };
 
-    explicit Pokemon(const std::string &id);
+    explicit Pokemon(const char *id);
 
-    Pokemon(std::string id, std::string name, std::string gender, std::string ability, int level, int hp,
+    Pokemon(const char *id, const char *name, std::string gender, std::string ability, int level, int hp,
             int attack, int defense, int spAttack, int spDefense, int speed);
 
     Pokemon(const Pokemon &) = delete;
@@ -40,9 +40,9 @@ public:
 
     void deleteMove(int index);
 
-    Project::Resource &getHp();
+    Component::Resource &getHp();
 
-    [[nodiscard]] Project::Resource getHp() const;
+    [[nodiscard]] Component::Resource getHp() const;
 
     void initStatMods();
 
@@ -111,7 +111,7 @@ public:
 private:
     static const std::unordered_map<std::string, std::pair<Stat, Stat>> natures;
 
-    Project::Resource hp{};
+    Component::Resource hp{};
 
     std::array<int, 5> baseStats;
     std::array<int, 7> statModifiers;

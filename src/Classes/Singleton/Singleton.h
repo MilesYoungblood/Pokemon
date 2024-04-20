@@ -10,13 +10,13 @@ protected:
     Singleton() = default;
 
 public:
-    Singleton(const Singleton &toCopy) = default;
+    Singleton(const Singleton &) = default;
 
-    Singleton(Singleton &&toMove) noexcept = default;
+    Singleton(Singleton &&) noexcept = default;
 
-    Singleton &operator=(const Singleton &rhs) = default;
+    Singleton &operator=(const Singleton &) = default;
 
-    Singleton &operator=(Singleton &&rhs) noexcept = default;
+    Singleton &operator=(Singleton &&) noexcept = default;
 
     virtual ~Singleton() = default;
 

@@ -4,36 +4,14 @@
 
 #include "BattleItem.h"
 
-BattleItem::BattleItem(const int quantity) : Item(quantity) {}
+BattleItem::BattleItem(const char *id, const int quantity) : Item(id, quantity) {}
 
 void BattleItem::boost(Pokemon &pokemon, const int amount, bool &limit) const {
-    if (pokemon.getStatMod(this->getStat()) < 6) {
-        pokemon.raiseStatMod(this->getStat(), amount);
-        limit = true;
-    }
+
 }
 
 std::string BattleItem::boostMessage(const Pokemon &pokemon, const int amount, const bool limit) const {
-    const char *(*getStatAsString)(Pokemon::Stat) = [](const Pokemon::Stat stat) -> const char * {
-        switch (stat) {
-            case Pokemon::Stat::ATTACK:
-                return "attack";
-            case Pokemon::Stat::DEFENSE:
-                return "defense";
-            case Pokemon::Stat::SP_ATTACK:
-                return "special attack";
-            case Pokemon::Stat::SP_DEFENSE:
-                return "special defense";
-            case Pokemon::Stat::SPEED:
-                return "speed";
-            case Pokemon::Stat::ACCURACY:
-                return "accuracy";
-            default:
-                throw std::runtime_error("Unexpected error: function boostMessage");
-        }
-    };
-
-    std::string message{ pokemon.getName() + "'s " + getStatAsString(this->getStat()) };
+    std::string message{ pokemon.getName() + "'s " + this->getStat() };
     if (not limit) {
         message.append(" rose");
         if (amount == 2) {
@@ -53,4 +31,12 @@ std::string BattleItem::boostMessage(const Pokemon &pokemon, const int amount, c
 
 std::size_t BattleItem::getClass() const {
     return typeid(BattleItem).hash_code();
+}
+
+std::string BattleItem::getEffect() const {
+    return "";
+}
+
+std::string BattleItem::getStat() const {
+    return "";
 }

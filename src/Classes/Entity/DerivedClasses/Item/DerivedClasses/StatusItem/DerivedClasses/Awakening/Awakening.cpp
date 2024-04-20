@@ -4,11 +4,7 @@
 
 #include "Awakening.h"
 
-Awakening::Awakening(const int n) : StatusItem(n) {}
-
-std::string Awakening::getName() const {
-    return "Awakening";
-}
+Awakening::Awakening(const int n) : StatusItem("Awakening", n) {}
 
 std::string Awakening::getEffect() const {
     return "A spray-type medicine. It awakens a Pokemon from the clutches of sleep.";

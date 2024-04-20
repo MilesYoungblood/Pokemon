@@ -4,11 +4,7 @@
 
 #include "Antidote.h"
 
-Antidote::Antidote(const int n) : StatusItem(n) {}
-
-std::string Antidote::getName() const {
-    return "Antidote";
-}
+Antidote::Antidote(const int n) : StatusItem("Antidote", n) {}
 
 std::string Antidote::getEffect() const {
     return "A spray-type medicine. It lifts the effect of poison from one Pokemon.";

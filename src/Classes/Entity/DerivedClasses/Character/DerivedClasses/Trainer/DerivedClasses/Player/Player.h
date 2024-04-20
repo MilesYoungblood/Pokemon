@@ -4,10 +4,13 @@
 
 #pragma once
 
+#include "../../../../../Item/Item.h"
 #include "../../Trainer.h"
 
 class Player final : public Trainer {
 public:
+    /// Singleton instance getter for player
+    /// \return the player
     static Player &getPlayer();
 
     /// \brief Adds a Pokemon to the player's pc
@@ -98,13 +101,19 @@ private:
 
     Player();
 
+    /// Handles player WASD key protocol
+    /// \param scancode scancode activated
     void handleMove(SDL_Scancode scancode);
 
+    /// \brief Handles player return key protocol
     void handleReturn() const;
 
+    /// \brief Overrides Character::interact
     void interact() override;
 
+    /// \brief Overrides Character::idle
     void walk() override;
 
+    /// \brief Overrides Character::idle
     void idle() override;
 };

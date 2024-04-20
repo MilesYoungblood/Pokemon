@@ -4,36 +4,36 @@
 
 #include "Resource.h"
 
-Project::Resource::Resource(const int current, const int max) : current(current), max(max) {}
+Component::Resource::Resource(const int current, const int max) : current(current), max(max) {}
 
-void Project::Resource::raise(const int x) {
+void Component::Resource::raise(const int x) {
     this->current = std::min(this->current + x, this->max);
 }
 
-void Project::Resource::lower(const int x) {
+void Component::Resource::lower(const int x) {
     this->current = std::max(0, this->current - x);
 }
 
-void Project::Resource::increaseMax(const int x) {
+void Component::Resource::increaseMax(const int x) {
     this->max += x;
 }
 
-void Project::Resource::fill() {
+void Component::Resource::fill() {
     this->current = this->max;
 }
 
-int Project::Resource::getCurrent() const {
+int Component::Resource::getCurrent() const {
     return this->current;
 }
 
-int Project::Resource::getMax() const {
+int Component::Resource::getMax() const {
     return this->max;
 }
 
-bool Project::Resource::full() const {
+bool Component::Resource::full() const {
     return this->current == this->max;
 }
 
-bool Project::Resource::empty() const {
+bool Component::Resource::empty() const {
     return this->current == 0;
 }

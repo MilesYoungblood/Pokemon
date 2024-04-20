@@ -4,8 +4,13 @@
 
 #include "../../../../../../../Singleton/DerivedClasses/Game/Game.h"
 #include "../../../../../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
+#include "../../../../../../../Singleton/DerivedClasses/EventHandler/EventHandler.h"
 #include "../../../../../../../Singleton/DerivedClasses/KeyManager/KeyManager.h"
 #include "../../../../../../../Singleton/DerivedClasses/Mixer/Mixer.h"
+#include "../../../../../Item/DerivedClasses/BattleItem/BattleItem.h"
+#include "../../../../../Item/DerivedClasses/PokeBall/PokeBall.h"
+#include "../../../../../Item/DerivedClasses/RestoreItem/RestoreItem.h"
+#include "../../../../../Item/DerivedClasses/StatusItem/StatusItem.h"
 #include "Player.h"
 
 Player &Player::getPlayer() {
@@ -33,12 +38,12 @@ void Player::addItem(std::unique_ptr<Item> item) {
     try {
         // if item already exists within our inventory,
         // add the amount of the item to our item in the inventory
-        if (this->inventory.at(item->getClass()).contains(item->getName())) {
-            this->inventory.at(item->getClass()).at(item->getName())->add(item->getQuantity());
+        if (this->inventory.at(item->getClass()).contains(item->getId())) {
+            this->inventory.at(item->getClass()).at(item->getId())->add(item->getQuantity());
             return;
         }
 
-        this->inventory.at(item->getClass())[item->getName()] = std::move(item);
+        this->inventory.at(item->getClass())[item->getId()] = std::move(item);
     }
     catch (const std::exception &e) {
         throw std::runtime_error(std::string("Error adding item: ") + e.what() + '\n');
@@ -121,7 +126,7 @@ void Player::handleMove(const SDL_Scancode scancode) {
         // refresh the KeyManager to check if the player is still holding down
         KeyManager::getInstance().update();
 
-        // FIXME rapidly tapping to just turn does not work right now
+        // TODO fix: rapidly tapping to just turn does not work right now
         // if the user is still holding down the key after 10ms, begin movement
         if (KeyManager::getInstance().getKey(scancode)) {
             momentum = true;
@@ -173,7 +178,7 @@ void Player::walk() {
         }
 
         --entitiesUpdating;
-        Overworld::pushEvent();
+        EventHandler::pushEvent();
     }
 }
 

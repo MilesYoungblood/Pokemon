@@ -4,11 +4,7 @@
 
 #include "MaxPotion.h"
 
-MaxPotion::MaxPotion(const int n) : RestoreItem(n) {}
-
-std::string MaxPotion::getName() const {
-    return "Max Potion";
-}
+MaxPotion::MaxPotion(const int n) : RestoreItem("Max Potion", n) {}
 
 std::string MaxPotion::getEffect() const {
     return "A spray-type medicine for wounds. It completely restores the HP of a single Pokemon.";

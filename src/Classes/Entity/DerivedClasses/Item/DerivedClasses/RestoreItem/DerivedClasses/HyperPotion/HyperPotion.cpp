@@ -4,11 +4,7 @@
 
 #include "HyperPotion.h"
 
-HyperPotion::HyperPotion(const int n) : RestoreItem(n) {}
-
-std::string HyperPotion::getName() const {
-    return "Hyper Potion";
-}
+HyperPotion::HyperPotion(const int n) : RestoreItem("Hyper Potion", n) {}
 
 std::string HyperPotion::getEffect() const {
     return "A spray-type medicine for wounds. It restores the HP of one Pokemon by 200 points.";

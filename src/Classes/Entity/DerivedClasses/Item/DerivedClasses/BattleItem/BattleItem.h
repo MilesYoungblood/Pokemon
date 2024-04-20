@@ -6,18 +6,16 @@
 
 #include "../../Item.h"
 
-struct BattleItem : Item {
-    explicit BattleItem(int quantity);
+struct BattleItem final : Item {
+    BattleItem(const char *id, int quantity);
 
     void boost(Pokemon &pokemon, int amount, bool &limit) const;
 
     [[nodiscard]] std::string boostMessage(const Pokemon &pokemon, int amount, bool limit) const;
 
-    [[nodiscard]] std::string getName() const override = 0;
-
-    [[nodiscard]] std::string getEffect() const override = 0;
-
     [[nodiscard]] std::size_t getClass() const override;
 
-    [[nodiscard]] virtual Pokemon::Stat getStat() const = 0;
+    [[nodiscard]] std::string getEffect() const override;
+
+    [[nodiscard]] std::string getStat() const;
 };

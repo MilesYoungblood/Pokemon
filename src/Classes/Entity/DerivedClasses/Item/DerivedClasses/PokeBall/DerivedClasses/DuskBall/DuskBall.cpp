@@ -4,25 +4,21 @@
 
 #include "DuskBall.h"
 
-DuskBall::DuskBall(int n) : PokeBall(n) {}
+DuskBall::DuskBall(const int n) : PokeBall("Dusk Ball", n) {}
 
-DuskBall::DuskBall(int n, int x, int y) : PokeBall(n, x, y) {}
-
-std::string DuskBall::getName() const {
-    return "Dusk Ball";
-}
+DuskBall::DuskBall(const int n, const int x, const int y) : PokeBall("Dusk Ball", n, x, y) {}
 
 std::string DuskBall::getEffect() const {
     return "A somewhat different Poke Ball that makes it easier to catch wild Pokemon at night or in dark places like caves.";
 }
 
-double DuskBall::getCatchRate(const Pokemon & /*pokemon*/, Time time, int  /*turn*/, bool isCave) const {
-    return time == Time::NIGHT or isCave ? 3.5 : 1.0;
+double DuskBall::getCatchRate(const Pokemon & /*pokemon*/, const std::size_t  /*turn*/, const bool isCave) const {
+    return isCave ? 3.5 : 1.0;
 }
 
 namespace {
-    std::jthread init([] -> void {
-        const std::scoped_lock<std::mutex> scoped_lock(itemMutex);
+    [[maybe_unused]] std::jthread init([] -> void {
+        const std::scoped_lock scopedLock(itemMutex);
         itemMap["Dusk Ball"] = [](int n) -> std::unique_ptr<Item> { return std::make_unique<DuskBall>(n); };
     });
 }

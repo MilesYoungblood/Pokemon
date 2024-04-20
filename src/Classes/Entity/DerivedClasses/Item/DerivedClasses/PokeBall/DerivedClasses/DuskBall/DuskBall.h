@@ -6,14 +6,12 @@
 
 #include "../../PokeBall.h"
 
-struct DuskBall : public PokeBall {
+struct DuskBall final : PokeBall {
     explicit DuskBall(int n);
 
     DuskBall(int n, int x, int y);
 
-    [[nodiscard]] std::string getName() const override;
-
     [[nodiscard]] std::string getEffect() const override;
 
-    [[nodiscard]] double getCatchRate(const Pokemon &pokemon, Time time, int turn, bool isCave) const override;
+    [[nodiscard]] double getCatchRate(const Pokemon &pokemon, std::size_t turn, bool isCave) const override;
 };

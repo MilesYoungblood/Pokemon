@@ -11,7 +11,5 @@ struct PremierBall final : PokeBall {
 
     PremierBall(int n, int x, int y);
 
-    [[nodiscard]] std::string getName() const override;
-
     [[nodiscard]] std::string getEffect() const override;
 };

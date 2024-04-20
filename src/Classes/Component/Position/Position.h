@@ -6,7 +6,7 @@
 
 #include "../../../Enums/Direction/Direction.h"
 
-namespace Project {
+namespace Component {
     class Position {
     public:
         Position() = default;
@@ -24,9 +24,9 @@ namespace Project {
         ~Position() = default;
 
         /// \brief Sets the new position
-        /// \param newX new x-position
-        /// \param newY new y-position
-        void setPosition(int newX, int newY);
+        /// \param x new x-position
+        /// \param y new y-position
+        void setPosition(int x, int y);
 
         /// \brief Translates the x-position
         /// \param t amount

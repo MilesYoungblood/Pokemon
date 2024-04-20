@@ -58,9 +58,9 @@ public:
 
     virtual ~Move() = default;
 
-    Project::Resource &getPp();
+    Component::Resource &getPp();
 
-    [[nodiscard]] Project::Resource getPp() const;
+    [[nodiscard]] Component::Resource getPp() const;
 
     virtual void action(Pokemon &attacker, Pokemon &defender, bool &skip);
 
@@ -99,7 +99,7 @@ protected:
 private:
     [[nodiscard]] double checkType(const Pokemon &pokemon) const;
 
-    Project::Resource pp;
+    Component::Resource pp;
 
     int damageFlag{ 0 };
     double effFlag{ 0.0 };

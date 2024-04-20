@@ -3,10 +3,11 @@
 //
 
 #include "../../Singleton/DerivedClasses/Game/Game.h"
+#include "../../Singleton/DerivedClasses/EventHandler/EventHandler.h"
 #include "Intelligence.h"
 
-Project::Intelligence::Intelligence(const std::function<void()> &action, const std::function<bool()> &condition,
-                                    int (*delay)()) : action(action) {
+Component::Intelligence::Intelligence(const std::function<void()> &action, const std::function<bool()> &condition,
+                                      int (*delay)()) : action(action) {
     this->thoughtProcess = std::thread([this, condition, delay] -> void {
         std::mutex mutex;
 
@@ -22,7 +23,7 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
 
             if (not this->ready) {
                 this->ready = true;
-                Overworld::pushEvent();
+                EventHandler::pushEvent();
             }
 
             std::unique_lock lock(mutex);
@@ -33,13 +34,13 @@ Project::Intelligence::Intelligence(const std::function<void()> &action, const s
     });
 }
 
-Project::Intelligence::~Intelligence() {
+Component::Intelligence::~Intelligence() {
     this->intelligent = false;
     this->cv.notify_one();
     this->thoughtProcess.join();
 }
 
-void Project::Intelligence::tryActing() {
+void Component::Intelligence::tryActing() {
     if (this->ready) {
         this->action();
         this->ready = false;

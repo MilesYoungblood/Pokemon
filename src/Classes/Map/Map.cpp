@@ -174,7 +174,7 @@ void Map::populate(const tinyxml2::XMLElement *mapElement, const int width, cons
             }
         }
 
-        this->layout.push_back(layer);
+        this->layers.push_back(layer);
     }
 }
 
@@ -433,7 +433,7 @@ Map::Map(const char *name, const char *id) : name(name), id(id) {
     this->parseTmx();
     this->loadEntities();
 
-    this->threadPool.init(this->layout.size() + 1);
+    this->threadPool.init(this->layers.size() + 1);
 
     for (auto &entity : this->entities) {
         if (auto *trainer = dynamic_cast<Trainer *>(entity.get()); trainer != nullptr) {
@@ -443,18 +443,18 @@ Map::Map(const char *name, const char *id) : name(name), id(id) {
 }
 
 Map::~Map() {
-    for (const auto tileImage : this->tileSprites) {
-        if (tileImage != nullptr) {
-            SDL_DestroyTexture(tileImage);
+    for (const auto sprite : this->tileSprites) {
+        if (sprite != nullptr) {
+            SDL_DestroyTexture(sprite);
             if (strlen(SDL_GetError()) > 0) {
-                std::clog << "Unable to destroy tile texture: " << SDL_GetError() << '\n';
+                std::clog << "Unable to destroy tile sprite: " << SDL_GetError() << '\n';
                 SDL_ClearError();
             }
         }
     }
-    for (const auto value : this->entitySprites | std::views::values) {
-        if (value != nullptr) {
-            SDL_DestroyTexture(value);
+    for (const auto sprite : this->entitySprites | std::views::values) {
+        if (sprite != nullptr) {
+            SDL_DestroyTexture(sprite);
             if (strlen(SDL_GetError()) > 0) {
                 std::clog << "Unable to destroy entity sprite: " << SDL_GetError() << '\n';
                 SDL_ClearError();
@@ -464,7 +464,7 @@ Map::~Map() {
 }
 
 bool Map::isCollisionHere(int x, int y) const {
-    const bool collision = this->collisionSet.contains(this->layout[1](y, x).id);
+    const bool collision = this->collisionSet.contains(this->layers[1](y, x).id);
 
     const bool playerHere = Player::getPlayer().getMapPosition().isHere(x, y);
 
@@ -478,7 +478,7 @@ bool Map::isCollisionHere(int x, int y) const {
     return collision or playerHere or entityHere;
 }
 
-std::optional<std::pair<Project::Position, std::string>> Map::isExitPointHere(const int x, const int y) const {
+std::optional<std::pair<Component::Position, std::string>> Map::isExitPointHere(const int x, const int y) const {
     for (const auto &[map, dest, newMap] : this->exitPoints) {
         if (map.isHere(x, y)) {
             return std::make_optional(std::make_pair(dest, newMap));
@@ -526,7 +526,7 @@ std::string Map::getId() const {
 }
 
 void Map::shift(Direction direction, int n) {
-    for (auto &layer : this->layout) {
+    for (auto &layer : this->layers) {
         this->threadPool.add([direction, n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &[id, screen] : row) {
@@ -546,7 +546,7 @@ void Map::shift(Direction direction, int n) {
 }
 
 void Map::shiftHorizontally(int n) {
-    for (auto &layer : this->layout) {
+    for (auto &layer : this->layers) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &[id, screen] : row) {
@@ -566,7 +566,7 @@ void Map::shiftHorizontally(int n) {
 }
 
 void Map::shiftVertically(int n) {
-    for (auto &layer : this->layout) {
+    for (auto &layer : this->layers) {
         this->threadPool.add([n, &layer] -> void {
             for (auto &row : layer) {
                 for (auto &[id, screen] : row) {
@@ -588,8 +588,8 @@ void Map::shiftVertically(int n) {
 void Map::render() const {
     SDL_Rect sdlRect(0, 0, TILE_SIZE, TILE_SIZE);
 
-    for (std::size_t layer = 0; layer < this->layout.size(); ++layer) {
-        for (const auto &row : this->layout[layer]) {
+    for (std::size_t layer = 0; layer < this->layers.size(); ++layer) {
+        for (const auto &row : this->layers[layer]) {
             for (const auto &[id, screen] : row) {
                 sdlRect.x = screen.getX();
                 sdlRect.y = screen.getY();

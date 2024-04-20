@@ -4,19 +4,15 @@
 
 #include "QuickBall.h"
 
-QuickBall::QuickBall(const int n) : PokeBall(n) {}
+QuickBall::QuickBall(const int n) : PokeBall("Quick Ball", n) {}
 
-QuickBall::QuickBall(const int n, const int x, const int y) : PokeBall(n, x, y) {}
-
-std::string QuickBall::getName() const {
-    return "Quick Ball";
-}
+QuickBall::QuickBall(const int n, const int x, const int y) : PokeBall("Quick Ball", n, x, y) {}
 
 std::string QuickBall::getEffect() const {
     return "A somewhat different Poké Ball that provides a better catch rate if it is used at the start of a wild encounter.";
 }
 
-double QuickBall::getCatchRate(const Pokemon & /*pokemon*/, Time  /*time*/, const int turn, bool  /*isCave*/) const {
+double QuickBall::getCatchRate(const Pokemon & /*pokemon*/, const std::size_t turn, const bool  /*isCave*/) const {
     return turn > 1 ? 1.0 : 5.0;
 }
 

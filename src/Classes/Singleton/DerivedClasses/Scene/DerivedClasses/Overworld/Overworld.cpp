@@ -5,6 +5,7 @@
 #include "../../../Game/Game.h"
 #include "../../../GraphicsEngine/GraphicsEngine.h"
 #include "../../../Mixer/Mixer.h"
+#include "../../../EventHandler/EventHandler.h"
 #include "../../../KeyManager/KeyManager.h"
 #include "../../../Camera/Camera.h"
 #include "Overworld.h"
@@ -57,13 +58,12 @@ void Overworld::fadeIn() {
 
 void Overworld::handleEvents() {
     std::unique_lock lock(this->mutex);
-    this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or this->waitEvent(); });
-    std::cout << entitiesUpdating << " entities updating\n";
+    this->cv.wait(lock, [this] -> bool { return entitiesUpdating > 0 or EventHandler::getInstance().waitEvent(); });
 
-    if (entitiesUpdating > 0 and not this->pollEvent()) {
+    if (entitiesUpdating > 0 and not EventHandler::getInstance().pollEvent()) {
         return;
     }
-    switch (this->getEventType()) {
+    switch (EventHandler::getInstance().getEventType()) {
         case SDL_QUIT:
             Game::getInstance().terminate();
             break;
@@ -114,7 +114,7 @@ void Overworld::clean() {
     this->currentMap.reset(nullptr);
 }
 
-void Overworld::changeMap(const std::pair<Project::Position, std::string> &data) {
+void Overworld::changeMap(const std::pair<Component::Position, std::string> &data) {
     if (Mix_FadeOutMusic(2000) == 0) {
         std::clog << "Error fading out \"" << this->currentMap->getId() << "\": " << SDL_GetError() << '\n';
         SDL_ClearError();

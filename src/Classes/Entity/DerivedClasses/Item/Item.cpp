@@ -2,7 +2,7 @@
 // Created by miles on 5/25/2022.
 //
 
-#include "../../../../Functions/GeneralFunctions.h"
+#include "../../../../../utility/Functions/GeneralFunctions.h"
 #include "../../../Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h"
 #include "../../../Singleton/DerivedClasses/TextureManager/TextureManager.h"
 #include "../../../Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h"
@@ -11,9 +11,9 @@
 #include "../Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h"
 #include "Item.h"
 
-Item::Item(const int n) : Entity(0, 0), quantity(n) {}
+Item::Item(const char *id, const int n) : Entity(id, 0, 0), quantity(n) {}
 
-Item::Item(const int n, const int x, const int y) : Entity(x, y), quantity(n) {}
+Item::Item(const char *id, const int n, const int x, const int y) : Entity(id, x, y), quantity(n) {}
 
 int Item::getQuantity() const {
     return this->quantity;
@@ -32,15 +32,15 @@ void Item::use() {
 std::string Item::useMessage() const {
     std::string message("You used a");
 
-    if (isVowel(this->getName()[0])) {
+    if (isVowel(this->getId()[0])) {
         message += 'n';
     }
 
-    return message.append(' ' + this->getName() + '!');
+    return message.append(' ' + this->getId() + '!');
 }
 
 std::string Item::noEffectMessage(const Pokemon &pokemon) const {
-    return this->getName() + " had no effect on " + pokemon.getName() + ".\n";
+    return this->getId() + " had no effect on " + pokemon.getName() + ".\n";
 }
 
 std::string Item::getKey() const {
@@ -54,7 +54,7 @@ void Item::interact() {
 
         Player::getPlayer().setState(Character::State::IMMOBILE);
         Overworld::createTextBox(
-                "You obtained a" + std::string(isVowel(this->getName()[0]) ? "n " : " ") + this->getName() + '!'
+                "You obtained a" + std::string(isVowel(this->getId()[0]) ? "n " : " ") + this->getId() + '!'
         );
         Mix_PauseMusic();
         Mixer::getInstance().playSound("item_found");
@@ -69,7 +69,7 @@ void Item::interact() {
         Player::getPlayer().setState(Character::State::IDLE);
 
         // add the item to the Player's inventory and remove it from the map
-        Player::getPlayer().addItem(this->getName(), this->getQuantity());
+        Player::getPlayer().addItem(this->getId(), this->getQuantity());
         Scene::getInstance<Overworld>().getCurrentMap().removeEntity(this);
     }
 }

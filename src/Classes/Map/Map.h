@@ -5,8 +5,8 @@
 #pragma once
 
 #include "../Component/Position/Position.h"
-#include "../ThreadPool/ThreadPool.h"
-#include "../Matrix/Matrix.h"
+#include "../../../utility/ThreadPool/ThreadPool.h"
+#include "../../../utility/Matrix/Matrix.h"
 
 class Entity;
 
@@ -40,7 +40,7 @@ public:
     /// \param x coordinate
     /// \param y coordinate
     /// \return a pair containing the new position and new map respectively if an exit point is present, or nothing otherwise
-    [[nodiscard]] std::optional<std::pair<Project::Position, std::string>> isExitPointHere(int x, int y) const;
+    [[nodiscard]] std::optional<std::pair<Component::Position, std::string>> isExitPointHere(int x, int y) const;
 
     /// \brief Removes an entity from the map
     /// \param entity pointer to the entity to remove
@@ -93,15 +93,15 @@ private:
 
     struct Tile {
         int id;
-        Project::Position screen;
+        Component::Position screen;
     };
 
-    std::vector<Matrix<Tile>> layout;                               // The map is vector of Tile matrices
+    std::vector<Matrix<Tile>> layers;                               // The map is vector of Tile matrices
     std::vector<SDL_Texture *> tileSprites{ nullptr };              // texture for each tile id
 
     struct ExitPoint {
-        Project::Position map;
-        Project::Position dest;
+        Component::Position map;
+        Component::Position dest;
         std::string newMap;                                         // map that this exit point leads to
     };
 

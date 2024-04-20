@@ -1,0 +1,7 @@
+<xml version="1.0" encoding="UTF-8">
+    <data>
+        <name>X Sp. Attack</name>
+        <effect>An item that raises the Sp. Atk stat of a Pokémon. It wears off if the Pokémon is withdrawn.</effect>
+        <stat>Sp. Attack</stat>
+    </data>
+</xml>

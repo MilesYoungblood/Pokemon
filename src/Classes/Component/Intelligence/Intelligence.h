@@ -4,7 +4,7 @@
 
 #pragma once
 
-namespace Project {
+namespace Component {
     class Intelligence {
     public:
         Intelligence(const std::function<void()> &action, const std::function<bool()> &condition, int (*delay)());

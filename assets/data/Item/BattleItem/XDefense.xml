@@ -1,0 +1,7 @@
+<xml version="1.0" encoding="UTF-8">
+    <data>
+        <name>X Defense</name>
+        <effect>An item that raises the Defense stat of a Pokémon. It wears off if the Pokémon is withdrawn.</effect>
+        <stat>Defense</stat>
+    </data>
+</xml>

@@ -7,13 +7,11 @@
 #include "../../Item.h"
 
 struct StatusItem : Item {
-    explicit StatusItem(int quantity);
-
-    [[nodiscard]] std::string getName() const override = 0;
-
-    [[nodiscard]] std::string getEffect() const override = 0;
+    StatusItem(const char *id, int quantity);
 
     [[nodiscard]] std::size_t getClass() const override;
+
+    [[nodiscard]] std::string getEffect() const override = 0;
 
     [[nodiscard]] virtual StatusCondition getStatus() const = 0;
 

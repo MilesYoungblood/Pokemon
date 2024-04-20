@@ -6,12 +6,10 @@
 
 #include "../../PokeBall.h"
 
-struct HealBall : public PokeBall {
+struct HealBall final : PokeBall {
     explicit HealBall(int n);
 
     HealBall(int n, int x, int y);
-
-    [[nodiscard]] std::string getName() const override;
 
     [[nodiscard]] std::string getEffect() const override;
 
