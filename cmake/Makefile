@@ -239,725 +239,101 @@ src/Classes/Component/Sprite/Sprite.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.s
 .PHONY : src/Classes/Component/Sprite/Sprite.cpp.s
 
-src/Classes/Entity/DerivedClasses/Character/Character.obj: src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.obj
+src/Classes/Entity/Character/Character.obj: src/Classes/Entity/Character/Character.cpp.obj
+.PHONY : src/Classes/Entity/Character/Character.obj
 
 # target to build an object file
-src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.cpp.obj
+src/Classes/Entity/Character/Character.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Character.cpp.obj
+.PHONY : src/Classes/Entity/Character/Character.cpp.obj
 
-src/Classes/Entity/DerivedClasses/Character/Character.i: src/Classes/Entity/DerivedClasses/Character/Character.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.i
+src/Classes/Entity/Character/Character.i: src/Classes/Entity/Character/Character.cpp.i
+.PHONY : src/Classes/Entity/Character/Character.i
 
 # target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Character/Character.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Character.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.cpp.i
+src/Classes/Entity/Character/Character.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Character.cpp.i
+.PHONY : src/Classes/Entity/Character/Character.cpp.i
 
-src/Classes/Entity/DerivedClasses/Character/Character.s: src/Classes/Entity/DerivedClasses/Character/Character.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.s
+src/Classes/Entity/Character/Character.s: src/Classes/Entity/Character/Character.cpp.s
+.PHONY : src/Classes/Entity/Character/Character.s
 
 # target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Character/Character.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/Character.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/Character.cpp.s
+src/Classes/Entity/Character/Character.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Character.cpp.s
+.PHONY : src/Classes/Entity/Character/Character.cpp.s
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.obj: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.obj
+src/Classes/Entity/Character/Pokemon/Pokemon.obj: src/Classes/Entity/Character/Pokemon/Pokemon.cpp.obj
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.obj
 
 # target to build an object file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.obj
+src/Classes/Entity/Character/Pokemon/Pokemon.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Pokemon/Pokemon.cpp.obj
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.cpp.obj
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.i: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.i
+src/Classes/Entity/Character/Pokemon/Pokemon.i: src/Classes/Entity/Character/Pokemon/Pokemon.cpp.i
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.i
 
 # target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.i
+src/Classes/Entity/Character/Pokemon/Pokemon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Pokemon/Pokemon.cpp.i
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.cpp.i
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.s: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.s
+src/Classes/Entity/Character/Pokemon/Pokemon.s: src/Classes/Entity/Character/Pokemon/Pokemon.cpp.s
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.s
 
 # target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp.s
+src/Classes/Entity/Character/Pokemon/Pokemon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Pokemon/Pokemon.cpp.s
+.PHONY : src/Classes/Entity/Character/Pokemon/Pokemon.cpp.s
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.obj: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.obj
+src/Classes/Entity/Character/Trainer/Player/Player.obj: src/Classes/Entity/Character/Trainer/Player/Player.cpp.obj
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.obj
 
 # target to build an object file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.obj
+src/Classes/Entity/Character/Trainer/Player/Player.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Player/Player.cpp.obj
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.cpp.obj
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.i: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.i
+src/Classes/Entity/Character/Trainer/Player/Player.i: src/Classes/Entity/Character/Trainer/Player/Player.cpp.i
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.i
 
 # target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.i
+src/Classes/Entity/Character/Trainer/Player/Player.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Player/Player.cpp.i
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.cpp.i
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.s: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.s
+src/Classes/Entity/Character/Trainer/Player/Player.s: src/Classes/Entity/Character/Trainer/Player/Player.cpp.s
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.s
 
 # target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp.s
+src/Classes/Entity/Character/Trainer/Player/Player.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Player/Player.cpp.s
+.PHONY : src/Classes/Entity/Character/Trainer/Player/Player.cpp.s
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.obj: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.obj
+src/Classes/Entity/Character/Trainer/Trainer.obj: src/Classes/Entity/Character/Trainer/Trainer.cpp.obj
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.obj
 
 # target to build an object file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.obj
+src/Classes/Entity/Character/Trainer/Trainer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Trainer.cpp.obj
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.cpp.obj
 
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.i: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.i
-
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.s: src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.i
+src/Classes/Entity/Character/Trainer/Trainer.i: src/Classes/Entity/Character/Trainer/Trainer.cpp.i
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.i
 
 # target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.i
+src/Classes/Entity/Character/Trainer/Trainer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Trainer.cpp.i
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.cpp.i
 
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.s
+src/Classes/Entity/Character/Trainer/Trainer.s: src/Classes/Entity/Character/Trainer/Trainer.cpp.s
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.s
 
 # target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.obj: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.i: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.s: src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp.s
-
-src/Classes/Entity/DerivedClasses/Item/Item.obj: src/Classes/Entity/DerivedClasses/Item/Item.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.obj
-
-# target to build an object file
-src/Classes/Entity/DerivedClasses/Item/Item.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/Item.cpp.obj
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.cpp.obj
-
-src/Classes/Entity/DerivedClasses/Item/Item.i: src/Classes/Entity/DerivedClasses/Item/Item.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.i
-
-# target to preprocess a source file
-src/Classes/Entity/DerivedClasses/Item/Item.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/Item.cpp.i
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.cpp.i
-
-src/Classes/Entity/DerivedClasses/Item/Item.s: src/Classes/Entity/DerivedClasses/Item/Item.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.s
-
-# target to generate assembly for a file
-src/Classes/Entity/DerivedClasses/Item/Item.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/DerivedClasses/Item/Item.cpp.s
-.PHONY : src/Classes/Entity/DerivedClasses/Item/Item.cpp.s
+src/Classes/Entity/Character/Trainer/Trainer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Trainer.cpp.s
+.PHONY : src/Classes/Entity/Character/Trainer/Trainer.cpp.s
 
 src/Classes/Entity/Entity.obj: src/Classes/Entity/Entity.cpp.obj
 .PHONY : src/Classes/Entity/Entity.obj
@@ -983,197 +359,365 @@ src/Classes/Entity/Entity.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.s
 .PHONY : src/Classes/Entity/Entity.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj
+src/Classes/Entity/Item/BattleItem/BattleItem.obj: src/Classes/Entity/Item/BattleItem/BattleItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.obj
+src/Classes/Entity/Item/BattleItem/BattleItem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/BattleItem/BattleItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i
+src/Classes/Entity/Item/BattleItem/BattleItem.i: src/Classes/Entity/Item/BattleItem/BattleItem.cpp.i
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.i
+src/Classes/Entity/Item/BattleItem/BattleItem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/BattleItem/BattleItem.cpp.i
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s
+src/Classes/Entity/Item/BattleItem/BattleItem.s: src/Classes/Entity/Item/BattleItem/BattleItem.cpp.s
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp.s
+src/Classes/Entity/Item/BattleItem/BattleItem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/BattleItem/BattleItem.cpp.s
+.PHONY : src/Classes/Entity/Item/BattleItem/BattleItem.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj
+src/Classes/Entity/Item/Item.obj: src/Classes/Entity/Item/Item.cpp.obj
+.PHONY : src/Classes/Entity/Item/Item.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.obj
+src/Classes/Entity/Item/Item.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/Item.cpp.obj
+.PHONY : src/Classes/Entity/Item/Item.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i
+src/Classes/Entity/Item/Item.i: src/Classes/Entity/Item/Item.cpp.i
+.PHONY : src/Classes/Entity/Item/Item.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.i
+src/Classes/Entity/Item/Item.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/Item.cpp.i
+.PHONY : src/Classes/Entity/Item/Item.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s
+src/Classes/Entity/Item/Item.s: src/Classes/Entity/Item/Item.cpp.s
+.PHONY : src/Classes/Entity/Item/Item.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp.s
+src/Classes/Entity/Item/Item.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/Item.cpp.s
+.PHONY : src/Classes/Entity/Item/Item.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.obj: src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.obj
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.i: src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.i
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.s: src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp.s
+src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.obj: src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.obj
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.i: src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.i
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.s: src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp.s
+src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.obj: src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.obj
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.i: src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.i
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s: src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.s: src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp.s
+src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj: src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.obj: src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.obj
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i: src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.i: src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.i
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s: src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.s: src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp.s
+src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.obj: src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.obj
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.i: src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.i
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s: src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.s: src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp.s
+src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.s
 
-src/Classes/Graphic/DerivedClasses/Texture/Texture.obj: src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.obj: src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.obj
 
 # target to build an object file
-src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.obj
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj
 
-src/Classes/Graphic/DerivedClasses/Texture/Texture.i: src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.i
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.i: src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.i
 
 # target to preprocess a source file
-src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.i
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.i
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.i
 
-src/Classes/Graphic/DerivedClasses/Texture/Texture.s: src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.s
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.s: src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.s
 
 # target to generate assembly for a file
-src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s
-.PHONY : src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp.s
+src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.s
+
+src/Classes/Entity/Item/PokeBall/PokeBall.obj: src/Classes/Entity/Item/PokeBall/PokeBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.obj
+
+# target to build an object file
+src/Classes/Entity/Item/PokeBall/PokeBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PokeBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.cpp.obj
+
+src/Classes/Entity/Item/PokeBall/PokeBall.i: src/Classes/Entity/Item/PokeBall/PokeBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/PokeBall/PokeBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PokeBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.cpp.i
+
+src/Classes/Entity/Item/PokeBall/PokeBall.s: src/Classes/Entity/Item/PokeBall/PokeBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/PokeBall/PokeBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PokeBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/PokeBall.cpp.s
+
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.obj: src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.obj
+
+# target to build an object file
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj
+
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.i: src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.i
+
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.s: src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.s
+
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.obj: src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.obj
+
+# target to build an object file
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj
+
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.i: src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.i
+
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.s: src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.s
+
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.obj: src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.obj
+
+# target to build an object file
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj
+
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.i: src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.i
+
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.s: src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.s
+
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.obj: src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.obj
+
+# target to build an object file
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj
+
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.i: src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.i
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.i
+
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.s: src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.s
+.PHONY : src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.s
+
+src/Classes/Entity/Item/RestoreItem/RestoreItem.obj: src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.obj
+
+# target to build an object file
+src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.obj
+
+src/Classes/Entity/Item/RestoreItem/RestoreItem.i: src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.i
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.i
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.i
+
+src/Classes/Entity/Item/RestoreItem/RestoreItem.s: src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.s
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.s
+.PHONY : src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.s
+
+src/Classes/Entity/Item/StatusItem/StatusItem.obj: src/Classes/Entity/Item/StatusItem/StatusItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.obj
+
+# target to build an object file
+src/Classes/Entity/Item/StatusItem/StatusItem.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/StatusItem/StatusItem.cpp.obj
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.cpp.obj
+
+src/Classes/Entity/Item/StatusItem/StatusItem.i: src/Classes/Entity/Item/StatusItem/StatusItem.cpp.i
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.i
+
+# target to preprocess a source file
+src/Classes/Entity/Item/StatusItem/StatusItem.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/StatusItem/StatusItem.cpp.i
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.cpp.i
+
+src/Classes/Entity/Item/StatusItem/StatusItem.s: src/Classes/Entity/Item/StatusItem/StatusItem.cpp.s
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.s
+
+# target to generate assembly for a file
+src/Classes/Entity/Item/StatusItem/StatusItem.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/StatusItem/StatusItem.cpp.s
+.PHONY : src/Classes/Entity/Item/StatusItem/StatusItem.cpp.s
 
 src/Classes/Graphic/Graphic.obj: src/Classes/Graphic/Graphic.cpp.obj
 .PHONY : src/Classes/Graphic/Graphic.obj
@@ -1199,6 +743,198 @@ src/Classes/Graphic/Graphic.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.s
 .PHONY : src/Classes/Graphic/Graphic.cpp.s
 
+src/Classes/Graphic/Rectangle/Button/Button.obj: src/Classes/Graphic/Rectangle/Button/Button.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/Button/Button.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Button/Button.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.cpp.obj
+
+src/Classes/Graphic/Rectangle/Button/Button.i: src/Classes/Graphic/Rectangle/Button/Button.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/Button/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Button/Button.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.cpp.i
+
+src/Classes/Graphic/Rectangle/Button/Button.s: src/Classes/Graphic/Rectangle/Button/Button.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/Button/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Button/Button.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Button/Button.cpp.s
+
+src/Classes/Graphic/Rectangle/Panel/Panel.obj: src/Classes/Graphic/Rectangle/Panel/Panel.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/Panel/Panel.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Panel/Panel.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.cpp.obj
+
+src/Classes/Graphic/Rectangle/Panel/Panel.i: src/Classes/Graphic/Rectangle/Panel/Panel.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/Panel/Panel.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Panel/Panel.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.cpp.i
+
+src/Classes/Graphic/Rectangle/Panel/Panel.s: src/Classes/Graphic/Rectangle/Panel/Panel.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/Panel/Panel.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Panel/Panel.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Panel/Panel.cpp.s
+
+src/Classes/Graphic/Rectangle/Rectangle.obj: src/Classes/Graphic/Rectangle/Rectangle.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/Rectangle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Rectangle.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.cpp.obj
+
+src/Classes/Graphic/Rectangle/Rectangle.i: src/Classes/Graphic/Rectangle/Rectangle.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/Rectangle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Rectangle.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.cpp.i
+
+src/Classes/Graphic/Rectangle/Rectangle.s: src/Classes/Graphic/Rectangle/Rectangle.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/Rectangle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Rectangle.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/Rectangle.cpp.s
+
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.obj: src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj
+
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.i: src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.i
+
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.s: src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.s
+
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.obj: src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj
+
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.i: src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.i
+
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.s: src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.s
+
+src/Classes/Graphic/Rectangle/TextBox/TextBox.obj: src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.obj
+
+# target to build an object file
+src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.obj
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.obj
+
+src/Classes/Graphic/Rectangle/TextBox/TextBox.i: src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.i
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.i
+
+src/Classes/Graphic/Rectangle/TextBox/TextBox.s: src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.s
+.PHONY : src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.s
+
+src/Classes/Graphic/Texture/Texture.obj: src/Classes/Graphic/Texture/Texture.cpp.obj
+.PHONY : src/Classes/Graphic/Texture/Texture.obj
+
+# target to build an object file
+src/Classes/Graphic/Texture/Texture.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/Texture.cpp.obj
+.PHONY : src/Classes/Graphic/Texture/Texture.cpp.obj
+
+src/Classes/Graphic/Texture/Texture.i: src/Classes/Graphic/Texture/Texture.cpp.i
+.PHONY : src/Classes/Graphic/Texture/Texture.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Texture/Texture.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/Texture.cpp.i
+.PHONY : src/Classes/Graphic/Texture/Texture.cpp.i
+
+src/Classes/Graphic/Texture/Texture.s: src/Classes/Graphic/Texture/Texture.cpp.s
+.PHONY : src/Classes/Graphic/Texture/Texture.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Texture/Texture.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/Texture.cpp.s
+.PHONY : src/Classes/Graphic/Texture/Texture.cpp.s
+
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.obj: src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.obj
+
+# target to build an object file
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj
+
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.i: src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.i
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.i
+
+# target to preprocess a source file
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.i
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.i
+
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.s: src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.s
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.s
+
+# target to generate assembly for a file
+src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.s
+.PHONY : src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.s
+
 src/Classes/Map/Map.obj: src/Classes/Map/Map.cpp.obj
 .PHONY : src/Classes/Map/Map.obj
 
@@ -1223,389 +959,293 @@ src/Classes/Map/Map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.s
 .PHONY : src/Classes/Map/Map.cpp.s
 
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.obj: src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.obj
+src/Classes/Move/AirSlash/AirSlash.obj: src/Classes/Move/AirSlash/AirSlash.cpp.obj
+.PHONY : src/Classes/Move/AirSlash/AirSlash.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.obj
+src/Classes/Move/AirSlash/AirSlash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AirSlash/AirSlash.cpp.obj
+.PHONY : src/Classes/Move/AirSlash/AirSlash.cpp.obj
 
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.i: src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.i
+src/Classes/Move/AirSlash/AirSlash.i: src/Classes/Move/AirSlash/AirSlash.cpp.i
+.PHONY : src/Classes/Move/AirSlash/AirSlash.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.i
+src/Classes/Move/AirSlash/AirSlash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AirSlash/AirSlash.cpp.i
+.PHONY : src/Classes/Move/AirSlash/AirSlash.cpp.i
 
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.s: src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.s
+src/Classes/Move/AirSlash/AirSlash.s: src/Classes/Move/AirSlash/AirSlash.cpp.s
+.PHONY : src/Classes/Move/AirSlash/AirSlash.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp.s
+src/Classes/Move/AirSlash/AirSlash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AirSlash/AirSlash.cpp.s
+.PHONY : src/Classes/Move/AirSlash/AirSlash.cpp.s
 
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.obj: src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.obj
+src/Classes/Move/AuraSphere/AuraSphere.obj: src/Classes/Move/AuraSphere/AuraSphere.cpp.obj
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.obj
+src/Classes/Move/AuraSphere/AuraSphere.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AuraSphere/AuraSphere.cpp.obj
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.cpp.obj
 
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.i: src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.i
+src/Classes/Move/AuraSphere/AuraSphere.i: src/Classes/Move/AuraSphere/AuraSphere.cpp.i
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.i
+src/Classes/Move/AuraSphere/AuraSphere.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AuraSphere/AuraSphere.cpp.i
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.cpp.i
 
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.s: src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.s
+src/Classes/Move/AuraSphere/AuraSphere.s: src/Classes/Move/AuraSphere/AuraSphere.cpp.s
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp.s
+src/Classes/Move/AuraSphere/AuraSphere.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/AuraSphere/AuraSphere.cpp.s
+.PHONY : src/Classes/Move/AuraSphere/AuraSphere.cpp.s
 
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.obj: src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.obj
+src/Classes/Move/DarkPulse/DarkPulse.obj: src/Classes/Move/DarkPulse/DarkPulse.cpp.obj
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.obj
+src/Classes/Move/DarkPulse/DarkPulse.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DarkPulse/DarkPulse.cpp.obj
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.cpp.obj
 
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.i: src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.i
+src/Classes/Move/DarkPulse/DarkPulse.i: src/Classes/Move/DarkPulse/DarkPulse.cpp.i
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.i
+src/Classes/Move/DarkPulse/DarkPulse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DarkPulse/DarkPulse.cpp.i
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.cpp.i
 
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.s: src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.s
+src/Classes/Move/DarkPulse/DarkPulse.s: src/Classes/Move/DarkPulse/DarkPulse.cpp.s
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp.s
+src/Classes/Move/DarkPulse/DarkPulse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DarkPulse/DarkPulse.cpp.s
+.PHONY : src/Classes/Move/DarkPulse/DarkPulse.cpp.s
 
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.obj: src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.obj
+src/Classes/Move/DragonPulse/DragonPulse.obj: src/Classes/Move/DragonPulse/DragonPulse.cpp.obj
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.obj
+src/Classes/Move/DragonPulse/DragonPulse.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DragonPulse/DragonPulse.cpp.obj
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.cpp.obj
 
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.i: src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.i
+src/Classes/Move/DragonPulse/DragonPulse.i: src/Classes/Move/DragonPulse/DragonPulse.cpp.i
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.i
+src/Classes/Move/DragonPulse/DragonPulse.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DragonPulse/DragonPulse.cpp.i
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.cpp.i
 
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.s: src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.s
+src/Classes/Move/DragonPulse/DragonPulse.s: src/Classes/Move/DragonPulse/DragonPulse.cpp.s
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp.s
+src/Classes/Move/DragonPulse/DragonPulse.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DragonPulse/DragonPulse.cpp.s
+.PHONY : src/Classes/Move/DragonPulse/DragonPulse.cpp.s
 
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.obj: src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.obj
+src/Classes/Move/Extrasensory/Extrasensory.obj: src/Classes/Move/Extrasensory/Extrasensory.cpp.obj
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.obj
+src/Classes/Move/Extrasensory/Extrasensory.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Extrasensory/Extrasensory.cpp.obj
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.cpp.obj
 
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.i: src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.i
+src/Classes/Move/Extrasensory/Extrasensory.i: src/Classes/Move/Extrasensory/Extrasensory.cpp.i
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.i
+src/Classes/Move/Extrasensory/Extrasensory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Extrasensory/Extrasensory.cpp.i
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.cpp.i
 
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.s: src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.s
+src/Classes/Move/Extrasensory/Extrasensory.s: src/Classes/Move/Extrasensory/Extrasensory.cpp.s
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp.s
+src/Classes/Move/Extrasensory/Extrasensory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Extrasensory/Extrasensory.cpp.s
+.PHONY : src/Classes/Move/Extrasensory/Extrasensory.cpp.s
 
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.obj: src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.obj
+src/Classes/Move/Flamethrower/Flamethrower.obj: src/Classes/Move/Flamethrower/Flamethrower.cpp.obj
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.obj
+src/Classes/Move/Flamethrower/Flamethrower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Flamethrower/Flamethrower.cpp.obj
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.cpp.obj
 
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.i: src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.i
+src/Classes/Move/Flamethrower/Flamethrower.i: src/Classes/Move/Flamethrower/Flamethrower.cpp.i
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.i
+src/Classes/Move/Flamethrower/Flamethrower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Flamethrower/Flamethrower.cpp.i
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.cpp.i
 
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.s: src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.s
+src/Classes/Move/Flamethrower/Flamethrower.s: src/Classes/Move/Flamethrower/Flamethrower.cpp.s
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp.s
+src/Classes/Move/Flamethrower/Flamethrower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Flamethrower/Flamethrower.cpp.s
+.PHONY : src/Classes/Move/Flamethrower/Flamethrower.cpp.s
 
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.obj: src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.obj
+src/Classes/Move/FlashCannon/FlashCannon.obj: src/Classes/Move/FlashCannon/FlashCannon.cpp.obj
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.obj
+src/Classes/Move/FlashCannon/FlashCannon.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FlashCannon/FlashCannon.cpp.obj
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.cpp.obj
 
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.i: src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.i
+src/Classes/Move/FlashCannon/FlashCannon.i: src/Classes/Move/FlashCannon/FlashCannon.cpp.i
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.i
+src/Classes/Move/FlashCannon/FlashCannon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FlashCannon/FlashCannon.cpp.i
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.cpp.i
 
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.s: src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.s
+src/Classes/Move/FlashCannon/FlashCannon.s: src/Classes/Move/FlashCannon/FlashCannon.cpp.s
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp.s
+src/Classes/Move/FlashCannon/FlashCannon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FlashCannon/FlashCannon.cpp.s
+.PHONY : src/Classes/Move/FlashCannon/FlashCannon.cpp.s
 
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.obj: src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.obj
+src/Classes/Move/FocusBlast/FocusBlast.obj: src/Classes/Move/FocusBlast/FocusBlast.cpp.obj
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.obj
+src/Classes/Move/FocusBlast/FocusBlast.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FocusBlast/FocusBlast.cpp.obj
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.cpp.obj
 
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.i: src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.i
+src/Classes/Move/FocusBlast/FocusBlast.i: src/Classes/Move/FocusBlast/FocusBlast.cpp.i
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.i
+src/Classes/Move/FocusBlast/FocusBlast.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FocusBlast/FocusBlast.cpp.i
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.cpp.i
 
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.s: src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.s
+src/Classes/Move/FocusBlast/FocusBlast.s: src/Classes/Move/FocusBlast/FocusBlast.cpp.s
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp.s
+src/Classes/Move/FocusBlast/FocusBlast.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/FocusBlast/FocusBlast.cpp.s
+.PHONY : src/Classes/Move/FocusBlast/FocusBlast.cpp.s
 
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj
+src/Classes/Move/HeadSmash/HeadSmash.obj: src/Classes/Move/HeadSmash/HeadSmash.cpp.obj
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.obj
+src/Classes/Move/HeadSmash/HeadSmash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeadSmash/HeadSmash.cpp.obj
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.cpp.obj
 
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i
+src/Classes/Move/HeadSmash/HeadSmash.i: src/Classes/Move/HeadSmash/HeadSmash.cpp.i
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.i
+src/Classes/Move/HeadSmash/HeadSmash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeadSmash/HeadSmash.cpp.i
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.cpp.i
 
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s: src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s
+src/Classes/Move/HeadSmash/HeadSmash.s: src/Classes/Move/HeadSmash/HeadSmash.cpp.s
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp.s
+src/Classes/Move/HeadSmash/HeadSmash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeadSmash/HeadSmash.cpp.s
+.PHONY : src/Classes/Move/HeadSmash/HeadSmash.cpp.s
 
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj
+src/Classes/Move/HeatCrash/HeatCrash.obj: src/Classes/Move/HeatCrash/HeatCrash.cpp.obj
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.obj
+src/Classes/Move/HeatCrash/HeatCrash.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeatCrash/HeatCrash.cpp.obj
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.cpp.obj
 
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i
+src/Classes/Move/HeatCrash/HeatCrash.i: src/Classes/Move/HeatCrash/HeatCrash.cpp.i
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.i
+src/Classes/Move/HeatCrash/HeatCrash.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeatCrash/HeatCrash.cpp.i
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.cpp.i
 
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s: src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s
+src/Classes/Move/HeatCrash/HeatCrash.s: src/Classes/Move/HeatCrash/HeatCrash.cpp.s
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp.s
+src/Classes/Move/HeatCrash/HeatCrash.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeatCrash/HeatCrash.cpp.s
+.PHONY : src/Classes/Move/HeatCrash/HeatCrash.cpp.s
 
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
+src/Classes/Move/IceBeam/IceBeam.obj: src/Classes/Move/IceBeam/IceBeam.cpp.obj
+.PHONY : src/Classes/Move/IceBeam/IceBeam.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.obj
+src/Classes/Move/IceBeam/IceBeam.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IceBeam/IceBeam.cpp.obj
+.PHONY : src/Classes/Move/IceBeam/IceBeam.cpp.obj
 
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i
+src/Classes/Move/IceBeam/IceBeam.i: src/Classes/Move/IceBeam/IceBeam.cpp.i
+.PHONY : src/Classes/Move/IceBeam/IceBeam.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.i
+src/Classes/Move/IceBeam/IceBeam.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IceBeam/IceBeam.cpp.i
+.PHONY : src/Classes/Move/IceBeam/IceBeam.cpp.i
 
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s: src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s
+src/Classes/Move/IceBeam/IceBeam.s: src/Classes/Move/IceBeam/IceBeam.cpp.s
+.PHONY : src/Classes/Move/IceBeam/IceBeam.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp.s
+src/Classes/Move/IceBeam/IceBeam.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IceBeam/IceBeam.cpp.s
+.PHONY : src/Classes/Move/IceBeam/IceBeam.cpp.s
 
-src/Classes/Move/DerivedClasses/IronTail/IronTail.obj: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.obj
+src/Classes/Move/IronTail/IronTail.obj: src/Classes/Move/IronTail/IronTail.cpp.obj
+.PHONY : src/Classes/Move/IronTail/IronTail.obj
 
 # target to build an object file
-src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.obj
+src/Classes/Move/IronTail/IronTail.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IronTail/IronTail.cpp.obj
+.PHONY : src/Classes/Move/IronTail/IronTail.cpp.obj
 
-src/Classes/Move/DerivedClasses/IronTail/IronTail.i: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.i
-
-# target to preprocess a source file
-src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.i
-
-src/Classes/Move/DerivedClasses/IronTail/IronTail.s: src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.s
-
-# target to generate assembly for a file
-src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp.s
-
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj
-
-# target to build an object file
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.obj
-
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i
+src/Classes/Move/IronTail/IronTail.i: src/Classes/Move/IronTail/IronTail.cpp.i
+.PHONY : src/Classes/Move/IronTail/IronTail.i
 
 # target to preprocess a source file
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.i
+src/Classes/Move/IronTail/IronTail.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IronTail/IronTail.cpp.i
+.PHONY : src/Classes/Move/IronTail/IronTail.cpp.i
 
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s: src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s
-
-# target to generate assembly for a file
-src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp.s
-
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj
-
-# target to build an object file
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.obj
-
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i
-
-# target to preprocess a source file
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.i
-
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s: src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s
+src/Classes/Move/IronTail/IronTail.s: src/Classes/Move/IronTail/IronTail.cpp.s
+.PHONY : src/Classes/Move/IronTail/IronTail.s
 
 # target to generate assembly for a file
-src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp.s
-
-src/Classes/Move/DerivedClasses/Thunder/Thunder.obj: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.obj
-
-# target to build an object file
-src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.obj
-
-src/Classes/Move/DerivedClasses/Thunder/Thunder.i: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.i
-
-# target to preprocess a source file
-src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.i
-
-src/Classes/Move/DerivedClasses/Thunder/Thunder.s: src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.s
-
-# target to generate assembly for a file
-src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp.s
-
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj
-
-# target to build an object file
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.obj
-
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i
-
-# target to preprocess a source file
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.i
-
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s: src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s
-
-# target to generate assembly for a file
-src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
-.PHONY : src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp.s
+src/Classes/Move/IronTail/IronTail.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/IronTail/IronTail.cpp.s
+.PHONY : src/Classes/Move/IronTail/IronTail.cpp.s
 
 src/Classes/Move/Move.obj: src/Classes/Move/Move.cpp.obj
 .PHONY : src/Classes/Move/Move.obj
@@ -1631,293 +1271,413 @@ src/Classes/Move/Move.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.s
 .PHONY : src/Classes/Move/Move.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Camera/Camera.obj: src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.obj
+src/Classes/Move/QuickAttack/QuickAttack.obj: src/Classes/Move/QuickAttack/QuickAttack.cpp.obj
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.obj
+src/Classes/Move/QuickAttack/QuickAttack.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/QuickAttack/QuickAttack.cpp.obj
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Camera/Camera.i: src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.i
+src/Classes/Move/QuickAttack/QuickAttack.i: src/Classes/Move/QuickAttack/QuickAttack.cpp.i
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.i
+src/Classes/Move/QuickAttack/QuickAttack.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/QuickAttack/QuickAttack.cpp.i
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Camera/Camera.s: src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.s
+src/Classes/Move/QuickAttack/QuickAttack.s: src/Classes/Move/QuickAttack/QuickAttack.cpp.s
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp.s
+src/Classes/Move/QuickAttack/QuickAttack.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/QuickAttack/QuickAttack.cpp.s
+.PHONY : src/Classes/Move/QuickAttack/QuickAttack.cpp.s
 
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.obj: src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.obj
+src/Classes/Move/SolarBeam/SolarBeam.obj: src/Classes/Move/SolarBeam/SolarBeam.cpp.obj
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.obj
+src/Classes/Move/SolarBeam/SolarBeam.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/SolarBeam/SolarBeam.cpp.obj
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.i: src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.i
+src/Classes/Move/SolarBeam/SolarBeam.i: src/Classes/Move/SolarBeam/SolarBeam.cpp.i
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.i
+src/Classes/Move/SolarBeam/SolarBeam.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/SolarBeam/SolarBeam.cpp.i
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.cpp.i
 
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.s: src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.s
+src/Classes/Move/SolarBeam/SolarBeam.s: src/Classes/Move/SolarBeam/SolarBeam.cpp.s
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp.s
+src/Classes/Move/SolarBeam/SolarBeam.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/SolarBeam/SolarBeam.cpp.s
+.PHONY : src/Classes/Move/SolarBeam/SolarBeam.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Game/Game.obj: src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.obj
+src/Classes/Move/Thunder/Thunder.obj: src/Classes/Move/Thunder/Thunder.cpp.obj
+.PHONY : src/Classes/Move/Thunder/Thunder.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.cpp.obj
+src/Classes/Move/Thunder/Thunder.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Thunder/Thunder.cpp.obj
+.PHONY : src/Classes/Move/Thunder/Thunder.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Game/Game.i: src/Classes/Singleton/DerivedClasses/Game/Game.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.i
+src/Classes/Move/Thunder/Thunder.i: src/Classes/Move/Thunder/Thunder.cpp.i
+.PHONY : src/Classes/Move/Thunder/Thunder.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Game/Game.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.cpp.i
+src/Classes/Move/Thunder/Thunder.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Thunder/Thunder.cpp.i
+.PHONY : src/Classes/Move/Thunder/Thunder.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Game/Game.s: src/Classes/Singleton/DerivedClasses/Game/Game.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.s
+src/Classes/Move/Thunder/Thunder.s: src/Classes/Move/Thunder/Thunder.cpp.s
+.PHONY : src/Classes/Move/Thunder/Thunder.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Game/Game.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Game/Game.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Game/Game.cpp.s
+src/Classes/Move/Thunder/Thunder.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/Thunder/Thunder.cpp.s
+.PHONY : src/Classes/Move/Thunder/Thunder.cpp.s
 
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.obj: src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.obj
+src/Classes/Move/VoltTackle/VoltTackle.obj: src/Classes/Move/VoltTackle/VoltTackle.cpp.obj
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.obj
+src/Classes/Move/VoltTackle/VoltTackle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/VoltTackle/VoltTackle.cpp.obj
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.i: src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.i
+src/Classes/Move/VoltTackle/VoltTackle.i: src/Classes/Move/VoltTackle/VoltTackle.cpp.i
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.i
+src/Classes/Move/VoltTackle/VoltTackle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/VoltTackle/VoltTackle.cpp.i
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.cpp.i
 
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.s: src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.s
+src/Classes/Move/VoltTackle/VoltTackle.s: src/Classes/Move/VoltTackle/VoltTackle.cpp.s
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp.s
+src/Classes/Move/VoltTackle/VoltTackle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Move/VoltTackle/VoltTackle.cpp.s
+.PHONY : src/Classes/Move/VoltTackle/VoltTackle.cpp.s
 
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.obj: src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.obj
+src/Classes/Singleton/Camera/Camera.obj: src/Classes/Singleton/Camera/Camera.cpp.obj
+.PHONY : src/Classes/Singleton/Camera/Camera.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.obj
+src/Classes/Singleton/Camera/Camera.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Camera/Camera.cpp.obj
+.PHONY : src/Classes/Singleton/Camera/Camera.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.i: src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.i
+src/Classes/Singleton/Camera/Camera.i: src/Classes/Singleton/Camera/Camera.cpp.i
+.PHONY : src/Classes/Singleton/Camera/Camera.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.i
+src/Classes/Singleton/Camera/Camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Camera/Camera.cpp.i
+.PHONY : src/Classes/Singleton/Camera/Camera.cpp.i
 
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.s: src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.s
+src/Classes/Singleton/Camera/Camera.s: src/Classes/Singleton/Camera/Camera.cpp.s
+.PHONY : src/Classes/Singleton/Camera/Camera.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp.s
+src/Classes/Singleton/Camera/Camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Camera/Camera.cpp.s
+.PHONY : src/Classes/Singleton/Camera/Camera.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.obj: src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.obj
+src/Classes/Singleton/EventHandler/EventHandler.obj: src/Classes/Singleton/EventHandler/EventHandler.cpp.obj
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.obj
+src/Classes/Singleton/EventHandler/EventHandler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/EventHandler/EventHandler.cpp.obj
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.i: src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.i
+src/Classes/Singleton/EventHandler/EventHandler.i: src/Classes/Singleton/EventHandler/EventHandler.cpp.i
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.i
+src/Classes/Singleton/EventHandler/EventHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/EventHandler/EventHandler.cpp.i
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.s: src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.s
+src/Classes/Singleton/EventHandler/EventHandler.s: src/Classes/Singleton/EventHandler/EventHandler.cpp.s
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp.s
+src/Classes/Singleton/EventHandler/EventHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/EventHandler/EventHandler.cpp.s
+.PHONY : src/Classes/Singleton/EventHandler/EventHandler.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj
+src/Classes/Singleton/Game/Game.obj: src/Classes/Singleton/Game/Game.cpp.obj
+.PHONY : src/Classes/Singleton/Game/Game.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.obj
+src/Classes/Singleton/Game/Game.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Game/Game.cpp.obj
+.PHONY : src/Classes/Singleton/Game/Game.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i
+src/Classes/Singleton/Game/Game.i: src/Classes/Singleton/Game/Game.cpp.i
+.PHONY : src/Classes/Singleton/Game/Game.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.i
+src/Classes/Singleton/Game/Game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Game/Game.cpp.i
+.PHONY : src/Classes/Singleton/Game/Game.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s: src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s
+src/Classes/Singleton/Game/Game.s: src/Classes/Singleton/Game/Game.cpp.s
+.PHONY : src/Classes/Singleton/Game/Game.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp.s
+src/Classes/Singleton/Game/Game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Game/Game.cpp.s
+.PHONY : src/Classes/Singleton/Game/Game.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.obj: src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.obj
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.i: src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.i
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.i
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.i
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.s: src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.s
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp.s
+src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.s
+.PHONY : src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj
+src/Classes/Singleton/ItemRegistry/ItemRegistry.obj: src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.obj
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.obj
+src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.obj
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i
+src/Classes/Singleton/ItemRegistry/ItemRegistry.i: src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.i
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.i
+src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.i
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s
+src/Classes/Singleton/ItemRegistry/ItemRegistry.s: src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.s
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp.s
+src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.s
+.PHONY : src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj
+src/Classes/Singleton/KeyManager/KeyManager.obj: src/Classes/Singleton/KeyManager/KeyManager.cpp.obj
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.obj
+src/Classes/Singleton/KeyManager/KeyManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/KeyManager/KeyManager.cpp.obj
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i
+src/Classes/Singleton/KeyManager/KeyManager.i: src/Classes/Singleton/KeyManager/KeyManager.cpp.i
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.i
+src/Classes/Singleton/KeyManager/KeyManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/KeyManager/KeyManager.cpp.i
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s: src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s
+src/Classes/Singleton/KeyManager/KeyManager.s: src/Classes/Singleton/KeyManager/KeyManager.cpp.s
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp.s
+src/Classes/Singleton/KeyManager/KeyManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/KeyManager/KeyManager.cpp.s
+.PHONY : src/Classes/Singleton/KeyManager/KeyManager.cpp.s
 
-src/Classes/Singleton/DerivedClasses/Scene/Scene.obj: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.obj
+src/Classes/Singleton/Mixer/Mixer.obj: src/Classes/Singleton/Mixer/Mixer.cpp.obj
+.PHONY : src/Classes/Singleton/Mixer/Mixer.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.obj
+src/Classes/Singleton/Mixer/Mixer.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Mixer/Mixer.cpp.obj
+.PHONY : src/Classes/Singleton/Mixer/Mixer.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/Scene/Scene.i: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.i
+src/Classes/Singleton/Mixer/Mixer.i: src/Classes/Singleton/Mixer/Mixer.cpp.i
+.PHONY : src/Classes/Singleton/Mixer/Mixer.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.i
+src/Classes/Singleton/Mixer/Mixer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Mixer/Mixer.cpp.i
+.PHONY : src/Classes/Singleton/Mixer/Mixer.cpp.i
 
-src/Classes/Singleton/DerivedClasses/Scene/Scene.s: src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.s
+src/Classes/Singleton/Mixer/Mixer.s: src/Classes/Singleton/Mixer/Mixer.cpp.s
+.PHONY : src/Classes/Singleton/Mixer/Mixer.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp.s
+src/Classes/Singleton/Mixer/Mixer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Mixer/Mixer.cpp.s
+.PHONY : src/Classes/Singleton/Mixer/Mixer.cpp.s
 
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj: src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj
+src/Classes/Singleton/Pokedex/Pokedex.obj: src/Classes/Singleton/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.obj
 
 # target to build an object file
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.obj
+src/Classes/Singleton/Pokedex/Pokedex.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.cpp.obj
 
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.i: src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.i
+src/Classes/Singleton/Pokedex/Pokedex.i: src/Classes/Singleton/Pokedex/Pokedex.cpp.i
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.i
 
 # target to preprocess a source file
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.i
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.i
+src/Classes/Singleton/Pokedex/Pokedex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Pokedex/Pokedex.cpp.i
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.cpp.i
 
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.s: src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.s
+src/Classes/Singleton/Pokedex/Pokedex.s: src/Classes/Singleton/Pokedex/Pokedex.cpp.s
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.s
 
 # target to generate assembly for a file
-src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.s
-.PHONY : src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp.s
+src/Classes/Singleton/Pokedex/Pokedex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Pokedex/Pokedex.cpp.s
+.PHONY : src/Classes/Singleton/Pokedex/Pokedex.cpp.s
+
+src/Classes/Singleton/Scene/Battle/Battle.obj: src/Classes/Singleton/Scene/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.obj
+
+# target to build an object file
+src/Classes/Singleton/Scene/Battle/Battle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Battle/Battle.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.cpp.obj
+
+src/Classes/Singleton/Scene/Battle/Battle.i: src/Classes/Singleton/Scene/Battle/Battle.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.i
+
+# target to preprocess a source file
+src/Classes/Singleton/Scene/Battle/Battle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Battle/Battle.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.cpp.i
+
+src/Classes/Singleton/Scene/Battle/Battle.s: src/Classes/Singleton/Scene/Battle/Battle.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/Scene/Battle/Battle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Battle/Battle.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Battle/Battle.cpp.s
+
+src/Classes/Singleton/Scene/Overworld/Overworld.obj: src/Classes/Singleton/Scene/Overworld/Overworld.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.obj
+
+# target to build an object file
+src/Classes/Singleton/Scene/Overworld/Overworld.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Overworld/Overworld.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.cpp.obj
+
+src/Classes/Singleton/Scene/Overworld/Overworld.i: src/Classes/Singleton/Scene/Overworld/Overworld.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.i
+
+# target to preprocess a source file
+src/Classes/Singleton/Scene/Overworld/Overworld.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Overworld/Overworld.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.cpp.i
+
+src/Classes/Singleton/Scene/Overworld/Overworld.s: src/Classes/Singleton/Scene/Overworld/Overworld.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/Scene/Overworld/Overworld.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Overworld/Overworld.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Overworld/Overworld.cpp.s
+
+src/Classes/Singleton/Scene/Scene.obj: src/Classes/Singleton/Scene/Scene.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Scene.obj
+
+# target to build an object file
+src/Classes/Singleton/Scene/Scene.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Scene.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/Scene.cpp.obj
+
+src/Classes/Singleton/Scene/Scene.i: src/Classes/Singleton/Scene/Scene.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Scene.i
+
+# target to preprocess a source file
+src/Classes/Singleton/Scene/Scene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Scene.cpp.i
+.PHONY : src/Classes/Singleton/Scene/Scene.cpp.i
+
+src/Classes/Singleton/Scene/Scene.s: src/Classes/Singleton/Scene/Scene.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Scene.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/Scene/Scene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Scene.cpp.s
+.PHONY : src/Classes/Singleton/Scene/Scene.cpp.s
+
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.obj: src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.obj
+
+# target to build an object file
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj
+
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.i: src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.i
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.i
+
+# target to preprocess a source file
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.i
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.i
+
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.s: src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.s
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.s
+.PHONY : src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.s
+
+src/Classes/Singleton/TextureManager/TextureManager.obj: src/Classes/Singleton/TextureManager/TextureManager.cpp.obj
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.obj
+
+# target to build an object file
+src/Classes/Singleton/TextureManager/TextureManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/TextureManager/TextureManager.cpp.obj
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.cpp.obj
+
+src/Classes/Singleton/TextureManager/TextureManager.i: src/Classes/Singleton/TextureManager/TextureManager.cpp.i
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.i
+
+# target to preprocess a source file
+src/Classes/Singleton/TextureManager/TextureManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/TextureManager/TextureManager.cpp.i
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.cpp.i
+
+src/Classes/Singleton/TextureManager/TextureManager.s: src/Classes/Singleton/TextureManager/TextureManager.cpp.s
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.s
+
+# target to generate assembly for a file
+src/Classes/Singleton/TextureManager/TextureManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\PokemonBattle.dir\build.make CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/TextureManager/TextureManager.cpp.s
+.PHONY : src/Classes/Singleton/TextureManager/TextureManager.cpp.s
 
 src/Enums/StatusCondition/StatusCondition.obj: src/Enums/StatusCondition/StatusCondition.cpp.obj
 .PHONY : src/Enums/StatusCondition/StatusCondition.obj
@@ -2111,216 +1871,186 @@ help:
 	@echo ... src/Classes/Component/Sprite/Sprite.obj
 	@echo ... src/Classes/Component/Sprite/Sprite.i
 	@echo ... src/Classes/Component/Sprite/Sprite.s
-	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.i
-	@echo ... src/Classes/Entity/DerivedClasses/Character/Character.s
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.i
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.s
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.i
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.s
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.i
-	@echo ... src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.s
-	@echo ... src/Classes/Entity/DerivedClasses/Item/Item.obj
-	@echo ... src/Classes/Entity/DerivedClasses/Item/Item.i
-	@echo ... src/Classes/Entity/DerivedClasses/Item/Item.s
+	@echo ... src/Classes/Entity/Character/Character.obj
+	@echo ... src/Classes/Entity/Character/Character.i
+	@echo ... src/Classes/Entity/Character/Character.s
+	@echo ... src/Classes/Entity/Character/Pokemon/Pokemon.obj
+	@echo ... src/Classes/Entity/Character/Pokemon/Pokemon.i
+	@echo ... src/Classes/Entity/Character/Pokemon/Pokemon.s
+	@echo ... src/Classes/Entity/Character/Trainer/Player/Player.obj
+	@echo ... src/Classes/Entity/Character/Trainer/Player/Player.i
+	@echo ... src/Classes/Entity/Character/Trainer/Player/Player.s
+	@echo ... src/Classes/Entity/Character/Trainer/Trainer.obj
+	@echo ... src/Classes/Entity/Character/Trainer/Trainer.i
+	@echo ... src/Classes/Entity/Character/Trainer/Trainer.s
 	@echo ... src/Classes/Entity/Entity.obj
 	@echo ... src/Classes/Entity/Entity.i
 	@echo ... src/Classes/Entity/Entity.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.s
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.obj
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.i
-	@echo ... src/Classes/Graphic/DerivedClasses/Texture/Texture.s
+	@echo ... src/Classes/Entity/Item/BattleItem/BattleItem.obj
+	@echo ... src/Classes/Entity/Item/BattleItem/BattleItem.i
+	@echo ... src/Classes/Entity/Item/BattleItem/BattleItem.s
+	@echo ... src/Classes/Entity/Item/Item.obj
+	@echo ... src/Classes/Entity/Item/Item.i
+	@echo ... src/Classes/Entity/Item/Item.s
+	@echo ... src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/HealBall/HealBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/HealBall/HealBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/HealBall/HealBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/NestBall/NestBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/NestBall/NestBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/NestBall/NestBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/NetBall/NetBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/NetBall/NetBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/NetBall/NetBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/PokeBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/PokeBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/PokeBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.s
+	@echo ... src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.obj
+	@echo ... src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.i
+	@echo ... src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.s
+	@echo ... src/Classes/Entity/Item/RestoreItem/RestoreItem.obj
+	@echo ... src/Classes/Entity/Item/RestoreItem/RestoreItem.i
+	@echo ... src/Classes/Entity/Item/RestoreItem/RestoreItem.s
+	@echo ... src/Classes/Entity/Item/StatusItem/StatusItem.obj
+	@echo ... src/Classes/Entity/Item/StatusItem/StatusItem.i
+	@echo ... src/Classes/Entity/Item/StatusItem/StatusItem.s
 	@echo ... src/Classes/Graphic/Graphic.obj
 	@echo ... src/Classes/Graphic/Graphic.i
 	@echo ... src/Classes/Graphic/Graphic.s
+	@echo ... src/Classes/Graphic/Rectangle/Button/Button.obj
+	@echo ... src/Classes/Graphic/Rectangle/Button/Button.i
+	@echo ... src/Classes/Graphic/Rectangle/Button/Button.s
+	@echo ... src/Classes/Graphic/Rectangle/Panel/Panel.obj
+	@echo ... src/Classes/Graphic/Rectangle/Panel/Panel.i
+	@echo ... src/Classes/Graphic/Rectangle/Panel/Panel.s
+	@echo ... src/Classes/Graphic/Rectangle/Rectangle.obj
+	@echo ... src/Classes/Graphic/Rectangle/Rectangle.i
+	@echo ... src/Classes/Graphic/Rectangle/Rectangle.s
+	@echo ... src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.obj
+	@echo ... src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.i
+	@echo ... src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.s
+	@echo ... src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.obj
+	@echo ... src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.i
+	@echo ... src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.s
+	@echo ... src/Classes/Graphic/Rectangle/TextBox/TextBox.obj
+	@echo ... src/Classes/Graphic/Rectangle/TextBox/TextBox.i
+	@echo ... src/Classes/Graphic/Rectangle/TextBox/TextBox.s
+	@echo ... src/Classes/Graphic/Texture/Texture.obj
+	@echo ... src/Classes/Graphic/Texture/Texture.i
+	@echo ... src/Classes/Graphic/Texture/Texture.s
+	@echo ... src/Classes/Graphic/Texture/TimedVisual/TimedVisual.obj
+	@echo ... src/Classes/Graphic/Texture/TimedVisual/TimedVisual.i
+	@echo ... src/Classes/Graphic/Texture/TimedVisual/TimedVisual.s
 	@echo ... src/Classes/Map/Map.obj
 	@echo ... src/Classes/Map/Map.i
 	@echo ... src/Classes/Map/Map.s
-	@echo ... src/Classes/Move/DerivedClasses/AirSlash/AirSlash.obj
-	@echo ... src/Classes/Move/DerivedClasses/AirSlash/AirSlash.i
-	@echo ... src/Classes/Move/DerivedClasses/AirSlash/AirSlash.s
-	@echo ... src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.obj
-	@echo ... src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.i
-	@echo ... src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.s
-	@echo ... src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.obj
-	@echo ... src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.i
-	@echo ... src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.s
-	@echo ... src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.obj
-	@echo ... src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.i
-	@echo ... src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.s
-	@echo ... src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.obj
-	@echo ... src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.i
-	@echo ... src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.s
-	@echo ... src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.obj
-	@echo ... src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.i
-	@echo ... src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.s
-	@echo ... src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.obj
-	@echo ... src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.i
-	@echo ... src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.s
-	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.obj
-	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.i
-	@echo ... src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.s
-	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.obj
-	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.i
-	@echo ... src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.s
-	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.obj
-	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.i
-	@echo ... src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.s
-	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.obj
-	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.i
-	@echo ... src/Classes/Move/DerivedClasses/IceBeam/IceBeam.s
-	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.obj
-	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.i
-	@echo ... src/Classes/Move/DerivedClasses/IronTail/IronTail.s
-	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.obj
-	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.i
-	@echo ... src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.s
-	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.obj
-	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.i
-	@echo ... src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.s
-	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.obj
-	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.i
-	@echo ... src/Classes/Move/DerivedClasses/Thunder/Thunder.s
-	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.obj
-	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.i
-	@echo ... src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.s
+	@echo ... src/Classes/Move/AirSlash/AirSlash.obj
+	@echo ... src/Classes/Move/AirSlash/AirSlash.i
+	@echo ... src/Classes/Move/AirSlash/AirSlash.s
+	@echo ... src/Classes/Move/AuraSphere/AuraSphere.obj
+	@echo ... src/Classes/Move/AuraSphere/AuraSphere.i
+	@echo ... src/Classes/Move/AuraSphere/AuraSphere.s
+	@echo ... src/Classes/Move/DarkPulse/DarkPulse.obj
+	@echo ... src/Classes/Move/DarkPulse/DarkPulse.i
+	@echo ... src/Classes/Move/DarkPulse/DarkPulse.s
+	@echo ... src/Classes/Move/DragonPulse/DragonPulse.obj
+	@echo ... src/Classes/Move/DragonPulse/DragonPulse.i
+	@echo ... src/Classes/Move/DragonPulse/DragonPulse.s
+	@echo ... src/Classes/Move/Extrasensory/Extrasensory.obj
+	@echo ... src/Classes/Move/Extrasensory/Extrasensory.i
+	@echo ... src/Classes/Move/Extrasensory/Extrasensory.s
+	@echo ... src/Classes/Move/Flamethrower/Flamethrower.obj
+	@echo ... src/Classes/Move/Flamethrower/Flamethrower.i
+	@echo ... src/Classes/Move/Flamethrower/Flamethrower.s
+	@echo ... src/Classes/Move/FlashCannon/FlashCannon.obj
+	@echo ... src/Classes/Move/FlashCannon/FlashCannon.i
+	@echo ... src/Classes/Move/FlashCannon/FlashCannon.s
+	@echo ... src/Classes/Move/FocusBlast/FocusBlast.obj
+	@echo ... src/Classes/Move/FocusBlast/FocusBlast.i
+	@echo ... src/Classes/Move/FocusBlast/FocusBlast.s
+	@echo ... src/Classes/Move/HeadSmash/HeadSmash.obj
+	@echo ... src/Classes/Move/HeadSmash/HeadSmash.i
+	@echo ... src/Classes/Move/HeadSmash/HeadSmash.s
+	@echo ... src/Classes/Move/HeatCrash/HeatCrash.obj
+	@echo ... src/Classes/Move/HeatCrash/HeatCrash.i
+	@echo ... src/Classes/Move/HeatCrash/HeatCrash.s
+	@echo ... src/Classes/Move/IceBeam/IceBeam.obj
+	@echo ... src/Classes/Move/IceBeam/IceBeam.i
+	@echo ... src/Classes/Move/IceBeam/IceBeam.s
+	@echo ... src/Classes/Move/IronTail/IronTail.obj
+	@echo ... src/Classes/Move/IronTail/IronTail.i
+	@echo ... src/Classes/Move/IronTail/IronTail.s
 	@echo ... src/Classes/Move/Move.obj
 	@echo ... src/Classes/Move/Move.i
 	@echo ... src/Classes/Move/Move.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Camera/Camera.s
-	@echo ... src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.i
-	@echo ... src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Game/Game.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Game/Game.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Game/Game.s
-	@echo ... src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.i
-	@echo ... src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.s
-	@echo ... src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.i
-	@echo ... src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Mixer/Mixer.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.s
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.i
-	@echo ... src/Classes/Singleton/DerivedClasses/Scene/Scene.s
-	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.obj
-	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.i
-	@echo ... src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.s
+	@echo ... src/Classes/Move/QuickAttack/QuickAttack.obj
+	@echo ... src/Classes/Move/QuickAttack/QuickAttack.i
+	@echo ... src/Classes/Move/QuickAttack/QuickAttack.s
+	@echo ... src/Classes/Move/SolarBeam/SolarBeam.obj
+	@echo ... src/Classes/Move/SolarBeam/SolarBeam.i
+	@echo ... src/Classes/Move/SolarBeam/SolarBeam.s
+	@echo ... src/Classes/Move/Thunder/Thunder.obj
+	@echo ... src/Classes/Move/Thunder/Thunder.i
+	@echo ... src/Classes/Move/Thunder/Thunder.s
+	@echo ... src/Classes/Move/VoltTackle/VoltTackle.obj
+	@echo ... src/Classes/Move/VoltTackle/VoltTackle.i
+	@echo ... src/Classes/Move/VoltTackle/VoltTackle.s
+	@echo ... src/Classes/Singleton/Camera/Camera.obj
+	@echo ... src/Classes/Singleton/Camera/Camera.i
+	@echo ... src/Classes/Singleton/Camera/Camera.s
+	@echo ... src/Classes/Singleton/EventHandler/EventHandler.obj
+	@echo ... src/Classes/Singleton/EventHandler/EventHandler.i
+	@echo ... src/Classes/Singleton/EventHandler/EventHandler.s
+	@echo ... src/Classes/Singleton/Game/Game.obj
+	@echo ... src/Classes/Singleton/Game/Game.i
+	@echo ... src/Classes/Singleton/Game/Game.s
+	@echo ... src/Classes/Singleton/GraphicsEngine/GraphicsEngine.obj
+	@echo ... src/Classes/Singleton/GraphicsEngine/GraphicsEngine.i
+	@echo ... src/Classes/Singleton/GraphicsEngine/GraphicsEngine.s
+	@echo ... src/Classes/Singleton/ItemRegistry/ItemRegistry.obj
+	@echo ... src/Classes/Singleton/ItemRegistry/ItemRegistry.i
+	@echo ... src/Classes/Singleton/ItemRegistry/ItemRegistry.s
+	@echo ... src/Classes/Singleton/KeyManager/KeyManager.obj
+	@echo ... src/Classes/Singleton/KeyManager/KeyManager.i
+	@echo ... src/Classes/Singleton/KeyManager/KeyManager.s
+	@echo ... src/Classes/Singleton/Mixer/Mixer.obj
+	@echo ... src/Classes/Singleton/Mixer/Mixer.i
+	@echo ... src/Classes/Singleton/Mixer/Mixer.s
+	@echo ... src/Classes/Singleton/Pokedex/Pokedex.obj
+	@echo ... src/Classes/Singleton/Pokedex/Pokedex.i
+	@echo ... src/Classes/Singleton/Pokedex/Pokedex.s
+	@echo ... src/Classes/Singleton/Scene/Battle/Battle.obj
+	@echo ... src/Classes/Singleton/Scene/Battle/Battle.i
+	@echo ... src/Classes/Singleton/Scene/Battle/Battle.s
+	@echo ... src/Classes/Singleton/Scene/Overworld/Overworld.obj
+	@echo ... src/Classes/Singleton/Scene/Overworld/Overworld.i
+	@echo ... src/Classes/Singleton/Scene/Overworld/Overworld.s
+	@echo ... src/Classes/Singleton/Scene/Scene.obj
+	@echo ... src/Classes/Singleton/Scene/Scene.i
+	@echo ... src/Classes/Singleton/Scene/Scene.s
+	@echo ... src/Classes/Singleton/Scene/TitleScreen/TitleScreen.obj
+	@echo ... src/Classes/Singleton/Scene/TitleScreen/TitleScreen.i
+	@echo ... src/Classes/Singleton/Scene/TitleScreen/TitleScreen.s
+	@echo ... src/Classes/Singleton/TextureManager/TextureManager.obj
+	@echo ... src/Classes/Singleton/TextureManager/TextureManager.i
+	@echo ... src/Classes/Singleton/TextureManager/TextureManager.s
 	@echo ... src/Enums/StatusCondition/StatusCondition.obj
 	@echo ... src/Enums/StatusCondition/StatusCondition.i
 	@echo ... src/Enums/StatusCondition/StatusCondition.s

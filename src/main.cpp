@@ -1,4 +1,4 @@
-#include "Classes/Singleton/DerivedClasses/Game/Game.h"
+#include "Classes/Singleton/Game/Game.h"
 
 int main() {
     SDL_SetMainReady();

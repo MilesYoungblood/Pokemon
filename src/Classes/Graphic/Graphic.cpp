@@ -6,8 +6,8 @@
 
 Graphic::Graphic(const SDL_Rect dest) : dest(dest) {}
 
-void Graphic::setDest(const SDL_Rect newDest) {
-    this->dest = newDest;
+void Graphic::setDest(const SDL_Rect x) {
+    this->dest = x;
 }
 
 void Graphic::setX(const int x) {

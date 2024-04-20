@@ -2,9 +2,9 @@
 // Created by Miles Youngblood on 7/10/2023.
 //
 
-#include "../Singleton/DerivedClasses/Game/Game.h"
-#include "../Singleton/DerivedClasses/TextureManager/TextureManager.h"
-#include "../Singleton/DerivedClasses/Camera/Camera.h"
+#include "../Singleton/Game/Game.h"
+#include "../Singleton/TextureManager/TextureManager.h"
+#include "../Singleton/Camera/Camera.h"
 #include "Map.h"
 
 void handleError(const std::string &filename, const char *name, const char *node) {

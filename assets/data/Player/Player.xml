@@ -4,16 +4,35 @@
     <direction>1</direction>
     <party>
         <pokemon id="Emboar">
+            <move_set>
+                <move id="Heat Crash"/>
+                <move id="Head Smash"/>
+            </move_set>
         </pokemon>
         <pokemon id="Zebstrika">
+            <move_set>
+                <move id="Volt Tackle"/>
+            </move_set>
         </pokemon>
         <pokemon id="Excadrill">
+            <move_set>
+            </move_set>
         </pokemon>
         <pokemon id="Carracosta">
+            <move_set>
+            </move_set>
         </pokemon>
         <pokemon id="Braviary">
+            <move_set>
+            </move_set>
         </pokemon>
         <pokemon id="Hydreigon">
+            <move_set>
+                <move id="Dark Pulse"/>
+                <move id="Dragon Pulse"/>
+                <move id="Flamethrower"/>
+                <move id="Focus Blast"/>
+            </move_set>
         </pokemon>
     </party>
 </xml>

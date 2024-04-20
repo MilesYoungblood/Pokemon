@@ -22,7 +22,7 @@ public:
 
     virtual void render() const = 0;
 
-    void setDest(SDL_Rect newDest);
+    void setDest(SDL_Rect x);
 
     void setX(int x);
 

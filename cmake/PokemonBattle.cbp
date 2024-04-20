@@ -125,187 +125,28 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Component/Sprite/Sprite.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Character.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/Character.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Character.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Pokemon/Pokemon.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Pokemon/Pokemon.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Trainer/Player/Player.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Trainer/Player/Player.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Trainer/Trainer.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Items.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/Item.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/DerivedClasses/Item/Item.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Character/Trainer/Trainer.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.cpp">
@@ -314,55 +155,94 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Entity.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Graphics.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/BattleItem/BattleItem.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/BattleItem/BattleItem.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/Item.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/Item.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/DerivedClasses/Texture/Texture.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/PokeBall.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/PokeBall.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/RestoreItem/RestoreItem.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/StatusItem/StatusItem.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Entity/Item/StatusItem/StatusItem.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.cpp">
@@ -371,106 +251,133 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphic.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Graphics.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Button/Button.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Button/Button.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Panel/Panel.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Panel/Panel.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Rectangle.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/Rectangle.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Rectangle/TextBox/TextBox.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Texture/Texture.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Texture/Texture.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Map/Map.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/AirSlash/AirSlash.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AirSlash/AirSlash.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/AirSlash/AirSlash.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/AuraSphere/AuraSphere.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/AuraSphere/AuraSphere.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DarkPulse/DarkPulse.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DarkPulse/DarkPulse.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DragonPulse/DragonPulse.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DragonPulse/DragonPulse.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Extrasensory/Extrasensory.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Extrasensory/Extrasensory.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Flamethrower/Flamethrower.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Flamethrower/Flamethrower.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/FlashCannon/FlashCannon.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/FlashCannon/FlashCannon.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/FocusBlast/FocusBlast.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/FocusBlast/FocusBlast.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/HeadSmash/HeadSmash.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/HeadSmash/HeadSmash.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/HeatCrash/HeatCrash.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/HeatCrash/HeatCrash.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/IceBeam/IceBeam.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IceBeam/IceBeam.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/IceBeam/IceBeam.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/IronTail/IronTail.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/IronTail/IronTail.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/Thunder/Thunder.h">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp">
-			<Option target="PokemonBattle"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/IronTail/IronTail.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.cpp">
@@ -479,82 +386,109 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Move.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/QuickAttack/QuickAttack.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Camera/Camera.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/QuickAttack/QuickAttack.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/SolarBeam/SolarBeam.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/SolarBeam/SolarBeam.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Thunder/Thunder.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Game/Game.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/Thunder/Thunder.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/VoltTackle/VoltTackle.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Move/VoltTackle/VoltTackle.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Camera/Camera.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Camera/Camera.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/EventHandler/EventHandler.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/EventHandler/EventHandler.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Game/Game.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Game/Game.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/ItemRegistry/ItemRegistry.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/KeyManager/KeyManager.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/KeyManager/KeyManager.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Mixer/Mixer.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Mixer/Mixer.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/Scene/Scene.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Pokedex/Pokedex.cpp">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Pokedex/Pokedex.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h">
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Battle/Battle.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Battle/Battle.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Overworld/Overworld.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Overworld/Overworld.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Scene.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/Scene.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/Singleton.h">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/TextureManager/TextureManager.cpp">
+			<Option target="PokemonBattle"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Classes/Singleton/TextureManager/TextureManager.h">
 			<Option target="PokemonBattle"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/src/Enums/Direction/Direction.h">

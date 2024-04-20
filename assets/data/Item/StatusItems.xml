@@ -1,0 +1,39 @@
+<xml version="1.0" encoding="UTF-8">
+    <items>
+        <item>
+            <data>
+                <name>Antidote</name>
+                <effect>A spray-type medicine. It lifts the effect of poison from one Pokémon.</effect>
+                <status>Poison</status>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Awakening</name>
+                <effect>"A spray-type medicine. It awakens a Pokémon from the clutches of sleep."</effect>
+                <status>Sleep</status>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Burn Heal</name>
+                <effect>A spray-type medicine. It heals a single Pokémon that is suffering from a burn.</effect>
+                <status>Burn</status>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Ice Heal</name>
+                <effect>A spray-type medicine. It defrosts a Pokémon that has been frozen solid.</effect>
+                <status>Freeze</status>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Paralyze Heal</name>
+                <effect>A spray-type medicine. It eliminates paralysis from a single Pokémon.</effect>
+                <status>Paralysis</status>
+            </data>
+        </item>
+    </items>
+</xml>

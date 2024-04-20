@@ -1,0 +1,52 @@
+<xml version="1.0" encoding="UTF-8">
+    <items>
+        <item>
+            <data>
+                <name>Ether</name>
+                <effect>Restores 10 PP.</effect>
+                <amount>10</amount>
+                <hp>false</hp>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Hyper Potion</name>
+                <effect>A spray-type medicine for wounds. It restores the HP of one Pokémon by 200 points.</effect>
+                <amount>200</amount>
+                <hp>true</hp>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Max Ether</name>
+                <effect>Restores 20 PP.</effect>
+                <amount>20</amount>
+                <hp>false</hp>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Max Potion</name>
+                <effect>A spray-type medicine for wounds. It completely restores the HP of a single Pokémon.</effect>
+                <amount>500</amount>
+                <hp>true</hp>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Potion</name>
+                <effect>A spray-type medicine for wounds. It restores the HP of one Pokémon by just 20 points.</effect>
+                <amount>20</amount>
+                <hp>true</hp>
+            </data>
+        </item>
+        <item>
+            <data>
+                <name>Super Potion</name>
+                <effect>A spray-type medicine for wounds. It restores the HP of one Pokémon by 50 points.</effect>
+                <amount>50</amount>
+                <hp>true</hp>
+            </data>
+        </item>
+    </items>
+</xml>

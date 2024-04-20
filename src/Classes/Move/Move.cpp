@@ -3,7 +3,7 @@
 //
 
 #include "../../../utility/Functions/GeneralFunctions.h"
-#include "../Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h"
+#include "../Entity/Character/Pokemon/Pokemon.h"
 #include "Move.h"
 
 Move::Move(const int pp) : pp(pp, pp) {}
@@ -98,12 +98,16 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
     }
     double initialDamage = 0.0;
 
-    const int levelCalc = (2 * attacker.getLevel() / 5) + 2;
+    double burnFlag = 1.0;
+    const int levelCalc = 2 * attacker.getLevel() / 5 + 2;
     switch (this->getCategory()) {
         case Category::PHYSICAL:
             initialDamage = levelCalc * this->getPower(attacker, defender) *
                             attacker.getBaseStat(Pokemon::Stat::ATTACK) /
                             defender.getBaseStat(Pokemon::Stat::DEFENSE);
+            if (attacker.getStatus() == StatusCondition::BURN) {
+                burnFlag = 0.5;
+            }
             break;
         case Category::SPECIAL:
             initialDamage = levelCalc * this->getPower(attacker, defender) *
@@ -121,7 +125,7 @@ void Move::calculateDamage(const Pokemon &attacker, const Pokemon &defender) {
     this->critFlag = binomial(this->getCritRatio()) ? 2.0 : 1.0;
 
     //FIXME recalculate damage
-    this->damageFlag = static_cast<int>(finalDamage * stab * this->effFlag * this->critFlag);
+    this->damageFlag = static_cast<int>(finalDamage * stab * this->effFlag * this->critFlag * burnFlag);
 }
 
 double Move::checkType(const Pokemon &pokemon) const {

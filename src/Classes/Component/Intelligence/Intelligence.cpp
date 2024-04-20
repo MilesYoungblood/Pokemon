@@ -2,8 +2,8 @@
 // Created by Miles Youngblood on 4/14/2024.
 //
 
-#include "../../Singleton/DerivedClasses/Game/Game.h"
-#include "../../Singleton/DerivedClasses/EventHandler/EventHandler.h"
+#include "../../Singleton/Game/Game.h"
+#include "../../Singleton/EventHandler/EventHandler.h"
 #include "Intelligence.h"
 
 Component::Intelligence::Intelligence(const std::function<void()> &action, const std::function<bool()> &condition,

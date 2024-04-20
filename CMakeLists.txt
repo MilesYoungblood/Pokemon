@@ -21,178 +21,149 @@ endif ()
 
 set(SOURCES
         src/main.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Pokemon/Pokemon.cpp
-        src/Classes/Move/Move.h
-        src/Classes/Move/Move.cpp
-        src/Classes/Entity/DerivedClasses/Item/Item.cpp
-        src/Classes/Entity/DerivedClasses/Item/Item.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/Trainer.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/RestoreItem.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/StatusItem.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/PokeBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/BattleItem/BattleItem.cpp
+        src/Classes/Entity/Entity.cpp
+        src/Classes/Entity/Entity.h
+        src/Classes/Entity/Character/Character.cpp
+        src/Classes/Entity/Character/Character.h
+        src/Classes/Entity/Character/Pokemon/Pokemon.cpp
+        src/Classes/Entity/Character/Pokemon/Pokemon.h
+        src/Classes/Entity/Character/Trainer/Trainer.cpp
+        src/Classes/Entity/Character/Trainer/Trainer.h
+        src/Classes/Entity/Character/Trainer/Player/Player.cpp
+        src/Classes/Entity/Character/Trainer/Player/Player.h
         src/Classes/Map/Map.cpp
         src/Classes/Map/Map.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/Items.h
-        src/Classes/Entity/DerivedClasses/Character/Character.cpp
-        src/Classes/Entity/DerivedClasses/Character/Character.h
-        src/Classes/Singleton/DerivedClasses/Game/Game.cpp
-        src/Classes/Singleton/DerivedClasses/Game/Game.h
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.cpp
-        src/Classes/Entity/DerivedClasses/Character/DerivedClasses/Trainer/DerivedClasses/Player/Player.h
-        src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.h
-        src/Classes/Singleton/DerivedClasses/TextureManager/TextureManager.cpp
-        src/Classes/Singleton/DerivedClasses/Camera/Camera.h
-        src/Classes/Singleton/DerivedClasses/Camera/Camera.cpp
-        src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.h
-        src/Classes/Singleton/DerivedClasses/KeyManager/KeyManager.cpp
-        utility/Stopwatch/Stopwatch.h
-        utility/Stopwatch/Stopwatch.cpp
-        src/Classes/Singleton/DerivedClasses/Mixer/Mixer.h
-        src/Classes/Singleton/DerivedClasses/Mixer/Mixer.cpp
-        include/pch.h
-        utility/Constants/constants.h
-        utility/Constants/constants.cpp
-        src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.cpp
-        src/Classes/Singleton/DerivedClasses/GraphicsEngine/GraphicsEngine.h
         src/Classes/Singleton/Singleton.h
-        src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.cpp
-        src/Classes/Singleton/DerivedClasses/Pokedex/Pokedex.h
+        src/Classes/Singleton/Camera/Camera.cpp
+        src/Classes/Singleton/Camera/Camera.h
+        src/Classes/Singleton/EventHandler/EventHandler.cpp
+        src/Classes/Singleton/EventHandler/EventHandler.h
+        src/Classes/Singleton/Game/Game.cpp
+        src/Classes/Singleton/Game/Game.h
+        src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp
+        src/Classes/Singleton/GraphicsEngine/GraphicsEngine.h
+        src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp
+        src/Classes/Singleton/ItemRegistry/ItemRegistry.h
+        src/Classes/Singleton/KeyManager/KeyManager.cpp
+        src/Classes/Singleton/KeyManager/KeyManager.h
+        src/Classes/Singleton/Mixer/Mixer.cpp
+        src/Classes/Singleton/Mixer/Mixer.h
+        src/Classes/Singleton/Pokedex/Pokedex.cpp
+        src/Classes/Singleton/Pokedex/Pokedex.h
+        src/Classes/Singleton/TextureManager/TextureManager.cpp
+        src/Classes/Singleton/TextureManager/TextureManager.h
+        include/pch.h
         src/Enums/Type/Type.cpp
         src/Enums/Type/Type.h
         src/Enums/StatusCondition/StatusCondition.cpp
         src/Enums/StatusCondition/StatusCondition.h
         src/Enums/Direction/Direction.h
-        src/Classes/Entity/Entity.cpp
-        src/Classes/Entity/Entity.h
+        utility/Stopwatch/Stopwatch.cpp
+        utility/Stopwatch/Stopwatch.h
+        utility/Constants/constants.cpp
+        utility/Constants/constants.h
         utility/ThreadPool/ThreadPool.cpp
         utility/ThreadPool/ThreadPool.h
         utility/Matrix/Matrix.h
         utility/Sorter/Sorter.h
-        utility/Functions/GeneralFunctions.h
         utility/Functions/GeneralFunctions.cpp
-        src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.cpp
-        src/Classes/Singleton/DerivedClasses/EventHandler/EventHandler.h
+        utility/Functions/GeneralFunctions.h
 )
 
 set(MOVES
-        src/Classes/Move/DerivedClasses/AirSlash/AirSlash.cpp
-        src/Classes/Move/DerivedClasses/AirSlash/AirSlash.h
-        src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.cpp
-        src/Classes/Move/DerivedClasses/AuraSphere/AuraSphere.h
-        src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.cpp
-        src/Classes/Move/DerivedClasses/DarkPulse/DarkPulse.h
-        src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.cpp
-        src/Classes/Move/DerivedClasses/DragonPulse/DragonPulse.h
-        src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.cpp
-        src/Classes/Move/DerivedClasses/Extrasensory/Extrasensory.h
-        src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.cpp
-        src/Classes/Move/DerivedClasses/Flamethrower/Flamethrower.h
-        src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.cpp
-        src/Classes/Move/DerivedClasses/FlashCannon/FlashCannon.h
-        src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.cpp
-        src/Classes/Move/DerivedClasses/FocusBlast/FocusBlast.h
-        src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.cpp
-        src/Classes/Move/DerivedClasses/HeadSmash/HeadSmash.h
-        src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.cpp
-        src/Classes/Move/DerivedClasses/HeatCrash/HeatCrash.h
-        src/Classes/Move/DerivedClasses/IceBeam/IceBeam.cpp
-        src/Classes/Move/DerivedClasses/IceBeam/IceBeam.h
-        src/Classes/Move/DerivedClasses/IronTail/IronTail.cpp
-        src/Classes/Move/DerivedClasses/IronTail/IronTail.h
-        src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.cpp
-        src/Classes/Move/DerivedClasses/QuickAttack/QuickAttack.h
-        src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.cpp
-        src/Classes/Move/DerivedClasses/SolarBeam/SolarBeam.h
-        src/Classes/Move/DerivedClasses/Thunder/Thunder.cpp
-        src/Classes/Move/DerivedClasses/Thunder/Thunder.h
-        src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.cpp
-        src/Classes/Move/DerivedClasses/VoltTackle/VoltTackle.h
-)
-
-set(RESTORE_ITEMS
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Potion/Potion.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/SuperPotion/SuperPotion.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/HyperPotion/HyperPotion.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxPotion/MaxPotion.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/Ether/Ether.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/RestoreItem/DerivedClasses/MaxEther/MaxEther.h
-)
-
-set(STATUS_ITEMS
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Antidote/Antidote.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/Awakening/Awakening.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/BurnHeal/BurnHeal.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/IceHeal/IceHeal.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/StatusItem/DerivedClasses/ParalyzeHeal/ParalyzeHeal.h
+        src/Classes/Move/Move.cpp
+        src/Classes/Move/Move.h
+        src/Classes/Move/AirSlash/AirSlash.cpp
+        src/Classes/Move/AirSlash/AirSlash.h
+        src/Classes/Move/AuraSphere/AuraSphere.cpp
+        src/Classes/Move/AuraSphere/AuraSphere.h
+        src/Classes/Move/DarkPulse/DarkPulse.cpp
+        src/Classes/Move/DarkPulse/DarkPulse.h
+        src/Classes/Move/DragonPulse/DragonPulse.cpp
+        src/Classes/Move/DragonPulse/DragonPulse.h
+        src/Classes/Move/Extrasensory/Extrasensory.cpp
+        src/Classes/Move/Extrasensory/Extrasensory.h
+        src/Classes/Move/Flamethrower/Flamethrower.cpp
+        src/Classes/Move/Flamethrower/Flamethrower.h
+        src/Classes/Move/FlashCannon/FlashCannon.cpp
+        src/Classes/Move/FlashCannon/FlashCannon.h
+        src/Classes/Move/FocusBlast/FocusBlast.cpp
+        src/Classes/Move/FocusBlast/FocusBlast.h
+        src/Classes/Move/HeadSmash/HeadSmash.cpp
+        src/Classes/Move/HeadSmash/HeadSmash.h
+        src/Classes/Move/HeatCrash/HeatCrash.cpp
+        src/Classes/Move/HeatCrash/HeatCrash.h
+        src/Classes/Move/IceBeam/IceBeam.cpp
+        src/Classes/Move/IceBeam/IceBeam.h
+        src/Classes/Move/IronTail/IronTail.cpp
+        src/Classes/Move/IronTail/IronTail.h
+        src/Classes/Move/QuickAttack/QuickAttack.cpp
+        src/Classes/Move/QuickAttack/QuickAttack.h
+        src/Classes/Move/SolarBeam/SolarBeam.cpp
+        src/Classes/Move/SolarBeam/SolarBeam.h
+        src/Classes/Move/Thunder/Thunder.cpp
+        src/Classes/Move/Thunder/Thunder.h
+        src/Classes/Move/VoltTackle/VoltTackle.cpp
+        src/Classes/Move/VoltTackle/VoltTackle.h
 )
 
 set(POKE_BALLS
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/GreatBall/GreatBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/UltraBall/UltraBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/MasterBall/MasterBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NetBall/NetBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/NestBall/NestBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/TimerBall/TimerBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/PremierBall/PremierBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/DuskBall/DuskBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/HealBall/HealBall.h
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.cpp
-        src/Classes/Entity/DerivedClasses/Item/DerivedClasses/PokeBall/DerivedClasses/QuickBall/QuickBall.h
+        src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp
+        src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.h
+        src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp
+        src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.h
+        src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp
+        src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.h
+        src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp
+        src/Classes/Entity/Item/PokeBall/NetBall/NetBall.h
+        src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp
+        src/Classes/Entity/Item/PokeBall/NestBall/NestBall.h
+        src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp
+        src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.h
+        src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp
+        src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.h
+        src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp
+        src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.h
+        src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp
+        src/Classes/Entity/Item/PokeBall/HealBall/HealBall.h
+        src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp
+        src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.h
 )
 
 set(ITEMS
-        ${RESTORE_ITEMS}
-        ${STATUS_ITEMS}
+        src/Classes/Entity/Item/Item.cpp
+        src/Classes/Entity/Item/Item.h
+        src/Classes/Entity/Item/BattleItem/BattleItem.cpp
+        src/Classes/Entity/Item/BattleItem/BattleItem.h
+        src/Classes/Entity/Item/PokeBall/PokeBall.cpp
+        src/Classes/Entity/Item/PokeBall/PokeBall.h
         ${POKE_BALLS}
+        src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp
+        src/Classes/Entity/Item/RestoreItem/RestoreItem.h
+        src/Classes/Entity/Item/StatusItem/StatusItem.cpp
+        src/Classes/Entity/Item/StatusItem/StatusItem.h
 )
 
 set(GRAPHICS
         src/Classes/Graphic/Graphic.cpp
         src/Classes/Graphic/Graphic.h
-        src/Classes/Graphic/DerivedClasses/Graphics.h
-        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.cpp
-        src/Classes/Graphic/DerivedClasses/Texture/DerivedClasses/TimedVisual/TimedVisual.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/TextBox/TextBox.h
-        src/Classes/Graphic/DerivedClasses/Texture/Texture.cpp
-        src/Classes/Graphic/DerivedClasses/Texture/Texture.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/Rectangle.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/SelectionBox/SelectionBox.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/ResourceBar/ResourceBar.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Button/Button.h
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.cpp
-        src/Classes/Graphic/DerivedClasses/Rectangle/DerivedClasses/Panel/Panel.h
+        src/Classes/Graphic/Graphics.h
+        src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp
+        src/Classes/Graphic/Texture/TimedVisual/TimedVisual.h
+        src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp
+        src/Classes/Graphic/Rectangle/TextBox/TextBox.h
+        src/Classes/Graphic/Texture/Texture.cpp
+        src/Classes/Graphic/Texture/Texture.h
+        src/Classes/Graphic/Rectangle/Rectangle.cpp
+        src/Classes/Graphic/Rectangle/Rectangle.h
+        src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp
+        src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.h
+        src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp
+        src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.h
+        src/Classes/Graphic/Rectangle/Button/Button.cpp
+        src/Classes/Graphic/Rectangle/Button/Button.h
+        src/Classes/Graphic/Rectangle/Panel/Panel.cpp
+        src/Classes/Graphic/Rectangle/Panel/Panel.h
 )
 
 set(COMPONENTS
@@ -207,15 +178,14 @@ set(COMPONENTS
 )
 
 set(SCENES
-        src/Classes/Singleton/DerivedClasses/Scene/Scene.h
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Scenes.h
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.cpp
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Battle/Battle.h
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.cpp
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/Overworld/Overworld.h
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.cpp
-        src/Classes/Singleton/DerivedClasses/Scene/DerivedClasses/TitleScreen/TitleScreen.h
-        src/Classes/Singleton/DerivedClasses/Scene/Scene.cpp
+        src/Classes/Singleton/Scene/Scene.h
+        src/Classes/Singleton/Scene/Battle/Battle.cpp
+        src/Classes/Singleton/Scene/Battle/Battle.h
+        src/Classes/Singleton/Scene/Overworld/Overworld.cpp
+        src/Classes/Singleton/Scene/Overworld/Overworld.h
+        src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp
+        src/Classes/Singleton/Scene/TitleScreen/TitleScreen.h
+        src/Classes/Singleton/Scene/Scene.cpp
 )
 
 add_executable(PokemonBattle
