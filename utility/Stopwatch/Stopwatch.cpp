@@ -4,52 +4,32 @@
 
 #include "Stopwatch.h"
 
-Stopwatch::~Stopwatch() {
-    this->stop();
-}
-
 void Stopwatch::start() {
-    // prevents executing start if the stopwatch is still going
-    if (this->active) {
-        return;
+    if (not this->active) {
+        this->active = true;
+        this->startTime = std::chrono::high_resolution_clock::now();
     }
-
-    this->active = true;
-    this->counter = std::thread([this] -> void {
-            while (this->active) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
-                ++this->elapsedTime;
-            }
-    });
 }
 
 void Stopwatch::stop() {
-    this->active = false;
-    if (counter.joinable()) {
-        this->counter.join();
+    if (this->active) {
+        const auto stopTime = std::chrono::high_resolution_clock::now();
+        this->elapsedTime += std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - this->startTime);
     }
 }
 
 void Stopwatch::reset() {
-    this->elapsedTime = 0ULL;
+    this->elapsedTime = std::chrono::milliseconds(0);
+    if (this->active) {
+        this->startTime = std::chrono::high_resolution_clock::now();
+    }
 }
 
-bool Stopwatch::operator<(const std::size_t rhs) const {
-    return this->elapsedTime < rhs;
-}
-
-bool Stopwatch::operator<=(const std::size_t rhs) const {
-    return this->elapsedTime <= rhs;
-}
-
-bool Stopwatch::operator>(const std::size_t rhs) const {
-    return this->elapsedTime > rhs;
-}
-
-bool Stopwatch::operator>=(const std::size_t rhs) const {
-    return this->elapsedTime >= rhs;
-}
-
-bool Stopwatch::operator==(const std::size_t rhs) const {
-    return this->elapsedTime == rhs;
+std::size_t Stopwatch::elapsed() const {
+    if (this->active) {
+        const auto currentTime = std::chrono::high_resolution_clock::now();
+        const auto currentElapsedTime = this->elapsedTime + std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - this->startTime);
+        return currentElapsedTime.count();
+    }
+    return this->elapsedTime.count();
 }

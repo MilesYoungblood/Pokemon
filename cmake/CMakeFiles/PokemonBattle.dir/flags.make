@@ -12,35 +12,35 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/main.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Entity.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Entity.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Character.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Character/Character.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Pokemon/Pokemon.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Character/Pokemon/Pokemon.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Trainer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Character/Trainer/Trainer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Character/Trainer/Player/Player.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Character/Trainer/Player/Player.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Map/Map.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Map/Map.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Camera/Camera.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Camera/Camera.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/EventHandler/EventHandler.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/EventHandler/EventHandler.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Game/Game.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Game/Game.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/KeyManager/KeyManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/KeyManager/KeyManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Mixer/Mixer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Mixer/Mixer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Pokedex/Pokedex.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Pokedex/Pokedex.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/TextureManager/TextureManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/TextureManager/TextureManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/PokemonBattle.dir/src/Enums/Type/Type.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
@@ -54,101 +54,101 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/PokemonBattle.dir/utility/Functions/GeneralFunctions.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/Move.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/Move.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/AirSlash/AirSlash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/AirSlash/AirSlash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/AuraSphere/AuraSphere.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/AuraSphere/AuraSphere.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/DarkPulse/DarkPulse.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/DarkPulse/DarkPulse.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/DragonPulse/DragonPulse.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/DragonPulse/DragonPulse.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/Extrasensory/Extrasensory.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/Extrasensory/Extrasensory.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/Flamethrower/Flamethrower.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/Flamethrower/Flamethrower.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/FlashCannon/FlashCannon.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/FlashCannon/FlashCannon.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/FocusBlast/FocusBlast.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/FocusBlast/FocusBlast.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeadSmash/HeadSmash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/HeadSmash/HeadSmash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/HeatCrash/HeatCrash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/HeatCrash/HeatCrash.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/IceBeam/IceBeam.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/IceBeam/IceBeam.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/IronTail/IronTail.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/IronTail/IronTail.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/QuickAttack/QuickAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/QuickAttack/QuickAttack.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/SolarBeam/SolarBeam.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/SolarBeam/SolarBeam.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/Thunder/Thunder.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/Thunder/Thunder.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Move/VoltTackle/VoltTackle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Move/VoltTackle/VoltTackle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/Item.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/Item.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/BattleItem/BattleItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/BattleItem/BattleItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PokeBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/PokeBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/GreatBall/GreatBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/UltraBall/UltraBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/MasterBall/MasterBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/NetBall/NetBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/NestBall/NestBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/TimerBall/TimerBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/PremierBall/PremierBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/DuskBall/DuskBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/HealBall/HealBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/PokeBall/QuickBall/QuickBall.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/RestoreItem/RestoreItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Entity/Item/StatusItem/StatusItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Entity/Item/StatusItem/StatusItem.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Graphic.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Graphic.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/TextBox/TextBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Texture/Texture.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Texture/Texture.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Rectangle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/Rectangle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Button/Button.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/Button/Button.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Graphic/Rectangle/Panel/Panel.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Component/Intelligence/Intelligence.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Component/Intelligence/Intelligence.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Component/Position/Position.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Component/Position/Position.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Component/Resource/Resource.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Component/Resource/Resource.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Component/Sprite/Sprite.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Component/Sprite/Sprite.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Battle/Battle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Scene/Battle/Battle.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Overworld/Overworld.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/PokemonBattle.dir/src/Classes/Singleton/Scene/Scene.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/PokemonBattle.dir/src/Singleton/Scene/Scene.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/PokemonBattle/cmake/CMakeFiles/PokemonBattle.dir/cmake_pch.hxx
 

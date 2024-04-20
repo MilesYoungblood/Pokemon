@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.25)
-project(PokemonBattle)
+project(Pokemon)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -21,37 +21,37 @@ endif ()
 
 set(SOURCES
         src/main.cpp
-        src/Classes/Entity/Entity.cpp
-        src/Classes/Entity/Entity.h
-        src/Classes/Entity/Character/Character.cpp
-        src/Classes/Entity/Character/Character.h
-        src/Classes/Entity/Character/Pokemon/Pokemon.cpp
-        src/Classes/Entity/Character/Pokemon/Pokemon.h
-        src/Classes/Entity/Character/Trainer/Trainer.cpp
-        src/Classes/Entity/Character/Trainer/Trainer.h
-        src/Classes/Entity/Character/Trainer/Player/Player.cpp
-        src/Classes/Entity/Character/Trainer/Player/Player.h
-        src/Classes/Map/Map.cpp
-        src/Classes/Map/Map.h
-        src/Classes/Singleton/Singleton.h
-        src/Classes/Singleton/Camera/Camera.cpp
-        src/Classes/Singleton/Camera/Camera.h
-        src/Classes/Singleton/EventHandler/EventHandler.cpp
-        src/Classes/Singleton/EventHandler/EventHandler.h
-        src/Classes/Singleton/Game/Game.cpp
-        src/Classes/Singleton/Game/Game.h
-        src/Classes/Singleton/GraphicsEngine/GraphicsEngine.cpp
-        src/Classes/Singleton/GraphicsEngine/GraphicsEngine.h
-        src/Classes/Singleton/ItemRegistry/ItemRegistry.cpp
-        src/Classes/Singleton/ItemRegistry/ItemRegistry.h
-        src/Classes/Singleton/KeyManager/KeyManager.cpp
-        src/Classes/Singleton/KeyManager/KeyManager.h
-        src/Classes/Singleton/Mixer/Mixer.cpp
-        src/Classes/Singleton/Mixer/Mixer.h
-        src/Classes/Singleton/Pokedex/Pokedex.cpp
-        src/Classes/Singleton/Pokedex/Pokedex.h
-        src/Classes/Singleton/TextureManager/TextureManager.cpp
-        src/Classes/Singleton/TextureManager/TextureManager.h
+        src/Entity/Entity.cpp
+        src/Entity/Entity.h
+        src/Entity/Character/Character.cpp
+        src/Entity/Character/Character.h
+        src/Entity/Character/Pokemon/Pokemon.cpp
+        src/Entity/Character/Pokemon/Pokemon.h
+        src/Entity/Character/Trainer/Trainer.cpp
+        src/Entity/Character/Trainer/Trainer.h
+        src/Entity/Character/Trainer/Player/Player.cpp
+        src/Entity/Character/Trainer/Player/Player.h
+        src/Map/Map.cpp
+        src/Map/Map.h
+        src/Singleton/Singleton.h
+        src/Singleton/Camera/Camera.cpp
+        src/Singleton/Camera/Camera.h
+        src/Singleton/EventHandler/EventHandler.cpp
+        src/Singleton/EventHandler/EventHandler.h
+        src/Singleton/Game/Game.cpp
+        src/Singleton/Game/Game.h
+        src/Singleton/GraphicsEngine/GraphicsEngine.cpp
+        src/Singleton/GraphicsEngine/GraphicsEngine.h
+        src/Singleton/ItemRegistry/ItemRegistry.cpp
+        src/Singleton/ItemRegistry/ItemRegistry.h
+        src/Singleton/KeyManager/KeyManager.cpp
+        src/Singleton/KeyManager/KeyManager.h
+        src/Singleton/Mixer/Mixer.cpp
+        src/Singleton/Mixer/Mixer.h
+        src/Singleton/Pokedex/Pokedex.cpp
+        src/Singleton/Pokedex/Pokedex.h
+        src/Singleton/TextureManager/TextureManager.cpp
+        src/Singleton/TextureManager/TextureManager.h
         include/pch.h
         src/Enums/Type/Type.cpp
         src/Enums/Type/Type.h
@@ -71,124 +71,124 @@ set(SOURCES
 )
 
 set(MOVES
-        src/Classes/Move/Move.cpp
-        src/Classes/Move/Move.h
-        src/Classes/Move/AirSlash/AirSlash.cpp
-        src/Classes/Move/AirSlash/AirSlash.h
-        src/Classes/Move/AuraSphere/AuraSphere.cpp
-        src/Classes/Move/AuraSphere/AuraSphere.h
-        src/Classes/Move/DarkPulse/DarkPulse.cpp
-        src/Classes/Move/DarkPulse/DarkPulse.h
-        src/Classes/Move/DragonPulse/DragonPulse.cpp
-        src/Classes/Move/DragonPulse/DragonPulse.h
-        src/Classes/Move/Extrasensory/Extrasensory.cpp
-        src/Classes/Move/Extrasensory/Extrasensory.h
-        src/Classes/Move/Flamethrower/Flamethrower.cpp
-        src/Classes/Move/Flamethrower/Flamethrower.h
-        src/Classes/Move/FlashCannon/FlashCannon.cpp
-        src/Classes/Move/FlashCannon/FlashCannon.h
-        src/Classes/Move/FocusBlast/FocusBlast.cpp
-        src/Classes/Move/FocusBlast/FocusBlast.h
-        src/Classes/Move/HeadSmash/HeadSmash.cpp
-        src/Classes/Move/HeadSmash/HeadSmash.h
-        src/Classes/Move/HeatCrash/HeatCrash.cpp
-        src/Classes/Move/HeatCrash/HeatCrash.h
-        src/Classes/Move/IceBeam/IceBeam.cpp
-        src/Classes/Move/IceBeam/IceBeam.h
-        src/Classes/Move/IronTail/IronTail.cpp
-        src/Classes/Move/IronTail/IronTail.h
-        src/Classes/Move/QuickAttack/QuickAttack.cpp
-        src/Classes/Move/QuickAttack/QuickAttack.h
-        src/Classes/Move/SolarBeam/SolarBeam.cpp
-        src/Classes/Move/SolarBeam/SolarBeam.h
-        src/Classes/Move/Thunder/Thunder.cpp
-        src/Classes/Move/Thunder/Thunder.h
-        src/Classes/Move/VoltTackle/VoltTackle.cpp
-        src/Classes/Move/VoltTackle/VoltTackle.h
+        src/Move/Move.cpp
+        src/Move/Move.h
+        src/Move/AirSlash/AirSlash.cpp
+        src/Move/AirSlash/AirSlash.h
+        src/Move/AuraSphere/AuraSphere.cpp
+        src/Move/AuraSphere/AuraSphere.h
+        src/Move/DarkPulse/DarkPulse.cpp
+        src/Move/DarkPulse/DarkPulse.h
+        src/Move/DragonPulse/DragonPulse.cpp
+        src/Move/DragonPulse/DragonPulse.h
+        src/Move/Extrasensory/Extrasensory.cpp
+        src/Move/Extrasensory/Extrasensory.h
+        src/Move/Flamethrower/Flamethrower.cpp
+        src/Move/Flamethrower/Flamethrower.h
+        src/Move/FlashCannon/FlashCannon.cpp
+        src/Move/FlashCannon/FlashCannon.h
+        src/Move/FocusBlast/FocusBlast.cpp
+        src/Move/FocusBlast/FocusBlast.h
+        src/Move/HeadSmash/HeadSmash.cpp
+        src/Move/HeadSmash/HeadSmash.h
+        src/Move/HeatCrash/HeatCrash.cpp
+        src/Move/HeatCrash/HeatCrash.h
+        src/Move/IceBeam/IceBeam.cpp
+        src/Move/IceBeam/IceBeam.h
+        src/Move/IronTail/IronTail.cpp
+        src/Move/IronTail/IronTail.h
+        src/Move/QuickAttack/QuickAttack.cpp
+        src/Move/QuickAttack/QuickAttack.h
+        src/Move/SolarBeam/SolarBeam.cpp
+        src/Move/SolarBeam/SolarBeam.h
+        src/Move/Thunder/Thunder.cpp
+        src/Move/Thunder/Thunder.h
+        src/Move/VoltTackle/VoltTackle.cpp
+        src/Move/VoltTackle/VoltTackle.h
 )
 
 set(POKE_BALLS
-        src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.cpp
-        src/Classes/Entity/Item/PokeBall/GreatBall/GreatBall.h
-        src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.cpp
-        src/Classes/Entity/Item/PokeBall/UltraBall/UltraBall.h
-        src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.cpp
-        src/Classes/Entity/Item/PokeBall/MasterBall/MasterBall.h
-        src/Classes/Entity/Item/PokeBall/NetBall/NetBall.cpp
-        src/Classes/Entity/Item/PokeBall/NetBall/NetBall.h
-        src/Classes/Entity/Item/PokeBall/NestBall/NestBall.cpp
-        src/Classes/Entity/Item/PokeBall/NestBall/NestBall.h
-        src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.cpp
-        src/Classes/Entity/Item/PokeBall/TimerBall/TimerBall.h
-        src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.cpp
-        src/Classes/Entity/Item/PokeBall/PremierBall/PremierBall.h
-        src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.cpp
-        src/Classes/Entity/Item/PokeBall/DuskBall/DuskBall.h
-        src/Classes/Entity/Item/PokeBall/HealBall/HealBall.cpp
-        src/Classes/Entity/Item/PokeBall/HealBall/HealBall.h
-        src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.cpp
-        src/Classes/Entity/Item/PokeBall/QuickBall/QuickBall.h
+        src/Entity/Item/PokeBall/GreatBall/GreatBall.cpp
+        src/Entity/Item/PokeBall/GreatBall/GreatBall.h
+        src/Entity/Item/PokeBall/UltraBall/UltraBall.cpp
+        src/Entity/Item/PokeBall/UltraBall/UltraBall.h
+        src/Entity/Item/PokeBall/MasterBall/MasterBall.cpp
+        src/Entity/Item/PokeBall/MasterBall/MasterBall.h
+        src/Entity/Item/PokeBall/NetBall/NetBall.cpp
+        src/Entity/Item/PokeBall/NetBall/NetBall.h
+        src/Entity/Item/PokeBall/NestBall/NestBall.cpp
+        src/Entity/Item/PokeBall/NestBall/NestBall.h
+        src/Entity/Item/PokeBall/TimerBall/TimerBall.cpp
+        src/Entity/Item/PokeBall/TimerBall/TimerBall.h
+        src/Entity/Item/PokeBall/PremierBall/PremierBall.cpp
+        src/Entity/Item/PokeBall/PremierBall/PremierBall.h
+        src/Entity/Item/PokeBall/DuskBall/DuskBall.cpp
+        src/Entity/Item/PokeBall/DuskBall/DuskBall.h
+        src/Entity/Item/PokeBall/HealBall/HealBall.cpp
+        src/Entity/Item/PokeBall/HealBall/HealBall.h
+        src/Entity/Item/PokeBall/QuickBall/QuickBall.cpp
+        src/Entity/Item/PokeBall/QuickBall/QuickBall.h
 )
 
 set(ITEMS
-        src/Classes/Entity/Item/Item.cpp
-        src/Classes/Entity/Item/Item.h
-        src/Classes/Entity/Item/BattleItem/BattleItem.cpp
-        src/Classes/Entity/Item/BattleItem/BattleItem.h
-        src/Classes/Entity/Item/PokeBall/PokeBall.cpp
-        src/Classes/Entity/Item/PokeBall/PokeBall.h
+        src/Entity/Item/Item.cpp
+        src/Entity/Item/Item.h
+        src/Entity/Item/BattleItem/BattleItem.cpp
+        src/Entity/Item/BattleItem/BattleItem.h
+        src/Entity/Item/PokeBall/PokeBall.cpp
+        src/Entity/Item/PokeBall/PokeBall.h
         ${POKE_BALLS}
-        src/Classes/Entity/Item/RestoreItem/RestoreItem.cpp
-        src/Classes/Entity/Item/RestoreItem/RestoreItem.h
-        src/Classes/Entity/Item/StatusItem/StatusItem.cpp
-        src/Classes/Entity/Item/StatusItem/StatusItem.h
+        src/Entity/Item/RestoreItem/RestoreItem.cpp
+        src/Entity/Item/RestoreItem/RestoreItem.h
+        src/Entity/Item/StatusItem/StatusItem.cpp
+        src/Entity/Item/StatusItem/StatusItem.h
 )
 
 set(GRAPHICS
-        src/Classes/Graphic/Graphic.cpp
-        src/Classes/Graphic/Graphic.h
-        src/Classes/Graphic/Graphics.h
-        src/Classes/Graphic/Texture/TimedVisual/TimedVisual.cpp
-        src/Classes/Graphic/Texture/TimedVisual/TimedVisual.h
-        src/Classes/Graphic/Rectangle/TextBox/TextBox.cpp
-        src/Classes/Graphic/Rectangle/TextBox/TextBox.h
-        src/Classes/Graphic/Texture/Texture.cpp
-        src/Classes/Graphic/Texture/Texture.h
-        src/Classes/Graphic/Rectangle/Rectangle.cpp
-        src/Classes/Graphic/Rectangle/Rectangle.h
-        src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.cpp
-        src/Classes/Graphic/Rectangle/SelectionBox/SelectionBox.h
-        src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.cpp
-        src/Classes/Graphic/Rectangle/ResourceBar/ResourceBar.h
-        src/Classes/Graphic/Rectangle/Button/Button.cpp
-        src/Classes/Graphic/Rectangle/Button/Button.h
-        src/Classes/Graphic/Rectangle/Panel/Panel.cpp
-        src/Classes/Graphic/Rectangle/Panel/Panel.h
+        src/Graphic/Graphic.cpp
+        src/Graphic/Graphic.h
+        src/Graphic/Graphics.h
+        src/Graphic/Texture/TimedVisual/TimedVisual.cpp
+        src/Graphic/Texture/TimedVisual/TimedVisual.h
+        src/Graphic/Rectangle/TextBox/TextBox.cpp
+        src/Graphic/Rectangle/TextBox/TextBox.h
+        src/Graphic/Texture/Texture.cpp
+        src/Graphic/Texture/Texture.h
+        src/Graphic/Rectangle/Rectangle.cpp
+        src/Graphic/Rectangle/Rectangle.h
+        src/Graphic/Rectangle/SelectionBox/SelectionBox.cpp
+        src/Graphic/Rectangle/SelectionBox/SelectionBox.h
+        src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp
+        src/Graphic/Rectangle/ResourceBar/ResourceBar.h
+        src/Graphic/Rectangle/Button/Button.cpp
+        src/Graphic/Rectangle/Button/Button.h
+        src/Graphic/Rectangle/Panel/Panel.cpp
+        src/Graphic/Rectangle/Panel/Panel.h
 )
 
 set(COMPONENTS
-        src/Classes/Component/Intelligence/Intelligence.cpp
-        src/Classes/Component/Intelligence/Intelligence.h
-        src/Classes/Component/Position/Position.cpp
-        src/Classes/Component/Position/Position.h
-        src/Classes/Component/Resource/Resource.cpp
-        src/Classes/Component/Resource/Resource.h
-        src/Classes/Component/Sprite/Sprite.cpp
-        src/Classes/Component/Sprite/Sprite.h
+        src/Component/Intelligence/Intelligence.cpp
+        src/Component/Intelligence/Intelligence.h
+        src/Component/Position/Position.cpp
+        src/Component/Position/Position.h
+        src/Component/Resource/Resource.cpp
+        src/Component/Resource/Resource.h
+        src/Component/Sprite/Sprite.cpp
+        src/Component/Sprite/Sprite.h
 )
 
 set(SCENES
-        src/Classes/Singleton/Scene/Scene.h
-        src/Classes/Singleton/Scene/Battle/Battle.cpp
-        src/Classes/Singleton/Scene/Battle/Battle.h
-        src/Classes/Singleton/Scene/Overworld/Overworld.cpp
-        src/Classes/Singleton/Scene/Overworld/Overworld.h
-        src/Classes/Singleton/Scene/TitleScreen/TitleScreen.cpp
-        src/Classes/Singleton/Scene/TitleScreen/TitleScreen.h
-        src/Classes/Singleton/Scene/Scene.cpp
+        src/Singleton/Scene/Scene.h
+        src/Singleton/Scene/Battle/Battle.cpp
+        src/Singleton/Scene/Battle/Battle.h
+        src/Singleton/Scene/Overworld/Overworld.cpp
+        src/Singleton/Scene/Overworld/Overworld.h
+        src/Singleton/Scene/TitleScreen/TitleScreen.cpp
+        src/Singleton/Scene/TitleScreen/TitleScreen.h
+        src/Singleton/Scene/Scene.cpp
 )
 
-add_executable(PokemonBattle
+add_executable(${PROJECT_NAME}
         ${SOURCES}
         ${MOVES}
         ${ITEMS}
@@ -197,7 +197,7 @@ add_executable(PokemonBattle
         ${SCENES}
 )
 
-target_precompile_headers(PokemonBattle PRIVATE include/pch.h utility/Constants/constants.h)
+target_precompile_headers(${PROJECT_NAME} PRIVATE include/pch.h utility/Constants/constants.h)
 
 target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2.dll)
 target_link_libraries(${PROJECT_NAME} ${PROJECT_BINARY_DIR}/SDL2_image.dll)

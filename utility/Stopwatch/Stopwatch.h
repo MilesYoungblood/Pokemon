@@ -16,7 +16,7 @@ public:
 
     Stopwatch &operator=(Stopwatch &&) noexcept = delete;
 
-    ~Stopwatch();
+    ~Stopwatch() = default;
 
     void start();
 
@@ -24,20 +24,11 @@ public:
 
     void reset();
 
-    bool operator<(std::size_t rhs) const;
-
-    bool operator<=(std::size_t rhs) const;
-
-    bool operator>(std::size_t rhs) const;
-
-    bool operator>=(std::size_t rhs) const;
-
-    bool operator==(std::size_t rhs) const;
+    [[nodiscard]] std::size_t elapsed() const;
 
 private:
-    std::size_t elapsedTime{ 0 };
+    std::chrono::high_resolution_clock::time_point startTime;
+    std::chrono::milliseconds elapsedTime = std::chrono::milliseconds(0);
 
     bool active{ false };
-
-    std::thread counter;
 };
