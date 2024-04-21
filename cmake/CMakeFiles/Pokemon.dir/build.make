@@ -271,22 +271,22 @@ CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.s: cmake_
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.s"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\GraphicsEngine\GraphicsEngine.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\GraphicsEngine\GraphicsEngine.cpp.s
 
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.cpp
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\ItemRegistry\ItemRegistry.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\ItemRegistry\ItemRegistry.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\ItemRegistry\ItemRegistry.cpp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp
 
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.i"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -E C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\ItemRegistry\ItemRegistry.cpp > CMakeFiles\Pokemon.dir\src\Singleton\ItemRegistry\ItemRegistry.cpp.i
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -E C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp > CMakeFiles\Pokemon.dir\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp.i
 
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.s"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\ItemRegistry\ItemRegistry.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\ItemRegistry\ItemRegistry.cpp.s
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\Cache\ItemRegistry\ItemRegistry.cpp.s
 
 CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
 CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
@@ -322,22 +322,22 @@ CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.s"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Mixer\Mixer.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\Mixer\Mixer.cpp.s
 
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.cpp
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Pokedex\Pokedex.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Pokedex\Pokedex.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Pokedex\Pokedex.cpp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.cpp
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Cache\Pokedex\Pokedex.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Cache\Pokedex\Pokedex.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\Pokedex\Pokedex.cpp
 
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.i"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -E C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Pokedex\Pokedex.cpp > CMakeFiles\Pokemon.dir\src\Singleton\Pokedex\Pokedex.cpp.i
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.i"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -E C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\Pokedex\Pokedex.cpp > CMakeFiles\Pokemon.dir\src\Singleton\Cache\Pokedex\Pokedex.cpp.i
 
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.s"
-	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Pokedex\Pokedex.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\Pokedex\Pokedex.cpp.s
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.s"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Cache\Pokedex\Pokedex.cpp -o CMakeFiles\Pokemon.dir\src\Singleton\Cache\Pokedex\Pokedex.cpp.s
 
 CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
 CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
@@ -1155,13 +1155,30 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.s"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Graphic\Rectangle\Panel\Panel.cpp -o CMakeFiles\Pokemon.dir\src\Graphic\Rectangle\Panel\Panel.cpp.s
 
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.cpp
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Component\Input\Input.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Component\Input\Input.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Input\Input.cpp
+
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.i"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -E C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Input\Input.cpp > CMakeFiles\Pokemon.dir\src\Component\Input\Input.cpp.i
+
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.s"
+	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -S C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Input\Input.cpp -o CMakeFiles\Pokemon.dir\src\Component\Input\Input.cpp.s
+
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/flags.make
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/includes_CXX.rsp
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.cpp
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Component\Intelligence\Intelligence.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Component\Intelligence\Intelligence.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Intelligence\Intelligence.cpp
 
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.i: cmake_force
@@ -1178,7 +1195,7 @@ CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj: C:/Users/miles/O
 CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Component\Position\Position.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Component\Position\Position.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Position\Position.cpp
 
 CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.i: cmake_force
@@ -1195,7 +1212,7 @@ CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj: C:/Users/miles/O
 CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Component\Resource\Resource.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Component\Resource\Resource.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Resource\Resource.cpp
 
 CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.i: cmake_force
@@ -1212,7 +1229,7 @@ CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj: C:/Users/miles/OneDr
 CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Component\Sprite\Sprite.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Component\Sprite\Sprite.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Component\Sprite\Sprite.cpp
 
 CMakeFiles/Pokemon.dir/src/Component/Sprite/Sprite.cpp.i: cmake_force
@@ -1229,7 +1246,7 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: C:/Users/miles
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Scene\Battle\Battle.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Scene\Battle\Battle.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Scene\Battle\Battle.cpp
 
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.i: cmake_force
@@ -1246,7 +1263,7 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: C:/Users
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Scene\Overworld\Overworld.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Scene\Overworld\Overworld.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Scene\Overworld\Overworld.cpp
 
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.i: cmake_force
@@ -1263,7 +1280,7 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj: C:/U
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Scene\TitleScreen\TitleScreen.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Scene\TitleScreen\TitleScreen.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Scene\TitleScreen\TitleScreen.cpp
 
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.i: cmake_force
@@ -1280,7 +1297,7 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj: C:/Users/miles/OneDriv
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj: CMakeFiles/Pokemon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj"
 	C:\Users\miles\AppData\Local\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -Winvalid-pch -include C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx -MD -MT CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.obj -MF CMakeFiles\Pokemon.dir\src\Singleton\Scene\Scene.cpp.obj.d -o CMakeFiles\Pokemon.dir\src\Singleton\Scene\Scene.cpp.obj -c C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Scene\Scene.cpp
 
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Scene.cpp.i: cmake_force
@@ -1304,10 +1321,10 @@ Pokemon_OBJECTS = \
 "CMakeFiles/Pokemon.dir/src/Singleton/EventHandler/EventHandler.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Singleton/Game/Game.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj" \
-"CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj" \
+"CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj" \
-"CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj" \
+"CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Enums/Type/Type.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj" \
@@ -1356,6 +1373,7 @@ Pokemon_OBJECTS = \
 "CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Button/Button.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj" \
+"CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj" \
 "CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj" \
@@ -1380,10 +1398,10 @@ Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Camera/Camera.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/EventHandler/EventHandler.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Game/Game.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj
-Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj
+Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj
-Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj
+Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Enums/Type/Type.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Enums/StatusCondition/StatusCondition.cpp.obj
@@ -1432,6 +1450,7 @@ Pokemon.exe: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/SelectionBox/Selection
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Button/Button.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj
+Pokemon.exe: CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Component/Position/Position.cpp.obj
 Pokemon.exe: CMakeFiles/Pokemon.dir/src/Component/Resource/Resource.cpp.obj
@@ -1449,7 +1468,7 @@ Pokemon.exe: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/include/third_part
 Pokemon.exe: CMakeFiles/Pokemon.dir/linkLibs.rsp
 Pokemon.exe: CMakeFiles/Pokemon.dir/objects1.rsp
 Pokemon.exe: CMakeFiles/Pokemon.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Linking CXX executable Pokemon.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\cmake\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Linking CXX executable Pokemon.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Pokemon.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

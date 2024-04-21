@@ -101,6 +101,12 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/include/pch.h">
 			<Option target="Pokemon"/>
 		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.cpp">
+			<Option target="Pokemon"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.h">
+			<Option target="Pokemon"/>
+		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.cpp">
 			<Option target="Pokemon"/>
 		</Unit>
@@ -425,6 +431,21 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/VoltTackle/VoltTackle.h">
 			<Option target="Pokemon"/>
 		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h">
+			<Option target="Pokemon"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp">
+			<Option target="Pokemon"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.h">
+			<Option target="Pokemon"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.cpp">
+			<Option target="Pokemon"/>
+		</Unit>
+		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h">
+			<Option target="Pokemon"/>
+		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.cpp">
 			<Option target="Pokemon"/>
 		</Unit>
@@ -449,12 +470,6 @@
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.h">
 			<Option target="Pokemon"/>
 		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.cpp">
-			<Option target="Pokemon"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.h">
-			<Option target="Pokemon"/>
-		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.cpp">
 			<Option target="Pokemon"/>
 		</Unit>
@@ -465,12 +480,6 @@
 			<Option target="Pokemon"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h">
-			<Option target="Pokemon"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.cpp">
-			<Option target="Pokemon"/>
-		</Unit>
-		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.h">
 			<Option target="Pokemon"/>
 		</Unit>
 		<Unit filename="C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/Battle/Battle.cpp">

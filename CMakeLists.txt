@@ -42,14 +42,14 @@ set(SOURCES
         src/Singleton/Game/Game.h
         src/Singleton/GraphicsEngine/GraphicsEngine.cpp
         src/Singleton/GraphicsEngine/GraphicsEngine.h
-        src/Singleton/ItemRegistry/ItemRegistry.cpp
-        src/Singleton/ItemRegistry/ItemRegistry.h
+        src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp
+        src/Singleton/Cache/ItemRegistry/ItemRegistry.h
         src/Singleton/KeyManager/KeyManager.cpp
         src/Singleton/KeyManager/KeyManager.h
         src/Singleton/Mixer/Mixer.cpp
         src/Singleton/Mixer/Mixer.h
-        src/Singleton/Pokedex/Pokedex.cpp
-        src/Singleton/Pokedex/Pokedex.h
+        src/Singleton/Cache/Pokedex/Pokedex.cpp
+        src/Singleton/Cache/Pokedex/Pokedex.h
         src/Singleton/TextureManager/TextureManager.cpp
         src/Singleton/TextureManager/TextureManager.h
         include/pch.h
@@ -68,6 +68,7 @@ set(SOURCES
         utility/Sorter/Sorter.h
         utility/Functions/GeneralFunctions.cpp
         utility/Functions/GeneralFunctions.h
+        src/Singleton/Cache/Cache.h
 )
 
 set(MOVES
@@ -167,6 +168,8 @@ set(GRAPHICS
 )
 
 set(COMPONENTS
+        src/Component/Input/Input.cpp
+        src/Component/Input/Input.h
         src/Component/Intelligence/Intelligence.cpp
         src/Component/Intelligence/Intelligence.h
         src/Component/Position/Position.cpp

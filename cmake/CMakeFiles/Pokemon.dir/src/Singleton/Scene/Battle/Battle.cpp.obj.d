@@ -37,4 +37,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/TimedVisual/TimedVisual.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h

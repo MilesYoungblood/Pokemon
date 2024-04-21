@@ -8,6 +8,7 @@
 #include "../../TextureManager/TextureManager.h"
 #include "../../Mixer/Mixer.h"
 #include "../../KeyManager/KeyManager.h"
+#include "../../Cache/Pokedex/Pokedex.h"
 #include "Battle.h"
 
 namespace {
@@ -89,10 +90,14 @@ void Battle::fadeOut() {
         this->terminate();
         this->setState(Scene::State::FADED_OUT);
         colorChanged = false;
+
+        Pokedex::clear();
     }
 }
 
 void Battle::launch() {
+    Pokedex::load();
+
     this->participants[0].second = std::make_unique<Data>();
     this->participants[1].second = std::make_unique<Data>();
 

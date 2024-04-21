@@ -143,6 +143,30 @@ cmake_pch.hxx.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/cmake_pch.hxx.s
 .PHONY : cmake_pch.hxx.s
 
+src/Component/Input/Input.obj: src/Component/Input/Input.cpp.obj
+.PHONY : src/Component/Input/Input.obj
+
+# target to build an object file
+src/Component/Input/Input.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj
+.PHONY : src/Component/Input/Input.cpp.obj
+
+src/Component/Input/Input.i: src/Component/Input/Input.cpp.i
+.PHONY : src/Component/Input/Input.i
+
+# target to preprocess a source file
+src/Component/Input/Input.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.i
+.PHONY : src/Component/Input/Input.cpp.i
+
+src/Component/Input/Input.s: src/Component/Input/Input.cpp.s
+.PHONY : src/Component/Input/Input.s
+
+# target to generate assembly for a file
+src/Component/Input/Input.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.s
+.PHONY : src/Component/Input/Input.cpp.s
+
 src/Component/Intelligence/Intelligence.obj: src/Component/Intelligence/Intelligence.cpp.obj
 .PHONY : src/Component/Intelligence/Intelligence.obj
 
@@ -1415,6 +1439,54 @@ src/Move/VoltTackle/VoltTackle.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Move/VoltTackle/VoltTackle.cpp.s
 .PHONY : src/Move/VoltTackle/VoltTackle.cpp.s
 
+src/Singleton/Cache/ItemRegistry/ItemRegistry.obj: src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.obj
+
+# target to build an object file
+src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj
+
+src/Singleton/Cache/ItemRegistry/ItemRegistry.i: src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.i
+
+# target to preprocess a source file
+src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.i
+
+src/Singleton/Cache/ItemRegistry/ItemRegistry.s: src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.s
+
+# target to generate assembly for a file
+src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s
+.PHONY : src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.s
+
+src/Singleton/Cache/Pokedex/Pokedex.obj: src/Singleton/Cache/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.obj
+
+# target to build an object file
+src/Singleton/Cache/Pokedex/Pokedex.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.cpp.obj
+
+src/Singleton/Cache/Pokedex/Pokedex.i: src/Singleton/Cache/Pokedex/Pokedex.cpp.i
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.i
+
+# target to preprocess a source file
+src/Singleton/Cache/Pokedex/Pokedex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.i
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.cpp.i
+
+src/Singleton/Cache/Pokedex/Pokedex.s: src/Singleton/Cache/Pokedex/Pokedex.cpp.s
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.s
+
+# target to generate assembly for a file
+src/Singleton/Cache/Pokedex/Pokedex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.s
+.PHONY : src/Singleton/Cache/Pokedex/Pokedex.cpp.s
+
 src/Singleton/Camera/Camera.obj: src/Singleton/Camera/Camera.cpp.obj
 .PHONY : src/Singleton/Camera/Camera.obj
 
@@ -1511,30 +1583,6 @@ src/Singleton/GraphicsEngine/GraphicsEngine.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.s
 .PHONY : src/Singleton/GraphicsEngine/GraphicsEngine.cpp.s
 
-src/Singleton/ItemRegistry/ItemRegistry.obj: src/Singleton/ItemRegistry/ItemRegistry.cpp.obj
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.obj
-
-# target to build an object file
-src/Singleton/ItemRegistry/ItemRegistry.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.cpp.obj
-
-src/Singleton/ItemRegistry/ItemRegistry.i: src/Singleton/ItemRegistry/ItemRegistry.cpp.i
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.i
-
-# target to preprocess a source file
-src/Singleton/ItemRegistry/ItemRegistry.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.i
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.cpp.i
-
-src/Singleton/ItemRegistry/ItemRegistry.s: src/Singleton/ItemRegistry/ItemRegistry.cpp.s
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.s
-
-# target to generate assembly for a file
-src/Singleton/ItemRegistry/ItemRegistry.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.s
-.PHONY : src/Singleton/ItemRegistry/ItemRegistry.cpp.s
-
 src/Singleton/KeyManager/KeyManager.obj: src/Singleton/KeyManager/KeyManager.cpp.obj
 .PHONY : src/Singleton/KeyManager/KeyManager.obj
 
@@ -1582,30 +1630,6 @@ src/Singleton/Mixer/Mixer.s: src/Singleton/Mixer/Mixer.cpp.s
 src/Singleton/Mixer/Mixer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.s
 .PHONY : src/Singleton/Mixer/Mixer.cpp.s
-
-src/Singleton/Pokedex/Pokedex.obj: src/Singleton/Pokedex/Pokedex.cpp.obj
-.PHONY : src/Singleton/Pokedex/Pokedex.obj
-
-# target to build an object file
-src/Singleton/Pokedex/Pokedex.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj
-.PHONY : src/Singleton/Pokedex/Pokedex.cpp.obj
-
-src/Singleton/Pokedex/Pokedex.i: src/Singleton/Pokedex/Pokedex.cpp.i
-.PHONY : src/Singleton/Pokedex/Pokedex.i
-
-# target to preprocess a source file
-src/Singleton/Pokedex/Pokedex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.i
-.PHONY : src/Singleton/Pokedex/Pokedex.cpp.i
-
-src/Singleton/Pokedex/Pokedex.s: src/Singleton/Pokedex/Pokedex.cpp.s
-.PHONY : src/Singleton/Pokedex/Pokedex.s
-
-# target to generate assembly for a file
-src/Singleton/Pokedex/Pokedex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Pokemon.dir\build.make CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.s
-.PHONY : src/Singleton/Pokedex/Pokedex.cpp.s
 
 src/Singleton/Scene/Battle/Battle.obj: src/Singleton/Scene/Battle/Battle.cpp.obj
 .PHONY : src/Singleton/Scene/Battle/Battle.obj
@@ -1859,6 +1883,9 @@ help:
 	@echo ... cmake_pch.hxx.gch
 	@echo ... cmake_pch.hxx.i
 	@echo ... cmake_pch.hxx.s
+	@echo ... src/Component/Input/Input.obj
+	@echo ... src/Component/Input/Input.i
+	@echo ... src/Component/Input/Input.s
 	@echo ... src/Component/Intelligence/Intelligence.obj
 	@echo ... src/Component/Intelligence/Intelligence.i
 	@echo ... src/Component/Intelligence/Intelligence.s
@@ -2018,6 +2045,12 @@ help:
 	@echo ... src/Move/VoltTackle/VoltTackle.obj
 	@echo ... src/Move/VoltTackle/VoltTackle.i
 	@echo ... src/Move/VoltTackle/VoltTackle.s
+	@echo ... src/Singleton/Cache/ItemRegistry/ItemRegistry.obj
+	@echo ... src/Singleton/Cache/ItemRegistry/ItemRegistry.i
+	@echo ... src/Singleton/Cache/ItemRegistry/ItemRegistry.s
+	@echo ... src/Singleton/Cache/Pokedex/Pokedex.obj
+	@echo ... src/Singleton/Cache/Pokedex/Pokedex.i
+	@echo ... src/Singleton/Cache/Pokedex/Pokedex.s
 	@echo ... src/Singleton/Camera/Camera.obj
 	@echo ... src/Singleton/Camera/Camera.i
 	@echo ... src/Singleton/Camera/Camera.s
@@ -2030,18 +2063,12 @@ help:
 	@echo ... src/Singleton/GraphicsEngine/GraphicsEngine.obj
 	@echo ... src/Singleton/GraphicsEngine/GraphicsEngine.i
 	@echo ... src/Singleton/GraphicsEngine/GraphicsEngine.s
-	@echo ... src/Singleton/ItemRegistry/ItemRegistry.obj
-	@echo ... src/Singleton/ItemRegistry/ItemRegistry.i
-	@echo ... src/Singleton/ItemRegistry/ItemRegistry.s
 	@echo ... src/Singleton/KeyManager/KeyManager.obj
 	@echo ... src/Singleton/KeyManager/KeyManager.i
 	@echo ... src/Singleton/KeyManager/KeyManager.s
 	@echo ... src/Singleton/Mixer/Mixer.obj
 	@echo ... src/Singleton/Mixer/Mixer.i
 	@echo ... src/Singleton/Mixer/Mixer.s
-	@echo ... src/Singleton/Pokedex/Pokedex.obj
-	@echo ... src/Singleton/Pokedex/Pokedex.i
-	@echo ... src/Singleton/Pokedex/Pokedex.s
 	@echo ... src/Singleton/Scene/Battle/Battle.obj
 	@echo ... src/Singleton/Scene/Battle/Battle.i
 	@echo ... src/Singleton/Scene/Battle/Battle.s

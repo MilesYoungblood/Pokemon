@@ -47,7 +47,7 @@ public:
 
     /// \brief Getter for sprite key
     /// \return the respective sprite key
-    [[nodiscard]] virtual std::string getKey() const = 0;
+    [[nodiscard]] virtual std::string getSpriteKey() const = 0;
 
     /// \brief Interacts with the entity
     virtual void interact() = 0;

@@ -4,13 +4,11 @@
 
 #pragma once
 
-#include "../../Entity/Character/Pokemon/Pokemon.h"
-#include "../Singleton.h"
+#include "../../../Entity/Character/Pokemon/Pokemon.h"
+#include "../Cache.h"
 
-class Pokedex final : public Singleton<Pokedex> {
+class Pokedex final : public Cache<Pokedex> {
 public:
-    Pokedex();
-
     Pokedex(const Pokedex &) = default;
 
     Pokedex(Pokedex &&) noexcept = default;
@@ -42,9 +40,6 @@ public:
     [[nodiscard]] int getDexNum(const std::string &id) const;
 
 private:
-    template<typename T>
-    using set = std::unordered_map<std::string, T>;
-
     set<std::string> species;
     set<Type> type1Array{};
     set<Type> type2Array{};
@@ -57,4 +52,13 @@ private:
     set<int> baseLevels{};
     set<int> catchRates{};
     set<int> dexNums{};
+
+    friend class Cache;
+    friend class Pokemon;
+
+    Pokedex();
 };
+
+inline void foo() {
+
+}

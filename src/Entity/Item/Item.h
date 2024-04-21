@@ -36,7 +36,7 @@ public:
 
     [[nodiscard]] virtual std::size_t getClass() const = 0;
 
-    [[nodiscard]] std::string getKey() const override;
+    [[nodiscard]] std::string getSpriteKey() const override;
 
     void interact() override;
 

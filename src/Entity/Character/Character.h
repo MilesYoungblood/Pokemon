@@ -61,7 +61,7 @@ public:
 
     /// \brief Overrides Entity::getKey
     /// \return the respective sprite key
-    [[nodiscard]] std::string getKey() const override;
+    [[nodiscard]] std::string getSpriteKey() const override;
 
     /// Getter for the initial battle message
     /// \return the initial send out message in battle
@@ -168,7 +168,6 @@ private:
     std::vector<std::string> dialogue;
 
     std::string name;
-    std::string id;
 
     std::uint32_t vision;                                                     // line of sight
 

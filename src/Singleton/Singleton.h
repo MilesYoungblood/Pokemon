@@ -6,9 +6,6 @@
 
 template<typename Derived>
 class Singleton {
-protected:
-    Singleton() = default;
-
 public:
     Singleton(const Singleton &) = default;
 
@@ -24,4 +21,7 @@ public:
         static Derived instance;
         return instance;
     }
+
+protected:
+    Singleton() = default;
 };

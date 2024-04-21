@@ -9,6 +9,7 @@
 #include "../../EventHandler/EventHandler.h"
 #include "../../KeyManager/KeyManager.h"
 #include "../../Camera/Camera.h"
+#include "../../Cache/Pokedex/Pokedex.h"
 #include "Overworld.h"
 
 namespace {
@@ -18,6 +19,7 @@ namespace {
 void Overworld::init() {
     static bool wasInit = false;
     if (not wasInit) {
+        Pokedex::load();
         this->currentMap = std::make_unique<Map>("Nuvema Town", "NuvemaTown");
 
         Player::getPlayer().setName("Hilbert");
@@ -44,6 +46,7 @@ void Overworld::init() {
         Camera::getInstance().lockOnPlayer(*this->currentMap);
 
         wasInit = true;
+        Pokedex::clear();
     }
 }
 

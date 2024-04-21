@@ -32,13 +32,13 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
-# PCH options: CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
+# PCH options: CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
@@ -135,6 +135,8 @@ CXX_FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
 # PCH options: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Button/Button.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
+
+# PCH options: CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 
 # PCH options: CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj_OPTIONS = -Winvalid-pch;-include;C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake/CMakeFiles/Pokemon.dir/cmake_pch.hxx
 

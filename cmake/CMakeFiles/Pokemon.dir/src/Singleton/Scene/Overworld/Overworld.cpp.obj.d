@@ -38,4 +38,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/EventHandler/EventHandler.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.h
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h

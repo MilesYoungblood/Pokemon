@@ -440,6 +440,10 @@ CMakeFiles/Pokemon.dir/cmake_pch.hxx.gch: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Constants/constants.h \
   CMakeFiles/Pokemon.dir/cmake_pch.hxx.cxx
 
+CMakeFiles/Pokemon.dir/src/Component/Input/Input.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.cpp \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.h
+
 CMakeFiles/Pokemon.dir/src/Component/Intelligence/Intelligence.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Position/Position.h \
@@ -537,8 +541,8 @@ CMakeFiles/Pokemon.dir/src/Entity/Character/Pokemon/Pokemon.cpp.obj: CMakeFiles/
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/Type/Type.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Functions/GeneralFunctions.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/ThreadPool/ThreadPool.h \
@@ -1334,6 +1338,29 @@ CMakeFiles/Pokemon.dir/src/Move/VoltTackle/VoltTackle.cpp.obj: CMakeFiles/Pokemo
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/VoltTackle/VoltTackle.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/VoltTackle/VoltTackle.h
 
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.h
+
+CMakeFiles/Pokemon.dir/src/Singleton/Cache/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Position/Position.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Resource/Resource.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Character.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Pokemon/Pokemon.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Entity.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/Direction/Direction.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/StatusCondition/StatusCondition.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/Type/Type.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/ThreadPool/ThreadPool.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.cpp \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h
+
 CMakeFiles/Pokemon.dir/src/Singleton/Camera/Camera.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Position/Position.h \
@@ -1442,11 +1469,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj: CMak
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.h
 
-CMakeFiles/Pokemon.dir/src/Singleton/ItemRegistry/ItemRegistry.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.cpp \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.h
-
 CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.cpp \
@@ -1488,24 +1510,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj: CMakeFiles/Pokemon.dir
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h
 
-CMakeFiles/Pokemon.dir/src/Singleton/Pokedex/Pokedex.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Position/Position.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Resource/Resource.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Character.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Pokemon/Pokemon.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Entity.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/Direction/Direction.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/StatusCondition/StatusCondition.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/Type/Type.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/ThreadPool/ThreadPool.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.cpp \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.h
-
 CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Intelligence/Intelligence.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Position/Position.h \
@@ -1531,6 +1535,8 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Battle/Battle.cpp.obj: CMakeFiles/Pok
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/TimedVisual/TimedVisual.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Game/Game.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h \
@@ -1572,6 +1578,8 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/Overworld/Overworld.cpp.obj: CMakeFil
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/TimedVisual/TimedVisual.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/EventHandler/EventHandler.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Game/Game.h \
@@ -1730,9 +1738,9 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w6
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxbf16intrin.h:
 
-C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_wait.h:
-
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Item/PokeBall/QuickBall/QuickBall.cpp:
+
+C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_wait.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avxifmaintrin.h:
 
@@ -1749,6 +1757,8 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w6
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/avx5124vnniwintrin.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/pthread_unistd.h:
+
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/amxtileintrin.h:
 
@@ -2062,6 +2072,8 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w6
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/memoryfwd.h:
 
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Input/Input.cpp:
+
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/mofunc_impl.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Item/Item.h:
@@ -2257,8 +2269,6 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w6
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/codecvt:
-
-C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.cpp:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/compare:
 
@@ -2460,6 +2470,8 @@ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Character.
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h:
 
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h:
+
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/uintrintrin.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h:
@@ -2622,8 +2634,6 @@ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Sprite/Sprite.cpp
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/pthread_compat.h:
 
-C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.h:
-
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/pthread_time.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/semaphore.h:
@@ -2638,9 +2648,9 @@ C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw3
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/stdio.h:
 
-C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/stdlib.h:
-
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Item/PokeBall/TimerBall/TimerBall.cpp:
+
+C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/stdlib.h:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/x86_64-w64-mingw32/include/string.h:
 
@@ -2768,6 +2778,8 @@ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Selection
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h:
 
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h:
+
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Item/RestoreItem/RestoreItem.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Item/StatusItem/StatusItem.h:
@@ -2836,6 +2848,8 @@ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/HeatCrash/HeatCrash.cp
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/HeatCrash/HeatCrash.h:
 
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.cpp:
+
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/IronTail/IronTail.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.cpp:
@@ -2846,21 +2860,21 @@ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Thunder/Thunder.h:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/VoltTackle/VoltTackle.cpp:
 
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/ItemRegistry/ItemRegistry.h:
+
+C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.cpp:
+
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/EventHandler/EventHandler.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Game/Game.cpp:
 
-C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/ItemRegistry/ItemRegistry.h:
-
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/charconv:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/chrono:
 
 C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/format:
-
-C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.cpp:
 
 C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/Battle/Battle.cpp:
 

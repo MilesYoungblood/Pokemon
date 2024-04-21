@@ -1,7 +1,7 @@
 CMakeFiles/Pokemon.dir/src/Entity/Character/Pokemon/Pokemon.cpp.obj: \
  C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Entity\Character\Pokemon\Pokemon.cpp \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Functions/GeneralFunctions.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Pokedex/Pokedex.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Pokedex/Pokedex.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Pokemon/Pokemon.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Enums/StatusCondition/StatusCondition.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Resource/Resource.h \
@@ -15,4 +15,4 @@ CMakeFiles/Pokemon.dir/src/Entity/Character/Pokemon/Pokemon.cpp.obj: \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/ThreadPool/ThreadPool.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Entity.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Cache/Cache.h

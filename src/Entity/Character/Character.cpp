@@ -15,7 +15,7 @@ Character::Character(const char *id, const int x, const int y, const Direction d
         : Entity(id, x, y), vision(vision), currentDirection(direction) {}
 
 Character::Character(const char *id, const char *name, const int x, const int y, const Direction direction, const int vision)
-        : Entity(id, x, y), name(name), id(id), vision(vision), currentDirection(direction) {}
+        : Entity(id, x, y), name(name), vision(vision), currentDirection(direction) {}
 
 void Character::setName(const char *x) {
     this->name = x;
@@ -45,29 +45,28 @@ void Character::gainAutonomy() {
     );
 }
 
-std::string Character::getKey() const {
-    return this->id;
+std::string Character::getSpriteKey() const {
+    return this->getId();
 }
 
 std::string Character::initMessage() const {
-    return this->id + ' ' + this->name + " sent out " + this->getAttacker()->getName() + '!';
+    return this->getId() + ' ' + this->name + " sent out " + this->getAttacker()->getName() + '!';
 }
 
 void Character::handleFaint() {
-    std::cout << "Calling Character::handleFaint\n";
+    throw std::logic_error("Character::handleFaint should not be callable\n");
 }
 
 void Character::handleSwitchOut(bool &renderFlag) {
-    std::cout << "Calling Character::handleSwitchOut\n";
+    throw std::logic_error("Character::handleSwitchOut should not be callable\n");
 }
 
 void Character::handleVictory() {
-    std::cout << "Calling Character::handleVictory\n";
+    throw std::logic_error("Character::handleVictory should not be callable\n");
 }
 
 std::vector<std::string> Character::getDefeatMessage() const {
-    std::cout << "Calling Character::getDefeatMessage\n";
-    return {};
+    throw std::logic_error("Character::getDefeatMessage should not be callable\n");
 }
 
 Pokemon *Character::getAttacker() {

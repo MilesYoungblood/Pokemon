@@ -47,7 +47,7 @@ std::string Item::getEffect() const {
     return "";
 }
 
-std::string Item::getKey() const {
+std::string Item::getSpriteKey() const {
     return "Item";
 }
 

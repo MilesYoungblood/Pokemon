@@ -605,7 +605,7 @@ void Map::render() const {
                 sdlRect.y = entity->getScreenPosition().getY();
                 // prevents rendering entities that aren't onscreen
                 if (Camera::getInstance().isInView(sdlRect)) {
-                    entity->render(this->entitySprites.at(entity->getKey()));
+                    entity->render(this->entitySprites.at(entity->getSpriteKey()));
                 }
             }
 

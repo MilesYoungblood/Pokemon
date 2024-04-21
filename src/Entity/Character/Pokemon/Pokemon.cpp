@@ -3,7 +3,7 @@
 //
 
 #include "../../../../utility/Functions/GeneralFunctions.h"
-#include "../../../Singleton/Pokedex/Pokedex.h"
+#include "../../../Singleton/Cache/Pokedex/Pokedex.h"
 #include "Pokemon.h"
 
 const std::unordered_map<std::string, std::pair<std::string, std::string>> Pokemon::natures{
@@ -35,7 +35,7 @@ const std::unordered_map<std::string, std::pair<std::string, std::string>> Pokem
 };
 
 Pokemon::Pokemon(const char *id) : Character(id, id) {
-    if (const double ratio = Pokedex::getInstance().getGenderRatio(id); ratio == -1) {
+    if (const double ratio = Pokedex::getInstance()->getGenderRatio(id); ratio == -1) {
         this->gender = "Genderless";
     }
     else {
@@ -54,11 +54,11 @@ Pokemon::Pokemon(const char *id) : Character(id, id) {
         }
     }
 
-    this->hp = Component::Resource(Pokedex::getInstance().getBaseStat(id, "HP"), this->hp.getCurrent());
-    this->level = Pokedex::getInstance().getBaseLevel(id);
+    this->hp = Component::Resource(Pokedex::getInstance()->getBaseStat(id, "HP"), this->hp.getCurrent());
+    this->level = Pokedex::getInstance()->getBaseLevel(id);
 
     for (const auto &stat : std::array<const char *, 5>({ "Attack", "Defense", "Sp. Attack", "Sp. Defense", "Speed" })) {
-        this->baseStats[stat] = Pokedex::getInstance().getBaseStat(id, stat);
+        this->baseStats[stat] = Pokedex::getInstance()->getBaseStat(id, stat);
     }
 }
 
@@ -136,27 +136,27 @@ std::string Pokemon::getAbility() const {
 }
 
 std::string Pokemon::getSpecies() const {
-    return Pokedex::getInstance().getSpecies(this->getId());
+    return Pokedex::getInstance()->getSpecies(this->getId());
 }
 
 Type Pokemon::getType1() const {
-    return Pokedex::getInstance().getType1(this->getId());
+    return Pokedex::getInstance()->getType1(this->getId());
 }
 
 Type Pokemon::getType2() const {
-    return Pokedex::getInstance().getType2(this->getId());
+    return Pokedex::getInstance()->getType2(this->getId());
 }
 
 double Pokemon::getHeight() const {
-    return Pokedex::getInstance().getHeight(this->getId());
+    return Pokedex::getInstance()->getHeight(this->getId());
 }
 
 double Pokemon::getWeight() const {
-    return Pokedex::getInstance().getWeight(this->getId());
+    return Pokedex::getInstance()->getWeight(this->getId());
 }
 
 int Pokemon::getCatchRate() const {
-    return Pokedex::getInstance().getCatchRate(this->getId());
+    return Pokedex::getInstance()->getCatchRate(this->getId());
 }
 
 bool Pokemon::isFasterThan(const Pokemon &pokemon) const {
