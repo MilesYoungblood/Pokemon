@@ -5,6 +5,11 @@
 #include "../../Singleton/Game/Game.h"
 #include "Camera.h"
 
+Camera & Camera::getInstance() {
+    static Camera camera;
+    return camera;
+}
+
 bool Camera::isInView(const SDL_Rect rect) const {
     return SDL_HasIntersection(&rect, &this->view) == SDL_TRUE;
 }

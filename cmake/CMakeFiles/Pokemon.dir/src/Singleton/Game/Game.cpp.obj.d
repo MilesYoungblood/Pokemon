@@ -1,7 +1,8 @@
 CMakeFiles/Pokemon.dir/src/Singleton/Game/Game.cpp.obj: \
  C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Game\Game.cpp \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h \
  C:\Users\miles\OneDrive\Documents\GitHub\Pokemon\src\Singleton\Game\Game.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/Battle/Battle.h \
@@ -23,8 +24,8 @@ CMakeFiles/Pokemon.dir/src/Singleton/Game/Game.cpp.obj: \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Entity/Character/Trainer/Trainer.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/ResourceBar/ResourceBar.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
- C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/Scene.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/Overworld/Overworld.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Stopwatch/Stopwatch.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/TitleScreen/TitleScreen.h

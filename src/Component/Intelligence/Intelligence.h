@@ -21,6 +21,8 @@ namespace Component {
 
         void tryActing();
 
+        void wakeUp();
+
     private:
         std::function<void()> action{ nullptr };
 

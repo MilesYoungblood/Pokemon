@@ -8,6 +8,8 @@
 
 class Rectangle : public Graphic {
 public:
+    Rectangle() = default;
+
     Rectangle(SDL_Rect dest, int borderSize);
 
     Rectangle(SDL_Rect dest, SDL_Color fg, int borderSize);
@@ -26,13 +28,11 @@ public:
 
     void setBorderSize(int pt);
 
-    void update() override = 0;
+    void update() override;
 
-    void render() const override = 0;
+    void render() const override;
 
 protected:
-    void renderBox() const;
-
     [[nodiscard]] SDL_Color getFg() const;
 
     [[nodiscard]] SDL_Color getBg() const;
@@ -43,5 +43,5 @@ private:
     SDL_Color fg{ Constants::Color::WHITE };
     SDL_Color bg{ Constants::Color::BLACK };
 
-    int borderSize;
+    int borderSize{ 0 };
 };

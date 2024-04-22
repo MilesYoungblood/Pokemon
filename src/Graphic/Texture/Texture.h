@@ -8,11 +8,15 @@
 
 class Texture : public Graphic {
 public:
+    Texture() = default;
+
     Texture(const std::string &path, SDL_Rect dest);
 
     Texture(const std::string &text, SDL_Color fg, SDL_Rect dest);
 
-    Texture(const Texture &) = delete;
+    Texture(SDL_Texture *texture, SDL_Rect dest);
+
+    Texture(const Texture &) = default;
 
     Texture(Texture &&toMove) noexcept;
 
@@ -26,15 +30,12 @@ public:
 
     void render() const override;
 
-protected:
-    explicit Texture(SDL_Rect dest);
+    void clear();
 
-    Texture(SDL_Rect dest, SDL_Texture *txt);
+    explicit operator SDL_Texture *();
 
-    void setTexture(SDL_Texture *newTexture);
-
-    [[nodiscard]] SDL_Texture *getTexture() const;
+    explicit operator SDL_Texture *() const;
 
 private:
-    SDL_Texture *texture;
+    SDL_Texture *texture{ nullptr };
 };

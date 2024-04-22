@@ -5,10 +5,13 @@
 #pragma once
 
 #include "../../Graphic/Graphics.h"
-#include "../Singleton.h"
 
-class GraphicsEngine final : public Singleton<GraphicsEngine> {
+class GraphicsEngine {
 public:
+    /// \brief Getter for Singleton instance
+    /// \return the GraphicsEngine instance
+    static GraphicsEngine &getInstance();
+
     /// \brief adds a graphic to the system
     /// \tparam G the type of graphic
     /// \tparam Args arguments
@@ -79,8 +82,6 @@ public:
 
 private:
     std::unordered_map<std::size_t, std::vector<std::unique_ptr<Graphic>>> graphics;
-
-    friend class Singleton;
 
     GraphicsEngine();
 };

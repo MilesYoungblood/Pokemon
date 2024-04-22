@@ -58,7 +58,7 @@ void TextBox::update() {
         const std::string buff(this->messageQueue.front().first);
         const std::string buffer(this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " ");
 
-        const auto data = TextureManager::getInstance().loadTextData(buffer, Constants::Color::BLACK,
+        const auto data = TextureManager::getInstance().loadWrappedTextData(buffer, Constants::Color::BLACK,
                                                                      this->getDest().w);
         // recreate the text
         this->text = std::get<0>(data);
@@ -79,7 +79,7 @@ void TextBox::update() {
 }
 
 void TextBox::render() const {
-    this->renderBox();
+    Rectangle::render();
 
     TextureManager::getInstance().draw(
             this->text,

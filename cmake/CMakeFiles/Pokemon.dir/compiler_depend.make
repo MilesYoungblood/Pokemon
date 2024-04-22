@@ -956,7 +956,7 @@ CMakeFiles/Pokemon.dir/src/Graphic/Graphic.cpp.obj: CMakeFiles/Pokemon.dir/cmake
 CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Button/Button.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Button/Button.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Button/Button.h
@@ -965,6 +965,7 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj: CMakeFiles/Pok
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Button/Button.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
@@ -974,7 +975,7 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj: CMakeFiles/Pok
 
 CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Rectangle.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h
@@ -983,8 +984,6 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp.obj: CM
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Component/Resource/Resource.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/ResourceBar/ResourceBar.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/ResourceBar/ResourceBar.h
 
@@ -1023,17 +1022,16 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/SelectionBox/SelectionBox.cpp.obj: 
 CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/TextBox/TextBox.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/TextBox/TextBox.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/TextBox/TextBox.h
 
 CMakeFiles/Pokemon.dir/src/Graphic/Texture/Texture.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.cpp \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.cpp
 
 CMakeFiles/Pokemon.dir/src/Graphic/Texture/TimedVisual/TimedVisual.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
@@ -1057,6 +1055,7 @@ CMakeFiles/Pokemon.dir/src/Map/Map.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/ResourceBar/ResourceBar.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.h \
@@ -1437,6 +1436,7 @@ CMakeFiles/Pokemon.dir/src/Singleton/Game/Game.cpp.obj: CMakeFiles/Pokemon.dir/c
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/ResourceBar/ResourceBar.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Map/Map.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Move/Move.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h \
@@ -1464,7 +1464,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj: CMak
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/TextBox/TextBox.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/TimedVisual/TimedVisual.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.h
@@ -1506,7 +1505,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/Mixer/Mixer.cpp.obj: CMakeFiles/Pokemon.dir
   C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/variant \
   C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/vector \
   C:/Users/miles/AppData/Local/JetBrains/CLion\ 2024.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Mixer/Mixer.h
 
@@ -1663,7 +1661,8 @@ CMakeFiles/Pokemon.dir/src/Singleton/Scene/TitleScreen/TitleScreen.cpp.obj: CMak
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/TitleScreen/TitleScreen.cpp
 
 CMakeFiles/Pokemon.dir/src/Singleton/TextureManager/TextureManager.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Graphic.h \
+  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h
 

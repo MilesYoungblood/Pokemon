@@ -4,23 +4,25 @@
 
 #pragma once
 
+#include "../../Texture/Texture.h"
 #include "../Rectangle.h"
 
 class SelectionBox final : public Rectangle {
 public:
     SelectionBox(SDL_Rect dest, int borderSize, const std::vector<std::pair<std::string, std::function<void()>>> &options);
 
-    SelectionBox(SDL_Rect dest, SDL_Color fg, int borderSize,
-                 const std::vector<std::pair<std::string, std::function<void()>>> &options);
-
-    SelectionBox(SDL_Rect dest, SDL_Color fg, SDL_Color bg, int borderSize,
-                 const std::vector<std::pair<std::string, std::function<void()>>> &options);
-
     void update() override;
 
     void render() const override;
 
 private:
-    std::vector<std::pair<std::string, std::function<void()>>> options;
+    const int maxVisible;
     int current{ 0 };
+    int topVisible{ 0 };
+
+    std::vector<std::pair<std::string, std::function<void()>>> options;
+
+    Texture arrow{};
+
+    void updateArrow();
 };

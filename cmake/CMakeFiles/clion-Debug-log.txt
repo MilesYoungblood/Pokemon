@@ -9,6 +9,6 @@ CMake Deprecation Warning:
 
 
 64-bit system detected
--- Configuring done (0.2s)
+-- Configuring done (0.3s)
 -- Generating done (0.1s)
 -- Build files have been written to: C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/cmake

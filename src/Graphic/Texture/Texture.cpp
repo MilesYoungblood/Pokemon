@@ -11,11 +11,14 @@ Texture::Texture(const std::string &path, const SDL_Rect dest)
 Texture::Texture(const std::string &text, const SDL_Color fg, const SDL_Rect dest)
         : Graphic(dest), texture(TextureManager::getInstance().loadText(text, fg)) {}
 
+Texture::Texture(SDL_Texture *texture, const SDL_Rect dest) : Graphic(dest), texture(texture) {}
+
 Texture::Texture(Texture &&toMove) noexcept : Graphic(toMove.getDest()), texture(toMove.texture) {
     toMove.texture = nullptr;
 }
 
 Texture &Texture::operator=(Texture &&rhs) noexcept {
+    this->setDest(rhs.getDest());
     this->texture = rhs.texture;
     rhs.texture = nullptr;
 
@@ -38,14 +41,14 @@ void Texture::render() const {
     TextureManager::getInstance().draw(this->texture, this->getDest());
 }
 
-Texture::Texture(const SDL_Rect dest) : Graphic(dest), texture(nullptr) {}
-
-Texture::Texture(const SDL_Rect dest, SDL_Texture *txt) : Graphic(dest), texture(txt) {}
-
-void Texture::setTexture(SDL_Texture *newTexture) {
-    this->texture = newTexture;
+void Texture::clear() {
+    this->texture = nullptr;
 }
 
-SDL_Texture *Texture::getTexture() const {
+Texture::operator SDL_Texture*() {
+    return this->texture;
+}
+
+Texture::operator SDL_Texture*() const {
     return this->texture;
 }

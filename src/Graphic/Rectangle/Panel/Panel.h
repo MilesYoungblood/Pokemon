@@ -23,16 +23,15 @@ public:
 
     ~Panel() override;
 
-    template<typename ...Args>
-    void add(Args ...args) {
+    void add(const std::string &label, SDL_Color fg, const std::function<void()> &f) {
         if (this->rowCounter == this->buttons.getM()) {
             return;
         }
         const double xInterval = this->getW() / static_cast<double>(this->buttons.getN());
         const double yInterval = this->getH() / static_cast<double>(this->buttons.getM());
 
-        this->buttons(this->rowCounter, this->colCounter) = std::make_optional<Button>(args...);
-        this->buttons(this->rowCounter, this->colCounter)->setW(this->buttonWeight);
+        this->buttons(this->rowCounter, this->colCounter) = std::make_optional<Button>(fg, this->buttonBorder, f);
+        this->buttons(this->rowCounter, this->colCounter)->setW(this->buttonWidth);
         this->buttons(this->rowCounter, this->colCounter)->setH(this->buttonHeight);
 
         const int xPos = this->getX() +
@@ -43,6 +42,8 @@ public:
         this->buttons(this->rowCounter, this->colCounter)->setX(xPos);
         this->buttons(this->rowCounter, this->colCounter)->setY(yPos);
         this->buttons(this->rowCounter, this->colCounter)->setBorderSize(this->buttonBorder);
+
+        this->buttons(this->rowCounter, this->colCounter)->init(label);
 
         ++this->colCounter;
         if (this->colCounter == this->buttons.getN()) {
@@ -66,7 +67,7 @@ private:
     int colCounter{ 0 };
     int rowCounter{ 0 };
 
-    int buttonWeight;
+    int buttonWidth;
     int buttonHeight;
     int buttonBorder;
 

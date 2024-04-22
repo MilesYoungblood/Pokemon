@@ -4,12 +4,14 @@
 
 #pragma once
 
-#include "../Singleton.h"
-
 class Map;
 
-class Camera final : public Singleton<Camera> {
+class Camera {
 public:
+    /// \brief Getter for Singleton instance
+    /// \return the Camera instance
+    static Camera &getInstance();
+
     /// \brief Determines whether a rectangle is in view of the camera
     /// \details This function's purpose is to enable the rendering of only
     /// necessary objects. It is useless to render objects that are not
@@ -25,8 +27,6 @@ public:
 
 private:
     SDL_Rect view;
-
-    friend class Singleton;
 
     Camera();
 };

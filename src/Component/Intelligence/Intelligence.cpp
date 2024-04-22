@@ -14,7 +14,7 @@ Component::Intelligence::Intelligence(const std::function<void()> &action, const
         while (this->intelligent and Game::getInstance().isRunning()) {
             {
                 std::unique_lock lock(mutex);
-                this->cv.wait(lock, condition);
+                this->cv.wait(lock, [condition] -> bool { return condition() or not Game::getInstance().isRunning(); });
             }
 
             if (not this->intelligent or not Game::getInstance().isRunning()) {
@@ -45,4 +45,8 @@ void Component::Intelligence::tryActing() {
         this->action();
         this->ready = false;
     }
+}
+
+void Component::Intelligence::wakeUp() {
+    this->cv.notify_one();
 }

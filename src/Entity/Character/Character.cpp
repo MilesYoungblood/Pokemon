@@ -31,6 +31,9 @@ void Character::setDialogue(const std::vector<std::string> &text) {
 
 void Character::setState(const State x) {
     this->currentState = x;
+    if (this->intelligence != nullptr) {
+        this->intelligence->wakeUp();
+    }
 }
 
 Character::State Character::getState() const {

@@ -54,7 +54,7 @@ void Overworld::fadeIn() {
     Game::getInstance().setRenderColor(Constants::Color::BLACK);
 
     TextureManager::getInstance().setScreenOpacity(SDL_ALPHA_TRANSPARENT);
-    Mixer::getInstance().playMusic(getInstance<Overworld>().getCurrentMap().getId());
+    Mixer::getInstance().playMusic(this->currentMap->getId());
     this->setState(State::FADED_IN);
 }
 
@@ -183,10 +183,7 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     std::vector<std::pair<std::string, std::function<void()>>> pairs;
     pairs.reserve(dialogue.size());
     for (const auto &message : dialogue) {
-        pairs.emplace_back(
-                message,
-                [] -> void { KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN); }
-        );
+        pairs.emplace_back(message, [] -> void { KeyManager::getInstance().unlock(SDL_SCANCODE_RETURN); });
     }
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
 }

@@ -27,4 +27,5 @@ CMakeFiles/Pokemon.dir/src/Map/Map.cpp.obj: \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Stopwatch/Stopwatch.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Scene/TitleScreen/TitleScreen.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
+ C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Camera/Camera.h

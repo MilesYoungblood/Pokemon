@@ -13,6 +13,11 @@ Mixer::~Mixer() {
     Mix_FreeMusic(this->music);
 }
 
+Mixer & Mixer::getInstance() {
+    static Mixer mixer;
+    return mixer;
+}
+
 void Mixer::playSound(const char *id) const {
     try {
         Mix_PlayChannel(-1, this->soundboard.at(id), 0);

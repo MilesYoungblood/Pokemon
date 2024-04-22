@@ -290,31 +290,31 @@ void Battle::initMain() {
         GraphicsEngine::getInstance().getGraphic<Panel>().clear();
 
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                Constants::Color::RED,
                 "Fight",
+                Constants::Color::RED,
                 [this] -> void {
                     Mixer::getInstance().playSound("select");
                     this->changeState(State::SELECT_MOVE, false);
                 }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                Constants::Color::YELLOW,
                 "Bag",
+                Constants::Color::YELLOW,
                 [] -> void {
                     Mixer::getInstance().playSound("select");
                 }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                Constants::Color::GREEN,
                 "Pokemon",
+                Constants::Color::GREEN,
                 [this] -> void {
                     Mixer::getInstance().playSound("select");
                     this->changeState(State::SELECT_POKEMON, false);
                 }
         );
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                Constants::Color::BLUE,
                 "Run",
+                Constants::Color::BLUE,
                 [this] -> void {
                     Mixer::getInstance().playSound("select");
                     this->handleRun();
@@ -340,8 +340,8 @@ void Battle::initFight() {
 
     for (int i = 0; i < Player::getPlayer()[0].numMoves(); ++i) {
         GraphicsEngine::getInstance().getGraphic<Panel>().add(
-                typeToColor(Player::getPlayer()[0][i].getType()),
                 Player::getPlayer()[0][i].getName(),
+                typeToColor(Player::getPlayer()[0][i].getType()),
                 [this, i] -> void {
                     Mixer::getInstance().playSound("select");
                     this->handleTurn(i);

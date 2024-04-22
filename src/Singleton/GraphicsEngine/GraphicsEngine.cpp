@@ -4,6 +4,11 @@
 
 #include "GraphicsEngine.h"
 
+GraphicsEngine & GraphicsEngine::getInstance() {
+    static GraphicsEngine graphicsEngine;
+    return graphicsEngine;
+}
+
 void GraphicsEngine::update() {
     for (auto &set : this->graphics | std::views::values) {
         for (long long int i = 0; i < set.size(); ++i) {
@@ -34,7 +39,6 @@ void GraphicsEngine::clear() {
 GraphicsEngine::GraphicsEngine() {
     this->graphics[typeid(Button).hash_code()];
     this->graphics[typeid(Panel).hash_code()];
-    this->graphics[typeid(Rectangle).hash_code()];
     this->graphics[typeid(ResourceBar).hash_code()];
     this->graphics[typeid(SelectionBox).hash_code()];
     this->graphics[typeid(TextBox).hash_code()];

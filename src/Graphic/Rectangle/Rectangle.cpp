@@ -17,7 +17,10 @@ void Rectangle::setBorderSize(const int pt) {
     this->borderSize = pt;
 }
 
-void Rectangle::renderBox() const {
+void Rectangle::update() {
+}
+
+void Rectangle::render() const {
     TextureManager::getInstance().drawRect(this->getDest(), this->fg, this->bg, this->borderSize);
 }
 

@@ -4,9 +4,7 @@
 
 #pragma once
 
-#include "../Singleton.h"
-
-class Mixer final : public Singleton<Mixer> {
+class Mixer final {
 public:
     Mixer(const Mixer &) = delete;
 
@@ -16,7 +14,9 @@ public:
 
     Mixer &operator=(Mixer &&) noexcept = delete;
 
-    ~Mixer() override;
+    ~Mixer();
+
+    static Mixer &getInstance();
 
     void playSound(const char *id) const;
 
@@ -25,8 +25,6 @@ public:
 private:
     std::unordered_map<std::string, Mix_Chunk *> soundboard;
     Mix_Music *music{ nullptr };
-
-    friend class Singleton;
 
     Mixer();
 };

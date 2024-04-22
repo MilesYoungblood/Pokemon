@@ -46,7 +46,9 @@ public:
 
     [[nodiscard]] bool isActive() const;
 
+    Graphic() = default;
+
 private:
-    SDL_Rect dest;
+    SDL_Rect dest{};
     bool active{ true };
 };

@@ -18,5 +18,6 @@ public:
     void render() const override;
 
 private:
+    Rectangle progressRect{};
     Component::Resource progress;
 };

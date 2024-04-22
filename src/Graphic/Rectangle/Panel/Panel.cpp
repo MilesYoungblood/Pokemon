@@ -7,13 +7,13 @@
 #include "Panel.h"
 
 Panel::Panel(const SDL_Rect dest, const int borderSize, const int numRows, const int numCols, const int w, const int h,  const int pt)
-        : Rectangle(dest, borderSize), buttons(numRows, numCols), buttonWeight(w), buttonHeight(h), buttonBorder(pt),
+        : Rectangle(dest, borderSize), buttons(numRows, numCols), buttonWidth(w), buttonHeight(h), buttonBorder(pt),
           arrow(TextureManager::getInstance().loadTexture("RightArrowWhite.png")) {
     this->init();
 }
 
 Panel::Panel(const SDL_Rect dest, const SDL_Color fg, const int borderSize, const int numRows, const int numCols, const int w, const int h, const int pt)
-        : Rectangle(dest, fg, borderSize), buttons(numRows, numCols), buttonWeight(w), buttonHeight(h), buttonBorder(pt),
+        : Rectangle(dest, fg, borderSize), buttons(numRows, numCols), buttonWidth(w), buttonHeight(h), buttonBorder(pt),
           arrow(TextureManager::getInstance().loadTexture("RightArrowWhite.png")) {
     this->init();
 }
@@ -77,7 +77,7 @@ void Panel::update() {
 }
 
 void Panel::render() const {
-    this->renderBox();
+    Rectangle::render();
     for (std::size_t row = 0; row < this->buttons.getM(); ++row) {
         for (std::size_t col = 0; col < this->buttons.getN(); ++col) {
             if (this->buttons(row, col).has_value()) {
