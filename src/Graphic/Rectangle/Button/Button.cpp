@@ -14,10 +14,12 @@ Button::Button(const SDL_Color fg, const int borderSize, const std::function<voi
         : Rectangle(SDL_Rect(), fg, borderSize), onPress(f) {}
 
 void Button::init(const std::string &label) {
-    const auto data = TextureManager::getInstance().loadTextData(label, this->getFg());
-
-    const int w = std::min(std::get<1>(data), this->getW());
-    const int h = std::min(std::get<2>(data), this->getH());
+    SDL_Texture *texture = TextureManager::getInstance().loadText(label, Constants::Color::WHITE);
+    int w;
+    int h;
+    SDL_QueryTexture(texture, nullptr, nullptr, &w, &h);
+    w = std::min(w, this->getW());
+    h = std::min(h, this->getH());
 
     const SDL_Rect textDest(
         this->getX() + this->getW() / 2 - w / 2,
@@ -26,7 +28,7 @@ void Button::init(const std::string &label) {
         h
     );
 
-    this->text = Texture(std::get<0>(data), textDest);
+    this->text = Texture(texture, textDest);
 }
 
 void Button::press() const {
@@ -37,8 +39,7 @@ void Button::press() const {
 
 void Button::render() const {
     Rectangle::render();
-
-    TextureManager::drawBorderedText(
+    TextureManager::getInstance().drawBorderedText(
             this->text,
             2,
             Constants::Color::WHITE,

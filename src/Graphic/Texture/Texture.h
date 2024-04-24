@@ -16,7 +16,7 @@ public:
 
     Texture(SDL_Texture *texture, SDL_Rect dest);
 
-    Texture(const Texture &) = default;
+    Texture(const Texture &) = delete;
 
     Texture(Texture &&toMove) noexcept;
 
@@ -32,9 +32,12 @@ public:
 
     void clear();
 
-    explicit operator SDL_Texture *();
+    explicit operator SDL_Texture *&();
 
     explicit operator SDL_Texture *() const;
+
+protected:
+    explicit Texture(SDL_Rect dest);
 
 private:
     SDL_Texture *texture{ nullptr };

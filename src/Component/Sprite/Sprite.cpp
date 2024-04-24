@@ -4,23 +4,25 @@
 
 #include "Sprite.h"
 
-int Component::Sprite::getCurrentRow() const {
-    return this->currentRow;
-}
+Component::Sprite::Sprite(const int frameSpeed, const int numCols, const int numRows)
+        : frameSpeed(std::max(1, frameSpeed)), numCols(numCols), numRows(numRows) {}
 
 int Component::Sprite::getCurrentCol() const {
     return this->currentCol;
 }
 
-void Component::Sprite::update(const int numRows, const int numCols) {
-    ++this->currentCol;
+void Component::Sprite::update() {
+    // every frame, we increase the elapsed frames
+    ++this->framesElapsed;
 
-    if (this->currentCol == numCols) {
-        this->currentCol = 0;
-        ++this->currentRow;
+    // if the elapsed frames reaches the frame speed, we can update
+    if (this->framesElapsed == this->frameSpeed) {
+        ++this->currentCol;
+        this->framesElapsed = 0;
 
-        if (this->currentRow == numRows) {
-            this->currentRow = 0;
+        if (this->currentCol == this->numCols) {
+            this->currentRow = (this->currentRow + 1) % this->numRows;
+            this->currentCol = 0;
         }
     }
 }

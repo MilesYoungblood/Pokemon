@@ -373,7 +373,7 @@ void Map::loadTrainer2(std::unique_ptr<Trainer> &trainer, tinyxml2::XMLElement *
 
 void Map::loadItem(tinyxml2::XMLElement *entityElement) {
     if (not this->entitySprites.contains("Item")) {
-        this->entitySprites["Item"] = TextureManager::getInstance().loadTexture("Item_Overworld_Sprite.png");
+        this->entitySprites["Item"] = TextureManager::getInstance().loadTexture("sprites/Items/Item.png");
         if (entitySprites.at("Item") == nullptr) {
             std::clog << "Unable to load item sprite\n";
             Game::getInstance().terminate();

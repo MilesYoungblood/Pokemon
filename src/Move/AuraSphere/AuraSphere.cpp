@@ -12,7 +12,8 @@ void AuraSphere::action(Pokemon &attacker, Pokemon &defender, bool & /*skip*/) {
 
     this->calculateDamage(attacker, defender);
     // if the calculation registers as a miss, force it as a hit
-    defender.getHp().lower(std::max(this->getDamageFlag(), this->getDamageFlag() * -1));
+    // TODO calcuate damage sets flag to -1 if miss is registered; this logic won't work
+    defender.getHp().lower(std::abs(this->getDamageFlag()));
     this->getPp().lower(1);
 }
 

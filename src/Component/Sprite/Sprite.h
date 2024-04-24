@@ -7,22 +7,27 @@
 namespace Component {
     class Sprite {
     public:
-        struct Sheet {
-            SDL_Texture *sprite{ nullptr };
-            Uint32 numRows{ 0 };
-            Uint32 numCols{ 0 };
-        };
+        Sprite(int frameSpeed, int numCols, int numRows);
 
-        Sprite() = default;
+        Sprite(const Sprite &) = default;
 
-        [[nodiscard]] int getCurrentRow() const;
+        Sprite(Sprite &&) noexcept = default;
+
+        Sprite &operator=(const Sprite &) = delete;
+
+        Sprite &operator=(Sprite &&) noexcept = delete;
 
         [[nodiscard]] int getCurrentCol() const;
 
-        void update(int numRows, int numCols);
+        void update();
 
     private:
-        int currentRow;
-        int currentCol;
+        int framesElapsed{ 0 };
+        int currentCol{ 0 };
+        int currentRow{ 0 };
+
+        const int frameSpeed;
+        const int numCols;
+        const int numRows;
     };
 }

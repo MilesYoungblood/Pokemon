@@ -45,10 +45,12 @@ void Texture::clear() {
     this->texture = nullptr;
 }
 
-Texture::operator SDL_Texture*() {
+Texture::operator SDL_Texture *&() {
     return this->texture;
 }
 
-Texture::operator SDL_Texture*() const {
+Texture::operator SDL_Texture *() const {
     return this->texture;
 }
+
+Texture::Texture(const SDL_Rect dest) : Graphic(dest) {}

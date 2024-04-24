@@ -50,44 +50,14 @@ SDL_Texture *TextureManager::loadTexture(const std::string &path) const {
     return IMG_LoadTexture(this->textureRenderer, std::string_view("../assets/images/" + path).data());
 }
 
-std::tuple<SDL_Texture *, Uint32, Uint32> TextureManager::loadTextureData(const std::string &path) const {
-    SDL_Surface *temp = IMG_Load(std::string_view("../assets/images/" + path).data());
-    if (temp == nullptr) {
-        throw std::runtime_error("Error creating surface\n");
-    }
-
-    int rows = temp->h;
-    int cols = temp->w;
-
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
-    SDL_FreeSurface(temp);
-
-    return std::make_tuple(texture, rows, cols);
-}
-
-std::tuple<SDL_Texture *, int, int> TextureManager::loadTextData(const std::string &text, SDL_Color fg) const {
-    SDL_Surface *temp = TTF_RenderUTF8_Solid(this->font, text.data(), fg);
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
-
-    const int w = temp->w;
-    const int h = temp->h;
-
-    SDL_FreeSurface(temp);
-
-    return std::make_tuple(texture, w, h);
-}
-
-std::tuple<SDL_Texture *, int, int> TextureManager::loadWrappedTextData(const std::string &text, const SDL_Color fg, const int wLength) const {
+SDL_Texture *TextureManager::loadWrappedText(const std::string &text, const SDL_Color fg, const int wLength) const {
     SDL_Surface *temp = TTF_RenderUTF8_Blended_Wrapped(this->font, text.data(), fg, wLength);
 
     SDL_Texture *texture = SDL_CreateTextureFromSurface(this->textureRenderer, temp);
 
-    const int w = temp->w;
-    const int h = temp->h;
-
     SDL_FreeSurface(temp);
 
-    return std::make_tuple(texture, w, h);
+    return texture;
 }
 
 SDL_Texture *TextureManager::loadText(const std::string &text, const SDL_Color fg) const {
@@ -152,25 +122,28 @@ void TextureManager::drawRect(const SDL_Rect dest, const SDL_Color fg, const SDL
     SDL_SetRenderDrawColor(this->textureRenderer, previous.r, previous.g, previous.b, previous.a);
 }
 
-void TextureManager::drawBorderedText(const Texture &text, const int pt, const SDL_Color fg, const SDL_Color bg) {
+void TextureManager::drawBorderedText(const Texture &text, const int pt, const SDL_Color fg, const SDL_Color bg) const {
     // Render text with outline by rendering text multiple times with slight offsets
-    Texture copy(text);
+    auto *textCopy = static_cast<SDL_Texture *>(text);
+    SDL_Rect copyRect(text.getDest());
 
     // Draw the outline first
-    SDL_SetTextureColorMod(static_cast<SDL_Texture *>(copy), bg.r, bg.g, bg.b);
+    SDL_SetTextureColorMod(textCopy, bg.r, bg.g, bg.b);
     for (int i = 1; i <= pt; ++i) {
         for (int dx = -i; dx <= i; ++dx) {
             for (int dy = -i; dy <= i; ++dy) {
-                copy.setX(copy.getX() + dx);
-                copy.setY(copy.getY() + dy);
-                copy.render();
+                copyRect.x = text.getX() + dx;
+                copyRect.y = text.getY() + dy;
+                SDL_RenderCopy(this->textureRenderer, textCopy, nullptr, &copyRect);
             }
         }
     }
 
     // Reset color modulation for the actual text
-    SDL_SetTextureColorMod(static_cast<SDL_Texture *>(copy), fg.r, fg.g, fg.b);
-    copy.render();
+    SDL_SetTextureColorMod(textCopy, fg.r, fg.g, fg.b);
+    copyRect.x = text.getX();
+    copyRect.y = text.getY();
+    SDL_RenderCopy(this->textureRenderer, textCopy, nullptr, &copyRect);
 }
 
 void TextureManager::drawScreen() const {
@@ -210,10 +183,6 @@ bool TextureManager::isScreenOpaque() const {
 
 bool TextureManager::isScreenTransparent() const {
     return this->screenColor.a == SDL_ALPHA_TRANSPARENT;
-}
-
-TTF_Font *TextureManager::getFont() const {
-    return this->font;
 }
 
 TextureManager::operator bool() const {

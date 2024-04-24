@@ -5,7 +5,6 @@
 #pragma once
 
 #include "../../../Enums/StatusCondition/StatusCondition.h"
-#include "../../../Component/Resource/Resource.h"
 #include "../../../Move/Move.h"
 #include "../Character.h"
 

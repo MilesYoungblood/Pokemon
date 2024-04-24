@@ -967,7 +967,6 @@ CMakeFiles/Pokemon.dir/src/Graphic/Rectangle/Panel/Panel.cpp.obj: CMakeFiles/Pok
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Rectangle.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Texture/Texture.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/TextureManager/TextureManager.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/utility/Matrix/Matrix.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Graphic/Rectangle/Panel/Panel.cpp \
@@ -1469,7 +1468,6 @@ CMakeFiles/Pokemon.dir/src/Singleton/GraphicsEngine/GraphicsEngine.cpp.obj: CMak
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/GraphicsEngine/GraphicsEngine.h
 
 CMakeFiles/Pokemon.dir/src/Singleton/KeyManager/KeyManager.cpp.obj: CMakeFiles/Pokemon.dir/cmake_pch.hxx \
-  C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/Singleton.h \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.cpp \
   C:/Users/miles/OneDrive/Documents/GitHub/Pokemon/src/Singleton/KeyManager/KeyManager.h
 

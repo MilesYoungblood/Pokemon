@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../../Component/Intelligence/Intelligence.h"
+#include "../../Component/Sprite/Sprite.h"
 #include "../../Map/Map.h"
 #include "../../Entity/Entity.h"
 

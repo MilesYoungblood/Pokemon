@@ -4,6 +4,11 @@
 
 #include "KeyManager.h"
 
+KeyManager & KeyManager::getInstance() {
+    static KeyManager keyManager;
+    return keyManager;
+}
+
 void KeyManager::lock(const SDL_Scancode key) {
     this->lockedKeys.insert(key);
 }
@@ -30,4 +35,8 @@ bool KeyManager::getKey(const SDL_Scancode key) {
     }
     this->heldKeys.erase(key);
     return false;
+}
+
+void KeyManager::setHoldingState(const bool x) {
+    this->acceptingHold = x;
 }

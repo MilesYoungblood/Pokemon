@@ -58,14 +58,11 @@ void TextBox::update() {
         const std::string buff(this->messageQueue.front().first);
         const std::string buffer(this->lettersPrinted > 0 ? buff.substr(0, this->lettersPrinted) : " ");
 
-        const auto data = TextureManager::getInstance().loadWrappedTextData(buffer, Constants::Color::BLACK,
-                                                                     this->getDest().w);
         // recreate the text
-        this->text = std::get<0>(data);
+        this->text = TextureManager::getInstance().loadWrappedText(buffer, Constants::Color::BLACK, this->getDest().w);
 
         // save the width and height of the text just in case next iteration, this branch isn't executed
-        this->textBox.w = std::get<1>(data);
-        this->textBox.h = std::get<2>(data);
+        SDL_QueryTexture(this->text, nullptr, nullptr, &this->textBox.w, &this->textBox.h);
 
         ++this->lettersPrinted;
     }

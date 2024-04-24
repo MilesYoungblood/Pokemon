@@ -23,34 +23,7 @@ public:
 
     ~Panel() override;
 
-    void add(const std::string &label, SDL_Color fg, const std::function<void()> &f) {
-        if (this->rowCounter == this->buttons.getM()) {
-            return;
-        }
-        const double xInterval = this->getW() / static_cast<double>(this->buttons.getN());
-        const double yInterval = this->getH() / static_cast<double>(this->buttons.getM());
-
-        this->buttons(this->rowCounter, this->colCounter) = std::make_optional<Button>(fg, this->buttonBorder, f);
-        this->buttons(this->rowCounter, this->colCounter)->setW(this->buttonWidth);
-        this->buttons(this->rowCounter, this->colCounter)->setH(this->buttonHeight);
-
-        const int xPos = this->getX() +
-                          static_cast<int>(this->colCounter * xInterval + (xInterval - this->buttons(this->rowCounter, this->colCounter)->getW()) / 2.0);
-        const int yPos = this->getY() +
-                          static_cast<int>(this->rowCounter * yInterval + (yInterval - this->buttons(this->rowCounter, this->colCounter)->getH()) / 2.0);
-
-        this->buttons(this->rowCounter, this->colCounter)->setX(xPos);
-        this->buttons(this->rowCounter, this->colCounter)->setY(yPos);
-        this->buttons(this->rowCounter, this->colCounter)->setBorderSize(this->buttonBorder);
-
-        this->buttons(this->rowCounter, this->colCounter)->init(label);
-
-        ++this->colCounter;
-        if (this->colCounter == this->buttons.getN()) {
-            ++this->rowCounter;
-            this->colCounter = 0;
-        }
-    }
+    void add(const std::string &label, SDL_Color fg, const std::function<void()> &f);
 
     void update() override;
 
@@ -59,7 +32,7 @@ public:
     void clear();
 
 private:
-    Matrix<std::optional<Button>> buttons;
+    Matrix<std::shared_ptr<Button>> buttons;
 
     int currentRow{ 0 };
     int currentCol{ 0 };

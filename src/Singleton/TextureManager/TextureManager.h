@@ -40,14 +40,12 @@ public:
     /// \return a pointer to an SDL_Texture, or nullptr on error
     [[nodiscard]] SDL_Texture *loadTexture(const std::string &path) const;
 
-    /// \brief Loads a texture, as well as the dimensions of it
-    /// \param path path of the image in the project
-    /// \return a tuple containing SDL_Texture (nullptr on error), and two Uint8's representing the height and width respectively
-    [[nodiscard]] std::tuple<SDL_Texture *, Uint32, Uint32> loadTextureData(const std::string &path) const;
-
-    [[nodiscard]] std::tuple<SDL_Texture *, int, int> loadTextData(const std::string &text, SDL_Color fg) const;
-
-    [[nodiscard]] std::tuple<SDL_Texture *, int, int> loadWrappedTextData(const std::string &text, SDL_Color fg, int wLength) const;
+    /// \brief Loads a texture as wrapped text
+    /// \param text text to load
+    /// \param fg color of text
+    /// \param wLength wrap length
+    /// \return a point to an SDL_Texture
+    [[nodiscard]] SDL_Texture *loadWrappedText(const std::string &text, SDL_Color fg, int wLength) const;
 
     /// \brief Loads a texture as a text
     /// \param text text to load
@@ -85,7 +83,7 @@ public:
     /// \param pt size of the border
     /// \param fg text color
     /// \param bg border color
-    static void drawBorderedText(const Texture &text, int pt, SDL_Color fg, SDL_Color bg);
+    void drawBorderedText(const Texture &text, int pt, SDL_Color fg, SDL_Color bg) const;
 
     /// \brief Draws the black screen to the renderer
     void drawScreen() const;
@@ -113,10 +111,6 @@ public:
     /// \brief Checker for full screen transparency
     /// \return true if the screen in fully transparent
     [[nodiscard]] bool isScreenTransparent() const;
-
-    /// \brief returns the class's font.
-    /// \return returns a pointer to the class's font.
-    [[nodiscard]] TTF_Font *getFont() const;
 
     explicit operator bool() const;
 
