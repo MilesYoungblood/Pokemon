@@ -38,9 +38,9 @@ public:
 
     [[nodiscard]] std::string getSpriteKey() const override;
 
-    void interact() override;
+    void interact(Map &map) override;
 
-    void update() override;
+    void update(Map &map) override;
 
     void render(SDL_Texture *sprite) const override;
 

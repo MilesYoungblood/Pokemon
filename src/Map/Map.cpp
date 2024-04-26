@@ -8,7 +8,7 @@
 #include "Map.h"
 
 void handleError(const std::string &filename, const char *name, const char *node) {
-    std::cout << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << node << '\n';
+    std::clog << "Invalid file format in file \"" << filename << "\": missing \"" << name << "\" " << node << '\n';
     Game::getInstance().terminate();
 }
 
@@ -437,7 +437,7 @@ Map::Map(const char *name, const char *id) : name(name), id(id) {
 
     for (auto &entity : this->entities) {
         if (auto *trainer = dynamic_cast<Trainer *>(entity.get()); trainer != nullptr) {
-            trainer->gainAutonomy();
+            trainer->gainAutonomy(*this);
         }
     }
 }
@@ -493,15 +493,6 @@ void Map::removeEntity(const Entity *entity) {
             this->entities.erase(this->entities.begin() + i);
             return;
         }
-    }
-}
-
-Entity &Map::operator[](const std::size_t index) const {
-    try {
-        return *this->entities.at(index);
-    }
-    catch (const std::out_of_range &e) {
-        throw std::out_of_range(std::string("Error accessing entities: ") + e.what() + '\n');
     }
 }
 

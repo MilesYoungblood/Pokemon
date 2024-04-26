@@ -9,7 +9,7 @@
 
 class Player final : public Trainer {
 public:
-    /// Singleton instance getter for player
+    /// Getter for Singleton instance
     /// \return the player
     static Player &getPlayer();
 
@@ -102,18 +102,23 @@ private:
     Player();
 
     /// Handles player WASD key protocol
+    /// \param map the map
     /// \param scancode scancode activated
-    void handleMove(SDL_Scancode scancode);
+    void handleMove(const Map &map, SDL_Scancode scancode);
 
     /// \brief Handles player return key protocol
-    void handleReturn() const;
+    /// \param map the map
+    void handleReturn(Map &map) const;
 
     /// \brief Overrides Character::interact
-    void interact() override;
+    /// \param map the map
+    void interact(Map &map) override;
 
     /// \brief Overrides Character::idle
-    void walk() override;
+    /// \param map the map
+    void walk(Map &map) override;
 
     /// \brief Overrides Character::idle
-    void idle() override;
+    /// \brief map the map
+    void idle(Map &map) override;
 };

@@ -40,9 +40,9 @@ Character::State Character::getState() const {
     return this->currentState;
 }
 
-void Character::gainAutonomy() {
+void Character::gainAutonomy(Map &map) {
     this->intelligence = std::make_unique<Component::Intelligence>(
-            [this] -> void { this->act(); },
+            [this, &map] -> void { this->act(map); },
             [this] -> bool { return this->currentState == State::IDLE; },
             [] -> int { return generateInteger(2, 4); }
     );
@@ -84,10 +84,10 @@ bool Character::canFight() const {
     return false;
 }
 
-void Character::update() {
+void Character::update(Map &map) {
     switch (this->currentState) {
         case State::WALKING:
-            this->walk();
+            this->walk(map);
             break;
 
         case State::COLLIDING:
@@ -108,7 +108,7 @@ void Character::update() {
 
         case State::IDLE:
         case State::IMMOBILE:
-            this->idle();
+            this->idle(map);
             break;
 
         default:
@@ -239,7 +239,7 @@ bool Character::hasVisionOf(const Entity *entity) const {
     }
 }
 
-void Character::act() {
+void Character::act(const Map &map) {
     switch (generateInteger(1, 4)) {
         case 1:
             this->face(this);
@@ -255,12 +255,12 @@ void Character::act() {
             break;
 
         default:
-            if (this->canMoveForward(Scene::getInstance<Overworld>().getCurrentMap())) {
+            if (this->canMoveForward(map)) {
                 this->moveForward();
                 this->setState(State::WALKING);
 
                 if (this->hasVisionOf(&Player::getPlayer()) and
-                    (Player::getPlayer().getState() == State::IDLE)) {
+                    Player::getPlayer().getState() == State::IDLE) {
                     Player::getPlayer().setState(State::IMMOBILE);
                 }
             }
@@ -277,7 +277,7 @@ void Character::loseAutonomy() {
     this->intelligence.reset(nullptr);
 }
 
-void Character::interact() {
+void Character::interact(Map &map) {
     // if the player manually clicked Enter
     // (the trainer will have opened the TextBox if it has contacted the player already)
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
@@ -337,7 +337,7 @@ void Character::interact() {
     }
 }
 
-void Character::walk() {
+void Character::walk(Map &map) {
     ++this->pixelCounter;
 
     this->getScreenPosition().translate(this->currentDirection, WALK_SPEED);
@@ -354,7 +354,7 @@ void Character::walk() {
     }
 }
 
-void Character::idle() {
+void Character::idle(Map &map) {
     if (this->intelligence != nullptr) {
         this->intelligence->tryActing();
     }

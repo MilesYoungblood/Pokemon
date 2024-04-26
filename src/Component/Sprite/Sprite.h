@@ -17,7 +17,13 @@ namespace Component {
 
         Sprite &operator=(Sprite &&) noexcept = delete;
 
+        [[nodiscard]] int getCurrentElapsed() const;
+
         [[nodiscard]] int getCurrentCol() const;
+
+        [[nodiscard]] int getFrameSpeed() const;
+
+        [[nodiscard]] int getNumCols() const;
 
         void update();
 

@@ -9,7 +9,6 @@
 #include "../Scene.h"
 
 inline Stopwatch keyDelay;
-inline bool momentum;
 
 inline std::atomic_int entitiesUpdating = 0;
 
@@ -41,13 +40,11 @@ public:
 
     void changeMap(const std::pair<Component::Position, std::string> &data);
 
-    [[nodiscard]] Map &getCurrentMap() const;
-
     static void createTextBox(const std::string &message, const std::function<void()> &function = nullptr);
 
     static void createTextBox(const std::vector<std::string> &dialogue);
 
-    void handleEscape();
+    void handleEscape() const;
 
 private:
     std::unique_ptr<Map> currentMap;

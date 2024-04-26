@@ -89,7 +89,8 @@ public:
     [[nodiscard]] bool canFight() const override;
 
     /// \brief Overrides Character::idle
-    void idle() override;
+    /// \param map the map
+    void idle(Map &map) override;
 
 protected:
     Trainer(const char *id, int x, int y, Direction direction, int vision);

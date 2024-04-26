@@ -22,27 +22,6 @@ void Overworld::init() {
         Pokedex::load();
         this->currentMap = std::make_unique<Map>("Nuvema Town", "NuvemaTown");
 
-        Player::getPlayer().setName("Hilbert");
-
-        Player::getPlayer().addPokemon("Emboar");
-        Player::getPlayer()[0].learnMove("Heat Crash");
-        Player::getPlayer()[0].learnMove("Head Smash");
-
-        Player::getPlayer().addPokemon("Zebstrika");
-        Player::getPlayer()[1].learnMove("Volt Tackle");
-
-        Player::getPlayer().addPokemon("Excadrill");
-
-        Player::getPlayer().addPokemon("Carracosta");
-
-        Player::getPlayer().addPokemon("Braviary");
-
-        Player::getPlayer().addPokemon("Hydreigon");
-        Player::getPlayer()[5].learnMove("Dark Pulse");
-        Player::getPlayer()[5].learnMove("Dragon Pulse");
-        Player::getPlayer()[5].learnMove("Flamethrower");
-        Player::getPlayer()[5].learnMove("Focus Blast");
-
         Camera::getInstance().lockOnPlayer(*this->currentMap);
 
         wasInit = true;
@@ -82,9 +61,9 @@ void Overworld::handleEvents() {
 
 void Overworld::update() {
     for (const auto &entity : *this->currentMap) {
-        entity->update();
+        entity->update(*this->currentMap);
     }
-    Player::getPlayer().update();
+    Player::getPlayer().update(*this->currentMap);
 
     GraphicsEngine::getInstance().update();
 }
@@ -139,10 +118,6 @@ void Overworld::changeMap(const std::pair<Component::Position, std::string> &dat
     Camera::getInstance().lockOnPlayer(*this->currentMap);
 }
 
-Map &Overworld::getCurrentMap() const {
-    return *this->currentMap;
-}
-
 void Overworld::createTextBox(const std::string &message, const std::function<void()> &function) {
     constexpr int boxWidth = Map::TILE_SIZE * 7;
     constexpr int boxHeight = Map::TILE_SIZE * 2;
@@ -188,7 +163,7 @@ void Overworld::createTextBox(const std::vector<std::string> &dialogue) {
     GraphicsEngine::getInstance().getGraphic<TextBox>().push(pairs);
 }
 
-void Overworld::handleEscape() {
+void Overworld::handleEscape() const {
     if (GraphicsEngine::getInstance().hasAny<SelectionBox>()) {
         GraphicsEngine::getInstance().removeGraphic<SelectionBox>();
         Player::getPlayer().setState(Character::State::IDLE);

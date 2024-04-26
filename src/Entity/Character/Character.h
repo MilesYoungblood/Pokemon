@@ -5,8 +5,6 @@
 #pragma once
 
 #include "../../Component/Intelligence/Intelligence.h"
-#include "../../Component/Sprite/Sprite.h"
-#include "../../Map/Map.h"
 #include "../../Entity/Entity.h"
 
 class Character : public Entity {
@@ -58,7 +56,8 @@ public:
     [[nodiscard]] State getState() const;
 
     /// \brief Fires the character's decision making thread
-    void gainAutonomy();
+    /// \param map the map
+    void gainAutonomy(Map &map);
 
     /// \brief Overrides Entity::getKey
     /// \return the respective sprite key
@@ -95,7 +94,8 @@ public:
     [[nodiscard]] virtual bool canFight() const;
 
     /// \brief Overrides Entity::update
-    void update() override;
+    /// \param map the map
+    void update(Map &map) override;
 
     /// \brief Overrides Entity::render
     /// \param sprite character sprite
@@ -144,13 +144,16 @@ protected:
     void loseAutonomy();
 
     /// \brief Overrides Entity::interact
-    void interact() override;
+    /// \param map the map
+    void interact(Map &map) override;
 
     /// \brief Handles the character's walking protocol
-    virtual void walk();
+    /// \param map the map
+    virtual void walk(Map &map);
 
     /// \brief Handles the character's idling protocol
-    virtual void idle();
+    /// \param map the map
+    virtual void idle(Map &map);
 
     /// \brief Updates the character's sprite
     void updateSprite();
@@ -181,5 +184,6 @@ private:
     std::unique_ptr<Component::Intelligence> intelligence{ nullptr };
 
     /// \brief Performs an action
-    void act();
+    /// \param map the map
+    void act(const Map &map);
 };

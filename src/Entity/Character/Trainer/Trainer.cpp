@@ -147,8 +147,8 @@ bool Trainer::canFight() const {
     return not this->party.empty();
 }
 
-void Trainer::idle() {
-    Character::idle();
+void Trainer::idle(Map &map) {
+    Character::idle(map);
 
     static int frameCounter = 0;    // makes this that spotted the player stand still for a set number of frames
     static bool haltMusic = true;
@@ -167,7 +167,6 @@ void Trainer::idle() {
 
             Player::getPlayer().setState(State::IMMOBILE);
             this->setState(State::IMMOBILE);
-            momentum = false;
 
             Mix_HaltMusic();
             haltMusic = false;

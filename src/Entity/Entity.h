@@ -5,6 +5,7 @@
 #pragma once
 
 #include "../Component/Position/Position.h"
+#include "../Map/Map.h"
 
 class Entity {
 public:
@@ -50,10 +51,12 @@ public:
     [[nodiscard]] virtual std::string getSpriteKey() const = 0;
 
     /// \brief Interacts with the entity
-    virtual void interact() = 0;
+    /// \param map the map
+    virtual void interact(Map &map) = 0;
 
     /// \brief Updates the entity
-    virtual void update() = 0;
+    /// \param map the map
+    virtual void update(Map &map) = 0;
 
     /// \brief Renders the entity
     virtual void render(SDL_Texture *sprite) const = 0;

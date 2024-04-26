@@ -51,7 +51,7 @@ std::string Item::getSpriteKey() const {
     return "Item";
 }
 
-void Item::interact() {
+void Item::interact(Map &map) {
     if (not GraphicsEngine::getInstance().hasAny<TextBox>()) {
         ++entitiesUpdating;
         KeyManager::getInstance().lock(SDL_SCANCODE_RETURN);
@@ -74,11 +74,11 @@ void Item::interact() {
 
         // add the item to the Player's inventory and remove it from the map
         Player::getPlayer().addItem(this->getId(), this->getQuantity());
-        Scene::getInstance<Overworld>().getCurrentMap().removeEntity(this);
+        map.removeEntity(this);
     }
 }
 
-void Item::update() {}
+void Item::update(Map &map) {}
 
 constexpr int DIMENSION = Map::TILE_SIZE * 3 / 10;
 constexpr int OFFSET = (Map::TILE_SIZE - DIMENSION) / 2;

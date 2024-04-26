@@ -16,6 +16,7 @@ void Stopwatch::stop() {
         const auto stopTime = std::chrono::high_resolution_clock::now();
         this->elapsedTime += std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - this->startTime);
     }
+    this->active = false;
 }
 
 void Stopwatch::reset() {

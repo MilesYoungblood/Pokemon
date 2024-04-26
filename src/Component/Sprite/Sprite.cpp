@@ -5,10 +5,22 @@
 #include "Sprite.h"
 
 Component::Sprite::Sprite(const int frameSpeed, const int numCols, const int numRows)
-        : frameSpeed(std::max(1, frameSpeed)), numCols(numCols), numRows(numRows) {}
+        : frameSpeed(std::max(1, frameSpeed)), numCols(std::max(1, numCols)), numRows(std::max(1, numRows)) {}
+
+int Component::Sprite::getCurrentElapsed() const {
+    return this->framesElapsed;
+}
 
 int Component::Sprite::getCurrentCol() const {
     return this->currentCol;
+}
+
+int Component::Sprite::getFrameSpeed() const {
+    return this->frameSpeed;
+}
+
+int Component::Sprite::getNumCols() const {
+    return this->numCols;
 }
 
 void Component::Sprite::update() {

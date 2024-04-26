@@ -46,11 +46,6 @@ public:
     /// \param entity pointer to the entity to remove
     void removeEntity(const Entity *entity);
 
-    /// \brief Getter for entity in entity vector
-    /// \param index
-    /// \return a reference to the Pokemon
-    Entity &operator[](std::size_t index) const;
-
     /// \brief Allows for for-each loop functionality
     /// \return an iterator to the start of the entity vector
     std::vector<std::unique_ptr<Entity>>::iterator begin();
